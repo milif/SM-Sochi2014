@@ -1,7 +1,7 @@
 /**
  * 
  * @requires *
- * @requires appExample:appExample.css
+ * @requires appExample:all.css
  *
  * @ngdoc overview
  * @name appExample
@@ -10,7 +10,7 @@
  * Модуль примеров
  */
 
-angular.module('appExample', ['stm'])
+angular.module('appExample', ['stm', 'stmIndex'])
     .config(['$sceProvider', function($sceProvider){
         $sceProvider.enabled(false);
     }]);

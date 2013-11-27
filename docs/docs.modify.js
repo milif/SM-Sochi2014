@@ -50,8 +50,8 @@ docsApp.serviceFactory.openPlunkr = function(templateMerge, formPostData, angula
         '<html ng-app="' + content.module + '">\n' +
         '  <head>\n' +
         '    <meta charset="utf-8"/>\n' +
-        '    <base href="'+  window.BASE_URL +'">\n' +
         '{{scriptDeps}}\n' +
+        '<base href="'+  window.BASE_URL +'">\n' +
         '  </head>\n' +
         '  <body><div class="well">\n\n' +
         '{{indexContents}}' +

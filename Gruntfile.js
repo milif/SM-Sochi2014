@@ -13,15 +13,30 @@ module.exports = function(grunt) {
   grunt.initConfig({
   
     VERSION: VERSION,
-
-    buildmodules: {
-        docs: {
-            main: ['appExample'],
-            lib: ['docs/appExample/**/*.js', 'src/**/*.js'],
-            components: ['build/components'],
-            buildDir: 'build/docs/modules',
-            partialsDir: 'build/docs/partials'
-        }
+    
+    buildapp: {
+        modules: [
+            {  
+                name: 'stmIndex', // Module name
+                include: [        // Include module components:
+                    // 'directive:stmIndexHellowWorld',
+                    // 'directive:*',
+                    '*'                                                 
+                ]    
+            }
+        ],
+        lib: ['src/**/*.js'],
+        components: ['build/components'],
+        buildDir: 'build/app',
+        partialsDir: 'partials'
+    },
+    
+    builddocs:{
+        main: ['appExample'],
+        lib: ['docs/appExample/**/*.js', 'src/**/*.js'],
+        components: ['build/components'],
+        buildDir: 'build/docs/modules',
+        partialsDir: 'build/docs/partials'
     },
     shell: {
       init: {
@@ -39,13 +54,9 @@ module.exports = function(grunt) {
     }    
   });
 
-  grunt.registerTask('collect-errors', 'Combine stripped error files', function () {
-    util.collectErrors();
-  }); 
-
   //alias tasks
-  grunt.registerTask('package', ['shell', 'init', 'docs'/*, 'crontasks'*/]);
-  grunt.registerTask('app', ['buildmodules:app']);
+  grunt.registerTask('package', ['shell', 'init', 'docs', 'app'/*, 'crontasks'*/]);
+  grunt.registerTask('app', ['buildapp']);
   grunt.registerTask('docs', ['builddocs']);
   grunt.registerTask('default', ['package']);
 };
