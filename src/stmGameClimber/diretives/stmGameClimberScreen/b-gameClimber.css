@@ -1,2 +1,15 @@
 .b-gameClimber {
     }
+    .b-gameClimber .static-in-css {
+        width: 100%;
+        position: absolute;
+        left: 0;
+        line-height: 200px;
+        font-size: 20px;
+        bottom: 0;
+        background-color: red;
+        background: url(asset/i/b-gameClimber/player.png) no-repeat;
+        z-index: 3;
+        height: 200px;
+        background-size: cover;
+        }

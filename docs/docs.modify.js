@@ -51,7 +51,7 @@ docsApp.serviceFactory.openPlunkr = function(templateMerge, formPostData, angula
         '  <head>\n' +
         '    <meta charset="utf-8"/>\n' +
         '{{scriptDeps}}\n' +
-        '<base href="'+  window.BASE_URL +'">\n' +
+        '<base href="'+  window.location.href.replace(/api\/.*?$/, '') +'">\n' +
         '  </head>\n' +
         '  <body><div class="well">\n\n' +
         '{{indexContents}}' +
@@ -88,7 +88,7 @@ docsApp.serviceFactory.openPlunkr = function(templateMerge, formPostData, angula
     postData['tags[]'] = "angularjs";
     
     postData.private = true;
-    postData.description = 'DaruDar Example Plunkr';
+    postData.description = 'Example Plunkr';
 
     formPostData('http://plnkr.co/edit/?p=preview', postData);
   };
