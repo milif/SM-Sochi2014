@@ -1,15 +1,52 @@
 .b-gameClimber {
+    position: relative;
+    overflow: hidden;
     }
-    .b-gameClimber .static-in-css {
-        width: 100%;
-        position: absolute;
-        left: 0;
-        line-height: 200px;
-        font-size: 20px;
-        bottom: 0;
-        background-color: red;
-        background: url(asset/i/b-gameClimber/player.png) no-repeat;
-        z-index: 3;
-        height: 200px;
-        background-size: cover;
-        }
+.b-gameClimber-spacer {
+    width: 100%;
+    display: block;
+    }
+.b-gameClimber-player {
+    position: absolute;
+    width: 1000%;
+    height: 100%;
+    top: 0;
+    background: url(asset/i/b-gameClimber/b-gameClimber.png) no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    }
+.b-gameClimber.mod_frame1 .b-gameClimber-player {
+    left: 0;
+    }
+.b-gameClimber.mod_frame2 .b-gameClimber-player {
+    left: -100%;
+    }
+.b-gameClimber.mod_frame3 .b-gameClimber-player {
+    left: -200%;
+    }
+.b-gameClimber.mod_frame4 .b-gameClimber-player {
+    left: -300%;
+    }
+.b-gameClimber.mod_frame5 .b-gameClimber-player {
+    left: -400%;
+    }
+.b-gameClimber.mod_frame6 .b-gameClimber-player {
+    left: -500%;
+    }
+.b-gameClimber.mod_frame7 .b-gameClimber-player {
+    left: -600%;
+    }
+.b-gameClimber.mod_frame8 .b-gameClimber-player {
+    left: -700%;
+    }
+.b-gameClimber.mod_frame9 .b-gameClimber-player {
+    left: -800%;
+    }
+.b-gameClimber.mod_frame10 .b-gameClimber-player {
+    left: -900%;
+    }
+
+
+
