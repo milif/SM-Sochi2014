@@ -10,7 +10,9 @@
  * Модуль примеров
  */
 
-angular.module('appExample', ['stm', 'stmIndex', 'stmGameClimber'])
+angular.module('appExample', [
+        'stm', 'stmIndex', 'stmGameClimber' // API modules
+    ])
     .config(['$sceProvider', function($sceProvider){
         $sceProvider.enabled(false);
     }]);

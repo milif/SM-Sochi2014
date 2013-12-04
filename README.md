@@ -17,8 +17,7 @@ machine:
 * [Git](http://git-scm.com/): The [Github Guide to
 Installing Git](http://help.github.com/mac-git-installation) is a good source of information.
 
-* [Node.js](http://nodejs.org): We use Node to generate the documentation, run a
-development web server, run tests, and generate distributable files. Depending on your system, you can install Node either from source or as a
+* [Node.js](http://nodejs.org): We use Node (version 0.10 or higher) to generate the documentation, run tests, and generate distributable files. Depending on your system, you can install Node either from source or as a
 pre-packaged bundle.
 
 * [Java](http://www.java.com): We minify JavaScript using our

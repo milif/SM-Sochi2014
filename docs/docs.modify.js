@@ -1,3 +1,4 @@
+// Overrides
 docsApp.directive.sourceEdit = function(getEmbeddedTemplate) {
   return {
     template: '<div class="btn-group pull-right">' +
@@ -93,3 +94,33 @@ docsApp.serviceFactory.openPlunkr = function(templateMerge, formPostData, angula
     formPostData('http://plnkr.co/edit/?p=preview', postData);
   };
 };
+// Pull Requests
+docsApp.controller.pullsCtrl = ['$scope', 'Pull', function($scope, Pull){
+    $scope.pulls = [];
+    $scope.load = function(){
+        if($scope.loading) return;
+        $scope.loading = true;
+        $scope.pulls = Pull.query();
+        $scope.pulls.$promise.finally(function(){
+            $scope.loading = false;
+        });
+    }
+    $scope.build = function(i){
+        var pull = $scope.pulls[i];
+        pull.loading = true;
+        Pull.build({id: pull.id, updatedAt: pull.updatedAt}, function(update){
+            $.extend(pull, update);
+        }).$promise.finally(function(){
+            pull.loading = false;
+        });
+    }
+    $scope.load();
+}];
+docsApp.serviceFactory.Pull = ['$resource', function($resource){
+    return $resource('resource/pulls.js',{},{
+        build: {
+            params: {build: true}
+        }
+    });
+}];
+
