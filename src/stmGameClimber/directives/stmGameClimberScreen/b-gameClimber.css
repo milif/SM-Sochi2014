@@ -1,15 +1,110 @@
 .b-gameClimber {
     }
-    .b-gameClimber .static-in-css {
-        width: 100%;
-        position: absolute;
-        left: 0;
-        line-height: 200px;
-        font-size: 20px;
-        bottom: 0;
-        background-color: red;
-        background: url(asset/i/b-gameClimber/player.png) no-repeat;
-        z-index: 3;
-        height: 200px;
-        background-size: cover;
-        }
+
+/* gameClimber-fone */
+.gameClimber-fone {
+  position: relative;
+  z-index: 10;
+  background-color: #fed731;
+}
+.gameClimber-fone:before {
+  position: absolute;
+  right: 50%;
+  bottom: 98px;
+  left: 0;
+  margin-right: 954px;
+  height: 656px;
+  background: url(asset/i/b-gameClimber/b-gameClimber-fone-wave.png) 100% 0 repeat-x;
+  content: '';
+}
+.gameClimber-fone .gameClimber-fone-h {
+  height: 6390px;
+  background: url(asset/i/b-gameClimber/b-gameClimber-fone.jpg) 50% 100% no-repeat;
+}
+.gameClimber-fone .gameClimber-fone-h:before {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  height: 94px;
+  border-top: 4px solid #000;
+  background-color: #fff;
+  content: '';
+}
+.gameClimber-fone .gameClimber-fone-h:after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 50%;
+  z-index: -2;
+  height: 5512px;
+  background: url(asset/i/b-gameClimber/b-gameClimber-fone-after.png) 0 0 repeat-x #b3e3fe;
+  content: '';
+}
+
+/* gameClimber-player */
+.gameClimber-player {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-left: -200px;
+  width: 302px;
+  height: 430px;
+  background: url(asset/i/b-gameClimber/b-gameClimber-player.png) 0 0 no-repeat;
+  /* frame move   =  frame1...frame10*/
+  /* frame chocolate   =  frame11*/
+  /* frame energy   =  frame12*/
+  /* frame winner   =  frame13*/
+  /* frame stay   =  frame14*/
+}
+.gameClimber-player.mod_frame1 {
+  background-position: 0px 0px;
+}
+.gameClimber-player.mod_frame2 {
+  background-position: -302px 0px;
+}
+.gameClimber-player.mod_frame3 {
+  background-position: -604px 0px;
+}
+.gameClimber-player.mod_frame4 {
+  background-position: -906px 0px;
+}
+.gameClimber-player.mod_frame5 {
+  background-position: -1208px 0px;
+}
+.gameClimber-player.mod_frame6 {
+  background-position: -1510px 0px;
+}
+.gameClimber-player.mod_frame7 {
+  background-position: -1812px 0px;
+}
+.gameClimber-player.mod_frame8 {
+  background-position: -2114px 0px;
+}
+.gameClimber-player.mod_frame9 {
+  background-position: -2416px 0px;
+}
+.gameClimber-player.mod_frame10 {
+  background-position: -2718px 0px;
+}
+.gameClimber-player.mod_frame11 {
+  width: 188px;
+  height: 372px;
+  background-position: 0px -470px;
+}
+.gameClimber-player.mod_frame12 {
+  width: 210px;
+  height: 372px;
+  background-position: -302px -470px;
+}
+.gameClimber-player.mod_frame13 {
+  width: 534px;
+  height: 456px;
+  background-position: -604px -470px;
+}
+.gameClimber-player.mod_frame14 {
+  width: 188px;
+  height: 372px;
+  background-position: -1208px -470px;
+}
