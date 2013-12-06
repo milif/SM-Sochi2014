@@ -35,7 +35,7 @@ if(GET.build){
     
     grunt.file.write(pullDir+'/updatedAt.json', GET.updatedAt);
         
-    cmd = '(cd \'' + pullDir + '\'; curl -H \'Accept: application/vnd.github.patch\' -u ' + repo.oauth + ':x-oauth-basic https://api.github.com/repos/' + repo.company + '/' + repo.name + '/pulls/' + id + ' | git am -3)';         
+    cmd = '(cd \'' + pullDir + '\'; curl -H \'Accept: application/vnd.github.patch\' -u ' + repo.oauth + ':x-oauth-basic https://api.github.com/repos/' + repo.company + '/' + repo.name + '/pulls/' + id + ' | git am -3)';
     shell.exec(cmd, {silent: true});
     
     qfs.symbolicLink(pullDir + '/bower_components', '../../bower_components', 'dir');
