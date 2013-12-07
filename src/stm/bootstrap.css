@@ -1,4 +1,12 @@
 /*==========================================================*/
+/* Global */
+/*==========================================================*/
+.g-font {
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/*==========================================================*/
 /* FORM ELEMENTS */
 /*==========================================================*/
 /* button */
@@ -23,7 +31,6 @@
 .buttons-text {
   display: inline-block;
   vertical-align: middle;
-  font-family: Arial, Helvetica, sans-serif;
 }
 .buttons-link {
   position: absolute;
