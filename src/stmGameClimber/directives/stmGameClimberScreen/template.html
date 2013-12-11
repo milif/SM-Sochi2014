@@ -1,4 +1,4 @@
-<div class="b-gameClimber g-font" style="width: 100%; height: 100%; background: lightgray; position: absolute; font-size: 30px; text-align: center;">
+<div class="b-gameClimber g-font" style=" background: lightgray; font-size: 30px; text-align: center;">
   <div class='b-gameClimber-h'>
     <div class='gameClimber-fone'>
       <div class='gameClimber-fone-h'>
@@ -20,13 +20,13 @@
         </div>
         <div class='gameClimber-panel-column mod_second'>
           <div class='progress-bar'>
-            <div class='progress-bar-h' style='width: 58%'></div>
+            <div class='progress-bar-h' ng-style="{{energyCSS}}"></div>
             <div class='progress-bar-text'>Энергия</div>
           </div>
         </div>
         <div class='gameClimber-panel-column mod_third'>
           <div class='gameClimber-point mod_climber-panel'>
-            <div class='gameClimber-point-text'>5 000 баллов</div>
+            <div class='gameClimber-point-text'>{{score}} баллов</div>
           </div>
         </div>
       </div>
