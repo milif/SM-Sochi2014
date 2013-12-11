@@ -335,6 +335,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen', function($tim
 
                 }
                 init();
+
             };
         }
     };
