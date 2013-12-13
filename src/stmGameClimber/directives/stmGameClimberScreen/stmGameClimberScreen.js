@@ -155,26 +155,20 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen', function($tim
                     }
                     function _up() {
                         _stop();
-                        var step = 20,
+                        var step = 30,
                             ratio = (position - startPosition) / (endPosition - startPosition);
 
                         if (ratio > 0.75) {
                             step = 2.5;
-                            if(scope.score < 1500 ) {
-                                scope.score = 1500;
-                            }
+                            scope.score = 1500;
                         } else if (ratio > 0.50) {
                             step = 5;
-                            if(scope.score < 1000 ) {
-                                scope.score = 1000;
-                            }
-                        } else if (ratio > 0.30) {                          
-                            step = 7.5;
-                            if(scope.score < 500 ) {
-                                scope.score = 500;
-                            }
+                            scope.score = 1000;
+                        } else if (ratio > 0.30) {
+                            step = 7.5;                            
                         } else if (ratio > 0.20) {
-                            step = 15;                            
+                            step = 15;
+                            scope.score = 500;
                         }
 
                         // step = 100; // debug
@@ -227,7 +221,34 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen', function($tim
                         position = Math.min(Math.max(startPosition, position), endPosition);
 
                         var newstate;
+
+                        // TODO
+                        // if(action == 'up' || action == 'stop') {
+                        //     if(position < capPosition) {
+                        //         newstate = (position % 60) > 30 ? 10 : 11;
+                        //         if(position > capPosition * 0.5) newstate += 2;
+                        //     } else { 
+                        //         if(position > capPosition) newstate = (position % 60) > 30 ? 2 : 3;
+                        //         if(position > spacePosition ) newstate += 4; 
+                        //     }
+                        // } else if( action == 'down') {
+                        //     newstate = fromPosition > spacePosition ? 8 : ( fromPosition > capPosition ? 4: 15 );
+                        // }
+
+                        // if (position == startPosition) newstate = action == 'down' ? (fromPosition > 200 ? 
+                        //     (fromPosition > spacePosition ? 9 : ( fromPosition > capPosition ? 5 : 14 ) )
+                        // : 1) : 1;
+                        // else if(position == endPosition) newstate = 7;
+
                         if (action == 'up' || action == 'stop') {
+                            // console.log(fromPosition, position);
+                            // if(position < capPosition) {
+                            // newstate = (position % 60) > 30 ? 1 : 2;
+                            // if(position > capPosition * 0.5) newstate += 2;
+                            // } else { 
+                            // if(position > capPosition) newstate = (position % 60) > 30 ? 2 : 3;
+                            // if(position > spacePosition ) newstate += 4; 
+                            // }
                             if (state < 10) {
                                 newstate = state + 1;
                             } else {
@@ -330,7 +351,6 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen', function($tim
                             });
                         }
                     }
-
                     _play();
 
                 }
