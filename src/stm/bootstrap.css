@@ -1,3 +1,4 @@
+/* asset/i/common/  */
 /*==========================================================*/
 /* Global */
 /*==========================================================*/
@@ -11,7 +12,7 @@
 /*==========================================================*/
 /* button */
 /*==========================================================*/
-.buttons {
+.b-button {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -27,12 +28,17 @@
   vertical-align: top;
   white-space: nowrap;
   font-size: 0;
+  -moz-transition: all 0.1s linear;
+  -o-transition: all 0.1s linear;
+  -webkit-transition: all 0.1s linear;
+  transition: all 0.1s linear;
 }
-.buttons-text {
+.b-button__text {
   display: inline-block;
   vertical-align: middle;
+  font-family: Arial, Helvetica, sans-serif;
 }
-.buttons-link {
+.b-button__link {
   position: absolute;
   top: 0;
   left: 0;
@@ -45,29 +51,203 @@
   opacity: 0;
   cursor: pointer;
 }
+.ie8 .b-button__link {
+  -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=0)';
+}
 
-/* MOD size-small */
-.buttons.size_small {
+/* MOD size-normal */
+.b-button_size_normal {
   padding: 0 20px;
-  height: 32px;
+  height: 30px;
 }
-.buttons-text.size_small {
+.b-button_size_normal .b-button__text {
   font-size: 14px;
-  line-height: 27px;
+  line-height: 28.4px;
 }
 
-/* MOD.scheme-white */
-.buttons.scheme_white {
+/* MOD size-medium2 */
+.b-button_size_medium {
+  padding: 0 14px;
+  height: 40px;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  border-radius: 7px;
+  border: 3px solid #000;
+}
+.b-button_size_medium .b-button__text {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 34px;
+}
+
+/* MOD size-medium2 */
+.b-button_size_medium2 {
+  padding: 0 16px;
+  height: 40px;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  border-radius: 7px;
+  border: 3px solid #000;
+}
+.b-button_size_medium2 .b-button__text {
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 34px;
+}
+
+/* MOD size-big */
+.button_size_big {
+  padding: 0 40px;
+  height: 60px;
+}
+.button__text_size_big {
+  font-size: 30px;
+  line-height: 58.4px;
+}
+
+/* MOD scheme-white */
+.b-button_scheme_white {
   -moz-transition: all 0.1s linear;
   -o-transition: all 0.1s linear;
   -webkit-transition: all 0.1s linear;
   transition: all 0.1s linear;
-  background-color: #fff;
-  color: #000;
+  background-color: white;
 }
-.buttons.scheme_white:hover {
-  background-color: #f2f2f2;
+.b-button_scheme_white .b-button__text {
+  color: black;
 }
-.buttons.scheme_white:active {
-  background-color: #f9f9f9;
+.b-button_scheme_white:hover {
+  background-color: #cccccc;
 }
+.b-button_scheme_white:hover .b-button__text {
+  color: black;
+}
+.b-button_scheme_white:active {
+  background-color: #e5e5e5;
+}
+.b-button_scheme_white:active .b-button__text {
+  color: black;
+}
+.b-button_scheme_white.button_state_loading {
+  background-color: white !important;
+}
+
+/* MOD scheme-yellow */
+.b-button_scheme_yellow {
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZjAwMCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmYWJmMTQiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+  background-image: -moz-linear-gradient(#fff000, #fabf14);
+  background-image: -o-linear-gradient(#fff000, #fabf14);
+  background-image: -webkit-linear-gradient(#fff000, #fabf14);
+  background-image: linear-gradient(#fff000, #fabf14);
+}
+.b-button_scheme_yellow .b-button__text {
+  color: black;
+}
+.b-button_scheme_yellow.button_state_loading {
+  background-image: -moz-linear-gradient(#fff000, #fabf14);
+  background-image: -o-linear-gradient(#fff000, #fabf14);
+  background-image: -webkit-linear-gradient(#fff000, #fabf14);
+  background-image: linear-gradient(#fff000, #fabf14);
+}
+
+/* MOD state-disabled */
+.b-button_state_disabled {
+  background-color: #cccccc !important;
+  color: white;
+}
+.b-button_state_disabled .button__text {
+  cursor: default;
+}
+.b-button_state_disabled .button__link {
+  left: -9999px;
+}
+
+/* MOD state-loading */
+.b-button_state_loading .button__text {
+  position: relative;
+  top: -100em;
+  cursor: default;
+}
+.b-button_state_loading:before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: url(asset/i/common/button-loading.gif) 50% 50% no-repeat;
+  content: '';
+}
+.b-button_state_loading .button__link {
+  left: -9999px;
+  cursor: default !important;
+}
+
+
+
+
+/*==========================================================*/
+/* ICONS */
+/*==========================================================*/
+.b-icons {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  font-size: 10px;
+  line-height: 10px;
+}
+.b-icons__item {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: url(asset/i/common/icons.png) 0 0 no-repeat;
+}
+
+/* MOD arrow */
+.b-icons_arrow {
+  width: 17px;
+  height: 13px;
+  margin-right: 6px;
+  margin-left: -3px;
+}
+.b-icons_arrow .b-icons__item {
+  background-position: -45px 0px;
+}
+
+/* MOD star */
+.b-icons_star {
+  width: 23px;
+  height: 21px;
+  margin-right: 6px;
+  margin-left: -4px;
+}
+.b-icons_star .b-icons__item {
+  background-position: 0 0;
+}
+
+/* MOD energy */
+.b-icons_energy {
+  width: 18px;
+  height: 18px;
+  margin-right: 6px;
+  top: 0px;
+  vertical-align: top;
+}
+.b-icons_energy .b-icons__item {
+  background-position: -25px 0px;
+}
+
+/* MOD flag */
+.b-icons_flag {
+  width: 16px;
+  height: 19px;
+  margin-right: 6px;
+  top: -1px;
+  vertical-align: top;
+}
+.b-icons_flag .b-icons__item {
+  background-position: 0px -22px;
+}
+
+
