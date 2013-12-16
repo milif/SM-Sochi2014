@@ -32,12 +32,12 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen', function($tim
         controller: function($scope, $element, $attrs) {
           $scope.endPosition = 0;
           $scope.score = 0;          
-          $scope.energy = 100;          
-          $scope.distancePercent = 0;
+          $scope.energy = 100;
+          $scope.distance = 0;
           $scope.$watch('distance', function() {
+              $scope.distancePercent = $scope.distance / $scope.endPosition * 100;
               $scope.distanceMeters = $scope.distance / 100;
           });
-          $scope.distance = 0;
         },
         compile: function (tElement) {
             return function (scope, iElement) {
@@ -141,7 +141,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen', function($tim
                         state = 14;
                         _updateDownPosition();
                         isFirst = false;
-                        
+
                         $(keyObj)
                             .off(keyEvents)
                             .off(blockUpEvents)
@@ -355,7 +355,6 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen', function($tim
 
                 }
                 init();
-
             };
         }
     };
