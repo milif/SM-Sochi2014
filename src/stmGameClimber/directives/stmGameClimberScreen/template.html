@@ -4,7 +4,7 @@
         <div class='gameClimber-fone'>
           <div class='gameClimber-fone-h'>
             <!-- Player -->
-            <div class='gameClimber-player mod_frame1' style='bottom:100px; margin-left: -178px;'></div>
+            <div class='gameClimber-player mod_frame1' style='bottom:62px; margin-left: -178px;'></div>
             <!-- End Player -->
           </div>
         </div>
@@ -30,10 +30,10 @@
                   </span>
                 </div>
                 <div class='b-progressbar b-progressbar_scheme_red'>
-                  <div class='b-progressbar__line' style='width: 58%'></div>
+                  <div class='b-progressbar__line' style='width: {{energy}}%'></div>
                 </div>
                 <div class='b-progress-climber-note'>
-                  100 %
+                  {{energy | number:0}} %
                 </div>
               </div>
               <div class='b-progress-climber'>
@@ -43,10 +43,10 @@
                   </span>
                 </div>
                 <div class='b-progressbar b-progressbar_scheme_blue'>
-                  <div class='b-progressbar__line' style='width: 10%'></div>
+                  <div class='b-progressbar__line' style='width: {{distancePercent}}%'></div>
                 </div>
                 <div class='b-progress-climber-note'>
-                  10 м
+                  {{distanceMeters | number:0}} м
                 </div>
               </div>
             </div>

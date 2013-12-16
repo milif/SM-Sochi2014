@@ -28,25 +28,23 @@
  */
 angular.module('stmGameClimber').directive('stmGameClimberScreen', function($timeout, $interval, $document, $window){
     return {
-        // scope: {
-        //     energy: '@energy',
-        //     energyCSS: '@energyCSS',
-        //     score: '@score'
-        // },
         templateUrl: 'partials/stmGameClimber.directive:stmGameClimberScreen:template.html',
         controller: function($scope, $element, $attrs) {
-          $scope.score = 0;
-          $scope.$watch('energy', function() {
-            $scope.energyCSS = {"width": $scope.energy + '%'};
-          });
+          $scope.endPosition = 0;
+          $scope.score = 0;          
           $scope.energy = 100;
+          $scope.distance = 0;
+          $scope.$watch('distance', function() {
+              $scope.distancePercent = $scope.distance / $scope.endPosition * 100;
+              $scope.distanceMeters = $scope.distance / 100;
+          });
         },
         compile: function (tElement) {
             return function (scope, iElement) {
                 function init() {
                     var $ = angular.element,
-                        g_pipeEl = $('.b-gameClimber'),
-                        g_viewEl = $('body,html'),
+                        g_pipeEl = $('.gameClimber-fone-h'),
+                        g_viewEl = $('.b-gameClimber-h'),
 
                         keyObj = $('.l-html').is('.ie8') ? $document : $window,
                         manualEl = $('.js-manual'),
@@ -114,42 +112,58 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen', function($tim
                                 }
                             }
                         };
+
+                    scope.endPosition = endPosition;
+
+                    function updateEnergy(incrementValue) {
+                        scope.energy = scope.energy + incrementValue;
+                        if(scope.energy < 0) scope.energy = 0;
+                        if(scope.energy > 100) scope.energy = 100;
+                    }
+
+                    function updateDistance(incrementValue) {
+                        scope.distance = scope.distance + incrementValue;
+                        if(scope.distance < 0) scope.distance = 0;
+                        if(scope.distance > scope.endPosition) scope.distance = scope.endPosition;
+                    }
                     
                     function _play(){
-                    
-                            // Stm.post('ga', 'trackEvent', gaName, isFirst ? 'Start' : 'Restart');
+                        $timeout(function(){
+                            g_viewEl.stop();
+                            inScroll = true;
+                            g_viewEl.animate({
+                                scrollTop: endPosition
+                            }, 1500, null, function () {
+                                inScroll = false;
+                            });
+                        }, 500);
                         
-                            // g_gamePopupEl.fadeOut();
-                            g_viewEl
-                                .animate({
-                                    scrollTop: $($document).height() - $($window).height()
-                                });
-                            isGameStart = true;
-                            manEl
-                                .removeClass('mod_frame'+state)
-                                .addClass('mod_frame1');
-                            state = 1;
-                            manualAttempts = 5;
-                            manualTimeout = $timeout(function(){
-                                manualEl.fadeIn();
-                            }, 2000);
-                            _updateDownPosition();
-                            isFirst = false;
-                            
-                            // meteorEl
-                            //     .data('isFly', false);
-                            // aircraftEl.data('isFly', false);
-                            
-                            $(keyObj)
-                                .off(keyEvents)
-                                .off(blockUpEvents)
-                                .on(keyEvents);        
+                        isGameStart = true;
+                        manEl
+                            .removeClass('mod_frame'+state)
+                            .addClass('mod_frame1');
+                        state = 1;
+                        // manualAttempts = 5;
+                        // manualTimeout = $timeout(function(){
+                        //     manualEl.fadeIn();
+                        // }, 2000);
+                        _updateDownPosition();
+                        isFirst = false;
+                        
+                        // meteorEl
+                        //     .data('isFly', false);
+                        // aircraftEl.data('isFly', false);
+                        
+                        $(keyObj)
+                            .off(keyEvents)
+                            .off(blockUpEvents)
+                            .on(keyEvents);        
                     }
 
 
                     function _updateDownPosition(){
                         downPosition = 1850 + Math.round(2000 * Math.random());  
-                        downPositionStop = downPosition - Math.round(1850 * Math.random());        
+                        downPositionStop = downPosition - Math.round(1850 * Math.random());
                     }
                     function _up() {
                         _stop();
@@ -177,7 +191,8 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen', function($tim
 
                         position += step;
                         scope.$apply(function() {
-                          scope.energy = scope.energy - 0.1;
+                          updateEnergy(-0.1);
+                          updateDistance(step);
                         });
 
 
@@ -216,6 +231,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen', function($tim
                                 canBreakDown = true;
                                 _updateDownPosition();
                             }
+                            updateEnergy(0.05);
                             _update();
                         }, 10);
                         action = 'down';
@@ -280,35 +296,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen', function($tim
                         }
 
                         if (position == startPosition || position == endPosition) {
-                            if (action == 'down') {
-                                if (position == startPosition && state != 1) {
-                                    // if( (Stm.env.isPromo && skidka > 0) || ( (!Stm.env.isPromo) && level > 0) ){
-                                    //     setTimeout(function(){
-                                    //         if(Stm.env.isPromo) {
-                                    //             new Stm.popup.Promo({skidka: skidka}).open();                   
-                                    //         } else {
-                                    //             new Stm.popup.Promo({
-                                    //                 level: level,
-                                    //                 isFinal: g_levels.length <= level ,
-                                    //                 levelText: g_levels[level-1]
-                                    //             }).open();
-                                    //         }
-                                    //     }, 500);
-                                    // } else {
-                                    //     g_gamePopupEl
-                                    //         .find('.js-button').text('Ещё попытка').end()
-                                    //         .fadeIn();
-
-                                    //     Stm.post('ga', 'trackEvent', gaName, 'Fail');
-
-                                    // }
-                                    // $(keyObj)
-                                    //     .on(blockUpEvents)
-                                    //     .off(keyEvents);
-                                }
-                            }
                             _stop();
-                            // _hideInfo();
                             if (position == endPosition) {
                                 $timeout(function () {
                                     $(keyObj)
@@ -316,76 +304,57 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen', function($tim
                                         .on(blockUpEvents);
                                     $timeout.cancel(doDownTimeout);
                                 }, 0);
-                                $timeout(function () {
+                                // $timeout(function () {
 
-                                    handEl.animate({
-                                        'height': 593
-                                    }, 1000, 'linear', function () {
-                                        manEl.hide();
-                                        handEl.toggleClass('state_down state_up');
-                                        handEl.slideUp(1000, 'linear');
-                                    });
-                                }, 500);
-
-                                // setTimeout(function(){
-                                //     if(Stm.env.isPromo) {
-                                //         new Stm.popup.Promo().open();
-                                //     } else {
-                                //         new Stm.popup.Promo({
-                                //             isFinal: true,
-                                //             level: g_levels.length,
-                                //             levelText: g_levels[g_levels.length - 1]
-                                //         }).open();
-                                //     }                        
-                                // }, 2500 + 1500);
-
-                                // Stm.post('ga', 'trackEvent', gaName, 'Success');
+                                //     handEl.animate({
+                                //         'height': 593
+                                //     }, 1000, 'linear', function () {
+                                //         manEl.hide();
+                                //         handEl.toggleClass('state_down state_up');
+                                //         handEl.slideUp(1000, 'linear');
+                                //     });
+                                // }, 500);
                             }
                         }
                     }
 
-
-                    function _setScroll() {
-
-                        if (position == endPosition) {
-                            g_viewEl.stop().animate({
+                    function _setScroll(){
+                        
+                        if(position == endPosition) {
+                             g_viewEl.stop().animate({
                                 scrollTop: 200
                             }, 200);
                             return;
                         }
-
-                        if (inScroll) return;
-
-                        var windowHeight = $($window).height(),
+                        
+                        if(inScroll) return;
+                    
+                        var windowHeight = g_viewEl.height(),
+                            pipeHeight = g_pipeEl.height(),
                             scrollTo;
 
-                        if (action == 'down') {
-                            scrollTo = manEl.offset().top - (windowHeight - manEl.height()) / 3;
+                        var _position = pipeHeight - position;                        
+                        if( action == 'down' ) {
+                            scrollTo = _position - windowHeight / 2;
                         } else {
-                            scrollTo = manEl.offset().top - (windowHeight - manEl.height());
-                            scrollTo = scrollTo > $($document).height() - 1.5 * windowHeight ? $($document).height() - windowHeight : scrollTo;
+                            scrollTo = _position - windowHeight;
                         }
-
-                        if (Math.abs(scrollTo - $($window).scrollTop()) > windowHeight / 4) {
+                        
+                        if(Math.abs( scrollTo - g_viewEl.scrollTop()) > windowHeight / 4 ) {
                             g_viewEl.stop();
                             inScroll = true;
                             g_viewEl.animate({
                                 scrollTop: scrollTo
-                            }, 200, null, function () {
+                            }, 200, null, function(){
                                 inScroll = false;
                             });
                         }
-
                     }
 
                     _play();
 
                 }
-
-                $($document).ready(function () {
-                    init();
-                });
-
+                init();
             };
         }
     };
