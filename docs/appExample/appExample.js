@@ -11,7 +11,7 @@
  */
 
 angular.module('appExample', [
-        'stm', 'stmIndex', 'stmGameClimber' // API modules
+        'stm', 'stmIndex', 'stmGameClimber', 'stmGameEti' // API modules
     ])
     .config(['$sceProvider', function($sceProvider){
         $sceProvider.enabled(false);
