@@ -47,7 +47,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen', function($tim
                         g_viewEl = $('.b-gameClimber-h'),
 
                         keyObj = $('.l-html').is('.ie8') ? $document : $window,
-                        manualEl = $('.js-manual'),
+                        // manualEl = $('.js-manual'),
 
                         manEl = g_pipeEl.find('.gameClimber-player'),
                         state = 0,
@@ -57,7 +57,6 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen', function($tim
 
                         attempts = 5 + Math.round(Math.random() * 5),
 
-                        windowEl = $($window),
                         isFirst = true,
                         moveInterval,
                         doDownTimeout,
@@ -70,6 +69,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen', function($tim
 
                         startPosition = parseInt(manEl.css('bottom')),
                         endPosition = g_pipeEl.height(),
+                        topPipeMargin = 1000,
                         spacePosition = endPosition * 0.7,
                         capPosition = endPosition * 0.35,
                         position = startPosition,
@@ -116,15 +116,11 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen', function($tim
                     scope.endPosition = endPosition;
 
                     function updateEnergy(incrementValue) {
-                        scope.energy = scope.energy + incrementValue;
-                        if(scope.energy < 0) scope.energy = 0;
-                        if(scope.energy > 100) scope.energy = 100;
+                        scope.energy = Math.min(Math.max(0, scope.energy + incrementValue), 100);
                     }
 
                     function updateDistance(incrementValue) {
-                        scope.distance = scope.distance + incrementValue;
-                        if(scope.distance < 0) scope.distance = 0;
-                        if(scope.distance > scope.endPosition) scope.distance = scope.endPosition;
+                      scope.distance = Math.min(Math.max(0, scope.distance + incrementValue), 100);
                     }
                     
                     function _play(){
@@ -141,8 +137,8 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen', function($tim
                         isGameStart = true;
                         manEl
                             .removeClass('mod_frame'+state)
-                            .addClass('mod_frame1');
-                        state = 1;
+                            .addClass('mod_frame14');
+                        state = 14;
                         // manualAttempts = 5;
                         // manualTimeout = $timeout(function(){
                         //     manualEl.fadeIn();
@@ -172,28 +168,23 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen', function($tim
 
                         if (ratio > 0.75) {
                             step = 2.5;
-                            if(scope.score < 1500 ) {
-                                scope.score = 1500;
-                            }
-                        } else if (ratio > 0.50) {
-                            step = 5;
                             if(scope.score < 1000 ) {
                                 scope.score = 1000;
                             }
-                        } else if (ratio > 0.30) {
-                            step = 7.5;
+                        } else if (ratio > 0.50) {
+                            step = 5;
                             if(scope.score < 500 ) {
                                 scope.score = 500;
                             }
+                        } else if (ratio > 0.30) {
+                            step = 7.5;
                         } else if (ratio > 0.20) {
                             step = 15;                            
                         }
 
                         position += step;
-                        scope.$apply(function() {
-                          updateEnergy(-0.1);
-                          updateDistance(step);
-                        });
+                        updateEnergy(-0.1);
+                        updateDistance(step);
 
 
                         // if(ratio > 0.5 ) _showInfo();
@@ -265,8 +256,13 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen', function($tim
                         if (position == startPosition) newstate = action == 'down' ? (fromPosition > 200 ? 
                             (fromPosition > spacePosition ? 9 : ( fromPosition > capPosition ? 5 : 14 ) )
                         : 1) : 1;
-                        else if(position == endPosition) newstate = 13;
+                        else if(position >= (endPosition - topPipeMargin)) newstate = 13;
 
+                        if(position >= (endPosition - topPipeMargin)) {
+                            if(scope.score < 1500) {
+                                scope.score = 1500;
+                            }
+                        }
 
                         if (state != newstate) {
                             manEl
@@ -274,18 +270,19 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen', function($tim
                                 .addClass('mod_frame' + newstate);
                             state = newstate;
                         }
-
-                        manEl
-                            .css({
-                                'bottom': action == 'down' || position == endPosition ? position : Math.max(startPosition, Math.floor(position / 30) * 30 - 30)
+                        
+                        if(position >= (endPosition - topPipeMargin)) {
+                            manEl.css({
+                              'bottom': endPosition - topPipeMargin + 300
                             });
-
+                        } else {
+                            manEl.css({
+                                'bottom': action == 'down' ? position : Math.max(startPosition, Math.floor(position / 30) * 30 - 30)
+                            });
+                        }
                         _setScroll();
 
                         var ratio = (position - startPosition) / (endPosition - startPosition);
-
-                        // if(ratio > 0.4 ) _showInfo();
-                        // else _hideInfo();
 
                         if (attempts > 0 && downPosition < position) {
                             attempts--;
@@ -295,9 +292,11 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen', function($tim
                             return;
                         }
 
-                        if (position == startPosition || position == endPosition) {
+                        console.log(position, startPosition, endPosition);
+
+                        if (position == startPosition || position >= (endPosition - topPipeMargin)) {
                             _stop();
-                            if (position == endPosition) {
+                            if (position >= (endPosition - topPipeMargin)) {
                                 $timeout(function () {
                                     $(keyObj)
                                         .off(keyEvents)
@@ -320,7 +319,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen', function($tim
 
                     function _setScroll(){
                         
-                        if(position == endPosition) {
+                        if(position >= (endPosition - topPipeMargin)) {
                              g_viewEl.stop().animate({
                                 scrollTop: 200
                             }, 200);
@@ -329,18 +328,18 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen', function($tim
                         
                         if(inScroll) return;
                     
-                        var windowHeight = g_viewEl.height(),
+                        var viewHeight = g_viewEl.height(),
                             pipeHeight = g_pipeEl.height(),
                             scrollTo;
 
                         var _position = pipeHeight - position;                        
                         if( action == 'down' ) {
-                            scrollTo = _position - windowHeight / 2;
+                            scrollTo = _position - viewHeight / 2;
                         } else {
-                            scrollTo = _position - windowHeight;
+                            scrollTo = _position - viewHeight;
                         }
                         
-                        if(Math.abs( scrollTo - g_viewEl.scrollTop()) > windowHeight / 4 ) {
+                        if(Math.abs( scrollTo - g_viewEl.scrollTop()) > viewHeight / 4 ) {
                             g_viewEl.stop();
                             inScroll = true;
                             g_viewEl.animate({
