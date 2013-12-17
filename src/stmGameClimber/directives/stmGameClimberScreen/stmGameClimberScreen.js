@@ -26,7 +26,7 @@
     </example>
     
  */
-angular.module('stmGameClimber').directive('stmGameClimberScreen', function($timeout, $interval, $document, $window){
+angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '$interval', '$document', '$window', function($timeout, $interval, $document, $window){
     return {
         templateUrl: 'partials/stmGameClimber.directive:stmGameClimberScreen:template.html',
         controller: function($scope, $element, $attrs) {
@@ -43,10 +43,10 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen', function($tim
             return function (scope, iElement) {
                 function init() {
                     var $ = angular.element,
-                        g_pipeEl = $('.gameClimber-fone-h'),
-                        g_viewEl = $('.b-gameClimber-h'),
+                        g_pipeEl = iElement.find('.gameClimber-fone-h'),
+                        g_viewEl = iElement.find('.b-gameClimber-h'),
 
-                        keyObj = $('.l-html').is('.ie8') ? $document : $window,
+                        keyObj = $window,
 
                         manEl = g_pipeEl.find('.gameClimber-player'),
                         state = 0,
@@ -344,4 +344,4 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen', function($tim
             };
         }
     };
-});
+}]);
