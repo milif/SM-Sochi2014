@@ -1,0 +1,56 @@
+directive.ngEmbedApp = ['$templateCache', '$browser', '$rootScope', '$location', '$sniffer', '$animate',
+                function($templateCache,   $browser,  docsRootScope, $location,   $sniffer,   $animate) {
+  return {
+    terminal: true,
+    link: function(scope, element, attrs) {
+      var modules = ['ngAnimate'],
+          embedRootScope,
+          deregisterEmbedRootScope;
+
+      modules.push(['$provide', function($provide) {
+        $provide.value('$templateCache', $templateCache);
+        $provide.value('$anchorScroll', angular.noop);
+        $provide.value('$browser', $browser);
+        $provide.value('$sniffer', $sniffer);
+        $provide.value('$animate', $animate);
+        $provide.provider('$location', function() {
+          this.$get = ['$rootScope', function($rootScope) {
+            docsRootScope.$on('$locationChangeSuccess', function(event, oldUrl, newUrl) {
+              $rootScope.$broadcast('$locationChangeSuccess', oldUrl, newUrl);
+            });
+            return $location;
+          }];
+          this.html5Mode = angular.noop;
+        });
+        $provide.decorator('$rootScope', ['$delegate', function($delegate) {
+          embedRootScope = $delegate;
+
+          // Since we are teleporting the $animate service, which relies on the $$postDigestQueue
+          // we need the embedded scope to use the same $$postDigestQueue as the outer scope
+          embedRootScope.$$postDigestQueue = docsRootScope.$$postDigestQueue;
+
+          deregisterEmbedRootScope = docsRootScope.$watch(function embedRootScopeDigestWatch() {
+            embedRootScope.$digest();
+          });
+
+          return embedRootScope;
+        }]);
+      }]);
+      if (attrs.ngEmbedApp)  modules.push(attrs.ngEmbedApp);
+
+      element.on('click', function(event) {
+        if (event.target.attributes.getNamedItem('ng-click')) {
+          event.preventDefault();
+        }
+      });
+
+      element.bind('$destroy', function() {
+        deregisterEmbedRootScope();
+        embedRootScope.$destroy();
+      });
+
+      element.data('$injector', null);
+      angular.bootstrap(element, modules);
+    }
+  };
+}];
