@@ -76,6 +76,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen', function($tim
                         downPositionStop,
                         fromPosition,
 
+                        blockUI = false,
                         blockUpEvents = {
                             'keydown': function (e) {
                                 if (e.keyCode == 38) {
@@ -148,6 +149,23 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen', function($tim
                             .on(keyEvents);        
                     }
 
+                    function blockUserEvents(timeToBlock) {
+                        timeToBlock = timeToBlock || 3000;
+                        $timeout(function () {
+                            $(keyObj)
+                                .off(blockUpEvents)
+                                .off(keyEvents)
+                                .on(blockUpEvents);
+                        }, 0);
+                        blockUI = true;
+                        $timeout(function () {
+                            $(keyObj)
+                                .off(keyEvents)
+                                .off(blockUpEvents)
+                                .on(keyEvents);
+                            blockUI = false;
+                        }, timeToBlock);
+                    }
 
                     function _updateDownPosition(){
                         downPosition = 1850 + Math.round(2000 * Math.random());  
@@ -171,11 +189,9 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen', function($tim
                             scope.score = 500;
                         }
 
-                        // step = 100; // debug
-
                         position += step;
                         scope.$apply(function() {
-                          updateEnergy(-0.05);
+                          updateEnergy(-0.2);
                           updateDistance(step);
                         });
 
@@ -203,7 +219,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen', function($tim
                                 canBreakDown = true;
                                 _updateDownPosition();
                             }
-                            updateEnergy(0.05);
+                            updateEnergy(0.7);
                             updateDistance(-8);
                             _update();
                         }, 10);
@@ -222,33 +238,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen', function($tim
 
                         var newstate;
 
-                        // TODO
-                        // if(action == 'up' || action == 'stop') {
-                        //     if(position < capPosition) {
-                        //         newstate = (position % 60) > 30 ? 10 : 11;
-                        //         if(position > capPosition * 0.5) newstate += 2;
-                        //     } else { 
-                        //         if(position > capPosition) newstate = (position % 60) > 30 ? 2 : 3;
-                        //         if(position > spacePosition ) newstate += 4; 
-                        //     }
-                        // } else if( action == 'down') {
-                        //     newstate = fromPosition > spacePosition ? 8 : ( fromPosition > capPosition ? 4: 15 );
-                        // }
-
-                        // if (position == startPosition) newstate = action == 'down' ? (fromPosition > 200 ? 
-                        //     (fromPosition > spacePosition ? 9 : ( fromPosition > capPosition ? 5 : 14 ) )
-                        // : 1) : 1;
-                        // else if(position == endPosition) newstate = 7;
-
                         if (action == 'up' || action == 'stop') {
-                            // console.log(fromPosition, position);
-                            // if(position < capPosition) {
-                            // newstate = (position % 60) > 30 ? 1 : 2;
-                            // if(position > capPosition * 0.5) newstate += 2;
-                            // } else { 
-                            // if(position > capPosition) newstate = (position % 60) > 30 ? 2 : 3;
-                            // if(position > spacePosition ) newstate += 4; 
-                            // }
                             if (state < 10) {
                                 newstate = state + 1;
                             } else {
@@ -285,18 +275,15 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen', function($tim
 
                         var ratio = (position - startPosition) / (endPosition - startPosition);
 
+                        if ((position == startPosition) && (scope.energy < 70)) {
+                            $interval(function(){
+                                updateEnergy(3);
+                            }, 100, 10);
+                            blockUserEvents(1000);
+                        }
+
                         if(scope.energy === 0) {
-                            $timeout(function () {
-                                $(keyObj)
-                                    .off(keyEvents)
-                                    .on(blockUpEvents);
-                            }, 0);
-                            $timeout(function () {
-                                $(keyObj)
-                                    .off(keyEvents)
-                                    .off(blockUpEvents)
-                                    .on(keyEvents);
-                            }, 3000);
+                            blockUserEvents(1500);
                         }
 
                         if (attempts > 0 && downPosition < position) {
@@ -352,7 +339,6 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen', function($tim
                         }
                     }
                     _play();
-
                 }
                 init();
             };

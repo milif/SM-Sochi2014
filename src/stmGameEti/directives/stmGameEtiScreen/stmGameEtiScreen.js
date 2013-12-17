@@ -19,7 +19,7 @@
       <file name="style.css">
          .example-screen {
             width: 100%;
-            height: 600px;
+            height: 800px;
             position: relative;
             }
       </file>
