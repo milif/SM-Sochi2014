@@ -9,4 +9,6 @@
 
 angular.module('stmGameClimber', ['stm'])
     .config([function(){
+
+
     }]);
