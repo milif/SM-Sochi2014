@@ -1,0 +1,73 @@
+/*==========================================================*/
+/* Global */
+/*==========================================================*/
+.g-font {
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/*==========================================================*/
+/* FORM ELEMENTS */
+/*==========================================================*/
+/* button */
+/*==========================================================*/
+.buttons {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-background-clip: padding;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  position: relative;
+  display: inline-block;
+  overflow: visible;
+  vertical-align: top;
+  white-space: nowrap;
+  font-size: 0;
+}
+.buttons-text {
+  display: inline-block;
+  vertical-align: middle;
+}
+.buttons-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  outline: none !important;
+  border: none;
+  background: url(about:blank);
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* MOD size-small */
+.buttons.size_small {
+  padding: 0 20px;
+  height: 32px;
+}
+.buttons-text.size_small {
+  font-size: 14px;
+  line-height: 27px;
+}
+
+/* MOD.scheme-white */
+.buttons.scheme_white {
+  -moz-transition: all 0.1s linear;
+  -o-transition: all 0.1s linear;
+  -webkit-transition: all 0.1s linear;
+  transition: all 0.1s linear;
+  background-color: #fff;
+  color: #000;
+}
+.buttons.scheme_white:hover {
+  background-color: #f2f2f2;
+}
+.buttons.scheme_white:active {
+  background-color: #f9f9f9;
+}

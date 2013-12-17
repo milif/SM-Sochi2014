@@ -1,6 +1,66 @@
-<div class="b-gameClimber" style="width: 100%; height: 100%; background: lightgray; position: absolute; font-size: 30px; line-height: 600px; text-align: center;">
-    The Climber Game
-    <!-- Static in partials -->
-    <img width="100%" src="asset/i/b-gameClimber/player.png" style="position: absolute; left:0;">
-    <div class="static-in-css">Static in CSS</div>
+<div class="b-gameClimber g-font" style="width: 100%; height: 100%; background: lightgray; position: absolute; 
+">
+    <div class='b-gameClimber-h'>
+        <div class='gameClimber-fone'>
+          <div class='gameClimber-fone-h'>
+            <!-- Player -->
+            <div class='gameClimber-player mod_frame1' style='bottom:62px; margin-left: -178px;'></div>
+            <!-- End Player -->
+          </div>
+        </div>
+      </div>
+      <!-- Panel -->
+      <div class='gameClimber-panel'>
+        <div class='gameClimber-panel-h'>
+          <div class='gameClimber-panel-layaut'>
+            <div class='gameClimber-panel-column mod_first'>
+              <span class='b-button b-button_size_medium b-button_scheme_white'>
+                <span class='b-icons b-icons_arrow'>
+                  <span class='b-icons__item'></span>
+                </span>
+                <span class='b-button__text'>На карту</span>
+                <a class='b-button__link' href='#3'></a>
+              </span>
+            </div>
+            <div class='gameClimber-panel-column mod_second'>
+              <div class='b-progress-climber'>
+                <div class='b-progress-climber-icon'>
+                  <span class='b-icons b-icons_energy'>
+                    <span class='b-icons__item'></span>
+                  </span>
+                </div>
+                <div class='b-progressbar b-progressbar_scheme_red'>
+                  <div class='b-progressbar__line' style='width: {{energy}}%'></div>
+                </div>
+                <div class='b-progress-climber-note'>
+                  {{energy | number:0}} %
+                </div>
+              </div>
+              <div class='b-progress-climber'>
+                <div class='b-progress-climber-icon'>
+                  <span class='b-icons b-icons_flag'>
+                    <span class='b-icons__item'></span>
+                  </span>
+                </div>
+                <div class='b-progressbar b-progressbar_scheme_blue'>
+                  <div class='b-progressbar__line' style='width: {{distancePercent}}%'></div>
+                </div>
+                <div class='b-progress-climber-note'>
+                  {{distanceMeters | number:0}} м
+                </div>
+              </div>
+            </div>
+            <div class='gameClimber-panel-column mod_third'>
+              <span class='b-button b-button_size_medium2 b-button_scheme_yellow'>
+                <span class='b-icons b-icons_star'>
+                  <span class='b-icons__item'></span>
+                </span>
+                <span class='b-button__text'>{{score}}</span>
+                <a class='b-button__link' href='#3'></a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Panel -->
 </div>
