@@ -245,7 +245,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                                 newstate = 1;
                             }
                         } else if (action == 'down') {
-                            newstate = 1;
+                            newstate = 15;
                         }
 
                         if (position == startPosition) newstate = action == 'down' ? (fromPosition > 200 ? 
