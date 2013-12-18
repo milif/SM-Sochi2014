@@ -51,7 +51,6 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         manEl = g_pipeEl.find('.gameClimber-player'),
                         state = 0,
                         action = 'stop',
-                        isUpPressed = false,
                         manualTimeout,
 
                         attempts = 5 + Math.round(Math.random() * 5),
@@ -65,8 +64,12 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         isGameStart = false,
                         isUpPressed = false,
                         canBreakDown,
+                        clicksCount = 0,
+                        clicksIntervalCount = 0,
+                        clicksRatioIntervalMs = 1000,
+                        clicksRatio = 3,
 
-                        startPosition = parseInt(manEl.css('bottom')),
+                        startPosition = parseInt(manEl.css('bottom'), 10),
                         endPosition = g_pipeEl.height(),
                         topPipeMargin = 1050,
                         spacePosition = endPosition * 0.7,
@@ -89,7 +92,13 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                                 if (e.keyCode == 38) {
                                     e.preventDefault();
                                     if (action == 'down' && !canBreakDown) return;
-                                    if (!isUpPressed) _up();
+                                    if (!isUpPressed) {
+                                        clicksCount++;
+                                        _up();
+                                        var energyIncrement = clicksIntervalCount > 0 ? Math.pow(clicksIntervalCount, clicksIntervalCount - clicksRatio) : 0;
+                                        energyIncrement = Math.max(0.2, energyIncrement / 1000);
+                                        updateEnergy(-energyIncrement);
+                                    }
                                     isUpPressed = true;
 
                                     var ratio = (position - startPosition) / (endPosition - startPosition),
@@ -134,6 +143,11 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                                 inScroll = false;
                             });
                         }, 500);
+
+                        $interval(function(){
+                            clicksIntervalCount = clicksCount;
+                            clicksCount = 0;
+                        }, clicksRatioIntervalMs);
                         
                         isGameStart = true;
                         manEl
@@ -175,23 +189,27 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         _stop();
                         var step = 30,
                             ratio = (position - startPosition) / (endPosition - startPosition);
+                        clicksRatio = 3;
 
                         if (ratio > 0.75) {
                             step = 2.5;
                             scope.score = 1500;
+                            clicksRatio = 5;
                         } else if (ratio > 0.50) {
                             step = 5;
                             scope.score = 1000;
+                            clicksRatio = 5;
                         } else if (ratio > 0.30) {
-                            step = 7.5;                            
+                            step = 7.5;
+                            scope.score = 500;
+                            clicksRatio = 4;
                         } else if (ratio > 0.20) {
                             step = 15;
-                            scope.score = 500;
+                            clicksRatio = 3;
                         }
 
                         position += step;
                         scope.$apply(function() {
-                          updateEnergy(-0.2);
                           updateDistance(step);
                         });
 
