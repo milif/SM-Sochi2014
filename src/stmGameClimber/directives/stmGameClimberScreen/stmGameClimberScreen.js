@@ -95,8 +95,8 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                                     if (!isUpPressed) {
                                         clicksCount++;
                                         _up();
-                                        var energyIncrement = clicksIntervalCount > 0 ? Math.pow(clicksIntervalCount, clicksIntervalCount - clicksRatio) : 0;
-                                        energyIncrement = Math.max(0.2, energyIncrement / 1000);
+                                        var energyIncrement = clicksIntervalCount - clicksRatio;
+                                        energyIncrement = Math.max(0.2, energyIncrement / 10);
                                         updateEnergy(-energyIncrement);
                                     }
                                     isUpPressed = true;
@@ -189,7 +189,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         _stop();
                         var step = 30,
                             ratio = (position - startPosition) / (endPosition - startPosition);
-                        clicksRatio = 3;
+                        clicksRatio = 2;
 
                         if (ratio > 0.75) {
                             step = 2.5;
