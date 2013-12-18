@@ -95,8 +95,8 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                                     if (!isUpPressed) {
                                         clicksCount++;
                                         _up();
-                                        var energyIncrement = clicksIntervalCount - clicksRatio;
-                                        energyIncrement = Math.max(0.2, energyIncrement / 10);
+                                        var energyIncrement = Math.pow(clicksIntervalCount - clicksRatio, 2);
+                                        energyIncrement = Math.min(Math.max(0.2, energyIncrement / 10), 2);
                                         updateEnergy(-energyIncrement);
                                     }
                                     isUpPressed = true;
@@ -189,7 +189,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         _stop();
                         var step = 30,
                             ratio = (position - startPosition) / (endPosition - startPosition);
-                        clicksRatio = 2;
+                        clicksRatio = 4;
 
                         if (ratio > 0.75) {
                             step = 2.5;
@@ -198,14 +198,14 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         } else if (ratio > 0.50) {
                             step = 5;
                             scope.score = 1000;
-                            clicksRatio = 5;
+                            clicksRatio = 4;
                         } else if (ratio > 0.30) {
                             step = 7.5;
                             scope.score = 500;
-                            clicksRatio = 4;
+                            clicksRatio = 5;
                         } else if (ratio > 0.20) {
                             step = 15;
-                            clicksRatio = 3;
+                            clicksRatio = 4;
                         }
 
                         position += step;
