@@ -288,13 +288,11 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         
                         if(position >= (endPosition - topPipeMargin)) {
                             manEl.css({
-                              'bottom': endPosition - topPipeMargin + 364,
-                              'margin-left': 90
+                              'bottom': endPosition - topPipeMargin + 364
                             });
                         } else {
                             manEl.css({
-                                'bottom': action == 'down' ? position : Math.max(startPosition, Math.floor(position / 30) * 30 - 30),
-                                'margin-left': -178
+                                'bottom': action == 'down' ? position : Math.max(startPosition, Math.floor(position / 30) * 30 - 30)
                             });
                         }
                         _setScroll();
