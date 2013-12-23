@@ -257,18 +257,26 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         var newstate;
 
                         if (action == 'up' || action == 'stop') {
-                            if (state < 10) {
-                                newstate = state + 1;
+                            if(fromPosition > spacePosition) {
+                                if (state >= 21 && state < 30) {
+                                    newstate = state + 1;
+                                } else {
+                                    newstate = 21;
+                                }
                             } else {
-                                newstate = 1;
+                                if (state < 10) {
+                                    newstate = state + 1;
+                                } else {
+                                    newstate = 1;
+                                }
                             }
                         } else if (action == 'down') {
-                            newstate = 15;
+                            newstate = 25;
                         }
 
                         if (position == startPosition) newstate = action == 'down' ? (fromPosition > 200 ? 
-                            (fromPosition > spacePosition ? 9 : ( fromPosition > capPosition ? 5 : 14 ) )
-                        : 1) : 1;
+                            (fromPosition > spacePosition ? 11 : ( fromPosition > capPosition ? 12 : 14 ) )
+                        : 14) : 14;
                         else if(position >= (endPosition - topPipeMargin)) newstate = 14;
 
                         if (state != newstate) {
@@ -280,13 +288,11 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         
                         if(position >= (endPosition - topPipeMargin)) {
                             manEl.css({
-                              'bottom': endPosition - topPipeMargin + 364,
-                              'margin-left': 90
+                              'bottom': endPosition - topPipeMargin + 364
                             });
                         } else {
                             manEl.css({
-                                'bottom': action == 'down' ? position : Math.max(startPosition, Math.floor(position / 30) * 30 - 30),
-                                'margin-left': -178
+                                'bottom': action == 'down' ? position : Math.max(startPosition, Math.floor(position / 30) * 30 - 30)
                             });
                         }
                         _setScroll();
