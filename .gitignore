@@ -7,3 +7,7 @@
 /tmp/
 /pulls/
 validate-commit-msg.js
+src/codekit-config.json
+*.scss
+*.haml
+plunk/
