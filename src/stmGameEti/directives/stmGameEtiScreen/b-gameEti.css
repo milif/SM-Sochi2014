@@ -362,12 +362,6 @@
 
 /* b-cursor  */
 /*==========================================================*/
-.b-cursor {
-  background: url(asset/i/b-gameEti/cursor.png) 0 0 no-repeat;
-  width: 156px;
-  height: 156px;
-  position: absolute;
-  z-index: 500;
-  left: 2400px;
-  top: 600px;
+.b-gameEti {
+  cursor:url(asset/i/b-gameEti/cursor.ico),auto;
 }
