@@ -33,15 +33,13 @@ if(GET.build){
     var cmd = 'git clone --no-hardlinks \'' + qfs.absolute('../../') + '\' \'' + pullDir + '\'';
     shell.exec(cmd, {silent: true});
     
-    grunt.file.write(pullDir+'/updatedAt.json', GET.updatedAt);
-        
-    cmd = '(cd \'' + pullDir + '\'; curl -H \'Accept: application/vnd.github.patch\' -u ' + repo.oauth + ':x-oauth-basic https://api.github.com/repos/' + repo.company + '/' + repo.name + '/pulls/' + id + ' | git am -3)';
-    shell.exec(cmd, {silent: true});
-    
     qfs.symbolicLink(pullDir + '/bower_components', '../../bower_components', 'dir');
     qfs.symbolicLink(pullDir + '/node_modules', '../../node_modules', 'dir');
     
-    cmd = '(cd \'' + pullDir + '\';grunt init; grunt docs)';
+    grunt.file.write(pullDir+'/updatedAt.json', GET.updatedAt);
+        
+    cmd = '(cd \'' + pullDir + '\'; git config --local user.email "you@example.com"; git config --local user.name "Your Name"; curl -H \'Accept: application/vnd.github.patch\' -u ' + repo.oauth + ':x-oauth-basic https://api.github.com/repos/' + repo.company + '/' + repo.name + '/pulls/' + id + ' | git am; grunt init; grunt docs);'; 
+    
     shell.exec(cmd, {silent: true});
     
     process.stdout.write(JSON.stringify({
