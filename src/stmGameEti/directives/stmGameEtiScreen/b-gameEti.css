@@ -4,7 +4,7 @@
 .b-gameEti {
   position: relative;
   overflow: hidden;
-  overflow-x: auto;
+  overflow-x: hidden;
   width: 100%;
   height: 100%;
   background-color: #fff;
@@ -150,6 +150,12 @@
   position: absolute;
   z-index: 30;
   overflow: hidden;
+    
+  -webkit-transition: 0.5s linear all; /* Safari/Chrome */
+  -moz-transition: 0.5s linear all; /* Firefox */
+  -ms-transition: 0.5s linear all; /* IE10 */
+  -o-transition: 0.5s linear all; /* Opera */
+  transition: 0.5s linear all; /* Future Browsers */
 }
 .b-character .b-character-h {
   position: absolute;
@@ -228,15 +234,18 @@
   background-position: 0 -1294px;
 }
 .b-character.eti-full-face {
-  top: 695px;
+  bottom: 516px;
   left: 1870px;
-  width: 197px;
-  height: 179px;
+  width: 141px;
+  height: 0;
+}
+.b-character.eti-full-face.state_show {
+  height: 133px;
 }
 .b-character.eti-full-face .b-character-h {
-  width: 197px;
-  height: 179px;
-  background-position: 0 -2144px;
+  width: 141px;
+  height: 136px;
+  background-position: -16px -2159px;
 }
 .b-character.eti-hello {
   top: 450px;
@@ -363,5 +372,5 @@
 /* b-cursor  */
 /*==========================================================*/
 .b-gameEti {
-  cursor:url(asset/i/b-gameEti/cursor.ico),auto;
+  cursor:url(asset/i/b-gameEti/cursor.cur),auto;
 }
