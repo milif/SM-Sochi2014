@@ -8,3 +8,6 @@
 /pulls/
 validate-commit-msg.js
 src/codekit-config.json
+plunk/
+*.scss
+*.haml
