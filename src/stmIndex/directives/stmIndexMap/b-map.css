@@ -2,7 +2,7 @@
 /*==========================================================*/
 .b-map {
   height: 100%;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .b-map-h {

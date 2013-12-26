@@ -29,7 +29,7 @@
 angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '$interval', '$document', '$window', function($timeout, $interval, $document, $window){
     return {
         templateUrl: 'partials/stmGameClimber.directive:stmGameClimberScreen:template.html',
-        controller: function($scope, $element, $attrs) {
+        controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs) {
           $scope.endPosition = 0;
           $scope.score = 0;          
           $scope.energy = 100;
@@ -38,7 +38,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
               $scope.distancePercent = $scope.distance / $scope.endPosition * 100;
               $scope.distanceMeters = $scope.distance / 100;
           });
-        },
+        }],
         compile: function (tElement) {
             return function (scope, iElement) {
                 function init() {

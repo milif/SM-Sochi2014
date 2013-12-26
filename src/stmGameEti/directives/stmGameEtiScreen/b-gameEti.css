@@ -150,12 +150,17 @@
   position: absolute;
   z-index: 30;
   overflow: hidden;
-    
+  display: none;     
+}
+.b-character.state_show-add,
+.b-character.state_show-remove,
+.b-character.state_show {  
+  display: block;
   -webkit-transition: 0.5s linear all; /* Safari/Chrome */
   -moz-transition: 0.5s linear all; /* Firefox */
   -ms-transition: 0.5s linear all; /* IE10 */
   -o-transition: 0.5s linear all; /* Opera */
-  transition: 0.5s linear all; /* Future Browsers */
+  transition: 0.5s linear all; /* Future Browsers */   
 }
 .b-character .b-character-h {
   position: absolute;
@@ -193,16 +198,35 @@
   background-position: 0 -176px;
 }
 .b-character.deer-sledge {
-  top: 506px;
-  left: 2826px;
+  top: 0;
+  width: 271px;
+  height: 264px;
+}
+.b-character.deer-sledge.state_show,
+.b-character.deer-sledge.state_show.state_show-add-active {
+    left: -271px;
+}
+.b-character.deer-sledge.state_show-add {
+    left: 100%;
+}
+.b-character-h-deer-sledge {
   z-index: 45;
-  width: 319px;
-  height: 321px;
+  position: absolute;
+  overflow: hidden;
+  left: 2680px;
+  top: 511px;
+  width: 512px;
+  height: 264px;   
+}
+.b-character-h-deer-sledge.mod_1 {
+  left: 671px;
+  width: 590px;
+  z-index: 10;
 }
 .b-character.deer-sledge .b-character-h {
-  width: 319px;
-  height: 321px;
-  background-position: 0 -357px;
+  width: 271px;
+  height: 264px;
+  background-position: -22px -380px;
 }
 .b-character.eti-ass {
   top: 490px;
@@ -345,8 +369,31 @@
   text-align: center;
   width: 206px;
   padding: 20px 0 26px 0px;
+  opacity: 0;
 }
-
+.b-gameEti-alert.ng-leave {
+    animation: b-gameEti-alert-anim 1.5s linear;
+    -moz-animation: b-gameEti-alert-anim 1.5s linear;
+    -webkit-animation: b-gameEti-alert-anim 1.5s linear;
+}
+@-webkit-keyframes b-gameEti-alert-anim {
+  from  { opacity: 0; margin-top: 20px; -webkit-animation-timing-function: ease-in;}
+  20% {opacity: 1; margin-top: 0;}
+  80% {opacity: 1; margin-top: 0;}
+  to { opacity: 0; margin-top: -20px; -webkit-animation-timing-function: ease-out;}
+}
+@-moz-keyframes b-gameEti-alert-anim {
+  from  { opacity: 0; margin-top: 20px; -moz-animation-timing-function: ease-in;}
+  20% {opacity: 1; margin-top: 0;}
+  80% {opacity: 1; margin-top: 0;}
+  to { opacity: 0; margin-top: -20px; -moz-animation-timing-function: ease-out;}
+}
+@keyframes b-gameEti-alert-anim {
+  from  { opacity: 0; margin-top: 20px; animation-timing-function: ease-in;}
+  20% {opacity: 1; margin-top: 0;}
+  80% {opacity: 1; margin-top: 0;}
+  to { opacity: 0; margin-top: -20px; animation-timing-function: ease-out;}
+}
 .b-gameEti-alert.mod_white {
   background-color: #fff;
   color: #000;

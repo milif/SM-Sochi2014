@@ -27,19 +27,34 @@
     
  */
 
-angular.module('stmGameEti').directive('stmGameEtiScreen', function(){
+angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootScope', function($compile, $rootScope){
 
     var ITERATE_TIMEOUT = 100; // Пауза между итерациями (ms)
     var FIRST_TARGET_TIMEOUT = 3000; // Через какое время появится первая цель (ms)
-    var TIME_TABLE = [
-        [60, ]
-    ]; // Таблица сложности [[ время от начала игры (s), через какое время исчезает цель (ms), какой интервал между целями (ms), сколько целей одновременно (i)]]
+    var LEVELS_TABLE = [ // Таблица уровней сложности [[ время до от начала игры (s), через какое время исчезает цель (ms), какой интервал между целями (ms), сколько целей одновременно (i)]]
+        [60, 3000, 2000, 1],
+        [120, 2000, 1500, 1],
+        [180, 1500, 1000, 1],
+        [240, 1500, 1000, 2],
+        [300, 1000, 1000, 2]
+    ];
+    var MSGS = {
+        'in-eti': ['Класс!!!', 'Отличный кадр!', 'white'],
+        'out': ['Промах!', 'Будь внимательней', 'red'],
+        'in-deer': ['Промах!', 'Ты попал<br>в оленя', 'red']
+    };
+    
+    var $ = angular.element;
+    var alertTpl;
     
     return {
         scope: {
         },
         templateUrl: 'partials/stmGameEti.directive:stmGameEtiScreen:template.html',
-        controller: ['$scope', '$element', '$interval', function($scope, $element, $interval){
+        compile: function(tElement){
+            alertTpl = $compile(tElement.find('[data-alert]').remove());
+        },
+        controller: ['$scope', '$element', '$interval', '$animate', function($scope, $element, $interval, $animate){
             
             var viewEl = $element.find('>:first');
             var backEl = viewEl.find('>:first');
@@ -51,6 +66,12 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', function(){
                 $scope.$apply(function(){
                     $scope.position = e.pageX - $element.offset().left;
                 });
+            });
+            $element.on('mousedown', function(e){
+                e.preventDefault();
+            });
+            $element.on('click', function(e){
+                photo(e);
             });
             $scope.$watch('position', function(){
                 var viewW = viewEl.width();
@@ -66,38 +87,113 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', function(){
                 stopGame();
             });
             
+            var stopGame;
+            var gameTime;
+            var currentTargets = [];
+            var currentLevel = LEVELS_TABLE[0];
+            var nextTargetTime = new Date().getTime() + FIRST_TARGET_TIMEOUT;
+            var successMsg = MSGS['in-eti'];
+            var outMsg = MSGS['out'];
+            
             startGame();
             
-            var stopGame;
-            var currentTarget;
-            var nextTargetTime = new Date().getTime() + FIRST_TARGET_TIMEOUT;
-            
             function startGame(){
+                var startTime = new Date().getTime();
                 stopGame = $interval(function(){
-                    $scope.$apply(gameIterate);
+                    gameTime = new Date().getTime() - startTime;
+                    gameIterate();
                 }, ITERATE_TIMEOUT);
-                iterateGame();
             }
             function gameIterate(){
                 var time = new Date().getTime();
-                if(currentTarget){
+                
+                if(gameTime > currentLevel[0] * 1000){
+                    currentLevel = LEVELS_TABLE[LEVELS_TABLE.indexOf(currentLevel) + 1] || currentLevel;
+                }
+                
+                for(var i=0;i<currentTargets.length;i++){
+                    var currentTarget = currentTargets[i];
                     if(currentTarget.endTime < time) {
-                        currentTarget.el.removeClass('state_show');
-                        currentTarget = null;
-                    }
-                } else {
-                    if(nextTargetTime < time){
-                        currentTarget = {
-                            el: targets.eq(Math.round(Math.random() * targets.length)),
-                            endTime: 
-                        }
-                        currentTarget.el.addClass('state_show');
+                        closeTarget(currentTarget);
                     }
                 }
+                
+                if(currentTargets.length < currentLevel[3]){
+                    if(nextTargetTime < time){
+                        var hiddenTargets = targets.filter(':hidden');
+                        var el = hiddenTargets.eq(Math.round(Math.random() * hiddenTargets.length));
+                        var target = {
+                            el: el,
+                            endTime: time + (currentLevel[1] * 0.7 + Math.random() * currentLevel[1] * 0.6),
+                            animCls: 'state_show',
+                            isMove: el.data('move')
+                        };
+                        if(target.isMove) target.el.css('transition-duration', Math.round((target.endTime - time) / 1000) + 's');
+                        $animate.addClass(el, target.animCls, function(){
+                            if(target.isMove) target.el.removeClass(target.animCls);
+                        });
+
+                        el.data('target', target);
+                        currentTargets.push(target);
+                    }                   
+                }
+            }
+            function closeTarget(target){
+                if(!target.isMove) $animate.removeClass(target.el, target.animCls);
+                currentTargets.splice(currentTargets.indexOf(target),1);
+                nextTargetTime = new Date().getTime() + (currentLevel[2] * 0.7 + Math.random() * currentLevel[2] * 0.6);                
+            }
+            function photo(e){
+                var success = false;
+                targets.filter(':visible').each(function(){
+                    var el = $(this);                    
+                    
+                    if(inEl(el, e)) {
+                        var hoverEl = el.closest('[data-hover]');
+                        if(hoverEl.length == 0 || inEl(hoverEl, e)){
+                            var target = el.data('target');    
+                            if(!target.hasShoot){
+                                target.hasShoot = true;
+                                if(el.data('eti')) {
+                                    showMessage(successMsg, e);
+                                } else {
+                                    var msg = MSGS[el.data('msg')] || ['Промах!', el.data('msg'), 'red'];
+                                    showMessage(msg, e);
+                                }
+                            }
+                            success = true;
+                            return false;                        
+                        }
+                    }
+                });
+                if(!success){
+                    showMessage(outMsg, e);
+                }
+            }
+            function showMessage(msg, e){
+                var $scope = $rootScope.$new();
+                var offsetLeft = viewEl.offset().left;
+                var leftOrRight = offsetLeft + viewEl.width() / 2 < e.pageX;
+                
+                $scope.msg = msg;
+                $scope.left = e.pageX - offsetLeft + viewEl.scrollLeft() + (leftOrRight ? -300 : 100);
+                $scope.top = viewEl.height() / 2 - Math.round(Math.random() * 200);
+                                
+                alertTpl($scope, function(el){
+                    el.appendTo(viewEl);
+                    $animate.leave(el);
+                });
             }
             function stopGame(){
                 $interval.cancel(stopGame);
             }
+            
+            function inEl(el, e){
+                var offset = el.offset();
+                var width = el.width();
+                var height = el.height();
+                return offset.left < e.pageX && offset.left + width > e.pageX && offset.top < e.pageY && offset.top + height > e.pageY;
+            }
         }]
     };
-});
+}]);
