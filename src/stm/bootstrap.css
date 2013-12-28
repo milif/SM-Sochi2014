@@ -40,10 +40,6 @@
   vertical-align: top;
   white-space: nowrap;
   font-size: 0;
-  -moz-transition: all 0.1s linear;
-  -o-transition: all 0.1s linear;
-  -webkit-transition: all 0.1s linear;
-  transition: all 0.1s linear;
 }
 .b-button__text {
   display: inline-block;
@@ -109,12 +105,19 @@
 
 /* MOD size-big */
 .button_size_big {
-  padding: 0 40px;
+  padding: 0 60px;
   height: 60px;
+  border: 1px solid #d39900;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  border: 1px solid;
 }
-.button__text_size_big {
+.button_size_big .b-button__text {
   font-size: 30px;
-  line-height: 58.4px;
+  text-transform: uppercase;
+  line-height: 60px;
+  font-weight: bold;
 }
 
 /* MOD scheme-white */
@@ -181,6 +184,10 @@
 .b-button_scheme_yellow .b-button__text {
   color: black;
 }
+.button_size_big.b-button_scheme_yellow .b-button__text {
+  text-shadow: 0 1px 0 rgba(255,232,102,.75);
+}
+
 .b-button_scheme_yellow.button_state_loading {
   background-image: -moz-linear-gradient(#fff000, #fabf14);
   background-image: -o-linear-gradient(#fff000, #fabf14);
