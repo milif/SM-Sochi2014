@@ -1,0 +1,30 @@
+/* b-popup */
+/*==========================================================*/
+.b-popup {
+  border: 3px solid #000;
+  background-color: #fff;
+  width: 590px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+}
+
+.b-popup-content {
+  text-align: center;
+  padding: 26px 20px 38px 20px;
+}
+
+.b-popup-title {
+  font-size: 30px;
+  line-height: 35px;
+  margin-bottom: 16px;
+}
+
+.b-popup-note {
+  line-height: 24px;
+  font-size: 16px;
+  margin-bottom: 24px;
+}
