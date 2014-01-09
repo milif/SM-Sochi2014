@@ -1,0 +1,12 @@
+/* b-logopanel */
+/*==========================================================*/
+.b-logopanel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+.b-logopanel-h {
+    margin: 0 auto;
+    width: 920px;
+}
