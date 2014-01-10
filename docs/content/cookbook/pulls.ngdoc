@@ -27,7 +27,7 @@
     <br/>
     <br/>
     <p ng-repeat="pull in pulls | orderBy:'updatedAt':true" ng-switch="!!pull.url" ng-class="pull.loading ? 'state_loading' : ''" class="b-pull">
-        <a href="{{pull.url}}" ng-switch-when="true" target="_blank"><strong>{{pull.title}}</strong></a> <strong ng-switch-when="false">{{pull.title}}</strong>&nbsp;<a href="{{pull.pullUrl}}" target="_blank">#{{pull.id}}</a> <small>({{pull.updatedAt | date:'dd.MM.yyyy HH:mm:ss'}})</small> <span ng-switch-when="false" ng-click="build($index)" class="btn btn-small">Build patch</span>
+        <a href="{{pull.url}}" ng-switch-when="true" target="_blank"><strong>{{pull.title}}</strong></a> <strong ng-switch-when="false">{{pull.title}}</strong>&nbsp;<a href="{{pull.pullUrl}}" target="_blank">#{{pull.id}}</a> <small>({{pull.updatedAt | date:'dd.MM.yyyy HH:mm:ss'}})</small> <span ng-switch-when="false" ng-click="build(pull.id)" class="btn btn-small">Build patch</span>
         <br/>
         <small>{{pull.description}}</small>
         <span class="mask"></span>
