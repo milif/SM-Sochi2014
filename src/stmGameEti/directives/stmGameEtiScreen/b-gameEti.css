@@ -33,13 +33,13 @@
 
 /* Decoration-tree */
 /*==========================================================*/
-.b-tree-decoration {
+.b-gameEti .b-tree-decoration {
   position: absolute;
   z-index: 20;
   background-image: url('asset/i/b-gameEti/decorations-tree.png');
 }
 
-.b-tree-decoration.mod1 {
+.b-gameEti .b-tree-decoration.mod1 {
   top: -32px;
   left: 84px;
   z-index: 40;
@@ -47,7 +47,7 @@
   height: 849px;
   background-position: 0 0;
 }
-.b-tree-decoration.mod2 {
+.b-gameEti .b-tree-decoration.mod2 {
   top: -2px;
   left: 1714px;
   z-index: 20;
@@ -55,7 +55,7 @@
   height: 656px;
   background-position: 0 -3902px;
 }
-.b-tree-decoration.mod3 {
+.b-gameEti .b-tree-decoration.mod3 {
   top: 60px;
   left: 1912px;
   z-index: 50;
@@ -63,7 +63,7 @@
   height: 963px;
   background-position: 0 -4558px;
 }
-.b-tree-decoration.mod4 {
+.b-gameEti .b-tree-decoration.mod4 {
   top: 0;
   left: 2122px;
   z-index: 20;
@@ -71,7 +71,7 @@
   height: 631px;
   background-position: 0 -5521px;
 }
-.b-tree-decoration.mod5 {
+.b-gameEti .b-tree-decoration.mod5 {
   top: 24px;
   left: 2228px;
   z-index: 40;
@@ -79,7 +79,7 @@
   height: 734px;
   background-position: 0 -6152px;
 }
-.b-tree-decoration.mod6 {
+.b-gameEti .b-tree-decoration.mod6 {
   top: 20px;
   left: 2354px;
   z-index: 50;
@@ -87,7 +87,7 @@
   height: 846px;
   background-position: 0 -6886px;
 }
-.b-tree-decoration.mod7 {
+.b-gameEti .b-tree-decoration.mod7 {
   top: -6px;
   left: 2614px;
   z-index: 40;
@@ -95,7 +95,7 @@
   height: 659px;
   background-position: 0 -7732px;
 }
-.b-tree-decoration.mod8 {
+.b-gameEti .b-tree-decoration.mod8 {
   top: 0;
   left: 2776px;
   z-index: 40;
@@ -103,7 +103,7 @@
   height: 620px;
   background-position: 0 -8391px;
 }
-.b-tree-decoration.mod9 {
+.b-gameEti .b-tree-decoration.mod9 {
   top: 12px;
   left: 2914px;
   z-index: 40;
@@ -111,7 +111,7 @@
   height: 620px;
   background-position: 0 -9011px;
 }
-.b-tree-decoration.mod10 {
+.b-gameEti .b-tree-decoration.mod10 {
   top: 14px;
   left: 2966px;
   z-index: 50;
@@ -119,7 +119,7 @@
   height: 818px;
   background-position: 0 -849px;
 }
-.b-tree-decoration.mod11 {
+.b-gameEti .b-tree-decoration.mod11 {
   top: -8px;
   left: 3220px;
   z-index: 40;
@@ -127,7 +127,7 @@
   height: 661px;
   background-position: 0 -1667px;
 }
-.b-tree-decoration.mod12 {
+.b-gameEti .b-tree-decoration.mod12 {
   top: 40px;
   left: 3438px;
   z-index: 40;
@@ -135,7 +135,7 @@
   height: 668px;
   background-position: 0 -2328px;
 }
-.b-tree-decoration.mod13 {
+.b-gameEti .b-tree-decoration.mod13 {
   top: 64px;
   left: 3526px;
   z-index: 50;
@@ -146,15 +146,15 @@
 
 /* character-tree */
 /*==========================================================*/
-.b-character {
+.b-gameEti .b-character {
   position: absolute;
   z-index: 30;
   overflow: hidden;
   display: none;     
 }
-.b-character.state_show-add,
-.b-character.state_show-remove,
-.b-character.state_show {  
+.b-gameEti .b-character.state_show-add,
+.b-gameEti .b-character.state_show-remove,
+.b-gameEti .b-character.state_show {  
   display: block;
   -webkit-transition: 0.5s linear all; /* Safari/Chrome */
   -moz-transition: 0.5s linear all; /* Firefox */
@@ -162,25 +162,25 @@
   -o-transition: 0.5s linear all; /* Opera */
   transition: 0.5s linear all; /* Future Browsers */   
 }
-.b-character .b-character-h {
+.b-gameEti .b-character .b-character-h {
   position: absolute;
   top: 0;
   left: 0;
   background-image: url('asset/i/b-gameEti/character.png');
 }
 
-.b-character.bear {
+.b-gameEti .b-character.bear {
   top: 740px;
   left: 2250px;
   width: 166px;
   height: 176px;
 }
-.b-character.bear .b-character-h {
+.b-gameEti .b-character.bear .b-character-h {
   width: 166px;
   height: 176px;
   background-position: 0 0;
 }
-.b-character.deer-skiing {
+.b-gameEti .b-character.deer-skiing {
   -moz-transform: rotate(19deg);
   -ms-transform: rotate(19deg);
   -o-transform: rotate(19deg);
@@ -192,24 +192,24 @@
   width: 220px;
   height: 181px;
 }
-.b-character.deer-skiing .b-character-h {
+.b-gameEti .b-character.deer-skiing .b-character-h {
   width: 220px;
   height: 181px;
   background-position: 0 -176px;
 }
-.b-character.deer-sledge {
+.b-gameEti .b-character.deer-sledge {
   top: 0;
   width: 271px;
   height: 264px;
 }
-.b-character.deer-sledge.state_show,
-.b-character.deer-sledge.state_show.state_show-add-active {
+.b-gameEti .b-character.deer-sledge.state_show,
+.b-gameEti .b-character.deer-sledge.state_show.state_show-add-active {
     left: -271px;
 }
-.b-character.deer-sledge.state_show-add {
+.b-gameEti .b-character.deer-sledge.state_show-add {
     left: 100%;
 }
-.b-character-h-deer-sledge {
+.b-gameEti .b-character-h-deer-sledge {
   z-index: 45;
   position: absolute;
   overflow: hidden;
@@ -218,137 +218,137 @@
   width: 512px;
   height: 264px;   
 }
-.b-character-h-deer-sledge.mod_1 {
+.b-gameEti .b-character-h-deer-sledge.mod_1 {
   left: 671px;
   width: 590px;
   z-index: 10;
 }
-.b-character.deer-sledge .b-character-h {
+.b-gameEti .b-character.deer-sledge .b-character-h {
   width: 271px;
   height: 264px;
   background-position: -22px -380px;
 }
-.b-character.eti-ass {
+.b-gameEti .b-character.eti-ass {
   top: 490px;
   left: 3270px;
   z-index: 45;
   width: 275px;
   height: 312px;
 }
-.b-character.eti-ass .b-character-h {
+.b-gameEti .b-character.eti-ass .b-character-h {
   width: 275px;
   height: 312px;
   background-position: 0 -678px;
 }
-.b-character.eti-ass.state_active .b-character-h {
+.b-gameEti .b-character.eti-ass.state_active .b-character-h {
   width: 292px;
   height: 304px;
   background-position: 0 -990px;
 }
-.b-character.eti-fany {
+.b-gameEti .b-character.eti-fany {
   top: 330px;
   left: 1356px;
   z-index: 200;
   width: 366px;
   height: 526px;
 }
-.b-character.eti-fany .b-character-h {
+.b-gameEti .b-character.eti-fany .b-character-h {
   width: 366px;
   height: 526px;
   background-position: 0 -1294px;
 }
-.b-character.eti-full-face {
+.b-gameEti .b-character.eti-full-face {
   bottom: 516px;
   left: 1870px;
   width: 141px;
   height: 0;
 }
-.b-character.eti-full-face.state_show {
+.b-gameEti .b-character.eti-full-face.state_show {
   height: 133px;
 }
-.b-character.eti-full-face .b-character-h {
+.b-gameEti .b-character.eti-full-face .b-character-h {
   width: 141px;
   height: 136px;
   background-position: -16px -2159px;
 }
-.b-character.eti-hello {
+.b-gameEti .b-character.eti-hello {
   top: 450px;
   left: 1750px;
   width: 172px;
   height: 220px;
 }
-.b-character.eti-hello .b-character-h {
+.b-gameEti .b-character.eti-hello .b-character-h {
   width: 172px;
   height: 220px;
   background-position: 0 -2323px;
 }
-.b-character.eti-scare {
+.b-gameEti .b-character.eti-scare {
   top: 320px;
   left: 2606px;
   z-index: 40;
   width: 322px;
   height: 332px;
 }
-.b-character.eti-scare .b-character-h {
+.b-gameEti .b-character.eti-scare .b-character-h {
   width: 322px;
   height: 332px;
   background-position: 0 -2543px;
 }
-.b-character.eti-skiing {
+.b-gameEti .b-character.eti-skiing {
   top: 318px;
   z-index: 10;
   left: 3396px;
   width: 200px;
   height: 183px;
 }
-.b-character.eti-skiing .b-character-h {
+.b-gameEti .b-character.eti-skiing .b-character-h {
   width: 200px;
   height: 183px;
   background-position: 0 -2875px;
 }
-.b-character.eti-strong {
+.b-gameEti .b-character.eti-strong {
   top: 294px;
   left: 2232px;
   width: 454px;
   height: 457px;
 }
-.b-character.eti-strong .b-character-h {
+.b-gameEti .b-character.eti-strong .b-character-h {
   width: 454px;
   height: 457px;
   background-position: 0 -3058px;
 }
-.b-character.men-skiing {
+.b-gameEti .b-character.men-skiing {
   top: 880px;
   left: 2870px;
   z-index: 10;
   width: 179px;
   height: 181px;
 }
-.b-character.men-skiing .b-character-h {
+.b-gameEti .b-character.men-skiing .b-character-h {
   width: 179px;
   height: 181px;
   background-position: 0 -3515px;
 }
-.b-character.women-skiing1 {
+.b-gameEti .b-character.women-skiing1 {
   top: 880px;
   z-index: 10;
   left: 2970px;
   width: 176px;
   height: 182px;
 }
-.b-character.women-skiing1 .b-character-h {
+.b-gameEti .b-character.women-skiing1 .b-character-h {
   width: 176px;
   height: 182px;
   background-position: 0 -3696px;
 }
-.b-character.women-skiing2 {
+.b-gameEti .b-character.women-skiing2 {
   top: 880px;
   z-index: 10;
   left: 3070px;
   width: 168px;
   height: 176px;
 }
-.b-character.women-skiing2 .b-character-h {
+.b-gameEti .b-character.women-skiing2 .b-character-h {
   width: 168px;
   height: 176px;
   background-position: 0 -3878px;
