@@ -278,7 +278,7 @@
 /*==========================================================*/
 .gameClimber-popup {
   position: absolute;
-  left: 50%;
+  left: 100%;
   margin-left: 300px;
   bottom: 100px;
   border: 4px solid #000;
@@ -302,10 +302,11 @@
 }
 .gameClimber-popup.mod_white {
   background-color: #fff;
+  bottom: 80px;
 }
 .gameClimber-popup.mod_yellow {
   background-color: #ffd731;
-  bottom: 300px;
+  bottom: 260px;
 }
 .gameClimber-popup.mod_small-padding {
   padding: 12px 0 16px 0px;

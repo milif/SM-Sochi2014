@@ -184,9 +184,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         scope.distancePercent = scope.distance / (endPosition - topPipeMargin) * 100;
                     }
                     
-                    function _play(){                        
-                        // $animate.leave(scorePopupEl);
-                        // $animate.leave(moodPopupEl);
+                    function _play(){
 
                         birdEl.css({'top': 800});
                         $timeout(function(){
@@ -196,6 +194,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                                 scrollTop: endPosition
                             }, 1500, null, function () {
                                 inScroll = false;
+                                $('.gameClimber-popup').css({'left': '50%'});
                             });
                         }, 500);
 
