@@ -14,7 +14,7 @@
  * @example
     <example module="appExample">
       <file name="index.html">
-         <div stm-game-climber-screen class="example-screen"></div>
+         <div stm-game-climber-screen difficulty="simple" class="example-screen"></div>
       </file>
       <file name="style.css">
          .example-screen {
@@ -43,9 +43,10 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
           });
         }],
         compile: function (tElement) {
-            return function (scope, iElement) {
-                function init() {
+            return function (scope, iElement, attrs) {
+                function init() {                    
                     var $ = angular.element,
+                        difficulty = attrs.difficulty,
                         g_pipeEl = iElement.find('.gameClimber-fone-h'),
                         g_viewEl = iElement.find('.b-gameClimber-h'),
 
@@ -134,9 +135,11 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                                         }, 0);
                                         blockUI = true;
                                         goingUp = true;
+                                        var oldState = state;
                                         manEl
                                             .removeClass('mod_frame'+state)
                                             .addClass('mod_frame17');
+                                        state = 17;
                                         var index = 0;
                                         var upInterval = $interval(function(){
                                             position += 10;
@@ -149,11 +152,11 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                                             action = 'up';
                                             updateEnergy(1);
                                             index++;
-                                            if(index == 100) {
+                                            if(index == 100 || position > endPosition - topPipeMargin + 250) {
                                                 $interval.cancel(upInterval);
                                                 manEl
                                                     .removeClass('mod_frame17')
-                                                    .addClass('mod_frame'+state);
+                                                    .addClass('mod_frame'+oldState);
                                                 $(keyObj)
                                                     .off(keyEvents)
                                                     .off(blockUpEvents)
@@ -291,6 +294,10 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                             clicksRatio = 4;
                         }
 
+                        if(difficulty === 'simple' && !goingUp) {
+                            step = 50;
+                        }
+
                         position += step;
                         scope.$apply(function() {
                           updateDistance(step);
@@ -365,7 +372,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                             ( fromPosition > oneFourthPosition ? 15 : 14 ) : 14;
                         }
 
-                        if (state != newstate) {
+                        if (state != newstate && !goingUp) {
                             manEl
                                 .removeClass('mod_frame' + state)
                                 .addClass('mod_frame' + newstate);
