@@ -49,6 +49,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         keyObj = $window,
 
                         manEl = g_pipeEl.find('.gameClimber-player'),
+                        birdEl = g_pipeEl.find('.gameClimber-bird'),
                         state = 0,
                         action = 'stop',
                         manualTimeout,
@@ -74,6 +75,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         topPipeMargin = 1050,
                         spacePosition = endPosition * 0.7,
                         capPosition = endPosition * 0.35,
+                        oneFourthPosition = endPosition * 0.25,
                         position = startPosition,
                         downPosition,
                         downPositionStop,
@@ -134,6 +136,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                     }
                     
                     function _play(){
+                        birdEl.css({'top': 800});
                         $timeout(function(){
                             g_viewEl.stop();
                             inScroll = true;
@@ -274,10 +277,10 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                             newstate = 25;
                         }
 
-                        if (position == startPosition) newstate = action == 'down' ? (fromPosition > 200 ? 
-                            (fromPosition > spacePosition ? 11 : ( fromPosition > capPosition ? 12 : 14 ) )
-                        : 14) : 14;
-                        else if(position >= (endPosition - topPipeMargin)) newstate = 14;
+                        if (position == startPosition) {
+                            newstate = action == 'down' ?
+                            ( fromPosition > oneFourthPosition ? 15 : 14 ) : 14;
+                        }
 
                         if (state != newstate) {
                             manEl
@@ -287,9 +290,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         }
                         
                         if(position >= (endPosition - topPipeMargin)) {
-                            manEl.css({
-                              'bottom': endPosition - topPipeMargin + 364
-                            });
+                            moveBird();
                         } else {
                             manEl.css({
                                 'bottom': action == 'down' ? position : Math.max(startPosition, Math.floor(position / 30) * 30 - 30)
@@ -362,7 +363,56 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                             });
                         }
                     }
+
+                    function moveBirdAndMan() {
+                        var positionBottom = parseInt(manEl.css('bottom'), 10),
+                            positionMarginLeft = parseInt(manEl.css('margin-left'), 10),
+                            _index = 0;
+
+                        var timerUp = $interval(function(){
+                            _index += 1;
+                            positionBottom += 2;
+                            positionMarginLeft += 1.3;
+                            manEl.css({
+                                'margin-left': positionMarginLeft,
+                                bottom: positionBottom
+                            });
+                            if(_index === 210) {
+                                $interval.cancel(timerUp);
+                                manEl
+                                    .removeClass('mod_frame16')
+                                    .addClass('mod_frame14')
+                                    .css({
+                                      'bottom': endPosition - topPipeMargin + 364
+                                    });
+                            }
+                        }, 10);
+                    }
+
+                    function moveBird() {
+                        var positionLeft = parseInt(birdEl.css('left'), 10),
+                            positionTop = parseInt(birdEl.css('top'), 10);
+
+                        var timer = $interval(function(){
+                            positionLeft += 1;
+                            positionTop -= 4;
+                            birdEl.css({
+                                left: positionLeft + '%',
+                                top: positionTop
+                            });
+                            if(positionLeft > 49) {
+                                $interval.cancel(timer);
+                                manEl
+                                    .removeClass('mod_frame'+state)
+                                    .addClass('mod_frame16');
+                                birdEl.hide();
+                                moveBirdAndMan();
+                            }
+                        }, 10);
+                    }
+
                     _play();
+
                 }
                 init();
             };

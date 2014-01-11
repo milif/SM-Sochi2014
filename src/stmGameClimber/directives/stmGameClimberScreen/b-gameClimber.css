@@ -93,7 +93,17 @@
   background-position: -1208px -470px;
   margin-left: 0px;
 }
-
+.gameClimber-player.mod_frame15 {
+  width: 280px;
+  height: 372px;
+  background-position: -1505px -470px;
+  margin-left: 0px;
+}
+.gameClimber-player.mod_frame16 {
+  width: 290px;
+  height: 392px;
+  background-position: -1860px -460px;
+}
 
 .gameClimber-player.mod_frame21 {
   background-position: 0px -957px;
@@ -124,6 +134,18 @@
 }
 .gameClimber-player.mod_frame30 {
   background-position: -2718px -957px;
+}
+
+
+.gameClimber-bird {
+  position: absolute;
+  top: 0;
+  left: 0%;
+  background: url(asset/i/b-gameClimber/b-gameClimber-player.png) 0 0 no-repeat;
+  width: 220px;
+  height: 372px;
+  background-position: -2210px -470px;
+  margin-left: -220px;
 }
 
 
