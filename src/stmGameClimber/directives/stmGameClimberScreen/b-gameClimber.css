@@ -295,6 +295,10 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  opacity: 1;
+
+  -webkit-transition:all linear 1s;
+  transition:all linear 1s;
 }
 .gameClimber-popup.mod_white {
   background-color: #fff;
@@ -324,28 +328,11 @@
   margin-right: 2px;
 }
 
-.gameClimber-popup-show-setup,
-.gameClimber-popup-hide-setup {
-    -webkit-transition:all linear 1s;
-    -moz-transition:all linear 1s;
-    -ms-transition:all linear 1s;
-    -o-transition:all linear 1s;
-    transition:all linear 1s;
-}
-.gameClimber-popup-show-setup {
-  opacity: 0;
-  margin-top: -20px;
-}
-.gameClimber-popup-show-setup.gameClimber-popup-show-start {
-  opacity: 1;
-  margin-top: 0px;
+.gameClimber-popup.ng-hide-add,
+.gameClimber-popup.ng-hide-remove {
+  display:block!important;
 }
 
-.gameClimber-popup-hide-setup {
-  opacity: 1;
-  margin-top: 0px;
-}
-.gameClimber-popup-show-setup.gameClimber-popup-hide-start {
-  opacity: 0;
-  margin-top: -20px;
+.gameClimber-popup.ng-hide {
+  opacity:0;
 }

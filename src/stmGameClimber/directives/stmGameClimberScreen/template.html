@@ -7,11 +7,11 @@
             <div class='gameClimber-player mod_frame1'></div>
             <!-- End Player -->
 
-            <div ng-show="moodPopupShow" ng-animate="'gameClimber-popup'" class="gameClimber-popup off gameClimber-popup-mood mod_white">
+            <div class="gameClimber-popup gameClimber-popup-mood mod_white" ng-show="popupMoodShow">
               <div class="gameClimber-popup-title">Red Bull окрыляет!</div>
               <div class="gameClimber-popup-text">Нажмите клавишу &laquo;R&raquo;</div>
             </div>
-            <div ng-show="scorePopupShow" ng-animate="'gameClimber-popup'" class="gameClimber-popup off gameClimber-popup-score mod_yellow mod_small-padding">
+            <div class="gameClimber-popup gameClimber-popup-score mod_yellow mod_small-padding" ng-show="popupScoreShow">
               <div class="gameClimber-popup-title">
                 <span class="b-icons b-icons_star"><span class="b-icons__item"></span></span>
                 <span class="gameClimber-popup-title-h">+{{scoreIncrement}}</span>
