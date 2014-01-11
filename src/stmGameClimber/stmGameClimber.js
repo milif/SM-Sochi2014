@@ -4,6 +4,8 @@
  * @name stmGameClimber
  * @description
  *
+ * @requires stm
+ * 
  * Модуль игры Альпинист
  */
 

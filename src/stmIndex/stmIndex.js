@@ -1,6 +1,6 @@
 /**
  * 
- * @requires stm.directive:stmHellowWorld
+ * @requires stm
  *
  * @ngdoc overview
  * @name stmIndex

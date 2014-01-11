@@ -1,6 +1,7 @@
 /**
  * @requires jquery/jquery.js
  * @requires angular/angular.js
+ * @requires angular/angular-animate.js
  *
  * @requires stm:bootstrap.css
  *
@@ -11,6 +12,7 @@
  * Базовый модуль приложения
  */
 
-angular.module('stm',[])
-        .config(['$provide',function($provide){
+angular.module('stm',['ngAnimate'])
+        .config(['$provide', '$sceProvider',function($provide, $sceProvider){
+            $sceProvider.enabled(false);
         }]);

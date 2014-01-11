@@ -1,0 +1,423 @@
+/*==========================================================*/
+/* Eti */
+/*==========================================================*/
+.b-gameEti {
+  position: relative;
+  overflow: hidden;
+  overflow-x: hidden;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+}
+
+.b-gameEti-h {
+  width: 4000px;
+  height: 100%;
+}
+
+/* b-gameEti-fone */
+.b-gameEti-fone {
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  z-index: 10;
+  margin-top: -700px;
+  width: 4000px;
+  height: 1400px;
+}
+.b-gameEti-fone .b-gameEti-fone-h {
+  width: 4000px;
+  height: 100%;
+  background: url(asset/i/b-gameEti/b-gameEti-fone.png) 0 0 no-repeat;
+}
+
+/* Decoration-tree */
+/*==========================================================*/
+.b-gameEti .b-tree-decoration {
+  position: absolute;
+  z-index: 20;
+  background-image: url('asset/i/b-gameEti/decorations-tree.png');
+}
+
+.b-gameEti .b-tree-decoration.mod1 {
+  top: -32px;
+  left: 84px;
+  z-index: 40;
+  width: 1747px;
+  height: 849px;
+  background-position: 0 0;
+}
+.b-gameEti .b-tree-decoration.mod2 {
+  top: -2px;
+  left: 1714px;
+  z-index: 20;
+  width: 386px;
+  height: 656px;
+  background-position: 0 -3902px;
+}
+.b-gameEti .b-tree-decoration.mod3 {
+  top: 60px;
+  left: 1912px;
+  z-index: 50;
+  width: 566px;
+  height: 963px;
+  background-position: 0 -4558px;
+}
+.b-gameEti .b-tree-decoration.mod4 {
+  top: 0;
+  left: 2122px;
+  z-index: 20;
+  width: 428px;
+  height: 631px;
+  background-position: 0 -5521px;
+}
+.b-gameEti .b-tree-decoration.mod5 {
+  top: 24px;
+  left: 2228px;
+  z-index: 40;
+  width: 381px;
+  height: 734px;
+  background-position: 0 -6152px;
+}
+.b-gameEti .b-tree-decoration.mod6 {
+  top: 20px;
+  left: 2354px;
+  z-index: 50;
+  width: 624px;
+  height: 846px;
+  background-position: 0 -6886px;
+}
+.b-gameEti .b-tree-decoration.mod7 {
+  top: -6px;
+  left: 2614px;
+  z-index: 40;
+  width: 407px;
+  height: 659px;
+  background-position: 0 -7732px;
+}
+.b-gameEti .b-tree-decoration.mod8 {
+  top: 0;
+  left: 2776px;
+  z-index: 40;
+  width: 413px;
+  height: 620px;
+  background-position: 0 -8391px;
+}
+.b-gameEti .b-tree-decoration.mod9 {
+  top: 12px;
+  left: 2914px;
+  z-index: 40;
+  width: 428px;
+  height: 620px;
+  background-position: 0 -9011px;
+}
+.b-gameEti .b-tree-decoration.mod10 {
+  top: 14px;
+  left: 2966px;
+  z-index: 50;
+  width: 713px;
+  height: 818px;
+  background-position: 0 -849px;
+}
+.b-gameEti .b-tree-decoration.mod11 {
+  top: -8px;
+  left: 3220px;
+  z-index: 40;
+  width: 386px;
+  height: 661px;
+  background-position: 0 -1667px;
+}
+.b-gameEti .b-tree-decoration.mod12 {
+  top: 40px;
+  left: 3438px;
+  z-index: 40;
+  width: 261px;
+  height: 668px;
+  background-position: 0 -2328px;
+}
+.b-gameEti .b-tree-decoration.mod13 {
+  top: 64px;
+  left: 3526px;
+  z-index: 50;
+  width: 561px;
+  height: 906px;
+  background-position: 0 -2996px;
+}
+
+/* character-tree */
+/*==========================================================*/
+.b-gameEti .b-character {
+  position: absolute;
+  z-index: 30;
+  overflow: hidden;
+  display: none;     
+}
+.b-gameEti .b-character.state_show-add,
+.b-gameEti .b-character.state_show-remove,
+.b-gameEti .b-character.state_show {  
+  display: block;
+  -webkit-transition: 0.5s linear all; /* Safari/Chrome */
+  -moz-transition: 0.5s linear all; /* Firefox */
+  -ms-transition: 0.5s linear all; /* IE10 */
+  -o-transition: 0.5s linear all; /* Opera */
+  transition: 0.5s linear all; /* Future Browsers */   
+}
+.b-gameEti .b-character .b-character-h {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: url('asset/i/b-gameEti/character.png');
+}
+
+.b-gameEti .b-character.bear {
+  top: 740px;
+  left: 2250px;
+  width: 166px;
+  height: 176px;
+}
+.b-gameEti .b-character.bear .b-character-h {
+  width: 166px;
+  height: 176px;
+  background-position: 0 0;
+}
+.b-gameEti .b-character.deer-skiing {
+  -moz-transform: rotate(19deg);
+  -ms-transform: rotate(19deg);
+  -o-transform: rotate(19deg);
+  -webkit-transform: rotate(19deg);
+  transform: rotate(19deg);
+  top: 340px;
+  left: 2190px;
+  z-index: 10;
+  width: 220px;
+  height: 181px;
+}
+.b-gameEti .b-character.deer-skiing .b-character-h {
+  width: 220px;
+  height: 181px;
+  background-position: 0 -176px;
+}
+.b-gameEti .b-character.deer-sledge {
+  top: 0;
+  width: 271px;
+  height: 264px;
+}
+.b-gameEti .b-character.deer-sledge.state_show,
+.b-gameEti .b-character.deer-sledge.state_show.state_show-add-active {
+    left: -271px;
+}
+.b-gameEti .b-character.deer-sledge.state_show-add {
+    left: 100%;
+}
+.b-gameEti .b-character-h-deer-sledge {
+  z-index: 45;
+  position: absolute;
+  overflow: hidden;
+  left: 2680px;
+  top: 511px;
+  width: 512px;
+  height: 264px;   
+}
+.b-gameEti .b-character-h-deer-sledge.mod_1 {
+  left: 671px;
+  width: 590px;
+  z-index: 10;
+}
+.b-gameEti .b-character.deer-sledge .b-character-h {
+  width: 271px;
+  height: 264px;
+  background-position: -22px -380px;
+}
+.b-gameEti .b-character.eti-ass {
+  top: 490px;
+  left: 3270px;
+  z-index: 45;
+  width: 275px;
+  height: 312px;
+}
+.b-gameEti .b-character.eti-ass .b-character-h {
+  width: 275px;
+  height: 312px;
+  background-position: 0 -678px;
+}
+.b-gameEti .b-character.eti-ass.state_active .b-character-h {
+  width: 292px;
+  height: 304px;
+  background-position: 0 -990px;
+}
+.b-gameEti .b-character.eti-fany {
+  top: 330px;
+  left: 1356px;
+  z-index: 200;
+  width: 366px;
+  height: 526px;
+}
+.b-gameEti .b-character.eti-fany .b-character-h {
+  width: 366px;
+  height: 526px;
+  background-position: 0 -1294px;
+}
+.b-gameEti .b-character.eti-full-face {
+  bottom: 516px;
+  left: 1870px;
+  width: 141px;
+  height: 0;
+}
+.b-gameEti .b-character.eti-full-face.state_show {
+  height: 133px;
+}
+.b-gameEti .b-character.eti-full-face .b-character-h {
+  width: 141px;
+  height: 136px;
+  background-position: -16px -2159px;
+}
+.b-gameEti .b-character.eti-hello {
+  top: 450px;
+  left: 1750px;
+  width: 172px;
+  height: 220px;
+}
+.b-gameEti .b-character.eti-hello .b-character-h {
+  width: 172px;
+  height: 220px;
+  background-position: 0 -2323px;
+}
+.b-gameEti .b-character.eti-scare {
+  top: 320px;
+  left: 2606px;
+  z-index: 40;
+  width: 322px;
+  height: 332px;
+}
+.b-gameEti .b-character.eti-scare .b-character-h {
+  width: 322px;
+  height: 332px;
+  background-position: 0 -2543px;
+}
+.b-gameEti .b-character.eti-skiing {
+  top: 318px;
+  z-index: 10;
+  left: 3396px;
+  width: 200px;
+  height: 183px;
+}
+.b-gameEti .b-character.eti-skiing .b-character-h {
+  width: 200px;
+  height: 183px;
+  background-position: 0 -2875px;
+}
+.b-gameEti .b-character.eti-strong {
+  top: 294px;
+  left: 2232px;
+  width: 454px;
+  height: 457px;
+}
+.b-gameEti .b-character.eti-strong .b-character-h {
+  width: 454px;
+  height: 457px;
+  background-position: 0 -3058px;
+}
+.b-gameEti .b-character.men-skiing {
+  top: 880px;
+  left: 2870px;
+  z-index: 10;
+  width: 179px;
+  height: 181px;
+}
+.b-gameEti .b-character.men-skiing .b-character-h {
+  width: 179px;
+  height: 181px;
+  background-position: 0 -3515px;
+}
+.b-gameEti .b-character.women-skiing1 {
+  top: 880px;
+  z-index: 10;
+  left: 2970px;
+  width: 176px;
+  height: 182px;
+}
+.b-gameEti .b-character.women-skiing1 .b-character-h {
+  width: 176px;
+  height: 182px;
+  background-position: 0 -3696px;
+}
+.b-gameEti .b-character.women-skiing2 {
+  top: 880px;
+  z-index: 10;
+  left: 3070px;
+  width: 168px;
+  height: 176px;
+}
+.b-gameEti .b-character.women-skiing2 .b-character-h {
+  width: 168px;
+  height: 176px;
+  background-position: 0 -3878px;
+}
+
+/* b-gameEti-alert */
+/*==========================================================*/
+.b-gameEti-alert {
+  border: 4px solid #000;
+  -moz-border-radius: 11px;
+  -webkit-border-radius: 11px;
+  border-radius: 11px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  position: absolute;
+  z-index: 100;
+  text-align: center;
+  width: 206px;
+  padding: 20px 0 26px 0px;
+  opacity: 0;
+}
+.b-gameEti-alert.ng-leave {
+    animation: b-gameEti-alert-anim 1.5s linear;
+    -moz-animation: b-gameEti-alert-anim 1.5s linear;
+    -webkit-animation: b-gameEti-alert-anim 1.5s linear;
+}
+@-webkit-keyframes b-gameEti-alert-anim {
+  from  { opacity: 0; margin-top: 20px; -webkit-animation-timing-function: ease-in;}
+  20% {opacity: 1; margin-top: 0;}
+  80% {opacity: 1; margin-top: 0;}
+  to { opacity: 0; margin-top: -20px; -webkit-animation-timing-function: ease-out;}
+}
+@-moz-keyframes b-gameEti-alert-anim {
+  from  { opacity: 0; margin-top: 20px; -moz-animation-timing-function: ease-in;}
+  20% {opacity: 1; margin-top: 0;}
+  80% {opacity: 1; margin-top: 0;}
+  to { opacity: 0; margin-top: -20px; -moz-animation-timing-function: ease-out;}
+}
+@keyframes b-gameEti-alert-anim {
+  from  { opacity: 0; margin-top: 20px; animation-timing-function: ease-in;}
+  20% {opacity: 1; margin-top: 0;}
+  80% {opacity: 1; margin-top: 0;}
+  to { opacity: 0; margin-top: -20px; animation-timing-function: ease-out;}
+}
+.b-gameEti-alert.mod_white {
+  background-color: #fff;
+  color: #000;
+}
+
+.b-gameEti-alert.mod_red {
+  background-color: #ee285a;
+  color: #fff;
+}
+
+.b-gameEti-alert-title {
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.b-gameEti-alert-note {
+  font-size: 16px;
+  padding: 0 34px;
+  line-height: 21px;
+}
+
+/* b-cursor  */
+/*==========================================================*/
+.b-gameEti {
+  cursor:url(asset/i/b-gameEti/cursor.cur),auto;
+}

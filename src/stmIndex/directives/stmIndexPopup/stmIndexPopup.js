@@ -1,23 +1,23 @@
 /**
  * @ngdoc directive
- * @name stmIndex.directive:stmIndexMap
+ * @name stmIndex.directive:stmIndexPopup
  * @function
  *
- * @requires stmIndex.directive:stmIndexMap:b-map.css
- * @requires stmIndex.directive:stmIndexMap:template.html
+ * @requires stmIndex.directive:stmIndexPopup:b-popup.css
+ * @requires stmIndex.directive:stmIndexPopup:template.html
  *
  * @description
- * Карта
+ * Popup
  *
  * @element ANY
  *
  * @example
     <example module="appExample">
       <file name="index.html">
-         <div stm-index-map class="example-map"></div>
+         <div stm-index-popup class="example-popup"></div>
       </file>
       <file name="style.css">
-         .example-map {
+         .example-popup {
             width: 100%;
             height: 600px;
             position: relative;
@@ -27,11 +27,11 @@
     
  */
 
-angular.module('stmIndex').directive('stmIndexMap', function(){
+angular.module('stmIndex').directive('stmIndexPopup', function(){
     return {
         scope: {
         },
-        templateUrl: 'partials/stmIndex.directive:stmIndexMap:template.html',
+        templateUrl: 'partials/stmIndex.directive:stmIndexPopup:template.html',
         compile: function(tElement){
             return function(scope, iElement){
             };

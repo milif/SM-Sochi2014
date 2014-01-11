@@ -1,0 +1,79 @@
+/* b-map */
+/*==========================================================*/
+.b-map {
+  height: 100%;
+  overflow: hidden;
+}
+
+.b-map-h {
+  position: relative;
+  height: 3380px;
+  width: 3770px;
+  background: url("asset/i/b-gameMap/b-gameMap-fone.png") 0 0 no-repeat;
+}
+
+/* b-game-run */
+/*==========================================================*/
+.b-game-run {
+  position: absolute;
+  width: 280px;
+  border: 3px solid #000;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  background-color: #fff;
+}
+
+.b-game-run-top {
+  padding: 14px 16px 16px 16px;
+  text-align: center;
+}
+
+.b-game-run-title {
+  font-size: 21px;
+  margin-bottom: 6px;
+}
+
+.b-game-run-note {
+  font-size: 13px;
+  line-height: 18px;
+}
+
+/* MOD biathlon  */
+.b-game-run.mod_biathlon {
+  left: 630px;
+  top: 506px;
+}
+
+/* MOD eti  */
+.b-game-run.mod_eti {
+  left: 2806px;
+  top: 318px;
+}
+
+/* MOD climber  */
+.b-game-run.mod_climber {
+  left: 1848px;
+  top: 2392px;
+}
+
+/* .b-button.mod_game-run */
+.b-button.mod_game-run {
+  height: 47px;
+  line-height: 50px;
+  display: block;
+  -moz-border-radius: 0 0 7px 7px;
+  -webkit-border-radius: 0 0 7px 7px;
+  border-radius: 0 0 7px 7px;
+}
+.b-button.mod_game-run .b-button__text {
+  width: 100%;
+  font-size: 21px;
+  font-weight: bold;
+  color: #000;
+  text-transform: uppercase;
+  text-align: center;
+}

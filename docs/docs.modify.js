@@ -96,17 +96,25 @@ docsApp.serviceFactory.openPlunkr = function(templateMerge, formPostData, angula
 };
 // Pull Requests
 docsApp.controller.pullsCtrl = ['$scope', 'Pull', function($scope, Pull){
+    var map;
     $scope.pulls = [];
     $scope.load = function(){
         if($scope.loading) return;
         $scope.loading = true;
         $scope.pulls = Pull.query();
-        $scope.pulls.$promise.finally(function(){
-            $scope.loading = false;
-        });
+        $scope.pulls.$promise
+            .then(function(){
+                map = {};
+                angular.forEach($scope.pulls, function(pull, i){
+                    map[pull.id] = pull;
+                });            
+            })
+            .finally(function(){
+                $scope.loading = false;
+            });
     }
-    $scope.build = function(i){
-        var pull = $scope.pulls[i];
+    $scope.build = function(id){
+        var pull = map[id];
         pull.loading = true;
         Pull.build({id: pull.id, updatedAt: pull.updatedAt}, function(update){
             $.extend(pull, update);

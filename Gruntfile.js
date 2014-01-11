@@ -19,11 +19,24 @@ module.exports = function(grunt) {
             {  
                 name: 'stmIndex', // Module name
                 include: [        // Include module components:
+                    'directive:stmIndexMap'
                     // 'directive:stmIndexHellowWorld',
                     // 'directive:*',
-                    '*'                                                 
+                    //'*'                                                 
                 ]    
-            }
+            },
+            {  
+                name: 'stmGameEti', // Module name
+                include: [        // Include module components:
+                    'directive:stmGameEtiScreen'                                               
+                ]    
+            },
+            {  
+                name: 'stmGameClimber', // Module name
+                include: [        // Include module components:
+                    'directive:stmGameClimberScreen'                                               
+                ]    
+            }                       
         ],
         lib: ['src/**/*.js'],
         components: ['build/components'],
