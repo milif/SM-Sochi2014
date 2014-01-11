@@ -33,8 +33,8 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
           $scope.endPosition = 0;
           $scope.score = 0;
           $scope.scoreIncrement = 0;
-          $scope.scorePopupShow = false;
-          $scope.moodPopupShow = false;
+          $scope.popupScoreShow = false;
+          $scope.popupMoodShow = false;
           $scope.energy = 100;
           $scope.distance = 0;
           $scope.$watch('distance', function() {
@@ -53,6 +53,8 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
 
                         manEl = g_pipeEl.find('.gameClimber-player'),
                         birdEl = g_pipeEl.find('.gameClimber-bird'),
+                        moodPopupEl = g_pipeEl.find('.gameClimber-popup-mood'),
+                        scorePopupEl = g_pipeEl.find('.gameClimber-popup-score'),
                         state = 0,
                         action = 'stop',
                         manualTimeout,
@@ -244,10 +246,10 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                             return;
                         }
                         scope.scoreIncrement = score - scope.score;
-                        scope.scorePopupShow = true;
+                        scope.popupScoreShow = true;
                         $timeout(function() {
-                            scope.scorePopupShow = false;
-                        }, 4000);
+                            scope.popupScoreShow = false;
+                        }, 5000);
                     }                    
 
                     function showMoodPopup() {
@@ -255,9 +257,9 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                             return;
                         }
                         moodPopupUsed = true;
-                        scope.moodPopupShow = true;
+                        scope.popupMoodShow = true;
                         $timeout(function() {
-                            scope.moodPopupShow = false;
+                            scope.popupMoodShow = false;
                         }, 7000);
                     }
 
