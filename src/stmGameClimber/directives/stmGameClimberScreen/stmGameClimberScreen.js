@@ -125,7 +125,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                                     _down(step, true);
                                 } else if (e.keyCode == 82) { // "R"
                                     var ratio = (position - startPosition) / (endPosition - startPosition);
-                                    if(!goingUpUsed && ratio > 0.65) {
+                                    if(!goingUpUsed && ratio > 0.65 && (position < endPosition - topPipeMargin - 150)) {
                                         goingUpUsed = true;
                                         $timeout(function () {
                                             $(keyObj)
@@ -135,7 +135,6 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                                         }, 0);
                                         blockUI = true;
                                         goingUp = true;
-                                        var oldState = state;
                                         manEl
                                             .removeClass('mod_frame'+state)
                                             .addClass('mod_frame17');
@@ -152,11 +151,12 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                                             action = 'up';
                                             updateEnergy(1);
                                             index++;
-                                            if(index == 100 || position > endPosition - topPipeMargin + 250) {
+                                            if(index == 100 || position > endPosition - topPipeMargin - 150) {
                                                 $interval.cancel(upInterval);
                                                 manEl
                                                     .removeClass('mod_frame17')
-                                                    .addClass('mod_frame'+oldState);
+                                                    .addClass('mod_frame21');
+                                                state = 21;
                                                 $(keyObj)
                                                     .off(keyEvents)
                                                     .off(blockUpEvents)
@@ -475,6 +475,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                                     .css({
                                       'bottom': endPosition - topPipeMargin + 364
                                     });
+                                state = 14;
                             }
                         }, 10);
                     }
@@ -495,6 +496,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                                 manEl
                                     .removeClass('mod_frame'+state)
                                     .addClass('mod_frame16');
+                                state = 16;
                                 birdEl.hide();
                                 moveBirdAndMan();
                             }
