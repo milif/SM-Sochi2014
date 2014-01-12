@@ -189,7 +189,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                     
                     function _play(){
 
-                        birdEl.css({'top': 800});
+                        birdEl.css({'top': 0});
                         $timeout(function(){
                             g_viewEl.stop();
                             inScroll = true;
@@ -476,6 +476,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                                       'bottom': endPosition - topPipeMargin + 364
                                     });
                                 state = 14;
+                                moveBirdAway(positionMarginLeft);
                             }
                         }, 10);
                     }
@@ -485,12 +486,17 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                             positionTop = parseInt(birdEl.css('top'), 10);
 
                         var timer = $interval(function(){
-                            positionLeft += 1;
-                            positionTop -= 4;
+                            positionLeft += 0.2;
+                            positionTop += 2.5;
                             birdEl.css({
                                 left: positionLeft + '%',
                                 top: positionTop
-                            });
+                            });                            
+                            if(positionLeft > 35) {
+                                birdEl.addClass('open');
+                            } else {
+                                birdEl.removeClass('open');
+                            }
                             if(positionLeft > 49) {
                                 $interval.cancel(timer);
                                 manEl
@@ -499,6 +505,26 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                                 state = 16;
                                 birdEl.hide();
                                 moveBirdAndMan();
+                            }
+                        }, 10);
+                    }
+
+                    function moveBirdAway(positionMarginLeft) {
+                        positionTop = 280;
+                        birdEl.css({
+                            'margin-left': positionMarginLeft,
+                            top: positionTop
+                        });
+                        birdEl.show();
+                        var timer = $interval(function(){
+                            positionMarginLeft += 2.5;
+                            positionTop -= 2.5;
+                            birdEl.css({
+                                'margin-left': positionMarginLeft,
+                                top: positionTop
+                            });
+                            if(positionTop < -200) {
+                                $interval.cancel(timer);
                             }
                         }, 10);
                     }
