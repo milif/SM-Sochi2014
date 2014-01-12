@@ -399,7 +399,18 @@
   height: 176px;
   background-position: 0 -3878px;
 }
-
+.b-gameEti .b-character.eti-fly {
+  top: 330px;
+  left: 1356px;
+  z-index: 200;
+  width: 408px;
+  height: 324px;
+}
+.b-gameEti .b-character.eti-fly .b-character-h {
+  width: 408px;
+  height: 324px;
+  background-position: 0 -1820px;
+}
 /* b-gameEti-alert */
 /*==========================================================*/
 .b-gameEti-alert {
