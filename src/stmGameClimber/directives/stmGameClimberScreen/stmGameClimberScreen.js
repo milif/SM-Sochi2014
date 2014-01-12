@@ -457,7 +457,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                             _index += 1;
                             positionBottom += 2;
                             positionMarginLeft += 1.3;
-                            position += 2;
+                            position += 1.5;
                             manEl.css({
                                 'margin-left': positionMarginLeft,
                                 bottom: positionBottom
@@ -512,7 +512,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                     }
 
                     function moveBirdAway(positionMarginLeft) {
-                        positionTop = 280;
+                        positionTop = 285;
                         birdEl.css({
                             'margin-left': positionMarginLeft,
                             top: positionTop
