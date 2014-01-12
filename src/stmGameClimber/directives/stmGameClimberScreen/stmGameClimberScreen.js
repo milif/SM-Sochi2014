@@ -155,8 +155,8 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                                                 $interval.cancel(upInterval);
                                                 manEl
                                                     .removeClass('mod_frame17')
-                                                    .addClass('mod_frame21');
-                                                state = 21;
+                                                    .addClass('mod_frame30');
+                                                state = 30;
                                                 $(keyObj)
                                                     .off(keyEvents)
                                                     .off(blockUpEvents)
@@ -422,13 +422,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         }
                     }
 
-                    function _setScroll(){                        
-                        if(position >= (endPosition - topPipeMargin)) {
-                             g_viewEl.stop().animate({
-                                scrollTop: 200
-                            }, 200);
-                            return;
-                        }
+                    function _setScroll(setScrollPosition){
                         
                         if(inScroll) return;
                     
@@ -436,7 +430,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                             pipeHeight = g_pipeEl.height(),
                             scrollTo;
 
-                        var _position = pipeHeight - position;                        
+                        var _position = pipeHeight - position;
                         if( action == 'down' ) {
                             scrollTo = _position - viewHeight / 2;
                         } else {
@@ -447,7 +441,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                             g_viewEl.stop();
                             inScroll = true;
                             g_viewEl.animate({
-                                scrollTop: scrollTo
+                                scrollTop: setScrollPosition || scrollTo
                             }, 200, null, function(){
                                 inScroll = false;
                             });
@@ -463,10 +457,12 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                             _index += 1;
                             positionBottom += 2;
                             positionMarginLeft += 1.3;
+                            position += 2;
                             manEl.css({
                                 'margin-left': positionMarginLeft,
                                 bottom: positionBottom
                             });
+                            _setScroll();
                             if(_index === 210) {
                                 $interval.cancel(timerUp);
                                 manEl
@@ -484,6 +480,12 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                     function moveBird() {
                         var positionLeft = parseInt(birdEl.css('left'), 10),
                             positionTop = parseInt(birdEl.css('top'), 10);
+
+                        _setScroll(200);
+
+                        $timeout(function(){
+                            _setScroll();
+                        }, 1000);
 
                         var timer = $interval(function(){
                             positionLeft += 0.2;
@@ -523,7 +525,10 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                                 'margin-left': positionMarginLeft,
                                 top: positionTop
                             });
-                            if(positionTop < -200) {
+                            if(positionTop < 150) {
+                                birdEl.removeClass('open');
+                            }
+                            if(positionTop < -500) {
                                 $interval.cancel(timer);
                             }
                         }, 10);
