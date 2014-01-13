@@ -5,6 +5,7 @@
  *
  * @requires stmGameEti.directive:stmGameEtiScreen:b-gameEti.css
  * @requires stmGameEti.directive:stmGameEtiScreen:template.html
+ * @requires stmIndex.directive:stmIndexPopup
  *
  * @description
  * Экран игры Йети
