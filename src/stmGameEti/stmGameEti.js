@@ -9,6 +9,6 @@
  * Модуль игры Йети
  */
 
-angular.module('stmGameEti', ['stm'])
+angular.module('stmGameEti', ['stm','stmIndex'])
     .config([function(){
     }]);

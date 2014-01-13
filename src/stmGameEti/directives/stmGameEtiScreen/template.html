@@ -1,5 +1,5 @@
 <!-- gameEti -->
-<div class='b-gameEti g-font'>
+<div class='b-gameEti g-font' ng-class="stateCls">
   <div class='b-gameEti-h'>
     <div class='b-gameEti-fone'>
       <div class='b-gameEti-fone-h'>
@@ -19,74 +19,156 @@
         <div class='b-tree-decoration mod13'></div>
         <!-- End Tree decorations -->
         <!-- Decorations item -->
-        <div class='b-character bear'>
+              
+        <div ng-show="showBigEti" class='b-character eti-fany'>
           <div class='b-character-h'></div>
         </div>
-        <div class='b-character deer-skiing'>
-          <div class='b-character-h'></div>
+        <div data-hover class='b-character women-skiing2'>
+          <div data-target data-move="true" data-check-tree="true" data-msg="in-women" class='b-character-h'></div>
         </div>
-        <div data-hover class="b-character-h-deer-sledge">
-            <div data-target data-move="true" data-msg="in-deer" class='b-character deer-sledge'>
-              <div class='b-character-h'></div>
-            </div>        
+        <div data-hover class='b-character women-skiing1'>
+          <div data-target data-move="true" data-check-tree="true" data-msg="in-women" class='b-character-h'></div>
         </div>
-        <div data-hover class="b-character-h-deer-sledge mod_1">
-            <div data-target data-move="true" data-msg="in-deer" class='b-character deer-sledge'>
-              <div class='b-character-h'></div>
-            </div>        
+        <div data-hover class='b-character men-skiing'>
+          <div data-target data-move="true" data-check-tree="true" data-msg="in-men" class='b-character-h'></div>
+        </div>
+        <div data-hover class='b-character deer-skiing'>
+          <div data-target data-move="true" data-check-tree="true" data-msg="in-deer" class='b-character-h'></div>
+        </div>
+        <div data-hover class='b-character eti-skiing'>
+          <div data-target data-move="true" data-check-tree="true" data-eti="true" class='b-character-h'></div>
+        </div>
+        <div data-hover class='b-character eti-fly'>
+          <div data-target data-move="true" data-eti="true" class='b-character-h'></div>
+        </div>
+        <div data-hover class='b-character eti-fly mod_2'>
+          <div data-target data-move="true" data-eti="true" class='b-character-h'></div>
+        </div>         
+        <div data-hover class='b-character eti-ass' ng-class="activeAss1">
+          <div data-target data-eti="true" class='b-character-h'>
+            <div class="b-character-hh"></div>
+          </div>
+        </div>
+        <div ng-mouseleave="activeAss1=''" ng-mouseenter="activeAss1='state_active'" class="eti-ass-hover"></div>
+        <div data-hover class='b-character eti-ass' ng-class="activeAss2" style="top: 458px; left: 1615px; z-index: 30;">
+          <div data-target data-eti="true" class='b-character-h'>
+            <div class="b-character-hh"></div>
+          </div>
+        </div>
+        <div ng-mouseleave="activeAss2=''" ng-mouseenter="activeAss2='state_active'" class="eti-ass-hover" style="left: 1724px; top: 519px;"></div>         
+        <div data-hover class='b-character eti-scare'>
+          <div data-target data-eti="true" class='b-character-h'></div>
+        </div>          
+        <div data-hover class='b-character eti-strong'>
+          <div data-target data-eti="true" class='b-character-h'></div>
+        </div>
+        <div data-hover class='b-character eti-strong' style="top: 503px;left: 3440px; z-index: 45;">
+          <div data-target data-eti="true" class='b-character-h'></div>
         </div>        
-        <div class='b-character eti-ass'>
-          <div class='b-character-h'></div>
+        <div data-hover class='b-character eti-hello'>
+          <div data-target data-eti="true" class='b-character-h'></div>
         </div>
-        <div class='b-character eti-fany'>
-          <div class='b-character-h'></div>
+        <div data-hover class='b-character eti-hello' style="left: 2743px;">
+          <div data-target data-eti="true" class='b-character-h'></div>
         </div>
-        
-        <div data-target data-eti="true" class='b-character eti-full-face'>
-          <div class='b-character-h'></div>
+        <div data-hover class='b-character eti-hello' style="top: 494px;left: 3441px; z-index: 41;">
+          <div data-target data-eti="true" class='b-character-h'></div>
+        </div>        
+        <div data-hover class='b-character bear'>
+          <div data-target data-msg="in-beer" class='b-character-h'></div>
         </div>
-        <div data-target data-eti="true" class='b-character eti-full-face' style="bottom: 622px;left: 1110px;">
-          <div class='b-character-h'></div>
+        <div data-hover class='b-character bear' style="left: 250px;">
+          <div data-target data-msg="in-beer" class='b-character-h'></div>
         </div>
-        <div data-target data-eti="true" class='b-character eti-full-face' style="bottom: 425px;left: 110px;">
-          <div class='b-character-h'></div>
+        <div data-hover class='b-character bear' style="z-index: 100; left: 3450px;">
+          <div data-target data-msg="in-beer" class='b-character-h'></div>
+        </div>             
+        <div data-hover class='b-character deer-sledge'>
+          <div data-target data-move="true" data-msg="in-deer" class='b-character-h'></div>       
         </div>
-        <div data-target data-eti="true" class='b-character eti-full-face' style="bottom: 425px;left: 3350px;">
-          <div class='b-character-h'></div>
+        <div data-hover class='b-character deer-sledge mod_1'>
+          <div data-target data-move="true" data-msg="in-deer" class='b-character-h'></div>       
+        </div>        
+        <div data-hover class='b-character eti-full-face'>
+          <div data-target data-eti="true" class='b-character-h'></div>
         </div>
-        
-        <div class='b-character eti-hello'>
-          <div class='b-character-h'></div>
+        <div data-hover class='b-character eti-full-face' style="bottom: 622px;left: 1110px;">
+          <div data-target data-eti="true" class='b-character-h'></div>
         </div>
-        <div class='b-character eti-scare'>
-          <div class='b-character-h'></div>
+        <div data-hover class='b-character eti-full-face' style="bottom: 470px;left: 110px;">
+          <div data-target data-eti="true" class='b-character-h'></div>
         </div>
-        <div class='b-character eti-skiing'>
-          <div class='b-character-h'></div>
-        </div>
-        <div class='b-character eti-strong'>
-          <div class='b-character-h'></div>
-        </div>
-        <div class='b-character men-skiing'>
-          <div class='b-character-h'></div>
-        </div>
-        <div class='b-character women-skiing1'>
-          <div class='b-character-h'></div>
-        </div>
-        <div class='b-character women-skiing2'>
-          <div class='b-character-h'></div>
+        <div data-hover class='b-character eti-full-face' style="bottom: 470px;left: 3350px;">
+          <div data-target data-eti="true" class='b-character-h'></div>
         </div>
         <!-- End Decorations item -->
         <!-- Cursor -->
         <div class='b-cursor'></div>
         <!-- End Cursor -->
         <!-- Alert -->
-        <div data-alert class='b-gameEti-alert mod_{{msg[2]}}' style='left: {{left}}px; top: {{top}}px;'>
-          <div class='b-gameEti-alert-title' ng-bind-html="msg[0]"></div>
-          <div class='b-gameEti-alert-note' ng-bind-html="msg[1]"></div>
+        <div data-alert class='b-gameEti-alert mod_{{mod}}' style='left: {{left}}px; top: {{top}}px; width: {{width}}px;'>
+          <div class='b-gameEti-alert-title' ng-bind-html="title"></div>
+          <div ng-show="text" class='b-gameEti-alert-note' ng-bind-html="text" ></div>
         </div>
         <!-- End Alert -->
+<div class="eti-hover-tree" style="
+    left: 3668px;
+    width: 224px;
+" data-tree=""></div><div class="eti-hover-tree" style="
+    left: 3509px;
+    width: 122px;
+" data-tree=""></div><div class="eti-hover-tree" style="
+    left: 3109px;
+    width: 330px;
+" data-tree=""></div><div class="eti-hover-tree" style="
+    left: 2812px;
+    width: 61px;
+" data-tree=""></div><div class="eti-hover-tree" style="
+    left: 2562px;
+    width: 126px;
+" data-tree=""></div><div class="eti-hover-tree" style="
+    left: 2424px;
+    width: 86px;
+" data-tree=""></div><div class="eti-hover-tree" style="
+    left: 2318px;
+    width: 58px;
+" data-tree=""></div><div class="eti-hover-tree" style="
+    left: 2081px;
+    width: 158px;
+" data-tree=""></div><div class="eti-hover-tree" style="
+    left: 1870px;
+    width: 63px;
+" data-tree=""></div><div class="eti-hover-tree" style="
+    left: 1519px;
+    width: 131px;
+" data-tree=""></div><div class="eti-hover-tree" style="
+    left: 1255px;
+    width: 195px;
+" data-tree=""></div><div class="eti-hover-tree" style="
+    left: 454px;
+    width: 223px;
+" data-tree=""></div><div class="eti-hover-tree" style="
+    left: 316px;
+    width: 60px;
+" data-tree=""></div>      
       </div>
     </div>
-  </div>
+  </div> 
+  <audio data-pusk>
+    <source src="asset/audio/photo/pusk.ogg" type="audio/ogg">
+    <source src="asset/audio/photo/pusk.mp3" type="audio/mpeg">
+  </audio>       
+</div>
+<div data-start-popup stm-index-popup class="b-gameEti-popup mod_start" ng-show="showStartPopup">
+            <div class='b-popup-title'>
+              Говорят, что йети не любят<br>фотографироваться, но это не так
+            </div>
+            <div class='b-popup-note'>Заметь и успей сфотографировать йети. Чтобы сделать снимок<br>наведи фокус на йети и нажми <b>левую кнопку мыши</b>.<br>Можно допустить только <b>5</b> промахов
+            </div>
+            <div class='b-popup-button'>
+              <div class='b-button button_size_big b-button_scheme_yellow'>
+                <div class='b-button__text'>Играть</div>
+                <a class='b-button__link' ng-click="play()" href=''></a>
+              </div>
+            </div>     
 </div>
