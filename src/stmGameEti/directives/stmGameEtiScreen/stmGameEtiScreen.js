@@ -47,6 +47,8 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
         'out': [TITLES_OUT, 'Будь внимательней', 'red'],
         'in-deer': 'Ты попал<br>в оленя',
         'in-beer': 'Ты попал<br>в медведя',
+        'in-men': 'Ты попал<br>в мужчину',
+        'in-women': 'Ты попал<br>в женщину',
         'last': 'Последний шанс'
     };
     
@@ -62,17 +64,26 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
         compile: function(tElement){
             alertTpl = $compile(tElement.find('[data-alert]').remove());
         },
-        controller: ['$scope', '$element', '$interval', '$animate', function($scope, $element, $interval, $animate){
+        controller: ['$scope', '$element', '$interval', '$animate', '$timeout', function($scope, $element, $interval, $animate, $timeout){
             
             var viewEl = $element.find('>:first');
             var backEl = viewEl.find('>:first');
             var targets = viewEl.find('[data-target]');
             var pusk = viewEl.find('[data-pusk]').remove();
             
+            $scope.stateCls = 'state_stopGame';
+            $scope.showBigEti = true;
+            $scope.showStartPopup = true;
             $scope.position = {
                 x: viewEl.width() / 2,
                 y: viewEl.height() / 2
             }
+            $scope.play = function(){
+                $scope.showStartPopup = false;
+                $timeout(function(){
+                    startGame();
+                }, 0);
+            };
             
             var elEvents = {
                 'mousemove': function(e){
@@ -126,8 +137,6 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
             var currentTargets;
             var currentLevel;
             
-            startGame();
-            
             function startGame(){
                 var startTime = new Date().getTime();
                 
@@ -138,7 +147,9 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                 currentLevel = LEVELS_TABLE[0];
                 
                 $element.on(elEvents);
-                viewEl.removeClass('state_stopGame');
+                $scope.stateCls = '';
+                
+                $scope.showBigEti = false;
                 
                 stopGameItem = $interval(function(){
                     gameTime = new Date().getTime() - startTime;
@@ -192,9 +203,13 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                             el: el,
                             endTime: time + (currentLevel[1] * 0.7 + Math.random() * currentLevel[1] * 0.6),
                             animCls: 'state_show',
-                            isMove: el.data('move')
+                            isMove: el.data('move'),
+                            isCheckTree: el.data('checkTree')
                         };
-                        if(target.isMove) target.el.css('transition-duration', Math.round((target.endTime - time) / 1000) + 's');
+                        if(target.isMove) {
+                            var width = el.closest('[data-hover]').width();
+                            target.el.css('transition-duration', Math.round((target.endTime - time) * width / 1000000) + 's');
+                        }
                         $animate.addClass(el, target.animCls, function(){
                             if(target.isMove) target.el.removeClass(target.animCls);
                         });
@@ -207,7 +222,7 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
             function closeTarget(target){
                 if(!target.isMove) $animate.removeClass(target.el, target.animCls);
                 currentTargets.splice(currentTargets.indexOf(target),1);
-                nextTargetTime = new Date().getTime() + (currentLevel[2] * 0.7 + Math.random() * currentLevel[2] * 0.6);                
+                nextTargetTime = new Date().getTime() + (currentLevel[2] * 0.7 + Math.random() * currentLevel[2] * 0.6);
             }
             function photo(e){
             
@@ -225,6 +240,9 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                         var hoverEl = el.closest('[data-hover]');
                         if(hoverEl.length == 0 || inEl(hoverEl, e)){
                             var target = el.data('target');    
+                            if(target.isCheckTree && $(e.target).closest('[data-tree]').length > 0) {
+                                return false;
+                            }
                             if(!target.hasShoot){
                                 target.hasShoot = true;
                                 if(el.data('eti')) {
@@ -283,7 +301,10 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
             }
             function stopGame(){
                 $element.off(elEvents);
-                viewEl.addClass('state_stopGame');
+                $timeout(function(){
+                    $scope.showStartPopup = true;
+                }, 1000);
+                $scope.stateCls = 'state_stopGame';
                 $interval.cancel(stopGameItem);
                 
                 for(var i=0;i<currentTargets.length;i++){

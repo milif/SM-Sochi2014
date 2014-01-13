@@ -11,8 +11,7 @@
 
 .b-gameEti-h {
   width: 4000px;
-  height: 1400px;
-  height: 900px;
+  height: 1000px;
 }
 /* b-gameEti-fone */
 .b-gameEti-fone {
@@ -57,7 +56,7 @@
 .b-gameEti .b-tree-decoration.mod3 {
   top: 60px;
   left: 1912px;
-  z-index: 50;
+  z-index: 52;
   width: 566px;
   height: 963px;
   background-position: 0 -4558px;
@@ -137,7 +136,7 @@
 .b-gameEti .b-tree-decoration.mod13 {
   top: 64px;
   left: 3526px;
-  z-index: 50;
+  z-index: 52;
   width: 561px;
   height: 906px;
   background-position: 0 -2996px;
@@ -187,21 +186,22 @@
   background-position: -29px -22px;
 }
 .b-gameEti .b-character.deer-skiing {
-  -moz-transform: rotate(19deg);
-  -ms-transform: rotate(19deg);
-  -o-transform: rotate(19deg);
-  -webkit-transform: rotate(19deg);
-  transform: rotate(19deg);
-  top: 340px;
-  left: 2190px;
-  z-index: 10;
-  width: 220px;
-  height: 181px;
+    top: 450px;
+    z-index: 19;
+    left: 0;
+    width: 2089px;
+    height: 147px;
 }
 .b-gameEti .b-character.deer-skiing .b-character-h {
-  width: 220px;
-  height: 181px;
-  background-position: 0 -176px;
+    width: 150px;
+    height: 147px;
+    background-position: -37px -197px;
+    left: 100%;
+    top: 0;
+}
+.b-gameEti .b-character.deer-skiing .b-character-h.state_show,
+.b-gameEti .b-character.deer-skiing .b-character-h.state_show.state_show-add-active {
+    left: -150px; 
 }
 .b-gameEti .b-character.deer-sledge .b-character-h.state_show,
 .b-gameEti .b-character.deer-sledge .b-character-h.state_show.state_show-add-active {
@@ -271,6 +271,7 @@
   height: 526px;
 }
 .b-gameEti .b-character.eti-fany .b-character-h {
+  display: block;
   width: 366px;
   height: 526px;
   background-position: 0 -1294px;
@@ -332,16 +333,22 @@
     background-position: -40px -2572px;
 }
 .b-gameEti .b-character.eti-skiing {
-  top: 318px;
-  z-index: 10;
-  left: 3396px;
-  width: 200px;
-  height: 183px;
+    top: 450px;
+    z-index: 19;
+    left: 2230px;
+    width: 1771px;
+    height: 130px;
 }
 .b-gameEti .b-character.eti-skiing .b-character-h {
-  width: 200px;
-  height: 183px;
-  background-position: 0 -2875px;
+    left: 100%;
+    top: 0;
+    width: 139px;
+    height: 130px;
+    background-position: -34px -2894px;
+}
+.b-gameEti .b-character.eti-skiing .b-character-h.state_show,
+.b-gameEti .b-character.eti-skiing .b-character-h.state_show.state_show-add-active {
+    left: -139px; 
 }
 .b-gameEti .b-character.eti-strong {
     top: 345px;
@@ -364,52 +371,95 @@
     background-position: -103px -3087px;
 }
 .b-gameEti .b-character.men-skiing {
-  top: 880px;
-  left: 2870px;
-  z-index: 10;
-  width: 179px;
-  height: 181px;
+    top: 450px;
+    z-index: 19;
+    left: 1629px;
+    width: 2371px;
+    height: 107px;
 }
 .b-gameEti .b-character.men-skiing .b-character-h {
-  width: 179px;
-  height: 181px;
-  background-position: 0 -3515px;
+    left: 100%;
+    top: 0;
+    width: 148px;
+    height: 107px;
+    background-position: -14px -3540px;
+}
+.b-gameEti .b-character.men-skiing .b-character-h.state_show,
+.b-gameEti .b-character.men-skiing .b-character-h.state_show.state_show-add-active {
+    left: -148px; 
 }
 .b-gameEti .b-character.women-skiing1 {
-  top: 880px;
-  z-index: 10;
-  left: 2970px;
-  width: 176px;
-  height: 182px;
+    top: 450px;
+    z-index: 19;
+    left: 1442px;
+    width: 1751px;
+    height: 109px;
 }
 .b-gameEti .b-character.women-skiing1 .b-character-h {
-  width: 176px;
-  height: 182px;
-  background-position: 0 -3696px;
+    left: 100%;
+    top: 0;
+    width: 148px;
+    height: 109px;
+    background-position: -6px -3719px;
+}
+.b-gameEti .b-character.women-skiing1 .b-character-h.state_show,
+.b-gameEti .b-character.women-skiing1 .b-character-h.state_show.state_show-add-active {
+    left: -148px; 
 }
 .b-gameEti .b-character.women-skiing2 {
-  top: 880px;
-  z-index: 10;
-  left: 3070px;
-  width: 168px;
-  height: 176px;
+    top: 450px;
+    z-index: 19;
+    left: 0;
+    width: 1528px;
+    height: 113px;
 }
 .b-gameEti .b-character.women-skiing2 .b-character-h {
-  width: 168px;
-  height: 176px;
-  background-position: 0 -3878px;
+    left: 100%;
+    top: 0;
+    width: 159px;
+    height: 113px;
+    background-position: -4px -3902px;
+}
+.b-gameEti .b-character.women-skiing2 .b-character-h.state_show,
+.b-gameEti .b-character.women-skiing2 .b-character-h.state_show.state_show-add-active {
+    left: -159px; 
 }
 .b-gameEti .b-character.eti-fly {
-  top: 330px;
-  left: 1356px;
-  z-index: 200;
-  width: 408px;
-  height: 324px;
+    top: 189px;
+    left: 667px;
+    z-index: 30;
+    width: 611px;
+    height: 324px;
 }
 .b-gameEti .b-character.eti-fly .b-character-h {
-  width: 408px;
-  height: 324px;
-  background-position: 0 -1820px;
+  top: 0;
+  left: 100%;
+  width: 381px;
+  height: 170px;
+  background-position: -16px -1879px;
+}
+.b-gameEti .b-character.eti-fly .b-character-h.state_show,
+.b-gameEti .b-character.eti-fly .b-character-h.state_show.state_show-add-active {
+    left: -381px; 
+    top: 154px;  
+}
+.b-gameEti .b-character.eti-fly.mod_2 {
+    top: 221px;
+    left: 2231px;
+    z-index: 51;
+    width: 1448px;
+    height: 626px;
+}
+.b-gameEti .b-character.eti-fly.mod_2 .b-character-h.state_show,
+.b-gameEti .b-character.eti-fly.mod_2 .b-character-h.state_show.state_show-add-active {
+    top: 456px;  
+}
+.b-gameEti .eti-hover-tree {
+    top: 415px;
+    position: absolute;
+    width: 160px;
+    z-index: 1000;
+    height: 199px;
 }
 /* b-gameEti-alert */
 /*==========================================================*/
@@ -480,5 +530,28 @@
 .b-gameEti {
   cursor:url(asset/i/b-gameEti/cursor.cur),auto;
 }
-
-
+/* b-popup */
+/*==========================================================*/
+.b-gameEti-popup {
+    position: absolute;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+}
+.b-gameEti-popup {
+  -webkit-transition:all linear 0.2s;
+  transition:all linear 0.2s;
+  line-height:20px;
+  opacity:1;
+}
+ 
+.b-gameEti-popup.ng-hide-add,
+.b-gameEti-popup.ng-hide-remove {
+  display:block!important;
+}
+ 
+.b-gameEti-popup.ng-hide {
+  opacity:0;
+}

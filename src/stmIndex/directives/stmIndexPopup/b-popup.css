@@ -76,4 +76,13 @@
   font-size: 13px;
 }
 
+.b-popup-h {
+    display: table;
+    margin: 0 auto;
+    height: 100%;
+}
+.b-popup-hh {
+    display: table-cell;
+    vertical-align: middle;       
+}
 
