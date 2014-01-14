@@ -295,4 +295,15 @@
   background-position: 0px -22px;
 }
 
+/* MOD photo */
+.b-icons_photo {
+  width: 34px;
+  height: 28px;
+  margin-right: 6px;
+  top: -1px;
+  margin-left: -8px;
+}
+.b-icons_photo .b-icons__item {
+  background-position: -25px -20px;
+}
 
