@@ -143,7 +143,7 @@
 
 </div>
 <!-- Panel -->
-<div class='b-gameEti-panel'>
+<div class='b-gameEti-panel' ng-class="showToolbar ? 'state_active' : ''">
     <div class='b-gameEti-panel-h'>
         <div class='b-gameEti-panel-layaut'>
             <div class='b-gameEti-panel-column mod_first'>
@@ -157,11 +157,7 @@
             </div>
             <div class='b-gameEti-panel-column mod_second'>
                 <ul class="b-gameEti-shots">
-                    <li class="b-gameEti-shots-item state_active"></li>
-                    <li class="b-gameEti-shots-item state_active"></li>
-                    <li class="b-gameEti-shots-item state_active"></li>
-                    <li class="b-gameEti-shots-item"></li>
-                    <li class="b-gameEti-shots-item"></li>
+                    <li ng-repeat="n in [] | range:attemptsCount" class="b-gameEti-shots-item" ng-class="attempts < attemptsCount - n ? 'state_active' : ''"></li>
                 </ul>
             </div>
             <div class='b-gameEti-panel-column mod_third'>
@@ -169,7 +165,7 @@
                     <span class="b-icons b-icons_photo">
                         <span class="b-icons__item"></span>
                     </span>
-                    <span class="b-button__text">10</span>
+                    <span class="b-button__text">{{ineti}}</span>
                     <a class="b-button__link" href="../"></a>
                 </span>
 
