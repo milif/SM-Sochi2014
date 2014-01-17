@@ -27,7 +27,11 @@
     
  */
 
-angular.module('stmIndex').directive('stmIndexMap', function(){
+angular.module('stmIndex').directive('stmIndexMap', ['$window', function($window){
+
+    var $ = angular.element;
+    var windowEl = $($window);
+
     return {
         scope: {
         },
@@ -37,38 +41,47 @@ angular.module('stmIndex').directive('stmIndexMap', function(){
             var backEl = viewEl.find('>:first');
             
             $scope.position = {
-                x: viewEl.width() / 2, 
-                y: viewEl.height() / 2
-            }                
+                x: 0, 
+                y: 0
+            }
+            $scope.inMove = false;
             
-            $element.on('mousemove', function(e){
-                var offset = $element.offset();
-                $scope.$apply(function(){
-                    $scope.position = {
-                        x: e.pageX - offset.left,
-                        y: e.pageY - offset.top
-                    }
-                });
-            });
+            var drag;
+            var dragEvents = {
+                'mousemove': function(e){
+                    $scope.$apply(function(){
+                        $scope.position = {
+                            x: Math.max(0,Math.min(drag.pos.x + drag.x - e.pageX, backEl.width() - viewEl.width())),
+                            y: Math.max(0,Math.min(drag.pos.y + drag.y - e.pageY, backEl.height() - viewEl.height()))
+                        }                    
+                    });
+                },
+                'mouseup': function(){
+                    $scope.$apply(function(){
+                        $scope.inMove = false;
+                    });                    
+                    windowEl.off(dragEvents);
+                }
+            }            
+            
             $element.on('mousedown', function(e){
                 e.preventDefault();
+                windowEl.on(dragEvents);
+                drag = {
+                    x: e.pageX,
+                    y: e.pageY,
+                    pos: $scope.position
+                }
+                $scope.$apply(function(){
+                    $scope.inMove = true;
+                });
             });
             $scope.$watch('position', function(){
-                var viewW = viewEl.width();
-                var backW = backEl.width();
-                var marginW = viewW * 0.15;
-                var viewH = viewEl.height();
-                var backH = backEl.height();
-                var marginH = viewH * 0.15;
-                
-                var offset= Math.min(viewW-2*marginW, Math.max($scope.position.x - marginW, 0));
-                var scrollLeft = Math.round(offset * (backW-viewW)/(viewW - marginW * 2));
-                viewEl.scrollLeft(scrollLeft);
-                offset= Math.min(viewH-2*marginH, Math.max($scope.position.y - marginH, 0));
-                var scrollTop = Math.round(offset * (backH-viewH)/(viewH - marginH * 2));
-                viewEl.scrollTop(scrollTop);
+                var position = $scope.position;
+                viewEl.scrollLeft(position.x);
+                viewEl.scrollTop(position.y);
             });
         
         }]
     };
-});
+}]);
