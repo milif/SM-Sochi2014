@@ -738,3 +738,42 @@
 .margin_space20 {
     margin-right: 20px;
 }
+
+/* b-gameEti-birds */
+.b-gameEti-birds {
+    background: url(asset/i/b-gameEti/b-gameEti-birds.png) 0 0 no-repeat;
+    position: absolute;
+}
+.b-gameEti-birds_owl {
+    background-position:  0px -128px;
+    width: 111px;
+    height: 110px;
+    top: 124px;
+    left: 3370px;
+    z-index: 100;
+}
+.b-gameEti-birds_owl.state1 {
+    background-position: -137px 0px;
+    width: 127px;
+    height: 118px;
+    left: 3354px;
+    top: 120px;
+}
+.b-gameEti-birds_owl.state2 {
+    background-position: 0 0;
+    width: 127px;
+    height: 118px;
+    left: 3354px;
+    top: 120px;
+}
+.b-gameEti-birds_red {
+    background-position: -187px -128px;
+    width: 56px;
+    height: 74px;
+    left: 2904px;
+    top: 108px;
+    z-index: 40;
+}
+.b-gameEti-birds_red.state1 {
+    background-position: -120px -128px;
+}
