@@ -19,7 +19,8 @@ module.exports = function(grunt) {
             {  
                 name: 'stmIndex', // Module name
                 include: [        // Include module components:
-                    'directive:stmIndexMap'
+                    'directive:stmIndexMap',
+                    'stm.directive:stmPreload'
                     // 'directive:stmIndexHellowWorld',
                     // 'directive:*',
                     //'*'                                                 
@@ -28,13 +29,15 @@ module.exports = function(grunt) {
             {  
                 name: 'stmGameEti', // Module name
                 include: [        // Include module components:
-                    'directive:stmGameEtiScreen'                                               
+                    'directive:stmGameEtiScreen',
+                    'stm.directive:stmPreload'                                            
                 ]    
             },
             {  
                 name: 'stmGameClimber', // Module name
                 include: [        // Include module components:
-                    'directive:stmGameClimberScreen'                                               
+                    'directive:stmGameClimberScreen',
+                    'stm.directive:stmPreload'                                              
                 ]    
             }                       
         ],

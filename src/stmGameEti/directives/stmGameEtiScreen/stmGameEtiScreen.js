@@ -74,6 +74,23 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
             var targets = viewEl.find('[data-target]');
             var pusk = viewEl.find('[data-pusk]').remove();
             
+
+            $scope.activateOwl = function(){
+                $timeout.cancel(owlTimer);
+                $scope.owlCls = 'state2';
+                owlTimer = $timeout(function(){
+                    $scope.owlCls = 'state1';
+                    owlTimer = $timeout($scope.activateOwl, 150 + Math.random() * 150);
+                }, 2000 + Math.random() * 2000);
+            }
+            $scope.deactivateOwl = function (){
+                $timeout.cancel(owlTimer);
+                owlTimer = $timeout(function(){
+                    $scope.owlCls = '';
+                }, 1000 + Math.random() * 1000);
+            }            
+            $scope.owlCls = '';
+            
             $scope.ineti = 0;
             $scope.showToolbar = false;
             $scope.attemptsCount = ATTEMPTS;
@@ -130,6 +147,9 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
             });
                         
             var stopGameItem;
+            var owlTimer;
+            var redBirdTimer;
+            
             var gameTime;
             
             var successMsg = MSGS['in-eti'];
@@ -162,10 +182,27 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                     gameTime = new Date().getTime() - startTime;
                     gameIterate();
                 }, ITERATE_TIMEOUT);
+                
+                activateRedBird();
             }
+            
+            function activateRedBird(){
+                $timeout.cancel(redBirdTimer);
+                $scope.redBirdCls = 'state1';
+                redBirdTimer = $timeout(function(){
+                    $scope.redBirdCls = '';
+                    redBirdTimer = $timeout(activateRedBird, 1000 + Math.random() * 1000);
+                }, 1000 + Math.random() * 1000);
+            }
+            function deactivateRedBird(){
+                $timeout.cancel(redBirdTimer);
+                redBirdTimer = $timeout(function(){
+                    $scope.redBirdCls = '';
+                }, 1000 + Math.random() * 1000);
+            }            
             function gameIterate(){
                 var time = new Date().getTime();
-                
+                                
                 if($scope.attempts == 0) {
                     stopGame();
                     return;
@@ -321,6 +358,7 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                 for(var i=0;i<currentTargets.length;i++){
                     closeTarget(currentTargets[i]);
                 }
+                deactivateRedBird();
             }
             function checkIntersection(el1, el2){
                 var offset1 = el1.offset();
