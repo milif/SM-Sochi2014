@@ -1,0 +1,19 @@
+.b-preload {
+    position absolute;
+    z-index: 999999;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    position: absolute;
+}
+
+.b-preload.ng-leave {
+    -webkit-transition: 0.2s linear all; /* Safari/Chrome */
+    transition: 0.2s linear all; /* Future Browsers */
+}
+.b-preload.ng-leave-active {
+    opacity: 0;
+}
+
