@@ -68,7 +68,7 @@ module.exports = function(grunt) {
   });
 
   //alias tasks
-  grunt.registerTask('package', ['shell', 'init', 'docs', 'app'/*, 'crontasks'*/]);
+  grunt.registerTask('package', ['shell', 'init', 'docs', 'app']);
   grunt.registerTask('app', ['buildapp']);
   grunt.registerTask('docs', ['builddocs']);
   grunt.registerTask('default', ['package']);
