@@ -4,7 +4,9 @@
   height: 100%;
   overflow: hidden;
 }
-
+.b-map.state_move {
+  cursor: move;
+}
 .b-map-h {
   position: relative;
   height: 3380px;

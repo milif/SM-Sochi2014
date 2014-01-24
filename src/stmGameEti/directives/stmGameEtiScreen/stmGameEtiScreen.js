@@ -6,6 +6,7 @@
  * @requires stmGameEti.directive:stmGameEtiScreen:b-gameEti.css
  * @requires stmGameEti.directive:stmGameEtiScreen:template.html
  * @requires stmIndex.directive:stmIndexPopup
+ * @requires stm.filter:range
  *
  * @description
  * Экран игры Йети
@@ -20,8 +21,9 @@
       <file name="style.css">
          .example-screen {
             width: 100%;
-            height: 800px;
+            height: 100%;
             position: relative;
+            overflow:hidden;
             }
       </file>
     </example>
@@ -72,6 +74,26 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
             var targets = viewEl.find('[data-target]');
             var pusk = viewEl.find('[data-pusk]').remove();
             
+
+            $scope.activateOwl = function(){
+                $timeout.cancel(owlTimer);
+                $scope.owlCls = 'state2';
+                owlTimer = $timeout(function(){
+                    $scope.owlCls = 'state1';
+                    owlTimer = $timeout($scope.activateOwl, 150 + Math.random() * 150);
+                }, 2000 + Math.random() * 2000);
+            }
+            $scope.deactivateOwl = function (){
+                $timeout.cancel(owlTimer);
+                owlTimer = $timeout(function(){
+                    $scope.owlCls = '';
+                }, 1000 + Math.random() * 1000);
+            }            
+            $scope.owlCls = '';
+            
+            $scope.ineti = 0;
+            $scope.showToolbar = false;
+            $scope.attemptsCount = ATTEMPTS;
             $scope.stateCls = 'state_stopGame';
             $scope.showBigEti = true;
             $scope.showStartPopup = true;
@@ -125,6 +147,9 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
             });
                         
             var stopGameItem;
+            var owlTimer;
+            var redBirdTimer;
+            
             var gameTime;
             
             var successMsg = MSGS['in-eti'];
@@ -132,7 +157,6 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
             var lastMsg = MSGS['last'];
             var nophotoMsg = MSGS['nophoto'];
             
-            var playAttempts;
             var nextTargetTime;
             var lastPhotoTime;
             var currentTargets;
@@ -141,7 +165,9 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
             function startGame(){
                 var startTime = new Date().getTime();
                 
-                playAttempts = ATTEMPTS;
+                $scope.showToolbar = true;
+                $scope.ineti = 0;
+                $scope.attempts = ATTEMPTS;
                 nextTargetTime = new Date().getTime() + FIRST_TARGET_TIMEOUT;
                 lastPhotoTime = new Date().getTime();
                 currentTargets = [];
@@ -156,11 +182,28 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                     gameTime = new Date().getTime() - startTime;
                     gameIterate();
                 }, ITERATE_TIMEOUT);
+                
+                activateRedBird();
             }
+            
+            function activateRedBird(){
+                $timeout.cancel(redBirdTimer);
+                $scope.redBirdCls = 'state1';
+                redBirdTimer = $timeout(function(){
+                    $scope.redBirdCls = '';
+                    redBirdTimer = $timeout(activateRedBird, 1000 + Math.random() * 1000);
+                }, 1000 + Math.random() * 1000);
+            }
+            function deactivateRedBird(){
+                $timeout.cancel(redBirdTimer);
+                redBirdTimer = $timeout(function(){
+                    $scope.redBirdCls = '';
+                }, 1000 + Math.random() * 1000);
+            }            
             function gameIterate(){
                 var time = new Date().getTime();
-                
-                if(playAttempts == 0) {
+                                
+                if($scope.attempts == 0) {
                     stopGame();
                     return;
                 }
@@ -247,11 +290,14 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                             if(!target.hasShoot){
                                 target.hasShoot = true;
                                 if(el.data('eti')) {
+                                    $scope.ineti++;
                                     success = true;
                                     showMessage(successMsg, e);
                                 } else {
                                     targetName = MSGS[el.data('msg')];
                                 }
+                            } else if(el.data('eti')) {
+                                success = true;
                             }
                             
                             return false;                        
@@ -259,8 +305,8 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                     }
                 });
                 if(!success){
-                    playAttempts--;
-                    showMessage([outMsg[0], playAttempts == 1 ? lastMsg : targetName || outMsg[1], outMsg[2]], e);
+                    $scope.attempts--;
+                    showMessage([outMsg[0], $scope.attempts == 1 ? lastMsg : targetName || outMsg[1], outMsg[2]], e);
                 }
             }
             function showMessage(msg, e){
@@ -303,6 +349,7 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
             function stopGame(){
                 $element.off(elEvents);
                 $timeout(function(){
+                    $scope.showToolbar = false;
                     $scope.showStartPopup = true;
                 }, 1000);
                 $scope.stateCls = 'state_stopGame';
@@ -311,6 +358,7 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                 for(var i=0;i<currentTargets.length;i++){
                     closeTarget(currentTargets[i]);
                 }
+                deactivateRedBird();
             }
             function checkIntersection(el1, el2){
                 var offset1 = el1.offset();

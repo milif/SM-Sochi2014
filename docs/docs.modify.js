@@ -48,7 +48,7 @@ docsApp.serviceFactory.openPlunkr = function(templateMerge, formPostData, angula
   return function(content) {
     var allFiles = [].concat(content.js, content.css, content.html);
     var indexHtmlContent = '<!doctype html>\n' +
-        '<html ng-app="' + content.module + '">\n' +
+        '<html ng-app="' + content.module + '" class="in-plunkr">\n' +
         '  <head>\n' +
         '    <meta charset="utf-8"/>\n' +
         '{{scriptDeps}}\n' +

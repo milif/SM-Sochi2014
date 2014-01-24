@@ -1,0 +1,46 @@
+/*==========================================================*/
+/* Biathlon */
+/*==========================================================*/
+.b-gameBiathlon {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* b-gameBiathlonTrack */
+/*==========================================================*/
+.b-gameBiathlonTrack {
+    background: url(asset/i/b-gameBiathlon/b-gameBiathlon-track.png) 0 0 no-repeat;
+    position: absolute;
+}
+.b-gameBiathlonTrack.screen_1 {
+    background-position: 0px -3322px;
+    width: 3000px;
+    height: 991px;
+}
+.b-gameBiathlonTrack.screen_1 {
+    background-position: 0px -3322px;
+    width: 3000px;
+    height: 991px;
+}
+.b-gameBiathlonTrack.screen_2 {
+    background-position: -3013px -958px;
+    width: 3016px;
+    height: 1655px;
+}
+.b-gameBiathlonTrack.screen_3 {
+    background-position: 0px 0px;
+    width: 2993px;
+    height: 3302px;
+}
+.b-gameBiathlonTrack.screen_4 {
+    background-position: 0px -4333px;
+    width: 2904px;
+    height: 1275px;
+}
+.b-gameBiathlonTrack.screen_5 {
+    background-position: -3013px 0px;
+    width: 3019px;
+    height: 938px;
+}
+

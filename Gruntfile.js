@@ -19,7 +19,8 @@ module.exports = function(grunt) {
             {  
                 name: 'stmIndex', // Module name
                 include: [        // Include module components:
-                    'directive:stmIndexMap'
+                    'directive:stmIndexMap',
+                    'stm.directive:stmPreload'
                     // 'directive:stmIndexHellowWorld',
                     // 'directive:*',
                     //'*'                                                 
@@ -28,13 +29,15 @@ module.exports = function(grunt) {
             {  
                 name: 'stmGameEti', // Module name
                 include: [        // Include module components:
-                    'directive:stmGameEtiScreen'                                               
+                    'directive:stmGameEtiScreen',
+                    'stm.directive:stmPreload'                                            
                 ]    
             },
             {  
                 name: 'stmGameClimber', // Module name
                 include: [        // Include module components:
-                    'directive:stmGameClimberScreen'                                               
+                    'directive:stmGameClimberScreen',
+                    'stm.directive:stmPreload'                                              
                 ]    
             }                       
         ],
@@ -68,7 +71,7 @@ module.exports = function(grunt) {
   });
 
   //alias tasks
-  grunt.registerTask('package', ['shell', 'init', 'docs', 'app'/*, 'crontasks'*/]);
+  grunt.registerTask('package', ['shell', 'init', 'docs', 'app']);
   grunt.registerTask('app', ['buildapp']);
   grunt.registerTask('docs', ['builddocs']);
   grunt.registerTask('default', ['package']);
