@@ -5,13 +5,14 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background: url(asset/i/b-IndexPage/b-indexPage-fone.png) 50% 100% no-repeat #ffcc00;
+    background: url(asset/i/b-indexPage/b-indexPage-fone.png) 50% 100% no-repeat #ffcc00;
 }
 
 .b-indexPage-h {
     display: table;
     height: 100%;
     width: 960px;
+    margin: 0 auto;
 }
 .b-indexPage-hh {
     display: table-cell;
