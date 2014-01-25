@@ -5,5 +5,130 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
+    background: url(asset/i/b-IndexPage/b-indexPage-fone.png) 50% 100% no-repeat #ffcc00;
 }
 
+.b-indexPage-h {
+    display: table;
+    height: 100%;
+    width: 960px;
+}
+.b-indexPage-hh {
+    display: table-cell;
+    height: 100%;
+    width: 100%;
+    vertical-align: middle;
+    text-align: center;
+}
+
+/* logo */
+.b-indexPage-promo-logo {
+    background-position: 0 -499px;
+    width: 181px;
+    height: 41px;
+    display: inline-block;
+    margin-bottom: 60px;
+    margin-top: 20px;
+}
+
+/* b-indexPage-decor-title */
+.b-indexPage-decor-title {
+    background-position: 0 -157px;
+    text-indent: -9999px;
+    display: inline-block;
+    height: 112px;
+    width: 448px;
+    margin-bottom: 50px;
+}
+
+.b-indexPageSprite, 
+.b-indexPage-decor-title,
+.b-indexPage-promo-logo,
+.b-indexPage-honors,
+.b-indexPage-icons,
+.b-indexPage-col:before {
+    background-image: url('asset/i/b-IndexPage/b-IndexPageSprite.png');
+}
+
+
+/* b-indexPage-honors */
+.b-indexPage-honors {
+    display: inline-block;
+    background-position: 0 -47px;
+    width: 112px;
+    height: 100px;
+    line-height: 100px;
+    margin-bottom: 14px;
+}
+
+/* b-indexPage-icons */
+.b-indexPage-icons {
+    display: inline-block;
+    vertical-align: middle;
+}
+.b-indexPage-icons_game {
+    background-position: 0 -279px;
+    width: 77px;
+    height: 50px;
+}
+.b-indexPage-icons_medal {
+    background-position: 0 -339px;
+    width: 62px;
+    height: 75px;
+}
+.b-indexPage-icons_prize {
+    background-position: 0 -424px;
+    width: 91px;
+    height: 65px;
+}
+
+/* b-indexPage-honors-title */
+.b-indexPage-honors-title {
+    font-size: 21px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+.b-indexPage-honors-note {
+    font-size: 13px;
+}
+.b-indexPage-honors-note a {
+    color: #0066cc;
+    text-decoration: underline;
+}
+.b-indexPage-honors-note a:hover {
+    text-decoration: none;
+}
+/* b-indexPage-row */
+.b-indexPage-row {
+    white-space: normal;
+    font-size: 0;
+    margin: 0 auto;
+}
+.b-indexPage-col {
+    display: inline-block;
+    width: 33.3333%;
+    position: relative;
+    vertical-align: top;
+}
+.b-indexPage-col:before {
+    content: '';
+    position: absolute;
+    background-position: 0 0;
+    width: 57px;
+    height: 37px;
+    top: 30px;
+    left: -30px;
+}
+.b-indexPage-col:first-child:before {
+    display: none;
+}
+
+/* b-indexPage-button */
+.b-indexPage-button {
+    padding-top: 50px;
+    margin-bottom: 20px;
+}
+.b-button.mod_b-indexPage-button {
+    padding: 0 54px;
+}

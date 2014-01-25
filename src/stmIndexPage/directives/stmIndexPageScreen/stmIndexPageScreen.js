@@ -5,7 +5,7 @@
  *
  * @requires stmIndexPage.directive:stmIndexPageScreen:b-IndexPage.css
  * @requires stmIndexPage.directive:stmIndexPageScreen:template.html
- *
+ * 
  * @description
  * Главная страница
  *
@@ -14,7 +14,7 @@
  * @example
     <example module="appExample">
       <file name="index.html">
-         <div stm-index-page class="example-screen"></div>
+         <div stm-index-page-screen class="example-screen"></div>
       </file>
       <file name="style.css">
          .in-plunkr, .in-plunkr body, .in-plunkr .well {
@@ -37,7 +37,6 @@
 
 angular.module('stmIndexPage').directive('stmIndexPageScreen', function(){  
     return {
-        transclude: true,
         templateUrl: 'partials/stmIndexPage.directive:stmIndexPageScreen:template.html'
     };
 });
