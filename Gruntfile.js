@@ -21,6 +21,10 @@ module.exports = function(grunt) {
                 include: [        // Include module components:
                     'directive:stmIndexPageScreen',
                     'stm.directive:stmPreload'
+                ],
+                includeAsset: true,
+                includeTemplates: [
+                    '*'
                 ]    
             },           
             {  
@@ -31,28 +35,32 @@ module.exports = function(grunt) {
                     // 'directive:stmIndexHellowWorld',
                     // 'directive:*',
                     //'*'                                                 
-                ]    
+                ],
+                includeAsset: true  
             },
             {  
                 name: 'stmGameEti', // Module name
                 include: [        // Include module components:
                     'directive:stmGameEtiScreen',
                     'stm.directive:stmPreload'                                            
-                ]    
+                ],
+                includeAsset: true  
             },
             {  
                 name: 'stmGameClimber', // Module name
                 include: [        // Include module components:
                     'directive:stmGameClimberScreen',
                     'stm.directive:stmPreload'                                              
-                ]    
+                ],
+                includeAsset: true
             },
             {  
                 name: 'stmGameBiathlon', // Module name
                 include: [        // Include module components:
                     'directive:stmGameBiathlonScreen',
                     'stm.directive:stmPreload'                                              
-                ]    
+                ],
+                includeAsset: true   
             }
             
         ],
