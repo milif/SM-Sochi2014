@@ -5,6 +5,7 @@
  *
  * @requires stmGameClimber.directive:stmGameClimberScreen:b-gameClimber.css
  * @requires stmGameClimber.directive:stmGameClimberScreen:template.html
+ * @requires stmIndex.directive:stmIndexPopup
  *
  * @description
  * Экран игры Альпинист
@@ -66,7 +67,6 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
 
                         attempts = 5 + Math.round(Math.random() * 5),
 
-                        isFirst = true,
                         moveInterval,
                         doDownTimeout,
                         infoTimeout,
@@ -199,12 +199,24 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         scope.distance = 0;
                         scope.showStartPopup = false;
                         scope.showToolbar = true;
+                        moodPopupUsed = false;
+                        goingUpUsed = false;
+                        attempts = 5 + Math.round(Math.random() * 5);
+                        clicksCount = 0;
+                        clicksRatio = 3;
 
                         birdEl.css({
                             'top': 0,
                             'left': birdElPositionLeft,
                             'margin-left': ''
                         });
+
+                        $timeout(function(){
+                            manEl.css({
+                                'margin-left': '',
+                                'bottom': position
+                            });
+                        }, 1000);
 
                         $timeout(function(){
                             g_viewEl.stop();
@@ -228,21 +240,22 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                             .addClass('mod_frame14');
                         state = 14;
                         _updateDownPosition();
-                        isFirst = false;
 
-                        $(keyObj)
-                            .off(keyEvents)
-                            .off(blockUpEvents)
-                            .on(keyEvents);        
+                        $timeout(function(){
+                            $(keyObj)
+                                .off(keyEvents)
+                                .off(blockUpEvents)
+                                .on(keyEvents);
+                        }, 2000);
                     }
 
                     function stopGame() {
+                        $(keyObj)
+                            .off(blockUpEvents)
+                            .off(keyEvents)
+                            .on(blockUpEvents);
                         $timeout(function(){
                             position = startPosition;
-                            manEl.css({
-                                'margin-left': '',
-                                'bottom': position
-                            });
                             scope.showToolbar = false;
                             scope.showStartPopup = true;
                         }, 1000);
