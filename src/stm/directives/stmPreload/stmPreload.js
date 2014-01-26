@@ -42,6 +42,12 @@ angular.module('stm').directive('stmPreload', ['$compile', function($compile){
             tpl($scope, function(el){
                 $element.append(el);
                 maskEl = el;
+                if($element.get(0).scrollHeight > $element.height()){
+                    $element
+                        .data('_overflow', $element.css('overflow'))
+                        .css('overflow','hidden')
+                        .scrollTop(0);
+                }
                 preload($window._assets);
             });
             function preload(assets){
@@ -61,6 +67,8 @@ angular.module('stm').directive('stmPreload', ['$compile', function($compile){
                     if(count-- == 1) {
                         $scope.$apply(function(){
                             $animate.leave(maskEl);
+                            $element
+                                .css('overflow', $element.data('_overflow'));
                         });
                     }
                 }
