@@ -110,3 +110,172 @@
     opacity: 0;
 }
 
+/* Persons */
+/*==========================================================*/
+/* yeti */
+.l-b-biathlon-yeti {
+    width: 308px;
+    height: 307px;
+    position: absolute;
+}
+
+.b-biathlon-yeti {
+    background: url('asset/i/b-gameBiathlon/b-biathlon-yeti.png') no-repeat;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+}
+
+.b-biathlon-yeti_mod1 {
+    background-position: 0 0;
+    height: 225px;
+    width: 245px;
+    margin-left: -122.5px;
+}
+
+.b-biathlon-yeti_mod2 {
+    background-position: 0 -235px;
+    height: 250px;
+    width: 245px;
+    margin-left: -122.5px;
+}
+
+.b-biathlon-yeti_mod3 {
+    background-position: 0 -495px;
+    height: 284px;
+    width: 284px;
+    margin-left: -142px;
+}
+
+.b-biathlon-yeti_mod4 {
+    background-position: 0 -789px;
+    height: 258px;
+    width: 245px;
+    margin-left: -122.5px;
+    bottom: -10px;
+}
+
+.b-biathlon-yeti_mod5 {
+    background-position: 0 -1057px;
+    height: 307px;
+    width: 308px;
+    margin-left: -154px;
+}
+
+/* men */
+.l-b-biathlon-men {
+    width: 316px;
+    height: 352px;
+    position: absolute;
+    text-align: center;
+}
+
+.b-biathlon-men {
+    background: url('asset/i/b-gameBiathlon/b-biathlon-men.png') no-repeat;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+}
+
+.b-biathlon-men_mod1 {
+    background-position: 0 0;
+    height: 273px;
+    width: 216px;
+    margin-left: -108px;
+}
+
+.b-biathlon-men_mod2 {
+    background-position: 0 -283px;
+    height: 176px;
+    width: 209px;
+    margin-left: -104.5px;
+}
+
+.b-biathlon-men_mod3 {
+    background-position: 0 -469px;
+    height: 206px;
+    width: 200px;
+    margin-left: -100px;
+}
+
+.b-biathlon-men_mod4 {
+    background-position: 0 -685px;
+    height: 223px;
+    width: 211px;
+    margin-left: -105.5px;
+}
+
+.b-biathlon-men_mod5 {
+    background-position: 0 -918px;
+    height: 216px;
+    width: 199px;
+    margin-left: -99.5px;
+    bottom: -10px;
+}
+
+.b-biathlon-men_mod6 {
+    background-position: 0 -1144px;
+    height: 352px;
+    width: 196px;
+    margin-left: -98px;
+}
+
+/* tree */
+.b-biathlon-tree {
+    background: url('asset/i/b-gameBiathlon/b-biathlon-tree.png') no-repeat;
+    position: absolute;
+}
+
+.b-biathlon-tree_mod1 {
+    background-position: 0 0;
+    height: 400px;
+    width: 347px;
+}
+
+.b-biathlon-tree_mod2 {
+    background-position: 0 -410px;
+    height: 141px;
+    width: 147px;
+}
+
+.b-biathlon-tree_mod3 {
+    background-position: 0 -561px;
+    height: 404px;
+    width: 387px;
+}
+
+/* b-biathlon-panel */
+.b-biathlon-panel {
+    position: absolute;
+    border: 3px solid #000;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    background-color: #fff;
+    white-space: nowrap;
+    padding: 0 16px;
+}
+.b-biathlon-panel-item {
+    margin: 10px 0 10px 16px;
+    display: inline-block;
+    vertical-align: middle;
+    border: 2px solid #000;
+    -moz-border-radius: 16px;
+    -webkit-border-radius: 16px;
+    border-radius: 16px;
+    height: 28px;
+    width: 28px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    background-color: #000;
+}
+.b-biathlon-panel-item:first-child {
+    margin-left: 0;
+}
+.b-biathlon-panel-item_active {
+    background-color: #fff;
+}
