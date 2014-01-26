@@ -17,6 +17,13 @@ module.exports = function(grunt) {
     buildapp: {
         modules: [
             {  
+                name: 'stmIndexPage', // Module name
+                include: [        // Include module components:
+                    'directive:stmIndexPageScreen',
+                    'stm.directive:stmPreload'
+                ]    
+            },           
+            {  
                 name: 'stmIndex', // Module name
                 include: [        // Include module components:
                     'directive:stmIndexMap',
@@ -39,7 +46,15 @@ module.exports = function(grunt) {
                     'directive:stmGameClimberScreen',
                     'stm.directive:stmPreload'                                              
                 ]    
-            }                       
+            },
+            {  
+                name: 'stmGameBiathlon', // Module name
+                include: [        // Include module components:
+                    'directive:stmGameBiathlonScreen',
+                    'stm.directive:stmPreload'                                              
+                ]    
+            }
+            
         ],
         lib: ['src/**/*.js'],
         components: ['build/components'],

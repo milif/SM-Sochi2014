@@ -9,6 +9,6 @@
  * Модуль главной страницы
  */
 
-angular.module('stmIndexPage', ['stm','stmIndex'])
+angular.module('stmIndexPage', ['stm'])
     .config([function(){
     }]);

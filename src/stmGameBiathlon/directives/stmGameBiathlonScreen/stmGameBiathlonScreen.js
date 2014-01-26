@@ -5,6 +5,7 @@
  *
  * @requires stmGameBiathlon.directive:stmGameBiathlonScreen:b-gameBiathlon.css
  * @requires stmGameBiathlon.directive:stmGameBiathlonScreen:template.html
+ * @requires stmIndex.directive:stmIndexPopup
  *
  * @description
  * Экран игры Биатлон
@@ -37,9 +38,16 @@
 
 angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function(){    
     
-    var FPS = 25; // Число кадров в секунду
+    var FPS = 40; // Число кадров в секунду
     var CAMERA_MARGIN = 20; // Минимальное расстояние игрока до правой и левой границы экрана (%)
     var CAMERA_DY = 30; // Смещение экрана по вертикали относительно точки где игрок находится по центру (%)
+    var START_FRAME = "1"; // Начальный кусок трассы
+    var COUNT_TREES = 20; // Максимальное число деревьев на фрейме
+    var COUNT_TREES_NEAR = 5; // Максимальное число деревьев в куче
+    var TREES_DISTANCE = 50; // Оптимальное расстояние между деревьями в куче (px)
+    var PLAYER_SPEED = function(gameTime){ // Зависимость скорости игрока от времени игры
+        return (400 + gameTime / 5000); 
+    }; 
     
     var $ = angular.element;
         
@@ -47,36 +55,76 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
         scope: {
         },
         templateUrl: 'partials/stmGameBiathlon.directive:stmGameBiathlonScreen:template.html',
-        controller: ['$element', '$interval', '$scope', function($element, $interval, $scope){
-        
-            var frameViewEl = $element.find('[data-camera]');
-            
+        controller: ['$element', '$interval', '$scope', '$window', function($element, $interval, $scope, $window){
+                    
             var iterator;
-            var frames = [];
-            var persons = [];
+            
+            var isGame = false;
+            var gameTime = 0;
+            var lastShootTime;
+            var framesEl = {};
+            var treesEl = [];
             var camera = {
                 x: $element.width() / 2,
                 y: $element.height() / 2,
-                speedDX: 100,
+                speedDX: 0.2,
                 DX: 0
             };
+            var men = {
+                x: camera.x,
+                y: camera.y,
+                angle: 0,
+                framePerSec: 2,
+                frameCount: 4,
+                speed: PLAYER_SPEED
+            };
+            var persons = [men];
+            var mainPerson = men;            
             var track = {
                 points: [],
                 frames: []
             };
             var prevTime = new Date().getTime();
             
-            initFrames($element.find('[data-track]').remove());
+            var globalEvents = {
+                'keypress': function(e){
+                    if(e.which == 32) {
+                        var time = new Date().getTime();
+                        if(time - lastShootTime < 3000) return;
+                        $scope.$apply(function(){
+                            lastShootTime = time;
+                        });
+                    }
+                }
+            }
+            
+            initFrames($element.find('[data-track]'));
+            initTrees($element.find('[data-tree]'));
             initTrack();
             
             iterator = $interval(function(){
-                requestAnimFrame(iterate);
+                requestAnimationFrame(iterate);
             }, 1 / FPS * 1000);
             
+            $scope.men = men;
+            $scope.traceFrames = track.frames;
+            $scope.showStartPopup = true;
+            $scope.play = startGame;
             $scope.$on('$destroy', function() {
                 $interval.cancel(iterator);
             });
-            
+            function startGame(){
+                $scope.showStartPopup = false;
+                isGame = true;
+                gameTime = new Date().getTime();
+                $($window).on(globalEvents);
+            }
+            function stopGame(){
+                gameTime = 0;
+                isGame = false;
+                $scope.showStartPopup = false;
+                $($window).off(globalEvents);
+            }
             function iterate(){
             
                 var time = new Date().getTime();
@@ -85,22 +133,36 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                 var minX;
                 var maxX;
                 for(var i=0;i<persons.length;i++){
-                    updatePerson(person[i], dTime);
-                    minX = Math.min(person[i].x, minX || person[i].x);
-                    maxX = Math.max(person[i].x, maxX || person[i].x);
-                }                
+                    updatePerson(persons[i], dTime, time - gameTime);
+                    minX = Math.min(persons[i].x, minX || persons[i].x);
+                    maxX = Math.max(persons[i].x, maxX || persons[i].x);
+                }      
                 updateCamera(camera, persons, dTime);
                 updateTrack(track, [(minX || 0) - camera.width, (maxX || 0) + camera.width], camera);
                 for(var i=0;i<persons.length;i++){
-                    updatePersonView(person[i], camera);
+                    updatePersonView(persons[i], camera, time - gameTime);
                 }  
                 
                 prevTime = time;
             }
-            function updatePerson(person, dTime){
+            function updatePerson(person, dTime, gTime){
             
-                person.x += dTime * person.speed;
+                if(!isGame) return;
                 
+                person.x += dTime / 1000 * person.speed(gTime);
+                
+                if(!person.toPoint) {
+                    var point;
+                    for(var i=0;i<track.points.length;i++){
+                        point = track.points[i];
+                        if(person.x <= point.x) {
+                            person.toPoint = point;
+                            person.fromPoint = track.points[i-1];
+                            break;
+                        }
+                    }
+                }
+                        
                 while(person.x > person.toPoint.x){
                     person.fromPoint = person.toPoint;
                     person.toPoint = track.points[track.points.indexOf(person.toPoint) + 1];
@@ -113,8 +175,8 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                 var p0 = person.fromPoint;
                 var p1 = person.toPoint;
                 
-                person.y = p0.y + (p1.y - p0.y) * (p1.x - p0.x) / (person.x - p0.x);
-                person.angle = getAngle([1, 0],[person.x - p0.x, person.y - p0.y]);
+                person.y = getY(p0, p1, person.x);
+                person.angle = getAngle(p0, person);
                 
             }
             function updateCamera(camera, persons, dTime){
@@ -129,7 +191,9 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                     avgX += persons[i].x / persons.length;
                 }
                 var margin = camera.width * CAMERA_MARGIN / 100;
-                var optimalDX = Math.max( - (camera.width / 2 - margin), Math.min(avgX - mainPerson.x, camera.width / 2 - margin));
+                var optimalDX = 
+                    + Math.abs(mainPerson.angle) / 50 * camera.width * 0.5
+                    + Math.max( - (camera.width / 2 - margin), Math.min(avgX - mainPerson.x, camera.width / 2 - margin));
                 var sign = optimalDX - camera.DX;
                 sign = sign?sign<0?-1:1:0;
                 if(sign > 0){
@@ -138,8 +202,10 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                     camera.DX = Math.max(optimalDX, camera.DX - camera.speedDX * dTime);
                 }
                 
+                camera.DY = Math.min(- camera.height * CAMERA_DY / 100 + Math.abs(mainPerson.angle) / 50 * camera.height * 0.6, camera.height / 2 * 0.3);
+                
                 camera.x = mainPerson.x + camera.DX;
-                camera.y = mainPerson.y - camera.height * CAMERA_DY / 100;
+                camera.y = mainPerson.y + camera.DY;
                 
             }
             function updateTrack(track, range, camera){
@@ -155,10 +221,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                 while(frames[count] && frames[count].x + frames[count].width < range[0]){
                     count++;                    
                 }
-                var removedFrames = frames.splice(0, count);
-                for(var i=0;i<removedFrames.length;i++){
-                    removedFrames[i].el.remove();
-                }
+               frames.splice(0, count);
                 
                 while(frames.length == 0 || frames[frames.length - 1].x < range[1]){
                     addTrackFrame(track);
@@ -167,35 +230,53 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                 var frame;
                 for(var i=0;i<frames.length;i++){
                     frame = frames[i];
-                    frame.el.css({
+                    frame.css = {
                         left: Math.round(frame.x - camera.x + camera.width / 2),
                         top: Math.round(frame.y - camera.y + camera.height / 2)
-                    });
+                    };
                 }
                 
             }
-            function updatePersonView(person){
+            function updatePersonView(person, camera, gTime){
+                if(person == mainPerson){
+                    if(isGame) {
+                        if(new Date().getTime() - lastShootTime < 2000) {
+                            person.frameIndex = 'shoot';
+                        } else {
+                            person.frameIndex = Math.round(gTime / 1000 * person.framePerSec) % person.frameCount;
+                        }
+                    } else {
+                        person.frameIndex = 'start';
+                    }
+                }
                 person.css = {
                     left: Math.round(person.x - camera.x + camera.width / 2),
                     top: Math.round(person.y - camera.y + camera.height / 2),
-                    transform: 'rotate(' + Math.round(person.angle) + ')'
+                    transform: 'rotate(' + Math.round(person.angle) + 'deg)'
                 }   
             }
             function addTrackFrame(track){
                 var frame;
                 var ind;
-                var lastFrame = track.frames[track.frames.length - 1];
-                while(!frame){
-                    ind = Math.round(Math.random() * frames.length);
-                    frame = connectFrame(frames[ind] || frames[ind - 1], lastFrame);
-                }
-                frameViewEl.add(frame.el);
+                var lastFrame = track.frames[track.frames.length - 1] || {
+                    x: 0,
+                    y: 0,
+                    width: 0,
+                    margin: [0, framesEl[START_FRAME].margin[0]],
+                    nextFrames: [START_FRAME]
+                };
+                frame = connectFrame(lastFrame);
                 track.frames.push(frame);
                 track.points = track.points.concat(frame.points);
             }
-            function connectFrame(frameEl, lastFrame){
+            function connectFrame(lastFrame){
                 var points = [];
                 var point;
+                
+                var frames = lastFrame.nextFrames;
+                var ind = Math.round(Math.random() * (frames.length + 0.5) - 0.5);
+                var frameEl = framesEl[frames[ind] || frames[ind - 1]];
+               
                 var frameX = lastFrame.x + lastFrame.width;
                 var frameY = lastFrame.y + lastFrame.margin[1] - frameEl.margin[0];
                 for(var i=0;i<frameEl.points.length;i++){
@@ -206,38 +287,91 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                     });
                 }
                 return {
-                    el: frameEl.el.clone(),
+                    name: frameEl.name,
                     margin: frameEl.margin,
                     points: points,
+                    trees: getTrees(frameEl),
                     width: frameEl.width,
                     x: frameX,
-                    y: frameY
+                    y: frameY,
+                    nextFrames: frameEl.nextFrames
                 };
+            }
+            function getTrees(frameEl){
+                var trees = [];
+                var count = Math.round((Math.random() * 0.5 + 0.5) * COUNT_TREES);
+                var x, angle, y, tree, ind, count_group;
+                
+                while(count > 0){
+                    count_group = Math.round(COUNT_TREES_NEAR * Math.random());
+                    x = Math.round(150 + Math.random() * frameEl.width - 150);
+                    while(count_group > 0 && x < frameEl.width - 150){
+                        x += TREES_DISTANCE * (0.5 + Math.random());
+                        ind = Math.round(Math.random() * (treesEl.length + 0.5) - 0.5);
+                        var treeEl = treesEl[ind] || treesEl[ind - 1];
+                        var pointTo, pointFrom;
+                        for(var k=0;k<frameEl.points.length;k++){
+                            pointTo = frameEl.points[k];
+                            if(x <= pointTo[0]){
+                                pointFrom = frameEl.points[k-1];
+                                break;
+                            }
+                        }
+                        if(!pointFrom) continue;
+                        pointTo = {x: pointTo[0], y: pointTo[1]};
+                        pointFrom = {x: pointFrom[0], y: pointFrom[1]};
+                        y = getY(pointFrom, pointTo, x);
+                        if(isNaN(y)) continue;
+
+                        count_group--;
+                        count--;
+                        
+                        trees.push({
+                            name: treeEl.name,
+                            css: {
+                                zIndex: Math.round(Math.random() * 9),
+                                top: Math.round(y),
+                                left: Math.round(x),
+                                transform: 'rotate('+Math.round(-10 + Math.random() * 20)+'deg)'
+                            }
+                        });
+                        
+                    }
+                }  
+                return trees;         
             }
             function initFrames(els){
                 els.each(function(){
                     var el = $(this);
-                    frames.push({
-                        el: el,
+                    framesEl[el.data('track')] = {
                         width: el.width(),
+                        name: el.data('track'),
                         margin: el.data('margin'),
-                        points: el.data('points')
-                    });                    
+                        points: el.data('points'),
+                        nextFrames: el.data('frames')
+                    }; 
+                    el.remove();                 
                 });
+            }
+            function initTrees(els){
+                els.each(function(){
+                    var el = $(this);
+                    treesEl.push({
+                        name: el.data('tree')
+                    });    
+                    el.remove();               
+                });               
             }
             function initTrack(){
-                var frameEl = frames[0];
-                var frame = connectFrame(frameEl, {
-                    x: 0,
-                    y: 0,
-                    margin: [0,0]
-                });
-                frameViewEl.add(frame.el);
-                track.frames.push(frame);
-                track.points = track.points.concat(frame.points);
+                addTrackFrame(track);
             }
-            function getAngle(a, b){
-                return Math.acos(
+            function getY(p0, p1, x){
+                return p0.y + (p1.y - p0.y) / (p1.x - p0.x) * (x - p0.x);
+            }
+            function getAngle(p0, p1){
+                var a = [1, 0]
+                var b = [p1.x - p0.x, p1.y - p0.y];
+                return (b[1] < 0 ? -1 : 1) * Math.acos(
                     (a[0] * b[0] + a[1] * b[1]) / 
                     (Math.sqrt(a[0]*a[0] + a[1]*a[1]) * Math.sqrt(b[0]*b[0] + b[1]*b[1]))
                 ) * (180 / Math.PI);
