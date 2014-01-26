@@ -12,11 +12,18 @@
 /* Global */
 /*==========================================================*/
 .g-font {
-  font-size: 14px;
-  font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 .g-ruble {
-  font-family: 'ruble';
+    font-family: 'ruble';
+}
+.g-noselect {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none; 
 }
 
 /*==========================================================*/
