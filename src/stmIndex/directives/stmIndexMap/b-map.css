@@ -79,3 +79,38 @@
   text-transform: uppercase;
   text-align: center;
 }
+
+.b-game-item {
+    position: absolute;
+}
+
+.b-game-item1 {
+    left: 2950px;
+    top: 1770px;
+    width: 360px;
+    height: 310px;
+    background: url("asset/i/b-gameMap/groupon_sheet_2x8.png") 0 0 no-repeat;
+}
+
+.b-game-item2 {
+    left: 1100px;
+    top: 1730px;
+    width: 170px;
+    height: 200px;
+    background: url("asset/i/b-gameMap/skater_girl_sheet_6x4.png") 0 0 no-repeat;
+}
+.b-game-item3 {
+    left: 900px;
+    top: 1530px;
+    width: 200px;
+    height: 150px;
+    background: url("asset/i/b-gameMap/skater_dude_sheet_5x15.png") 0 0 no-repeat;
+}
+
+.b-game-item4 {
+    left: 1100px;
+    top: 1230px;
+    width: 294px;
+    height: 162px;
+    background: url("asset/i/b-gameMap/couple_sheet_3x39.png") 0 0 no-repeat;
+}
