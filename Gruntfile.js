@@ -59,6 +59,7 @@ module.exports = function(grunt) {
         lib: ['src/**/*.js'],
         components: ['build/components'],
         buildDir: 'build/app',
+        modulesDir: 'www/modules',
         partialsDir: 'partials'
     },
     
