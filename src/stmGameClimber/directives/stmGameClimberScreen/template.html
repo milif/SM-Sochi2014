@@ -21,7 +21,7 @@
         <div class="gameClimber-popup-text">Потрясающая <br> ловкость</div>
       </div>
       <!-- Panel -->
-      <div class='gameClimber-panel'>
+      <div class='gameClimber-panel' ng-class="showToolbar ? 'state_active' : ''">
         <div class='gameClimber-panel-h'>
           <div class='gameClimber-panel-layaut'>
             <div class='gameClimber-panel-column mod_first'>
@@ -73,5 +73,17 @@
           </div>
         </div>
       </div>
-      <!-- End Panel -->
+</div>
+<!-- End Panel -->
+<div data-start-popup stm-index-popup class="b-gameClimber-popup mod_start" ng-show="showStartPopup">
+    <div class='b-popup-title'>
+        Альпинист - восхождение по канату<br>на самую высокую гору мира
+    </div>
+    <div class='b-popup-note'>Для движения наверх нажимай стрелку <b>Вверх</b>.<br>Выполняй задания, получай трофеи<br>и выиграй iPhone 5S</div>
+    <div class='b-popup-button'>
+        <div class='b-button button_size_big b-button_scheme_yellow'>
+            <div class='b-button__text'>Играть</div>
+            <a class='b-button__link' ng-click="play()" href=''></a>
+        </div>
+    </div>
 </div>
