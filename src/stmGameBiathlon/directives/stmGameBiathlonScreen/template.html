@@ -1,8 +1,9 @@
 <!-- gameBiathlon -->
 <div data-camera class='b-gameBiathlon'>
     <div>
-        <div data-tree="mod_1" class="b-gameBiathlon-tree mod_1"></div>
-        <div data-tree="mod_2" class="b-gameBiathlon-tree mod_2"></div>
+        <div data-tree="b-biathlon-tree_mod1"></div>
+        <div data-tree="b-biathlon-tree_mod2"></div>
+        <div data-tree="b-biathlon-tree_mod3"></div>
     </div>
     <div>
         <div data-track="1" data-points="[[10,190],[180,186],[597,153],[1276, 22], [1546, 2], [1920, 25], [2060, 45], [2455, 138], [2603, 165], [2733, 180],[2886, 189],[2955,193]]" data-margin="[190, 191]" data-frames="[1,2,5]" class="b-gameBiathlonTrack-h screen_1"></div>
@@ -14,20 +15,18 @@
     
     <div ng-repeat="frame in traceFrames" ng-style="frame.css" class="b-gameBiathlonTrack-h screen_{{frame.name}}">
         <div class="b-gameBiathlonTrack"></div>
-        <div ng-repeat="tree in frame.trees" class="b-gameBiathlon-tree {{tree.name}}" ng-style="tree.css" ></div>
+        <div ng-repeat="tree in frame.trees" class="b-biathlon-tree {{tree.name}}" ng-style="tree.css" ></div>
     </div>
-    <div ng-style="men.css" class="b-gameBiathlon-person" ng-class="'mod_' + men.frameIndex" style="width: 100px; height: 100px; margin-top: -50px; margin-left: -50px; position: absolute; background: blue; z-index: 10;"></div>
-
     
-    <div class="b-biathlon-tree b-biathlon-tree_mod1"></div>
+    <div ng-style="men.css" class="l-b-biathlon-men">
+        <div ng-class="'b-biathlon-men_' + men.frameIndex" class="b-biathlon-men"></div>
+    </div>
 
     <div class="l-b-biathlon-yeti">
         <div class="b-biathlon-yeti b-biathlon-yeti_mod1"></div>
     </div>
 
-    <div class="l-b-biathlon-men">
-        <div class="b-biathlon-men b-biathlon-men_mod1"></div>
-    </div>
+
     
     <div class="b-biathlon-panel g-noselect">
         <div class="b-biathlon-panel-item b-biathlon-panel-item_active"></div>

@@ -6,6 +6,7 @@
     height: 100%;
     overflow: hidden;
     position: absolute;
+    background-color: #86e4fe;
 }
 
 /* b-gameBiathlonTrack */
@@ -164,48 +165,50 @@
 
 /* men */
 .l-b-biathlon-men {
-    width: 316px;
-    height: 352px;
+    width: 100px; 
+    height: 100px; 
+    margin-top: -50px; 
+    margin-left: -50px; 
     position: absolute;
-    text-align: center;
+    z-index: 10;
 }
 
 .b-biathlon-men {
     background: url('asset/i/b-gameBiathlon/b-biathlon-men.png') no-repeat;
     position: absolute;
-    left: 50%;
+    left: 78px;
     bottom: 0;
 }
 
-.b-biathlon-men_mod1 {
+.b-biathlon-men_start {
     background-position: 0 0;
     height: 273px;
     width: 216px;
     margin-left: -108px;
 }
 
-.b-biathlon-men_mod2 {
+.b-biathlon-men_0 {
     background-position: 0 -283px;
     height: 176px;
     width: 209px;
     margin-left: -104.5px;
 }
 
-.b-biathlon-men_mod3 {
+.b-biathlon-men_1 {
     background-position: 0 -469px;
     height: 206px;
     width: 200px;
     margin-left: -100px;
 }
 
-.b-biathlon-men_mod4 {
+.b-biathlon-men_2 {
     background-position: 0 -685px;
     height: 223px;
     width: 211px;
     margin-left: -105.5px;
 }
 
-.b-biathlon-men_mod5 {
+.b-biathlon-men_3 {
     background-position: 0 -918px;
     height: 216px;
     width: 199px;
@@ -213,11 +216,12 @@
     bottom: -10px;
 }
 
-.b-biathlon-men_mod6 {
+.b-biathlon-men_shoot {
     background-position: 0 -1144px;
     height: 352px;
     width: 196px;
     margin-left: -98px;
+    bottom: 60px;
 }
 
 /* tree */
@@ -230,18 +234,24 @@
     background-position: 0 0;
     height: 400px;
     width: 347px;
+    margin-top: -381px;
+    margin-left: -173px;
 }
 
 .b-biathlon-tree_mod2 {
     background-position: 0 -410px;
     height: 141px;
     width: 147px;
+    margin-top: -130px;
+    margin-left: -73px;
 }
 
 .b-biathlon-tree_mod3 {
     background-position: 0 -561px;
     height: 404px;
     width: 387px;
+    margin-top: -381px;
+    margin-left: -193px;
 }
 
 /* b-biathlon-panel */
