@@ -87,10 +87,11 @@
 .b-game-item1 {
     left: 2950px;
     top: 1770px;
-    width: 360px;
+    width: 364px;
     height: 310px;
     background: url("asset/i/b-gameMap/groupon_sheet_2x8.png") 0 0 no-repeat;
 }
+
 
 .b-game-item2 {
     left: 1100px;
