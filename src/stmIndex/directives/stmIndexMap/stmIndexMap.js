@@ -122,10 +122,46 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                 'height': 162,
                 'cols': 3
             };
+            $scope.item5 = {
+                'frames': 29,
+                'fps': 30,
+                'width': 200,
+                'height': 150,
+                'cols': 5
+            };
+            $scope.item6 = {
+                'frames': 30,
+                'fps': 30,
+                'width': 200,
+                'height': 150,
+                'cols': 5
+            };
+            $scope.item7 = {
+                'frames': 40,
+                'fps': 30,
+                'width': 170,
+                'height': 150,
+                'cols': 6
+            };
+            $scope.item8 = {
+                'frames': 30,
+                'fps': 30,
+                'width': 170,
+                'height': 180,
+                'cols': 6
+            };
+            $scope.item9 = {
+                'frames': 55,
+                'fps': 30,
+                'width': 186,
+                'height': 172,
+                'cols': 5
+            };
+            var itemsCount = 9;
 
             function iterate(){
                 var time = new Date().getTime() - startTime;
-                for(var index=1; index<=4; index++) {
+                for(var index=1; index<=itemsCount; index++) {
                     var item = $scope['item'+index],
                         frameIndex = Math.round( time / 1000 * item.fps) % item.frames,
                         verticalIndex = Math.floor(frameIndex / item.cols),
