@@ -94,51 +94,46 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                 requestAnimationFrame(iterate);
             }, 1 / FPS * 1000);
 
-            var animateElements = {
-                'item1': {
-                    'element': $element.find('.b-game-item1'),
-                    'frames': 16,
-                    'fps': 20,
-                    'width': 364,
-                    'height': 310,
-                    'cols': 2
-                },
-                'item2': {
-                    'element': $element.find('.b-game-item2'),
-                    'frames': 20,
-                    'fps': 30,
-                    'width': 170,
-                    'height': 200,
-                    'cols': 6
-                },
-                'item3': {
-                    'element': $element.find('.b-game-item3'),
-                    'frames': 75,
-                    'fps': 30,
-                    'width': 200,
-                    'height': 150,
-                    'cols': 5
-                },
-                'item4': {
-                    'element': $element.find('.b-game-item4'),
-                    'frames': 117,
-                    'fps': 30,
-                    'width': 294,
-                    'height': 162,
-                    'cols': 3
-                }
+            $scope.item1 = {
+                'frames': 16,
+                'fps': 20,
+                'width': 364,
+                'height': 310,
+                'cols': 2
+            };
+            $scope.item2 = {
+                'frames': 20,
+                'fps': 30,
+                'width': 170,
+                'height': 200,
+                'cols': 6
+            };
+            $scope.item3 = {
+                'frames': 75,
+                'fps': 30,
+                'width': 200,
+                'height': 150,
+                'cols': 5
+            };
+            $scope.item4 = {
+                'frames': 117,
+                'fps': 30,
+                'width': 294,
+                'height': 162,
+                'cols': 3
             };
 
             function iterate(){
                 var time = new Date().getTime() - startTime;
-                angular.forEach(animateElements, function(item, index) {
-                    var frameIndex = Math.round( time / 1000 * item.fps) % item.frames,
+                for(var index=1; index<=4; index++) {
+                    var item = $scope['item'+index],
+                        frameIndex = Math.round( time / 1000 * item.fps) % item.frames,
                         verticalIndex = Math.floor(frameIndex / item.cols),
                         horizontalIndex = frameIndex - verticalIndex * item.cols;
-                    item.element.css({
+                    item.css = {
                         'background-position': '-' + horizontalIndex * item.width + 'px -' + verticalIndex * item.height + 'px'
-                    });
-                });
+                    };
+                }
             }
         
         }]
