@@ -1,10 +1,10 @@
 /**
  * @ngdoc directive
- * @name stmIndexToolbar.directive:stmIndexToolbarScreen
+ * @name stmIndex.directive:stmIndexToolbar
  * @function
  *
- * @requires stmIndexToolbar.directive:stmIndexToolbarScreen:b-toolbar.css
- * @requires stmIndexToolbar.directive:stmIndexToolbarScreen:template.html
+ * @requires stmIndex.directive:stmIndexToolbar:b-toolbar.css
+ * @requires stmIndex.directive:stmIndexToolbar:template.html
  * 
  * @description
  * Страница toolbar
@@ -14,7 +14,7 @@
  * @example
     <example module="appExample">
       <file name="index.html">
-         <div stm-index-toolbar-screen class="example-screen"></div>
+         <div stm-index-toolbar class="example-screen"></div>
       </file>
       <file name="style.css">
          .in-plunkr, .in-plunkr body, .in-plunkr .well {
@@ -35,9 +35,9 @@
     
  */
 
-angular.module('stmIndexToolbar').directive('stmIndexToolbarScreen', function(){  
+angular.module('stmIndex').directive('stmIndexToolbar', function(){  
     return {
-        templateUrl: 'partials/stmIndexToolbar.directive:stmIndexToolbarScreen:template.html'
+        templateUrl: 'partials/stmIndex.directive:stmIndexToolbar:template.html'
     };
 });
 
