@@ -47,7 +47,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
     var TREES_DISTANCE = 300; // Оптимальное расстояние между деревьями в куче (px)
     var K = 140 / 397; // Коэфф. угла выстрела
     var START_MORE_SPEED = 5; // Начальное число ускорений
-    var PLAYER_SPEED = function(gameTime){ // Зависимость скорости игрока от времени игры 
+    var PLAYER_SPEED = function(gameTime){ // Зависимость скорости игрока от времени игры
         return (400 + gameTime / 5000); 
     }; 
     
