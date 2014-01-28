@@ -33,15 +33,23 @@
 angular.module('stm').directive('stmPreload', ['$compile', function($compile){    
 
     var $ = angular.element;
-    var tpl = $compile('<div class="b-preload"></div>');
+    var tpl = $compile('<div ng-class="state" class="b-preload"><div class="__loader"></div></div>');
     
     return {
         priority: 99,
-        controller: ['$element', '$scope', '$window', '$animate', function($element, $scope, $window, $animate){
+        controller: ['$element', '$scope', '$window', '$animate', '$timeout', function($element, $scope, $window, $animate, $timeout){
             var maskEl;
+            var isLoad = false;
+            $timeout(function(){
+                if(!isLoad) $scope.state = "state_loading";
+            }, 500);
             tpl($scope, function(el){
                 $element.append(el);
                 maskEl = el;
+                $element
+                    .data('_overflow', $element.css('overflow'))
+                    .css('overflow','hidden')
+                    .scrollTop(0);                
                 preload($window._assets);
             });
             function preload(assets){
@@ -59,9 +67,12 @@ angular.module('stm').directive('stmPreload', ['$compile', function($compile){
                 }
                 function onload(){
                     if(count-- == 1) {
+                        isLoad = true;
                         $scope.$apply(function(){
                             $animate.leave(maskEl);
-                        });
+                            $element
+                                .css('overflow', $element.data('_overflow'));
+                        });                            
                     }
                 }
             }

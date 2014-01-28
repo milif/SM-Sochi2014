@@ -17,6 +17,17 @@ module.exports = function(grunt) {
     buildapp: {
         modules: [
             {  
+                name: 'stmIndexPage', // Module name
+                include: [        // Include module components:
+                    'directive:stmIndexPageScreen',
+                    'stm.directive:stmPreload'
+                ],
+                includeAsset: true,
+                includeTemplates: [
+                    '*'
+                ]    
+            },           
+            {  
                 name: 'stmIndex', // Module name
                 include: [        // Include module components:
                     'directive:stmIndexMap',
@@ -24,26 +35,39 @@ module.exports = function(grunt) {
                     // 'directive:stmIndexHellowWorld',
                     // 'directive:*',
                     //'*'                                                 
-                ]    
+                ],
+                includeAsset: true  
             },
             {  
                 name: 'stmGameEti', // Module name
                 include: [        // Include module components:
                     'directive:stmGameEtiScreen',
                     'stm.directive:stmPreload'                                            
-                ]    
+                ],
+                includeAsset: true  
             },
             {  
                 name: 'stmGameClimber', // Module name
                 include: [        // Include module components:
                     'directive:stmGameClimberScreen',
                     'stm.directive:stmPreload'                                              
-                ]    
-            }                       
+                ],
+                includeAsset: true
+            },
+            {  
+                name: 'stmGameBiathlon', // Module name
+                include: [        // Include module components:
+                    'directive:stmGameBiathlonScreen',
+                    'stm.directive:stmPreload'                                              
+                ],
+                includeAsset: true   
+            }
+            
         ],
         lib: ['src/**/*.js'],
         components: ['build/components'],
         buildDir: 'build/app',
+        modulesDir: 'www/modules',
         partialsDir: 'partials'
     },
     

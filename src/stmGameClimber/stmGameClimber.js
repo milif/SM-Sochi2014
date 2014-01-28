@@ -9,6 +9,6 @@
  * Модуль игры Альпинист
  */
 
-angular.module('stmGameClimber', ['stm'])
+angular.module('stmGameClimber', ['stm','stmIndex'])
     .config([function(){
     }]);
