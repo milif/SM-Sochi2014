@@ -8,7 +8,59 @@
     background: white;
     position: absolute;
 }
+.b-preload .__loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 87px;
+    height: 87px;
+    margin-left: -44px;
+    margin-top: -44px;
+    display: none;
+    background: url(asset/i/b-preload/loader.png);       
+}
+.b-preload.state_loading .__loader {
+    display: block;
+    -webkit-animation:  
+        b-preload-anim-in 0.2s linear,
+        b-preload-anim 1.5s linear infinite;
+    animation:  
+        b-preload-anim-in 0.5s linear,
+        b-preload-anim 1.5s linear infinite;     
+}
 
+@-webkit-keyframes b-preload-anim-in {
+    from {
+        opacity: 0.1;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@-webkit-keyframes b-preload-anim {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+@keyframes b-preload-anim-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@keyframes b-preload-anim {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
 .b-preload.ng-leave {
     -webkit-transition: 0.2s linear all; /* Safari/Chrome */
     transition: 0.2s linear all; /* Future Browsers */

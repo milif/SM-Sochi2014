@@ -248,7 +248,7 @@
     background-position: 0 0;
     height: 461px;
     width: 387px;
-    margin-top: --450px;
+    margin-top: --440px;
     margin-left: -173px;
 }
 
@@ -256,7 +256,7 @@
     background-position: 0 -471px;
     height: 175px;
     width: 147px;
-    margin-top: -164px;
+    margin-top: -150px;
     margin-left: -73px;
 }
 
@@ -264,7 +264,7 @@
     background-position: 0 -656px;
     height: 445px;
     width: 347px;
-    margin-top: -410px;
+    margin-top: -400px;
     margin-left: -193px;
 }
 
@@ -281,6 +281,7 @@
     background-color: #fff;
     white-space: nowrap;
     padding: 0 16px;
+    z-index: 20;
 }
 .b-biathlon-panel-item {
     margin: 10px 0 10px 16px;

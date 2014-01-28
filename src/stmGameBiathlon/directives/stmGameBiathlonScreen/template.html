@@ -1,21 +1,24 @@
 <!-- gameBiathlon -->
-<div data-camera class='b-gameBiathlon'>
+<div data-camera class='b-gameBiathlon g-noselect'>
     <div>
         <div data-tree="b-biathlon-tree_mod1"></div>
         <div data-tree="b-biathlon-tree_mod2"></div>
         <div data-tree="b-biathlon-tree_mod3"></div>
     </div>
     <div>
-        <div data-track="1" data-points="[[10,190],[180,186],[597,153],[1276, 22], [1546, 2], [1920, 25], [2060, 45], [2455, 138], [2603, 165], [2733, 180],[2886, 189],[2955,193]]" data-margin="[190, 191]" data-frames="[1,2,5]" class="b-gameBiathlonTrack-h screen_1"></div>
-        <div data-track="2" data-points="[[30,12],[428, 9],[1178, 0],[1406, 9], [1585, 28], [1742, 57], [1897, 98], [2081, 170], [2214, 237], [2355, 321], [2463, 395], [2463, 395], [2715, 607], [2999, 859]]" data-margin="[12, 867]" data-frames="[3,4]" class="b-gameBiathlonTrack-h screen_2"></div>
-        <div data-track="3" data-points="[[40,38],[408, 359],[853, 745],[1330, 1159], [1872, 1629], [2427, 2111], [2961, 2576]]" data-margin="[0, 2592]" data-frames="[3,4]" class="b-gameBiathlonTrack-h screen_3"></div>
-        <div data-track="4" data-points="[[38,34],[143, 116],[242, 189],[408, 300], [562, 390], [736, 479], [885, 541], [1033, 590], [1219, 639], [1423, 681],[1600, 708], [1796, 730], [1988, 746], [2219, 761], [2454, 770], [2637, 773]]" data-margin="[0, 774]" data-frames="[1,2,5]" class="b-gameBiathlonTrack-h screen_4"></div>
-        <div data-track="5" data-points="[[38,64],[238, 57],[513, 37],[773, 13], [991, 4], [1162, 1], [1292, 3], [1509, 14], [1706, 28], [1907, 42],[2073, 53], [2278, 60], [2445, 64], [2610, 66], [2942, 68]]" data-margin="[63, 66]" data-frames="[1,2,5]" class="b-gameBiathlonTrack-h screen_5"></div>    
+        <div data-targets-range="[0, 3000]" data-track="1" data-points="[[10,190],[180,186],[597,153],[1276, 22], [1546, 2], [1920, 25], [2060, 45], [2455, 138], [2603, 165], [2733, 180],[2886, 189],[2955,193]]" data-margin="[190, 191]" data-frames="[1,2,5]" class="b-gameBiathlonTrack-h screen_1"></div>
+        <div data-targets-range="[0, 1500]" data-track="2" data-points="[[30,12],[428, 9],[1178, 0],[1406, 9], [1585, 28], [1742, 57], [1897, 98], [2081, 170], [2214, 237], [2355, 321], [2463, 395], [2463, 395], [2715, 607], [2999, 859]]" data-margin="[12, 867]" data-frames="[3,4]" class="b-gameBiathlonTrack-h screen_2"></div>
+        <div data-targets-range="[0, 0]" data-track="3" data-points="[[40,38],[408, 359],[853, 745],[1330, 1159], [1872, 1629], [2427, 2111], [2961, 2576]]" data-margin="[0, 2592]" data-frames="[3,4]" class="b-gameBiathlonTrack-h screen_3"></div>
+        <div data-targets-range="[1500, 2899]" data-track="4" data-points="[[38,34],[143, 116],[242, 189],[408, 300], [562, 390], [736, 479], [885, 541], [1033, 590], [1219, 639], [1423, 681],[1600, 708], [1796, 730], [1988, 746], [2219, 761], [2454, 770], [2637, 773]]" data-margin="[0, 774]" data-frames="[1,2,5]" class="b-gameBiathlonTrack-h screen_4"></div>
+        <div data-targets-range="[0, 3018]" data-track="5" data-points="[[38,64],[238, 57],[513, 37],[773, 13], [991, 4], [1162, 1], [1292, 3], [1509, 14], [1706, 28], [1907, 42],[2073, 53], [2278, 60], [2445, 64], [2610, 66], [2942, 68]]" data-margin="[63, 66]" data-frames="[1,2,5]" class="b-gameBiathlonTrack-h screen_5"></div>    
     </div>
     
     <div ng-repeat="frame in traceFrames" ng-style="frame.css" class="b-gameBiathlonTrack-h screen_{{frame.name}}">
         <div class="b-gameBiathlonTrack"></div>
         <div ng-repeat="tree in frame.trees" class="b-biathlon-tree {{tree.name}}" ng-style="tree.css" ></div>
+        <div ng-repeat="target in frame.targets" class="b-biathlon-panel g-noselect" ng-style="target.css" >
+            <div ng-repeat="point in target.points track by $index" ng-class="point ? 'b-biathlon-panel-item_active' : ''" class="b-biathlon-panel-item"></div>
+        </div>
     </div>
     
     <div ng-style="men.css" class="l-b-biathlon-men">
@@ -24,16 +27,6 @@
 
     <div class="l-b-biathlon-yeti">
         <div class="b-biathlon-yeti b-biathlon-yeti_mod1"></div>
-    </div>
-
-
-    
-    <div class="b-biathlon-panel g-noselect">
-        <div class="b-biathlon-panel-item b-biathlon-panel-item_active"></div>
-        <div class="b-biathlon-panel-item"></div>
-        <div class="b-biathlon-panel-item"></div>
-        <div class="b-biathlon-panel-item"></div>
-        <div class="b-biathlon-panel-item"></div>
     </div>
 
 </div>
