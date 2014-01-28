@@ -10,6 +10,7 @@
  * Карта
  *
  * @element ANY
+ * @param {Integer} fps set refresh rate for animations
  *
  * @example
     <example module="appExample">
@@ -36,7 +37,7 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
         scope: {
         },
         templateUrl: 'partials/stmIndex.directive:stmIndexMap:template.html',
-        controller: ['$scope', '$element', function($scope, $element, attrs){
+        controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
             var viewEl = $element.find('>:first');
             var backEl = viewEl.find('>:first');
             
@@ -84,7 +85,7 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
 
 
 
-            var FPS = attrs && attrs.fps || 60;
+            var FPS = $attrs && $attrs.fps || 60;
 
             var startTime = new Date().getTime();
             $scope.$on('$destroy', function() {

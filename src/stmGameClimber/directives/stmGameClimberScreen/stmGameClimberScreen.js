@@ -11,6 +11,7 @@
  * Экран игры Альпинист
  *
  * @element ANY
+ * @param {String} difficulty sets difficulty level
  *
  * @example
     <example module="appExample">
