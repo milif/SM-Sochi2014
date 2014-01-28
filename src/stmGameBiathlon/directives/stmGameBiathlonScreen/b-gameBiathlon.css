@@ -163,6 +163,20 @@
     margin-left: -154px;
 }
 
+.b-biathlon-yeti_mod6 {
+    background-position: 0 -1374px;
+    height: 312px;
+    width: 308px;
+    margin-left: -154px;
+}
+
+.b-biathlon-yeti_mod7 {
+    background-position: 0 -1696px;
+    height: 304px;
+    width: 295px;
+    margin-left: -147.5px;
+}
+
 /* men */
 .l-b-biathlon-men {
     width: 100px; 
@@ -232,25 +246,25 @@
 
 .b-biathlon-tree_mod1 {
     background-position: 0 0;
-    height: 400px;
-    width: 347px;
-    margin-top: -381px;
+    height: 461px;
+    width: 387px;
+    margin-top: --450px;
     margin-left: -173px;
 }
 
 .b-biathlon-tree_mod2 {
-    background-position: 0 -410px;
-    height: 141px;
+    background-position: 0 -471px;
+    height: 175px;
     width: 147px;
-    margin-top: -130px;
+    margin-top: -164px;
     margin-left: -73px;
 }
 
 .b-biathlon-tree_mod3 {
-    background-position: 0 -561px;
-    height: 404px;
-    width: 387px;
-    margin-top: -381px;
+    background-position: 0 -656px;
+    height: 445px;
+    width: 347px;
+    margin-top: -410px;
     margin-left: -193px;
 }
 
