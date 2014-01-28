@@ -79,3 +79,72 @@
   text-transform: uppercase;
   text-align: center;
 }
+
+.b-game-item {
+    position: absolute;
+}
+
+.b-game-item1 {
+    left: 2950px;
+    top: 1770px;
+    width: 364px;
+    height: 310px;
+    background: url("asset/i/b-gameMap/groupon_sheet_2x8.png") 0 0 no-repeat;
+}
+.b-game-item2 {
+    left: 1300px;
+    top: 1730px;
+    width: 170px;
+    height: 200px;
+    background: url("asset/i/b-gameMap/skater_girl_sheet_6x4.png") 0 0 no-repeat;
+}
+.b-game-item3 {
+    left: 1400px;
+    top: 1850px;
+    width: 200px;
+    height: 150px;
+    background: url("asset/i/b-gameMap/skater_dude_sheet_5x15.png") 0 0 no-repeat;
+}
+.b-game-item4 {
+    left: 1570px;
+    top: 1640px;
+    width: 294px;
+    height: 162px;
+    background: url("asset/i/b-gameMap/couple_sheet_3x39.png") 0 0 no-repeat;
+}
+.b-game-item5 {
+    left: 248px;
+    top: 953px;
+    width: 200px;
+    height: 150px;
+    background: url("asset/i/b-gameMap/girl1_sheet_5x6.png") 0 0 no-repeat;
+}
+.b-game-item6 {
+    left: 450px;
+    top: 955px;
+    width: 200px;
+    height: 150px;
+    background: url("asset/i/b-gameMap/girl2_sheet_5x6.png") 0 0 no-repeat;
+}
+.b-game-item7 {
+    left: 600px;
+    top: 975px;
+    width: 170px;
+    height: 150px;
+    background: url("asset/i/b-gameMap/paper_guy sheet_6x7.png") 0 0 no-repeat;
+}
+.b-game-item8 {
+    left: 30px;
+    top: 585px;
+    width: 170px;
+    height: 180px;
+    background: url("asset/i/b-gameMap/yeti1_sheet_6x5.png") 0 0 no-repeat;
+}
+.b-game-item9 {
+    left: 3070px;
+    top: 3000px;
+    width: 186px;
+    height: 172px;
+    background: url("asset/i/b-gameMap/yeti2_sheet_5x11.png") 0 0 no-repeat;
+}
+
