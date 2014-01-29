@@ -489,12 +489,21 @@
     height: 7px;
 }
 .b-popup-queue.b-popup-queue_top_left {
-  background-position: 0 -258px;
-  top: -9px;
+    background-position: 0 -258px;
+    top: -9px;
 }
 
 .b-popup-queue.b-popup-queue_top_right {
-  background-position: 0 -241px;
-  top: -9px;
+    background-position: 0 -241px;
+    top: -9px;
 }
 
+.b-popup-queue.b-popup-queue_bottom_right {
+    background-position: 0 -207px;
+    bottom: -9px;
+}
+
+.b-popup-queue.b-popup-queue_bottom_left {
+    background-position: 0 -224px;
+    bottom: -9px;
+}
