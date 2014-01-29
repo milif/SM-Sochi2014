@@ -115,8 +115,11 @@
 /*==========================================================*/
 /* yeti */
 .l-b-biathlon-yeti {
-    width: 308px;
-    height: 307px;
+    width: 100px; 
+    height: 100px; 
+    margin-top: -50px; 
+    margin-left: -50px;
+    z-index: 12;
     position: absolute;
 }
 
@@ -125,30 +128,31 @@
     position: absolute;
     left: 50%;
     bottom: 0;
+    margin-bottom: -20px;
 }
 
-.b-biathlon-yeti_mod1 {
+.b-biathlon-yeti_0 {
     background-position: 0 0;
     height: 225px;
     width: 245px;
     margin-left: -122.5px;
 }
 
-.b-biathlon-yeti_mod2 {
+.b-biathlon-yeti_1 {
     background-position: 0 -235px;
     height: 250px;
     width: 245px;
     margin-left: -122.5px;
 }
 
-.b-biathlon-yeti_mod3 {
+.b-biathlon-yeti_2 {
     background-position: 0 -495px;
     height: 284px;
     width: 284px;
     margin-left: -142px;
 }
 
-.b-biathlon-yeti_mod4 {
+.b-biathlon-yeti_3 {
     background-position: 0 -789px;
     height: 258px;
     width: 245px;
@@ -156,21 +160,21 @@
     bottom: -10px;
 }
 
-.b-biathlon-yeti_mod5 {
+.mod_inEti .b-biathlon-yeti_0 {
     background-position: 0 -1057px;
     height: 307px;
     width: 308px;
     margin-left: -154px;
 }
 
-.b-biathlon-yeti_mod6 {
+.mod_inEti .b-biathlon-yeti_1 {
     background-position: 0 -1374px;
     height: 312px;
     width: 308px;
     margin-left: -154px;
 }
 
-.b-biathlon-yeti_mod7 {
+.mod_inEti .b-biathlon-yeti_2 {
     background-position: 0 -1696px;
     height: 304px;
     width: 295px;
@@ -184,7 +188,7 @@
     margin-top: -50px; 
     margin-left: -50px; 
     position: absolute;
-    z-index: 10;
+    z-index: 11;
 }
 
 .b-biathlon-men {
@@ -248,7 +252,7 @@
     background-position: 0 0;
     height: 461px;
     width: 387px;
-    margin-top: --440px;
+    margin-top: -390px;
     margin-left: -173px;
 }
 

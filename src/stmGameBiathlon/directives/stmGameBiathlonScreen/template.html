@@ -21,12 +21,12 @@
         </div>
     </div>
     
-    <div ng-style="men.css" class="l-b-biathlon-men">
+    <div ng-show="!inEti" ng-style="men.css" class="l-b-biathlon-men">
         <div ng-class="'b-biathlon-men_' + men.frameIndex" class="b-biathlon-men"></div>
     </div>
 
-    <div class="l-b-biathlon-yeti">
-        <div class="b-biathlon-yeti b-biathlon-yeti_mod1"></div>
+    <div ng-class="inEti ? 'mod_inEti' : ''" ng-style="eti.css" class="l-b-biathlon-yeti">
+        <div ng-class="'b-biathlon-yeti_' + eti.frameIndex" class="b-biathlon-yeti"></div>
     </div>
 
 </div>

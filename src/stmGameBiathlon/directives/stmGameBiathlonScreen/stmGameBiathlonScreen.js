@@ -47,9 +47,12 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
     var TREES_DISTANCE = 300; // Оптимальное расстояние между деревьями в куче (px)
     var K = 140 / 397; // Коэфф. угла выстрела
     var START_MORE_SPEED = 5; // Начальное число ускорений
-    var PLAYER_SPEED = function(gameTime){ // Зависимость скорости игрока от времени игры
-        return (400 + gameTime / 5000); 
-    }; 
+    var ADD_SPEED = 100; // На сколько увеличивать скорость игрока
+    var DOWN_SPEED = 10; // На сколько уменьшать скорость игрока за секунду
+    var PLAYER_SPEED = 400; // Начальная скорость игрока
+    var MAX_SPEED = 1000; // Максимальная скорость игрока
+    var ETI_SPEED = 450; // Скорость йети
+    var UP_ETI_SPEED = 20; // На сколько увеличивать скорость ети за секунду
     
     var $ = angular.element;
         
@@ -80,10 +83,11 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                 x: camera.x,
                 y: camera.y,
                 angle: 0,
-                framePerSec: 3,
+                framePerSec: 4,
                 frameCount: 4,
-                speed: PLAYER_SPEED
+                update: updatePlayer
             };
+            var eti = {};
             var persons = [men];
             var mainPerson = men;            
             var track = {
@@ -94,6 +98,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
             
             var globalEvents = {
                 'keydown': function(e){
+                    if ($scope.inEti) return;
                     if(e.which == 32) {
                         var time = new Date().getTime();
                         if(time < disableShootTime) return;
@@ -105,6 +110,11 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                         } else {
                             disableShootTime = time + 5000;                            
                         }                     
+                    } else if(e.which == 39){
+                        if(moreSpeedAttempts > 0){
+                            men.speed += ADD_SPEED;
+                            moreSpeedAttempts--;
+                        }
                     }
                 }
             }
@@ -118,6 +128,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
             }, 1 / FPS * 1000);
             
             $scope.men = men;
+            $scope.eti = eti;
             $scope.traceFrames = track.frames;
             $scope.showStartPopup = true;
             $scope.play = startGame;
@@ -125,17 +136,32 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                 $interval.cancel(iterator);
             });
             function startGame(){
+                men.speed = PLAYER_SPEED;
+                
+                $scope.eti = eti = {
+                    x: track.points[1].x,
+                    angle: 0,
+                    framePerSec: 4,
+                    frameCount: 4,
+                    frameInEtiCount: 3,
+                    speed: ETI_SPEED,
+                    update: updateEti
+                };
+                persons.push(eti);
+                
+                gameTime = 0;
                 $scope.showStartPopup = false;
                 isGame = true;
+                $scope.inEti = false;
                 moreSpeedAttempts = START_MORE_SPEED;
                 gameTime = new Date().getTime();
                 $($window).on(globalEvents);
             }
-            function stopGame(){
-                gameTime = 0;
+            function stopGame(){               
                 isGame = false;
-                $scope.showStartPopup = false;
+                $scope.showStartPopup = true;
                 $($window).off(globalEvents);
+                persons.splice(persons.indexOf(eti), 1);
             }
             function iterate(){
             
@@ -152,7 +178,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                 updateCamera(camera, persons, dTime);
                 updateTrack(track, [(minX || 0) - camera.width, (maxX || 0) + camera.width], camera);
                 for(var i=0;i<persons.length;i++){
-                    updatePersonView(persons[i], camera, time - gameTime);
+                    updatePersonView(persons[i], camera, time - gameTime, dTime);
                 }  
                 
                 prevTime = time;
@@ -160,7 +186,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
             function updatePerson(person, dTime, gTime){
             
                 if(isGame) {
-                    person.x += dTime / 1000 * person.speed(gTime);
+                    person.x += dTime / 1000 * person.speed;
                 }
                 
                 if(!person.toPoint) {
@@ -198,18 +224,20 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                 
                 if(persons.length == 0) return;
                 
+                /*
                 var avgX = 0;
                 for(var i=0;i<persons.length;i++){
                     avgX += persons[i].x / persons.length;
                 }
+                */
                 var margin = camera.width * CAMERA_MARGIN / 100;
                 
                 var optimalDY = Math.min(- camera.height * CAMERA_DY / 100 + Math.abs(mainPerson.angle) / 50 * camera.height * 0.6, camera.height / 2 * 0.3);
                 
                 if(isGame){
                     var optimalDX = 
-                        + Math.abs(mainPerson.angle) / 50 * camera.width * 0.5
-                        + Math.max( - (camera.width / 2 - margin), Math.min(avgX - mainPerson.x, camera.width / 2 - margin));
+                        + Math.abs(mainPerson.angle) / 50 * camera.width * 0.5;
+                        //+ Math.max( - (camera.width / 2 - margin), Math.min(avgX - mainPerson.x, camera.width / 2 - margin));
                     if(!camera.setDX || Math.abs(optimalDX - camera.setDX) > 100) {
                         camera.setDX = optimalDX;
                     }
@@ -235,9 +263,9 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                     
                     
                 } else {
-                    camera.DY = optimalDY;
+                    if(!$scope.inEti) camera.DY = optimalDY;
                 }            
-                
+
                 camera.x = mainPerson.x + camera.DX;
                 camera.y = mainPerson.y + camera.DY;
                 
@@ -271,21 +299,39 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                 }
                 
             }
-            function updatePersonView(person, camera, gTime){
-                var time = new Date().getTime();
-                if(person == mainPerson){
-                    if(isGame) {
-                        if(time - lastShootTime < 300) {
-                            person.frameIndex = 'shoot';
-                            person.angle = 0;
-                        } else {
-                            shootCount = 0;
-                            person.frameIndex = Math.round(gTime / 1000 * person.framePerSec) % person.frameCount;
-                        }
+            function updatePlayer(time, gTime, dTime){
+                if(isGame) {
+                    this.framePerSec = Math.min(Math.max(2, Math.round(this.speed / PLAYER_SPEED * 4)), 6);
+                    if(time - lastShootTime < 300) {
+                        this.frameIndex = 'shoot';
+                        this.angle = 0;
                     } else {
-                        person.frameIndex = 'start';
+                        shootCount = 0;
+                        this.frameIndex = Math.round(gTime / 1000 * this.framePerSec) % this.frameCount;
                     }
-                }
+                    this.speed -= DOWN_SPEED * dTime / 1000 - this.angle * dTime / 1000;
+                    this.speed = Math.min(MAX_SPEED, this.speed);
+                    if(this.speed < 20) stopGame();
+                    if(this.x <= eti.x) {
+                        $scope.inEti = true;             
+                    }
+                } else {
+                    this.frameIndex = 'start';
+                }            
+            }
+            function updateEti(time, gTime, dTime){
+                if(isGame) {
+                    this.speed += UP_ETI_SPEED * dTime / 1000;
+                    if(men.x - this.x < camera.width) this.speed = Math.min(this.speed, men.speed + 200);
+                    this.frameIndex = Math.round(gTime / 1000 * this.framePerSec) % ($scope.inEti ? this.frameInEtiCount : this.frameCount);
+                    if(this.x > camera.x + camera.width / 2 + 200) {
+                        stopGame();
+                    }
+                }               
+            }
+            function updatePersonView(person, camera, gTime, dTime){
+                var time = new Date().getTime();
+                person.update(time, gTime, dTime);
                 person.css = {
                     left: Math.round(person.x - camera.x + camera.width / 2),
                     top: Math.round(person.y - camera.y + camera.height / 2),
