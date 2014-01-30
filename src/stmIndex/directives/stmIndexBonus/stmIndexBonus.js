@@ -89,8 +89,10 @@ angular.module('stmIndex').directive('stmIndexBonus', function(){
             });
             
             $timeout(function(){
-                $scope.hide = false;
-            }, 20);
+                $scope.$apply(function(){
+                    $scope.hide = false;
+                }); 
+            }, 30);
         }]
     };
 });
