@@ -106,7 +106,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         },
                         keyEvents = {
                             'keydown': function (e) {
-                                if (e.keyCode == 38) {
+                                if (e.keyCode == 38) { // "arrow up"
                                     e.preventDefault();
                                     if (action == 'down' && !canBreakDown) return;
                                     if (!isUpPressed) {
@@ -129,6 +129,12 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                                     }
 
                                     _down(step, true);
+                                } else if (e.keyCode == 37 || e.keyCode == 39) { // "arrow left or right"
+                                    if(e.keyCode == 37) { // if left
+                                        manEl.addClass('flip-left');
+                                    } else {
+                                        manEl.removeClass('flip-left');
+                                    }
                                 } else if (e.keyCode == 82) { // "R"
                                     var ratio = (position - startPosition) / (endPosition - startPosition);
                                     if(!goingUpUsed && ratio > 0.65 && (position < endPosition - topPipeMargin - 150)) {
@@ -238,6 +244,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         
                         isGameStart = true;
                         manEl
+                            .removeClass('flip-left')
                             .removeClass('mod_frame'+state)
                             .addClass('mod_frame14');
                         state = 14;
