@@ -13,6 +13,7 @@
 angular.module('appExample', [
         'stm', 'stmIndex', 'stmGameClimber', 'stmGameEti', 'stmGameBiathlon', 'stmIndexPage' // API modules
     ])
-    .config(['$sceProvider', function($sceProvider){
+    .config(['$sceProvider', '$locationProvider', function($sceProvider, $locationProvider){
         $sceProvider.enabled(false);
+        $locationProvider.html5Mode(false);
     }]);
