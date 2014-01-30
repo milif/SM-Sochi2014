@@ -40,6 +40,15 @@
   /* frame winner   =  frame13*/
   /* frame stay   =  frame14*/
 }
+.gameClimber-player.flip-left {
+  margin-left: -210px;
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  filter: FlipH;
+  -ms-filter: "FlipH";
+}
 .gameClimber-player.mod_frame1 {
   background-position: 0px 0px;
 }
@@ -107,6 +116,9 @@
   height: 392px;
   background-position: -2530px -470px;
   margin-left: 0px;
+}
+.gameClimber-player.mod_frame17.flip-left {
+  margin-left: -250px;
 }
 
 .gameClimber-player.mod_frame21 {
