@@ -13,6 +13,13 @@
  */
 
 angular.module('stm',['ngAnimate'])
-        .config(['$provide', '$sceProvider',function($provide, $sceProvider){
+        .config(['$sceProvider', '$provide', '$locationProvider', function($sceProvider, $provide, $locationProvider){
             $sceProvider.enabled(false);
+            $locationProvider.html5Mode(true);
+        }])
+        .run(['$location', '$rootScope', function($location, $rootScope){
+            var baseUrl = $location.absUrl();
+            $rootScope.$on('$locationChangeStart', function(e, newUrl){  
+                if(newUrl.indexOf(baseUrl) < 0) window.location.href = newUrl;
+            });
         }]);

@@ -11,25 +11,18 @@
  *
  * @element ANY
  *
+ * @param {String} position position of toolbar (bottom|top)
+ *
  * @example
     <example module="appExample">
       <file name="index.html">
-         <div stm-index-toolbar class="example-screen"></div>
+         <div stm-index-toolbar></div>
       </file>
       <file name="style.css">
          .in-plunkr, .in-plunkr body, .in-plunkr .well {
             height: 100%;
             margin: 0;
          }
-         .doc-example-live .example-screen {
-            height: 500px;
-            }
-         .example-screen {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            overflow: scroll;
-            }
       </file>
     </example>
     
@@ -37,7 +30,14 @@
 
 angular.module('stmIndex').directive('stmIndexToolbar', function(){  
     return {
-        templateUrl: 'partials/stmIndex.directive:stmIndexToolbar:template.html'
+        replace: true,
+        scope: {
+            position: '=?'
+        },
+        templateUrl: 'partials/stmIndex.directive:stmIndexToolbar:template.html',
+        controller: ['$scope', '$attrs', function($scope, $attrs){
+            $scope.position = $scope.position || $attrs.position || 'bottom';
+        }]
     };
 });
 

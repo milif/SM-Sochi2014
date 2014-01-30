@@ -31,6 +31,7 @@ module.exports = function(grunt) {
                 name: 'stmIndex', // Module name
                 include: [        // Include module components:
                     'directive:stmIndexMap',
+                    'directive:stmIndexToolbar',
                     'stm.directive:stmPreload'
                     // 'directive:stmIndexHellowWorld',
                     // 'directive:*',
