@@ -169,9 +169,11 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                         frameIndex = Math.round( time / 1000 * item.fps) % item.frames,
                         verticalIndex = Math.floor(frameIndex / item.cols),
                         horizontalIndex = frameIndex - verticalIndex * item.cols;
-                    item.css = {
-                        'background-position': '-' + horizontalIndex * item.width + 'px -' + verticalIndex * item.height + 'px'
-                    };
+                    if(item.over === true) {
+                        item.css = {
+                            'background-position': '-' + horizontalIndex * item.width + 'px -' + verticalIndex * item.height + 'px'
+                        };
+                    }
                 }
             }
             function normalizePosition(pos){
