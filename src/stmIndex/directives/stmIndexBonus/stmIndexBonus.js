@@ -17,10 +17,15 @@
  * @example
     <example module="appExample">
       <file name="index.html">
-        <div class="b-sample" ng-controller="bonusesCtrl">
-          <div ng-repeat="bonus in bonuses" stm-index-bonus="bonusId{{$index}}" type="{{bonus.type}}" position="{{bonus.pos}}"></div>
-          <div stm-index-bonus="bonusId3" type="sber" position="[350, 50]"></div>
-        <div>
+        <div ng-controller="bonusesCtrl">
+            <div class="btn" ng-click="show()">Show</div>
+            <div class="b-sample" >
+              <div ng-repeat="bonus in bonuses" stm-index-bonus="bonusId{{$index}}" type="{{bonus.type}}" position="{{bonus.pos}}"></div>
+              <div stm-index-bonus="bonusId3" type="sber" position="[350, 50]"></div>
+              
+            <div>
+        </div>
+        
       </file>
       <file name="style.css">
       .b-sample {
@@ -32,16 +37,18 @@
       </file>
       <file name="controller.js">
         function bonusesCtrl($scope, $timeout){
-            $scope.bonuses = [
-                {pos: [50, 50], type: "mnogo" }, 
-                {pos: [150, 50], type: "sber"}, 
-                {pos: [250, 50], type: "pickpoint"}
-            ];
-            for(var i=0;i<$scope.bonuses.length;i++){
-                $timeout(function(){
-                    i--
-                    $scope.$broadcast('removeBonus-bonusId' + i);
-                }, 1000 * (i+1));
+            $scope.show = function(){
+                $scope.bonuses = [
+                    {pos: [50, 50], type: "mnogo" }, 
+                    {pos: [150, 50], type: "sber"}, 
+                    {pos: [250, 50], type: "pickpoint"}
+                ];
+                for(var i=0;i<$scope.bonuses.length;i++){
+                    $timeout(function(){
+                        i--
+                        $scope.$broadcast('removeBonus-bonusId' + i);
+                    }, 1000 * (i+1));
+                }
             }
         }
       </file>
@@ -66,7 +73,10 @@ angular.module('stmIndex').directive('stmIndexBonus', function(){
         },
         transclude: true,
         templateUrl: 'partials/stmIndex.directive:stmIndexBonus:template.html',
-        controller: ['$scope', '$animate', function($scope, $animate){
+        controller: ['$scope', '$animate', '$timeout', function($scope, $animate, $timeout){
+        
+            $scope.hide = true;
+            
             $scope.$watch('position', function(){
                 var position = $scope.$eval($scope.position);
                 $scope.css = {
@@ -77,6 +87,10 @@ angular.module('stmIndex').directive('stmIndexBonus', function(){
             $scope.$on('removeBonus-' + $scope.stmIndexBonus, function(){
                 $scope.hide = true;
             });
+            
+            $timeout(function(){
+                $scope.hide = false;
+            }, 20);
         }]
     };
 });
