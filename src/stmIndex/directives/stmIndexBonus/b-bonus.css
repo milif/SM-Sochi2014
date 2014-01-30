@@ -1,0 +1,26 @@
+/* b-bonus */
+/*==========================================================*/
+.b-bonus {
+    position: absolute;
+    width: 82px;
+    height: 82px;
+    z-index: 10000;
+    opacity: 1;
+    background: url("asset/i/b-index/b-index-bonus/b-index-bonus-icons.png") 0 0 no-repeat;
+}
+
+.b-bonus-pickpoint {
+    background-position: 0 0;
+}
+.b-bonus-mnogo {
+    background-position: 0 -82px;
+}
+.b-bonus-sber {
+    background-position: -82px 0;
+}
+
+.b-bonus.ng-leave {
+    opacity: 0;
+    -webkit-transition: all 500ms cubic-bezier(0.425, 0, 0.725, 0.140);
+    transition: all 500ms cubic-bezier(0.425, 0, 0.725, 0.140);
+}

@@ -6,6 +6,7 @@
  * @requires stmGameClimber.directive:stmGameClimberScreen:b-gameClimber.css
  * @requires stmGameClimber.directive:stmGameClimberScreen:template.html
  * @requires stmIndex.directive:stmIndexPopup
+ * @requires stmIndex.directive:stmIndexBonus
  *
  * @description
  * Экран игры Альпинист
