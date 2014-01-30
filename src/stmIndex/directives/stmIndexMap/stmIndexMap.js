@@ -11,6 +11,7 @@
  *
  * @element ANY
  * @param {Integer} fps set refresh rate for animations
+ * @param {Object} position set map position {x: Integer, y: Integer}
  *
  * @example
     <example module="appExample">
@@ -35,13 +36,20 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
 
     return {
         scope: {
+            position: '=?'
         },
+        transclude: true,
         templateUrl: 'partials/stmIndex.directive:stmIndexMap:template.html',
         controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
             var viewEl = $element.find('>:first');
             var backEl = viewEl.find('>:first');
             
-            $scope.position = normalizePosition(JSON.parse(localStorage.getItem('_stmSochiMapPosition')) || {
+            var storedPosition;
+            try { 
+                storedPosition = JSON.parse(localStorage.getItem('_stmSochiMapPosition'));
+            } catch(e){};
+            
+            $scope.position = normalizePosition($scope.position || storedPosition || {
                 x: 0, 
                 y: 0
             });

@@ -52,6 +52,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
     var PLAYER_SPEED = 400; // Начальная скорость игрока
     var MAX_SPEED = 1000; // Максимальная скорость игрока
     var ETI_SPEED = 450; // Скорость йети
+    var ETI_МАX_SPEED = 900; // Максимальная скорость йети
     var UP_ETI_SPEED = 20; // На сколько увеличивать скорость ети за секунду
     var JUMP_TIME = 1; // Сколько секунд длится прыжок
     var JUMP_HEIGHT = 100; // Высота прыжка (px)
@@ -185,9 +186,6 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                 }      
                 updateCamera(camera, persons, dTime);
                 updateTrack(track, [(minX || 0) - camera.width, (maxX || 0) + camera.width], camera);
-                for(var i=0;i<persons.length;i++){
-                    updatePersonView(persons[i], camera, time - gameTime, dTime);
-                }  
                 
                 for(var i=0;i<iterateTasks.length;i++){
                     if(iterateTasks[i].iterate(time, dTime)) {
@@ -195,7 +193,11 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                         iterateTasks.splice(i,1);
                         i--;
                     }
-                }
+                }                
+                
+                for(var i=0;i<persons.length;i++){
+                    updatePersonView(persons[i], camera, time - gameTime, dTime);
+                }  
                 
                 prevTime = time;
             }
@@ -209,6 +211,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
             function jump(time, dTime){
                 if(!inJump){
                     this.endTime = time + JUMP_TIME * 1000;
+                    this.angle = men.angle;
                     inJump = true;
                 }
                 if(this.endTime < time) {
@@ -216,6 +219,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                     inJump = false;
                     return true;
                 }
+                men.angle = Math.min(0, this.angle);
                 men.DY = Math.sin(Math.PI * (this.endTime - time) / (JUMP_TIME * 1000)) * JUMP_HEIGHT;
             }
             function updatePerson(person, dTime, gTime){
@@ -337,7 +341,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
             function updatePlayer(time, gTime, dTime){
                 if(isGame) {
                     this.framePerSec = Math.min(Math.max(2, Math.round(this.speed / PLAYER_SPEED * 4)), 6);
-                    if(inJump) {
+                    if(inJump || this.angle > 35) {
                         this.frameIndex = 'jump';
                     } else if(time - lastShootTime < 300) {
                         this.frameIndex = 'shoot';
@@ -359,7 +363,13 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
             function updateEti(time, gTime, dTime){
                 if(isGame) {
                     this.speed += UP_ETI_SPEED * dTime / 1000;
-                    if(men.x - this.x < camera.width) this.speed = Math.min(this.speed, men.speed + 200);
+                    
+                    if(men.x - this.x < camera.width) {
+                        this.speed = Math.min(this.speed, men.speed + 200);
+                        if(men.x - this.x < camera.width / 2) {
+                            this.speed = Math.min(ETI_МАX_SPEED, this.speed);
+                        }
+                    }
                     this.frameIndex = Math.round(gTime / 1000 * this.framePerSec) % ($scope.inEti ? this.frameInEtiCount : this.frameCount);
                     if(this.x > camera.x + camera.width / 2 + 200) {
                         stopGame();
@@ -450,7 +460,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                 var gTime = time - gameTime;
                 var range = frameEl.targetsRange;
                 var targets = [];
-                var x = [range[0] + (range[1] - range[0]) * Math.random()];
+                var x = Math.random() * men.speed / PLAYER_SPEED < 0.5 ? [range[0] + (range[1] - range[0]) * Math.random()] : [];
                 var pointTo, y, pointFrom;
 
                 for(var i=0; i<x.length;i++){                     

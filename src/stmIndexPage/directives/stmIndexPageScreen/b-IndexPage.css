@@ -5,7 +5,10 @@
     min-width: 960px;
     min-height: 100%;
     overflow: hidden;
-    background: url(asset/i/b-indexPage/b-indexPage-fone.png) 50% 100% no-repeat #ffcc00;
+    position:relative; 
+    z-index: 10;
+    -webkit-transition: 0.5s all linear;
+    transition: 0.5s all linear;
 }
 
 .b-indexPage-h {
@@ -128,8 +131,17 @@
 /* b-indexPage-button */
 .b-indexPage-button {
     padding-top: 50px;
-    margin-bottom: 20px;
+    margin-bottom: 60px;
 }
 .b-button.mod_b-indexPage-button {
     padding: 0 54px;
+}
+.b-indexPage-map {
+    position: relative;
+    width: 100%;
+    margin-top: -400px;
+    height: 400px;
+    min-width: 960px;
+    -webkit-transition: 0.5s all linear;
+    transition: 0.5s all linear;
 }
