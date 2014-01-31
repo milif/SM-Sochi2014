@@ -14,7 +14,7 @@
  * @example
     <example module="appExample">
       <file name="index.html">
-         <div stm-сabinet-screen class="example-screen"></div>
+         <div stm-cabinet-screen class="example-screen"></div>
       </file>
       <file name="style.css">
          .in-plunkr, .in-plunkr body, .in-plunkr .well {
