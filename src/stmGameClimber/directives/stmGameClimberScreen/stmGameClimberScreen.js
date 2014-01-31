@@ -250,9 +250,10 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                     function useBonus(index) {
                         var bonus = scope.bonuses[index];
                         scope.$broadcast('removeBonus-'+bonus.id);
-                        $timeout(function(){
-                            scope.bonuses.splice(index, 1);
-                        }, 500);
+                        // $timeout(function(){
+                            // scope.bonuses.splice(index, 1);
+                        // }, 10);
+                        scope.bonuses[index].used = true;
                         showBonusPopup(bonus);
                         scope.score += bonus.bonus;
                         scope.bonusesCollected[bonus.type] += bonus.bonus;
@@ -261,13 +262,12 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                     function detectBonus() {
                         var manPosition = endPosition - position - 300;
                         for(var index in scope.bonuses) {
-                            if(scope.bonuses.hasOwnProperty(index)) {
-                                if(Math.abs(manPosition - scope.bonuses[index].position[1]) < 30) {
-                                    if(scope.manPositionLeft === true && scope.bonuses[index].position[0] < 0 ||
-                                        scope.manPositionLeft === false && scope.bonuses[index].position[0] > 0) {
-                                        useBonus(index);
-                                    }
-                                }
+                            if(scope.bonuses.hasOwnProperty(index) &&
+                                Math.abs(manPosition - scope.bonuses[index].position[1]) < 30 &&
+                                (scope.manPositionLeft === true && scope.bonuses[index].position[0] < 0 ||
+                                scope.manPositionLeft === false && scope.bonuses[index].position[0] > 0) &&
+                                scope.bonuses[index].used !== true) {
+                                    useBonus(index);
                             }
                         }
                     }
@@ -330,7 +330,10 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         state = 14;
                         scope.manPositionLeft = false;
                         _updateDownPosition();
-                        initBonuses();
+                        scope.bonuses = [];
+                        $timeout(function(){
+                            initBonuses();
+                        }, 2000);
 
                         $timeout(function(){
                             $(keyObj)
