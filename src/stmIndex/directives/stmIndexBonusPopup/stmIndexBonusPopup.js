@@ -50,7 +50,7 @@ angular.module('stmIndex').directive('stmIndexBonusPopup', function(){
         templateUrl: 'partials/stmIndex.directive:stmIndexBonusPopup:template.html',
         controller: ['$scope', '$element', '$animate', '$timeout', '$attrs', function($scope, $element, $animate, $timeout, $attrs){
             $attrs.$observe('type', function(type){
-                $scope.type = $scope.$eval(type);
+                $scope.type = $scope.$eval(type) || type;
                 $element.find('.b-bonus-popup-bg').addClass('b-bonus-popup-'+type);
             });
             $attrs.$observe('bonus', function(bonus){

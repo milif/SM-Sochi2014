@@ -384,6 +384,7 @@
 /* Social icons */
 /*==========================================================*/
 .b-social-icon {
+    position: relative;
     margin-right: 6px;
     display: inline-block;
     vertical-align: middle;
@@ -428,12 +429,16 @@
     margin-left: 2px;
 }
 
-/* b-socials */
-/*==========================================================*/
-.b-socials {
-    font-size: 0;
-    white-space: nowrap;
+.b-social-icon_heart {
+    background-position: 0 -293px;
+    height: 9px;
+    width: 10px;
+    top: -2px;
 }
+
+
+/* button socials */
+/*==========================================================*/
 .b-button_social {
     margin-left: 6px;
     padding: 0 0 0 6px;
