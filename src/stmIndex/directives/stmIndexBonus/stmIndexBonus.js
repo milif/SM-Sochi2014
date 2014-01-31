@@ -87,6 +87,9 @@ angular.module('stmIndex').directive('stmIndexBonus', function(){
             $scope.$on('removeBonus-' + $scope.stmIndexBonus, function(){
                 $scope.hide = true;
             });
+            $scope.$on('showBonus-' + $scope.stmIndexBonus, function(){
+                $scope.hide = false;
+            });
             
             $timeout(function(){
                     $scope.hide = false;
