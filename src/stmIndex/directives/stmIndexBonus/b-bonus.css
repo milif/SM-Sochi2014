@@ -24,10 +24,15 @@
 }
 
 .b-bonus.ng-hide-add {
-  -webkit-transition:0.5s cubic-bezier(0.645, -0.470, 0.485, 0.670) all;
-  transition: 0.5s cubic-bezier(0.645, -0.470, 0.485, 0.670) all;
+  -webkit-transition:0.5s ease-out all;
+  transition: 0.5s ease-out all;
   display:block!important;
 }
+.b-bonus.ng-hide.ng-hide-add {
+    -webkit-transform: scale(7);
+    transform: scale(7);
+}
+
 .b-bonus.ng-hide-remove {
   -webkit-transition:0.5s cubic-bezier(0.510, 0.595, 0.320, 1.345) all;
   transition: 0.5s cubic-bezier(0.510, 0.595, 0.320, 1.345) all;

@@ -132,7 +132,8 @@
 /* b-toolbar-popup */
 /*==========================================================*/
 .b-toolbar-popup {
-    position: absolute;
+    position: relative;
+    margin-top: 8px;
     border: 2px solid #000;
     -moz-border-radius: 9px;
     -webkit-border-radius: 9px;
@@ -142,6 +143,11 @@
     background-clip: padding-box;
     background-color: #fff;
     width: 280px;
+}
+/* POS top */
+.b-toolbar-popup.pos_top {
+    margin-bottom: 8px;
+    margin-top: 0;
 }
 .b-toolbar-popup__list {
 
@@ -170,6 +176,10 @@
 /* MOD marin top */
 .b-toolbar-popup__list-item_margin-top {
     margin-top: 10px;
+}
+/* MOD marin bottom */
+.b-toolbar-popup__list-item_margin-bottom {
+    margin-bottom: 10px;
 }
 
 /* userpic */
@@ -377,6 +387,11 @@
 .b-toolbar-popup .b-popup-queue_top_left {
     left: 58px;
 }
+.b-toolbar-popup.pos_top .b-popup-queue.b-popup-queue_top_left {
+    background-position: 0 -224px;
+    bottom: -9px;
+    top: auto;
+}    
 
 
 

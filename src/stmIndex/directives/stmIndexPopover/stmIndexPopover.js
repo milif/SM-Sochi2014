@@ -12,6 +12,9 @@
  * @element ANY
  * @param {String} stmIndexPopover component id 
  * @param {Array} position set position [x, y]
+ * @param {Integer} hideEventTimeout Время до завершения закрытия
+ * @param {Boolean} hideOnClickout Закрытие по клику в сторону
+ * @param {String} popoverType Тип показа (bottom|top|default)
  *
  * @example
     <example module="appExample">
@@ -69,12 +72,37 @@ angular.module('stmIndex').directive('stmIndexPopover', function(){
         templateUrl: 'partials/stmIndex.directive:stmIndexPopover:template.html',
         transclude: true,
         replace: true,
-        controller: ['$scope', '$attrs', '$timeout', function($scope, $attrs, $timeout){
-        
-            $scope.hide = true;            
+        controller: ['$scope', '$attrs', '$timeout', '$element', '$window', function($scope, $attrs, $timeout, $element, $window){           
+            var autoOpen = !$attrs.show;
+            var windowEl = $($window);
+            
+            var globalEvents = {
+                'mousedown': function(e){
+                    if($(e.target).closest($element).length == 0){
+                        hide();
+                    }
+                }
+            }
+            
+            if(autoOpen){
+                $scope.hide = true;
+                $timeout(function(){
+                    $scope.$apply(show);                
+                }, 30);
+            }
+            
+            var hideTimeout = $attrs.hideEventTimeout ? $scope.$eval($attrs.hideEventTimeout) : 500;
+            var isHideOnClickout = $attrs.hideOnClickout ? $scope.$eval($attrs.hideOnClickout) : false;
+            var position;
+            
+            $attrs.$observe('popoverType', function(type){
+                $scope.type = $scope.$eval(type) || $attrs.popoverType; 
+                if(position) updatePosition();              
+            });
+            
             
             $attrs.$observe('stmIndexPopover', function(id){
-                $scope.id = id;
+                $scope.id = $scope.$eval(id) || $attrs.stmIndexPopover;
             /**
                * @ngdoc event
                * @name stmIndex.directive:stmIndexPopover#hidePopover-ID
@@ -84,36 +112,56 @@ angular.module('stmIndex').directive('stmIndexPopover', function(){
                * Инициирует скрытие компонента 
                * 
                */                
-                $scope.$on('hidePopover-' + $scope.id, function(){
-                    $scope.hide = true;
+                $scope.$on('hidePopover-' + $scope.id, hide);                
+            });
+            $attrs.$observe('position', function(pos){
+                position = $scope.$eval(pos);
+                updatePosition();
+            });                   
+            $attrs.$observe('show', function(showAttr){
+                if($scope.$eval(showAttr)) show();
+                else hide();
+            });
+            function show(){
+                if(!$scope.hide) return;
+                $scope.hide = false;
+                if(isHideOnClickout) {
                     $timeout(function(){
-                    /**
-                       * @ngdoc event
-                       * @name stmIndex.directive:stmIndexPopover#hidePopoverSuccess
-                       * @eventOf stmIndex.directive:stmIndexPopover
-                       * @eventType emit on parent scope
-                       * @description
-                       * Сообщает о завершении скрытия 
-                       * 
-                       * @param {String} id Id .
-                       */                    
-                        $scope.$emit('hidePopoverSuccess', $scope.id);
-                    }, 500);
-                });                
-            });
-            $attrs.$observe('position', function(position){
-                var position = $scope.$eval(position);
-                $scope.css = {
-                    left: position[0],
-                    top: position[1]
+                        windowEl.on(globalEvents);
+                    }, 50);
                 }
-            });
-        
-            $timeout(function(){
-                $scope.$apply(function(){
-                    $scope.hide = false;
-                });                
-            }, 30);
+            }
+            function hide(){
+                if($scope.hide) return;
+                windowEl.off(globalEvents);
+                $scope.hide = true;
+                $timeout(function(){
+                 /**
+                   * @ngdoc event
+                   * @name stmIndex.directive:stmIndexPopover#hidePopoverSuccess
+                   * @eventOf stmIndex.directive:stmIndexPopover
+                   * @eventType emit on parent scope
+                   * @description
+                   * Сообщает о завершении скрытия 
+                   * 
+                   * @param {String} id Id .
+                   */                    
+                    $scope.$emit('hidePopoverSuccess', $scope.id);
+                }, hideTimeout);
+            }
+            function updatePosition(){
+                if($scope.type == 'top'){
+                    $scope.css = {
+                        left: position[0],
+                        bottom: position[1]
+                    }                
+                } else {
+                    $scope.css = {
+                        left: position[0],
+                        top: position[1]
+                    }
+                }                
+            }
         }]
     };
 });

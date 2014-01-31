@@ -7,6 +7,7 @@
  * @requires stmGameClimber.directive:stmGameClimberScreen:template.html
  * @requires stmIndex.directive:stmIndexPopup
  * @requires stmIndex.directive:stmIndexBonus
+ * @requires stmIndex.directive:stmIndexBonusPopup
  * @requires stmIndex.directive:stmIndexPopover
  *
  * @description

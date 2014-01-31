@@ -16,7 +16,6 @@
     display: table-cell;
     vertical-align: middle;
 }
-
 .b-popover.ng-hide-add,
 .b-popover.ng-hide-remove {
   display:block!important;
@@ -24,8 +23,32 @@
   transition: 0.2s ease-in all;
   margin-top: 0px;
 }
-
 .b-popover.ng-hide {
   opacity: 0;
   margin-top: -30px;
+}
+/* MOD BOTTOM */
+.b-popover.mod_bottom.ng-hide {
+  margin-top: 30px;
+}
+.b-popover.mod_bottom.ng-hide-add-active,
+.b-popover.mod_bottom.ng-hide-add
+ {
+    -webkit-transition-duration: 0.15s;
+    margin-top: 0px;
+}
+/* MOD TOP */
+.b-popover.mod_top.ng-hide {
+  margin-bottom: 30px;
+  margin-top: auto;
+}
+.b-popover.mod_top {
+    margin-bottom: 0px;
+    margin-top: auto;
+}
+.b-popover.mod_top.ng-hide-add-active,
+.b-popover.mod_top.ng-hide-add
+ {
+    -webkit-transition-duration: 0.15s;
+    margin-bottom: 0px;
 }

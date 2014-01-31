@@ -2,7 +2,7 @@
     <div class="b-toolbar">
         <!-- toolbar-left -->
         <div class="l-b-toolbar-left">
-            <div class="b-toolbar-button">Выбрать игру</div>
+            <div ng-class="gameMenu.active ? 'b-toolbar-button_state_active' : ''" class="b-toolbar-button" ng-mousedown="clickMenu($event, gameMenu)" >Выбрать игру</div>
             <!--<div class="b-toolbar-button b-toolbar-button_state_active">
                 События
                 <div class="b-toolbar-event-count">98</div>
@@ -25,127 +25,120 @@
         <!-- / toolbar-right -->
 
     </div>
-    <!--
-<div class="b-toolbar-popup g-font b-toolbar-popup_top_left" style="left: 200px; top: 100px;">
-    
-    <div class="b-toolbar-popup__list">
 
-        <div class="b-toolbar-popup__list-item b-toolbar-popup__list-item_style1 b-toolbar-popup__list-item  b-toolbar-popup__list-item_margin-top">
-            <img src="asset/i/b-toolbar/userpic.jpg" alt="image" class="b-toolbar-popup__list-userpic">
-            <div class="b-toolbar-popup__list-note">
-                <div class="b-toolbar-popup__list-title">Скалолаз</div>
-                <div class="b-toolbar-popup__list-info">Ваше лучшее достижение 100 Б</div>
-            </div>
-            <a href="#2" class="b-toolbar-popup__list-link"></a>
-        </div>
-
-        <div class="b-toolbar-popup__list-item b-toolbar-popup__list-item_result1">
-            <div class="b-toolbar-popup__list-title">Задания на карте</div>
-            <div class="b-toolbar-popup__list-info">Выполнено 0 из 43. Не получено <br>ни одного достижения</div>
-        </div>
+<div ng-repeat="menu in menus" stm-index-popover="menu.id" popover-type="{{position == 'bottom' ? 'top' : 'bottom' }}" hide-event-timeout="0" hide-on-clickout="true" show="{{!!menu.active}}" position="{{menu.position}}">
+    <div ng-class="'pos_' + (position == 'top' ? 'bottom' : 'top')" class="b-toolbar-popup g-font b-toolbar-popup_top_left">
         
-        <div class="b-toolbar-popup__list-item b-toolbar-popup__list-item_style2 b-toolbar-popup__list-item_no-border b-toolbar-popup__list-item_first">
-            <img src="asset/i/b-toolbar/userpic.jpg" alt="image" class="b-toolbar-popup__list-userpic">
-            <div class="b-toolbar-popup__list-note">
-                <div class="b-toolbar-popup__list-text">
-                    Ваш друг <b>Константин Константинопольский</b> присоединился к вашей команде
+        <div class="b-toolbar-popup__list">
+            
+            <div ng-repeat="item in menu.items" ng-class="$first ? 'b-toolbar-popup__list-item_margin-top' : $last ? 'b-toolbar-popup__list-item_margin-bottom' : ''" class="b-toolbar-popup__list-item b-toolbar-popup__list-item_style1 b-toolbar-popup__list-item">
+                <img src="{{item.icon}}" alt="image" class="b-toolbar-popup__list-userpic">
+                <div class="b-toolbar-popup__list-note">
+                    <div class="b-toolbar-popup__list-title">{{item.title}}</div>
+                    <div class="b-toolbar-popup__list-info">{{item.desc}}</div>
                 </div>
-                <div class="b-toolbar-popup__list-info">1 час назад</div>
+                <a href="{{item.url}}" class="b-toolbar-popup__list-link"></a>
             </div>
-            <a href="#2" class="b-toolbar-popup__list-link"></a>
-        </div>
+            <!--
+            <div class="b-toolbar-popup__list-item b-toolbar-popup__list-item_style1 b-toolbar-popup__list-item  b-toolbar-popup__list-item_margin-top">
+                <img src="asset/i/b-toolbar/userpic.jpg" alt="image" class="b-toolbar-popup__list-userpic">
+                <div class="b-toolbar-popup__list-note">
+                    <div class="b-toolbar-popup__list-title">Скалолаз</div>
+                    <div class="b-toolbar-popup__list-info">Ваше лучшее достижение 100 Б</div>
+                </div>
+                <a href="#2" class="b-toolbar-popup__list-link"></a>
+            </div>
 
-        <div class="b-toolbar-popup__list-item b-toolbar-popup__list-item_style2 b-toolbar-popup__list-item_state_active">
-            <img src="asset/i/b-toolbar/userpic.jpg" alt="image" class="b-toolbar-popup__list-userpic">
-            <div class="b-toolbar-popup__list-note">
-                <div class="b-toolbar-popup__list-text">
-                    Ваш друг <b>Константин Константинопольский</b> присоединился к вашей команде
-                </div>
-                <div class="b-toolbar-popup__list-info">1 час назад</div>
+            <div class="b-toolbar-popup__list-item b-toolbar-popup__list-item_result1">
+                <div class="b-toolbar-popup__list-title">Задания на карте</div>
+                <div class="b-toolbar-popup__list-info">Выполнено 0 из 43. Не получено <br>ни одного достижения</div>
             </div>
-            <a href="#2" class="b-toolbar-popup__list-link"></a>
-        </div>
+            
+            <div class="b-toolbar-popup__list-item b-toolbar-popup__list-item_style2 b-toolbar-popup__list-item_no-border b-toolbar-popup__list-item_first">
+                <img src="asset/i/b-toolbar/userpic.jpg" alt="image" class="b-toolbar-popup__list-userpic">
+                <div class="b-toolbar-popup__list-note">
+                    <div class="b-toolbar-popup__list-text">
+                        Ваш друг <b>Константин Константинопольский</b> присоединился к вашей команде
+                    </div>
+                    <div class="b-toolbar-popup__list-info">1 час назад</div>
+                </div>
+                <a href="#2" class="b-toolbar-popup__list-link"></a>
+            </div>
+
+            <div class="b-toolbar-popup__list-item b-toolbar-popup__list-item_style2 b-toolbar-popup__list-item_state_active">
+                <img src="asset/i/b-toolbar/userpic.jpg" alt="image" class="b-toolbar-popup__list-userpic">
+                <div class="b-toolbar-popup__list-note">
+                    <div class="b-toolbar-popup__list-text">
+                        Ваш друг <b>Константин Константинопольский</b> присоединился к вашей команде
+                    </div>
+                    <div class="b-toolbar-popup__list-info">1 час назад</div>
+                </div>
+                <a href="#2" class="b-toolbar-popup__list-link"></a>
+            </div>
+            
+            <div class="b-toolbar-popup__list-item">
+                <div class="b-toolbar-popup__events-more">Раньше</div>
+            </div>
+
+            <div class="b-toolbar-popup__list-item">
+                <div class="b-toolbar-popup__user-result">
+                    <div class="b-toolbar-popup__user-result-h">
+                        <div class="b-toolbar-popup__user-result-td">
+                            <div class="b-toolbar-popup__user-result-num">
+                                18/<i>55</i>
+                            </div>
+                            <div class="b-toolbar-popup__user-result-note">трофеев</div>
+                        </div>
+                        <div class="b-toolbar-popup__user-result-td">
+                            <div class="b-toolbar-popup__user-result-num">
+                                8
+                            </div>
+                            <div class="b-toolbar-popup__user-result-note">друзей</div>
+                        </div>
+                        <div class="b-toolbar-popup__user-result-td">
+                            <div class="b-toolbar-popup__user-result-num">
+                                17 210
+                            </div>
+                            <div class="b-toolbar-popup__user-result-note">баллов</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="b-toolbar-popup__list-item b-toolbar-popup__list-item_style3 b-toolbar-popup__list-item_margin-top">
+                <div class="b-toolbar-popup__list-title">Мои достижения</div>
+                <a href="#2" class="b-toolbar-popup__list-link"></a>
+            </div>
         
-        <div class="b-toolbar-popup__list-item">
-            <div class="b-toolbar-popup__events-more">Раньше</div>
-        </div>
-
-        <div class="b-toolbar-popup__list-item">
-            <div class="b-toolbar-popup__user-result">
-                <div class="b-toolbar-popup__user-result-h">
-                    <div class="b-toolbar-popup__user-result-td">
-                        <div class="b-toolbar-popup__user-result-num">
-                            18/<i>55</i>
-                        </div>
-                        <div class="b-toolbar-popup__user-result-note">трофеев</div>
-                    </div>
-                    <div class="b-toolbar-popup__user-result-td">
-                        <div class="b-toolbar-popup__user-result-num">
-                            8
-                        </div>
-                        <div class="b-toolbar-popup__user-result-note">друзей</div>
-                    </div>
-                    <div class="b-toolbar-popup__user-result-td">
-                        <div class="b-toolbar-popup__user-result-num">
-                            17 210
-                        </div>
-                        <div class="b-toolbar-popup__user-result-note">баллов</div>
-                    </div>
-                </div>
+            <div class="b-toolbar-popup__list-item b-toolbar-popup__list-item_style3">
+                <div class="b-toolbar-popup__list-title">Командные достижения</div>
+                <a href="#2" class="b-toolbar-popup__list-link"></a>
             </div>
-        </div>
-        
-        <div class="b-toolbar-popup__list-item b-toolbar-popup__list-item_style3 b-toolbar-popup__list-item_margin-top">
-            <div class="b-toolbar-popup__list-title">Мои достижения</div>
-            <a href="#2" class="b-toolbar-popup__list-link"></a>
-        </div>
-    
-        <div class="b-toolbar-popup__list-item b-toolbar-popup__list-item_style3">
-            <div class="b-toolbar-popup__list-title">Командные достижения</div>
-            <a href="#2" class="b-toolbar-popup__list-link"></a>
+
+            <div class="b-toolbar-popup__list-item b-toolbar-popup__list-item_style3">
+                <div class="b-toolbar-popup__list-title">Настройки</div>
+                <a href="#2" class="b-toolbar-popup__list-link"></a>
+            </div>
+            <div class="b-toolbar-popup__list-item b-toolbar-popup__list-item_style3 b-toolbar-popup__list-item_margin-top">
+                <div class="b-toolbar-popup__list-title">Выход</div>
+                <a href="#2" class="b-toolbar-popup__list-link"></a>
+            </div>
+
+            <div class="b-toolbar-popup__list-item b-toolbar-popup__list-item_result2">
+                <div class="b-toolbar-popup__list-title">Задания на карте</div>
+                <div class="b-toolbar-popup__list-info">Выполнено 0 из 43. Не получено <br>ни одного достижения</div>
+            </div>
+            -->
         </div>
 
-        <div class="b-toolbar-popup__list-item b-toolbar-popup__list-item_style3">
-            <div class="b-toolbar-popup__list-title">Настройки</div>
-            <a href="#2" class="b-toolbar-popup__list-link"></a>
+        <!--
+        <div class="b-toolbar-popup__bottom">
+            <div stm-index-social></div>
         </div>
-        <div class="b-toolbar-popup__list-item b-toolbar-popup__list-item_style3 b-toolbar-popup__list-item_margin-top">
-            <div class="b-toolbar-popup__list-title">Выход</div>
-            <a href="#2" class="b-toolbar-popup__list-link"></a>
-        </div>
-
-        <div class="b-toolbar-popup__list-item b-toolbar-popup__list-item_result2">
-            <div class="b-toolbar-popup__list-title">Задания на карте</div>
-            <div class="b-toolbar-popup__list-info">Выполнено 0 из 43. Не получено <br>ни одного достижения</div>
-        </div>
+        -->
+        <i class="b-popup-queue b-popup-queue_top_left"></i>
     </div>
+    
+</dev>
 
-
-
-
-
-
-    <div class="b-toolbar-popup__bottom">
-        <div class="b-socials">
-            <a href="#3" class="b-button b-button_social">
-                <i class="b-social-icon b-social-icon_vk"></i> 
-                <span class="b-button__text">17277</span>
-            </a>
-            <a href="#3" class="b-button b-button_social b-button_social_state_active">
-                <i class="b-social-icon b-social-icon_fb"></i> 
-                <span class="b-button__text">77</span>
-            </a>
-            <a href="#3" class="b-button b-button_social">
-                <i class="b-social-icon b-social-icon_tw"></i> 
-                <span class="b-button__text">7</span>
-            </a>
-            <a href="#3" class="b-button b-button_social">
-                <i class="b-social-icon b-social-icon_plus"></i> 
-                <span class="b-button__text">Еще</span>
-            </a>
-        </div>
-    </div>
-    <i class="b-popup-queue b-popup-queue_top_left"></i>
-</div>
--->
 </div>

@@ -30,14 +30,6 @@
           </div>
         <div>
       </file>
-      <file name="style.css">
-      .b-sample {
-          position:relative;
-          z-index:1;
-          height: 800px;
-          width: 400px;
-      }
-      </file>
     </example>
     
  */

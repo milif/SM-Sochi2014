@@ -393,10 +393,3 @@
     position: relative;
     margin-left: 50%;
 }
-
-.b-bonus-popup {
-  position: absolute;
-  z-index: 10000;
-  left: 0;
-  top: 0;
-}
