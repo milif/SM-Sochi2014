@@ -29,7 +29,7 @@
 }
 /* MOD BOTTOM */
 .b-popover.mod_bottom.ng-hide {
-  margin-top: 30px;
+  margin-top: 10px;
 }
 .b-popover.mod_bottom.ng-hide-add-active,
 .b-popover.mod_bottom.ng-hide-add
@@ -39,7 +39,7 @@
 }
 /* MOD TOP */
 .b-popover.mod_top.ng-hide {
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   margin-top: auto;
 }
 .b-popover.mod_top {
