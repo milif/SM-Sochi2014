@@ -57,9 +57,7 @@ angular.module('stmIndex').directive('stmIndexToolbar', function(){
     
     return {
         replace: true,
-        scope: {
-            position: '=?'
-        },
+        scope: true,
         templateUrl: 'partials/stmIndex.directive:stmIndexToolbar:template.html',
         controller: ['$scope', '$attrs', '$element', function($scope, $attrs, $element){
             var gameMenu = $scope.gameMenu = {
@@ -68,7 +66,11 @@ angular.module('stmIndex').directive('stmIndexToolbar', function(){
                 position: [0,0]
             }
             
-            $scope.position = $scope.position || $attrs.position || 'bottom';
+            if(!$attrs.position) $scope.position = 'bottom';
+            $attrs.$observe('position', function(position){
+                $scope.position = $scope.$eval(position) || $attrs.position;
+            });
+            
             
             var menus = $scope.menus = [
                 gameMenu
