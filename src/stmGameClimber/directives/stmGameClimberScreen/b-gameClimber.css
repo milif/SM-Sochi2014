@@ -387,3 +387,17 @@
 .b-gameClimber-popup.ng-hide {
     opacity: 0;
 }
+
+
+.gameClimber-fone-bonuses {
+    position: relative;
+    margin-left: 50%;
+}
+
+.b-bonus-popup {
+  position: absolute;
+  z-index: 10000;
+  margin-left: 50%;
+  left: 0;
+  top: 0;
+}

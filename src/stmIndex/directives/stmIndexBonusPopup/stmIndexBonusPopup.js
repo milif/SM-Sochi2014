@@ -30,6 +30,14 @@
           </div>
         <div>
       </file>
+      <file name="style.css">
+      .b-sample {
+          position:relative;
+          z-index:1;
+          height: 800px;
+          width: 400px;
+      }
+      </file>
     </example>
     
  */
@@ -40,9 +48,10 @@ angular.module('stmIndex').directive('stmIndexBonusPopup', function(){
         transclude: true,
         replace: true,
         templateUrl: 'partials/stmIndex.directive:stmIndexBonusPopup:template.html',
-        controller: ['$scope', '$attrs', function($scope, $attrs){
+        controller: ['$scope', '$element', '$animate', '$timeout', '$attrs', function($scope, $element, $animate, $timeout, $attrs){
             $attrs.$observe('type', function(type){
                 $scope.type = $scope.$eval(type);
+                $element.find('.b-bonus-popup-bg').addClass('b-bonus-popup-'+type);
             });
             $attrs.$observe('bonus', function(bonus){
                 $scope.bonus = $scope.$eval(bonus);
