@@ -2,6 +2,9 @@
 /*==========================================================*/
 .b-bonus-popup {
     width: 210px;
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
 }
 
 .b-bonus-popup-head {
