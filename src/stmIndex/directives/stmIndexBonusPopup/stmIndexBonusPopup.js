@@ -10,23 +10,25 @@
  * Bonus
  *
  * @element ANY
+ * @param {Integer} bonus Кол-во бонусов
+ * @param {String} type Тип попапа (sber|mnogo|pickpoint)
  *
  * @example
     <example module="appExample">
       <file name="index.html">
         <div class="b-sample">
-          <div stm-index-bonus-popup="bonusPopupId1" bonus="500" text="Спасибо за упорство от Пикпоинта!" icon="pickpoint" position="[0,0]"></div>
-          <div stm-index-bonus-popup="bonusPopupId2" bonus="1500" text="от Много.ру!" icon="mnogo" position="[20,200]"></div>
-          <div stm-index-bonus-popup="bonusPopupId3" bonus="500" text="Спасибо за упорство от Сбербанка!" icon="sber" position="[0,400]"></div>
+          <div stm-index-bonus-popup bonus="500" type="pickpoint">
+            Спасибо за упорство от Пикпоинта!
+          </div>
+          <br>
+          <div stm-index-bonus-popup bonus="1500" type="mnogo">
+            от Много.ру!
+          </div>
+          <br>
+          <div stm-index-bonus-popup bonus="500" type="sber">
+            Спасибо за упорство от Сбербанка!
+          </div>
         <div>
-      </file>
-      <file name="style.css">
-      .b-sample {
-          position:relative;
-          z-index:1;
-          height: 600px;
-          width: 400px;
-      }
       </file>
     </example>
     
@@ -34,22 +36,16 @@
 
 angular.module('stmIndex').directive('stmIndexBonusPopup', function(){
     return {
-        scope: {
-            'stm-index-bonus-popup': '@',
-            icon: '@',
-            bonus: '@',
-            text: '@',
-            position: '='
-        },
+        scope: true,
         transclude: true,
+        replace: true,
         templateUrl: 'partials/stmIndex.directive:stmIndexBonusPopup:template.html',
-        controller: ['$scope', '$element', '$attrs', '$animate', function($scope, $element, $attrs, $animate){
-            $element.find('>div').css({
-                left: $scope.position[0] + 'px',
-                top: $scope.position[1] + 'px'
+        controller: ['$scope', '$attrs', function($scope, $attrs){
+            $attrs.$observe('type', function(type){
+                $scope.type = $scope.$eval(type);
             });
-            $scope.$on('removeBonus-'+$scope['stm-index-bonus-popup'], function(event, e){
-                $animate.leave($element);
+            $attrs.$observe('bonus', function(bonus){
+                $scope.bonus = $scope.$eval(bonus);
             });
         }]
     };

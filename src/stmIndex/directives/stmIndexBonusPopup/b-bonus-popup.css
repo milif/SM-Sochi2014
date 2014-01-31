@@ -1,9 +1,7 @@
-/* b-bonus */
+/* b-bonus-popup */
 /*==========================================================*/
 .b-bonus-popup {
-    position: absolute;
     width: 210px;
-    z-index: 10000;
 }
 
 .b-bonus-popup-head {
@@ -18,20 +16,20 @@
     border-top-right-radius: 20px;
 }
 
-.b-bonus-popup h2,
-.b-bonus-popup h3 {
+.b-bonus-popup .__title,
+.b-bonus-popup .__text {
     margin: 0;
     padding: 0;
     text-align: center;
     font-weight: normal;
     line-height: 1em;
 }
-.b-bonus-popup h2 {
+.b-bonus-popup .__title {
     padding-top: 19px;
     font-weight: bold;
     font-size: 21px;
 }
-.b-bonus-popup h3 {
+.b-bonus-popup .__text {
     padding: 9px 30px;
     font-size: 13px;
     line-height: 1.4em;
@@ -47,7 +45,7 @@
     -moz-border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
-    background: #fff url("asset/i/b-index/b-index-bonus-popup/b-index-bonus-popup.png") center 0 no-repeat;
+    background: #fff url("asset/i/b-indexBonusPopup/b-indexBonusPopup.png") center 0 no-repeat;
     /*border: 3px solid #000;*/
 }
 
@@ -59,10 +57,4 @@
 }
 .b-bonus-popup-sber {
     background-position: center 0;
-}
-
-.b-bonus-popup.ng-leave {
-    opacity: 0;
-    -webkit-transition: all 500ms cubic-bezier(0.425, 0, 0.725, 0.140);
-    transition: all 500ms cubic-bezier(0.425, 0, 0.725, 0.140);
 }
