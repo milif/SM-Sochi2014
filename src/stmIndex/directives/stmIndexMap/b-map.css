@@ -148,3 +148,34 @@
     background: url("asset/i/b-gameMap/yeti2_sheet_5x11.png") 0 0 no-repeat;
 }
 
+.b-game-item10 {
+    left: 1250px;
+    top: 2950px;
+    width: 484px;
+    height: 304px;
+    background: url("asset/i/b-gameMap/mnogo_sheet_2x36.png") 0 0 no-repeat;
+}
+
+.b-game-item11 {
+    left: 1420px;
+    top: 1000px;
+    width: 116px;
+    height: 134px;
+    background: url("asset/i/b-gameMap/paper_boy_sheet_8x9.png") 0 0 no-repeat;
+}
+
+.b-game-item12 {
+    left: 2200px;
+    top: 880px;
+    width: 350px;
+    height: 194px;
+    background: url("asset/i/b-gameMap/pick_point_sheet_2x33.png") 0 0 no-repeat;
+}
+
+.b-game-item13 {
+    left: 3350px;
+    top: 3050px;
+    width: 370px;
+    height: 310px;
+    background: url("asset/i/b-gameMap/sotmarket_sheet_2x35.png") 0 0 no-repeat;
+}
