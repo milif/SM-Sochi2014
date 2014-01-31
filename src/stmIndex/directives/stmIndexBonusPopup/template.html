@@ -1,9 +1,7 @@
-<!-- Bonus -->
-<div class="b-bonus-popup">
+<div class="b-bonus-popup g-font">
     <div class="b-bonus-popup-head">
-        <h2>+{{bonus}} бонусов</h2>
-        <h3>{{text}}</h3>
+        <div class="__title">+{{bonus}} бонусов</div>
+        <div class="__text" ng-transclude></div>
     </div>
-    <div ng-class="'b-bonus-popup-bg b-bonus-popup-'+icon"></div>
+    <div ng-class="'b-bonus-popup-bg b-bonus-popup-'+type"></div>
 </div>
-<!-- End Bonus -->

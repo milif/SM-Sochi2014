@@ -89,9 +89,7 @@ angular.module('stmIndex').directive('stmIndexBonus', function(){
             });
             
             $timeout(function(){
-                $scope.$apply(function(){
                     $scope.hide = false;
-                }); 
             }, 30);
         }]
     };
