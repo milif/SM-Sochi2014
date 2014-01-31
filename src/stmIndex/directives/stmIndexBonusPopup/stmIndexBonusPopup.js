@@ -42,7 +42,7 @@ angular.module('stmIndex').directive('stmIndexBonusPopup', function(){
         templateUrl: 'partials/stmIndex.directive:stmIndexBonusPopup:template.html',
         controller: ['$scope', '$attrs', function($scope, $attrs){
             $attrs.$observe('type', function(type){
-                $scope.type = $scope.$eval(type);
+                $scope.type = $scope.$eval(type) || type;
             });
             $attrs.$observe('bonus', function(bonus){
                 $scope.bonus = $scope.$eval(bonus);
