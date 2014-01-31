@@ -7,7 +7,6 @@
             <div class='gameClimber-player mod_frame1'></div>
             <!-- End Player -->
             <div class='gameClimber-fone-bonuses'>
-              <!-- <div stm-index-bonus="bonusId1" type="pickpoint" position="[50,11900]"></div> -->
               <div ng-repeat="bonus in bonuses" stm-index-bonus="{{bonus.id}}" type="{{bonus.type}}" position="{{bonus.position}}"><div>
             </div>            
           </div>
@@ -24,14 +23,10 @@
         </div>
         <div class="gameClimber-popup-text">Потрясающая <br> ловкость</div>
       </div>
-      <div id="bonus-popup-pickpoint" style="display:none" stm-index-bonus-popup bonus="500" type="pickpoint">
-        Спасибо за упорство от Пикпоинта!
-      </div>
-      <div id="bonus-popup-mnogo" style="display:none" stm-index-bonus-popup bonus="500" type="mnogo">
-        от Много.ру!
-      </div>
-      <div id="bonus-popup-sber" style="display:none" stm-index-bonus-popup bonus="500" type="sber">
-        Спасибо за упорство от Сбербанка!
+      <div ng-repeat="popup in popups" stm-index-popover="{{popup.id}}" position="popup.position" class="gameClimber-fone-bonuses">
+        <div stm-index-bonus-popup bonus="{{popup.bonus}}" type="{{popup.type}}">
+            {{popup.text}}
+        </div>
       </div>
       <!-- Panel -->
       <div class='gameClimber-panel' ng-class="showToolbar ? 'state_active' : ''">

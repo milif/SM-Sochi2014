@@ -7,6 +7,7 @@
  * @requires stmGameClimber.directive:stmGameClimberScreen:template.html
  * @requires stmIndex.directive:stmIndexPopup
  * @requires stmIndex.directive:stmIndexBonus
+ * @requires stmIndex.directive:stmIndexPopover
  *
  * @description
  * Экран игры Альпинист
@@ -35,7 +36,6 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
         controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs) {
           $scope.endPosition = 0;
           $scope.score = 0;
-          $scope.scoreIncrement = 0;
           $scope.popupScoreShow = false;
           $scope.popupMoodShow = false;
           $scope.energy = 100;
@@ -47,6 +47,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
           $scope.showStartPopup = true;
           $scope.showToolbar = false;
           $scope.manPositionLeft = false;
+          $scope.scoreIncrement = 500;
         }],
         compile: function (tElement) {
             return function (scope, iElement, attrs) {
@@ -94,6 +95,9 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         downPositionStop,
                         fromPosition,
                         moodPopupUsed = false,
+                        usedScoreBonus1 = false,
+                        usedScoreBonus2 = false,
+                        usedScoreBonus3 = false,
 
                         goingUp = false,
                         goingUpUsed = false,
@@ -204,36 +208,54 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                     }
 
                     function initBonuses() {
-                        $('#bonus-popup-pickpoint').hide();
-                        $('#bonus-popup-mnogo').hide();
-                        $('#bonus-popup-sber').hide();
                         scope.bonuses = [];
                         for(var i=0; i<100; i++) {
                             var type = ['mnogo', 'sber', 'pickpoint'];
                             scope.bonuses.push({
                                 id: 'bonus'+i,
                                 type: type[Math.round(2*Math.random())],
+                                bonus: 50,
                                 position: [Math.round(Math.random()) ? -135 : 50, 1000 + i*100 + Math.round(100*Math.random())]
                             });
                         }
+                        scope.popups = [];
+                        scope.$on('hidePopoverSuccess', function(e, id){
+                            for(var i=0; i<scope.popups.length;i++){
+                                if(scope.popups[i].id == id){
+                                    scope.popups.splice(i,1);
+                                    break;
+                                }
+                            }
+                        });
+                    }
+
+                    function showBonusPopup(bonus) {
+                        var text = {
+                            'mnogo': 'от Много.ру!',
+                            'sber': 'Спасибо за упорство от Сбербанка!',
+                            'pickpoint': 'Спасибо за упорство от Пикпоинта!'
+                        };
+                        scope.popups.push({
+                            id: bonus.id,
+                            type: bonus.type,
+                            bonus: bonus.bonus,
+                            text: text[bonus.type],
+                            position: [bonus.position[0] > 0 ? 100 : -400, bonus.position[1]]
+                        });
+                        $timeout(function(){
+                            scope.$broadcast('hidePopover-' + bonus.id);
+                        }, 3000);
                     }
 
                     function useBonus(index) {
-                        $('#bonus-popup-pickpoint').hide();
-                        $('#bonus-popup-mnogo').hide();
-                        $('#bonus-popup-sber').hide();
                         var bonus = scope.bonuses[index];
                         scope.$broadcast('removeBonus-'+bonus.id);
                         $timeout(function(){
                             scope.bonuses.splice(index, 1);
                         }, 500);
-                        var bonusPopupEl = $('#bonus-popup-'+bonus.type);
-                        bonusPopupEl.css('top', bonus.position[1]);
-                        bonusPopupEl.css('left', bonus.position[0] > 0 ? 100 : -400);
-                        bonusPopupEl.show();
-                        $timeout(function(){
-                            bonusPopupEl.hide();
-                        }, 500);
+                        showBonusPopup(bonus);
+                        scope.score += bonus.bonus;
+                        scope.bonusesCollected[bonus.type] += bonus.bonus;
                     }
 
                     function detectBonus() {
@@ -241,8 +263,8 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         for(var index in scope.bonuses) {
                             if(scope.bonuses.hasOwnProperty(index)) {
                                 if(Math.abs(manPosition - scope.bonuses[index].position[1]) < 30) {
-                                    if(scope.manPositionLeft && scope.bonuses[index].position[0] < 0 ||
-                                        !scope.manPositionLeft && scope.bonuses[index].position[0] > 0) {
+                                    if(scope.manPositionLeft === true && scope.bonuses[index].position[0] < 0 ||
+                                        scope.manPositionLeft === false && scope.bonuses[index].position[0] > 0) {
                                         useBonus(index);
                                     }
                                 }
@@ -253,7 +275,6 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                     function startGame() {
 
                         scope.score = 0;
-                        scope.scoreIncrement = 0;
                         scope.energy = 100;
                         scope.distance = 0;
                         scope.showStartPopup = false;
@@ -263,6 +284,14 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         attempts = 5 + Math.round(Math.random() * 5);
                         clicksCount = 0;
                         clicksRatio = 3;
+                        scope.bonusesCollected = {
+                            'mnogo': 0,
+                            'sber': 0,
+                            'pickpoint': 0
+                        };
+                        usedScoreBonus1 = false;
+                        usedScoreBonus2 = false;
+                        usedScoreBonus3 = false;
 
                         birdEl.css({
                             'top': 0,
@@ -354,10 +383,6 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                     }
 
                     function showScorePopup(score) {
-                        if(score <= scope.score) {
-                            return;
-                        }
-                        scope.scoreIncrement = score - scope.score;
                         scope.popupScoreShow = true;
                         $timeout(function() {
                             scope.popupScoreShow = false;
@@ -386,18 +411,27 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
 
                         if (ratio > 0.75) {
                             step = 2.5;
-                            showScorePopup(1500);
-                            scope.score = 1500;
+                            if(!usedScoreBonus3) {
+                                showScorePopup(scope.scoreIncrement);
+                                scope.score += scope.scoreIncrement;
+                            }
+                            usedScoreBonus3 = true;
                             clicksRatio = 5;
                         } else if (ratio > 0.50) {
                             step = 5;
-                            showScorePopup(1000);
-                            scope.score = 1000;
+                            if(!usedScoreBonus2) {
+                                showScorePopup(scope.scoreIncrement);
+                                scope.score += scope.scoreIncrement;
+                            }
+                            usedScoreBonus2 = true;
                             clicksRatio = 4;
                         } else if (ratio > 0.30) {
                             step = 7.5;
-                            showScorePopup(500);
-                            scope.score = 500;                            
+                            if(!usedScoreBonus1) {
+                                showScorePopup(scope.scoreIncrement);
+                                scope.score += scope.scoreIncrement;
+                            }
+                            usedScoreBonus1 = true;
                             clicksRatio = 5;
                         } else if (ratio > 0.20) {
                             step = 15;
