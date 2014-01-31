@@ -262,6 +262,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                     }
 
                     function detectBonus() {
+                        var manPosition = endPosition - position - 300;
                         for(var index in scope.bonuses) {
                             if(scope.bonuses.hasOwnProperty(index)) {
                                 if(Math.abs(manPosition - scope.bonuses[index].position[1]) < 250 && scope.bonuses[index].used !== true) {
