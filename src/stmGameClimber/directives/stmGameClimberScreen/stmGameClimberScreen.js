@@ -210,20 +210,20 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
 
                     function initBonuses() {
                         scope.bonuses = [];
-                        for(var i=0; i<100; i++) {
+                        for(var i=0; i<80; i++) {
                             var type = ['mnogo', 'sber', 'pickpoint'];
                             scope.bonuses.push({
                                 id: 'bonus'+i,
                                 type: type[Math.round(2*Math.random())],
                                 bonus: 50,
-                                position: [Math.round(Math.random()) ? -135 : 50, 1000 + i*100 + Math.round(100*Math.random())]
+                                position: [Math.round(Math.random()) ? -135 : 50, 1000 + i*120 + Math.round(50*Math.random())]
                             });
                         }
                         setTimeout(function() {
                             for(var index in scope.bonuses) {
                                 scope.$broadcast('removeBonus-'+scope.bonuses[index].id);
                             }
-                        }, 100);
+                        }, 1000);
                         scope.popups = [];
                         scope.$on('hidePopoverSuccess', function(e, id){
                             for(var i=0; i<scope.popups.length;i++){
@@ -246,11 +246,11 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                             type: bonus.type,
                             bonus: bonus.bonus,
                             text: text[bonus.type],
-                            position: [bonus.position[0] > 0 ? 100 + 10*Math.round(10*Math.random()) : -400 - 10*Math.round(10*Math.random()), bonus.position[1]]
+                            position: [-400 - 10*Math.round(10*Math.random()), bonus.position[1] - 100]
                         });
                         $timeout(function(){
                             scope.$broadcast('hidePopover-' + bonus.id);
-                        }, 3000);
+                        }, 2000);
                     }
 
                     function useBonus(index) {
