@@ -319,7 +319,6 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         scope.energy = 100;
                         scope.distance = 0;
                         scope.showStartPopup = false;
-                        scope.showToolbar = true;
                         moodPopupUsed = false;
                         goingUpUsed = false;
                         attempts = 5 + Math.round(Math.random() * 5);
@@ -394,6 +393,9 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                                 scope.keyTopShowStart = true;
                             }
                         }, 5000);
+                        $timeout(function(){
+                            scope.showToolbar = true;
+                        }, 1000);
                     }
 
                     function stopGame() {

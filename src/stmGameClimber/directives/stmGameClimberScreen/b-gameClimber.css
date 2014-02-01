@@ -179,6 +179,8 @@
 
 .b-gamePanel {
   bottom: -62px;
+  -webkit-transition: bottom linear 0.2s;
+  transition: bottom linear 0.2s;
 }
 .b-gamePanel.state_active {
   bottom: 0;
