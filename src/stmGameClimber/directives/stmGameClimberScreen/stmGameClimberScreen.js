@@ -9,6 +9,7 @@
  * @requires stmIndex.directive:stmIndexBonus
  * @requires stmIndex.directive:stmIndexBonusPopup
  * @requires stmIndex.directive:stmIndexPopover
+ * @requires stmIndex.directive:stmIndexButtonsPopup
  *
  * @description
  * Экран игры Альпинист
