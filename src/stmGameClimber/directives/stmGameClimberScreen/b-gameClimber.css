@@ -177,6 +177,13 @@
   background-position: -2760px -470px;
 }
 
+.b-gamePanel {
+  bottom: -62px;
+}
+.b-gamePanel.state_active {
+  bottom: 0;
+}
+
 /* b-progress-climber */
 /*==========================================================*/
 .b-progress-climber {
@@ -359,4 +366,12 @@
 .gameClimber-fone-bonuses {
     position: relative;
     margin-left: 50%;
+}
+
+.b-gameClimber .b-buttons-popup {
+  position: absolute;
+  left: 50%;
+  margin-left: -400px;
+  bottom: 100px;
+  z-index: 10000;
 }

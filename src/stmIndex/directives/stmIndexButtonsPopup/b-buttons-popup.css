@@ -1,0 +1,43 @@
+/* b-buttons-popup */
+/*==========================================================*/
+.b-buttons-popup {
+    width: 210px;
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    border: 3px solid #000;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    background: #000;
+    color:#fff;
+    font-size: 21px;
+    text-align: center;
+    margin-top: 45px;
+}
+
+.b-buttons-popup .__text {
+    padding: 20px 10px 50px 10px;
+    line-height: 1.3em;    
+}
+
+.b-buttons-popup .key {
+    color: #000;
+    font-size: 35px;
+    margin: -45px auto 0 auto;
+    width: 83px;
+    height: 82px;
+    background: url("asset/i/b-indexButtonsPopup/b-indexButtonsPopup-key.gif") 0 0 no-repeat;
+}
+.b-buttons-popup .key span {
+    display: block;
+    line-height: 80px;
+}
+
+.b-buttons-popup-space {
+    width: 376px;
+}
+.b-buttons-popup-space .key {
+    width: 249px;
+    background-position: 0 -83px;
+}
