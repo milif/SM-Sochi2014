@@ -35,49 +35,9 @@
     
  */
 
-angular.module('stmIndex').directive('stmIndexSocial', [ function(){
-    //$stmResourceSocial
-    var BUTTONS = [
-        {
-            type: 'vk',
-            count: 1234,
-            onClick: clickVK
-        },
-        {
-            type: 'fb',
-            count: 1234,
-            onClick: clickFB
-        },
-        {
-            type: 'tw',
-            count: 1234,
-            onClick: clickTW
-        },
-        {
-            type: 'gp',
-            count: 1234,
-            onClick: clickGP
-        }
-    ]; 
-    function clickVK(){
-        
-    }
-    function clickFB(){
-        
-    }
-    function clickTW(){
-        
-    }
-    function clickGP(){
-        
-    }
+angular.module('stmIndex').directive('stmIndexSocial', function(){  
     return {
-        templateUrl: 'partials/stmIndex.directive:stmIndexSocial:template.html',
-        controller: ['$attrs','$element','$scope', function($attrs, $element, $scope){
-            $attrs.$observe('buttonsCount', function(buttonsCount){
-                $scope.buttonsCount = $scope.$eval(buttonsCount) || $attrs.buttonsCount;
-            });
-            
-        }]
+        templateUrl: 'partials/stmIndex.directive:stmIndexSocial:template.html'
     };
-}]);
+});
+

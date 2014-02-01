@@ -63,7 +63,6 @@ angular.module('stmIndex').directive('stmIndexToolbar', function(){
             var gameMenu = $scope.gameMenu = {
                 id: 'game',
                 items: GAME_MENU,
-                social: true,
                 position: [0,0]
             }
             
