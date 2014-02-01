@@ -674,29 +674,6 @@
 
 /* b-gameEti-panel */
 /*==========================================================*/
-.b-gameEti-panel {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -62px;
-    z-index: 20;
-    height: 58px;
-    background-color: #fff;
-    border-top: 4px solid #000;
-    z-index: 10001;
-    -webkit-transition: bottom linear 0.2s;
-    transition: bottom linear 0.2s;    
-}
-.b-gameEti-panel.state_active {
-    bottom: 0; 
-}
-.b-gameEti-panel-h {
-    padding: 8px 20px 0 20px;
-}
-
-.b-gameEti-panel-layaut {
-    display: table;
-}
 
 /* b-gameEti-shots */
 .b-gameEti-shots {
@@ -704,6 +681,7 @@
     list-style: none;
     margin: 0;
     white-space: nowrap;
+    text-align: center; 
     padding: 0 10px;
 }
 .b-gameEti-shots-item {
@@ -717,26 +695,23 @@
     background-position: -111px 0px;
 }
 
-.b-gameEti-panel-column {
-    display: table-cell;
-    vertical-align: top;
-    white-space: nowrap;
+/* b-gameEti-shot */
+.b-gameEti-shot {
+    display: inline-block;
+    margin-right: 20px;
+    vertical-align: middle;
+}
+.b-gameEti-shot__text {
+    font-size: 24px;
+    color: #fff;
+    vertical-align: middle;
 }
 
-.b-gameEti-panel-column.mod_first {
-}
-
-.b-gameEti-panel-column.mod_second {
-    width: 100%;
-    text-align: center;
-}
-
-.b-gameEti-panel-column.mod_third {
+.b-gameEti .b-gamePanel-column.mod_third {
     font-size: 0;
 }
-
-.margin_space20 {
-    margin-right: 20px;
+.b-gamePanel-column.mod_third .b-button {
+    vertical-align: middle;
 }
 
 /* b-gameEti-birds */
