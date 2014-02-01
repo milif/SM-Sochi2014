@@ -6,6 +6,7 @@
     min-height: 100%;
     overflow: hidden;
     position:relative; 
+    top: -260px;
     z-index: 10;
     -webkit-transition: 0.5s all linear;
     transition: 0.5s all linear;
@@ -27,7 +28,6 @@
 
 /* logo */
 .b-indexPage-promo-logo {
-    opacity: 0;
     background-position: 0 -499px;
     width: 181px;
     height: 41px;
@@ -38,7 +38,6 @@
 
 /* b-indexPage-decor-title */
 .b-indexPage-decor-title {
-    opacity: 0;
     background-position: 0 -157px;
     text-indent: -9999px;
     display: inline-block;
@@ -150,9 +149,9 @@
 
 /* Animation */
 /*==========================================================*/
-.b-Page_active .b-indexPage-promo-logo,
-.b-Page_active .b-indexPage-decor-title {
-    opacity: 1;
+.b-indexPage.b-Page_active  {
+    -webkit-animation: view0 0.3s forwards;
+    animation: view1 0.3s forwards;
 }
 
 .b-indexPage-col,
@@ -180,11 +179,24 @@
 .b-map .b-map-h {
     background-position: 0px 400px;
 }
-.b-Page_active .b-map-h {
-    -webkit-animation: 'view5' .5s .1s 1 forwards;
-    animation: 'view5' .5s .1s 1 forwards;
+.b-Page_active + * .b-map-h {
+    -webkit-animation: 'view5' .5s 1.6s cubic-bezier(.81,.36,.3,1.39) forwards;
+    animation: 'view5' .5s 1.6s cubic-bezier(.81,.36,.3,1.39) forwards;
 }
-
+@-webkit-keyframes view0 {
+    0%{
+    }
+    100%{
+        top: 0;
+    }
+}
+@keyframes view0 {
+    0%{
+    }
+    100%{
+        top: 0;
+    }
+}
 @-webkit-keyframes 'view1' {
     0%{
         -webkit-transform: scale(.5);
@@ -212,45 +224,7 @@
     }
 }
 
-@-webkit-keyframes 'view2' {
-    0%{
-        -webkit-transform: scale(.5);
-        -ms-transform: scale(.5);
-        transform: scale(.5);
-    }
-    100%{
-        opacity: 1;
-        -webkit-transform: scale(1);
-        -ms-transform: scale(1);
-        transform: scale(1);
-    }
-}
-@keyframes 'view2' {
-    0%{
-        -webkit-transform: scale(.5);
-        -ms-transform: scale(.5);
-        transform: scale(.5);
-    }
-    100%{
-        opacity: 1;
-        -webkit-transform: scale(1);
-        -ms-transform: scale(1);
-        transform: scale(1);
-    }
-}
-@-webkit-keyframes 'view3' {
-    0%{
-        -webkit-transform: scale(.5);
-        -ms-transform: scale(.5);
-        transform: scale(.5);
-    }
-    100%{
-        opacity: 1;
-        -webkit-transform: scale(1);
-        -ms-transform: scale(1);
-        transform: scale(1);
-    }
-}
+
 @keyframes 'view4' {
     0%{
         opacity: 0;

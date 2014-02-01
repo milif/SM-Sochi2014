@@ -72,6 +72,16 @@ angular.module('stm').directive('stmPreload', ['$compile', function($compile){
                             $animate.leave(maskEl);
                             $element
                                 .css('overflow', $element.data('_overflow'));
+                        /**
+                           * @ngdoc event
+                           * @name stm.directive:stmPreload#loaded
+                           * @eventOf stm.directive:stmPreload
+                           * @eventType emit on parent scope
+                           * @description
+                           * Окончание загрузки 
+                           * 
+                           */                                
+                            $scope.$emit('loaded');
                         });                            
                     }
                 }
