@@ -196,8 +196,9 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                                                     .off(keyEvents)
                                                     .off(blockUpEvents)
                                                     .on(keyEvents);
-                                                blockUI = false;                                                
+                                                blockUI = false;
                                                 goingUp = false;
+                                                _down(300, true);
                                             }
                                         }, 50, 100);
                                     }
@@ -297,18 +298,18 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                                 }
                             }
                         }
-                        if(missedBonuses > 10) {
+                        if(missedBonuses > 10 && scope.popupMoodShow === false && goingUp === false) {
                             missedBonuses = 0;
                             if(scope.manPositionLeft === true) {
                                 scope.popupButtonRightShow = true;
                                 $timeout(function(){
                                     scope.popupButtonRightShow = false;
-                                }, 2000);
+                                }, 1000);
                             } else {
                                 scope.popupButtonLeftShow = true;
                                 $timeout(function(){
                                     scope.popupButtonLeftShow = false;
-                                }, 2000);
+                                }, 1000);
                             }
                         }
                     }
@@ -319,7 +320,6 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         scope.energy = 100;
                         scope.distance = 0;
                         scope.showStartPopup = false;
-                        scope.showToolbar = true;
                         moodPopupUsed = false;
                         goingUpUsed = false;
                         attempts = 5 + Math.round(Math.random() * 5);
@@ -394,6 +394,9 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                                 scope.keyTopShowStart = true;
                             }
                         }, 5000);
+                        $timeout(function(){
+                            scope.showToolbar = true;
+                        }, 1000);
                     }
 
                     function stopGame() {
@@ -457,7 +460,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         scope.popupMoodShow = true;
                         $timeout(function() {
                             scope.popupMoodShow = false;
-                        }, 7000);
+                        }, 5000);
                     }
 
                     function _up() {
@@ -529,9 +532,15 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         _stop();
                         canBreakDown = _canBreakDown;
                         fromPosition = position;
-                        goingDownButtonPopupTimeout = $timeout(function(){
-                            scope.keyTopShow = true;
-                        }, 1000);
+
+                        var ratio = (position - startPosition) / (endPosition - startPosition);
+                        if(ratio > 0.3) {
+                            goingDownButtonPopupTimeout = $timeout(function(){
+                                scope.keyTopShow = true;
+                            }, 2000);
+                        } else {
+                            scope.keyTopShow = false;
+                        }
                         moveInterval = $interval(function () {
                             position -= 8;
                             if (!canBreakDown && downPositionStop > position) {
