@@ -1,29 +1,19 @@
 <!-- stmIndexSocial -->
 <div class="b-socials">
-    <a href="#3" class="b-button b-button_social">
-        <i class="b-social-icon b-social-icon_vk"></i> 
-        <span class="b-button__text">17277</span>
-    </a>
-    <a href="#3" class="b-button b-button_social b-button_social_state_active">
-        <i class="b-social-icon b-social-icon_fb"></i> 
-        <span class="b-button__text">77</span>
-    </a>
-    <a href="#3" class="b-button b-button_social">
-        <i class="b-social-icon b-social-icon_tw"></i> 
-        <span class="b-button__text">7</span>
-    </a>
+    <span ng-repeat="button in buttons" class="b-button b-button_social">
+        <i ng-class="'b-social-icon_' + button.type" class="b-social-icon"></i> 
+        <span class="b-button__text">{{socials[button.type]}}</span>
+    </span>
+    <!--
     <a href="#3" class="b-button b-button_social">
         <i class="b-social-icon b-social-icon_plus"></i> 
         <span class="b-button__text">Еще</span>
-    </a>
-    <a href="#3" class="b-button b-button_social">
-        <i class="b-social-icon b-social-icon_ok"></i> 
-        <span class="b-button__text">3</span>
     </a>
     <a href="#3" class="b-button b-button_social">
         <i class="b-social-icon b-social-icon_gp"></i> 
         <span class="b-button__text">
             <i class="b-social-icon b-social-icon_heart"></i> 
         </span>
-    </a>
+    </a>    
+    -->
 </div>

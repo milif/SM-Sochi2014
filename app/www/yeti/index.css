@@ -4,3 +4,7 @@ html,body {
   padding:0;
   overflow: hidden;
 }
+body,
+body > .b-preload {
+    background-color: #86e4fe;
+}

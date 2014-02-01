@@ -440,6 +440,7 @@
 /* button socials */
 /*==========================================================*/
 .b-button_social {
+    cursor: pointer;
     margin-left: 6px;
     padding: 0 0 0 6px;
     width: 62px;
@@ -514,9 +515,15 @@
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 0;
+    bottom: -60px;
     z-index: 20;
     height: 60px;
+    -webkit-transition: 0.2s linear all;
+    transition: 0.2s linear all; 
+}
+/*STATE ACTIVE*/
+.b-gamePanel.state_active {
+    bottom: 0;
 }
 .b-gamePanel:before {
     content: '';

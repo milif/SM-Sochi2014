@@ -37,7 +37,10 @@ module.exports = function(grunt) {
                     // 'directive:*',
                     //'*'                                                 
                 ],
-                includeAsset: true  
+                includeAsset: true ,
+                includeTemplates: [
+                    '*'
+                ] 
             },
             {  
                 name: 'stmGameEti', // Module name
@@ -45,7 +48,10 @@ module.exports = function(grunt) {
                     'directive:stmGameEtiScreen',
                     'stm.directive:stmPreload'                                            
                 ],
-                includeAsset: true  
+                includeAsset: true,
+                includeTemplates: [
+                    '*'
+                ] 
             },
             {  
                 name: 'stmGameClimber', // Module name
@@ -53,7 +59,10 @@ module.exports = function(grunt) {
                     'directive:stmGameClimberScreen',
                     'stm.directive:stmPreload'                                              
                 ],
-                includeAsset: true
+                includeAsset: true,
+                includeTemplates: [
+                    '*'
+                ]
             },
             {  
                 name: 'stmGameBiathlon', // Module name
@@ -61,7 +70,10 @@ module.exports = function(grunt) {
                     'directive:stmGameBiathlonScreen',
                     'stm.directive:stmPreload'                                              
                 ],
-                includeAsset: true   
+                includeAsset: true,
+                includeTemplates: [
+                    '*'
+                ]   
             }
             
         ],
