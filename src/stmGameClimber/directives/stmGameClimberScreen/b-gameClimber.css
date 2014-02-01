@@ -183,11 +183,14 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: -62px;
   z-index: 20;
   height: 58px;
   background-color: #fff;
   border-top: 4px solid #000;
+}
+.gameClimber-panel.state_active {
+    bottom: 0; 
 }
 
 .gameClimber-panel-h {
