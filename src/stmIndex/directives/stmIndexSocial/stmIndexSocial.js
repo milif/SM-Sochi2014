@@ -35,9 +35,36 @@
     
  */
 
-angular.module('stmIndex').directive('stmIndexSocial', function(){  
+angular.module('stmIndex').directive('stmIndexSocial', ['$stmStorage', function(){ 
+    var BUTTONS = {
+        {
+            type: 'vk',
+            count: 1234,
+            onClick: clickVK
+        },
+        {
+            type: 'fb',
+            count: 1234,
+            onClick: clickFB
+        },
+        {
+            type: 'tw',
+            count: 1234,
+            onClick: clickTW
+        },
+        {
+            type: 'gp',
+            count: 1234,
+            onClick: clickGP
+        }
+    ]; 
     return {
-        templateUrl: 'partials/stmIndex.directive:stmIndexSocial:template.html'
+        templateUrl: 'partials/stmIndex.directive:stmIndexSocial:template.html',
+        controller: ['$attrs','$element', function($attrs, $element){
+            $attrs.$observe('buttonsCount', function(buttonsCount){
+                $scope.buttonsCount = $scope.$eval(buttonsCount) || $attrs.buttonsCount;
+            });
+            
+        }]
     };
-});
-
+}]);
