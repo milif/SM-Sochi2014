@@ -31,7 +31,7 @@
         
         <div class="b-toolbar-popup__list">
             
-            <div ng-repeat="item in menu.items" ng-class="$first ? 'b-toolbar-popup__list-item_margin-top' : $last ? 'b-toolbar-popup__list-item_margin-bottom' : ''" class="b-toolbar-popup__list-item b-toolbar-popup__list-item_style1 b-toolbar-popup__list-item">
+            <div ng-repeat="item in menu.items" ng-class="$first ? 'b-toolbar-popup__list-item_margin-top' : ($last) ? 'b-toolbar-popup__list-item_margin-bottom' : ''" class="b-toolbar-popup__list-item b-toolbar-popup__list-item_style1 b-toolbar-popup__list-item">
                 <img src="{{item.icon}}" alt="image" class="b-toolbar-popup__list-userpic">
                 <div class="b-toolbar-popup__list-note">
                     <div class="b-toolbar-popup__list-title">{{item.title}}</div>
@@ -131,11 +131,11 @@
             -->
         </div>
 
-        <!--
-        <div class="b-toolbar-popup__bottom">
-            <div stm-index-social></div>
+        
+        <div ng-if="menu.social" class="b-toolbar-popup__bottom">
+            <div buttons-count="4" stm-index-social></div>
         </div>
-        -->
+        
         <i class="b-popup-queue b-popup-queue_top_left"></i>
     </div>
     
