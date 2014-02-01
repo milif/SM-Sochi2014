@@ -440,6 +440,7 @@
 /* button socials */
 /*==========================================================*/
 .b-button_social {
+    cursor: pointer;
     margin-left: 6px;
     padding: 0 0 0 6px;
     width: 62px;

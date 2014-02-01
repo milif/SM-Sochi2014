@@ -35,9 +35,69 @@
     
  */
 
-angular.module('stmIndex').directive('stmIndexSocial', function(){  
+angular.module('stmIndex')
+.directive('stmIndexSocial', ['Social', function(Social){
+    var socials = Social.get();
+    var BUTTONS = [
+        {
+            type: 'vk',
+            count: socials.vk,
+            onClick: clickVK
+        },
+        {
+            type: 'fb',
+            count: socials.fb,
+            onClick: clickFB
+        },
+        {
+            type: 'tw',
+            count: 1234,
+            onClick: clickTW
+        },
+        {
+            type: 'gp',
+            count: socials.gp,
+            onClick: clickGP
+        },
+        {
+            type: 'ok',
+            count: socials.ok,
+            onClick: clickOK
+        }
+    ]; 
+    function clickVK(){
+        
+    }
+    function clickFB(){
+        
+    }
+    function clickTW(){
+        
+    }
+    function clickGP(){
+        
+    }
+    function clickOK(){
+        
+    }
     return {
-        templateUrl: 'partials/stmIndex.directive:stmIndexSocial:template.html'
+        templateUrl: 'partials/stmIndex.directive:stmIndexSocial:template.html',
+        controller: ['$attrs','$element','$scope', function($attrs, $element, $scope){
+            $attrs.$observe('buttonsCount', function(buttonsCount){
+                $scope.buttonsCount = $scope.$eval(buttonsCount) || $attrs.buttonsCount;
+                var buttons = [];
+                for(var i=0;i<buttonsCount;i++){
+                    buttons.push(BUTTONS[i]);
+                }
+                $scope.buttons = buttons;
+            });
+            
+        }]
     };
-});
+}])
+.factory('Social', ['$resource', function($resource){
+    return $resource('api/socials.php',{},{
+    });
+}]);
+
 

@@ -36,19 +36,19 @@ angular.module('stmIndex').directive('stmIndexToolbar', function(){
         {
             title: "Альпинист",
             desc: "Стремление и упорство приносят результат!",
-            icon: "asset/i/b-toolbar/userpic.jpg",
+            icon: "asset/i/b-toolbar/alp.png",
             url: "climber/"
         },
         {
             title: "Биатлон",
             desc: "Точность и скорость выстрелов - залог успеха.",
-            icon: "asset/i/b-toolbar/userpic.jpg",
+            icon: "asset/i/b-toolbar/biatlon.png",
             url: "biathlon/"
         },        
         {
             title: "Фотоохота на Йети",
             desc: "Говорят, Йети не любят фотографироваться.",
-            icon: "asset/i/b-toolbar/userpic.jpg",
+            icon: "asset/i/b-toolbar/yeti.png",
             url: "yeti/"
         }
     ];
@@ -63,6 +63,7 @@ angular.module('stmIndex').directive('stmIndexToolbar', function(){
             var gameMenu = $scope.gameMenu = {
                 id: 'game',
                 items: GAME_MENU,
+                social: true,
                 position: [0,0]
             }
             

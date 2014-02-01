@@ -2,6 +2,7 @@
  * @requires jquery/jquery.js
  * @requires angular/angular.js
  * @requires angular/angular-animate.js
+ * @requires angular/angular-resource.js 
  *
  * @requires stm:bootstrap.css
  *
@@ -12,7 +13,7 @@
  * Базовый модуль приложения
  */
 
-angular.module('stm',['ngAnimate'])
+angular.module('stm',['ngAnimate','ngResource'])
         .config(['$sceProvider', '$provide', '$locationProvider', function($sceProvider, $provide, $locationProvider){
             $sceProvider.enabled(false);
             $locationProvider.html5Mode(true);

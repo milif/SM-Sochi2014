@@ -1,3 +1,10 @@
+/* Preload */
+/*==========================================================*/
+.__nothing {
+    background: url(asset/i/b-toolbar/alp.png);
+    background: url(asset/i/b-toolbar/biatlon.png);
+    background: url(asset/i/b-toolbar/yeti.png);
+}
 /*==========================================================*/
 /* Toolbar */
 /*==========================================================*/
