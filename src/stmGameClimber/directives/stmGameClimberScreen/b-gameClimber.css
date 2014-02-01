@@ -177,6 +177,13 @@
   background-position: -2760px -470px;
 }
 
+.b-gamePanel {
+  bottom: -62px;
+}
+.b-gamePanel.state_active {
+  bottom: 0;
+}
+
 /* b-progress-climber */
 /*==========================================================*/
 .b-progress-climber {
