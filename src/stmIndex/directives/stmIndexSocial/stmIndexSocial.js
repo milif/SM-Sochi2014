@@ -37,9 +37,6 @@
 
 angular.module('stmIndex')
 .directive('stmIndexSocial', ['Social', function(Social){
-    var socials = Social.get();
-    socials.vk = '334';
-    Social.get();
     var BUTTONS = [
         {
             type: 'vk',
@@ -80,7 +77,7 @@ angular.module('stmIndex')
     return {
         templateUrl: 'partials/stmIndex.directive:stmIndexSocial:template.html',
         controller: ['$attrs','$element','$scope', function($attrs, $element, $scope){
-            $scope.socials = socials;
+            $scope.socials = Social.get();
             $attrs.$observe('buttonsCount', function(buttonsCount){
                 $scope.buttonsCount = $scope.$eval(buttonsCount) || $attrs.buttonsCount;
                 var buttons = [];
@@ -88,15 +85,12 @@ angular.module('stmIndex')
                     buttons.push(BUTTONS[i]);
                 }
                 $scope.buttons = buttons;
-            });
-            
+            });            
         }]
     };
 }])
 .factory('Social', ['$resource', function($resource){
-    return $resource('api/socials.php',{},{
-        cache: true
-    });
+    return $resource('api/socials.php');
 }]);
 
 

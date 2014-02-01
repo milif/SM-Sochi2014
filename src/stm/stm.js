@@ -14,9 +14,10 @@
  */
 
 angular.module('stm',['ngAnimate','ngResource'])
-        .config(['$sceProvider', '$provide', '$locationProvider', function($sceProvider, $provide, $locationProvider){
+        .config(['$sceProvider', '$provide', '$locationProvider', '$httpProvider', function($sceProvider, $provide, $locationProvider, $httpProvider){
             $sceProvider.enabled(false);
             $locationProvider.html5Mode(true);
+            $httpProvider.defaults.cache = true;
         }])
         .run(['$location', '$rootScope', function($location, $rootScope){
             var baseUrl = $location.absUrl();
