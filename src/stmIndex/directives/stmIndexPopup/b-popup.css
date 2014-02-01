@@ -67,7 +67,9 @@
   line-height: 56px;
 }
 .b-button.mod_popup-footer-map .b-button__text {
-  font-size: 12px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #000;
 }
 
 .b-popup-footer-share {

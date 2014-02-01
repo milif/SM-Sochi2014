@@ -149,32 +149,27 @@
 
 </div>
 <!-- Panel -->
-<div class='b-gameEti-panel' ng-class="showToolbar ? 'state_active' : ''">
-    <div class='b-gameEti-panel-h'>
-        <div class='b-gameEti-panel-layaut'>
-            <div class='b-gameEti-panel-column mod_first'>
-                <span class="b-button b-button_size_medium b-button_scheme_white">
-                    <span class="b-icons b-icons_arrow">
-                        <span class="b-icons__item"></span>
-                    </span>
-                    <span class="b-button__text">На карту</span>
-                    <a class="b-button__link" href="../map/"></a>
-                </span>
+<div class='b-gamePanel' ng-class="showToolbar ? 'state_active' : ''">
+    <div class='b-gamePanel-h'>
+        <div class='b-gamePanel-layaut'>
+            <div class='b-gamePanel-column mod_first'>
+                <div class="b-button b-button_map">
+                    <span class='b-button__text'>На карту</span>
+                    <a class='b-button__link' href='../map/'></a>
+                </div>
             </div>
-            <div class='b-gameEti-panel-column mod_second'>
+            <div class='b-gamePanel-column mod_second'>
                 <ul class="b-gameEti-shots">
                     <li ng-repeat="n in [] | range:attemptsCount" class="b-gameEti-shots-item" ng-class="attempts < attemptsCount - n ? 'state_active' : ''"></li>
                 </ul>
             </div>
-            <div class='b-gameEti-panel-column mod_third'>
-                <span class="b-button b-button_size_medium2 b-button_scheme_white margin_space20">
+            <div class='b-gamePanel-column mod_third'>
+                <div class="b-gameEti-shot">
                     <span class="b-icons b-icons_photo">
                         <span class="b-icons__item"></span>
                     </span>
-                    <span class="b-button__text">{{ineti}}</span>
-                    <a class="b-button__link" href="#"></a>
-                </span>
-
+                    <span class="b-gameEti-shot__text">{{ineti}}</span>
+                </div>
                 <span class="b-button b-button_size_medium2 b-button_scheme_yellow">
                     <span class="b-icons b-icons_star">
                         <span class="b-icons__item"></span>
