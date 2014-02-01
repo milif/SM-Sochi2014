@@ -14,10 +14,23 @@
     font-size: 21px;
     text-align: center;
     margin-top: 45px;
+
+    -webkit-transition:all linear 1s;
+    transition:all linear 1s;
+}
+
+.b-buttons-popup.ng-hide-add,
+.b-buttons-popup.ng-hide-remove {
+    display:block!important;
+}
+
+.b-buttons-popup.ng-hide {
+    opacity:0;
+    transition-delay: 1000ms;
 }
 
 .b-buttons-popup .__text {
-    padding: 20px 10px 50px 10px;
+    padding: 20px 10px 20px 10px;
     line-height: 1.3em;    
 }
 
@@ -40,4 +53,28 @@
 .b-buttons-popup-space .key {
     width: 249px;
     background-position: 0 -83px;
+}
+
+.b-buttons-popup-bottom .key span,
+.b-buttons-popup-top .key span,
+.b-buttons-popup-right .key span,
+.b-buttons-popup-left .key span {
+    position: relative;
+    top: 20px;
+    left: 22px;
+    width: 37px;
+    height: 37px;
+    background: url("asset/i/b-indexButtonsPopup/b-indexButtonsPopup-key.gif") -83px 0 no-repeat;
+}
+.b-buttons-popup-right .key span {
+    background-position: -83px 0;
+}
+.b-buttons-popup-left .key span {
+    background-position: -120px 0;
+}
+.b-buttons-popup-top .key span {
+    background-position: -157px 0;
+}
+.b-buttons-popup-bottom .key span {
+    background-position: -194px 0;
 }
