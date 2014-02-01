@@ -177,53 +177,16 @@
   background-position: -2760px -470px;
 }
 
-
-/* gameClimber-panel */
-.gameClimber-panel {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -62px;
-  z-index: 20;
-  height: 58px;
-  background-color: #fff;
-  border-top: 4px solid #000;
-}
-.gameClimber-panel.state_active {
-    bottom: 0; 
-}
-
-.gameClimber-panel-h {
-  padding: 8px 20px 0 20px;
-}
-
-.gameClimber-panel-layaut {
-  display: table;
-}
-
-.gameClimber-panel-column {
-  display: table-cell;
-  vertical-align: top;
-  white-space: nowrap;
-}
-
-.gameClimber-panel-column.mod_first {
-}
-
-.gameClimber-panel-column.mod_second {
-  width: 100%;
-}
-
-.gameClimber-panel-column.mod_third {
-}
-
 /* b-progress-climber */
 /*==========================================================*/
 .b-progress-climber {
-  margin-bottom: 4px;
+  margin-top: 8px;
   position: relative;
   margin-left: 60px;
   margin-right: 60px;
+}
+.b-progress-climber:first-child {
+  margin-top: 0px;
 }
 
 .b-progress-climber-icon {
@@ -240,12 +203,13 @@
   line-height: 12px;
   font-weight: bold;
   width: 56px;
+  color: #fff;
 }
 
 /* Progress bars */
 /*==========================================================*/
 .b-progressbar {
-  height: 18px;
+  height: 16px;
   background-color: #fff;
   position: relative;
   overflow: hidden;
@@ -267,15 +231,15 @@
   bottom: 0;
   left: 0;
   content: '';
-  border: 3px solid #000;
+  border: 2px solid #fff;
   border-radius: 3px;
   z-index: 10;
 }
 .b-progressbar__line {
   position: absolute;
   left: 0px;
-  top: 4px;
-  bottom: 3px;
+  top: 2px;
+  bottom: 2px;
   z-index: 5;
 }
 .b-progressbar_scheme_red .b-progressbar__line {
