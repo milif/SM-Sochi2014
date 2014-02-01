@@ -13,6 +13,7 @@
 /*==========================================================*/
 .b-gameBiathlonTrack-h {
     position: absolute;
+    z-index: 10;
 }
 .b-gameBiathlonTrack {
     background: url(asset/i/b-gameBiathlon/b-gameBiathlon-track.png) 0 0 no-repeat;
@@ -21,12 +22,26 @@
     width: 100%;
     height: 100%;
 }
+.b-gameBiathlonTrack-h:before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    z-index: -10;
+    top: 400px;
+    left: 0;
+    background: url(asset/i/b-gameBiathlon/b-gameBiathlon-track.png) 0 0 no-repeat;
+}
 .b-gameBiathlonTrack-h.screen_1 {
     width: 3000px;
     height: 991px;
 }
 .b-gameBiathlonTrack-h.screen_1 .b-gameBiathlonTrack {
     background-position: 0px -3322px;
+}
+.b-gameBiathlonTrack-h.screen_1:before {
+    background-position: 0px -3322px;
+
 }
 .b-gameBiathlonTrack-h.screen_2 {
     width: 3012px;
@@ -35,11 +50,18 @@
 .b-gameBiathlonTrack-h.screen_2 .b-gameBiathlonTrack {
     background-position: -3013px -958px;
 }
+.b-gameBiathlonTrack-h.screen_2:before {
+    background-position: -3013px -958px;
+}
+
 .b-gameBiathlonTrack-h.screen_3 {
     width: 2985px;
     height: 3302px;
 }
 .b-gameBiathlonTrack-h.screen_3 .b-gameBiathlonTrack {
+    background-position: -4px 0px;
+}
+.b-gameBiathlonTrack-h.screen_3:before {
     background-position: -4px 0px;
 }
 .b-gameBiathlonTrack-h.screen_4 {
@@ -49,11 +71,18 @@
 .b-gameBiathlonTrack-h.screen_4 .b-gameBiathlonTrack {
     background-position: -5px -4333px;
 }
+.b-gameBiathlonTrack-h.screen_4:before {
+    background-position: -5px -4333px;
+}
+
 .b-gameBiathlonTrack-h.screen_5 {
     width: 3018px;
     height: 938px;
 }
 .b-gameBiathlonTrack-h.screen_5 .b-gameBiathlonTrack {
+    background-position: -3013px 0px;
+}
+.b-gameBiathlonTrack-h.screen_5:before {
     background-position: -3013px 0px;
 }
 .b-gameEti-popup {
@@ -233,6 +262,12 @@
     width: 199px;
     margin-left: -99.5px;
     bottom: -10px;
+}
+
+.b-biathlon-men_seat {
+    background-position: -236px 0px;
+    width: 209px;
+    height: 157px;
 }
 
 .b-biathlon-men_shoot {
