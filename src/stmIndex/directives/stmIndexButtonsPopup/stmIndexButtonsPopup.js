@@ -10,7 +10,7 @@
  * Buttons
  *
  * @element ANY
- * @param {String} key Клавиша (left|right|top|bottom|A-Z)
+ * @param {String} key Клавиша (mod_space|left|right|top|bottom|A-Z)
  *
  * @example
     <example module="appExample">
@@ -20,6 +20,7 @@
           <div stm-index-buttons-popup key="left">Жми стрелку <b>Влево</b>,<br>чтобы ускорится</div>
           <div stm-index-buttons-popup key="top">Жми стрелку <b>Вверх</b>,<br>чтобы ускорится</div>
           <div stm-index-buttons-popup key="bottom">Жми стрелку <b>Вниз</b>,<br>чтобы ускорится</div>
+          <div stm-index-buttons-popup key="mod_space">Жми <b>Пробел</b>,<br>чтобы ускорится</div>
           <div stm-index-buttons-popup key="F">Жми <b>F</b>, чтобы ...</div>
         <div>
       </file>
@@ -37,6 +38,9 @@ angular.module('stmIndex').directive('stmIndexButtonsPopup', function(){
             $attrs.$observe('key', function(key){
                 $scope.key = $scope.$eval(key) || key;
                 switch($scope.key) {
+                    case 'mod_space':
+                        $scope.keytext = '&nbsp;';
+                        break;
                     case 'left':
                         $scope.keytext = '&#8592;';
                         break;

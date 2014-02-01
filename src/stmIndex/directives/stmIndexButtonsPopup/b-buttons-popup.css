@@ -13,6 +13,7 @@
     color:#fff;
     font-size: 21px;
     text-align: center;
+    margin-top: 45px;
 }
 
 .b-buttons-popup .__text {
@@ -31,4 +32,12 @@
 .b-buttons-popup .key span {
     display: block;
     line-height: 80px;
+}
+
+.b-buttons-popup-space {
+    width: 376px;
+}
+.b-buttons-popup-space .key {
+    width: 249px;
+    background-position: 0 -83px;
 }

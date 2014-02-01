@@ -367,3 +367,11 @@
     position: relative;
     margin-left: 50%;
 }
+
+.b-buttons-popup {
+  position: absolute;
+  left: 50%;
+  margin-left: -400px;
+  bottom: 100px;
+  z-index: 10000;
+}
