@@ -62,7 +62,8 @@ angular.module('stmIndexPage').directive('stmIndexPageScreen', function(){
             function showMap(e){
                 $scope.pageStyle = {
                     marginTop: -pageEl.height(),
-                    minWidth: 0
+                    minWidth: 0,
+                    transitionDuration: '0.5s'
                 };
                 $scope.mapStyle = {
                     marginTop: 0,
