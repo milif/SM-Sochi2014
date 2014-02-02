@@ -79,3 +79,34 @@
   text-transform: uppercase;
   text-align: center;
 }
+
+/* decor */
+.b-map-decor {
+    background: url("asset/i/b-gameMap/b-map-decor.png") 0 0 no-repeat;
+    position: absolute;
+    z-index: 100;
+}
+
+.b-map-decor.mod_cloud1 {
+    background-position: 0px 0px;
+    width: 521px;
+    height: 125px;
+    top: 140px;
+    left: 970px;
+}
+
+.b-map-decor.mod_cloud2 {
+    background-position: 0px -145px;
+    width: 210px;
+    height: 69px;
+    top: 50px;
+    left: 1500px;
+}
+
+.b-map-decor.mod_tree {
+    background-position: -230px -145px;
+    width: 47px;
+    height: 46px;
+    left: 96px;
+    top: 720px;
+}
