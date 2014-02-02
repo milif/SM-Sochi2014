@@ -7,14 +7,15 @@
  * @requires stmIndex.directive:stmIndexSocial:template.html
  * 
  * @description
- * Страница toolbar
+ * Панель соц. кнопок
  *
  * @element ANY
+ * @param {Integer} buttons-count Число кнопок на панели
  *
  * @example
     <example module="appExample">
       <file name="index.html">
-         <div stm-index-social class="example-screen"></div>
+         <div  stm-index-social class="example-screen"></div>
       </file>
       <file name="style.css">
          .in-plunkr, .in-plunkr body, .in-plunkr .well {

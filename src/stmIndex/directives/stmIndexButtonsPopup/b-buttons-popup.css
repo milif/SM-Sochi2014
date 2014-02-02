@@ -2,9 +2,6 @@
 /*==========================================================*/
 .b-buttons-popup {
     width: 210px;
-    opacity: 1;
-    -webkit-transform: scale(1);
-    transform: scale(1);
     border: 3px solid #000;
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
@@ -14,9 +11,6 @@
     font-size: 21px;
     text-align: center;
     margin-top: 45px;
-
-    -webkit-transition:all linear 1s;
-    transition:all linear 1s;
 }
 
 .b-buttons-popup.ng-hide-add,

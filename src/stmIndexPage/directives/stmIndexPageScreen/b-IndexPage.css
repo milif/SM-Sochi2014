@@ -155,38 +155,31 @@
     transition: 0.2s all linear;
 }
 
-.b-indexPage-col,
-.b-indexPage-button {
-    opacity: 0;
-}
-
 .b-Page_active .b-indexPage-col:nth-child(1) {
-    -webkit-animation: view1 .5s .15s 1 forwards;
-    animation: view1 .5s .15s 1 forwards;
+    -webkit-animation: view1 .5s .15s 1 backwards;
+    animation: view1 .5s .15s 1 backwards;
 }
 .b-Page_active .b-indexPage-col:nth-child(2) {
-    -webkit-animation: view1 .5s .55s 1 forwards;
-    animation: view1 .5s .55s 1 forwards;
+    -webkit-animation: view1 .5s .55s 1 backwards;
+    animation: view1 .5s .55s 1 backwards;
 }
 .b-Page_active .b-indexPage-col:nth-child(3) {
-    -webkit-animation: view1 .5s 1.1s 1 forwards;
-    animation: view1 .5s 1.1s 1 forwards;
+    -webkit-animation: view1 .5s 1.1s 1 backwards;
+    animation: view1 .5s 1.1s 1 backwards;
 }
 .b-Page_active .b-indexPage-button {
-    -webkit-animation: view4 .5s 2.6s 1 forwards;
-    animation: view4 .5s 2.6s 1 forwards;
+    -webkit-animation: view4 .5s 2.6s 1 backwards;
+    animation: view4 .5s 2.6s 1 backwards;
 }
 
-.b-map .b-map-h {
-    background-position: 0px 400px;
-}
 .b-Page_active + * .b-map-h {
-    -webkit-animation: view5 .5s 1.6s cubic-bezier(.81,.36,.3,1.39) forwards;
-    animation: view5 .5s 1.6s cubic-bezier(.81,.36,.3,1.39) forwards;
+    -webkit-animation: view5 .5s 1.6s cubic-bezier(.81,.36,.3,1.39) backwards;
+    animation: view5 .5s 1.6s cubic-bezier(.81,.36,.3,1.39) backwards;
 }
 
 @-webkit-keyframes view1 {
     0%{
+        opacity: 0;
         -webkit-transform: scale(.5);
     }
     100%{
@@ -196,6 +189,7 @@
 }
 @keyframes view1 {
     0%{
+        opacity: 0;
         transform: scale(.5);
     }
     100%{
@@ -223,6 +217,7 @@
 }
 @keyframes view5 {
     0%{
+        background-position: 0px 400px;
     }
     100%{
         background-position: 0px 0px;
@@ -230,6 +225,7 @@
 }
 @-webkit-keyframes view5 {
     0%{
+        background-position: 0px 400px;
     }
     100%{
         background-position: 0px 0px;

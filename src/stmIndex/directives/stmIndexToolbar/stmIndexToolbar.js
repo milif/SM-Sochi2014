@@ -19,7 +19,7 @@
  * @example
     <example module="appExample">
       <file name="index.html">
-         <div stm-index-toolbar></div>
+         <div position="bottom" stm-index-toolbar></div>
       </file>
       <file name="style.css">
          .in-plunkr, .in-plunkr body, .in-plunkr .well {
