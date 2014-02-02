@@ -64,10 +64,9 @@
 
 <div stm-index-popup class="b-gameBiathlon-popup" ng-show="showStartPopup">
     <div class='b-popup-title'>
-        Говорят, что йети не любят<br>фотографироваться, но это не так
+        Биатлон &mdash; точность и скорость<br>для полной победы
     </div>
-    <div class='b-popup-note'>Заметь и успей сфотографировать йети. Чтобы сделать снимок<br>наведи фокус на йети и нажми
-        <b>левую кнопку мыши</b>.<br>Можно допустить только <b>5</b> промахов
+    <div class='b-popup-note'>Не дай йети догнать тебя, будь быстр и точен!<br>Для разгона нажимай <b><i>Вправо</i></b>, для торможения &mdash; <b><i>Влево</i></b><br>для стрельбы и прыжков нажимай <b><i>Пробел</i></b>.
     </div>
     <div class='b-popup-button'>
         <div class='b-button button_size_big b-button_scheme_yellow'>
@@ -76,4 +75,10 @@
         </div>
     </div>
 </div>
-
+<div ng-class="buttons.active ? 'state_active' : ''" class="b-gameBiathlon-buttons">
+    <div stm-index-buttons-popup key="{{buttons.key}}"><span ng-bind-html="buttons.text"></span></div>
+</div>
+<audio data-shoot>
+    <source src="asset/audio/shoot/shoot.ogg" type="audio/ogg">
+    <source src="asset/audio/shoot/shoot.mp3" type="audio/mpeg">
+</audio>
