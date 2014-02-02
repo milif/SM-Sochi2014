@@ -24,11 +24,13 @@
         </div>
         <div class="gameClimber-popup-text">Потрясающая <br> ловкость</div>
       </div>
-      <div stm-index-buttons-popup ng-show="keyTopShowStart" key="top">Жми стрелку <b>Вверх</b> на клавиатуре,<br>чтобы покорить вершину</div>
-      <div stm-index-buttons-popup ng-show="keyTopShow" key="top">Жми <b>Вверх</b>,<br>а то разобьешься!</div>
-      <div stm-index-buttons-popup ng-show="popupMoodShow" key="R">Жми <b>R</b>,<br>Red Bull окрыляет!</div>
-      <div stm-index-buttons-popup ng-show="popupButtonLeftShow" key="left">Жми <b>Влево</b>,<br>собирай больше бонусов!</div>
-      <div stm-index-buttons-popup ng-show="popupButtonRightShow" key="right">Жми <b>Вправо</b>,<br>собирай больше бонусов!</div>
+      <div ng-show="!showStartPopup">
+        <div stm-index-buttons-popup ng-show="keyTopShowStart" key="top">Жми стрелку <b>Вверх</b> на клавиатуре,<br>чтобы покорить вершину</div>
+        <div stm-index-buttons-popup ng-show="keyTopShow" key="top">Жми <b>Вверх</b>,<br>а то разобьешься!</div>
+        <div stm-index-buttons-popup ng-show="popupMoodShow" key="R">Жми <b>R</b>,<br>Red Bull окрыляет!</div>
+        <div stm-index-buttons-popup ng-show="popupButtonLeftShow" key="left">Жми <b>Влево</b>,<br>собирай больше бонусов!</div>
+        <div stm-index-buttons-popup ng-show="popupButtonRightShow" key="right">Жми <b>Вправо</b>,<br>собирай больше бонусов!</div>
+      </div>
       <!-- Panel -->
       <div class='b-gamePanel' ng-class="showToolbar ? 'state_active' : ''">
         <div class='b-gamePanel-h'>

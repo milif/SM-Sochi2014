@@ -298,7 +298,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                                 }
                             }
                         }
-                        if(missedBonuses > 10 && scope.popupMoodShow === false && goingUp === false) {
+                        if(missedBonuses > 10 && scope.popupMoodShow === false && goingUp === false && scope.keyTopShow === false) {
                             missedBonuses = 0;
                             if(scope.manPositionLeft === true) {
                                 scope.popupButtonRightShow = true;
@@ -534,15 +534,19 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         fromPosition = position;
 
                         var ratio = (position - startPosition) / (endPosition - startPosition);
-                        if(ratio > 0.3) {
+                        if(ratio > 0.1) {
                             goingDownButtonPopupTimeout = $timeout(function(){
                                 scope.keyTopShow = true;
-                            }, 2000);
+                            }, 1000);
                         } else {
                             scope.keyTopShow = false;
                         }
                         moveInterval = $interval(function () {
                             position -= 8;
+                            var ratio = (position - startPosition) / (endPosition - startPosition);
+                            if(ratio < 0.08) {
+                                scope.keyTopShow = false;
+                            }
                             if (!canBreakDown && downPositionStop > position) {
                                 canBreakDown = true;
                                 _updateDownPosition();
