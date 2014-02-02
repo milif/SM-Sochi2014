@@ -309,3 +309,25 @@
 .b-biathlon-panel-item_active {
     background-color: #fff;
 }
+
+
+/* b-gameBiathlon-shots */
+.b-gameBiathlon-shots {
+    font-size: 0;
+    list-style: none;
+    margin: 0;
+    white-space: nowrap;
+    text-align: center; 
+    padding: 0 10px;
+}
+.b-gameBiathlon-shots-item {
+    display: inline-block;
+    background: url(asset/i/common/icons.png) -6px -60px no-repeat;
+    width: 32px;
+    height: 34px;
+    margin: 0 4px;
+}
+.b-gameBiathlon-shots-item.state_active {
+    background-position:  -62px -60px;
+}
+

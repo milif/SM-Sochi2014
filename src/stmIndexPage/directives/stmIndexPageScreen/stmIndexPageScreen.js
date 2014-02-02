@@ -46,8 +46,8 @@ angular.module('stmIndexPage').directive('stmIndexPageScreen', function(){
         templateUrl: 'partials/stmIndexPage.directive:stmIndexPageScreen:template.html',
         controller: ['$scope', '$element', '$location', '$timeout', function($scope, $element, $location, $timeout){
             var pageEl = $element.find('[data-page]');
-            $scope.mapPosition = {x: 600, y: 0};
             $scope.toolbarPosition = 'bottom';
+            $scope.mapPosition = {x: 600, y: 0};
             $scope.$on('$locationChangeSuccess', function(e, newUrl, oldUrl){  
                 var url = $location.url();
                 if(url == '/map/') {
@@ -56,10 +56,14 @@ angular.module('stmIndexPage').directive('stmIndexPageScreen', function(){
                     window.location.reload();
                 }
             });
+            $scope.$on('loaded',function(){
+                $scope.showPage = true;
+            });
             function showMap(e){
                 $scope.pageStyle = {
                     marginTop: -pageEl.height(),
-                    minWidth: 0
+                    minWidth: 0,
+                    transitionDuration: '0.5s'
                 };
                 $scope.mapStyle = {
                     marginTop: 0,

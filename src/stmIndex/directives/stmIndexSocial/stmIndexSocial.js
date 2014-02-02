@@ -59,21 +59,48 @@ angular.module('stmIndex')
             onClick: clickOK
         }
     ]; 
+    
+    var $ = angular.element;
+    
+    var SHARE = {
+        image: $('meta[property="og:image"]').attr('content'),
+        title: $('meta[property="og:title"]').attr('content'),
+        description: $('meta[property="og:description"]').attr('content')
+    };
+    var URL = $('base').attr('href');
+    
     function clickVK(){
-        
+        shareWindow("http://vk.com/share.php?url="
+                        +encodeURIComponent(URL)
+                        +(SHARE.title ?
+                        "&description="+encodeURIComponent(SHARE.description)+"&title="+encodeURIComponent(SHARE.title)
+                        :
+                        "&title="+encodeURIComponent(SHARE.description)
+                        )
+                        +"&image="+encodeURIComponent(SHARE.image.replace(/\.(png|jpg)$/, '_vk.$1')), 720, 550);
     }
     function clickFB(){
-        
+        shareWindow("http://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(URL));
     }
     function clickTW(){
-        
+        shareWindow("https://twitter.com/intent/tweet?status=" + encodeURIComponent(SHARE.description + ' ' + URL) + "&url="+encodeURIComponent(URL));
     }
     function clickGP(){
-        
+        shareWindow("https://plus.google.com/share?url="+encodeURIComponent(URL)+"&t="+encodeURIComponent(SHARE.description));
     }
     function clickOK(){
         
-    }
+    }   
+    function shareWindow(url, width, height){
+        var screenWidth = $(window).width(),
+            screenHeight = $(window).height(),
+            width = Math.min(screenWidth, width || 600),
+            height = Math.min(screenHeight, height || 435),
+            top = Math.floor((screenHeight-height)/2),
+            left = Math.floor((screenWidth-width)/2);
+  
+        window.open(url, "share", "left="+left+",top="+top+",width="+width+",height="+height+",resizable=no,scrollbars=yes,status=yes");
+    }    
     return {
         templateUrl: 'partials/stmIndex.directive:stmIndexSocial:template.html',
         controller: ['$attrs','$element','$scope', function($attrs, $element, $scope){

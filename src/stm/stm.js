@@ -17,11 +17,22 @@ angular.module('stm',['ngAnimate','ngResource'])
         .config(['$sceProvider', '$provide', '$locationProvider', '$httpProvider', function($sceProvider, $provide, $locationProvider, $httpProvider){
             $sceProvider.enabled(false);
             $locationProvider.html5Mode(true);
-            $httpProvider.defaults.cache = true;
         }])
-        .run(['$location', '$rootScope', function($location, $rootScope){
+        .run(['$location', '$rootScope', '$cacheFactory', '$http', '$stmEnv', function($location, $rootScope, $cacheFactory, $http, $stmEnv){
             var baseUrl = $location.absUrl();
             $rootScope.$on('$locationChangeStart', function(e, newUrl){  
                 if(newUrl.indexOf(baseUrl) < 0) window.location.href = newUrl;
             });
-        }]);
+            
+            // Cache
+            var cache = $cacheFactory('stm');
+            $http.defaults.cache = cache;
+            
+            if($stmEnv.api){
+                var api = $stmEnv.api;
+                for(var key in api){
+                    cache.put(key, api[key]);
+                }
+            }            
+        }])
+        .value('$stmEnv',{});
