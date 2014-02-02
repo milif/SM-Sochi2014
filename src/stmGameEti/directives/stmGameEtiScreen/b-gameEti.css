@@ -173,10 +173,14 @@
 .b-gameEti .b-character .state_show {
     display: block;
     -webkit-transition: 0.5s linear all; /* Safari/Chrome */
-    -moz-transition: 0.5s linear all; /* Firefox */
-    -ms-transition: 0.5s linear all; /* IE10 */
-    -o-transition: 0.5s linear all; /* Opera */
     transition: 0.5s linear all; /* Future Browsers */
+}
+.b-gameEti .b-character.anim_cubic .state_show-add,
+.b-gameEti .b-character.anim_cubic .state_show-remove,
+.b-gameEti .b-character.anim_cubic .state_show {
+    display: block;
+    -webkit-transition: 0.5s cubic-bezier(.7,.25,.47,1.58) all; /* Safari/Chrome */
+    transition: 0.5s cubic-bezier(.7,.25,.47,1.58) all; /* Future Browsers */
 }
 
 .b-gameEti .b-character .b-character-h {
@@ -200,7 +204,7 @@
 .b-gameEti .b-character.bear .b-character-h {
     width: 112px;
     height: 0;
-    bottom: 0;
+    bottom: -12px;
     top: auto;
     background-position: -29px -22px;
 }
@@ -260,7 +264,7 @@
 
 .b-gameEti .eti-ass-hover {
     position: absolute;
-    left: 3447px;
+    left: 3424px;
     top: 553px;
     width: 73px;
     height: 75px;
@@ -276,7 +280,7 @@
 }
 
 .b-gameEti .b-character.eti-ass .b-character-h.state_show {
-    left: 0;
+    left: -23px;
 }
 
 .b-gameEti .b-character.eti-ass .b-character-h {
@@ -321,6 +325,7 @@
 
 .b-gameEti .b-character.eti-full-face .b-character-h.state_show {
     height: 133px;
+    bottom: -15px;
 }
 
 .b-gameEti .b-character.eti-full-face .b-character-h {
@@ -349,8 +354,8 @@
     height: 70%;
     left: auto;
     top: auto;
-    right: 0;
-    bottom: 0;
+    right: -8px;
+    bottom: -3px;
     background-position: -48px -2329px;
 }
 
