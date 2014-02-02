@@ -7,6 +7,7 @@
  * @requires stmGameBiathlon.directive:stmGameBiathlonScreen:template.html
  * @requires stmIndex.directive:stmIndexPopup
  * @requires stmIndex.directive:stmIndexButtonsPopup
+ * @requires stm.filter:range
  *
  * @description
  * Экран игры Биатлон
@@ -143,6 +144,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                         if(!inJump && moreSpeedAttempts > 0){
                             men.speed += ADD_SPEED;
                             moreSpeedAttempts--;
+                            $scope.speeds = moreSpeedAttempts;
                             isSpeedHelp = false;
                         }
                     } else if(e.which == 38){
@@ -161,6 +163,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                 requestAnimationFrame(iterate);
             }, 1 / FPS * 1000);
             
+            $scope.speedsMax = START_MORE_SPEED;
             $scope.men = men;
             $scope.eti = eti;
             $scope.traceFrames = track.frames;
@@ -187,7 +190,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                 $scope.showStartPopup = false;
                 isGame = true;
                 $scope.inEti = false;
-                moreSpeedAttempts = START_MORE_SPEED;
+                $scope.speeds = moreSpeedAttempts = START_MORE_SPEED;
                 gameTime = new Date().getTime();
                 $($window).on(globalEvents);
             }
@@ -462,7 +465,8 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                 var shootX = targetX - K * (men.y - targetY);               
                 if(men.x > shootX && men.x < shootX + panelWidth) {
                     var point = Math.floor((men.x - shootX) / panelWidth * 5);
-                    if(!target.points[point]) moreSpeedAttempts++;
+                    if(!target.points[point] && moreSpeedAttempts < START_MORE_SPEED) moreSpeedAttempts++;
+                    $scope.speeds = moreSpeedAttempts;
                     target.points[point] = true;
                 }
             }

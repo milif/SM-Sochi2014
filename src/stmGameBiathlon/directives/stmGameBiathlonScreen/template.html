@@ -43,10 +43,7 @@
             </div>
             <div class='b-gamePanel-column mod_second'>
                 <ul class="b-gameBiathlon-shots">
-                    <li class="b-gameBiathlon-shots-item state_active"></li> 
-                    <li class="b-gameBiathlon-shots-item state_active"></li> 
-                    <li class="b-gameBiathlon-shots-item"></li> 
-                    <li class="b-gameBiathlon-shots-item"></li> 
+                    <li ng-repeat="n in [] | range:speedsMax" ng-class="n < speeds ? 'state_active' : ''" class="b-gameBiathlon-shots-item state_active"></li>
                 </ul>
             </div>
             <div class='b-gamePanel-column mod_third'>
