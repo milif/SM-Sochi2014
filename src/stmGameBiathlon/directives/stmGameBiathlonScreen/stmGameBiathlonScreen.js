@@ -146,7 +146,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
             });
             function startGame(){
                 men.speed = PLAYER_SPEED;
-                
+                $scope.showToolbar = true;
                 $scope.eti = eti = {
                     x: track.points[1].x,
                     angle: 0,
@@ -166,7 +166,8 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                 gameTime = new Date().getTime();
                 $($window).on(globalEvents);
             }
-            function stopGame(){               
+            function stopGame(){  
+                $scope.showToolbar = false;             
                 isGame = false;
                 $scope.showStartPopup = true;
                 $($window).off(globalEvents);
