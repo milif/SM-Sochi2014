@@ -3,6 +3,7 @@
 require_once __DIR__.'/Socials.class.php';
 
 $ENV = array(
+    'clientId' => 123, 
     'api' => array(
         "api/socials.php" => Socials::get()
     )

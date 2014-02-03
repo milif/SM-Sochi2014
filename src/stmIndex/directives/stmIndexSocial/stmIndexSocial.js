@@ -117,6 +117,31 @@ angular.module('stmIndex')
         }]
     };
 }])
+/**
+ * @ngdoc interface
+ * @name stmIndex.Social
+ * @description
+ *
+ * Внешний интерфейс соц. кнопок
+ * 
+ */
+/**
+  * @ngdoc method
+  * @name stmIndex.Social#get
+  * @methodOf stmIndex.Social
+  *
+  * @description
+  * Возвращает информацию о состоянии счетчиков
+  *
+  * @returns {Object} Счетчики кнопок
+  *
+  *       { 
+  *        'vk':    100,
+  *        'fb':   123,
+  *         ... 
+  *      }
+  *
+  */ 
 .factory('Social', ['$resource', function($resource){
     return $resource('api/socials.php');
 }]);

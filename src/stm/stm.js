@@ -35,4 +35,30 @@ angular.module('stm',['ngAnimate','ngResource'])
                 }
             }            
         }])
+        /**
+         * @ngdoc service
+         * @name stm.$stmEnv
+         * @description
+         *
+         * Начальные данные приложения
+         *
+         */
+         /**
+           * @ngdoc property
+           * @name stm.$stmEnv#clientId
+           * @propertyOf stm.$stmEnv
+           * @returns {String} Идентификатор пользователя
+           */ 
+         /**
+           * @ngdoc property
+           * @name stm.$stmEnv#api
+           * @propertyOf stm.$stmEnv
+           * @returns {Object} Кэш запросов
+           * @description
+           * Предзагрузка кэша, который используется службой `$http`
+           *
+           *       { 
+           *         'url/for/something': {*} 
+           *       }  
+           */                           
         .value('$stmEnv',{});
