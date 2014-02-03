@@ -19,6 +19,7 @@
         <div ng-repeat="target in frame.targets" class="b-biathlon-panel g-noselect" ng-style="target.css" >
             <div ng-repeat="point in target.points track by $index" ng-class="point ? 'b-biathlon-panel-item_active' : ''" class="b-biathlon-panel-item"></div>
         </div>
+        <div class="b-gameBiathlon-bonus" ng-repeat="bonus in frame.bonuses" stm-index-bonus="{{bonus.id}}" show="{{bonus.show}}" type="{{bonus.type}}" position="{{bonus.position}}"></div>
     </div>
     
     <div ng-show="!inEti" ng-style="men.css" class="l-b-biathlon-men">
@@ -30,7 +31,11 @@
     </div>
 
 </div>
-
+<div ng-repeat="popup in bonusPopups" class="b-gameBiathlon-bonusPopup" stm-index-popover="{{popup.id}}" position="popup.position">
+    <div stm-index-bonus-popup bonus="{{popup.bonus}}" type="{{popup.type}}">
+        <span ng-bind-html="popup.text"></span>
+    </div>
+</div>
 <!-- Panel -->
 <div class='b-gamePanel' ng-class="showToolbar ? 'state_active' : ''">
     <div class='b-gamePanel-h'>
@@ -51,7 +56,7 @@
                     <span class="b-icons b-icons_star">
                         <span class="b-icons__item"></span>
                     </span>
-                    <span class="b-button__text">7 320</span>
+                    <span class="b-button__text">{{(bonusCount | number).replace(","," ")}}</span>
                     <a class="b-button__link" href="#3"></a>
                 </span>
             </div>

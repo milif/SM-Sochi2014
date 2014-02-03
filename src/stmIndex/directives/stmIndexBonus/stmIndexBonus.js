@@ -13,6 +13,7 @@
  * @param {String} stmIndexBonus component id 
  * @param {Array} position set bonus position [x, y]
  * @param {String} type bonus type (sber|mnogo|pickpoint)
+ * @param {Boolean} hide hide component
  *
  * @example
     <example module="appExample">
@@ -69,13 +70,16 @@ angular.module('stmIndex').directive('stmIndexBonus', function(){
         scope: {
             stmIndexBonus: '@',
             type: '@',
-            position: '@'
+            position: '@',
+            show: '@' 
         },
         transclude: true,
         templateUrl: 'partials/stmIndex.directive:stmIndexBonus:template.html',
-        controller: ['$scope', '$animate', '$timeout', function($scope, $animate, $timeout){
+        controller: ['$scope', '$animate', '$timeout', '$attrs', function($scope, $animate, $timeout, $attrs){
         
-            $scope.hide = true;
+            var isHide = $attrs.show ? !$scope.$eval($scope.show) : false;
+            
+            $scope.hide = true;       
             
             $scope.$watch('position', function(){
                 var position = $scope.$eval($scope.position);
@@ -84,6 +88,9 @@ angular.module('stmIndex').directive('stmIndexBonus', function(){
                     top: position[1]
                 }
             });
+            $scope.$watch('show', function(show){
+                $scope.hide = !$scope.$eval(show);
+            });
             $scope.$on('removeBonus-' + $scope.stmIndexBonus, function(){
                 $scope.hide = true;
             });
@@ -91,9 +98,11 @@ angular.module('stmIndex').directive('stmIndexBonus', function(){
                 $scope.hide = false;
             });
             
-            $timeout(function(){
+            if(!isHide) {
+                $timeout(function(){
                     $scope.hide = false;
-            }, 30);
+                }, 30);
+            }
         }]
     };
 });

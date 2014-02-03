@@ -7,10 +7,7 @@
     z-index: 10000;
     margin-left: -41px;
     margin-top: -41px;
-    opacity: 1;
-    -webkit-transform: scale(1);
-    transform: scale(1);
-    background: url("asset/i/b-indexBonus/b-indexBonusIcons.png") 0 0 no-repeat;    
+    background: url("asset/i/b-indexBonus/b-indexBonusIcons.png") 0 0 no-repeat;  
 }
 
 .b-bonus-pickpoint {
@@ -23,20 +20,27 @@
     background-position: -82px 0;
 }
 
-.b-bonus.ng-hide-add {
+.b-bonus.ng-leave {
   -webkit-transition:0.5s ease-out all;
   transition: 0.5s ease-out all;
-  display:block!important;
 }
-.b-bonus.ng-hide.ng-hide-add {
+.b-bonus.ng-leave-active {
     -webkit-transform: scale(2);
     transform: scale(2);
+    opacity: 0;
 }
 
-.b-bonus.ng-hide-remove {
+.b-bonus.ng-enter {
   -webkit-transition:0.5s cubic-bezier(0.510, 0.595, 0.320, 1.345) all;
   transition: 0.5s cubic-bezier(0.510, 0.595, 0.320, 1.345) all;
-  display:block!important;
+  opacity: 0;
+  -webkit-transform: scale(0);
+  transform: scale(0);  
+}
+.b-bonus.ng-enter-active {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1); 
 }
 .b-bonus.ng-hide {
   opacity: 0;

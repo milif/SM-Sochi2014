@@ -342,3 +342,7 @@
 .b-gameBiathlon-buttons.state_active {
     opacity: 1;
 }
+.b-gameBiathlon-bonus {
+    position: relative;
+    z-index: 10;
+}    

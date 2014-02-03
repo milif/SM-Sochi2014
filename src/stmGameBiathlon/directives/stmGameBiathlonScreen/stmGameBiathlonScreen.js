@@ -7,6 +7,9 @@
  * @requires stmGameBiathlon.directive:stmGameBiathlonScreen:template.html
  * @requires stmIndex.directive:stmIndexPopup
  * @requires stmIndex.directive:stmIndexButtonsPopup
+ * @requires stmIndex.directive:stmIndexBonus
+ * @requires stmIndex.directive:stmIndexBonusPopup
+ * @requires stmIndex.directive:stmIndexPopover
  * @requires stm.filter:range
  *
  * @description
@@ -58,6 +61,18 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
     var UP_ETI_SPEED = 20; // На сколько увеличивать скорость ети за секунду
     var JUMP_TIME = 1; // Сколько секунд длится прыжок
     var JUMP_HEIGHT = 100; // Высота прыжка (px)
+    var BONUS_SUMM = 50; // Сколько прибавлять очков 
+    var BONUSES_COUNT = 50; // Число бонусов на игру    
+    var BONUSES_DISTANCE = 1000; // Оптимальное расстояние между бонусами
+    var BONUS_TYPES = ['sber','mnogo'/*,'pickpoint'*/]; // Типы бонусов
+    var BONUS_JUMP = { // Надо подпрыгнуть
+        y: JUMP_HEIGHT + 75,
+        type: 'jump'
+    };
+    var BONUS_GO = { // На трассе
+        y: 100,
+        type: 'go'
+    };    
     var BUTTONS_CHANGE_MIN_TIME = 2000; // Минимальное время между сменой подсказок
     var BUTTONS_TIME = 3000; // Время показа подсказки
     var BUTTONS = {
@@ -77,7 +92,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
         scope: {
         },
         templateUrl: 'partials/stmGameBiathlon.directive:stmGameBiathlonScreen:template.html',
-        controller: ['$element', '$interval', '$scope', '$window', function($element, $interval, $scope, $window){
+        controller: ['$element', '$interval', '$scope', '$window', '$timeout', function($element, $interval, $scope, $window, $timeout){
                     
             var iterator;
             
@@ -93,6 +108,9 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
             var moreSpeedAttempts;
             var framesEl = {};
             var treesEl = [];
+            var bonusPlaces = [BONUS_JUMP];
+            var bonuses = 0;
+            var bonusId = 0;
             var shootSound = $element.find('[data-shoot]').remove();
             var camera = {
                 x: $element.width(),
@@ -163,6 +181,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                 requestAnimationFrame(iterate);
             }, 1 / FPS * 1000);
             
+            var bonusPopups = $scope.bonusPopups = [];
             $scope.speedsMax = START_MORE_SPEED;
             $scope.men = men;
             $scope.eti = eti;
@@ -172,8 +191,17 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
             $scope.$on('$destroy', function() {
                 $interval.cancel(iterator);
             });
+            $scope.$on('hidePopoverSuccess', function(e, id) {
+                for(var i=0; i<bonusPopups.length;i++){
+                    if(bonusPopups[i].id == id){
+                        bonusPopups.splice(i,1);
+                        break;
+                    }
+                }
+            });
             function startGame(){
                 men.speed = PLAYER_SPEED;
+                $scope.bonusCount = 0;
                 $scope.showToolbar = true;
                 $scope.eti = eti = {
                     x: track.points[1].x,
@@ -187,6 +215,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                 persons.push(eti);
                 
                 gameTime = 0;
+                bonuses = BONUSES_COUNT;
                 $scope.showStartPopup = false;
                 isGame = true;
                 $scope.inEti = false;
@@ -414,7 +443,47 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                     }
                 } else {
                     this.frameIndex = 'start';
-                }            
+                } 
+                
+                if(!isGame || $scope.inEti) return;
+                var frame, bonus, bonusDist;
+                for(var i=0;i<track.frames.length;i++){
+                    frame = track.frames[i];
+
+                    for(var _i=0;_i<frame.bonuses.length;_i++){
+                        bonus = frame.bonuses[_i];
+                        if(bonus.take) continue;
+                        bonusDist = bonus.position[0] + frame.x - men.x;
+                        if(bonus.show) {
+                            if(Math.abs(bonusDist) < 50){
+                                if(Math.abs(men.y -70 - men.DY - (bonus.position[1] + frame.y)) < 30) {
+                                    bonus.show = false;
+                                    bonus.take = true;
+                                    $scope.bonusCount += BONUS_SUMM;
+                                    bonuses--;
+                                    showBonusPopup({
+                                        bonus: BONUS_SUMM,
+                                        id: bonusId++,
+                                        type: bonus.type,
+                                        position: [Math.round($element.width() -400 + Math.random() * 100), Math.round(50 + Math.random() * 50 )]
+                                    });
+                                }
+                            }
+                            continue;
+                        }
+                        
+                        if(bonusDist > 0 && bonusDist < 800 + Math.random() * 200 && bonuses > 0) {
+                            bonus.show = true;
+                        }
+                    }
+                }              
+                           
+            }
+            function showBonusPopup(popup){
+                bonusPopups.push(popup);
+                $timeout(function(){
+                    $scope.$broadcast('hidePopover-'+popup.id);
+                }, 2000);
             }
             function updateEti(time, gTime, dTime){
                 if(isGame) {
@@ -506,12 +575,51 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                     margin: frameEl.margin,
                     points: points,
                     trees: getTrees(frameEl),
+                    bonuses: getBonuses(frameEl),
                     targets: getTargets(frameEl),
                     width: frameEl.width,
                     x: frameX,
                     y: frameY,
                     nextFrames: frameEl.nextFrames
                 };
+            }
+            function getBonuses(frameEl){
+                var frameBonuses = [];
+                var place;                
+                var x = frameEl.points[0][0];
+                var y;
+                var data = {};
+                while(true){
+                    x += 0.75 * BONUSES_DISTANCE + Math.random() * BONUSES_DISTANCE * 0.5;
+                    if(x > frameEl.width || bonuses <= 0) break;
+                    y =  getFrameY(frameEl, x, data);
+                    place = data.angle > 35 ? BONUS_GO : bonusPlaces[Math.floor(Math.random() * bonusPlaces.length + 1) % bonusPlaces.length];
+                    if(isNaN(y)) continue;
+                    frameBonuses.push({
+                        position: [x, y - place.y],
+                        place: place,
+                        id: bonusId++,
+                        show: false,
+                        type: BONUS_TYPES[Math.floor(Math.random() * BONUS_TYPES.length + 1) % BONUS_TYPES.length]
+                    });
+                }
+                return frameBonuses;
+            }
+            function getFrameY(frameEl, x, data){
+                var pointTo, y, pointFrom;
+                for(var k=0;k<frameEl.points.length;k++){
+                    pointTo = frameEl.points[k];
+                    if(x <= pointTo[0]){
+                        pointFrom = frameEl.points[k-1];
+                        break;
+                    }
+                }
+                if(!pointTo || !pointFrom) return NaN;
+                pointTo = {x: pointTo[0], y: pointTo[1]};
+                pointFrom = {x: pointFrom[0], y: pointFrom[1]};
+                y = getY(pointFrom, pointTo, x); 
+                if(data) data.angle = getAngle(pointFrom, pointTo);
+                return y;
             }
             function getTargets(frameEl){
                 if(!isGame) return [];
@@ -520,21 +628,11 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                 var range = frameEl.targetsRange;
                 var targets = [];
                 var x = Math.random() * men.speed / PLAYER_SPEED < 0.5 ? [range[0] + (range[1] - range[0]) * Math.random()] : [];
-                var pointTo, y, pointFrom;
+                var y;
 
-                for(var i=0; i<x.length;i++){                     
-                    for(var k=0;k<frameEl.points.length;k++){
-                        pointTo = frameEl.points[k];
-                        if(x[i] <= pointTo[0]){
-                            pointFrom = frameEl.points[k-1];
-                            break;
-                        }
-                    }
-                    if(!pointTo || !pointFrom) continue;
-                    pointTo = {x: pointTo[0], y: pointTo[1]};
-                    pointFrom = {x: pointFrom[0], y: pointFrom[1]};
-                    y = getY(pointFrom, pointTo, x[i]);                      
-                    if(isNaN(y)) continue;
+                for(var i=0; i<x.length;i++){  
+                    y =  getFrameY(frameEl, x[i]);
+                    if(isNaN(y)) continue;                  
                     targets.push({
                         css: {
                             top: Math.round(y) - Math.max(450, camera.height * 0.65),
@@ -558,18 +656,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                         x += TREES_DISTANCE * (0.5 + Math.random());
                         ind = Math.round(Math.random() * (treesEl.length + 0.5) - 0.5);
                         var treeEl = treesEl[ind] || treesEl[ind - 1];
-                        var pointTo, pointFrom;
-                        for(var k=0;k<frameEl.points.length;k++){
-                            pointTo = frameEl.points[k];
-                            if(x <= pointTo[0]){
-                                pointFrom = frameEl.points[k-1];
-                                break;
-                            }
-                        }
-                        if(!pointFrom) continue;
-                        pointTo = {x: pointTo[0], y: pointTo[1]};
-                        pointFrom = {x: pointFrom[0], y: pointFrom[1]};
-                        y = getY(pointFrom, pointTo, x);
+                        y =  getFrameY(frameEl, x);
                         if(isNaN(y)) continue;
 
                         count_group--;
