@@ -376,4 +376,21 @@
   margin-left: -400px;
   bottom: 100px;
   z-index: 10000;
+  -webkit-transition:all linear 0.2s;
+  transition:all linear 0.2s;
+  opacity: 1;
+}
+
+.b-gameClimber .b-buttons-popup.ng-hide-add,
+.b-gameClimber .b-buttons-popup.ng-hide-remove {
+    display: block !important;
+}
+
+.b-gameClimber .b-buttons-popup.ng-hide {
+    opacity: 0;
+}
+
+.b-gameClimber .b-popover {
+  position: absolute;
+  z-index: 10000;
 }

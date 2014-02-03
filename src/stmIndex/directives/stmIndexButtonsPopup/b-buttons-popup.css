@@ -54,11 +54,14 @@
 .b-buttons-popup-right .key span,
 .b-buttons-popup-left .key span {
     position: relative;
-    top: 20px;
-    left: 22px;
+    top: 16px;
+    left: 23px;
     width: 37px;
     height: 37px;
     background: url("asset/i/b-indexButtonsPopup/b-indexButtonsPopup-key.gif") -83px 0 no-repeat;
+}
+.b-buttons-popup-bottom .key span {
+    top: 19px;
 }
 .b-buttons-popup-right .key span {
     background-position: -83px 0;
