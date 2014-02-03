@@ -118,6 +118,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         },
                         upButtonPressed = false,
                         goingDownButtonPopupTimeout,
+                        popupInUse = false,
                         keyEvents = {
                             'keydown': function (e) {
                                 if (e.keyCode == 38) { // "arrow up"
@@ -127,7 +128,6 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                                         hideUpButtonPopup();
                                     }
                                     goingDownButtonPopupTimeout && $timeout.cancel(goingDownButtonPopupTimeout);
-                                    scope.keyTopShow = false;
                                     if (action == 'down' && !canBreakDown) return;
                                     if (!isUpPressed) {
                                         clicksCount++;
@@ -298,19 +298,23 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                                 }
                             }
                         }
-                        if(missedBonuses > 10 && scope.popupMoodShow === false && goingUp === false && scope.keyTopShow === false) {
+                        if(missedBonuses > 10 && goingUp === false && !popupInUse) {
                             missedBonuses = 0;
+                            popupInUse = true;
                             if(scope.manPositionLeft === true) {
                                 scope.popupButtonRightShow = true;
                                 $timeout(function(){
                                     scope.popupButtonRightShow = false;
-                                }, 1000);
+                                }, 2500);
                             } else {
                                 scope.popupButtonLeftShow = true;
                                 $timeout(function(){
                                     scope.popupButtonLeftShow = false;
-                                }, 1000);
+                                }, 2500);
                             }
+                            $timeout(function(){
+                                popupInUse = false;
+                             }, 3500);
                         }
                     }
                     
@@ -334,6 +338,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         usedScoreBonus2 = false;
                         usedScoreBonus3 = false;
                         missedBonuses = 0;
+                        popupInUse = false;
 
                         birdEl.css({
                             'top': 0,
@@ -390,7 +395,8 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         scope.keyTopShow = false;
                         upButtonPressed = false;
                         $timeout(function(){
-                            if(!upButtonPressed) {
+                            if(!upButtonPressed && !popupInUse) {
+                                popupInUse = true;
                                 scope.keyTopShowStart = true;
                             }
                         }, 5000);
@@ -420,6 +426,9 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
 
                     function hideUpButtonPopup() {
                         scope.keyTopShowStart = false;
+                        $timeout(function(){
+                            popupInUse = false;
+                        }, 1000);
                     }
 
                     function blockUserEvents(timeToBlock) {
@@ -453,14 +462,18 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                     }                    
 
                     function showMoodPopup() {
-                        if(moodPopupUsed) {
+                        if(moodPopupUsed || popupInUse) {
                             return;
                         }
                         moodPopupUsed = true;
                         scope.popupMoodShow = true;
+                        popupInUse = true;
                         $timeout(function() {
                             scope.popupMoodShow = false;
                         }, 5000);
+                        $timeout(function() {
+                            popupInUse = false;
+                        }, 6000);
                     }
 
                     function _up() {
@@ -536,16 +549,26 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         var ratio = (position - startPosition) / (endPosition - startPosition);
                         if(ratio > 0.1) {
                             goingDownButtonPopupTimeout = $timeout(function(){
-                                scope.keyTopShow = true;
+                                if(!popupInUse) {
+                                    popupInUse = true;
+                                    scope.keyTopShow = true;
+                                    $timeout(function(){
+                                        scope.keyTopShow = false;
+                                    }, 4000);
+                                    $timeout(function(){
+                                        popupInUse = false;
+                                    }, 5000);
+                                }
                             }, 1000);
-                        } else {
-                            scope.keyTopShow = false;
                         }
                         moveInterval = $interval(function () {
                             position -= 8;
                             var ratio = (position - startPosition) / (endPosition - startPosition);
-                            if(ratio < 0.08) {
+                            if(ratio < 0.03) {
                                 scope.keyTopShow = false;
+                                $timeout(function(){
+                                    popupInUse = false;
+                                }, 1000);
                             }
                             if (!canBreakDown && downPositionStop > position) {
                                 canBreakDown = true;
