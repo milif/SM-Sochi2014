@@ -26,12 +26,13 @@ angular.module('stmIndex', ['stm'])
        * @methodOf stmIndex.Game
        *
        * @description
-       * Сохраняет результат прохождения игры
+       * Сохраняет данные о прохождении игры
        *
        * @param {Object} params Данные игры:
        *
        *   - **`type`** – {String} – Тип игры
-       *   - **`data`** – {Object} – Сведения о прохождении игры
+       *   - **`action`** – {String} – Действие в игре   
+       *   - **`data`** – {Object} – Сведения о действии в игре
        */         
     .factory('Game', ['$resource', '$stmEnv', function($resource, $stmEnv){
         return $resource('api/game.php',{

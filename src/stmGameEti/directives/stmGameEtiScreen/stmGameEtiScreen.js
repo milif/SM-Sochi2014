@@ -188,6 +188,11 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                 }, ITERATE_TIMEOUT);
                 
                 activateRedBird();
+                
+                Game.save({
+                    type: 'yeti',
+                    action: 'start'
+                });
             }
             
             function activateRedBird(){
@@ -373,6 +378,7 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                 var time = new Date().getTime();
                 Game.save({
                     type: 'yeti',
+                    action: 'end',
                     data: {
                         time: time - startTime,
                         final: foundedEti == $element.find('[data-eti]').length,

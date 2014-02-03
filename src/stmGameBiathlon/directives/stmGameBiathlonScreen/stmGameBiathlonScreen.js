@@ -224,6 +224,10 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                 $scope.speeds = moreSpeedAttempts = START_MORE_SPEED;
                 gameTime = new Date().getTime();
                 $($window).on(globalEvents);
+                Game.save({
+                    type: 'biathlon',
+                    action: 'start'
+                });                
             }
             function stopGame(){  
                 buttons.active = false;
@@ -236,6 +240,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                 var time = new Date().getTime();
                 Game.save({
                     type: 'biathlon',
+                    action: 'end',
                     data: {
                         time: time - gameTime,
                         final: bonuses <= 0,
