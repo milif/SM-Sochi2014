@@ -179,3 +179,11 @@
     height: 310px;
     background: url("asset/i/b-gameMap/sotmarket_sheet_2x35.png") 0 0 no-repeat;
 }
+
+.b-game-item14 {
+    left: -500px;
+    top: 280px;
+    width: 477px;
+    height: 106px;
+    background: url("asset/i/b-gameMap/plane_sheet_2x18.png") 0 0 no-repeat;
+}

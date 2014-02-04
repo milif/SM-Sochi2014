@@ -196,7 +196,17 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                 'height': 310,
                 'cols': 2
             };
-            var itemsCount = 13;
+            $scope.item14 = {
+                'frames': 36,
+                'fps': 30,
+                'width': 477,
+                'height': 106,
+                'over': true,
+                'move': true,
+                'left': -500,
+                'cols': 2
+            };
+            var itemsCount = 14;
 
             function iterate(){
                 var time = new Date().getTime() - startTime;
@@ -207,6 +217,16 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                         horizontalIndex = frameIndex - verticalIndex * item.cols;
                     if(item.over === true) {
                         item.css = {
+                            'background-position': '-' + horizontalIndex * item.width + 'px -' + verticalIndex * item.height + 'px'
+                        };
+                    }
+                    if(item.move === true) {
+                        if(item.left > 4300) {
+                            item.left = -500;
+                        }
+                        item.left += 5;
+                        item.css = {
+                            'left': item.left + 'px',
                             'background-position': '-' + horizontalIndex * item.width + 'px -' + verticalIndex * item.height + 'px'
                         };
                     }
