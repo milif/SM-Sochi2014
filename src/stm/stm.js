@@ -23,7 +23,6 @@ angular.module('stm',['ngAnimate','ngResource'])
             $rootScope.$on('$locationChangeStart', function(e, newUrl){  
                 if(newUrl.indexOf(baseUrl) < 0) window.location.href = newUrl;
             });
-            
             // Cache
             var cache = $cacheFactory('stm');
             $http.defaults.cache = cache;

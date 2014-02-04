@@ -101,7 +101,22 @@ angular.module('stmIndex')
             left = Math.floor((screenWidth-width)/2);
   
         window.open(url, "share", "left="+left+",top="+top+",width="+width+",height="+height+",resizable=no,scrollbars=yes,status=yes");
-    }    
+    }
+    function getButton(button){
+        var socials = this.socials;
+        var item = {
+            type: button.type,
+            onClick: function(){
+                button.onClick();
+                var response = Social.add(button.type, function(){
+                    if(response.success) {
+                        socials.counters[button.type] = (socials.counters[button.type] + 1) || 1;
+                    }
+                });              
+            }
+        }
+        return item;
+    }  
     return {
         templateUrl: 'partials/stmIndex.directive:stmIndexSocial:template.html',
         controller: ['$attrs','$element','$scope', function($attrs, $element, $scope){
@@ -110,7 +125,7 @@ angular.module('stmIndex')
                 $scope.buttonsCount = $scope.$eval(buttonsCount) || $attrs.buttonsCount;
                 var buttons = [];
                 for(var i=0;i<buttonsCount;i++){
-                    buttons.push(BUTTONS[i]);
+                    buttons.push(getButton.call($scope, BUTTONS[i]));
                 }
                 $scope.buttons = buttons;
             });            
@@ -133,7 +148,7 @@ angular.module('stmIndex')
   * @description
   * Возвращает информацию о состоянии счетчиков
   *
-  * @returns {Object} Счетчики кнопок
+  * @returns {Resource} Счетчики кнопок
   *
   *       { 
   *        'vk':    100,
@@ -142,8 +157,31 @@ angular.module('stmIndex')
   *      }
   *
   */ 
+/**
+  * @ngdoc method
+  * @name stmIndex.Social#add
+  * @methodOf stmIndex.Social
+  *
+  * @param {String} type Тип кнопки
+  * @param {Function} clbFn Калбек по завершению операции
+  *
+  * @description
+  * Учесть нажатие на кнопку
+  *
+  * @returns {Resource} Результат операции
+  *
+  *      { 
+  *        'success':  (true|false)
+  *      }
+  *
+  */   
 .factory('Social', ['$resource', function($resource){
-    return $resource('api/socials.php');
+    var Social = $resource('api/socials.php');
+    Social.add = function(type, clbFn){
+        return Social.save({
+            action: 'add',
+            type: type
+        }, clbFn);
+    }
+    return Social;
 }]);
-
-

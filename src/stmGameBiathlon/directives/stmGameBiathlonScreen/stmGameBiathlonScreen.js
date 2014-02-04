@@ -180,7 +180,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
             
             iterator = $interval(function(){
                 requestAnimationFrame(iterate);
-            }, 1 / FPS * 1000);
+            }, 1 / FPS * 1000, null, false);
             
             var bonusPopups = $scope.bonusPopups = [];
             $scope.speedsMax = START_MORE_SPEED;

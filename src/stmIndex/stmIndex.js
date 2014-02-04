@@ -35,9 +35,7 @@ angular.module('stmIndex', ['stm'])
        *   - **`data`** – {Object} – Сведения о действии в игре
        */         
     .factory('Game', ['$resource', '$stmEnv', function($resource, $stmEnv){
-        return $resource('api/game.php',{
-            'clientId': $stmEnv.clientId
-        });
+        return $resource('api/game.php');
     }]);
  
 
