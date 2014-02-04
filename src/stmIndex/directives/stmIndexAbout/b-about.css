@@ -1,0 +1,109 @@
+/* About */
+/*==========================================================*/
+.b-about-logo {
+    margin: 0 auto;
+}
+
+.l-about {
+    background-color: #ffd631;
+    overflow: hidden;
+    min-width: 1000px;
+}
+.l-about-h {
+    position: relative;
+    z-index: 10;
+    width: 760px;
+    padding-top: 1px;
+    margin: 0 auto;
+}
+
+/* b-about-logo */
+.b-about-logo {
+    background: url(asset/i/b-indexAbout/logo.png) 0 0 no-repeat;
+    width: 487px;
+    height: 129px;
+    margin: 30px auto 26px auto;
+    text-indent: -9999px;
+}
+
+
+/* l-about-footer */
+.l-about-footer {
+    padding-top: 200px;
+    background-color: #fff;
+    z-index: 5;
+    position: relative;
+    padding-bottom: 1px;
+}
+.l-about-footer:before {
+    content: '';
+    background: url(asset/i/b-indexAbout/b-about-footer.jpg) 0 0 no-repeat;
+    width: 2100px;
+    height: 380px;
+    position: absolute;
+    left: 50%;
+    margin-left: -1050px;
+    top: -130px;
+}
+
+.l-about-footer-h {
+    margin: 0 auto;
+    width: 750px;
+    position: relative;
+}
+
+
+
+
+
+/* b-about-prize */
+.b-about-prize {
+    position: relative;
+    min-height: 330px;
+    padding-right: 290px;
+}
+.b-about-prize:before {
+    content: '';
+    background: url(asset/i/b-indexAbout/b-about-prize.png) 100% 0 no-repeat;
+    width: 298px;
+    height: 348px;
+    position: absolute;
+    z-index: -1;
+    right: -40px;
+    top: 0;
+}
+
+/* b-about-partners */
+.b-about-partners-title {
+    text-align: center;
+    text-transform: uppercase;
+    color: #000;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 90px;
+}
+.b-about-partners {
+    
+}
+.b-about-partners-list {
+    font-size: 0;
+    margin-top: -50px;
+    margin-bottom: 60px;
+    margin-left: 0;
+    padding-left: 0;
+}
+.b-about-partners-item {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    width: 33%;
+    margin-top: 50px;
+}
+.b-about-partners-link {
+    text-decoration: none;
+}
+.b-about-partners-image {
+    display: inline-block;
+    vertical-align: middle;
+    border: none;
+}
