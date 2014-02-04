@@ -26,18 +26,18 @@
     height: 991px;
 }
 .b-gameBiathlonTrack-h.screen_1 .b-gameBiathlonTrack {
-    background-position: 0px -3322px;
+    background-position: 0px -4312px;
 }
 .b-gameBiathlonTrack-h.screen_2 {
     width: 3012px;
-    height: 1655px;
+    height: 2300px;
 }
 .b-gameBiathlonTrack-h.screen_2 .b-gameBiathlonTrack {
-    background-position: -3013px -958px;
+    background-position: -3013px 0px;
 }
 .b-gameBiathlonTrack-h.screen_3 {
     width: 2985px;
-    height: 3302px;
+    height: 4200px;
 }
 .b-gameBiathlonTrack-h.screen_3 .b-gameBiathlonTrack {
     background-position: -4px 0px;
@@ -47,14 +47,14 @@
     height: 1275px;
 }
 .b-gameBiathlonTrack-h.screen_4 .b-gameBiathlonTrack {
-    background-position: -5px -4333px;
+    background-position: -3018px -2320px;
 }
 .b-gameBiathlonTrack-h.screen_5 {
     width: 3018px;
     height: 938px;
 }
 .b-gameBiathlonTrack-h.screen_5 .b-gameBiathlonTrack {
-    background-position: -3013px 0px;
+    background-position: -6049px 0px;
 }
 .b-gameEti-popup {
     position: absolute;
@@ -242,7 +242,13 @@
     margin-left: -98px;
     bottom: 60px;
 }
-
+.b-biathlon-men_seet {
+    background-position: -236px 0px;
+    display: inline-block;
+    width: 209px;
+    height: 157px;
+    margin-left: -98px;
+}
 /* tree */
 .b-biathlon-tree {
     background: url('asset/i/b-gameBiathlon/b-biathlon-tree.png') no-repeat;
