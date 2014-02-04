@@ -33,9 +33,10 @@
     
  */
 angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '$interval', '$document', '$window', function($timeout, $interval, $document, $window){
+    var stmGame;
     return {
         templateUrl: 'partials/stmGameClimber.directive:stmGameClimberScreen:template.html',
-        controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs) {
+        controller: ['$scope', '$element', '$attrs', 'Game', function($scope, $element, $attrs, Game) {
           $scope.endPosition = 0;
           $scope.score = 0;
           $scope.popupScoreShow = false;
@@ -54,6 +55,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
           $scope.keyTopShow = false;
           $scope.popupButtonLeftShow = false;
           $scope.popupButtonRightShow = false;
+          stmGame = Game;
         }],
         compile: function (tElement) {
             return function (scope, iElement, attrs) {
@@ -74,6 +76,8 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         state = 0,
                         action = 'stop',
                         manualTimeout,
+                        gameTime = 0,
+                        gamePassed = false,
 
                         attempts = 5 + Math.round(Math.random() * 5),
 
@@ -81,6 +85,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         doDownTimeout,
                         infoTimeout,
                         inScroll = false,
+                        scoreDetails,
 
                         isGameStart = false,
                         isUpPressed = false,
@@ -282,6 +287,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         showBonusPopup(bonus);
                         scope.score += bonus.bonus;
                         scope.bonusesCollected[bonus.type] += bonus.bonus;
+                        scoreDetails[bonus.type] = scoreDetails[bonus.type] ? scoreDetails[bonus.type] + bonus.bonus : bonus.bonus;
                     }
 
                     function detectBonus() {
@@ -331,6 +337,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                     
                     function startGame() {
 
+                        scoreDetails = {};
                         scope.score = 0;
                         scope.energy = 100;
                         scope.distance = 0;
@@ -415,6 +422,13 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         $timeout(function(){
                             scope.showToolbar = true;
                         }, 1000);
+
+                        gameTime = new Date().getTime();
+
+                        stmGame.save({
+                            type: 'climber',
+                            action: 'start'
+                        });
                     }
 
                     function stopGame() {
@@ -427,6 +441,20 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                             scope.showToolbar = false;
                             scope.showStartPopup = true;
                         }, 1000);
+
+                        var time = new Date().getTime();
+                        stmGame.save({
+                            type: 'climber',
+                            action: 'end',
+                            data: {
+                                time: time - gameTime,
+                                final: gamePassed,
+                                score: {
+                                    detail: scoreDetails,
+                                    total: scope.score
+                                }
+                            }
+                        });
                     }
 
                     scope.play = function(){
@@ -636,6 +664,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         }
                         
                         if(position >= (endPosition - topPipeMargin)) {
+                            gamePassed = true;
                             moveBird();
                         } else {
                             manEl.css({
