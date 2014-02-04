@@ -617,6 +617,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                             updateEnergy(0.7);
                             updateDistance(-8);
                             _update();
+                            detectBonus();
                         }, 10);
                         action = 'down';
                     }
