@@ -233,14 +233,11 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                                 id: 'bonus'+i,
                                 type: type[Math.round(2*Math.random())],
                                 bonus: 50,
+                                timeout: 5,
+                                show: false,
                                 position: [Math.round(Math.random()) ? -135 : 50, 1000 + i*120 + Math.round(50*Math.random())]
                             });
                         }
-                        setTimeout(function() {
-                            for(var index in scope.bonuses) {
-                                scope.$broadcast('removeBonus-'+scope.bonuses[index].id);
-                            }
-                        }, 1000);
                         scope.popups = [];
                         scope.$on('hidePopoverSuccess', function(e, id){
                             for(var i=0; i<scope.popups.length;i++){
@@ -269,6 +266,14 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                             scope.$broadcast('hidePopover-' + bonus.id);
                         }, 2000);
                     }
+
+                    scope.$on('bonusTimeout', function(e, id){
+                        for(var index in scope.bonuses) {
+                            if(scope.bonuses[index].id === id) {
+                                scope.bonuses[index].used = true;
+                            }
+                        }
+                    });
 
                     function useBonus(index) {
                         var bonus = scope.bonuses[index];
