@@ -32,11 +32,10 @@
     </example>
     
  */
-angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '$interval', '$document', '$window', function($timeout, $interval, $document, $window){
-    var stmGame;
+angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '$interval', '$document', '$window', 'Game', function($timeout, $interval, $document, $window, Game){
     return {
         templateUrl: 'partials/stmGameClimber.directive:stmGameClimberScreen:template.html',
-        controller: ['$scope', '$element', '$attrs', 'Game', function($scope, $element, $attrs, Game) {
+        controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs) {
           $scope.endPosition = 0;
           $scope.score = 0;
           $scope.popupScoreShow = false;
@@ -55,7 +54,6 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
           $scope.keyTopShow = false;
           $scope.popupButtonLeftShow = false;
           $scope.popupButtonRightShow = false;
-          stmGame = Game;
         }],
         compile: function (tElement) {
             return function (scope, iElement, attrs) {
@@ -425,7 +423,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
 
                         gameTime = new Date().getTime();
 
-                        stmGame.save({
+                        Game.save({
                             type: 'climber',
                             action: 'start'
                         });
@@ -443,7 +441,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         }, 1000);
 
                         var time = new Date().getTime();
-                        stmGame.save({
+                        Game.save({
                             type: 'climber',
                             action: 'end',
                             data: {
