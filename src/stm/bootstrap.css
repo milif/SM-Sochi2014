@@ -649,8 +649,8 @@
     -moz-box-shadow: 0 0 2px 2px #000,0 2px 5px 2px rgba(0,0,0,.8);
     -webkit-box-shadow: 0 0 2px 2px #000,0 2px 5px 2px rgba(0,0,0,.8);
     box-shadow: 0 0 2px 2px #000,0 2px 5px 2px rgba(0,0,0,.8);
-    border-collapse: collapse;
     border-spacing: 0;
+    border-collapse: separate;
     width: 100%;
     margin: 2.1em 0;
 }
@@ -660,6 +660,17 @@
     text-align: left;
     padding: 8px 18px;
     font-weight: normal;
+    position: relative;
+}
+.b-text thead th:first-child:before{
+    content: '';
+    position: absolute;
+    right: -2px;
+    width: 4px;
+    height: 100%;
+    background-color: #000;
+    z-index: 10;
+    top: 0;
 }
 .b-text thead th:first-child {
     -webkit-border-radius: 3px 0 0 0;
