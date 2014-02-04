@@ -35,8 +35,11 @@
   overflow: hidden;
   visibility: hidden;
 }
-
-
+a:hover, 
+a:active, 
+a:visited:hover {
+    color: #f66b0e!important;
+}
 /*==========================================================*/
 /* FORM ELEMENTS */
 /*==========================================================*/

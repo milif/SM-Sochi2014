@@ -6,6 +6,8 @@
  * @requires stmIndex.directive:stmIndexAbout:b-about.css
  * @requires stmIndex.directive:stmIndexAbout:template.html
  *
+ * @requires stmIndex.directive:stmIndexToolbar
+ *
  * @description
  * About
  *

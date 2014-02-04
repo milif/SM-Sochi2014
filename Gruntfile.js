@@ -17,7 +17,7 @@ module.exports = function(grunt) {
     buildapp: {
         modules: [
             {  
-                name: 'stmIndexPage', // Module name
+                name: 'stmIndexPage', // Module and package name 
                 include: [        // Include module components:
                     'directive:stmIndexPageScreen',
                     'stm.directive:stmPreload'
@@ -26,9 +26,21 @@ module.exports = function(grunt) {
                 includeTemplates: [
                     '*'
                 ]    
-            },           
+            },   
             {  
-                name: 'stmIndex', // Module name
+                name: 'stmIndexAbout', //  Package name
+                module: 'stmIndex', // Module name
+                include: [        // Include module components:
+                    'directive:stmIndexAbout',
+                    'stm.directive:stmPreload'
+                ],
+                includeAsset: true,
+                includeTemplates: [
+                    '*'
+                ]
+            },                    
+            {  
+                name: 'stmIndex', 
                 include: [        // Include module components:
                     'directive:stmIndexMap',
                     'directive:stmIndexToolbar',
@@ -43,7 +55,7 @@ module.exports = function(grunt) {
                 ] 
             },
             {  
-                name: 'stmGameEti', // Module name
+                name: 'stmGameEti', 
                 include: [        // Include module components:
                     'directive:stmGameEtiScreen',
                     'stm.directive:stmPreload'                                            
@@ -54,10 +66,10 @@ module.exports = function(grunt) {
                 ] 
             },
             {  
-                name: 'stmGameClimber', // Module name
+                name: 'stmGameClimber', 
                 include: [        // Include module components:
                     'directive:stmGameClimberScreen',
-                    'stm.directive:stmPreload'                                              
+                    'stm.directive:stmPreload'
                 ],
                 includeAsset: true,
                 includeTemplates: [
@@ -65,7 +77,7 @@ module.exports = function(grunt) {
                 ]
             },
             {  
-                name: 'stmGameBiathlon', // Module name
+                name: 'stmGameBiathlon', 
                 include: [        // Include module components:
                     'directive:stmGameBiathlonScreen',
                     'stm.directive:stmPreload'                                              

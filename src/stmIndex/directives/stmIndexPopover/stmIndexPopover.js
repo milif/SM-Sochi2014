@@ -12,6 +12,7 @@
  * @element ANY
  * @param {String} stmIndexPopover component id 
  * @param {Array} position set position [x, y]
+ * @param {Array} offset set offset [dx, dy]
  * @param {Integer} hideEventTimeout Время до завершения закрытия
  * @param {Boolean} hideOnClickout Закрытие по клику в сторону
  * @param {String} popoverType Тип показа (bottom|top|default)
@@ -93,6 +94,7 @@ angular.module('stmIndex').directive('stmIndexPopover', function(){
             
             var hideTimeout = $attrs.hideEventTimeout ? $scope.$eval($attrs.hideEventTimeout) : 500;
             var isHideOnClickout = $attrs.hideOnClickout ? $scope.$eval($attrs.hideOnClickout) : false;
+            var offset = $attrs.offset ? $scope.$eval($attrs.offset) : [0,0];
             var position;
             
             $attrs.$observe('popoverType', function(type){
@@ -152,13 +154,13 @@ angular.module('stmIndex').directive('stmIndexPopover', function(){
             function updatePosition(){
                 if($scope.type == 'top'){
                     $scope.css = {
-                        left: position[0],
-                        bottom: position[1]
+                        left: position[0] + offset[0],
+                        bottom: position[1] + offset[1]
                     }                
                 } else {
                     $scope.css = {
-                        left: position[0],
-                        top: position[1]
+                        left: position[0] + offset[0],
+                        top: position[1] + offset[1]
                     }
                 }                
             }

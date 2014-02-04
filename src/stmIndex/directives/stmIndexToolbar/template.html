@@ -20,7 +20,10 @@
                     <div class="b-toolbar-user__name">Юрий Китчев</div>
                 </div>
             </div>-->
-            <a href="." class="b-toolbar-button">О проекте</a>
+            <span ng-class="isAbout ? 'b-toolbar-button_state_active' : ''" class="b-toolbar-button">
+                <span>О проекте</span>
+                <a class="b-button__link"  href="about/"></a>
+            </span>
         </div>
         <!-- / toolbar-right -->
 

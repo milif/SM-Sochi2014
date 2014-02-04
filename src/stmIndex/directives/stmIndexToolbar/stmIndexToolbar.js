@@ -59,7 +59,7 @@ angular.module('stmIndex').directive('stmIndexToolbar', function(){
         replace: true,
         scope: true,
         templateUrl: 'partials/stmIndex.directive:stmIndexToolbar:template.html',
-        controller: ['$scope', '$attrs', '$element', function($scope, $attrs, $element){
+        controller: ['$scope', '$attrs', '$element', '$location', function($scope, $attrs, $element, $location){
             var gameMenu = $scope.gameMenu = {
                 id: 'game',
                 items: GAME_MENU,
@@ -77,6 +77,7 @@ angular.module('stmIndex').directive('stmIndexToolbar', function(){
                 gameMenu
             ];
             $scope.clickMenu = clickMenu;
+            $scope.isAbout = /about/.test($location.url());
             
             function positionMenu(e, menu){
                 var el = $(e.target);
@@ -84,9 +85,9 @@ angular.module('stmIndex').directive('stmIndexToolbar', function(){
                 var cntOffset = $element.offset();
                 var isTop = $scope.position == 'top';
                 if(isTop){
-                    menu.position = [-cntOffset.left + offset.left, -cntOffset.top + offset.top + el.height() ];
+                    menu.position = [-cntOffset.left + offset.left, -cntOffset.top + offset.top + el.outerHeight() ];
                 } else {
-                    menu.position = [-cntOffset.left + offset.left, cntOffset.top - offset.top + $element.height()];
+                    menu.position = [-cntOffset.left + offset.left, cntOffset.top - offset.top + $element.outerHeight()];
                 }
             }
             function clickMenu(e, menu){
