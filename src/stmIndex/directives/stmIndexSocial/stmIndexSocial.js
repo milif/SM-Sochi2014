@@ -163,7 +163,7 @@ angular.module('stmIndex')
   * @methodOf stmIndex.Social
   *
   * @param {String} type Тип кнопки
-  * @param {Function} clbFn Калбек по завершению операции
+  * @param {Function=} clbFn Калбек по завершению операции
   *
   * @description
   * Учесть нажатие на кнопку
