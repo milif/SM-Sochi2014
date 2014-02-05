@@ -14,6 +14,7 @@
  * @param {Array} position set bonus position [x, y]
  * @param {String} type bonus type (sber|mnogo|pickpoint)
  * @param {Boolean} hide hide component
+ * @param {Integer} timeout set auto-destroy timeout in seconds
  *
  * @example
     <example module="appExample">
@@ -21,9 +22,10 @@
         <div ng-controller="bonusesCtrl">
             <div class="btn" ng-click="show()">Show</div>
             <div class="b-sample" >
-              <div ng-repeat="bonus in bonuses" stm-index-bonus="bonusId{{$index}}" type="{{bonus.type}}" position="{{bonus.pos}}"></div>
-              <div stm-index-bonus="bonusId3" type="sber" position="[350, 50]"></div>
-              
+              <div ng-repeat="bonus in bonuses" stm-index-bonus="bonusId{{$index}}" type="{{bonus.type}}" position="{{bonus.pos}}" timeout="{{bonus.timeout}}"></div>
+              <div stm-index-bonus="bonusId3" type="mnogo" position="[350, 50]" show="false"></div>
+              <div stm-index-bonus="bonusId4" type="sber" position="[450, 50]" timeout="20"></div>
+              <div stm-index-bonus="bonusId5" type="pickpoint" position="[550, 50]" timeout="20" show="false"></div>
             <div>
         </div>
         
@@ -40,16 +42,14 @@
         function bonusesCtrl($scope, $timeout){
             $scope.show = function(){
                 $scope.bonuses = [
-                    {pos: [50, 50], type: "mnogo" }, 
-                    {pos: [150, 50], type: "sber"}, 
+                    {pos: [50, 50], type: "mnogo", timeout: 10, show: false }, 
+                    {pos: [150, 50], type: "sber", timeout: 2 }, 
                     {pos: [250, 50], type: "pickpoint"}
                 ];
-                for(var i=0;i<$scope.bonuses.length;i++){
-                    $timeout(function(){
-                        i--
-                        $scope.$broadcast('removeBonus-bonusId' + i);
-                    }, 1000 * (i+1));
-                }
+                $scope.$broadcast('showBonus-bonusId5');
+                $timeout(function(){
+                    $scope.$broadcast('removeBonus-bonusId2');
+                }, 4000);
             }
         }
       </file>
@@ -71,32 +71,58 @@ angular.module('stmIndex').directive('stmIndexBonus', function(){
             stmIndexBonus: '@',
             type: '@',
             position: '@',
-            show: '@' 
+            timeout: '@',
+            show: '@'
         },
-        transclude: true,
+        // transclude: true,
         templateUrl: 'partials/stmIndex.directive:stmIndexBonus:template.html',
         controller: ['$scope', '$animate', '$timeout', '$attrs', function($scope, $animate, $timeout, $attrs){
         
             var isHide = $attrs.show ? !$scope.$eval($scope.show) : false;
             
-            $scope.hide = true;       
+            $scope.hide = true;
+            $scope.spinnerEnabled = false;
             
             $scope.$watch('position', function(){
                 var position = $scope.$eval($scope.position);
                 $scope.css = {
                     left: position[0],
                     top: position[1]
-                }
+                };
+            });
+            $scope.$watch('timeout', function(timeout){
+                var duration = $scope.$eval($scope.timeout) || timeout;
+                $scope.duration = 2 * parseInt(duration, 10);                
             });
             $scope.$watch('show', function(show){
-                $scope.hide = !$scope.$eval(show);
+              $scope.hide = ($scope.$eval(show) === false) ? true : false;
+              if($scope.hide === false) {
+                  activateTimeout($scope.stmIndexBonus);
+              }              
             });
             $scope.$on('removeBonus-' + $scope.stmIndexBonus, function(){
                 $scope.hide = true;
             });
             $scope.$on('showBonus-' + $scope.stmIndexBonus, function(){
-                $scope.hide = false;
+                if(!$scope.timeouted) {
+                    $scope.hide = false;
+                    activateTimeout($scope.stmIndexBonus);
+                }
             });
+
+            function activateTimeout(index) {
+                if($scope.duration) {
+                    $scope.spinnerEnabled = true;
+                    $scope.spinnerStyle = { 
+                      'animation-duration': $scope.duration + 's'
+                    };
+                    $timeout(function(){
+                        $scope.hide = true;
+                        $scope.timeouted = true;
+                        $scope.$emit('bonusTimeout', index);
+                    }, $scope.duration / 2 * 1000);
+                }
+            }
             
             if(!isHide) {
                 $timeout(function(){

@@ -1,3 +1,12 @@
 <!-- Bonus -->
-<div ng-if="!hide" class="b-bonus" ng-class="'b-bonus-'+ type" ng-style="css"></div>
+<div ng-if="!hide" class="b-bonus" ng-class="'b-bonus-'+ type" ng-style="css">
+    <div class="spinner-css" ng-show="spinnerEnabled">
+      <span class="side sp_left">
+        <span class="fill" ng-style="spinnerStyle"></span>
+      </span>
+      <span class="side sp_right">
+        <span class="fill" ng-style="spinnerStyle"></span>
+      </span>
+    </div>
+</div>
 <!-- End Bonus -->
