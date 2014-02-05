@@ -23,8 +23,9 @@
             <div class="btn" ng-click="show()">Show</div>
             <div class="b-sample" >
               <div ng-repeat="bonus in bonuses" stm-index-bonus="bonusId{{$index}}" type="{{bonus.type}}" position="{{bonus.pos}}" timeout="{{bonus.timeout}}"></div>
-              <div stm-index-bonus="bonusId3" type="sber" position="[350, 50]" show="false"></div>
+              <div stm-index-bonus="bonusId3" type="mnogo" position="[350, 50]" show="false"></div>
               <div stm-index-bonus="bonusId4" type="sber" position="[450, 50]" timeout="20"></div>
+              <div stm-index-bonus="bonusId5" type="pickpoint" position="[550, 50]" timeout="20" show="false"></div>
             <div>
         </div>
         
@@ -41,10 +42,11 @@
         function bonusesCtrl($scope, $timeout){
             $scope.show = function(){
                 $scope.bonuses = [
-                    {pos: [50, 50], type: "mnogo", timeout: 10 }, 
+                    {pos: [50, 50], type: "mnogo", timeout: 10, show: false }, 
                     {pos: [150, 50], type: "sber", timeout: 2 }, 
                     {pos: [250, 50], type: "pickpoint"}
                 ];
+                $scope.$broadcast('showBonus-bonusId5');
                 $timeout(function(){
                     $scope.$broadcast('removeBonus-bonusId2');
                 }, 4000);
@@ -93,8 +95,10 @@ angular.module('stmIndex').directive('stmIndexBonus', function(){
                 $scope.duration = 2 * parseInt(duration, 10);                
             });
             $scope.$watch('show', function(show){
-              $scope.hide = !$scope.$eval(show);
-              !$scope.hide && activateTimeout();
+              $scope.hide = ($scope.$eval(show) === false) ? true : false;
+              if($scope.hide === false) {
+                  activateTimeout($scope.stmIndexBonus);
+              }              
             });
             $scope.$on('removeBonus-' + $scope.stmIndexBonus, function(){
                 $scope.hide = true;
@@ -102,11 +106,11 @@ angular.module('stmIndex').directive('stmIndexBonus', function(){
             $scope.$on('showBonus-' + $scope.stmIndexBonus, function(){
                 if(!$scope.timeouted) {
                     $scope.hide = false;
-                    activateTimeout();
+                    activateTimeout($scope.stmIndexBonus);
                 }
             });
 
-            function activateTimeout() {
+            function activateTimeout(index) {
                 if($scope.duration) {
                     $scope.spinnerEnabled = true;
                     $scope.spinnerStyle = { 
@@ -115,7 +119,7 @@ angular.module('stmIndex').directive('stmIndexBonus', function(){
                     $timeout(function(){
                         $scope.hide = true;
                         $scope.timeouted = true;
-                        $scope.$emit('bonusTimeout', $scope.stmIndexBonus);
+                        $scope.$emit('bonusTimeout', index);
                     }, $scope.duration / 2 * 1000);
                 }
             }
