@@ -34,7 +34,7 @@ class Socials {
             Cache::increment('socials.'.$type);
         }
         
-        DB::query("INSERT INTO social_log (time, uid, type, ip) VALUES (NOW(), :uid, :type, :ip);", array(':uid'=>$uid, ':type'=>$type, ':ip'=>$_SERVER['REMOTE_ADDR']));
+        DB::query("INSERT INTO social_log (uid, type, ip) VALUES (:uid, :type, :ip);", array(':uid'=>$uid, ':type'=>$type, ':ip'=>$_SERVER['REMOTE_ADDR']));
         return true;
     }
 }
