@@ -259,8 +259,8 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                             'sber': 'Спасибо за упорство от Сбербанка!',
                             'pickpoint': 'Спасибо за упорство от Пикпоинта!'
                         };
-                        var maxYPosition = g_viewEl.height() - 150;
-                        lastBonusPopupPosition += 175;
+                        var maxYPosition = g_viewEl.height() - 230;
+                        lastBonusPopupPosition += 180;
                         if(lastBonusPopupPosition > maxYPosition) {
                             lastBonusPopupPosition = -176;
                         }
