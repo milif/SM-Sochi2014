@@ -21,7 +21,9 @@ angular.module('stm',['ngAnimate','ngResource'])
         .run(['$location', '$rootScope', '$cacheFactory', '$http', '$stmEnv', function($location, $rootScope, $cacheFactory, $http, $stmEnv){
             var baseUrl = $location.absUrl();
             $rootScope.$on('$locationChangeStart', function(e, newUrl){  
-                if(newUrl.indexOf(baseUrl) < 0) window.location.href = newUrl;
+                if(newUrl.indexOf(baseUrl) < 0) {
+                    window.location.href = newUrl;
+                }
             });
             // Cache
             var cache = $cacheFactory('stm');

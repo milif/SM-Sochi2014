@@ -60,6 +60,7 @@ angular.module('stmIndexPage').directive('stmIndexPageScreen', function(){
                 $scope.showPage = true;
             });
             function showMap(e){
+                $scope.gameMap = true;
                 $scope.pageStyle = {
                     marginTop: -pageEl.height(),
                     minWidth: 0,

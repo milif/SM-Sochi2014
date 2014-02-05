@@ -36,7 +36,8 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
 
     return {
         scope: {
-            position: '=?'
+            position: '=?',
+            game: '=?'
         },
         transclude: true,
         templateUrl: 'partials/stmIndex.directive:stmIndexMap:template.html',
@@ -52,6 +53,10 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
             $scope.position = normalizePosition($scope.position || storedPosition || {
                 x: 0, 
                 y: 0
+            });
+            
+            $scope.$watch('game',function(isGame){
+                if(isGame) $scope.$emit('gameInit');
             });
            
             $scope.inMove = false;

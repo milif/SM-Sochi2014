@@ -182,10 +182,11 @@
 
 .b-game-item14 {
     left: -500px;
-    top: 280px;
+    top: 230px;
     width: 477px;
     height: 106px;
     background: url("asset/i/b-gameMap/plane_sheet_2x18.png") 0 0 no-repeat;
+    z-index: 20;
 }
 
 /* b-map-decor */

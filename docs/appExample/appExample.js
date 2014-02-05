@@ -16,4 +16,5 @@ angular.module('appExample', [
     .config(['$sceProvider', '$locationProvider', function($sceProvider, $locationProvider){
         $sceProvider.enabled(false);
         $locationProvider.html5Mode(false);
-    }]);
+    }])
+    .value('$stmEnv', { auth: {}});

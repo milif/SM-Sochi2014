@@ -64,7 +64,7 @@
   border-radius: 999px;
   -webkit-border-radius: 999px;
   -moz-border-radius: 999px;
-  opacity: 0.6;
+  opacity: 0.3;
 }
 .b-bonus .spinner-css:after {
   content: "";

@@ -829,6 +829,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
 
                 }
                 init();
+                scope.$emit('gameInit');
             };
         }
     };

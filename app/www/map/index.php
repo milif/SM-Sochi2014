@@ -15,7 +15,7 @@
   <!-- @include stmIndex -->
   <?php include __DIR__.'/../../lib/env.php' ?>
 </head>
-<body stm-index-map urlprefix="../" stm-preload>
+<body game="true" stm-index-map urlprefix="../" stm-preload>
     <div stm-index-toolbar position="top"></div>
 </body>
 </html>

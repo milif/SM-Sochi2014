@@ -200,6 +200,9 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                     }
                 }
             });
+            
+            $scope.$emit('gameInit');
+            
             function startGame(){
                 scoreDetails = {};
                 men.speed = PLAYER_SPEED;

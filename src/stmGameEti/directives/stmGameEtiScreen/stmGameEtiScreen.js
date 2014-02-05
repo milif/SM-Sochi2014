@@ -165,6 +165,8 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
             var etis;
             var startTime;
             
+            $scope.$emit('gameInit');
+            
             function startGame(){
                 startTime = new Date().getTime();
                 foundedEti = 0;
