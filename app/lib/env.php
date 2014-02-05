@@ -2,9 +2,10 @@
 
 require_once __DIR__.'/../config.php';
 require_once __DIR__.'/Socials.class.php';
+require_once __DIR__.'/Auth.class.php';
 
 $ENV = array(
-    'clientId' => CLIENT_ID, 
+    'auth' => Auth::getUser(),
     'api' => array(
         "api/socials.php" => Socials::get()
     )
