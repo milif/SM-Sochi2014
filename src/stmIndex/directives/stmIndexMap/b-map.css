@@ -187,3 +187,50 @@
     height: 106px;
     background: url("asset/i/b-gameMap/plane_sheet_2x18.png") 0 0 no-repeat;
 }
+
+/* b-map-decor */
+/*==========================================================*/
+.b-map-decor {
+  position: absolute;
+  background: url(asset/i/b-gameMap/b-gameMap-decor.png) 0 0 no-repeat;
+  z-index: 10;
+}
+.b-map-decor.mod_balloon {
+    background-position: 0px 0px;
+    width: 241px;
+    height: 423px;
+    top: 780px;
+    left: 2680px;
+}
+
+.b-map-decor.mod_cloud1 {
+    background-position: -261px 0px;
+    width: 521px;
+    height: 125px;
+    top: 140px;
+    left: 1000px;
+}
+
+.b-map-decor.mod_cloud2 {
+    background-position: -533px -145px;
+    width: 210px;
+    height: 69px;
+    top: 100px;
+    left: 1800px;
+}
+
+.b-map-decor.mod_tree1 {
+    background-position: -261px -145px;
+    width: 117px;
+    height: 152px;
+    left: -40px;
+    top: 650px;
+}
+
+.b-map-decor.mod_tree2 {
+    background-position: -398px -145px;
+    width: 115px;
+    height: 142px;
+    left: 60px;
+    top: 730px;
+}
