@@ -177,10 +177,11 @@
   background-position: -2760px -470px;
 }
 
-.b-gamePanel {
+.b-gameClimber .b-gamePanel {
   bottom: -62px;
   -webkit-transition: bottom linear 0.2s;
   transition: bottom linear 0.2s;
+  z-index: 11000;
 }
 .b-gamePanel.state_active {
   bottom: 0;

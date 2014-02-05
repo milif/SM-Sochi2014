@@ -70,7 +70,7 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                     localStorage.setItem('_stmSochiMapPosition', JSON.stringify($scope.position));
                     $scope.$apply(function(){
                         $scope.inMove = false;
-                    });                    
+                    });
                     windowEl.off(dragEvents);
                 }
             }            
@@ -131,7 +131,8 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                 'fps': 30,
                 'width': 294,
                 'height': 162,
-                'cols': 3
+                'cols': 3,
+                'backgroundTop': -324
             };
             $scope.item5 = {
                 'frames': 29,
@@ -219,6 +220,10 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                         item.css = {
                             'background-position': '-' + horizontalIndex * item.width + 'px -' + verticalIndex * item.height + 'px'
                         };
+                    } else {
+                        item.css = {
+                            'background-position': (item.backgroundLeft || 0) + 'px' + (item.backgroundTop || 0) + 'px'
+                        };
                     }
                     if(item.move === true) {
                         if(item.left > 4300) {
@@ -236,7 +241,7 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                 return {
                     x: Math.max(0,Math.min(pos.x, backEl.width() - viewEl.width())),
                     y: Math.max(0,Math.min(pos.y, backEl.height() - viewEl.height()))
-                }
+                };
             }
         }]
     };
