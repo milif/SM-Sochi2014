@@ -252,18 +252,24 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         });
                     }
 
+                    var lastBonusPopupPosition = -165;
                     function showBonusPopup(bonus) {
                         var text = {
                             'mnogo': 'от Много.ру!',
                             'sber': 'Спасибо за упорство от Сбербанка!',
                             'pickpoint': 'Спасибо за упорство от Пикпоинта!'
                         };
+                        var maxYPosition = g_viewEl.height() - 150;
+                        lastBonusPopupPosition += 175;
+                        if(lastBonusPopupPosition > maxYPosition) {
+                            lastBonusPopupPosition = -176;
+                        }
                         scope.popups.push({
                             id: bonus.id,
                             type: bonus.type,
                             bonus: bonus.bonus,
                             text: text[bonus.type],
-                            position: [-400 - 10*Math.round(10*Math.random()), 100+10*Math.round(20*Math.random())]
+                            position: [-400 - 10*Math.round(10*Math.random()), lastBonusPopupPosition]
                         });
                         $timeout(function(){
                             scope.$broadcast('hidePopover-' + bonus.id);
