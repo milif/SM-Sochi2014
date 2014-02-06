@@ -58,8 +58,8 @@
 
 /* MOD climber  */
 .b-game-run.mod_climber {
-  left: 1848px;
-  top: 2392px;
+  left: 1660px;
+  top: 2580px;
 }
 
 /* .b-button.mod_game-run */
@@ -189,6 +189,52 @@
     background: url("asset/i/b-gameMap/plane_sheet_2x18.png") 0 0 no-repeat;
     z-index: 20;
 }
+
+.b-game-item-static-quelle {
+    left: 120px;
+    top: 2300px;
+    width: 624px;
+    height: 283px;
+    background: url("asset/i/b-gameMap/b-gameMap-quelle.png") 0 0 no-repeat;
+    z-index: 20;
+}
+
+.b-game-item-static-dpd {
+    left: 2330px;
+    top: 3160px;
+    width: 230px;
+    height: 170px;
+    background: url("asset/i/b-gameMap/b-gameMap-dpd.png") 0 0 no-repeat;
+    z-index: 20;
+}
+
+.b-game-item-static-dpd2 {
+    left: 2975px;
+    top: 1605px;     
+    width: 208px;
+    height: 144px;
+    background: url("asset/i/b-gameMap/b-gameMap-dpd2.png") 0 0 no-repeat;
+    z-index: 20;
+}
+
+.b-game-item-static-proscater {
+    left: 1925px;
+    top: 2230px;     
+    width: 384px;
+    height: 318px;
+    background: url("asset/i/b-gameMap/b-gameMap-proscater.png") 0 0 no-repeat;
+    z-index: 20;
+}
+
+.b-game-item-static-trees {
+    left: 2265px;
+    top: 2325px;
+    width: 167px;
+    height: 150px;
+    background: url("asset/i/b-gameMap/b-gameMap-trees.png") 0 0 no-repeat;
+    z-index: 20;
+}
+
 
 /* b-map-decor */
 /*==========================================================*/
