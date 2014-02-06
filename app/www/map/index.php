@@ -2,7 +2,6 @@
 <html ng-app="stmIndex" lang="ru">
 <head>
   <title>Карта</title>
-  <link rel="shortcut icon" href="../favicon.ico">
   <link rel="stylesheet" href="index.css" type="text/css">
   <base href="../"></base>
   <!-- @include stmIndex -->

@@ -2,7 +2,6 @@
 <html ng-app="stmIndexPage" lang="ru">
 <head>
   <title>Сочные игры 2014</title>
-  <link rel="shortcut icon" href="favicon.ico"/>
   <link rel="stylesheet" href="index.css" type="text/css"/>
   <base href="." />
   <!-- @include stmIndexPage -->

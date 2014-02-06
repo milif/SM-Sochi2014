@@ -2,7 +2,6 @@
 <html ng-app="stmGameEti" lang="ru">
 <head>
   <title>Фотоохота на Йети</title>
-  <link rel="shortcut icon" href="../favicon.ico">
   <link rel="stylesheet" href="index.css" type="text/css">
   <base href="../"></base>
   <!-- @include stmGameEti -->
