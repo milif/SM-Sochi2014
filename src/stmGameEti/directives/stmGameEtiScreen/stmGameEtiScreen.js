@@ -67,7 +67,7 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
         compile: function(tElement){
             alertTpl = $compile(tElement.find('[data-alert]').remove());
         },
-        controller: ['$scope', '$element', '$interval', '$animate', '$timeout', function($scope, $element, $interval, $animate, $timeout){
+        controller: ['$scope', '$element', '$interval', '$animate', '$timeout', 'Game', function($scope, $element, $interval, $animate, $timeout, Game){
             
             var viewEl = $element.find('>:first');
             var backEl = viewEl.find('>:first');
@@ -161,10 +161,16 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
             var lastPhotoTime;
             var currentTargets;
             var currentLevel;
+            var foundedEti;
+            var etis;
+            var startTime;
+            
+            $scope.$emit('gameInit');
             
             function startGame(){
-                var startTime = new Date().getTime();
-                
+                startTime = new Date().getTime();
+                foundedEti = 0;
+                etis = {};
                 $scope.showToolbar = true;
                 $scope.ineti = 0;
                 $scope.attempts = ATTEMPTS;
@@ -184,6 +190,11 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                 }, ITERATE_TIMEOUT);
                 
                 activateRedBird();
+                
+                Game.save({
+                    type: 'yeti',
+                    action: 'start'
+                });
             }
             
             function activateRedBird(){
@@ -289,9 +300,15 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                             }
                             if(!target.hasShoot){
                                 target.hasShoot = true;
-                                if(el.data('eti')) {
+                                var eti = el.data('eti');
+                                if(eti) {
                                     $scope.ineti++;
                                     success = true;
+                                    if(!etis[eti]) {
+                                        etis[eti] = 0;
+                                        foundedEti++;
+                                    }
+                                    etis[eti]++;
                                     showMessage(successMsg, e);
                                 } else {
                                     targetName = MSGS[el.data('msg')];
@@ -359,6 +376,21 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                     closeTarget(currentTargets[i]);
                 }
                 deactivateRedBird();
+                
+                var time = new Date().getTime();
+                Game.save({
+                    type: 'yeti',
+                    action: 'end',
+                    data: {
+                        time: time - startTime,
+                        final: foundedEti == $element.find('[data-eti]').length,
+                        eti: {
+                            founded: foundedEti,
+                            total: $scope.ineti,
+                            details: etis
+                        }
+                    }
+                });
             }
             function checkIntersection(el1, el2){
                 var offset1 = el1.offset();

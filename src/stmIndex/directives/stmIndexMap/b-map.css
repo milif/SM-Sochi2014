@@ -110,7 +110,7 @@
     top: 1640px;
     width: 294px;
     height: 162px;
-    background: url("asset/i/b-gameMap/couple_sheet_3x39.png") 0 0 no-repeat;
+    background: url("asset/i/b-gameMap/couple_sheet_3x39.png") 0 -324px no-repeat;
 }
 .b-game-item5 {
     left: 248px;
@@ -148,3 +148,90 @@
     background: url("asset/i/b-gameMap/yeti2_sheet_5x11.png") 0 0 no-repeat;
 }
 
+.b-game-item10 {
+    left: 1250px;
+    top: 2950px;
+    width: 484px;
+    height: 304px;
+    background: url("asset/i/b-gameMap/mnogo_sheet_2x36.png") 0 0 no-repeat;
+}
+
+.b-game-item11 {
+    left: 1420px;
+    top: 1000px;
+    width: 116px;
+    height: 134px;
+    background: url("asset/i/b-gameMap/paper_boy_sheet_8x9.png") 0 0 no-repeat;
+}
+
+.b-game-item12 {
+    left: 2200px;
+    top: 880px;
+    width: 350px;
+    height: 194px;
+    background: url("asset/i/b-gameMap/pick_point_sheet_2x33.png") 0 0 no-repeat;
+}
+
+.b-game-item13 {
+    left: 3350px;
+    top: 3050px;
+    width: 370px;
+    height: 310px;
+    background: url("asset/i/b-gameMap/sotmarket_sheet_2x35.png") 0 0 no-repeat;
+}
+
+.b-game-item14 {
+    left: -500px;
+    top: 230px;
+    width: 477px;
+    height: 106px;
+    background: url("asset/i/b-gameMap/plane_sheet_2x18.png") 0 0 no-repeat;
+    z-index: 20;
+}
+
+/* b-map-decor */
+/*==========================================================*/
+.b-map-decor {
+  position: absolute;
+  background: url(asset/i/b-gameMap/b-gameMap-decor.png) 0 0 no-repeat;
+  z-index: 10;
+}
+.b-map-decor.mod_balloon {
+    background-position: 0px 0px;
+    width: 241px;
+    height: 423px;
+    top: 780px;
+    left: 2680px;
+}
+
+.b-map-decor.mod_cloud1 {
+    background-position: -261px 0px;
+    width: 521px;
+    height: 125px;
+    top: 140px;
+    left: 1000px;
+}
+
+.b-map-decor.mod_cloud2 {
+    background-position: -533px -145px;
+    width: 210px;
+    height: 69px;
+    top: 100px;
+    left: 1800px;
+}
+
+.b-map-decor.mod_tree1 {
+    background-position: -261px -145px;
+    width: 117px;
+    height: 152px;
+    left: -40px;
+    top: 650px;
+}
+
+.b-map-decor.mod_tree2 {
+    background-position: -398px -145px;
+    width: 115px;
+    height: 142px;
+    left: 60px;
+    top: 730px;
+}

@@ -6,12 +6,16 @@
             <!-- Player -->
             <div class='gameClimber-player mod_frame1'></div>
             <!-- End Player -->
+            <div class='gameClimber-fone-bonuses'>
+              <div ng-repeat="bonus in bonuses" stm-index-bonus="{{bonus.id}}" type="{{bonus.type}}" position="{{bonus.position}}" timeout="{{bonus.timeout}}" show="{{bonus.show}}"></div>
+            </div>
           </div>
-        </div>
+        </div>       
       </div>
-      <div class="gameClimber-popup gameClimber-popup-mood mod_white" ng-show="popupMoodShow">
-        <div class="gameClimber-popup-title">Red Bull окрыляет!</div>
-        <div class="gameClimber-popup-text">Нажмите клавишу &laquo;R&raquo;</div>
+      <div ng-repeat="popup in popups" stm-index-popover="{{popup.id}}" position="popup.position" class="gameClimber-fone-bonuses">
+        <div stm-index-bonus-popup bonus="{{popup.bonus}}" type="{{popup.type}}">
+            {{popup.text}}
+        </div>
       </div>
       <div class="gameClimber-popup gameClimber-popup-score mod_yellow mod_small-padding" ng-show="popupScoreShow">
         <div class="gameClimber-popup-title">
@@ -20,20 +24,24 @@
         </div>
         <div class="gameClimber-popup-text">Потрясающая <br> ловкость</div>
       </div>
+      <div ng-show="!showStartPopup">
+        <div stm-index-buttons-popup ng-show="keyTopShowStart" key="top">Жми стрелку <b>Вверх</b> на клавиатуре,<br>чтобы покорить вершину</div>
+        <div stm-index-buttons-popup ng-show="keyTopShow" key="top">Жми <b>Вверх</b>,<br>а то разобьешься!</div>
+        <div stm-index-buttons-popup ng-show="popupMoodShow" key="R">Жми <b>R</b>,<br>Red Bull окрыляет!</div>
+        <div stm-index-buttons-popup ng-show="popupButtonLeftShow" key="left">Жми <b>Влево</b>,<br>собирай больше бонусов!</div>
+        <div stm-index-buttons-popup ng-show="popupButtonRightShow" key="right">Жми <b>Вправо</b>,<br>собирай больше бонусов!</div>
+      </div>
       <!-- Panel -->
-      <div class='gameClimber-panel' ng-class="showToolbar ? 'state_active' : ''">
-        <div class='gameClimber-panel-h'>
-          <div class='gameClimber-panel-layaut'>
-            <div class='gameClimber-panel-column mod_first'>
-              <span class='b-button b-button_size_medium b-button_scheme_white'>
-                <span class='b-icons b-icons_arrow'>
-                  <span class='b-icons__item'></span>
-                </span>
+      <div class='b-gamePanel' ng-class="showToolbar ? 'state_active' : ''">
+        <div class='b-gamePanel-h'>
+          <div class='b-gamePanel-layaut'>
+            <div class='b-gamePanel-column mod_first'>
+              <div class="b-button b-button_map">
                 <span class='b-button__text'>На карту</span>
-                <a class='b-button__link' href='../'></a>
-              </span>
+                <a class='b-button__link' href='map/'></a>
+              </div>
             </div>
-            <div class='gameClimber-panel-column mod_second'>
+            <div class='b-gamePanel-column mod_second'>
               <div class='b-progress-climber'>
                 <div class='b-progress-climber-icon'>
                   <span class='b-icons b-icons_energy'>
@@ -61,12 +69,12 @@
                 </div>
               </div>
             </div>
-            <div class='gameClimber-panel-column mod_third'>
+            <div class='b-gamePanel-column mod_third'>
               <span class='b-button b-button_size_medium2 b-button_scheme_yellow'>
                 <span class='b-icons b-icons_star'>
                   <span class='b-icons__item'></span>
                 </span>
-                <span class='b-button__text'>{{score}}</span>
+                <span class='b-button__text' ng-bind="(score | number:0).replace(',',' ')"></span>
                 <a class='b-button__link' href='#3'></a>
               </span>
             </div>
@@ -79,7 +87,7 @@
     <div class='b-popup-title'>
         Альпинист - восхождение по канату<br>на самую высокую гору мира
     </div>
-    <div class='b-popup-note'>Для движения наверх нажимай стрелку <b>Вверх</b>.<br>Выполняй задания, получай трофеи<br>и выиграй iPhone 5S</div>
+    <div class='b-popup-note'>Для движения наверх нажимай стрелку <b><i>Вверх</i></b>.<br>Выполняй задания, получай трофеи<br>и выиграй iPhone 5S</div>
     <div class='b-popup-button'>
         <div class='b-button button_size_big b-button_scheme_yellow'>
             <div class='b-button__text'>Играть</div>

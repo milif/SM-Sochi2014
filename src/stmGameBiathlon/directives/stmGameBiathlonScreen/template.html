@@ -19,6 +19,7 @@
         <div ng-repeat="target in frame.targets" class="b-biathlon-panel g-noselect" ng-style="target.css" >
             <div ng-repeat="point in target.points track by $index" ng-class="point ? 'b-biathlon-panel-item_active' : ''" class="b-biathlon-panel-item"></div>
         </div>
+        <div class="b-gameBiathlon-bonus" ng-repeat="bonus in frame.bonuses" stm-index-bonus="{{bonus.id}}" show="{{bonus.show}}" type="{{bonus.type}}" position="{{bonus.position}}"></div>
     </div>
     
     <div ng-show="!inEti" ng-style="men.css" class="l-b-biathlon-men">
@@ -30,12 +31,44 @@
     </div>
 
 </div>
+<div ng-repeat="popup in bonusPopups" class="b-gameBiathlon-bonusPopup" stm-index-popover="{{popup.id}}" position="popup.position">
+    <div stm-index-bonus-popup bonus="{{popup.bonus}}" type="{{popup.type}}">
+        <span ng-bind-html="popup.text"></span>
+    </div>
+</div>
+<!-- Panel -->
+<div class='b-gamePanel' ng-class="showToolbar ? 'state_active' : ''">
+    <div class='b-gamePanel-h'>
+        <div class='b-gamePanel-layaut'>
+            <div class='b-gamePanel-column mod_first'>
+                <div class="b-button b-button_map">
+                    <span class='b-button__text'>На карту</span>
+                    <a class='b-button__link' href='map/'></a>
+                </div>
+            </div>
+            <div class='b-gamePanel-column mod_second'>
+                <ul class="b-gameBiathlon-shots">
+                    <li ng-repeat="n in [] | range:speedsMax" ng-class="n < speeds ? 'state_active' : ''" class="b-gameBiathlon-shots-item state_active"></li>
+                </ul>
+            </div>
+            <div class='b-gamePanel-column mod_third'>
+                <span class="b-button b-button_size_medium2 b-button_scheme_yellow">
+                    <span class="b-icons b-icons_star">
+                        <span class="b-icons__item"></span>
+                    </span>
+                    <span class="b-button__text">{{(score | number).replace(","," ")}}</span>
+                    <a class="b-button__link" href="#3"></a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div stm-index-popup class="b-gameBiathlon-popup" ng-show="showStartPopup">
     <div class='b-popup-title'>
-        Говорят, что йети не любят<br>фотографироваться, но это не так
+        Биатлон &mdash; точность и скорость<br>для полной победы
     </div>
-    <div class='b-popup-note'>Заметь и успей сфотографировать йети. Чтобы сделать снимок<br>наведи фокус на йети и нажми
-        <b>левую кнопку мыши</b>.<br>Можно допустить только <b>5</b> промахов
+    <div class='b-popup-note'>Не дай йети догнать тебя, будь быстр и точен!<br>Для разгона нажимай <b><i>Вправо</i></b>, для торможения &mdash; <b><i>Влево</i></b><br>для стрельбы и прыжков нажимай <b><i>Пробел</i></b>.
     </div>
     <div class='b-popup-button'>
         <div class='b-button button_size_big b-button_scheme_yellow'>
@@ -44,3 +77,10 @@
         </div>
     </div>
 </div>
+<div ng-class="buttons.active ? 'state_active' : ''" class="b-gameBiathlon-buttons">
+    <div stm-index-buttons-popup key="{{buttons.key}}"><span ng-bind-html="buttons.text"></span></div>
+</div>
+<audio data-shoot>
+    <source src="asset/audio/shoot/shoot.ogg" type="audio/ogg">
+    <source src="asset/audio/shoot/shoot.mp3" type="audio/mpeg">
+</audio>

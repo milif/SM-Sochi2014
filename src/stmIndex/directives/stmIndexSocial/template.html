@@ -1,0 +1,19 @@
+<!-- stmIndexSocial -->
+<div class="b-socials">
+    <span ng-repeat="button in buttons" ng-click="button.onClick()" class="b-button b-button_social">
+        <i ng-class="'b-social-icon_' + button.type" class="b-social-icon"></i> 
+        <span class="b-button__text">{{socials.counters[button.type] || 0}}</span>
+    </span>
+    <!--
+    <a href="#3" class="b-button b-button_social">
+        <i class="b-social-icon b-social-icon_plus"></i> 
+        <span class="b-button__text">Еще</span>
+    </a>
+    <a href="#3" class="b-button b-button_social">
+        <i class="b-social-icon b-social-icon_gp"></i> 
+        <span class="b-button__text">
+            <i class="b-social-icon b-social-icon_heart"></i> 
+        </span>
+    </a>    
+    -->
+</div>

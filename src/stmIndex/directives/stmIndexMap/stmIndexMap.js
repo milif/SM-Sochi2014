@@ -11,6 +11,7 @@
  *
  * @element ANY
  * @param {Integer} fps set refresh rate for animations
+ * @param {Object} position set map position {x: Integer, y: Integer}
  *
  * @example
     <example module="appExample">
@@ -35,15 +36,27 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
 
     return {
         scope: {
+            position: '=?',
+            game: '=?'
         },
+        transclude: true,
         templateUrl: 'partials/stmIndex.directive:stmIndexMap:template.html',
         controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
             var viewEl = $element.find('>:first');
             var backEl = viewEl.find('>:first');
             
-            $scope.position = normalizePosition(JSON.parse(localStorage.getItem('_stmSochiMapPosition')) || {
+            var storedPosition;
+            try { 
+                storedPosition = JSON.parse(localStorage.getItem('_stmSochiMapPosition'));
+            } catch(e){};
+            
+            $scope.position = normalizePosition($scope.position || storedPosition || {
                 x: 0, 
                 y: 0
+            });
+            
+            $scope.$watch('game',function(isGame){
+                if(isGame) $scope.$emit('gameInit');
             });
            
             $scope.inMove = false;
@@ -62,7 +75,7 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                     localStorage.setItem('_stmSochiMapPosition', JSON.stringify($scope.position));
                     $scope.$apply(function(){
                         $scope.inMove = false;
-                    });                    
+                    });
                     windowEl.off(dragEvents);
                 }
             }            
@@ -123,7 +136,8 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                 'fps': 30,
                 'width': 294,
                 'height': 162,
-                'cols': 3
+                'cols': 3,
+                'backgroundTop': -324
             };
             $scope.item5 = {
                 'frames': 29,
@@ -160,7 +174,45 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                 'height': 172,
                 'cols': 5
             };
-            var itemsCount = 9;
+            $scope.item10 = {
+                'frames': 71,
+                'fps': 30,
+                'width': 484,
+                'height': 304,
+                'cols': 2
+            };
+            $scope.item11 = {
+                'frames': 70,
+                'fps': 30,
+                'width': 116,
+                'height': 134,
+                'cols': 8
+            };
+            $scope.item12 = {
+                'frames': 65,
+                'fps': 30,
+                'width': 350,
+                'height': 194,
+                'cols': 2
+            };
+            $scope.item13 = {
+                'frames': 69,
+                'fps': 30,
+                'width': 370,
+                'height': 310,
+                'cols': 2
+            };
+            $scope.item14 = {
+                'frames': 36,
+                'fps': 30,
+                'width': 477,
+                'height': 106,
+                'over': true,
+                'move': true,
+                'left': -500,
+                'cols': 2
+            };
+            var itemsCount = 14;
 
             function iterate(){
                 var time = new Date().getTime() - startTime;
@@ -169,16 +221,32 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                         frameIndex = Math.round( time / 1000 * item.fps) % item.frames,
                         verticalIndex = Math.floor(frameIndex / item.cols),
                         horizontalIndex = frameIndex - verticalIndex * item.cols;
-                    item.css = {
-                        'background-position': '-' + horizontalIndex * item.width + 'px -' + verticalIndex * item.height + 'px'
-                    };
+                    if(item.over === true) {
+                        item.css = {
+                            'background-position': '-' + horizontalIndex * item.width + 'px -' + verticalIndex * item.height + 'px'
+                        };
+                    } else {
+                        item.css = {
+                            'background-position': (item.backgroundLeft || 0) + 'px' + (item.backgroundTop || 0) + 'px'
+                        };
+                    }
+                    if(item.move === true) {
+                        if(item.left > 4300) {
+                            item.left = -500;
+                        }
+                        item.left += 5;
+                        item.css = {
+                            'left': item.left + 'px',
+                            'background-position': '-' + horizontalIndex * item.width + 'px -' + verticalIndex * item.height + 'px'
+                        };
+                    }
                 }
             }
             function normalizePosition(pos){
                 return {
                     x: Math.max(0,Math.min(pos.x, backEl.width() - viewEl.width())),
                     y: Math.max(0,Math.min(pos.y, backEl.height() - viewEl.height()))
-                }
+                };
             }
         }]
     };

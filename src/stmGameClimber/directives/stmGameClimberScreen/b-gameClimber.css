@@ -40,6 +40,15 @@
   /* frame winner   =  frame13*/
   /* frame stay   =  frame14*/
 }
+.gameClimber-player.flip-left {
+  margin-left: -210px;
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  filter: FlipH;
+  -ms-filter: "FlipH";
+}
 .gameClimber-player.mod_frame1 {
   background-position: 0px 0px;
 }
@@ -108,6 +117,9 @@
   background-position: -2530px -470px;
   margin-left: 0px;
 }
+.gameClimber-player.mod_frame17.flip-left {
+  margin-left: -250px;
+}
 
 .gameClimber-player.mod_frame21 {
   background-position: 0px -926px;
@@ -165,50 +177,26 @@
   background-position: -2760px -470px;
 }
 
-
-/* gameClimber-panel */
-.gameClimber-panel {
-  position: absolute;
-  left: 0;
-  right: 0;
+.b-gameClimber .b-gamePanel {
+  bottom: -62px;
+  -webkit-transition: bottom linear 0.2s;
+  transition: bottom linear 0.2s;
+  z-index: 11000;
+}
+.b-gamePanel.state_active {
   bottom: 0;
-  z-index: 20;
-  height: 58px;
-  background-color: #fff;
-  border-top: 4px solid #000;
-}
-
-.gameClimber-panel-h {
-  padding: 8px 20px 0 20px;
-}
-
-.gameClimber-panel-layaut {
-  display: table;
-}
-
-.gameClimber-panel-column {
-  display: table-cell;
-  vertical-align: top;
-  white-space: nowrap;
-}
-
-.gameClimber-panel-column.mod_first {
-}
-
-.gameClimber-panel-column.mod_second {
-  width: 100%;
-}
-
-.gameClimber-panel-column.mod_third {
 }
 
 /* b-progress-climber */
 /*==========================================================*/
 .b-progress-climber {
-  margin-bottom: 4px;
+  margin-top: 8px;
   position: relative;
   margin-left: 60px;
   margin-right: 60px;
+}
+.b-progress-climber:first-child {
+  margin-top: 0px;
 }
 
 .b-progress-climber-icon {
@@ -225,12 +213,13 @@
   line-height: 12px;
   font-weight: bold;
   width: 56px;
+  color: #fff;
 }
 
 /* Progress bars */
 /*==========================================================*/
 .b-progressbar {
-  height: 18px;
+  height: 16px;
   background-color: #fff;
   position: relative;
   overflow: hidden;
@@ -252,15 +241,15 @@
   bottom: 0;
   left: 0;
   content: '';
-  border: 3px solid #000;
+  border: 2px solid #fff;
   border-radius: 3px;
   z-index: 10;
 }
 .b-progressbar__line {
   position: absolute;
   left: 0px;
-  top: 4px;
-  bottom: 3px;
+  top: 2px;
+  bottom: 2px;
   z-index: 5;
 }
 .b-progressbar_scheme_red .b-progressbar__line {
@@ -374,4 +363,35 @@
 
 .b-gameClimber-popup.ng-hide {
     opacity: 0;
+}
+
+
+.gameClimber-fone-bonuses {
+    position: relative;
+    margin-left: 50%;
+}
+
+.b-gameClimber .b-buttons-popup {
+  position: absolute;
+  left: 50%;
+  margin-left: -400px;
+  bottom: 100px;
+  z-index: 10000;
+  -webkit-transition:all linear 0.2s;
+  transition:all linear 0.2s;
+  opacity: 1;
+}
+
+.b-gameClimber .b-buttons-popup.ng-hide-add,
+.b-gameClimber .b-buttons-popup.ng-hide-remove {
+    display: block !important;
+}
+
+.b-gameClimber .b-buttons-popup.ng-hide {
+    opacity: 0;
+}
+
+.b-gameClimber .b-popover {
+  position: absolute;
+  z-index: 10000;
 }
