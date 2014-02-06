@@ -82,6 +82,7 @@
 
 .b-game-item {
     position: absolute;
+    z-index: 5;
 }
 
 .b-game-item1 {

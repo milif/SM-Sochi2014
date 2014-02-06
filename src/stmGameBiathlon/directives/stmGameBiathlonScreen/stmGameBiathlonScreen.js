@@ -70,7 +70,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
         type: 'jump'
     };
     var BONUS_GO = { // На трассе
-        y: 100,
+        y: 80,
         type: 'go'
     };    
     var BUTTONS_CHANGE_MIN_TIME = 2000; // Минимальное время между сменой подсказок
@@ -288,6 +288,8 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                 if(!isGame || men.x < eti.x || time - showKeyHelpActiveTime > BUTTONS_TIME){
                     buttons.active = false;
                 }
+                
+                $scope.ready = true;
                 
                 prevTime = time;
             }
