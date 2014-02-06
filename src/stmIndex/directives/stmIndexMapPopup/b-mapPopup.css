@@ -73,11 +73,11 @@
 .b-mapPopup__question-info_big {
     overflow: hidden;
     height: 64px;
-    position: relative;
+    /*position: relative;*/
 }
 .b-mapPopup__question-info_big:before {
     position: absolute;
-    height: 20px;
+    height: 40px;
     content: '';
     left: 0;
     right: 0;
