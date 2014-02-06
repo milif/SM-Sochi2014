@@ -8,7 +8,11 @@
  *
  * Модуль главной страницы
  */
-
+if (!window.requestAnimationFrame) {
+        window.requestAnimationFrame = function(callback) {
+            setTimeout(callback, 10);
+        };
+}        
 angular.module('stmIndex', ['stm'])
     .config([function(){
     }])

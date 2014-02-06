@@ -36,6 +36,7 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
     var NO_PHOTO_TIME = 7000; // Время без снимком (ms)
     var ITERATE_TIMEOUT = 100; // Пауза между итерациями (ms)
     var FIRST_TARGET_TIMEOUT = 3000; // Через какое время появится первая цель (ms)
+    var BONUS = 50; // Сколько очков давать за фото йети
     var LEVELS_TABLE = [ // Таблица уровней сложности [[ время до от начала игры (s), через какое время исчезает цель (ms), какой интервал между целями (ms), сколько целей одновременно (i)]]
         [60, 3000, 2000, 1],
         [120, 2000, 1500, 1],
@@ -171,6 +172,7 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                 startTime = new Date().getTime();
                 foundedEti = 0;
                 etis = {};
+                $scope.score = 0;
                 $scope.showToolbar = true;
                 $scope.ineti = 0;
                 $scope.attempts = ATTEMPTS;
@@ -302,6 +304,7 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                                 target.hasShoot = true;
                                 var eti = el.data('eti');
                                 if(eti) {
+                                    $scope.score += BONUS;
                                     $scope.ineti++;
                                     success = true;
                                     if(!etis[eti]) {
@@ -384,6 +387,7 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                     data: {
                         time: time - startTime,
                         final: foundedEti == $element.find('[data-eti]').length,
+                        score: $scope.score,
                         eti: {
                             founded: foundedEti,
                             total: $scope.ineti,
