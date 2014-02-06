@@ -311,7 +311,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                     inJump = false;
                     return true;
                 }
-                men.angle = Math.min(0, this.angle);
+                men.angle = Math.min(0, this.angle || 0);
                 men.DY = Math.sin(Math.PI * (this.endTime - time) / (JUMP_TIME * 1000)) * JUMP_HEIGHT;
             }
             function updatePerson(person, dTime, gTime){
