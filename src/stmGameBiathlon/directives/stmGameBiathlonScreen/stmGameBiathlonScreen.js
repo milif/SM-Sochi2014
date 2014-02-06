@@ -267,7 +267,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                     maxX = Math.max(persons[i].x, maxX || persons[i].x);
                 }      
                 updateCamera(camera, persons, dTime);
-                updateTrack(track, [(minX || 0) - camera.width, (maxX || 0) + camera.width], camera);
+                updateTrack(track, [(minX || 0) - camera.width * 1.5, (maxX || 0) + camera.width * 1.5], camera);
                 
                 for(var i=0;i<iterateTasks.length;i++){
                     if(iterateTasks[i].iterate(time, dTime)) {
@@ -412,9 +412,9 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                 
                 var count = 0;
                 while(frames[count] && frames[count].x + frames[count].width < range[0]){
-                    count++;                    
+                    count++;       
                 }
-               frames.splice(0, count);
+                frames.splice(0, count);
                 
                 while(frames.length == 0 || frames[frames.length - 1].x < range[1]){
                     addTrackFrame(track);
