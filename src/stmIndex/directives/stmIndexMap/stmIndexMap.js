@@ -100,14 +100,14 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
 
 
 
-            var FPS = $attrs && $attrs.fps || 60;
+            var FPS = $attrs && $attrs.fps || 50;
 
             var startTime = new Date().getTime();
             var iterator = $interval(function(){
                 requestAnimationFrame(iterate);
             }, 1 / FPS * 1000);
             $scope.$on('$destroy', function() {
-                $interval.cancel(iterator);
+                $interval.cancel(iterator, false);
             });
 
             $scope.item1 = {

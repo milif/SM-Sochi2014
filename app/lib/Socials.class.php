@@ -19,7 +19,7 @@ class Socials {
         
         $rs = DB::query("SELECT COUNT(*) as count FROM social_log WHERE type = :type ", array(':type'=>$type));
         $count = $rs[0]['count'];
-        Cache::set('socials.'.$type, $count);
+        Cache::set('socials.'.$type, $count, 1200);
         return (int)$count;
     }
     static public function add($type){

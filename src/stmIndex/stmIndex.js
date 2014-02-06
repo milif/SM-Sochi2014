@@ -65,7 +65,7 @@ angular.module('stmIndex', ['stm'])
      /**
        * @ngdoc property
        * @name stmIndex.$stmAuth#isAuth
-       * @methodOf stmIndex.$stmAuth
+       * @propertyOf stmIndex.$stmAuth
        *
        * @returns {Boolean=} isAuth Авторизарован ли пользователь
        */         
