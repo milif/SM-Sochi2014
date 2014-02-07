@@ -78,6 +78,9 @@ angular.module('stmIndex', ['stm'])
         var $ = angular.element;
         
         var disableEl = $('<a href="https://loginza.ru/api/widget?token_url=' + encodeURIComponent($('base').get(0).href + 'api/auth.php') + '"></a>')
+                .click(function(e){
+                    e.preventDefault();
+                })
                 .css({
                     position: 'fixed',
                     top: 0,

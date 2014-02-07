@@ -6,6 +6,7 @@
     height: 100%;
     overflow: hidden;
     position: absolute;
+    z-index: 1;
     background-color: #86e4fe;
 }
 
@@ -345,6 +346,17 @@
     -webkit-transition:all linear 0.2s;
     transition:all linear 0.2s;
 }
+.b-gameBiathlon-warning {
+    left: 50%;
+    top: 60px;
+    margin-left: -109px;
+    position: absolute;
+    opacity: 0;
+    z-index: 100;
+    -webkit-transition:all linear 0.2s;
+    transition:all linear 0.2s;
+}
+.b-gameBiathlon-warning.state_active,
 .b-gameBiathlon-buttons.state_active {
     opacity: 1;
 }

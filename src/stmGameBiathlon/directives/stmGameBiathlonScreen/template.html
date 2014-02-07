@@ -29,12 +29,17 @@
     <div ng-class="inEti ? 'mod_inEti' : ''" ng-style="eti.css" class="l-b-biathlon-yeti">
         <div ng-class="'b-biathlon-yeti_' + eti.frameIndex" class="b-biathlon-yeti"></div>
     </div>
-
-</div>
-<div ng-repeat="popup in bonusPopups" class="b-gameBiathlon-bonusPopup" stm-index-popover="{{popup.id}}" position="popup.position">
-    <div stm-index-bonus-popup bonus="{{popup.bonus}}" type="{{popup.type}}">
-        <span ng-bind-html="popup.text"></span>
+    <div ng-class="buttons.active ? 'state_active' : ''" class="b-gameBiathlon-buttons">
+        <div stm-index-buttons-popup key="{{buttons.key}}"><span ng-bind-html="buttons.text"></span></div>
     </div>
+    <div ng-class="etiWarinig ? 'state_active' : ''" class="b-gameBiathlon-warning">
+        <div stm-game-biathlon-warning-popup><h5 id="example_source_опасность">Опасность!</h5>Йети догоняет, <br>поднажми</div>
+    </div>
+    <div ng-repeat="popup in bonusPopups" class="b-gameBiathlon-bonusPopup" stm-index-popover="{{popup.id}}" position="popup.position">
+        <div stm-index-bonus-popup bonus="{{popup.bonus}}" type="{{popup.type}}">
+            <span ng-bind-html="popup.text"></span>
+        </div>
+    </div>    
 </div>
 <!-- Panel -->
 <div class='b-gamePanel' ng-class="showToolbar ? 'state_active' : ''">
@@ -76,9 +81,6 @@
             <a class='b-button__link' ng-click="play()" href=''></a>
         </div>
     </div>
-</div>
-<div ng-class="buttons.active ? 'state_active' : ''" class="b-gameBiathlon-buttons">
-    <div stm-index-buttons-popup key="{{buttons.key}}"><span ng-bind-html="buttons.text"></span></div>
 </div>
 <audio data-shoot>
     <source src="asset/audio/shoot/shoot.ogg" type="audio/ogg">
