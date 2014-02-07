@@ -68,6 +68,7 @@ angular.module('stmIndex')
         title: $('meta[property="og:title"]').attr('content'),
         description: $('meta[property="og:description"]').attr('content')
     };
+
     var URL = $('base').attr('href');
     
     function clickVK(){
