@@ -6,7 +6,7 @@
   <base href="../"></base>
   <!-- @include stmIndex -->
   <?php require __DIR__.'/../../tpl/head.php'; ?>
-  <meta property="og:image" content="http://<?php echo $_SERVER["HTTP_HOST"].$REQUEST_DIR.'/../'; ?>social.png"/>
+  <meta property="og:image" content="http://<?php echo dirname($_SERVER["HTTP_HOST"].$REQUEST_DIR).'/'; ?>social.png"/>
 </head>
 <body game="true" stm-index-map urlprefix="../" stm-preload>
     <div stm-index-toolbar position="top"></div>
