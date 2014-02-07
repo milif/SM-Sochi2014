@@ -123,6 +123,7 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                     e.preventDefault();
                 },
                 'click': function(e){
+                    if($(e.target).closest('[data-game]').length == 0) return;
                     photo(e);
                 }          
             }
