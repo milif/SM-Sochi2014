@@ -493,10 +493,8 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                         this.frameIndex = Math.round(gTime / 1000 * this.framePerSec) % this.frameCount;
                     }
                     if(!$scope.inEti){
-                        if(inSeet) {
-                            this.speed -= DOWN_SPEED * dTime / 1000 - this.angle * dTime / 1000;
-                            this.speed = Math.min(MAX_SPEED, this.speed);
-                        }                        
+                        this.speed -= DOWN_SPEED * dTime / 1000 - (inSeet ? this.angle * dTime / 1000 : 0);
+                        this.speed = Math.min(MAX_SPEED, this.speed);
                         
                         if(time > etiWarinigTime && men.speed < eti.speed && men.x - eti.x < camera.width / 1.5){
                             $scope.etiWarinig = true;
