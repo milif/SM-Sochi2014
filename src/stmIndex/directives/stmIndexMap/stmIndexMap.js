@@ -248,6 +248,53 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                     y: Math.max(0,Math.min(pos.y, backEl.height() - viewEl.height()))
                 };
             }
+
+            $scope.moveView = function(direction) {
+                if($scope.inScroll === true) {
+                    return;
+                }
+                $scope.inScroll = true;
+                $scope.inMove = true;
+                var stepX = viewEl.width() * 0.75,
+                    stepY = viewEl.height() * 0.75,
+                    timeout = 1000,
+                    newPosition;
+                switch(direction) {
+                    case 'right':
+                        newPosition = normalizePosition({
+                            x: $scope.position.x + stepX,
+                            y: $scope.position.y
+                        });
+                        $(viewEl).animate({'scrollLeft': newPosition.x}, timeout);
+                        break;
+                    case 'left':
+                        newPosition = normalizePosition({
+                            x: $scope.position.x - stepX,
+                            y: $scope.position.y
+                        });
+                        $(viewEl).animate({'scrollLeft': newPosition.x}, timeout);
+                        break;
+                    case 'up':
+                        newPosition = normalizePosition({
+                            x: $scope.position.x,
+                            y: $scope.position.y - stepY
+                        });
+                        $(viewEl).animate({'scrollTop': newPosition.y}, timeout);
+                        break;
+                    case 'down':
+                        newPosition = normalizePosition({
+                            x: $scope.position.x,
+                            y: $scope.position.y + stepY
+                        });
+                        $(viewEl).animate({'scrollTop': newPosition.y}, timeout);
+                        break;
+                }
+                $timeout(function(){
+                    $scope.position = newPosition;
+                    $scope.inScroll = false;
+                    $scope.inMove = false;
+                }, timeout + 100);
+            };
         }]
     };
 }]);
