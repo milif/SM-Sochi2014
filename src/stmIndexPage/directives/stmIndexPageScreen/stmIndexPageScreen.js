@@ -72,6 +72,7 @@ angular.module('stmIndexPage').directive('stmIndexPageScreen', function(){
                     minWidth: 0
                 };
                 $scope.toolbarPosition = 'top';
+                
                 $timeout(function(){
                     $.extend($scope.mapStyle, {
                         position: 'absolute',
@@ -80,6 +81,7 @@ angular.module('stmIndexPage').directive('stmIndexPageScreen', function(){
                         zIndex: 20
                     });
                 }, 700);
+                
             }
         }]
     };
