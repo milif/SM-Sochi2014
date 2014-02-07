@@ -507,6 +507,36 @@
   top: -9px;
 }
 
+/* b-tooltip-queue */
+/*==========================================================*/
+.b-tooltip-queue {
+    position: absolute;
+    background: url('asset/i/common/icons-pack.png') no-repeat;
+    width: 17px;
+    height: 7px;
+    left: 50%;
+    margin-left: -8px;
+}
+.b-tooltip-queue.b-tooltip-queue_top_left {
+  background-position: 0 -258px;
+  top: -6px;
+}
+
+.b-tooltip-queue.b-tooltip-queue_top_right {
+  background-position: 0 -241px;
+  top: -6px;
+}
+
+.b-tooltip-queue.b-tooltip-queue_bottom_left {
+  background-position: 0 -224px;
+  bottom: -6px;
+}
+
+.b-tooltip-queue.b-tooltip-queue_bottom_right {
+  background-position: 0 -207px;
+  bottom: -6px;
+}
+
 /* GAME PANEL */
 /*==========================================================*/
 .b-gamePanel {
