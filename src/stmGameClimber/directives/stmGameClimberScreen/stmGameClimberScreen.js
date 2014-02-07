@@ -230,15 +230,15 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
 
                     function initBonuses() {
                         scope.bonuses = [];
-                        for(var i=0; i<80; i++) {
+                        for(var i=0; i<50; i++) {
                             var type = ['mnogo', 'sber', 'pickpoint'];
                             scope.bonuses.push({
                                 id: 'bonus'+i,
                                 type: type[Math.round(2*Math.random())],
                                 bonus: 50,
-                                timeout: 5,
+                                timeout: (i < 10) ? 60 : (i < 30) ? 30 : 10,
                                 show: false,
-                                position: [Math.round(Math.random()) ? -135 : 50, 1000 + i*120 + Math.round(50*Math.random())]
+                                position: [Math.round(Math.random()) ? -135 : 50, 1000 + i*170 + Math.round(50*Math.random())]
                             });
                         }
                         scope.popups = [];
