@@ -68,6 +68,7 @@ angular.module('stmIndex')
         title: $('meta[property="og:title"]').attr('content'),
         description: $('meta[property="og:description"]').attr('content')
     };
+
     var URL = $('base').attr('href');
     
     function clickVK(){
@@ -78,7 +79,7 @@ angular.module('stmIndex')
                         :
                         "&title="+encodeURIComponent(SHARE.description)
                         )
-                        +"&image="+encodeURIComponent(SHARE.image.replace(/\.(png|jpg)$/, '_vk.$1')), 720, 550);
+                        +"&image="+encodeURIComponent(SHARE.image), 720, 550);
     }
     function clickFB(){
         shareWindow("http://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(URL));

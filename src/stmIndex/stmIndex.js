@@ -78,6 +78,9 @@ angular.module('stmIndex', ['stm'])
         var $ = angular.element;
         
         var disableEl = $('<a href="https://loginza.ru/api/widget?token_url=' + encodeURIComponent($('base').get(0).href + 'api/auth.php') + '"></a>')
+                .click(function(e){
+                    e.preventDefault();
+                })
                 .css({
                     position: 'fixed',
                     top: 0,
@@ -101,7 +104,7 @@ angular.module('stmIndex', ['stm'])
         function auth(clbFn){
             if(!window.LOGINZA){
                 $.getScript('http://loginza.ru/js/widget.js', function(){
-                    $('<style>#loginza_auth_form{z-index: 999999!important;}</style>').appendTo('head');
+                    $('<style>#loginza_auth_form{z-index: 999999!important;} #loginza_auth_form > *:first-child{display:none!important;}</style>').appendTo('head');
                     setTimeout(function(){
                         LOGINZA.ajax = true;
                         var loginzaCloseFn = LOGINZA.close;
