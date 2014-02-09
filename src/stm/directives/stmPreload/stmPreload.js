@@ -13,17 +13,29 @@
  * @example
     <example module="appExample">
       <file name="index.html">
-         <div stm-preload class="example-screen"></div>
+         <div stm-preload="{{assets}}" class="example-screen" ng-controller="preload">
+            <div ng-click="load()" class="btn">Load</div>
+         </div>
       </file>
       <file name="style.css">
          .example-screen {
             width: 100%;
             height: 400px;
             position: relative;
-            background: blue;
+            }
+         .example-screen .b-preload {
+            background: #ffd531;
             }
       </file>
       <file name="index.js">
+         function preload($scope, $timeout){
+            $scope.load = function(){
+                $scope.assets = 'window._assets';
+                $timeout(function(){
+                    $scope.assets = '';
+                }, 30);
+            }
+         }
          window._assets = ['https://www.google.com/images/srpr/logo11w.png','https://www.google.com/images/srpr/logo11w.png'];
       </file>
     </example>
@@ -36,23 +48,31 @@ angular.module('stm').directive('stmPreload', ['$compile', function($compile){
     var tpl = $compile('<div ng-class="state" class="b-preload"><div class="__loader"></div></div>');
     
     return {
+        scope: true,
         priority: 99,
-        controller: ['$element', '$scope', '$window', '$animate', '$timeout', function($element, $scope, $window, $animate, $timeout){
+        controller: ['$element', '$scope', '$window', '$animate', '$timeout', '$attrs', function($element, $scope, $window, $animate, $timeout, $attrs){
             var maskEl;
-            var isLoad = false;
-            $timeout(function(){
-                if(!isLoad) $scope.state = "state_loading";
-            }, 500);
-            tpl($scope, function(el){
-                $element.append(el);
-                maskEl = el;
-                $element
-                    .data('_overflow', $element.css('overflow'))
-                    .css('overflow','hidden')
-                    .scrollTop(0);                
-                preload($window._assets);
-            });
-            function preload(assets){
+            var isLoad = true;
+            var assets;
+            $scope.window = window;
+            $attrs.$observe('stmPreload', function(attr){
+                assets = $scope.$eval(attr) || window._assets;
+                if(!assets || !isLoad) return;
+                isLoad = false;
+                $timeout(function(){
+                    if(!isLoad) $scope.state = "state_loading";
+                }, 500);
+                tpl($scope, function(el){
+                    $element.append(el);
+                    maskEl = el;
+                    $element
+                        .data('_overflow', $element.css('overflow'))
+                        .css('overflow','hidden')
+                        .scrollTop(0);                
+                    preload();
+                });
+            });            
+            function preload(){
                 var item;
                 var count = 0;
                 for(var i=0;i<assets.length;i++){

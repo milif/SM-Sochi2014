@@ -21,7 +21,7 @@
       <file name="style.css">
          .example-screen {
             width: 100%;
-            height: 100%;
+            height: 600px;
             position: relative;
             overflow:hidden;
             }

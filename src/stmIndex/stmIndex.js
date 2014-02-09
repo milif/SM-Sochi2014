@@ -68,6 +68,12 @@ angular.module('stmIndex', ['stm'])
        */    
      /**
        * @ngdoc property
+       * @name stmIndex.$stmAuth#auth
+       * @propertyOf stmIndex.$stmAuth
+       * @returns {Object} Данные авторизации. Если пользователь не авторизован, то `null`
+       */        
+     /**
+       * @ngdoc property
        * @name stmIndex.$stmAuth#isAuth
        * @propertyOf stmIndex.$stmAuth
        *

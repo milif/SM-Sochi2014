@@ -38,7 +38,7 @@ if(GET.build){
     
     grunt.file.write(pullDir+'/updatedAt.json', GET.updatedAt);
         
-    cmd = '(cd \'' + pullDir + '\'; git config --local user.email "you@example.com"; git config --local user.name "Your Name"; curl -H \'Accept: application/vnd.github.patch\' -u ' + repo.oauth + ':x-oauth-basic https://api.github.com/repos/' + repo.company + '/' + repo.name + '/pulls/' + id + ' | git am; grunt init; grunt docs; chmod -R 777 .);'; 
+    cmd = '(cd \'' + pullDir + '\'; git config --local user.email "you@example.com"; git config --local user.name "Your Name"; curl -H \'Accept: application/vnd.github.patch\' -u ' + repo.oauth + ':x-oauth-basic https://api.github.com/repos/' + repo.company + '/' + repo.name + '/pulls/' + id + ' | git am; grunt init; grunt docs; grunt app; chmod -R 777 .)'; 
 
     shell.exec(cmd, {silent: false});
     

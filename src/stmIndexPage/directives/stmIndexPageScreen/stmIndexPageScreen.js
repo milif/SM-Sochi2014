@@ -16,7 +16,14 @@
  * @example
     <example module="appExample">
       <file name="index.html">
-         <div stm-index-page-screen class="example-screen"></div>
+         <div ng-controller="page">
+            <div stm-index-page-screen class="example-screen"></div>
+         </div>
+      </file>
+      <file name="controller.js">
+        function page($scope){
+            $scope.showPage = true;
+        }
       </file>
       <file name="style.css">
          .in-plunkr, .in-plunkr body, .in-plunkr .well {
@@ -34,8 +41,7 @@
             background: #ffd531;
             }
       </file>
-    </example>
-    
+    </example> 
  */
 
 angular.module('stmIndexPage').directive('stmIndexPageScreen', function(){  
@@ -72,6 +78,7 @@ angular.module('stmIndexPage').directive('stmIndexPageScreen', function(){
                     minWidth: 0
                 };
                 $scope.toolbarPosition = 'top';
+                
                 $timeout(function(){
                     $.extend($scope.mapStyle, {
                         position: 'absolute',
@@ -80,6 +87,7 @@ angular.module('stmIndexPage').directive('stmIndexPageScreen', function(){
                         zIndex: 20
                     });
                 }, 700);
+                
             }
         }]
     };

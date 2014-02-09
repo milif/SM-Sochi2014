@@ -15,22 +15,7 @@
  * @example
     <example module="appExample">
       <file name="index.html">
-         <div  stm-index-social class="example-screen"></div>
-      </file>
-      <file name="style.css">
-         .in-plunkr, .in-plunkr body, .in-plunkr .well {
-            height: 100%;
-            margin: 0;
-         }
-         .doc-example-live .example-screen {
-            height: 500px;
-            }
-         .example-screen {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            overflow: scroll;
-            }
+         <div buttons-count="4" stm-index-social ></div>
       </file>
     </example>
     

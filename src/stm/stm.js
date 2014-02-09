@@ -46,9 +46,9 @@ angular.module('stm',['ngAnimate','ngResource'])
          */
          /**
            * @ngdoc property
-           * @name stm.$stmEnv#clientId
+           * @name stm.$stmEnv#auth
            * @propertyOf stm.$stmEnv
-           * @returns {String} Идентификатор пользователя
+           * @returns {Object} Начальные данные авторизации. Если пользователь не авторизован, то `null`
            */ 
          /**
            * @ngdoc property

@@ -1,0 +1,40 @@
+/*==========================================================*/
+/* MapTooltip */
+/*==========================================================*/
+.b-mapTooltip {
+    position: absolute;
+    background-color: rgba(0,0,0,.9);
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    max-width: 280px;
+    padding: 8px;
+    text-align: center;
+    color: #fff;
+}
+
+.b-maptooltip-lock {
+    position: relative;
+    padding-left: 36px;
+    text-align: left;
+    min-height: 34px;
+}
+.b-maptooltip-lock:before {
+    background: url('asset/i/common/icons-pack.png') 0 -129px no-repeat;
+    content: '';
+    height: 22px;
+    width: 15px;
+    position: absolute;
+    left: 8px;
+    top: 6px;
+}
+.b-mapTooltip a {
+    text-decoration: underline;
+    color: #fff;
+}
+.b-mapTooltip a:hover {
+    text-decoration: none;
+}

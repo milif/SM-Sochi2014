@@ -287,14 +287,20 @@
 /*==========================================================*/
 .b-map-controls,
 .b-map-controls div {
-    cursor: pointer;
     position: absolute;
     background-image: url(asset/i/b-gameMap/b-gameMap-controls.png);
 }
-
+.b-map-controls{
+    opacity: 0;
+    -webkit-transition: 0.2s 0.5s ease-in all; /* Safari/Chrome */
+    transition: 0.2s 0.5s ease-in all; /* Future Browsers */
+}
+.b-map-controls.state_active{
+    opacity: 1;
+}
 .b-map-controls {
     position: absolute;
-    top: 10px;
+    top: 50px;
     left: 10px;
     width: 56px;
     height: 59px;
@@ -303,48 +309,50 @@
 
 .b-map-controls-left,
 .b-map-controls-right {
-    width: 7px;
-    height: 12px;
+    cursor: pointer;
+    width: 13px;
+    height: 24px;
 }
 
 .b-map-controls-up,
 .b-map-controls-down {
-    width: 12px;
-    height: 7px;
+    cursor: pointer;
+    width: 24px;
+    height: 13px;
 }
 
 .b-map-controls-left {
-    top: 22px;
-    left: 7px;
-    background-position: -63px -22px;
+    top: 16px;
+    left: 4px;
+    background-position: -60px -16px;
 }
 .b-map-controls-left:hover {
-    background-position: -122px -22px;
+    background-position: -119px -16px;
 }
 
 .b-map-controls-right {
-    top: 22px;
-    left: 42px;
-    background-position: -98px -22px;
+    top: 16px;
+    left: 39px;
+    background-position: -95px -16px;
 }
 .b-map-controls-right:hover {
-    background-position: -157px -22px;
+    background-position: -154px -16px;
 }
 
 .b-map-controls-up {
-    top: 7px;
-    left: 22px;
-    background-position: -78px -7px;
+    top: 4px;
+    left: 16px;
+    background-position: -72px -4px;
 }
 .b-map-controls-up:hover {
-    background-position: -137px -7px;
+    background-position: -131px -4px;
 }
 
 .b-map-controls-down {
-    top: 42px;
-    left: 22px;
-    background-position: -78px -42px;
+    top: 39px;
+    left: 16px;
+    background-position: -72px -39px;
 }
 .b-map-controls-down:hover {
-    background-position: -137px -42px;
+    background-position: -131px -39px;
 }
