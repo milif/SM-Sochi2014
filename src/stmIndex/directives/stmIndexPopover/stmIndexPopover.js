@@ -23,9 +23,7 @@
         <div ng-controller="popoverCtrl" class="b-sample">
             <div class="btn" ng-click="show()">Show</div>
             <div ng-repeat="popup in popups" stm-index-popover="{{popup.id}}" position="popup.position">
-                <div stm-index-bonus-popup bonus="bonus" type="sber">
-                    Спасибо за упорство от Сбербанка!
-                </div>
+                <div stm-index-bonus-popup bonus="bonus" type="sber"></div>
             </div>
         </div>
         

@@ -16,7 +16,14 @@
  * @example
     <example module="appExample">
       <file name="index.html">
-         <div stm-index-page-screen class="example-screen"></div>
+         <div ng-controller="page">
+            <div stm-index-page-screen class="example-screen"></div>
+         </div>
+      </file>
+      <file name="controller.js">
+        function page($scope){
+            $scope.showPage = true;
+        }
       </file>
       <file name="style.css">
          .in-plunkr, .in-plunkr body, .in-plunkr .well {

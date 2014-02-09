@@ -16,14 +16,14 @@
  * @example
     <example module="appExample">
       <file name="index.html">
-        <div stm-index-about></div>
+        <div class="b-sample">
+            <div stm-index-about></div>
+        </div>
       </file>
       <file name="style.css">
       .b-sample {
-          position:relative;
-          z-index:1;
-          height: 200px;
-          width: 400px;
+          height: 600px;
+          overflow: auto;
       }
       </file>
     </example>

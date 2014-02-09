@@ -176,20 +176,20 @@
     animation: view1 .5s 1.1s backwards;
 }
 .b-Page_active .b-indexPage-button {
-    -webkit-animation: view4 .5s 2.6s backwards;
-    animation: view4 .5s 2.6s backwards;
+    -webkit-animation: view4 .5s 2.3s backwards;
+    animation: view4 .5s 2.3s backwards;
 }
 
-.b-indexPage-col-sep:nth-child(2) {
+.b-Page_active .b-indexPage-col-sep:nth-child(2) {
     -webkit-animation: view6 .5s .55s backwards;
     animation: view6 .5s .55s backwards;
 }
-.b-indexPage-col-sep:nth-child(4) {
+.b-Page_active .b-indexPage-col-sep:nth-child(4) {
     -webkit-animation: view7 .5s 1.1s backwards;
     animation: view7 .5s 1.1s backwards;
 }
 
-.b-indexPage-map {
+.b-Page_active + .b-indexPage-map-l .b-indexPage-map {
     -webkit-animation: view5 .5s 1.6s cubic-bezier(.81,.36,.3,1.39) backwards;
     animation: view5 .5s 1.6s cubic-bezier(.81,.36,.3,1.39) backwards;
 }

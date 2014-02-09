@@ -17,10 +17,15 @@
       <file name="index.html">
         <div class="b-sample">
           <div stm-index-buttons-popup key="right">Жми стрелку <b>Вправо</b>,<br>чтобы ускорится</div>
+          <br>
           <div stm-index-buttons-popup key="left">Жми стрелку <b>Влево</b>,<br>чтобы ускорится</div>
+          <br>
           <div stm-index-buttons-popup key="top">Жми стрелку <b>Вверх</b>,<br>чтобы ускорится</div>
+          <br>
           <div stm-index-buttons-popup key="bottom">Жми стрелку <b>Вниз</b>,<br>чтобы ускорится</div>
+          <br>
           <div stm-index-buttons-popup key="space">Жми <b>Пробел</b>,<br>чтобы ускорится</div>
+          <br>
           <div stm-index-buttons-popup key="F">Жми <b>F</b>, чтобы ...</div>
         <div>
       </file>

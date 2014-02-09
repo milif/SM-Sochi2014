@@ -16,7 +16,7 @@
  * @example
     <example module="appExample">
       <file name="index.html">
-         <div stm-index-map class="example-map"></div>
+         <div game="true" stm-index-map class="example-map"></div>
       </file>
       <file name="style.css">
          .example-map {

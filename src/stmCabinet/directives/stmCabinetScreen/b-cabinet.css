@@ -1,10 +1,8 @@
 /*==========================================================*/
 /* Cabinet */
 /*==========================================================*/
-.example-screen {
-    overflow: auto !important;
-}
 .l-cabinet {
+    min-width: 1000px;
     background: url(asset/i/b-indexCabinet/fone.png) 50% 300px no-repeat #b2e3ff;
 }
 .b-cabinet {
