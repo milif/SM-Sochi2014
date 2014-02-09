@@ -213,7 +213,113 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                 'left': -500,
                 'cols': 2
             };
-            var itemsCount = 14;
+            $scope.item15 = {
+                'frames': 86,
+                'fps': 30,
+                'width': 282,
+                'height': 160,
+                'cols': 3
+            };
+            $scope.item16 = {
+                'frames': 73,
+                'fps': 30,
+                'width': 282,
+                'height': 160,
+                'cols': 3
+            };
+            $scope.item17 = {
+                'frames': 16,
+                'fps': 30,
+                'width': 134,
+                'height': 136,
+                'cols': 7
+            };
+            $scope.item18 = {
+                'frames': 80,
+                'fps': 30,
+                'width': 330,
+                'height': 120,
+                'cols': 3
+            };
+            $scope.item19 = {
+                'frames': 60,
+                'fps': 30,
+                'width': 200,
+                'height': 120,
+                'cols': 5
+            };
+            $scope.item20 = {
+                'frames': 23,
+                'fps': 30,
+                'width': 256,
+                'height': 112,
+                'cols': 4
+            };
+            $scope.item21 = {
+                'frames': 22,
+                'fps': 30,
+                'width': 86,
+                'height': 56,
+                'cols': 11
+            };
+            $scope.item22 = {
+                'frames': 50,
+                'fps': 30,
+                'width': 196,
+                'height': 116,
+                'cols': 5
+            };
+            $scope.item23 = {
+                'frames': 76,
+                'fps': 30,
+                'width': 120,
+                'height': 130,
+                'cols': 8
+            };
+            $scope.item24 = {
+                'frames': 80,
+                'fps': 30,
+                'width': 306,
+                'height': 210,
+                'cols': 3
+            };
+            $scope.item25 = {
+                'frames': 18,
+                'fps': 30,
+                'width': 132,
+                'height': 188,
+                'cols': 7
+            };
+            $scope.item26 = {
+                'frames': 39,
+                'fps': 30,
+                'width': 128,
+                'height': 124,
+                'cols': 8
+            };
+            $scope.item27 = {
+                'frames': 89,
+                'fps': 30,
+                'width': 186,
+                'height': 116,
+                'cols': 5
+            };
+            $scope.item28 = {
+                'frames': 86,
+                'fps': 30,
+                'width': 154,
+                'height': 172,
+                'cols': 6
+            };
+            $scope.item29 = {
+                'frames': 17,
+                'fps': 30,
+                'width': 130,
+                'height': 183,
+                'cols': 7
+            };
+            
+            var itemsCount = 29;
 
             function iterate(){
                 var time = new Date().getTime() - startTime;
