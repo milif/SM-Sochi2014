@@ -295,6 +295,28 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                     $scope.inMove = false;
                 }, timeout + 100);
             };
+
+            var keyEvents = {
+                'keydown': function (e) {
+                    e.preventDefault();
+                    if (e.keyCode == 87 || e.keyCode == 38) { // "W" || "arrow up"
+                        $scope.moveView('up');
+                    } else if (e.keyCode == 65 || e.keyCode == 37) { // "A" || "arrow left"
+                        $scope.moveView('left');
+                    } else if (e.keyCode == 83 || e.keyCode == 40) { // "S" || "arrow down"
+                        $scope.moveView('down');
+                    } else if (e.keyCode == 68 || e.keyCode == 39) { // "D" || "arrow right"
+                        $scope.moveView('right');
+                    }
+                },
+                'keyup': function (e) {
+                    if (e.keyCode == 38) {
+                        e.preventDefault();
+                    }
+                }
+            };
+            var keyObj = $window;
+            $(keyObj).on(keyEvents);
         }]
     };
 }]);
