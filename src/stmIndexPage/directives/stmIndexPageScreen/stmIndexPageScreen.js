@@ -41,8 +41,7 @@
             background: #ffd531;
             }
       </file>
-    </example>
-    
+    </example> 
  */
 
 angular.module('stmIndexPage').directive('stmIndexPageScreen', function(){  
