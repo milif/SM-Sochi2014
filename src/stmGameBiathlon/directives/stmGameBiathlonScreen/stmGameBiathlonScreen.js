@@ -121,6 +121,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
             var etiWarinigTime = 0;
             var etiWarinigCloseTime = 0;
             var shootSound = $element.find('[data-shoot]').remove();
+            var finalDistance;
             var camera = {
                 x: $element.width() + 400,
                 y: $element.height() / 2,
@@ -269,6 +270,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                         time: time - gameTime,
                         final: bonuses <= 0,
                         score: {
+                            distance: Math.round(finalDistance),
                             detail: scoreDetails,
                             total: $scope.score
                         }
@@ -514,6 +516,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                     }
                     if(this.speed < 20) stopGame();
                     if(this.x <= eti.x) {
+                        finalDistance = this.x;
                         $scope.inEti = true;             
                     }
                 } else {
