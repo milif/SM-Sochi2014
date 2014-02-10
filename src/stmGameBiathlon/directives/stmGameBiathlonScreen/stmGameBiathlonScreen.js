@@ -572,7 +572,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                     this.speed += UP_ETI_SPEED * dTime / 1000;
                     
                     if(men.x - this.x < camera.width) {
-                        this.speed = Math.min(this.speed, men.speed + 200);
+                        this.speed = Math.min(this.speed, men.speed + 100);
                         if(men.x - this.x < camera.width / 2) {
                             this.speed = Math.min(ETI_МАX_SPEED, this.speed);
                         }

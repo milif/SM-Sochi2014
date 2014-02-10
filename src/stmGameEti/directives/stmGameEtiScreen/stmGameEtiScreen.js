@@ -70,7 +70,7 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
         },
         controller: ['$scope', '$element', '$interval', '$animate', '$timeout', 'Game', function($scope, $element, $interval, $animate, $timeout, Game){
             
-            var viewEl = $element.find('>:first');
+            var viewEl = $element.find('[data-view]');
             var backEl = viewEl.find('>:first');
             var targets = viewEl.find('[data-target]');
             var pusk = viewEl.find('[data-pusk]').remove();
