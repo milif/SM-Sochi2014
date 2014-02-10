@@ -225,7 +225,10 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                 'fps': 30,
                 'width': 282,
                 'height': 160,
-                'cols': 3
+                'cols': 3,
+                'over': true,
+                'circle': true,
+                'left': 1430
             };
             $scope.item17 = {
                 'frames': 16,
@@ -337,6 +340,17 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                             'background-position': (item.backgroundLeft || 0) + 'px' + (item.backgroundTop || 0) + 'px'
                         };
                     }
+                    if(item.circle === true) {
+                        if(frameIndex < 20 || frameIndex > 63) {
+                            item.left -= 6;
+                        } else if(frameIndex > 30 && frameIndex < 60) {
+                            item.left += 6;
+                        }
+                        item.css = {
+                            'left': item.left + 'px',
+                            'background-position': '-' + horizontalIndex * item.width + 'px -' + verticalIndex * item.height + 'px'
+                        };
+                    }
                     if(item.move === true) {
                         if(item.left > 4300) {
                             item.left = -500;
@@ -361,7 +375,6 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                     return;
                 }
                 $scope.inScroll = true;
-                $scope.inMove = true;
                 var stepX = viewEl.width() * 0.75,
                     stepY = viewEl.height() * 0.75,
                     timeout = 1000,
@@ -399,7 +412,6 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                 $timeout(function(){
                     $scope.position = newPosition;
                     $scope.inScroll = false;
-                    $scope.inMove = false;
                 }, timeout + 100);
             };
 
