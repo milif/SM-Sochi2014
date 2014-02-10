@@ -341,7 +341,7 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                         };
                     }
                     if(item.circle === true) {
-                        if(frameIndex < 20 || frameIndex > 63) {
+                        if(frameIndex < 19 || frameIndex > 63) {
                             item.left -= 6;
                         } else if(frameIndex > 30 && frameIndex < 60) {
                             item.left += 6;
