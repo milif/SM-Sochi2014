@@ -263,19 +263,6 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                 persons.splice(persons.indexOf(eti), 1);
                 
                 var time = new Date().getTime();
-                Game.save({
-                    type: 'biathlon',
-                    action: 'end',
-                    data: {
-                        time: time - gameTime,
-                        final: bonuses <= 0,
-                        score: {
-                            distance: Math.round(finalDistance),
-                            detail: scoreDetails,
-                            total: $scope.score
-                        }
-                    }
-                });
             }
             function iterate(){
             
@@ -513,12 +500,26 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                             etiWarinigTime = time + 5000;
                             etiWarinigCloseTime = time + 2000;
                         }
+                        if(this.x <= eti.x) {
+                            finalDistance = this.x;
+                            $scope.inEti = true;
+                            Game.save({
+                                type: 'biathlon',
+                                action: 'end',
+                                data: {
+                                    time: time - gameTime,
+                                    final: bonuses <= 0,
+                                    score: {
+                                        distance: Math.round(finalDistance),
+                                        detail: scoreDetails,
+                                        total: $scope.score
+                                    }
+                                }
+                            });                                   
+                        }                        
                     }
                     if(this.speed < 20) stopGame();
-                    if(this.x <= eti.x) {
-                        finalDistance = this.x;
-                        $scope.inEti = true;             
-                    }
+                    
                 } else {
                     this.frameIndex = 'start';
                 } 
@@ -571,7 +572,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                 if(isGame) {
                     this.speed += UP_ETI_SPEED * dTime / 1000;
                     
-                    if(men.x - this.x < camera.width) {
+                    if(!$scope.inEti && men.x - this.x < camera.width) {
                         this.speed = Math.min(this.speed, men.speed + 100);
                         if(men.x - this.x < camera.width / 2) {
                             this.speed = Math.min(ETI_МАX_SPEED, this.speed);
