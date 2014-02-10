@@ -82,6 +82,9 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
             
             $element.on('mousedown', function(e){
                 if($(e.target).closest('[data-controls]').length > 0) return;
+                if($scope.inScroll === true) {
+                    return;
+                }
                 e.preventDefault();
                 windowEl.on(dragEvents);
                 drag = {
@@ -218,7 +221,10 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                 'fps': 30,
                 'width': 282,
                 'height': 160,
-                'cols': 3
+                'cols': 3,
+                'over': true,
+                'circle15': true,
+                'left': 2950
             };
             $scope.item16 = {
                 'frames': 73,
@@ -227,7 +233,7 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                 'height': 160,
                 'cols': 3,
                 'over': true,
-                'circle': true,
+                'circle16': true,
                 'left': 1430
             };
             $scope.item17 = {
@@ -340,11 +346,29 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                             'background-position': (item.backgroundLeft || 0) + 'px' + (item.backgroundTop || 0) + 'px'
                         };
                     }
-                    if(item.circle === true) {
+                    if(item.circle16 === true) {
                         if(frameIndex < 19 || frameIndex > 63) {
                             item.left -= 6;
-                        } else if(frameIndex > 30 && frameIndex < 60) {
+                        } else if(frameIndex > 31 && frameIndex < 60) {
                             item.left += 6;
+                        }
+                        if(frameIndex === 25) {
+                            item.left = 1280;
+                        }
+                        item.css = {
+                            'left': item.left + 'px',
+                            'background-position': '-' + horizontalIndex * item.width + 'px -' + verticalIndex * item.height + 'px'
+                        };
+                    }
+                    if(item.circle15 === true) {
+                        if(frameIndex < 27 || frameIndex > 76) {
+                            item.left -= 5;
+                        } else if(frameIndex > 34 && frameIndex < 71) {
+                            item.left += 5;
+                        }
+                        
+                        if(frameIndex === 30) {
+                            item.left = 2750;
                         }
                         item.css = {
                             'left': item.left + 'px',
