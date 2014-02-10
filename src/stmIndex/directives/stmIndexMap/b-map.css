@@ -190,6 +190,127 @@
     z-index: 20;
 }
 
+.b-game-item15 {
+    left: 2950px;
+    top: 1605px;
+    width: 282px;
+    height: 160px;
+    background: url("asset/i/b-gameMap/cycle1_sheet_3x29.png") 0 0 no-repeat;
+}
+
+.b-game-item16 {
+    left: 1430px;
+    top: 1370px;
+    width: 282px;
+    height: 160px;
+    background: url("asset/i/b-gameMap/cycle2_sheet_3x25.png") 0 0 no-repeat;
+}
+
+.b-game-item17 {
+    left: 1121px;
+    top: 620px;
+    width: 134px;
+    height: 136px;
+    background: url("asset/i/b-gameMap/deer_sheet_7x3.png") 0 0 no-repeat;
+}
+
+.b-game-item18 {
+    left: 3040px;
+    top: 937px;
+    width: 330px;
+    height: 120px;
+    background: url("asset/i/b-gameMap/deers_sheet_3x27.png") 0 0 no-repeat;
+}
+
+.b-game-item19 {
+    left: 1590px;
+    top: 2354px;
+    width: 200px;
+    height: 120px;
+    background: url("asset/i/b-gameMap/gost_sheet_5x12.png") 0 0 no-repeat;
+}
+
+.b-game-item20 {
+    left: 110px;
+    top: 1910px;
+    width: 256px;
+    height: 112px;
+    background: url("asset/i/b-gameMap/mermaid_1_sheet_4x6.png") 0 0 no-repeat;
+}
+
+.b-game-item21 {
+    left: 367px;
+    top: 1990px;
+    width: 86px;
+    height: 56px;
+    background: url("asset/i/b-gameMap/mermaid_2_sheet_11x2.png") 0 0 no-repeat;
+}
+
+.b-game-item22 {
+    left: 1795px;
+    top: 784px;
+    width: 196px;
+    height: 116px;
+    background: url("asset/i/b-gameMap/qiwi_sheet_5x10.png") 0 0 no-repeat;
+}
+
+.b-game-item23 {
+    left: 3105px;
+    top: 2715px;
+    width: 120px;
+    height: 130px;
+    background: url("asset/i/b-gameMap/qiwi2_sheet_8x10.png") 0 0 no-repeat;
+}
+
+.b-game-item24 {
+    left: 830px;
+    top: 875px;
+    width: 306px;
+    height: 210px;
+    background: url("asset/i/b-gameMap/qiwi3_sheet_3x27.png") 0 0 no-repeat;
+}
+
+.b-game-item25 {
+    left: 940px;
+    top: 1560px;
+    width: 132px;
+    height: 188px;
+    background: url("asset/i/b-gameMap/rabbit1_sheet_7x3.png") 0 0 no-repeat;
+}
+
+.b-game-item26 {
+    left: 1490px;
+    top: 2500px;
+    width: 128px;
+    height: 124px;
+    background: url("asset/i/b-gameMap/ram2_sheet_8x5.png") 0 0 no-repeat;
+}
+
+.b-game-item27 {
+    left: 2260px;
+    top: 2760px;
+    width: 186px;
+    height: 116px;
+    background: url("asset/i/b-gameMap/rams_sheet_5x18.png") 0 0 no-repeat;
+}
+
+.b-game-item28 {
+    left: 1140px;
+    top: 1565px;
+    width: 154px;
+    height: 172px;
+    background: url("asset/i/b-gameMap/skater_dude2_sheet_6x15.png") 0 0 no-repeat;
+}
+
+.b-game-item29 {
+    left: 970px;
+    top: 1770px;
+    width: 130px;
+    height: 183px;
+    background: url("asset/i/b-gameMap/skater_dude3_sheet_7x3.png") 0 0 no-repeat;
+}
+
+
 .b-game-item-static-quelle {
     left: 120px;
     top: 2300px;
@@ -205,15 +326,6 @@
     width: 230px;
     height: 170px;
     background: url("asset/i/b-gameMap/b-gameMap-dpd.png") 0 0 no-repeat;
-    z-index: 20;
-}
-
-.b-game-item-static-dpd2 {
-    left: 2975px;
-    top: 1605px;     
-    width: 208px;
-    height: 144px;
-    background: url("asset/i/b-gameMap/b-gameMap-dpd2.png") 0 0 no-repeat;
     z-index: 20;
 }
 

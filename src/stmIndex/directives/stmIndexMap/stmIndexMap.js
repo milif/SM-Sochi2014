@@ -82,6 +82,9 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
             
             $element.on('mousedown', function(e){
                 if($(e.target).closest('[data-controls]').length > 0) return;
+                if($scope.inScroll === true) {
+                    return;
+                }
                 e.preventDefault();
                 windowEl.on(dragEvents);
                 drag = {
@@ -213,7 +216,119 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                 'left': -500,
                 'cols': 2
             };
-            var itemsCount = 14;
+            $scope.item15 = {
+                'frames': 86,
+                'fps': 30,
+                'width': 282,
+                'height': 160,
+                'cols': 3,
+                'over': true,
+                'circle15': true,
+                'left': 2950
+            };
+            $scope.item16 = {
+                'frames': 73,
+                'fps': 30,
+                'width': 282,
+                'height': 160,
+                'cols': 3,
+                'over': true,
+                'circle16': true,
+                'left': 1430
+            };
+            $scope.item17 = {
+                'frames': 16,
+                'fps': 30,
+                'width': 134,
+                'height': 136,
+                'cols': 7
+            };
+            $scope.item18 = {
+                'frames': 80,
+                'fps': 30,
+                'width': 330,
+                'height': 120,
+                'cols': 3
+            };
+            $scope.item19 = {
+                'frames': 60,
+                'fps': 30,
+                'width': 200,
+                'height': 120,
+                'cols': 5
+            };
+            $scope.item20 = {
+                'frames': 23,
+                'fps': 30,
+                'width': 256,
+                'height': 112,
+                'cols': 4
+            };
+            $scope.item21 = {
+                'frames': 22,
+                'fps': 30,
+                'width': 86,
+                'height': 56,
+                'cols': 11
+            };
+            $scope.item22 = {
+                'frames': 50,
+                'fps': 30,
+                'width': 196,
+                'height': 116,
+                'cols': 5
+            };
+            $scope.item23 = {
+                'frames': 76,
+                'fps': 30,
+                'width': 120,
+                'height': 130,
+                'cols': 8
+            };
+            $scope.item24 = {
+                'frames': 80,
+                'fps': 30,
+                'width': 306,
+                'height': 210,
+                'cols': 3
+            };
+            $scope.item25 = {
+                'frames': 18,
+                'fps': 30,
+                'width': 132,
+                'height': 188,
+                'cols': 7
+            };
+            $scope.item26 = {
+                'frames': 39,
+                'fps': 30,
+                'width': 128,
+                'height': 124,
+                'cols': 8
+            };
+            $scope.item27 = {
+                'frames': 89,
+                'fps': 30,
+                'width': 186,
+                'height': 116,
+                'cols': 5
+            };
+            $scope.item28 = {
+                'frames': 86,
+                'fps': 30,
+                'width': 154,
+                'height': 172,
+                'cols': 6
+            };
+            $scope.item29 = {
+                'frames': 17,
+                'fps': 30,
+                'width': 130,
+                'height': 183,
+                'cols': 7
+            };
+            
+            var itemsCount = 29;
 
             function iterate(){
                 var time = new Date().getTime() - startTime;
@@ -229,6 +344,35 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                     } else {
                         item.css = {
                             'background-position': (item.backgroundLeft || 0) + 'px' + (item.backgroundTop || 0) + 'px'
+                        };
+                    }
+                    if(item.circle16 === true) {
+                        if(frameIndex < 19 || frameIndex > 63) {
+                            item.left -= 6;
+                        } else if(frameIndex > 31 && frameIndex < 60) {
+                            item.left += 6;
+                        }
+                        if(frameIndex === 25) {
+                            item.left = 1280;
+                        }
+                        item.css = {
+                            'left': item.left + 'px',
+                            'background-position': '-' + horizontalIndex * item.width + 'px -' + verticalIndex * item.height + 'px'
+                        };
+                    }
+                    if(item.circle15 === true) {
+                        if(frameIndex < 27 || frameIndex > 76) {
+                            item.left -= 5;
+                        } else if(frameIndex > 34 && frameIndex < 71) {
+                            item.left += 5;
+                        }
+                        
+                        if(frameIndex === 30) {
+                            item.left = 2750;
+                        }
+                        item.css = {
+                            'left': item.left + 'px',
+                            'background-position': '-' + horizontalIndex * item.width + 'px -' + verticalIndex * item.height + 'px'
                         };
                     }
                     if(item.move === true) {
@@ -255,7 +399,6 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                     return;
                 }
                 $scope.inScroll = true;
-                $scope.inMove = true;
                 var stepX = viewEl.width() * 0.75,
                     stepY = viewEl.height() * 0.75,
                     timeout = 1000,
@@ -293,9 +436,30 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                 $timeout(function(){
                     $scope.position = newPosition;
                     $scope.inScroll = false;
-                    $scope.inMove = false;
                 }, timeout + 100);
             };
+
+            var keyEvents = {
+                'keydown': function (e) {
+                    e.preventDefault();
+                    if (e.keyCode == 87 || e.keyCode == 38) { // "W" || "arrow up"
+                        $scope.moveView('up');
+                    } else if (e.keyCode == 65 || e.keyCode == 37) { // "A" || "arrow left"
+                        $scope.moveView('left');
+                    } else if (e.keyCode == 83 || e.keyCode == 40) { // "S" || "arrow down"
+                        $scope.moveView('down');
+                    } else if (e.keyCode == 68 || e.keyCode == 39) { // "D" || "arrow right"
+                        $scope.moveView('right');
+                    }
+                },
+                'keyup': function (e) {
+                    if (e.keyCode == 38) {
+                        e.preventDefault();
+                    }
+                }
+            };
+            var keyObj = $window;
+            $(keyObj).on(keyEvents);
         }]
     };
 }]);
