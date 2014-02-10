@@ -1,88 +1,90 @@
 <!-- gameBiathlon -->
-<div data-camera class='b-gameBiathlon g-noselect' ng-show="ready">
-    <div>
-        <div data-tree="b-biathlon-tree_mod1"></div>
-        <div data-tree="b-biathlon-tree_mod2"></div>
-        <div data-tree="b-biathlon-tree_mod3"></div>
-    </div>
-    <div>
-        <div data-targets-range="[0, 3000]" data-track="1" data-points="[[10,190],[180,186],[597,153],[1276, 22], [1546, 2], [1920, 25], [2060, 45], [2455, 138], [2603, 165], [2733, 180],[2886, 189],[2955,193]]" data-margin="[190, 191]" data-frames="[1,2,5]" class="b-gameBiathlonTrack-h screen_1"></div>
-        <div data-targets-range="[0, 1500]" data-track="2" data-points="[[30,12],[428, 9],[1178, 0],[1406, 9], [1585, 28], [1742, 57], [1897, 98], [2081, 170], [2214, 237], [2355, 321], [2463, 395], [2463, 395], [2715, 607], [2999, 859]]" data-margin="[12, 867]" data-frames="[3,4]" class="b-gameBiathlonTrack-h screen_2"></div>
-        <div data-targets-range="[0, 0]" data-track="3" data-points="[[40,38],[408, 359],[853, 745],[1330, 1159], [1872, 1629], [2427, 2111], [2961, 2576]]" data-margin="[0, 2592]" data-frames="[3,4]" class="b-gameBiathlonTrack-h screen_3"></div>
-        <div data-targets-range="[1500, 2899]" data-track="4" data-points="[[38,34],[143, 116],[242, 189],[408, 300], [562, 390], [736, 479], [885, 541], [1033, 590], [1219, 639], [1423, 681],[1600, 708], [1796, 730], [1988, 746], [2219, 761], [2454, 770], [2637, 773]]" data-margin="[0, 774]" data-frames="[1,2,5]" class="b-gameBiathlonTrack-h screen_4"></div>
-        <div data-targets-range="[0, 3018]" data-track="5" data-points="[[38,64],[238, 57],[513, 37],[773, 13], [991, 4], [1162, 1], [1292, 3], [1509, 14], [1706, 28], [1907, 42],[2073, 53], [2278, 60], [2445, 64], [2610, 66], [2942, 68]]" data-margin="[63, 66]" data-frames="[1,2,5]" class="b-gameBiathlonTrack-h screen_5"></div>    
-    </div>
-    
-    <div ng-repeat="frame in traceFrames" ng-style="frame.css" class="b-gameBiathlonTrack-h screen_{{frame.name}}">
-        <div class="b-gameBiathlonTrack"></div>
-        <div ng-repeat="tree in frame.trees" class="b-biathlon-tree {{tree.name}}" ng-style="tree.css" ></div>
-        <div ng-repeat="target in frame.targets" class="b-biathlon-panel g-noselect" ng-style="target.css" >
-            <div ng-repeat="point in target.points track by $index" ng-class="point ? 'b-biathlon-panel-item_active' : ''" class="b-biathlon-panel-item"></div>
+<div class="b-gameBiathlon-l">
+    <div data-camera class='b-gameBiathlon g-noselect' ng-show="ready">
+        <div>
+            <div data-tree="b-biathlon-tree_mod1"></div>
+            <div data-tree="b-biathlon-tree_mod2"></div>
+            <div data-tree="b-biathlon-tree_mod3"></div>
         </div>
-        <div class="b-gameBiathlon-bonus" ng-repeat="bonus in frame.bonuses" stm-index-bonus="{{bonus.id}}" show="{{bonus.show}}" type="{{bonus.type}}" position="{{bonus.position}}"></div>
-    </div>
-    
-    <div ng-show="!inEti" ng-style="men.css" class="l-b-biathlon-men">
-        <div ng-class="'b-biathlon-men_' + men.frameIndex" class="b-biathlon-men"></div>
-    </div>
+        <div>
+            <div data-targets-range="[0, 3000]" data-track="1" data-points="[[10,190],[180,186],[597,153],[1276, 22], [1546, 2], [1920, 25], [2060, 45], [2455, 138], [2603, 165], [2733, 180],[2886, 189],[2955,193]]" data-margin="[190, 191]" data-frames="[1,2,5]" class="b-gameBiathlonTrack-h screen_1"></div>
+            <div data-targets-range="[0, 1500]" data-track="2" data-points="[[30,12],[428, 9],[1178, 0],[1406, 9], [1585, 28], [1742, 57], [1897, 98], [2081, 170], [2214, 237], [2355, 321], [2463, 395], [2463, 395], [2715, 607], [2999, 859]]" data-margin="[12, 867]" data-frames="[3,4]" class="b-gameBiathlonTrack-h screen_2"></div>
+            <div data-targets-range="[0, 0]" data-track="3" data-points="[[40,38],[408, 359],[853, 745],[1330, 1159], [1872, 1629], [2427, 2111], [2961, 2576]]" data-margin="[0, 2592]" data-frames="[3,4]" class="b-gameBiathlonTrack-h screen_3"></div>
+            <div data-targets-range="[1500, 2899]" data-track="4" data-points="[[38,34],[143, 116],[242, 189],[408, 300], [562, 390], [736, 479], [885, 541], [1033, 590], [1219, 639], [1423, 681],[1600, 708], [1796, 730], [1988, 746], [2219, 761], [2454, 770], [2637, 773]]" data-margin="[0, 774]" data-frames="[1,2,5]" class="b-gameBiathlonTrack-h screen_4"></div>
+            <div data-targets-range="[0, 3018]" data-track="5" data-points="[[38,64],[238, 57],[513, 37],[773, 13], [991, 4], [1162, 1], [1292, 3], [1509, 14], [1706, 28], [1907, 42],[2073, 53], [2278, 60], [2445, 64], [2610, 66], [2942, 68]]" data-margin="[63, 66]" data-frames="[1,2,5]" class="b-gameBiathlonTrack-h screen_5"></div>    
+        </div>
+        
+        <div ng-repeat="frame in traceFrames" ng-style="frame.css" class="b-gameBiathlonTrack-h screen_{{frame.name}}">
+            <div class="b-gameBiathlonTrack"></div>
+            <div ng-repeat="tree in frame.trees" class="b-biathlon-tree {{tree.name}}" ng-style="tree.css" ></div>
+            <div ng-repeat="target in frame.targets" class="b-biathlon-panel g-noselect" ng-style="target.css" >
+                <div ng-repeat="point in target.points track by $index" ng-class="point ? 'b-biathlon-panel-item_active' : ''" class="b-biathlon-panel-item"></div>
+            </div>
+            <div class="b-gameBiathlon-bonus" ng-repeat="bonus in frame.bonuses" stm-index-bonus="{{bonus.id}}" show="{{bonus.show}}" type="{{bonus.type}}" position="{{bonus.position}}"></div>
+        </div>
+        
+        <div ng-show="!inEti" ng-style="men.css" class="l-b-biathlon-men">
+            <div ng-class="'b-biathlon-men_' + men.frameIndex" class="b-biathlon-men"></div>
+        </div>
 
-    <div ng-class="inEti ? 'mod_inEti' : ''" ng-style="eti.css" class="l-b-biathlon-yeti">
-        <div ng-class="'b-biathlon-yeti_' + eti.frameIndex" class="b-biathlon-yeti"></div>
-    </div>
-    <div ng-class="buttons.active ? 'state_active' : ''" class="b-gameBiathlon-buttons">
-        <div stm-index-buttons-popup key="{{buttons.key}}"><span ng-bind-html="buttons.text"></span></div>
-    </div>
-    <div ng-class="etiWarinig ? 'state_active' : ''" class="b-gameBiathlon-warning">
-        <div stm-game-biathlon-warning-popup><h5 id="example_source_опасность">Опасность!</h5>Йети догоняет, <br>поднажми</div>
-    </div>
-    <div ng-repeat="popup in bonusPopups" class="b-gameBiathlon-bonusPopup" stm-index-popover="{{popup.id}}" position="popup.position">
-        <div stm-index-bonus-popup bonus="{{popup.bonus}}" type="{{popup.type}}">
-            <span ng-bind-html="popup.text"></span>
+        <div ng-class="inEti ? 'mod_inEti' : ''" ng-style="eti.css" class="l-b-biathlon-yeti">
+            <div ng-class="'b-biathlon-yeti_' + eti.frameIndex" class="b-biathlon-yeti"></div>
         </div>
-    </div>    
-</div>
-<!-- Panel -->
-<div class='b-gamePanel' ng-class="showToolbar ? 'state_active' : ''">
-    <div class='b-gamePanel-h'>
-        <div class='b-gamePanel-layaut'>
-            <div class='b-gamePanel-column mod_first'>
-                <div class="b-button b-button_map">
-                    <span class='b-button__text'>На карту</span>
-                    <a class='b-button__link' href='map/'></a>
+        <div ng-class="buttons.active ? 'state_active' : ''" class="b-gameBiathlon-buttons">
+            <div stm-index-buttons-popup key="{{buttons.key}}"><span ng-bind-html="buttons.text"></span></div>
+        </div>
+        <div ng-class="etiWarinig ? 'state_active' : ''" class="b-gameBiathlon-warning">
+            <div stm-game-biathlon-warning-popup><h5 id="example_source_опасность">Опасность!</h5>Йети догоняет, <br>поднажми</div>
+        </div>
+        <div ng-repeat="popup in bonusPopups" class="b-gameBiathlon-bonusPopup" stm-index-popover="{{popup.id}}" position="popup.position">
+            <div stm-index-bonus-popup bonus="{{popup.bonus}}" type="{{popup.type}}">
+                <span ng-bind-html="popup.text"></span>
+            </div>
+        </div>    
+    </div>
+    <!-- Panel -->
+    <div class='b-gamePanel' ng-class="showToolbar ? 'state_active' : ''">
+        <div class='b-gamePanel-h'>
+            <div class='b-gamePanel-layaut'>
+                <div class='b-gamePanel-column mod_first'>
+                    <div class="b-button b-button_map">
+                        <span class='b-button__text'>На карту</span>
+                        <a class='b-button__link' href='map/'></a>
+                    </div>
+                </div>
+                <div class='b-gamePanel-column mod_second'>
+                    <ul class="b-gameBiathlon-shots">
+                        <li ng-repeat="n in [] | range:speedsMax" ng-class="n < speeds ? 'state_active' : ''" class="b-gameBiathlon-shots-item state_active"></li>
+                    </ul>
+                </div>
+                <div class='b-gamePanel-column mod_third'>
+                    <span class="b-button b-button_size_medium2 b-button_scheme_yellow">
+                        <span class="b-icons b-icons_star">
+                            <span class="b-icons__item"></span>
+                        </span>
+                        <span class="b-button__text">{{(score | number).replace(","," ")}}</span>
+                        <!--<a class="b-button__link" href="#3"></a>-->
+                    </span>
                 </div>
             </div>
-            <div class='b-gamePanel-column mod_second'>
-                <ul class="b-gameBiathlon-shots">
-                    <li ng-repeat="n in [] | range:speedsMax" ng-class="n < speeds ? 'state_active' : ''" class="b-gameBiathlon-shots-item state_active"></li>
-                </ul>
-            </div>
-            <div class='b-gamePanel-column mod_third'>
-                <span class="b-button b-button_size_medium2 b-button_scheme_yellow">
-                    <span class="b-icons b-icons_star">
-                        <span class="b-icons__item"></span>
-                    </span>
-                    <span class="b-button__text">{{(score | number).replace(","," ")}}</span>
-                    <!--<a class="b-button__link" href="#3"></a>-->
-                </span>
-            </div>
         </div>
     </div>
-</div>
 
-<div stm-index-popup class="b-gameBiathlon-popup" ng-show="showStartPopup">
-    <div class='b-popup-title'>
-        Биатлон &mdash; точность и скорость<br>для полной победы
-    </div>
-    <div class='b-popup-note'>Не дай йети догнать тебя, будь быстр и точен!<br>Для разгона нажимай <b><i>Вправо</i></b>, для прыжков &mdash; <b><i>Вверх</i></b><br>для стрельбы нажимай <b><i>Пробел</i></b>.
-    </div>
-    <div class='b-popup-button'>
-        <div class='b-button button_size_big b-button_scheme_yellow'>
-            <div class='b-button__text'>Играть</div>
-            <a class='b-button__link' ng-click="play()" href=''></a>
+    <div stm-index-popup class="b-gameBiathlon-popup" ng-show="showStartPopup">
+        <div class='b-popup-title'>
+            Биатлон &mdash; точность и скорость<br>для полной победы
+        </div>
+        <div class='b-popup-note'>Не дай йети догнать тебя, будь быстр и точен!<br>Для разгона нажимай <b><i>Вправо</i></b>, для прыжков &mdash; <b><i>Вверх</i></b><br>для стрельбы нажимай <b><i>Пробел</i></b>.
+        </div>
+        <div class='b-popup-button'>
+            <div class='b-button button_size_big b-button_scheme_yellow'>
+                <div class='b-button__text'>Играть</div>
+                <a class='b-button__link' ng-click="play()" href=''></a>
+            </div>
         </div>
     </div>
-</div>
-<audio data-shoot>
-    <source src="asset/audio/shoot/shoot.ogg" type="audio/ogg">
-    <source src="asset/audio/shoot/shoot.mp3" type="audio/mpeg">
-</audio>
+    <audio data-shoot>
+        <source src="asset/audio/shoot/shoot.ogg" type="audio/ogg">
+        <source src="asset/audio/shoot/shoot.mp3" type="audio/mpeg">
+    </audio>
+</div>    
