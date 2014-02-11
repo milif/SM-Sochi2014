@@ -12,3 +12,7 @@ define('DB_NAME', 'sochi2014');
 define('SESSION_TIME',  86400 * 7);
 define('SESSION_COOKIE', 'sochi2014');
 
+define("GTM_ID", 'GTM-TMZ66K');
+
+define('IS_PRODUCTION', is_file(__DIR__.'/.production'));
+

@@ -18,13 +18,14 @@ angular.module('stm',['ngAnimate','ngResource'])
             $sceProvider.enabled(false);
             $locationProvider.html5Mode(true);
         }])
-        .run(['$location', '$rootScope', '$cacheFactory', '$http', '$stmEnv', function($location, $rootScope, $cacheFactory, $http, $stmEnv){
+        .run(['$location', '$rootScope', '$cacheFactory', '$http', '$stmEnv','$stmGtm', function($location, $rootScope, $cacheFactory, $http, $stmEnv, $stmGtm){
             var baseUrl = $location.absUrl();
             $rootScope.$on('$locationChangeStart', function(e, newUrl){  
                 if(newUrl.indexOf(baseUrl) < 0) {
                     window.location.href = newUrl;
                 }
             });
+            
             // Cache
             var cache = $cacheFactory('stm');
             $http.defaults.cache = cache;
@@ -34,7 +35,36 @@ angular.module('stm',['ngAnimate','ngResource'])
                 for(var key in api){
                     cache.put(key, api[key]);
                 }
-            }            
+            }
+            
+            // GTM
+            var gtmCfg =  $stmEnv.gtm;
+            if(gtmCfg) $stmGtm.init(gtmCfg.id, gtmCfg.data);
+        }])
+        /**
+         * @ngdoc service
+         * @name stm.$stmGtm
+         * @description
+         *
+         * Google tag manager
+         *
+         */        
+        .factory('$stmGtm', ['$window', function($window){
+            var $stmGtm = {
+                init: init
+            };
+            
+            var l = '_GTMdataLayer';
+            var $ = angular.element;
+            function init(id, data){
+                var layer = $window[l] = data || [];
+                layer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+                var f = document.getElementsByTagName('script')[0],j=document.createElement('script');
+                j.async=true;
+                j.src='//www.googletagmanager.com/gtm.js?dataLayer='+l+'&id='+id;
+                f.parentNode.insertBefore(j,f);
+            }
+            return $stmGtm;
         }])
         /**
          * @ngdoc service
@@ -50,6 +80,16 @@ angular.module('stm',['ngAnimate','ngResource'])
            * @propertyOf stm.$stmEnv
            * @returns {Object} Начальные данные авторизации. Если пользователь не авторизован, то `null`
            */ 
+         /**
+           * @ngdoc property
+           * @name stm.$stmEnv#gtm
+           * @propertyOf stm.$stmEnv
+           * @returns {Object} Данные Google tag manager.
+           *       { 
+           *         'id': {String},
+           *         'data': {Object}
+           *       }            
+           */            
          /**
            * @ngdoc property
            * @name stm.$stmEnv#api
