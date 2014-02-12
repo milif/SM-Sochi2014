@@ -23,9 +23,10 @@
             <div class="btn" ng-click="show()">Show</div>
             <div class="b-sample" >
               <div ng-repeat="bonus in bonuses" stm-index-bonus="bonusId{{$index}}" type="{{bonus.type}}" position="{{bonus.pos}}" timeout="{{bonus.timeout}}"></div>
-              <div stm-index-bonus="bonusId3" type="mnogo" position="[350, 50]" show="false"></div>
+              <div stm-index-bonus="bonusId3" type="mnogo" position="[350, 50]" ></div>
               <div stm-index-bonus="bonusId4" type="sber" position="[450, 50]" timeout="20"></div>
               <div stm-index-bonus="bonusId5" type="pickpoint" position="[550, 50]" timeout="20" show="false"></div>
+              <div stm-index-bonus="bonusId6" type="pickpoint" position="[650, 50]" show="false"></div>
             <div>
         </div>
         
@@ -35,7 +36,8 @@
           position:relative;
           z-index:1;
           height: 200px;
-          width: 400px;
+          width: 600px;
+          background: #ffd731;
       }
       </file>
       <file name="controller.js">
@@ -92,7 +94,10 @@ angular.module('stmIndex').directive('stmIndexBonus', function(){
             });
             $scope.$watch('timeout', function(timeout){
                 var duration = $scope.$eval($scope.timeout) || timeout;
-                $scope.duration = 2 * parseInt(duration, 10);                
+                $scope.duration = 2 * parseInt(duration, 10);
+                if($scope.duration) {
+                    $scope.css.border = 'none';
+                }
             });
             $scope.$watch('show', function(show){
               $scope.hide = ($scope.$eval(show) === false) ? true : false;

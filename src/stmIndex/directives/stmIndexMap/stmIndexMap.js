@@ -133,7 +133,10 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                 'fps': 30,
                 'width': 200,
                 'height': 150,
-                'cols': 5
+                'cols': 5,
+                'circle3': true,
+                'left': 1400,
+                'dx': 0
             };
             $scope.item4 = {
                 'frames': 117,
@@ -141,7 +144,9 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                 'width': 294,
                 'height': 162,
                 'cols': 3,
-                'backgroundTop': -324
+                'circle4': true,
+                'left': 1570,
+                'dx': 0
             };
             $scope.item5 = {
                 'frames': 29,
@@ -320,7 +325,10 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                 'fps': 30,
                 'width': 154,
                 'height': 172,
-                'cols': 6
+                'cols': 6,
+                'circle28': true,
+                'left': 1140,
+                'dx': 0
             };
             $scope.item29 = {
                 'frames': 17,
@@ -358,7 +366,7 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                     } else {
                         item.dx = 0;
                         item.css = {
-                            'background-position': (item.backgroundLeft || 0) + 'px' + (item.backgroundTop || 0) + 'px'
+                            'background-position': '0 0'
                         };
                     }
                     if(item.circle16 === true) {
@@ -380,8 +388,47 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                                 item.dx++;
                             } else if(frameIndex > 34 && frameIndex < 71) {
                                 item.dx--;
-                            } 
+                            }
                             item.left = 2950 - item.dx * 5;
+                            item.css.left = item.left + 'px';
+                        } else {
+                            item.dx = 0;
+                        }
+                    }
+                    if(item.circle28 === true) {
+                        if(isAnimate) {
+                            if(frameIndex < 15 || frameIndex > 76) {
+                                item.dx++;
+                            } else if(frameIndex > 25 && frameIndex < 50) {
+                                item.dx--;
+                            }
+                            item.left = 1140 - item.dx * 5;
+                            item.css.left = item.left + 'px';
+                        } else {
+                            item.dx = 0;
+                        }
+                    }
+                    if(item.circle3 === true) {
+                        if(isAnimate) {
+                            if(frameIndex > 10 && frameIndex < 35) {
+                                item.dx++;
+                            } else if(frameIndex > 50) {
+                                item.dx--;
+                            }
+                            item.left = 1400 - item.dx * 5;
+                            item.css.left = item.left + 'px';
+                        } else {
+                            item.dx = 0;
+                        }
+                    }
+                    if(item.circle4 === true) {
+                        if(isAnimate) {
+                            if(frameIndex > 63) {
+                                item.dx++;
+                            } else if(frameIndex > 3 && frameIndex < 57) {
+                                item.dx--;
+                            }
+                            item.left = 1570 - item.dx * 2;
                             item.css.left = item.left + 'px';
                         } else {
                             item.dx = 0;
