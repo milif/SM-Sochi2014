@@ -1,5 +1,5 @@
 <!-- Bonus -->
-<div ng-if="!hide" class="b-bonus" ng-style="css">
+<div ng-if="!hide" ng-class="timeouted ? 'state_timeout' : ''" class="b-bonus" ng-style="css">
     <div class="spinner-css" ng-show="spinnerEnabled">
       <span class="side sp_left">
         <span class="fill" ng-style="spinnerStyle"></span>

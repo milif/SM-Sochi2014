@@ -122,9 +122,11 @@ angular.module('stmIndex').directive('stmIndexBonus', function(){
                       'animation-duration': $scope.duration + 's'
                     };
                     $timeout(function(){
-                        $scope.hide = true;
                         $scope.timeouted = true;
-                        $scope.$emit('bonusTimeout', index);
+                        $timeout(function(){
+                            $scope.hide = true;
+                            $scope.$emit('bonusTimeout', index);
+                        }, 30);
                     }, $scope.duration / 2 * 1000);
                 }
             }
