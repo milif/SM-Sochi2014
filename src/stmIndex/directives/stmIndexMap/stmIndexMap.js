@@ -222,9 +222,10 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                 'width': 282,
                 'height': 160,
                 'cols': 3,
-                'over': true,
+                'over': false,
                 'circle15': true,
-                'left': 2950
+                'left': 2950,
+                'dx': 0
             };
             $scope.item16 = {
                 'frames': 73,
@@ -232,9 +233,10 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                 'width': 282,
                 'height': 160,
                 'cols': 3,
-                'over': true,
+                'over': false,
                 'circle16': true,
-                'left': 1430
+                'left': 1430,
+                'dx': 0
             };
             $scope.item17 = {
                 'frames': 16,
@@ -333,8 +335,13 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
             function iterate(){
                 var time = new Date().getTime() - startTime;
                 for(var index=1; index<=itemsCount; index++) {
-                    var item = $scope['item'+index],
-                        frameIndex = Math.round( time / 1000 * item.fps) % item.frames,
+                    var item = $scope['item'+index];
+                    
+                     if(!item.over){
+                        item._startTime = time;
+                     }
+                    
+                    var frameIndex = Math.round( (item._startTime ? time - item._startTime : time) / 1000 * item.fps) % item.frames,
                         verticalIndex = Math.floor(frameIndex / item.cols),
                         horizontalIndex = frameIndex - verticalIndex * item.cols;
                     if(item.over === true) {
@@ -342,38 +349,36 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                             'background-position': '-' + horizontalIndex * item.width + 'px -' + verticalIndex * item.height + 'px'
                         };
                     } else {
+                        item.dx = 0;
                         item.css = {
                             'background-position': (item.backgroundLeft || 0) + 'px' + (item.backgroundTop || 0) + 'px'
                         };
                     }
                     if(item.circle16 === true) {
-                        if(frameIndex < 19 || frameIndex > 63) {
-                            item.left -= 6;
-                        } else if(frameIndex > 31 && frameIndex < 60) {
-                            item.left += 6;
-                        }
-                        if(frameIndex === 25) {
-                            item.left = 1280;
-                        }
-                        item.css = {
-                            'left': item.left + 'px',
-                            'background-position': '-' + horizontalIndex * item.width + 'px -' + verticalIndex * item.height + 'px'
-                        };
+                        if(item.over === true) {
+                            if(frameIndex < 19 || frameIndex > 63) {
+                                item.dx++;
+                            } else if(frameIndex > 31 && frameIndex < 60) {
+                                item.dx--;
+                            } 
+                            item.left = 1430 - item.dx * 5;
+                            item.css.left = item.left + 'px';
+                        } else {
+                            item.dx = 0;
+                        }       
                     }
                     if(item.circle15 === true) {
-                        if(frameIndex < 27 || frameIndex > 76) {
-                            item.left -= 5;
-                        } else if(frameIndex > 34 && frameIndex < 71) {
-                            item.left += 5;
+                        if(item.over === true) {
+                            if(frameIndex < 27 || frameIndex > 76) {
+                                item.dx++;
+                            } else if(frameIndex > 34 && frameIndex < 71) {
+                                item.dx--;
+                            } 
+                            item.left = 2950 - item.dx * 5;
+                            item.css.left = item.left + 'px';
+                        } else {
+                            item.dx = 0;
                         }
-                        
-                        if(frameIndex === 30) {
-                            item.left = 2750;
-                        }
-                        item.css = {
-                            'left': item.left + 'px',
-                            'background-position': '-' + horizontalIndex * item.width + 'px -' + verticalIndex * item.height + 'px'
-                        };
                     }
                     if(item.move === true) {
                         if(item.left > 4300) {

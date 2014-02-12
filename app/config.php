@@ -15,4 +15,3 @@ define('SESSION_COOKIE', 'sochi2014');
 define("GTM_ID", 'GTM-TMZ66K');
 
 define('IS_PRODUCTION', is_file(__DIR__.'/.production'));
-
