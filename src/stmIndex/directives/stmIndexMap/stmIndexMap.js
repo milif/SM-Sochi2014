@@ -429,7 +429,7 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                             } else if(frameIndex > 3 && frameIndex < 57) {
                                 item.dx--;
                             }
-                            item.left = 1570 - item.dx * 5;
+                            item.left = 1570 - item.dx * 2;
                             item.css.left = item.left + 'px';
                         } else {
                             item.dx = 0;
