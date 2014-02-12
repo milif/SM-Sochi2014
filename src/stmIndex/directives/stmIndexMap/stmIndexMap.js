@@ -144,7 +144,6 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                 'width': 294,
                 'height': 162,
                 'cols': 3,
-                'backgroundTop': -324,
                 'circle4': true,
                 'left': 1570,
                 'dx': 0
@@ -367,7 +366,7 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                     } else {
                         item.dx = 0;
                         item.css = {
-                            'background-position': (item.backgroundLeft || 0) + 'px' + (item.backgroundTop || 0) + 'px'
+                            'background-position': '0 0'
                         };
                     }
                     if(item.circle16 === true) {
