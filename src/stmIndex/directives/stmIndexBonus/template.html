@@ -1,5 +1,5 @@
 <!-- Bonus -->
-<div ng-if="!hide" class="b-bonus" ng-class="'b-bonus-'+ type" ng-style="css">
+<div ng-if="!hide" class="b-bonus" ng-style="css">
     <div class="spinner-css" ng-show="spinnerEnabled">
       <span class="side sp_left">
         <span class="fill" ng-style="spinnerStyle"></span>
@@ -8,5 +8,6 @@
         <span class="fill" ng-style="spinnerStyle"></span>
       </span>
     </div>
+    <div ng-class="'b-bonus-icon b-bonus-'+ type"></div>
 </div>
 <!-- End Bonus -->

@@ -2,24 +2,35 @@
 /*==========================================================*/
 .b-bonus {
   position: absolute;
-  width: 82px;
-  height: 82px;
+  width: 74px;
+  height: 74px;
   z-index: 10000;
-  margin-left: -41px;
-  margin-top: -41px;
+  margin-left: -38px;
+  margin-top: -38px;
+  border-radius: 50%;
+  border: 3px solid #000;
+}
+
+.b-bonus-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 74px;
+  height: 74px;
+  z-index: 100;
   background: url("asset/i/b-indexBonus/b-indexBonusIcons.png") 0 0 no-repeat;
 }
 
 .b-bonus-pickpoint {
-  background-position: 0 0;
+  background-position: -4px -4px;
 }
 
 .b-bonus-mnogo {
-  background-position: 0 -82px;
+  background-position: -4px -86px;
 }
 
 .b-bonus-sber {
-  background-position: -82px 0;
+  background-position: -86px -4px;
 }
 
 .b-bonus.ng-leave {
@@ -38,7 +49,7 @@
   transition: 0.5s cubic-bezier(0.510, 0.595, 0.320, 1.345) all;
   opacity: 0;
   -webkit-transform: scale(0);
-  transform: scale(0);
+  transform: scale(0);  
 }
 
 .b-bonus.ng-enter-active {
@@ -55,16 +66,16 @@
 
 
 .b-bonus .spinner-css {
-  margin: -38px 0 0 -38px;
-  height: 76px;
-  width: 76px;
+  margin: -40px 0 0 -40px;
+  height: 80px;
+  width: 80px;
   top: 50%;
   left: 50%;
   position: absolute;
+  z-index: 10;
   border-radius: 999px;
   -webkit-border-radius: 999px;
   -moz-border-radius: 999px;
-  opacity: 0.3;
 }
 .b-bonus .spinner-css:after {
   content: "";
@@ -73,25 +84,25 @@
   height: 0px;
   left: 0px;
   top: 0px;
-  margin: 38px;
-  background: #ffffff;
+  margin: 40px;
+  background: #ffd731;
   opacity: 1;
   border-radius: 999px;
   -webkit-border-radius: 999px;
   -moz-border-radius: 999px;
 }
 .b-bonus .spinner-css .side {
-  height: 76px;
-  width: 38px;
+  height: 80px;
+  width: 40px;
   position: absolute;
   overflow: hidden;
   top: 0;
 }
 .b-bonus .spinner-css .side > .fill {
   position: absolute;
-  width: 38px;
-  height: 76px;
-  background: #0099cc;
+  width: 40px;
+  height: 80px;
+  background: #000;
   border-radius: 999px;
   -webkit-border-radius: 999px;
   -moz-border-radius: 999px;
@@ -101,14 +112,14 @@
   -o-animation: cssSpinnerRight 10s infinite linear;
 }
 .b-bonus .spinner-css .side.sp_right {
-  left: 38px;
+  left: 40px;
   border-radius: 0px 999px 999px 0px;
   -webkit-border-radius: 0px 999px 999px 0px;
   -moz-border-radius: 0px 999px 999px 0px;
 }
 .b-bonus .spinner-css .side.sp_right > .fill {
   right: 0;
-  border-right: 38px solid #ffffff;
+  border-right: 40px solid #ffd731;
 }
 .b-bonus .spinner-css .side.sp_left {
   left: 0;
@@ -118,7 +129,7 @@
 }
 .b-bonus .spinner-css .side.sp_left > .fill {
   left: 0;
-  border-left: 38px solid #ffffff;
+  border-left: 40px solid #ffd731;
   animation: cssSpinnerLeft 10s infinite linear;
   -webkit-animation: cssSpinnerLeft 10s infinite linear;
   -moz-animation: cssSpinnerLeft 10s infinite linear;
