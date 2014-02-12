@@ -331,20 +331,27 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
             };
             
             var itemsCount = 29;
-
+            for(var index=1; index<=itemsCount; index++) {
+                $scope['item'+index]._frameIndex = 0;
+            }
             function iterate(){
                 var time = new Date().getTime() - startTime;
                 for(var index=1; index<=itemsCount; index++) {
                     var item = $scope['item'+index];
                     
-                     if(!item.over){
+                     if(!item.over && item._frameIndex == 0){
                         item._startTime = time;
                      }
                     
                     var frameIndex = Math.round( (item._startTime ? time - item._startTime : time) / 1000 * item.fps) % item.frames,
                         verticalIndex = Math.floor(frameIndex / item.cols),
                         horizontalIndex = frameIndex - verticalIndex * item.cols;
-                    if(item.over === true) {
+                    
+                    item._frameIndex = frameIndex;
+                    
+                    var isAnimate = item.over === true || frameIndex !=0;
+                    
+                    if(isAnimate) {
                         item.css = {
                             'background-position': '-' + horizontalIndex * item.width + 'px -' + verticalIndex * item.height + 'px'
                         };
@@ -355,7 +362,7 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                         };
                     }
                     if(item.circle16 === true) {
-                        if(item.over === true) {
+                        if(isAnimate) {
                             if(frameIndex < 19 || frameIndex > 63) {
                                 item.dx++;
                             } else if(frameIndex > 31 && frameIndex < 60) {
@@ -368,7 +375,7 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                         }       
                     }
                     if(item.circle15 === true) {
-                        if(item.over === true) {
+                        if(isAnimate) {
                             if(frameIndex < 27 || frameIndex > 76) {
                                 item.dx++;
                             } else if(frameIndex > 34 && frameIndex < 71) {
