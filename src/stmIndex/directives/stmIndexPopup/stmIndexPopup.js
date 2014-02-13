@@ -6,6 +6,8 @@
  * @requires stmIndex.directive:stmIndexPopup:b-popup.css
  * @requires stmIndex.directive:stmIndexPopup:template.html
  *
+ * @requires stmIndex.directive:stmIndexSocial
+ *
  * @description
  * Popup
  *
