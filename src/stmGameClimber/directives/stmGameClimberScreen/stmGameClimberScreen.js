@@ -153,7 +153,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                                     }
 
                                     _down(step, true);
-                                } else if (e.keyCode == 37 || e.keyCode == 39) { // "arrow left or right"                                    
+                                } else if ((e.keyCode == 37 || e.keyCode == 39) && position !== startPosition) { // "arrow left or right"
                                     if(e.keyCode == 37) { // if left
                                         manEl.addClass('flip-left');
                                         scope.manPositionLeft = true;
@@ -292,6 +292,8 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         scope.score += bonus.bonus;
                         scope.bonusesCollected[bonus.type] += bonus.bonus;
                         scoreDetails[bonus.type] = scoreDetails[bonus.type] ? scoreDetails[bonus.type] + bonus.bonus : bonus.bonus;
+                        updateEnergy(10);
+                        _update();
                     }
 
                     function detectBonus() {
@@ -659,6 +661,8 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         if (position == startPosition) {
                             newstate = action == 'down' ?
                             ( fromPosition > oneFourthPosition ? 15 : 14 ) : 14;
+                            manEl.removeClass('flip-left');
+                            scope.manPositionLeft = false;
                         }
 
                         if (state != newstate && !goingUp) {
