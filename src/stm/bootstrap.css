@@ -406,7 +406,8 @@
 .b-social-icon_fb {
     background-position: 0 0;
     height: 13px;
-    width: 7px;
+    width: 9px;
+    margin-left: 2px;
 }
 
 .b-social-icon_gp {
@@ -424,7 +425,9 @@
 .b-social-icon_vk {
     background-position: 0 -68px;
     height: 10px;
-    width: 8px;
+    width: 9px;
+    margin-left: 2px;
+
 }
 
 .b-social-icon_tw {
@@ -476,7 +479,7 @@
     cursor: pointer;
     margin-left: 6px;
     padding: 0 0 0 6px;
-    width: 62px;
+    min-width: 62px;
     height: 27px;
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
@@ -516,9 +519,12 @@
     color: #c0c0c0;
     font-size: 11px;
     text-align: right;
-    min-width: 22px;
+    min-width: 24px;
+    padding: 0 5px;
 }
-
+.b-button_social .b-button__text {
+    text-align: center;
+}
 /* MOD YELLOW */
 .b-button_social.scheme_yellow .b-button__text {
     color: #000;
