@@ -37,6 +37,7 @@
 }
 .g-font a {
     color: #0066cc;
+    text-decoration: underline;
 }
 .g-font a:hover, 
 .g-font a:active, 

@@ -22,23 +22,31 @@
         <div ng-controller="bonusesCtrl">
             <div class="btn" ng-click="show()">Show</div>
             <div class="b-sample" >
-              <div ng-repeat="bonus in bonuses" stm-index-bonus="bonusId{{$index}}" type="{{bonus.type}}" position="{{bonus.pos}}" timeout="{{bonus.timeout}}"></div>
-              <div stm-index-bonus="bonusId3" type="mnogo" position="[350, 50]" ></div>
+              <div ng-repeat="bonus in bonuses" stm-index-bonus="{{bonus.id}}" type="{{bonus.type}}" position="{{bonus.pos}}" timeout="{{bonus.timeout}}"></div>
+              <div stm-index-bonus="bonusId3" type="mnogo" position="[350, 50]"></div>
               <div stm-index-bonus="bonusId4" type="sber" position="[450, 50]" timeout="20"></div>
-              <div stm-index-bonus="bonusId5" type="pickpoint" position="[550, 50]" timeout="20" show="false"></div>
-              <div stm-index-bonus="bonusId6" type="pickpoint" position="[650, 50]" show="false"></div>
-            <div>
+            </div>
         </div>
-        
+        <br>
+        <div ng-controller="bonusesCtrl">
+            <div class="btn" ng-click="show()">Show</div>
+            <div class="b-sample __mod1" >
+              <div ng-repeat="bonus in bonuses" stm-index-bonus="{{bonus.id}}" type="{{bonus.type}}" position="{{bonus.pos}}" timeout="{{bonus.timeout}}"></div>
+              <div stm-index-bonus="bonusId3" type="mnogo" position="[350, 50]"></div>
+              <div stm-index-bonus="bonusId4" type="sber" position="[450, 50]" timeout="20"></div>
+            </div>
+        </div>        
       </file>
       <file name="style.css">
-      .b-sample {
-          position:relative;
-          z-index:1;
-          height: 200px;
-          width: 600px;
-          background: #ffd731;
-      }
+        .b-sample {
+            position:relative;
+            z-index: 1;
+            height: 125px;
+            background: #ffd731;
+        }
+        .b-sample.__mod1 .b-bonus .spinner-css .side > .fill {
+          background: white;
+        }
       </file>
       <file name="controller.js">
         function bonusesCtrl($scope, $timeout){
@@ -48,10 +56,6 @@
                     {pos: [150, 50], type: "sber", timeout: 2 }, 
                     {pos: [250, 50], type: "pickpoint"}
                 ];
-                $scope.$broadcast('showBonus-bonusId5');
-                $timeout(function(){
-                    $scope.$broadcast('removeBonus-bonusId2');
-                }, 4000);
             }
         }
       </file>
@@ -100,6 +104,7 @@ angular.module('stmIndex').directive('stmIndexBonus', function(){
                 }
             });
             $scope.$watch('show', function(show){
+              if(!('show' in $scope)) return;
               $scope.hide = ($scope.$eval(show) === false) ? true : false;
               if($scope.hide === false) {
                   activateTimeout($scope.stmIndexBonus);
@@ -133,7 +138,7 @@ angular.module('stmIndex').directive('stmIndexBonus', function(){
             
             if(!isHide) {
                 $timeout(function(){
-                    $scope.hide = false;
+                    $scope.show = true;
                 }, 30);
             }
         }]
