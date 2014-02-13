@@ -292,6 +292,8 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         scope.score += bonus.bonus;
                         scope.bonusesCollected[bonus.type] += bonus.bonus;
                         scoreDetails[bonus.type] = scoreDetails[bonus.type] ? scoreDetails[bonus.type] + bonus.bonus : bonus.bonus;
+                        updateEnergy(10);
+                        _update();
                     }
 
                     function detectBonus() {
