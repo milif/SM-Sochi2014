@@ -35,6 +35,9 @@
   overflow: hidden;
   visibility: hidden;
 }
+.g-font a {
+    color: #0066cc;
+}
 .g-font a:hover, 
 .g-font a:active, 
 .g-font a:visited:hover {

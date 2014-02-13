@@ -41,7 +41,7 @@ angular.module('stmIndex').directive('stmIndexToolbar', function(){
         },
         {
             title: "Биатлон",
-            desc: "Точность и скорость выстрелов - залог успеха.",
+            desc: "Точность и скорость выстрелов &mdash; залог успеха.",
             icon: "asset/i/b-toolbar/biatlon.png",
             url: "biathlon/"
         },        

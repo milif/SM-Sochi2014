@@ -79,15 +79,15 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
     var BUTTONS = {
         'shoot': {
             key: 'space',
-            text: 'Жми <b>Пробел</b> для<br>стрельбы по мишеням!'
+            text: 'Жми <b>«пробел»</b> для<br>стрельбы по мишеням!'
         },
         'speed': {
             key: 'right',
-            text: 'Жми стрелку <b>Вправо</b><br>для ускорения!'
+            text: 'Жми стрелку <b>«вправо»</b><br>для ускорения!'
         },
         'down': {
             key: 'bottom',
-            text: 'Жми стрелку <b>Вниз</b><br>чтобы набрать скорость!'
+            text: 'Жми стрелку <b>«вниз»</b><br>чтобы набрать скорость!'
         }
     }
     

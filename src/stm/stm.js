@@ -22,7 +22,17 @@ angular.module('stm',['ngAnimate','ngResource'])
             var baseUrl = $location.absUrl();
             $rootScope.$on('$locationChangeStart', function(e, newUrl){  
                 if(newUrl.indexOf(baseUrl) < 0) {
+                    e.preventDefault();
                     window.location.href = newUrl;
+                }
+            });
+            $rootScope.$on('loaded', function(e){
+                var hash = /\#.*?$/.exec($location.url());  
+                if(hash) {
+                    var anchorEl = $(hash[0]);
+                    if(anchorEl.length > 0) {
+                        $('html,body').scrollTop(anchorEl.offset().top);
+                    }
                 }
             });
             

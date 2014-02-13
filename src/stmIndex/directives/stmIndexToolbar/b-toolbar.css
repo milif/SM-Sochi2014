@@ -408,6 +408,10 @@
     top: auto;
 }
 
+.b-toolbar-popup .__list-item-top {
+    border-top-right-radius: 7px;
+    border-top-left-radius: 7px;
+}
 
 
 

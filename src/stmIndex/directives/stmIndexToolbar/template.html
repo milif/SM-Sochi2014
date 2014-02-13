@@ -34,11 +34,11 @@
         
         <div class="b-toolbar-popup__list">
             
-            <div ng-repeat="item in menu.items" ng-class="$first ? 'b-toolbar-popup__list-item_margin-top' : ($last) ? 'b-toolbar-popup__list-item_margin-bottom' : ''" class="b-toolbar-popup__list-item b-toolbar-popup__list-item_style1 b-toolbar-popup__list-item">
+            <div ng-repeat="item in menu.items" ng-class="$first ? '__list-item-top' : ''" class="b-toolbar-popup__list-item b-toolbar-popup__list-item_style1 b-toolbar-popup__list-item">
                 <img ng-src="{{item.icon}}" alt="image" class="b-toolbar-popup__list-userpic">
                 <div class="b-toolbar-popup__list-note">
                     <div class="b-toolbar-popup__list-title">{{item.title}}</div>
-                    <div class="b-toolbar-popup__list-info">{{item.desc}}</div>
+                    <div class="b-toolbar-popup__list-info" ng-bind-html="item.desc"></div>
                 </div>
                 <a href="{{item.url}}" class="b-toolbar-popup__list-link"></a>
             </div>
