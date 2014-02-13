@@ -472,6 +472,7 @@
 /* button socials */
 /*==========================================================*/
 .b-button_social {
+    text-align: left;
     cursor: pointer;
     margin-left: 6px;
     padding: 0 0 0 6px;
