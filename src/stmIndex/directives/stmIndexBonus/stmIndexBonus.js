@@ -62,15 +62,6 @@
     </example>
     
  */
-/**
-   * @ngdoc event
-   * @name stmIndex.directive:stmIndexBonus#removeBonus-ID
-   * @eventOf stmIndex.directive:stmIndexBonus
-   * @eventType local on scope
-   * @description
-   * Инициирует скрытие компонента 
-   * 
-   */
 angular.module('stmIndex').directive('stmIndexBonus', function(){
     return {
         scope: {
@@ -110,9 +101,27 @@ angular.module('stmIndex').directive('stmIndexBonus', function(){
                   activateTimeout($scope.stmIndexBonus);
               }              
             });
+            /**
+               * @ngdoc event
+               * @name stmIndex.directive:stmIndexBonus#removeBonus-ID
+               * @eventOf stmIndex.directive:stmIndexBonus
+               * @eventType local on scope
+               * @description
+               * Инициирует скрытие компонента 
+               * 
+               */            
             $scope.$on('removeBonus-' + $scope.stmIndexBonus, function(){
                 $scope.hide = true;
             });
+            /**
+               * @ngdoc event
+               * @name stmIndex.directive:stmIndexBonus#showBonus-ID
+               * @eventOf stmIndex.directive:stmIndexBonus
+               * @eventType local on scope
+               * @description
+               * Инициирует показ компонента 
+               * 
+               */            
             $scope.$on('showBonus-' + $scope.stmIndexBonus, function(){
                 if(!$scope.timeouted) {
                     $scope.hide = false;
@@ -130,6 +139,17 @@ angular.module('stmIndex').directive('stmIndexBonus', function(){
                         $scope.timeouted = true;
                         $timeout(function(){
                             $scope.hide = true;
+                            /**
+                               * @ngdoc event
+                               * @name stmIndex.directive:stmIndexBonus#bonusTimeout
+                               * @eventOf stmIndex.directive:stmIndexBonus
+                               * @eventType local on scope
+                               * @description
+                               * Сработал таймер
+                               *
+                               * @param {String} id Id.
+                               * 
+                               */                              
                             $scope.$emit('bonusTimeout', index);
                         }, 30);
                     }, $scope.duration / 2 * 1000);

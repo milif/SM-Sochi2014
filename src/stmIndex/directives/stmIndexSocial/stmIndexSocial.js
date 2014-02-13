@@ -11,11 +11,14 @@
  *
  * @element ANY
  * @param {Integer} buttons-count Число кнопок на панели
+ * @param {String=} scheme  Цветовая схема (black|yellow)
  *
  * @example
     <example module="appExample">
       <file name="index.html">
          <div buttons-count="4" stm-index-social ></div>
+         <br>
+         <div buttons-count="4" scheme="yellow" stm-index-social ></div>
       </file>
     </example>
     
@@ -104,9 +107,11 @@ angular.module('stmIndex')
         return item;
     }  
     return {
+        scope: true,
         templateUrl: 'partials/stmIndex.directive:stmIndexSocial:template.html',
         controller: ['$attrs','$element','$scope', function($attrs, $element, $scope){
             $scope.socials = Social.get();
+            $scope.scheme = $attrs.scheme;
             $attrs.$observe('buttonsCount', function(buttonsCount){
                 $scope.buttonsCount = $scope.$eval(buttonsCount) || $attrs.buttonsCount;
                 var buttons = [];

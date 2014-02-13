@@ -87,4 +87,9 @@
     display: table-cell;
     vertical-align: middle;       
 }
+.b-popup-social {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 27px;
+}
 
