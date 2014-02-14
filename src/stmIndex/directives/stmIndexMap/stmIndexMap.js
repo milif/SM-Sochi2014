@@ -29,7 +29,7 @@
     
  */
 
-angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$document', '$window', function($timeout, $interval, $document, $window){
+angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$document', '$window', '$rootScope', function($timeout, $interval, $document, $window, $rootScope){
 
     var $ = angular.element;
     var windowEl = $($window);
@@ -53,6 +53,13 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
             $scope.position = normalizePosition($scope.position || storedPosition || {
                 x: 0, 
                 y: 0
+            });
+            
+            $rootScope.$on('toolbarLogoClick', function(){
+                $scope.position = {
+                    x: 0,
+                    y: 0
+                }
             });
             
             $scope.$watch('game',function(isGame){

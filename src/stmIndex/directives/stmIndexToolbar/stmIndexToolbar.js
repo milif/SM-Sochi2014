@@ -78,6 +78,9 @@ angular.module('stmIndex').directive('stmIndexToolbar', function(){
             ];
             $scope.clickMenu = clickMenu;
             $scope.isAbout = /about/.test($location.url());
+            $scope.logoClick = function (){
+                $scope.$emit('toolbarLogoClick');
+            }
             
             function positionMenu(e, menu){
                 var el = $(e.target);
