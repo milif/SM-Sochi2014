@@ -31,7 +31,7 @@ angular.module('stm',['ngAnimate','ngResource'])
                 if(hash) {
                     var anchorEl = $(hash[0]);
                     if(anchorEl.length > 0) {
-                        $('html,body').scrollTop(anchorEl.offset().top);
+                        $('html,body').scrollTop(anchorEl.offset().top - parseInt(anchorEl.css('marginTop')));
                     }
                 }
             });
