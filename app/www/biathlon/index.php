@@ -8,7 +8,7 @@
   <base href="../"></base>
   <!-- @include stmGameBiathlon -->
   <?php echo $head; ?>
-  <meta property="og:image" content="http://<?php echo dirname($_SERVER["HTTP_HOST"].$REQUEST_DIR).'/'; ?>social.png"/>
+  <meta property="og:image" content="http://<?php echo dirname($_SERVER["HTTP_HOST"].$REQUEST_DIR).'/'; ?>social_biatlon.jpg"/>
 </head>
 <body stm-game-biathlon-screen stm-preload></body>
 </html>

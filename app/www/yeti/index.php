@@ -8,7 +8,7 @@
   <base href="../"></base>
   <!-- @include stmGameEti -->
   <?php echo $head; ?>
-  <meta property="og:image" content="http://<?php echo dirname($_SERVER["HTTP_HOST"].REQUEST_DIR).'/'; ?>social.png"/>
+  <meta property="og:image" content="http://<?php echo dirname($_SERVER["HTTP_HOST"].REQUEST_DIR).'/'; ?>social_yeti.jpg"/>
 </head>
 <body stm-game-eti-screen stm-preload></body>
 </html>
