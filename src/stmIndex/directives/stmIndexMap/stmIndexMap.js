@@ -56,10 +56,19 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
             });
             
             $rootScope.$on('toolbarLogoClick', function(){
-                $scope.position = {
-                    x: 0,
-                    y: 0
-                }
+                if(!$scope.game || $scope.inScroll) return;
+                $scope.inScroll = true;
+                viewEl.animate({
+                    'scrollTop': 0,
+                    'scrollLeft': 0
+                }, 1000, function(){
+                    $scope.inScroll = false;
+                    $scope.position = {
+                        x: 0,
+                        y: 0
+                    }
+                });
+                
             });
             
             $scope.$watch('game',function(isGame){
