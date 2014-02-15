@@ -150,6 +150,7 @@ angular.module('stmIndex').directive('stmIndexPopover', function(){
                 }, hideTimeout);
             }
             function updatePosition(){
+                if(!position) return;
                 if($scope.type == 'top'){
                     $scope.css = {
                         left: position[0] + offset[0],

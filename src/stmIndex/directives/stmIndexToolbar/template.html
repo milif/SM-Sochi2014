@@ -1,9 +1,9 @@
-<div ng-class="'pos_' + position" class='l-b-toolbar g-font g-clearfix g-noselect'>
+<div ng-class="'pos_' + position" class='l-b-toolbar g-font g-clearfix'>
     <div class="b-toolbar">
         <!-- toolbar-left -->
         <div class="l-b-toolbar-left">
             <div ng-class="gameMenu.active ? 'b-toolbar-button_state_active' : ''" class="b-toolbar-button" ng-mousedown="clickMenu($event, gameMenu)" >Выбрать игру</div>
-            <div class="b-toolbar-link"><a href="">Тестовый запуск</a><sup>Beta</sup></div>
+            <div class="b-toolbar-link"><span ng-mousedown="clickBetaInfo($event)" class="__a-pseudo">Тестовый запуск</span><sup>Beta</sup></div>
             <!--<div class="b-toolbar-button b-toolbar-button_state_active">
                 События
                 <div class="b-toolbar-event-count">98</div>
@@ -29,7 +29,15 @@
         <!-- / toolbar-right -->
 
     </div>
-
+<div stm-index-popover="beta" popover-type="{{position == 'bottom' ? 'top' : 'bottom' }}" hide-event-timeout="0" hide-on-clickout="true" show="{{!!betaInfo.active}}" position="{{betaInfo.position}}">
+    <div stm-index-tooltip position="{{position == 'top' ? 'top' : 'bottom' }}_left" class="mod_beta">
+                <p>Мы произвели тестовый запуск Сочных Игр. Все игроки могут начать тренировки, и подойти подготовленно к официальному запуску.</p>
+                <p>Если в процессе Игр у вас появились идеи по улучшению, или вы обнаружили ошибки, пожалуйста, сообщите нам:<br />
+                    <a href="mailto:razvitie@sotmarket.ru">razvitie@sotmarket.ru</a></p>
+                <p><span class="b-tooltip-info">Самые активные получат сюрприз<br />от Сотмаркета</span></p>
+                <p>И самое главное:<br><span class="__info">Все достижения сохранятся!</span></p>
+    </div>
+</div>    
 <div ng-repeat="menu in menus" stm-index-popover="menu.id" popover-type="{{position == 'bottom' ? 'top' : 'bottom' }}" hide-event-timeout="0" hide-on-clickout="true" show="{{!!menu.active}}" position="{{menu.position}}">
     <div ng-class="'pos_' + (position == 'top' ? 'bottom' : 'top')" class="b-toolbar-popup g-font b-toolbar-popup_top_left">
         

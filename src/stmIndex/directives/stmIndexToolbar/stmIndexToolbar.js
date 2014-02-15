@@ -8,6 +8,7 @@
  *
  * @requires stmIndex.directive:stmIndexPopover
  * @requires stmIndex.directive:stmIndexSocial
+ * @requires stmIndex.directive:stmIndexTooltip
  * 
  * @description
  * Страница toolbar
@@ -76,6 +77,8 @@ angular.module('stmIndex').directive('stmIndexToolbar', function(){
             var menus = $scope.menus = [
                 gameMenu
             ];
+            $scope.betaInfo = {};
+            $scope.clickBetaInfo = clickBetaInfo;
             $scope.clickMenu = clickMenu;
             $scope.isAbout = /about/.test($location.url());
             $scope.logoClick = function (){
@@ -93,6 +96,9 @@ angular.module('stmIndex').directive('stmIndexToolbar', function(){
                     menu.position = [-cntOffset.left + offset.left, cntOffset.top - offset.top + $element.outerHeight()];
                 }
             }
+            function clickBetaInfo(e){
+                clickMenu({target: $(e.target).parent()}, $scope.betaInfo);
+            }
             function clickMenu(e, menu){
                 menu.active = !menu.active;
                 positionMenu(e, menu);
@@ -102,6 +108,9 @@ angular.module('stmIndex').directive('stmIndexToolbar', function(){
                     if(menus[i].id == id){
                         menus[i].active = false;
                     }
+                }
+                if(id == 'beta') {
+                    $scope.betaInfo.active = false;
                 }
             });           
         }]

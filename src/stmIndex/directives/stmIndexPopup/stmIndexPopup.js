@@ -51,9 +51,7 @@ angular.module('stmIndex').directive('stmIndexPopup', function(){
         transclude: true,
         templateUrl: 'partials/stmIndex.directive:stmIndexPopup:template.html',
         controller: ['$scope', '$attrs', function($scope, $attrs){
-            $attrs.$observe('gameData', function(gameData){
-                $scope.gameData = $scope.$eval($attrs.gameData);
-            });
+
         }]
     };
 });

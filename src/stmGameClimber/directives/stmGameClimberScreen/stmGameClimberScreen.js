@@ -37,10 +37,6 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
         templateUrl: 'partials/stmGameClimber.directive:stmGameClimberScreen:template.html',
         controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs) {
         
-          var gameData = Game.get({
-            'type': 'climber'
-          });
-        
           $scope.endPosition = 0;
           $scope.score = 0;
           $scope.popupScoreShow = false;
@@ -452,6 +448,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         }, 1000);
 
                         var time = new Date().getTime();
+                        
                         Game.save({
                             type: 'climber',
                             action: 'end',

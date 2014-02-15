@@ -382,6 +382,28 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                 deactivateRedBird();
                 
                 var time = new Date().getTime();
+                /*
+                $scope.gameData = {
+                    score: $scope.score,
+                    best: {
+                        score: 12240,
+                        items: [
+                            {
+                                type: 'mnogo',
+                                score: 2320
+                            },
+                            {
+                                type: 'pickpoint',
+                                score: 2320
+                            },
+                            {
+                                type: 'sber',
+                                score: 2320
+                            }
+                        ]
+                    }
+                }
+                */
                 Game.save({
                     type: 'yeti',
                     action: 'end',

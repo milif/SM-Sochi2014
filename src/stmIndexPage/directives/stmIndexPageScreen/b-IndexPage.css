@@ -99,10 +99,6 @@
 }
 .b-indexPage-honors-note a {
     color: #0066cc;
-    text-decoration: underline;
-}
-.b-indexPage-honors-note a:hover {
-    text-decoration: none;
 }
 /* b-indexPage-row */
 .b-indexPage-row {

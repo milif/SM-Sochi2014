@@ -1,0 +1,71 @@
+/*==========================================================*/
+/* Tooltip */
+/*==========================================================*/
+.b-tooltip {
+    position: relative;
+    font-size: 13px;
+    background-color: rgba(0,0,0,.9);
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    width: 280px;
+    padding: 8px;
+    text-align: center;
+    color: #fff;
+}
+.b-tooltip.__pos_top_left {
+    margin-top: 7px;
+}
+.b-tooltip.__pos_bottom_left {
+    margin-bottom: 7px;
+}
+.b-tooltip-lock,
+.b-tooltip-info {
+    display: block;
+    position: relative;
+    padding-left: 36px;
+    text-align: left;
+    min-height: 34px;
+}
+.b-tooltip-lock:before,
+.b-tooltip-info:before {
+    background: url('asset/i/common/icons-pack.png') 0 -129px no-repeat;
+    content: '';
+    height: 22px;
+    width: 15px;
+    position: absolute;
+    left: 8px;
+    top: 6px;
+}
+.b-tooltip p {
+    margin: 0 0 12px;
+}
+.b-tooltip p:last-child {
+    margin-bottom: 0;
+}
+.b-tooltip a {
+    color: #fff;
+}
+.b-tooltip p .b-tooltip-info {
+    padding-left: 28px;
+}
+.b-tooltip p .b-tooltip-info:before {
+    left: 0;
+    width: 20px;
+    background: url('asset/i/common/icons-pack.png') 0 -306px no-repeat;
+}
+.b-tooltip.mod_beta{
+    width: 290px;
+    padding: 12px; 
+    color: #8b8b8b;
+    text-align: left;
+}
+.b-tooltip.mod_beta .__info {
+    font-size: 21px;
+    color: #ffd820;
+    white-space:nowrap;
+    line-height: 30px;
+}

@@ -7,14 +7,15 @@
                         <span class="b-icons b-icons_star2">
                             <span class="b-icons__item"></span>
                         </span>
-                        600 баллов
+                        {{(gameData.score | number:0).replace(',',' ')}} баллов
                     </div>
-                    <div class="b-popup__top-result-note">1200 баллов — ваш лучший результат</div>
-                    <div class="b-slide-result">
+                    <div ng-if="gameData.best.score > gameData.score" class="b-popup__top-result-note">{{(gameData.best.score | number:0).replace(',',' ')}} баллов — ваш лучший результат</div>
+                    <div ng-if="gameData.best.score <= gameData.score" class="b-popup__top-result-note">Это ваш лучший результат</div>
+                    <div ng-class="isDetails ? 'state_active' : '' " class="b-slide-result">
                         <div class="b-slide-result-row">
-                            <div class="b-slide-result-item mod_g1">
+                            <div ng-repeat="besttem in gameData.best.items" ng-class="'mod_' + besttem.type" class="b-slide-result-item mod_g1">
                                 <div class="b-slide-result-icon"></div>
-                                <div class="b-slide-result-text">100</div>
+                                <div class="b-slide-result-text">{{(besttem.score | number:0).replace(',',' ')}}</div>
                             </div>
                             <div class="b-slide-result-item mod_g2">
                                 <div class="b-slide-result-icon"></div>
@@ -30,7 +31,7 @@
                             </div>
                         </div>
                         
-                        <div class="b-slide-result-arrow"></div>
+                        <div ng-click="isDetails = !isDetails" class="b-slide-result-arrow"></div>
 
                     </div>
                     

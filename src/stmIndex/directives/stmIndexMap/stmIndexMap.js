@@ -97,7 +97,7 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
             }            
             
             $element.on('mousedown', function(e){
-                if($(e.target).closest('[data-controls]').length > 0) return;
+                if($(e.target).closest('[data-controls],[ng-transclude]').length > 0) return;
                 if($scope.inScroll === true) {
                     return;
                 }
