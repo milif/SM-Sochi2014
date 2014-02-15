@@ -3,6 +3,7 @@
         <!-- toolbar-left -->
         <div class="l-b-toolbar-left">
             <div ng-class="gameMenu.active ? 'b-toolbar-button_state_active' : ''" class="b-toolbar-button" ng-mousedown="clickMenu($event, gameMenu)" >Выбрать игру</div>
+            <div class="b-toolbar-link"><a href="" ng-click="clickBeta($event)">Тестовый запуск</a><sup>Beta</sup></div>
             <!--<div class="b-toolbar-button b-toolbar-button_state_active">
                 События
                 <div class="b-toolbar-event-count">98</div>
@@ -27,6 +28,18 @@
         </div>
         <!-- / toolbar-right -->
 
+    </div>
+
+    <div class="b-toolbar-beta-popup" stm-index-popover="toolbar-beta-popup" popover-type="{{position == 'bottom' ? 'top' : 'bottom' }}" hide-event-timeout="0" hide-on-clickout="true" show="{{showBetaPopover}}" position="{{betaPopoverPosition}}">
+        <div ng-class="'pos_' + (position == 'top' ? 'bottom' : 'top')" class="b-toolbar-popup g-font b-toolbar-popup_top_left">
+            <p>Мы произвели тестовый запуск Сочных Игр. Все игроки могут начать тренировки, и подойти подготовленно к официальному запуску.</p>
+            <p>Если в процессе Игр у вас появились идеи по улучшению, или вы обнаружили ошибки, пожалуйста, сообщите нам:<br />
+                <a href="mailto:razvitie@sotmerket.ru">razvitie@sotmerket.ru</a></p>
+            <p class="bonus-icon">Самые активные получат сюрприз<br />от Сотмаркета</p>
+            <p class="last">И самое главное:</p>
+            <h2>Все достижения сохранятся!</h2>
+            <i class="b-popup-queue b-popup-queue_top_left"></i>
+        </div>
     </div>
 
 <div ng-repeat="menu in menus" stm-index-popover="menu.id" popover-type="{{position == 'bottom' ? 'top' : 'bottom' }}" hide-event-timeout="0" hide-on-clickout="true" show="{{!!menu.active}}" position="{{menu.position}}">

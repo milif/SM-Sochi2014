@@ -103,7 +103,23 @@ angular.module('stmIndex').directive('stmIndexToolbar', function(){
                         menus[i].active = false;
                     }
                 }
+                $scope.showBetaPopover = false;
             });           
+            $scope.showBetaPopover = false;
+            $scope.betaPopoverPosition = [0,0];
+            $scope.clickBeta = clickBeta;
+            function clickBeta(e){
+                var el = $(e.target);
+                var offset = el.offset();
+                var cntOffset = $element.offset();
+                var isTop = $scope.position == 'top';
+                if(isTop){
+                    $scope.betaPopoverPosition = [-cntOffset.left + offset.left, -cntOffset.top + offset.top + el.outerHeight() - 15 ];
+                } else {
+                    $scope.betaPopoverPosition = [-cntOffset.left + offset.left, cntOffset.top - offset.top + $element.outerHeight() + 15 ];
+                }
+                $scope.showBetaPopover = !$scope.showBetaPopover;
+            }
         }]
     };
 });

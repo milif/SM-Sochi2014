@@ -98,6 +98,69 @@
     box-shadow: inset 0 1px 8px #957200;
 }
 
+.b-toolbar-link {
+    position: relative;
+    display: inline-block;
+    height: 40px;
+    padding: 0 2px;
+    line-height: 39.5px;
+    color: #fff;
+    font-size: 13px;
+    vertical-align: top;
+    text-decoration: none;
+}
+.b-toolbar-link a {
+    text-decoration: none;
+    border-bottom: 1px dotted #c3ba56;
+}
+
+.b-toolbar-link a:hover {
+    border-bottom: none;
+}
+
+.b-toolbar-link a, sup,
+.b-toolbar-link a:hover {
+    color: #c3ba56;
+    font-style: italic;
+}
+
+.b-toolbar-link sup {
+    padding-left: 3px;
+    font-size: 8px;
+}
+
+.b-toolbar-beta-popup .b-toolbar-popup {
+    background: #000;
+    opacity:0.8;
+    color: #8b8b8b;
+    font-size: 13px;
+    width: 320px;
+}
+
+.b-toolbar-beta-popup p {
+    padding: 0 20px;
+    line-height: 1.5em;
+}
+.b-toolbar-beta-popup p a {
+    color: #fff;
+    text-decoration: none;
+}
+.b-toolbar-beta-popup .bonus-icon {
+    padding-left: 45px;
+    background: url(asset/i/b-toolbar/bonus-icon.png) 18px center no-repeat;
+}
+.b-toolbar-beta-popup .last {
+    margin-bottom: 0;
+}
+.b-toolbar-beta-popup h2 {
+    font-size: 20px;
+    margin: 0;
+    padding: 0px 18px 13px 18px;
+    color: #ffd820;
+    font-weight: normal;
+    white-space:nowrap;
+}
+
 /* b-toolbar-event-count */
 .b-toolbar-event-count {
     margin-left: 8px;

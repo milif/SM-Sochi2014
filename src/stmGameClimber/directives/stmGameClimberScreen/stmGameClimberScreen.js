@@ -183,9 +183,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                                         var upInterval = $interval(function(){
                                             position += 10;
                                             _up();
-                                            scope.$apply(function() {
-                                              updateDistance(10);
-                                            });
+                                            updateDistance(10);
                                             $timeout.cancel(manualTimeout);
                                             _update();
                                             action = 'up';
@@ -565,9 +563,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         }
 
                         position += step;
-                        scope.$apply(function() {
-                          updateDistance(step);
-                        });
+                        updateDistance(step);
 
                         $timeout.cancel(manualTimeout);
 

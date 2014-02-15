@@ -401,3 +401,14 @@
   position: absolute;
   z-index: 10000;
 }
+
+
+.gameClimber-flag-qiwi {
+  position: absolute;
+  display: block;
+  width: 142px;
+  height: 252px;
+  background: url(asset/i/b-gameClimber/b-qiwi-flag.png) 0 0 no-repeat;
+  margin-left: 50%;
+  z-index: 100;
+}
