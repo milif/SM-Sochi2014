@@ -95,7 +95,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
 
                         startPosition = parseInt(manEl.css('bottom'), 10),
                         endPosition = g_pipeEl.height(),
-                        topPipeMargin = 1050,
+                        topPipeMargin = 1100,
                         spacePosition = endPosition * 0.7,
                         capPosition = endPosition * 0.35,
                         oneFourthPosition = endPosition * 0.25,
@@ -165,7 +165,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                                     detectBonus();
                                 } else if (e.keyCode == 82) { // "R"
                                     var ratio = (position - startPosition) / (endPosition - startPosition);
-                                    if(!goingUpUsed && ratio > 0.65 && (position < endPosition - topPipeMargin - 150)) {
+                                    if(!goingUpUsed && ratio > 0.65 && (position < endPosition - topPipeMargin - 100)) {
                                         goingUpUsed = true;
                                         $timeout(function () {
                                             $(keyObj)
@@ -189,7 +189,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                                             action = 'up';
                                             updateEnergy(1);
                                             index++;
-                                            if(index == 100 || position > endPosition - topPipeMargin - 150) {
+                                            if(index == 100 || position > endPosition - topPipeMargin - 100) {
                                                 $interval.cancel(upInterval);
                                                 manEl
                                                     .removeClass('mod_frame17')
@@ -759,7 +759,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                                     .removeClass('mod_frame16')
                                     .addClass('mod_frame14')
                                     .css({
-                                      'bottom': endPosition - topPipeMargin + 364
+                                      'bottom': endPosition - topPipeMargin + 414
                                     });
                                 state = 14;
                                 moveBirdAway(positionMarginLeft);
