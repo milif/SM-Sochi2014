@@ -405,10 +405,18 @@
 
 .gameClimber-flag-qiwi {
   position: absolute;
-  display: block;
   width: 142px;
   height: 252px;
   background: url(asset/i/b-gameClimber/b-qiwi-flag.png) 0 0 no-repeat;
   margin-left: 50%;
   z-index: 100;
+}
+
+.gameClimber-flag-qiwi a {
+  display: block;
+  position: relative;
+  width: 118px;
+  height: 155px;
+  top: 5px;
+  left: 20px;
 }
