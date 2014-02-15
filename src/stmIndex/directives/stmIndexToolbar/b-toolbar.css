@@ -101,9 +101,9 @@
 .b-toolbar-link {
     position: relative;
     display: inline-block;
-    height: 40px;
-    padding: 0 2px;
-    line-height: 39.5px;
+    height: 36px;
+    padding: 0 12px;
+    line-height: 36px;
     color: #fff;
     font-size: 13px;
     vertical-align: top;
@@ -120,7 +120,7 @@
 
 .b-toolbar-link a, sup,
 .b-toolbar-link a:hover {
-    color: #c3ba56;
+    color: #fcd620;
     font-style: italic;
 }
 
