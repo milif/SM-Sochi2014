@@ -3,12 +3,20 @@
 require_once __DIR__.'/../config.php';
 require_once __DIR__.'/Socials.class.php';
 require_once __DIR__.'/Auth.class.php';
+require_once __DIR__.'/Game.class.php';
+
+if(!isset($GAME_DATA)) $GAME_DATA = array();
+
+$api = array(
+    "api/socials.php" => Socials::get()
+);
+foreach($GAME_DATA as $type) {
+    $api["api/game.php?type=".$type] = Game::getUserData($type);
+}
 
 $ENV = array(
     'auth' => Auth::getUser(),
-    'api' => array(
-        "api/socials.php" => Socials::get()
-    )    
+    'api' => $api
 );
 if(IS_PRODUCTION){
     $ENV['gtm'] = array(

@@ -1,5 +1,6 @@
 <?php 
     $GTM_DATA = array('gameName' => 'climber');
+    $GAME_DATA = array('climber');
     require __DIR__.'/../../lib/init.php'; ?><!doctype html>
 <html ng-app="stmGameClimber" lang="ru">
 <head>

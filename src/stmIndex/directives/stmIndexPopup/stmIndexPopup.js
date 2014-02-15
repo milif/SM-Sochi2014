@@ -13,6 +13,8 @@
  *
  * @element ANY
  *
+ * @param {Expression=} game-data Данные о прохождении игры
+ *
  * @example
     <example module="appExample">
       <file name="index.html">
@@ -30,6 +32,7 @@
               </div>
             </div>        
         </div>
+        <div stm-index-popup game-data="4" class="example-popup"></div>
       </file>
       <file name="style.css">
          .example-popup {
@@ -44,7 +47,13 @@
 
 angular.module('stmIndex').directive('stmIndexPopup', function(){
     return {
+        scope: true,
         transclude: true,
-        templateUrl: 'partials/stmIndex.directive:stmIndexPopup:template.html'
+        templateUrl: 'partials/stmIndex.directive:stmIndexPopup:template.html',
+        controller: ['$scope', '$attrs', function($scope, $attrs){
+            $attrs.$observe('gameData', function(gameData){
+                $scope.gameData = $scope.$eval($attrs.gameData);
+            });
+        }]
     };
 });

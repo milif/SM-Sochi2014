@@ -2,7 +2,98 @@
 <div class='b-popup-h'>
     <div class='b-popup-hh'>
         <div class='b-popup g-font'>
-          <div class='b-popup-content' ng-transclude></div>
+            <div ng-if="gameData" class="b-popup__top-result">
+                    <div class="b-popup__top-result-title">
+                        <span class="b-icons b-icons_star2">
+                            <span class="b-icons__item"></span>
+                        </span>
+                        600 баллов
+                    </div>
+                    <div class="b-popup__top-result-note">1200 баллов — ваш лучший результат</div>
+                    <div class="b-slide-result">
+                        <div class="b-slide-result-row">
+                            <div class="b-slide-result-item mod_g1">
+                                <div class="b-slide-result-icon"></div>
+                                <div class="b-slide-result-text">100</div>
+                            </div>
+                            <div class="b-slide-result-item mod_g2">
+                                <div class="b-slide-result-icon"></div>
+                                <div class="b-slide-result-text">200</div>
+                            </div>
+                            <div class="b-slide-result-item mod_g3">
+                                <div class="b-slide-result-icon"></div>
+                                <div class="b-slide-result-text">200</div>
+                            </div>
+                            <div class="b-slide-result-item mod_g4">
+                                <div class="b-slide-result-icon"></div>
+                                <div class="b-slide-result-text">100</div>
+                            </div>
+                        </div>
+                        
+                        <div class="b-slide-result-arrow"></div>
+
+                    </div>
+                    
+                    <a href="#2" class="b-popup-close"></a>
+
+            </div>
+
+            <div ng-if="gameData" class="b-achive-row">
+                <div class="b-achive-item">
+                    <div class="b-achive">
+                        <div class="b-achive__h achiv_alp1"></div>
+                    </div>
+                    <div class="b-achive-item-note">Первопроходец</div>
+                </div>
+                <div class="b-achive-item">
+                    <div class="b-achive">
+                        <div class="b-achive__h achiv_alp4"></div>
+                    </div>
+                    <div class="b-achive-item-note">Первопроходец</div>
+                </div>
+                <div class="b-achive-item">
+                    <div class="b-achive">
+                        <div class="b-achive__h achiv_alp2"></div>
+                    </div>
+                    <div class="b-achive-item-note">Первопроходец</div>
+                </div>
+                <div class="b-achive-item">
+                    <div class="b-achive">
+                        <div class="b-achive__h achiv_yeti4 state_active"></div>
+                    </div>
+                    <div class="b-achive-item-note">Первопроходец</div>
+                </div>
+          </div>        
+          <div ng-if="gameData" class='b-popup-content'>
+              <div class="b-popup-button ng-scope">
+                  <div class="b-button button_size_big b-button_scheme_yellow mod_1">
+                    <div class="b-button__text">Улучшить результат</div>
+                    <a class="b-button__link" href="#3"></a>
+                  </div>
+              </div> 
+          </div>          
+          <div ng-if="!gameData" class='b-popup-content' ng-transclude></div>
+          <div ng-if="gameData" class="b-popup-mnogo">
+            <a href="#3" class="b-popup-mnogo__icon"></a>
+            <form action="#3" class="b-popup-form">
+                <div>
+                    <div class="b-form-top">
+                        Укажите номер карты Много.ру и получите бонусы
+                        <a href="#3" class="b-form-top__more">
+                            <span class="b-form-top__more-text">Как получить карту?</span>
+                        </a>
+                    </div>
+
+                    <div class="b-form-row">
+                        <input type="text" name="#" id="#" class="b-form-input-text mod_wide">
+                        <span class="b-button mod_mnogo">
+                            <span class="b-button__text">Применить</span>
+                            <button class="b-button__link"></button>
+                        </span>
+                    </div>
+                </div>
+            </form>
+          </div>          
           <div class='b-popup-footer'>
             <div class="b-popup-footer-left">
               <span class="b-button mod_popup-footer-map">
@@ -25,130 +116,3 @@
     </div>
 </div>
 <!-- End Popup -->
-
-<!-- Popup -->
-<div class='b-popup-h'>
-    <div class='b-popup-hh'>
-        <div class='b-popup g-font'>
-          
-          <div class="b-popup__top-result">
-                <div class="b-popup__top-result-title">
-                    <span class="b-icons b-icons_star2">
-                        <span class="b-icons__item"></span>
-                    </span>
-                    600 баллов
-                </div>
-                <div class="b-popup__top-result-note">1200 баллов — ваш лучший результат</div>
-                <div class="b-slide-result">
-                    <div class="b-slide-result-row">
-                        <div class="b-slide-result-item mod_g1">
-                            <div class="b-slide-result-icon"></div>
-                            <div class="b-slide-result-text">100</div>
-                        </div>
-                        <div class="b-slide-result-item mod_g2">
-                            <div class="b-slide-result-icon"></div>
-                            <div class="b-slide-result-text">200</div>
-                        </div>
-                        <div class="b-slide-result-item mod_g3">
-                            <div class="b-slide-result-icon"></div>
-                            <div class="b-slide-result-text">200</div>
-                        </div>
-                        <div class="b-slide-result-item mod_g4">
-                            <div class="b-slide-result-icon"></div>
-                            <div class="b-slide-result-text">100</div>
-                        </div>
-                    </div>
-                    
-                    <div class="b-slide-result-arrow"></div>
-
-                </div>
-                
-                <a href="#2" class="b-popup-close"></a>
-
-        </div>
-
-        <div class="b-achive-row">
-            <div class="b-achive-item">
-                <div class="b-achive">
-                    <div class="b-achive__h achiv_alp1"></div>
-                </div>
-                <div class="b-achive-item-note">Первопроходец</div>
-            </div>
-            <div class="b-achive-item">
-                <div class="b-achive">
-                    <div class="b-achive__h achiv_alp4"></div>
-                </div>
-                <div class="b-achive-item-note">Первопроходец</div>
-            </div>
-            <div class="b-achive-item">
-                <div class="b-achive">
-                    <div class="b-achive__h achiv_alp2"></div>
-                </div>
-                <div class="b-achive-item-note">Первопроходец</div>
-            </div>
-            <div class="b-achive-item">
-                <div class="b-achive">
-                    <div class="b-achive__h achiv_yeti4 state_active"></div>
-                </div>
-                <div class="b-achive-item-note">Первопроходец</div>
-            </div>
-        </div>
-
-        <div class="b-popup-content">
-            <div class="b-popup-button ng-scope">
-              <div class="b-button button_size_big b-button_scheme_yellow mod_1">
-                <div class="b-button__text">Улучшить результат</div>
-                <a class="b-button__link" href="#3"></a>
-              </div>
-            </div>        
-        </div>
-
-        <div class="b-popup-mnogo">
-            <a href="#3" class="b-popup-mnogo__icon"></a>
-            <form action="#3" class="b-popup-form">
-                <div>
-                    <div class="b-form-top">
-                        Укажите номер карты Много.ру и получите бонусы
-                        <a href="#3" class="b-form-top__more">
-                            <span class="b-form-top__more-text">Как получить карту?</span>
-                        </a>
-                    </div>
-
-                    <div class="b-form-row">
-                        <input type="text" name="#" id="#" class="b-form-input-text mod_wide">
-                        <span class="b-button mod_mnogo">
-                            <span class="b-button__text">Применить</span>
-                            <button class="b-button__link"></button>
-                        </span>
-                    </div>
-                </div>
-            </form>
-        </div>
-
-<!--         <div class="b-popup-mnogo">
-            <a href="#3" class="b-popup-mnogo__icon"></a>
-            <div class="b-popup-mnogo-note">
-                <div class="b-popup-mnogo-note__top">Ваша карта принята</div>
-                <div class="b-popup-mnogo-note__text">Бонусы будут начислены в самое ближайшее время</div>
-            </div>
-        </div>
- -->
-
-          <div class='b-popup-footer'>
-            <div class="b-popup-footer-left">
-              <span class="b-button mod_popup-footer-map">
-                <span class="b-icons b-icons_arrow">
-                  <span class="b-icons__item"></span>
-                </span>
-                <span class="b-button__text">На карту</span>
-                <a class="b-button__link" href="map/"></a>
-              </span>
-            </div>
-            <div class="b-popup-footer-right">
-              <div class="b-popup-footer-share">Поделиться с друзьями:<div stm-index-social scheme="yellow" buttons-count="4" class="b-popup-social"></div></div>
-            </div>
-
-          </div>
-        </div>    
-    </div>
-</div>

@@ -33,6 +33,26 @@ angular.module('stmIndex', ['stm'])
      */
     /**
        * @ngdoc method
+       * @name stmIndex.Game#get
+       * @methodOf stmIndex.Game
+       *
+       * @description
+       * Данные наилучшего прохождения
+       *
+       * @param {Object} params Параметры:
+       *
+       *   - **`type`** – {String} – Тип игры
+       *
+       * @returns {Resource} Данные прохождения
+       *
+       *       { 
+       *        'score': {Integer}, // Очки
+       *        'data':   {Object}, // Данные прохождения
+       *        'achievement':  {Array} // Достижения
+       *      }       
+       */     
+    /**
+       * @ngdoc method
        * @name stmIndex.Game#save
        * @methodOf stmIndex.Game
        *
