@@ -129,38 +129,6 @@
     font-size: 8px;
 }
 
-.b-toolbar-beta-popup .b-toolbar-popup {
-    background: #000;
-    opacity:0.8;
-    color: #8b8b8b;
-    font-size: 13px;
-    width: 320px;
-}
-
-.b-toolbar-beta-popup p {
-    padding: 0 20px;
-    line-height: 1.5em;
-}
-.b-toolbar-beta-popup p a {
-    color: #fff;
-    text-decoration: none;
-}
-.b-toolbar-beta-popup .bonus-icon {
-    padding-left: 45px;
-    background: url(asset/i/b-toolbar/bonus-icon.png) 18px center no-repeat;
-}
-.b-toolbar-beta-popup .last {
-    margin-bottom: 0;
-}
-.b-toolbar-beta-popup h2 {
-    font-size: 20px;
-    margin: 0;
-    padding: 0px 18px 13px 18px;
-    color: #ffd820;
-    font-weight: normal;
-    white-space:nowrap;
-}
-
 /* b-toolbar-event-count */
 .b-toolbar-event-count {
     margin-left: 8px;
