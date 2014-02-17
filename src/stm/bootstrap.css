@@ -275,24 +275,24 @@
 
 
 /* MOD state-disabled */
-.b-button_state_disabled {
+.b-button.state_disabled {
   background-color: #cccccc !important;
   color: white;
 }
-.b-button_state_disabled .button__text {
+.b-button.state_disabled .b-button__text {
   cursor: default;
 }
-.b-button_state_disabled .button__link {
+.b-button.state_disabled .b-button__link {
   left: -9999px;
 }
 
 /* MOD state-loading */
-.b-button_state_loading .button__text {
+.b-button.state_loading .b-button__text {
   position: relative;
   top: -100em;
   cursor: default;
 }
-.b-button_state_loading:before {
+.b-button.state_loading:before {
   position: absolute;
   top: 0;
   right: 0;
@@ -301,7 +301,7 @@
   background: url(asset/i/common/button-loading.gif) 50% 50% no-repeat;
   content: '';
 }
-.b-button_state_loading .button__link {
+.b-button.state_loading .b-button__link {
   left: -9999px;
   cursor: default !important;
 }
