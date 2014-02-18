@@ -25,10 +25,15 @@
 .gameClimber-fone {
   position: relative;
   z-index: 10;
+  overflow: hidden;
 }
 .gameClimber-fone .gameClimber-fone-h {
   height: 12436px;
-  background: url(asset/i/b-gameClimber/b-gameClimber-fone.png) 50% 100% no-repeat;
+  width: 2224px;
+  background: url(asset/i/b-gameClimber/b-gameClimber-fone.png) left 100% no-repeat;
+  position: relative;
+  margin-left: -1212px;
+  left: 50%;
 }
 
 /* gameClimber-player */
@@ -382,7 +387,7 @@
 .b-gameClimber .b-buttons-popup {
   position: absolute;
   left: 50%;
-  margin-left: -400px;
+  margin-left: -500px;
   bottom: 100px;
   z-index: 10000;
   -webkit-transition:all linear 0.2s;

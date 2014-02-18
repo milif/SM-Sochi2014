@@ -268,7 +268,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                             type: bonus.type,
                             bonus: bonus.bonus,
                             text: text[bonus.type],
-                            position: [-400 - 10*Math.round(10*Math.random()), lastBonusPopupPosition]
+                            position: [-500 - 10*Math.round(10*Math.random()), lastBonusPopupPosition]
                         });
                         $timeout(function(){
                             scope.$broadcast('hidePopover-' + bonus.id);
