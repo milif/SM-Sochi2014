@@ -71,7 +71,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
         type: 'jump'
     };
     var BONUS_GO = { // На трассе
-        y: 80,
+        y: 60,
         type: 'go'
     };
     var BUTTONS_CHANGE_MIN_TIME = 3000; // Минимальное время между сменой подсказок
@@ -92,12 +92,47 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
     }
     
     var $ = angular.element;
-        
+    
+    var ACHIVE_IRON = {
+            type: 'ironnerves',
+            text: 'Железные нервы'            
+        };
+    var ACHIVE_LOIN = {
+            type: 'lionheart',
+            text: 'Храбрец',
+            count: 0            
+        }; 
+    var ACHIVE_LASTHERO = {
+            type: 'lasthero',
+            text: 'Последний герой'            
+        };
+    var ACHIVE_STARHOOTER = {
+            type: 'starshooter',
+            text: 'Звездный стрелок'            
+        };               
+    var ACHIEVEMENTS = [
+        {
+            type: 'journalist',
+            text: 'Журналист'            
+        },
+        ACHIVE_IRON,
+        ACHIVE_LOIN,        
+        ACHIVE_LASTHERO,
+        ACHIVE_STARHOOTER
+    ];  
+    
+    var PIXEL_IN_METER = 20; // Сколько пикселей в метре
+    var METERS_IRONNERVES = 5000; // Когда давайть ачив Железные нервы
+    var METERS_LIONHEART = 10; // Как надо сблизится с Ети для ачива Храбрец
+    var COUNT_LIONHEART = 5; // Сколько раз надо сблизится с Ети для ачива Храбрец
+    var TIME_LASTHERO = 15; // Сколько минут надо продержаться в игре для ачива Последний герой
+    var COUNT_STARHOOTER = 3; // Сколько мишеней надо порязить для ачива Звездный стрелок
+          
     return {
         scope: {
         },
         templateUrl: 'partials/stmGameBiathlon.directive:stmGameBiathlonScreen:template.html',
-        controller: ['$element', '$interval', '$scope', '$window', '$timeout', 'Game', function($element, $interval, $scope, $window, $timeout, Game){
+        controller: ['$element', '$interval', '$scope', '$window', '$timeout', 'Game', 'Achiev', function($element, $interval, $scope, $window, $timeout, Game, Achiev){
                     
             var iterator;
             
@@ -122,6 +157,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
             var etiWarinigCloseTime = 0;
             var shootSound = $element.find('[data-shoot]').remove();
             var finalDistance;
+            var targetsShoots;
             var camera = {
                 x: $element.width() + 400,
                 y: $element.height() / 2,
@@ -153,6 +189,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
             var prevTime = new Date().getTime();
             
             var iterateTasks = [];
+            var startX;
             
             var globalEvents = {
                 'keydown': function(e){
@@ -219,10 +256,14 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                     }
                 }
             });
-            
+            $scope.$on('popupPlay', function(){
+                $scope.play();
+            });            
             $scope.$emit('gameInit');
             
             function startGame(){
+                targetsShoots = 0;
+                startX = men.x;
                 $scope.etiWarinig = false;
                 scoreDetails = {};
                 men.speed = PLAYER_SPEED;
@@ -368,7 +409,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                 
                 var angle = getAngle(p0, person);
                 if(!isNaN(angle)) person.angle = angle;
-                
+               
             }
             function updateCamera(camera, persons, dTime){
                 
@@ -501,22 +542,11 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                             etiWarinigCloseTime = time + 2000;
                         }
                         if(this.x <= eti.x) {
-                            finalDistance = this.x;
+                            finalDistance = this.x - startX;
                             $scope.inEti = true;
-                            Game.save({
-                                type: 'biathlon',
-                                action: 'end',
-                                data: {
-                                    time: time - gameTime,
-                                    final: bonuses <= 0,
-                                    score: {
-                                        distance: Math.round(finalDistance),
-                                        detail: scoreDetails,
-                                        total: $scope.score
-                                    }
-                                }
-                            });                                   
-                        }                        
+                            
+                            endGame();
+                        }
                     }
                     if(this.speed < 20) stopGame();
                     
@@ -560,7 +590,73 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                         }
                     }
                 }              
-                           
+                
+                if(!ACHIVE_IRON.active && men.x / PIXEL_IN_METER - startX > METERS_IRONNERVES){
+                    ACHIVE_IRON.active = true;
+                    Achiev.save({
+                        'key': 'biathlon.' + ACHIVE_IRON.type
+                    });
+                } 
+                if(!ACHIVE_LOIN.active){
+                    if((men.x - eti.x) / PIXEL_IN_METER < METERS_LIONHEART) {
+                        if(!ACHIVE_LOIN._in) {
+                            ACHIVE_LOIN._in = true;
+                            if(ACHIVE_LOIN.count++ == COUNT_LIONHEART -1){
+                                ACHIVE_LOIN.active = true;
+                                Achiev.save({
+                                    'key': 'biathlon.' + ACHIVE_LOIN.type
+                                });                                
+                            }
+                        }
+                    } else {
+                        ACHIVE_LOIN._in = false;
+                    }                
+                }
+                if(!ACHIVE_LASTHERO.active && time - gameTime > TIME_LASTHERO * 60000){
+                    ACHIVE_LASTHERO.active = true;
+                    Achiev.save({
+                        'key': 'biathlon.' + ACHIVE_LASTHERO.type
+                    });                    
+                }
+                
+            }
+            function endGame(time){
+                var bestGame = Game.save({
+                    type: 'biathlon',
+                    action: 'end',
+                    score: $scope.score,
+                    data: {
+                        time: new Date().getTime() - gameTime,
+                        final: bonuses <= 0,
+                        distance: Math.round(finalDistance),
+                        score: scoreDetails
+                    }
+                }, function(){
+                    var achieves = angular.copy(ACHIEVEMENTS);
+                    for(var i=0;i<achieves.length;i++){
+                        if(bestGame.achievements.indexOf(achieves[i].type) >= 0) {
+                            achieves[i].active = true;
+                        }
+                    }
+                    var scoreDetails = bestGame.data.score.detail || bestGame.data.score;
+                    var items = [];
+                    for(var type in scoreDetails){
+                        items.push({
+                            type: type,
+                            score: scoreDetails[type]
+                        });
+                    }
+                    $scope.gameData = angular.extend(bestGame, {
+                        type: 'biathlon',
+                        score: $scope.score,
+                        best: {
+                            score: bestGame.score,
+                            items: items
+                        },
+                        achievements: achieves
+                    });             
+                });                                                   
+            
             }
             function showBonusPopup(popup){
                 bonusPopups.push(popup);
@@ -613,6 +709,13 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                     if(find) break;
                 }
                 if(!find) return;
+                targetsShoots++;
+                if(!ACHIVE_STARHOOTER.active && targetsShoots >= COUNT_STARHOOTER ){
+                    ACHIVE_LASTHERO.active = true;
+                    Achiev.save({
+                        'key': 'biathlon.' + ACHIVE_STARHOOTER.type
+                    });                
+                }                                
                 isShootingHelp = false;
                 var shootX = targetX - K * (men.y - targetY);               
                 if(men.x > shootX && men.x < shootX + panelWidth) {

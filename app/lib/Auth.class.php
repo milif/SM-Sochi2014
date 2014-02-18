@@ -3,6 +3,7 @@
 require_once __DIR__.'/../config.php';
 require_once __DIR__.'/DB.class.php';
 require_once __DIR__.'/Cache.class.php';
+require_once __DIR__.'/Achiev.class.php';
 
 class Auth {
     private static $userData = null;
@@ -12,13 +13,15 @@ class Auth {
                 self::$userData = false;
             } elseif(self::$userData = Cache::get("user_".$_COOKIE[SESSION_COOKIE])) {
             } else {
-                $rs = DB::query("SELECT b.id, b.data FROM session as a LEFT JOIN user as b ON b.id=a.user_id WHERE a.key= :key AND expire > ".time(), array(':key'=>$_COOKIE[SESSION_COOKIE]));
-                self::$userData = count($rs) ? array($rs[0]['id'] ,json_decode($rs[0]['data'], true)) : false;            
+                $rs = DB::query("SELECT b.id, b.data, b.ref_key, a.expire FROM session as a LEFT JOIN user as b ON b.id=a.user_id WHERE a.key= :key AND expire > ".time(), array(':key'=>$_COOKIE[SESSION_COOKIE]));
+                self::$userData = count($rs) ? array($rs[0]['id'] ,json_decode($rs[0]['data'], true), $rs[0]['ref_key']) : false;
+                Cache::set("user_".$_COOKIE[SESSION_COOKIE], self::$userData, $rs[0]['expire']);
             }
-        }   
+        }
         define('CLIENT_ID', self::$userData ? self::$userData[0] : 0);
-        if(CLIENT_ID == 0 && !isset($_COOKIE['__stmuid'])) {
-            setcookie('__stmuid', uniqid(), 0, dirname(dirname($_SERVER['REQUEST_URI'])));
+        if(self::$userData) define('REF_KEY', self::$userData[2]);
+        if(CLIENT_ID == 0 && !isset($_COOKIE[SESSION_COOKIE.'_stmuid'])) {
+            setcookie(SESSION_COOKIE.'_stmuid', uniqid(), 0, dirname(dirname($_SERVER['REQUEST_URI'])));
         }
     }
     static public function login($cookie, $uri, $data){
@@ -26,21 +29,51 @@ class Auth {
         $expire = time() + SESSION_TIME;
         setcookie(SESSION_COOKIE, $cookie, $expire, dirname(dirname($_SERVER['REQUEST_URI'])));
         $dataJSON = str_replace("'","",json_encode($data));
-        $rs = DB::query("SELECT id FROM user WHERE uri = :uri", array(':uri'=>$uri));
+        $rs = DB::query("SELECT id, ref_key FROM user WHERE uri = :uri", array(':uri'=>$uri));
         if(count($rs)) {
             $id = $rs[0]['id'];
+            $refKey = $rs[0]['ref_key'];
             DB::query("UPDATE user SET data='$dataJSON' WHERE uri= :uri", array(':uri'=>$uri));
         } else {
-            DB::query("INSERT INTO user (uri, data) VALUES (:uri, :data)", array(':uri'=>$uri,':data'=>$dataJSON));
-            $id = DB::lastInsertId();
+        
+            $ref = $_COOKIE[SESSION_COOKIE.'_ref'];
+            $refId = 0;
+            if($ref){
+                $ref = explode('.', $ref);
+                $rs = DB::query("SELECT id FROM `user` WHERE ref_key = :refKey", array(":refKey" => $ref[0]));
+                if(count($rs)){
+                    $refId = $rs[0]['id'];
+                    if($refId && isset($ref[1])){
+                        Achiev::add($ref[1].'.'.'journalist', $refId);
+                    }
+                }
+            }        
+        
+            $refKey = uniqid();
+            DB::query("INSERT INTO user (uri, data, ref_key, ref_id) VALUES (:uri, :data, '$refKey', $refId)", array(':uri'=>$uri,':data'=>$dataJSON));
+            $id = DB::lastInsertId();           
+            
         }
         DB::query("DELETE FROM session WHERE expire < ".time());
         DB::query("INSERT INTO session (`key`, expire, user_id) VALUES (:cookie, $expire, $id)", array(':cookie'=>$cookie));
-        Cache::set("user_".$cookie, array($id,$data), $expire);
+        Cache::set("user_".$cookie, array($id, $data, $refKey), $expire);
+        
+        define('CLIENT_ID', $id);
+        define('REF_KEY', $refKey);
+        
         return true;
     }
     static public function getUser(){
         return self::$userData ? self::$userData[1] : null;
+    }
+    static public function checkSignature($data){
+        $sign = isset($_SERVER['StmSignature']) ? $_SERVER['StmSignature'] : $_SERVER['HTTP_STMSIGNATURE'];
+        $signTime = isset($_SERVER['StmSignatureTime']) ? $_SERVER['StmSignatureTime'] : $_SERVER['HTTP_STMSIGNATURETIME'];
+       
+        if(abs(time() - (int)$signTime) < 300 && md5($data.$signTime.'WEKTIF') == $sign) return true;
+        
+        header('HTTP/1.0 401 Unauthorized');
+        exit;
     }
 }
 

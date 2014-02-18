@@ -70,18 +70,12 @@
         </div>
     </div>
 
-    <div stm-index-popup class="b-gameBiathlon-popup" ng-show="showStartPopup">
+    <div stm-index-popup game-data="gameData" class="b-gameBiathlon-popup" ng-show="showStartPopup">
         <div class='b-popup-title'>
             Биатлон &mdash; не дай себя догнать Йети
         </div>
         <div class='b-popup-note'>
             Для стрельбы по мишеням жми <b>«пробел»</b>.<br>Собирай бонусы от <a href="about/#partners">партнёров</a> и зарабатывай дополнительные баллы!
-        </div>
-        <div class='b-popup-button'>
-            <div class='b-button button_size_big b-button_scheme_yellow'>
-                <div class='b-button__text'>Играть</div>
-                <a class='b-button__link' ng-click="play()" href=''></a>
-            </div>
         </div>
     </div>
     <audio data-shoot>
