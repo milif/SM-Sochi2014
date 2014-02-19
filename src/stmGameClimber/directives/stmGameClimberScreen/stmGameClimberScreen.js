@@ -107,6 +107,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         manualTimeout,
                         gameTime = 0,
                         gamePassed = false,
+                        gamePassedCount = 0,
 
                         attempts = 5 + Math.round(Math.random() * 5),
 
@@ -130,6 +131,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         spacePosition = endPosition * 0.7,
                         capPosition = endPosition * 0.35,
                         oneFourthPosition = endPosition * 0.25,
+                        oldPosition = startPosition,
                         position = startPosition,
                         downPosition,
                         downPositionStop,
@@ -140,6 +142,11 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         usedScoreBonus3 = false,
                         missedBonusTime = null,
                         positionChangesNumber = 0,
+
+                        positionOvis1 = 3700,
+                        positionOvis2 = 7800,
+                        ovisesPassedCounts = 0,
+                        ovisesIsInside = false,
 
                         goingUp = false,
                         goingUpUsed = false,
@@ -212,7 +219,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                                         state = 17;
                                         var index = 0;
                                         var upInterval = $interval(function(){
-                                            position += 10;
+                                            updatePosition(position+10);
                                             _up();
                                             updateDistance(10);
                                             $timeout.cancel(manualTimeout);
@@ -247,6 +254,13 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         };
 
                     scope.endPosition = endPosition;
+
+                    function updatePosition(newValue) {
+                        if(newValue !== oldPosition) {
+                            oldPosition = position;
+                        }
+                        position = newValue;
+                    }
 
                     function updateEnergy(incrementValue) {
                         scope.energy = Math.min(Math.max(0, scope.energy + incrementValue), 100);
@@ -298,7 +312,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                             type: bonus.type,
                             bonus: bonus.bonus,
                             text: text[bonus.type],
-                            position: [-400 - 10*Math.round(10*Math.random()), lastBonusPopupPosition]
+                            position: [-500 - 10*Math.round(10*Math.random()), lastBonusPopupPosition]
                         });
                         $timeout(function(){
                             scope.$broadcast('hidePopover-' + bonus.id);
@@ -463,6 +477,10 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                             type: 'climber',
                             action: 'start'
                         });
+
+                        $timeout(function(){
+                            // TODO send archivement "За стойкость"
+                        }, 180000); // 3 minutes
                     }
 
                     function stopGame() {
@@ -470,6 +488,12 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                             .off(blockUpEvents)
                             .off(keyEvents)
                             .on(blockUpEvents);
+
+                        $timeout(function(){
+                            updatePosition(startPosition);
+                            scope.showToolbar = false;
+                            scope.showStartPopup = true;
+                        }, 1000);
 
                         var time = new Date().getTime();
                         
@@ -617,7 +641,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                             step = 50;
                         }
 
-                        position += step;
+                        updatePosition(position+step);
                         updateDistance(step);
 
                         $timeout.cancel(manualTimeout);
@@ -659,7 +683,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                             }, 1000);
                         }
                         moveInterval = $interval(function () {
-                            position -= 8;
+                            updatePosition(position-8);
                             var ratio = (position - startPosition) / (endPosition - startPosition);
                             if(ratio < 0.03) {
                                 scope.keyTopShow = false;
@@ -689,6 +713,17 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
 
                         position = Math.min(Math.max(startPosition, position), endPosition);
 
+                        if(oldPosition < positionOvis1 && position > positionOvis1 && !ovisesIsInside) {
+                            ovisesIsInside = true;
+                        }
+                        if(oldPosition < positionOvis2 && position > positionOvis2 && ovisesIsInside) {
+                            ovisesIsInside = false;
+                            ovisesPassedCounts++;
+                        }
+                        if(ovisesPassedCounts === 5) {
+                            // TODO send archivement "Любитель фауны"
+                        }
+
                         var newstate;
 
                         if (action == 'up' || action == 'stop') {
@@ -714,6 +749,10 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                             ( fromPosition > oneFourthPosition ? 15 : 14 ) : 14;
                             manEl.removeClass('flip-left');
                             scope.manPositionLeft = false;
+                            if(fromPosition > 400) {
+                                newstate = 15;
+                                stopGame();
+                            }
                         }
 
                         if (state != newstate && !goingUp) {
@@ -725,6 +764,11 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         
                         if(position >= (endPosition - topPipeMargin)) {
                             gamePassed = true;
+                            gamePassedCount++;
+                            // TODO send archivement "Первопроходец"
+                            if(gamePassedCount >= 10) {
+                                // TODO send archivement "Царь горы"
+                            }
                             moveBird();
                         } else {
                             manEl.css({
@@ -802,7 +846,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                             _index += 1;
                             positionBottom += 2;
                             positionMarginLeft += 1.3;
-                            position += 1.5;
+                            updatePosition(position+1.5);
                             manEl.css({
                                 'margin-left': positionMarginLeft,
                                 bottom: positionBottom
