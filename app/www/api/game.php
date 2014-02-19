@@ -9,8 +9,8 @@ $data = file_get_contents("php://input");
 
 Auth::checkSignature($data);
 
-$result = array_merge(Game::save(json_decode($data, true)), array(
-    'hasMnogo' => Mnogo::has()
-));
+$bestGame = Game::save(json_decode($data, true));
 
-echo json_encode(is_array($result) ? $result : array('success' => true));
+echo json_encode( $bestGame ? array_merge($bestGame, array(
+    'hasMnogo' => Mnogo::has()
+)) : array('success' => false));

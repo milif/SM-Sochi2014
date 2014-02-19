@@ -8,6 +8,6 @@ $action = $data['action'];
 
 if($action == 'add') {
     echo json_encode(array(
-        'success' => Socials::add($data['type'])
+        'success' => Socials::add($data['uri'], $data['type'])
     ));
 }

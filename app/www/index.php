@@ -6,7 +6,6 @@
   <base href="." />
   <!-- @include stmIndexPage -->  
   <?php echo $head; ?>
-  <meta property="og:image" content="http://<?php echo $_SERVER["HTTP_HOST"].$REQUEST_DIR.'/'; ?>social.png"/>
 </head>
 <body stm-index-page-screen stm-preload></body>
 </html>

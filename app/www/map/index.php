@@ -6,7 +6,6 @@
   <base href="../"></base>
   <!-- @include stmIndex -->
   <?php echo $head; ?>
-  <meta property="og:image" content="http://<?php echo dirname($_SERVER["HTTP_HOST"].$REQUEST_DIR).'/'; ?>social.png"/>
 </head>
 <body game="true" stm-index-map urlprefix="../" stm-preload>
     <div stm-index-toolbar position="top"></div>

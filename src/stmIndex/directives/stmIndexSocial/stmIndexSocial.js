@@ -99,7 +99,7 @@ angular.module('stmIndex')
             onClick: function(){
                 URL = SHARE.url + ($stmAuth.isAuth ? '?ref=' + $stmAuth.data.refKey : '');
                 button.onClick();
-                var response = Social.add(button.type, function(){
+                var response = Social.add(SHARE.url.replace($('base').attr('href'), '/'), button.type, function(){
                     if(response.success) {
                         socials.counters[button.type] = (socials.counters[button.type] + 1) || 1;
                     }
@@ -155,6 +155,7 @@ angular.module('stmIndex')
   * @name stmIndex.Social#add
   * @methodOf stmIndex.Social
   *
+  * @param {String} uri Страница, которую шарим
   * @param {String} type Тип кнопки
   * @param {Function=} clbFn Калбек по завершению операции
   *
@@ -170,9 +171,10 @@ angular.module('stmIndex')
   */   
 .factory('Social', ['$resource', function($resource){
     var Social = $resource('api/socials.php');
-    Social.add = function(type, clbFn){
+    Social.add = function(uri, type, clbFn){   
         return Social.save({
             action: 'add',
+            uri: uri.replace(/^.*?\/\/[^\/]+/,''),
             type: type
         }, clbFn);
     }

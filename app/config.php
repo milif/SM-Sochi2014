@@ -15,3 +15,4 @@ define('SESSION_COOKIE', 'sochi2014');
 define("GTM_ID", 'GTM-TMZ66K');
 
 define('IS_PRODUCTION', is_file(__DIR__.'/.production'));
+define('APP_ROOT_URL', str_replace($_SERVER['DOCUMENT_ROOT'], '', __DIR__.'/www'));
