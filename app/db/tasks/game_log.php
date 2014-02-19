@@ -39,6 +39,6 @@ while (true){
                 $score = $data['score'];
                 break;
         }
-        DB::query("UPDATE `game_log` SET score = $score WHERE id = {$item['id']};");
+        DB::query("UPDATE `game_log` SET score = ".((int)$score)." WHERE id = {$item['id']};");
     }
 }
