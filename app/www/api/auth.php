@@ -7,11 +7,12 @@ if($_POST['token']) {
   $userDataJson = json_encode($loginza->getAuthInfo($_POST['token']));
   $userData = json_decode($userDataJson, true);
   if(!Auth::login($_POST['token'], $userData['identity'], $userData)) exit();
+  $userData['refKey'] = REF_KEY;
   echo "
     <script type=\"text/javascript\">
     // <![CDATA[
       window.parent.location.hash='{$_POST['token']}';
-      window.parent._{$_POST['token']} = JSON.parse('".str_replace("'","",$userDataJson)."');
+      window.parent._{$_POST['token']} = JSON.parse('".str_replace("'","",json_encode($userData))."');
     // ]]>
     </script>
   ";

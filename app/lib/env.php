@@ -10,12 +10,9 @@ if(!isset($GAME_DATA)) $GAME_DATA = array();
 $api = array(
     "api/socials.php" => Socials::get()
 );
-foreach($GAME_DATA as $type) {
-    $api["api/game.php?type=".$type] = Game::getUserData($type);
-}
 
 $ENV = array(
-    'auth' => Auth::getUser(),
+    'auth' => array_merge(Auth::getUser(), array('refKey' => REF_KEY)),
     'api' => $api
 );
 if(IS_PRODUCTION){

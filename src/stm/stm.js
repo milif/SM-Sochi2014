@@ -19,6 +19,9 @@ angular.module('stm',['ngAnimate','ngResource'])
             $locationProvider.html5Mode(true);
         }])
         .run(['$location', '$rootScope', '$cacheFactory', '$http', '$stmEnv','$stmGtm', function($location, $rootScope, $cacheFactory, $http, $stmEnv, $stmGtm){
+        
+            var $$ = angular;
+        
             var baseUrl = $location.absUrl();
             $rootScope.$on('$locationChangeStart', function(e, newUrl){  
                 if(newUrl.indexOf(baseUrl) < 0) {
@@ -46,7 +49,7 @@ angular.module('stm',['ngAnimate','ngResource'])
                     cache.put(key, api[key]);
                 }
             }
-            
+                        
             // GTM
             var gtmCfg =  $stmEnv.gtm;
             if(gtmCfg) $stmGtm.init(gtmCfg.id, gtmCfg.data);

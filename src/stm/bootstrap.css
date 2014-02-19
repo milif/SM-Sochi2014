@@ -542,7 +542,6 @@
     background-image: linear-gradient(bottom, #f7c10d 0%, #ffe141 100%);
 }
 .b-button_social.scheme_yellow:hover {
-    border: 1px solid #000;
     -moz-box-shadow: inset 0 1px 0 #ffe47b;
     -webkit-box-shadow: inset 0 1px 0 #ffe47b;
     box-shadow: inset 0 1px 0 #ffe47b;
@@ -877,6 +876,38 @@
     width: 50%;
 }
 
-
-
+/* forms */
+/*==========================================================*/
+.g-form input,
+.g-form textarea {
+    -webkit-transition: all 0.2s linear;
+    transition: all 0.2s linear;    
+}
+.g-form .ng-dirty.ng-invalid:focus,
+.g-form input:focus,
+.g-form textarea:focus {
+    border-color: rgba(82, 168, 236, 0.8);
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),0 0 3px rgba(82, 168, 236, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),0 0 3px rgba(82, 168, 236, 0.6);
+    outline: 0;
+    outline: thin dotted \9;
+    background-color: #fff;
+}
+.g-form .ng-valid:focus,
+.g-form .ng-valid {
+    border-color: rgba(82, 167, 23, 0.8);
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),0 0 3px rgba(82, 167, 23, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),0 0 3px rgba(82, 167, 23, 0.6);
+    outline: 0;
+    outline: thin dotted \9;
+    background-color: #fff;
+}
+.g-form .ng-dirty.ng-invalid {
+    border-color: rgba(233, 50, 45, 0.8);
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),0 0 3px rgba(233, 50, 45, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),0 0 3px rgba(233, 50, 45, 0.6);
+    outline: 0;
+    outline: thin dotted \9;
+    background-color: rgb(255, 231, 231);
+}
 

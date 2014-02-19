@@ -23,7 +23,7 @@ class Socials {
         return (int)$count;
     }
     static public function add($type){
-        $uid = CLIENT_ID > 0 ? CLIENT_ID : $_COOKIE['__stmuid'];
+        $uid = CLIENT_ID > 0 ? CLIENT_ID : $_COOKIE[SESSION_COOKIE.'_stmuid'];
         $rs = DB::query("SELECT COUNT(*) as count FROM social_log WHERE type = :type AND uid = :uid", array(':type'=>$type, ':uid'=>$uid));
        
         if($rs[0]['count'] > 0) return false;

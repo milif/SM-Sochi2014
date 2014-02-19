@@ -33,6 +33,31 @@
     
  */
 angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '$interval', '$document', '$window', 'Game', function($timeout, $interval, $document, $window, Game){
+
+    var ACHIEVEMENTS = [
+        {
+            type: 'journalist',
+            text: 'Журналист'            
+        },
+        {
+            type: 'resistance',
+            text: 'За стойкость'            
+        },
+        {
+            type: 'pioneer',
+            text: 'Первопроходец'            
+        },        
+        {
+            type: 'amateurfauna',
+            text: 'Любитель фауны'            
+        },
+        {
+            type: 'kingofhill',
+            text: 'Царь горы'            
+        }
+    ];  
+
+
     return {
         templateUrl: 'partials/stmGameClimber.directive:stmGameClimberScreen:template.html',
         controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs) {
@@ -58,7 +83,12 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
         }],
         compile: function (tElement) {
             return function (scope, iElement, attrs) {
-                function init() {                    
+                function init() {
+                
+                    scope.$on('popupPlay', function(){
+                        scope.play();
+                    });                 
+                                    
                     var $ = angular.element,
                         difficulty = attrs.difficulty,
                         g_pipeEl = iElement.find('.gameClimber-fone-h'),
@@ -355,7 +385,6 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                     }
                     
                     function startGame() {
-
                         scoreDetails = {};
                         scope.score = 0;
                         scope.energy = 100;
@@ -459,6 +488,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                             .off(blockUpEvents)
                             .off(keyEvents)
                             .on(blockUpEvents);
+
                         $timeout(function(){
                             updatePosition(startPosition);
                             scope.showToolbar = false;
@@ -467,18 +497,47 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
 
                         var time = new Date().getTime();
                         
-                        Game.save({
+                        var bestGame = Game.save({
                             type: 'climber',
                             action: 'end',
+                            score: scope.score,
                             data: {
                                 time: time - gameTime,
                                 final: gamePassed,
-                                score: {
-                                    detail: scoreDetails,
-                                    total: scope.score
+                                score: scoreDetails                              
+                            }
+                        }, function(){
+                            
+                            $timeout(function(){
+                                position = startPosition;
+                                scope.showToolbar = false;
+                                scope.showStartPopup = true;
+                            }, 700); 
+                                                   
+                            var achieves = angular.copy(ACHIEVEMENTS);
+                            for(var i=0;i<achieves.length;i++){
+                                if(bestGame.achievements.indexOf(achieves[i].type) >= 0) {
+                                    achieves[i].active = true;
                                 }
                             }
-                        });
+                            var scoreDetails = bestGame.data.score.detail || bestGame.data.score;
+                            var items = [];
+                            for(var type in scoreDetails){
+                                items.push({
+                                    type: type,
+                                    score: scoreDetails[type]
+                                });
+                            }
+                            scope.gameData = angular.extend(bestGame, {
+                                type: 'climber',
+                                score: scope.score,
+                                best: {
+                                    score: bestGame.score,
+                                    items: items
+                                },
+                                achievements: achieves
+                            });              
+                        });                        
                     }
 
                     scope.play = function(){

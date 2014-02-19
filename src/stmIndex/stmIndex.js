@@ -1,6 +1,8 @@
 /**
  * 
  * @requires stm
+ * @requires stm.$md5
+ * @requires angularui/ui-utils.js
  *
  * @ngdoc overview
  * @name stmIndex
@@ -13,16 +15,56 @@ if (!window.requestAnimationFrame) {
             setTimeout(callback, 10);
         };
 }        
-angular.module('stmIndex', ['stm'])
+angular.module('stmIndex', ['stm', 'ui.utils'])
     .config([function(){
     }])
-    .run(['$rootScope', '$stmAuth', function($rootScope, $stmAuth){
+    .run(['$rootScope', '$stmAuth', '$http', '$md5', function($rootScope, $stmAuth, $http, $md5){
+    
+        $$ = angular;
+    
         $rootScope.$on('gameInit', auth);
-            
+        
         function auth(){
             if(!$stmAuth.isAuth) $stmAuth.auth();
         }         
+                    
+        // Simple signature implementation
+        $http.defaults.transformRequest = [function(data, headers){
+            if(!$stmAuth.isAuth || !data) return data;
+            var time = Math.round(new Date().getTime() / 1000);
+            if($$.isObject(data)) data = JSON.stringify(data);
+            $$.extend(headers(),{
+                'StmSignature': $md5(data + time + 'WEKTIF'),
+                'StmSignatureTime': time
+            });
+            return data;
+        }];           
+                    
     }])
+    /**
+     * @ngdoc interface
+     * @name stmIndex.Achiev
+     * @description
+     *
+     * Внешний интерфейс достижений
+     * 
+     */    
+    /**
+       * @ngdoc method
+       * @name stmIndex.Achiev#save
+       * @methodOf stmIndex.Achiev
+       *
+       * @description
+       * Сохраняет достижение в игре
+       *
+       * @param {Object} params Данные игры:
+       *
+       *   - **`key`** – {String} – Ключ достижения
+       *            
+       */         
+    .factory('Achiev', ['$resource', function($resource){
+        return $resource('api/achiev.php');
+    }])    
     /**
      * @ngdoc interface
      * @name stmIndex.Game
@@ -64,6 +106,9 @@ angular.module('stmIndex', ['stm'])
        *   - **`type`** – {String} – Тип игры
        *   - **`action`** – {String} – Действие в игре   
        *   - **`data`** – {Object} – Сведения о действии в игре
+       *
+       * @returns {Resource} Данные лучшего прохождения
+       *            
        */         
     .factory('Game', ['$resource', '$stmEnv', function($resource, $stmEnv){
         return $resource('api/game.php');

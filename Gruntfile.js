@@ -14,6 +14,13 @@ module.exports = function(grunt) {
   
     VERSION: VERSION,
     
+    init: {
+        bower: {
+            'angular': 'angularjs/build',
+            'jquery': 'jquery',
+            'angularui': 'angular-ui-utils'
+        }
+    },    
     buildapp: {
         modules: [
             {  

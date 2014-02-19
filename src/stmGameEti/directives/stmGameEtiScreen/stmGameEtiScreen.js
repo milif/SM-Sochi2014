@@ -55,6 +55,25 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
         'in-women': 'Ты попал<br>в женщину',
         'last': 'Последний шанс'
     };
+
+    var ACHIEVEMENTS = [
+        {
+            type: 'journalist',
+            text: 'Журналист'            
+        },
+        {
+            type: 'olenevod',
+            text: 'Оленевод'            
+        },
+        {
+            type: 'allinclusive',
+            text: 'All Inclusive'            
+        },
+        {
+            type: 'amongstrangers',
+            text: 'Свой среди чужих'            
+        }
+    ];
     
     
     
@@ -147,12 +166,16 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
             $scope.$on('$destroy', function() {
                 stopGame();
             });
+            $scope.$on('popupPlay', function(){
+                $scope.play();
+            });
                         
             var stopGameItem;
             var owlTimer;
             var redBirdTimer;
             
             var gameTime;
+            var isGame = false;
             
             var successMsg = MSGS['in-eti'];
             var outMsg = MSGS['out'];
@@ -170,6 +193,8 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
             $scope.$emit('gameInit');
             
             function startGame(){
+                if(isGame) return;
+                isGame = true;
                 startTime = new Date().getTime();
                 foundedEti = 0;
                 etis = {};
@@ -368,11 +393,9 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                 });
             }
             function stopGame(){
+                if(!isGame) return;
+                isGame = false;
                 $element.off(elEvents);
-                $timeout(function(){
-                    $scope.showToolbar = false;
-                    $scope.showStartPopup = true;
-                }, 1000);
                 $scope.stateCls = 'state_stopGame';
                 $interval.cancel(stopGameItem);
                 
@@ -382,41 +405,41 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                 deactivateRedBird();
                 
                 var time = new Date().getTime();
-                /*
-                $scope.gameData = {
-                    score: $scope.score,
-                    best: {
-                        score: 12240,
-                        items: [
-                            {
-                                type: 'mnogo',
-                                score: 2320
-                            },
-                            {
-                                type: 'pickpoint',
-                                score: 2320
-                            },
-                            {
-                                type: 'sber',
-                                score: 2320
-                            }
-                        ]
-                    }
-                }
-                */
-                Game.save({
+                
+                var bestGame = Game.save({
                     type: 'yeti',
                     action: 'end',
+                    score: $scope.score,
                     data: {
                         time: time - startTime,
                         final: foundedEti == $element.find('[data-eti]').length,
-                        score: $scope.score,
                         eti: {
                             founded: foundedEti,
                             total: $scope.ineti,
                             details: etis
                         }
                     }
+                }, function(){
+                    
+                    $timeout(function(){
+                        $scope.showToolbar = false;
+                        $scope.showStartPopup = true;                
+                    }, 700);
+                    
+                    var achieves = angular.copy(ACHIEVEMENTS);
+                    for(var i=0;i<achieves.length;i++){
+                        if(bestGame.achievements.indexOf(achieves[i].type) >= 0) {
+                            achieves[i].active = true;
+                        }
+                    }
+                    $scope.gameData = angular.extend(bestGame, {
+                        type: 'yeti',
+                        score: $scope.score,
+                        best: {
+                            score: bestGame.score
+                        },
+                        achievements: achieves
+                    });                    
                 });
             }
             function checkIntersection(el1, el2){

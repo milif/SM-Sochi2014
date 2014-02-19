@@ -25,7 +25,7 @@
  */
 
 angular.module('stmIndex')
-.directive('stmIndexSocial', ['Social', function(Social){
+.directive('stmIndexSocial', ['Social', '$stmAuth', function(Social, $stmAuth){
     var BUTTONS = [
         {
             type: 'vk',
@@ -52,12 +52,13 @@ angular.module('stmIndex')
     var $ = angular.element;
     
     var SHARE = {
+        url: $('meta[property="og:url"]').attr('content') || $('base').attr('href'),
         image: $('meta[property="og:image"]').attr('content'),
         title: $('meta[property="og:title"]').attr('content'),
         description: $('meta[property="og:description"]').attr('content')
     };
-
-    var URL = $('base').attr('href');
+    
+    var URL;
     
     function clickVK(){
         shareWindow("http://vk.com/share.php?url="
@@ -96,6 +97,7 @@ angular.module('stmIndex')
         var item = {
             type: button.type,
             onClick: function(){
+                URL = SHARE.url + ($stmAuth.isAuth ? '?ref=' + $stmAuth.data.refKey : '');
                 button.onClick();
                 var response = Social.add(button.type, function(){
                     if(response.success) {

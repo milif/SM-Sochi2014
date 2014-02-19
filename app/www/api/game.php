@@ -2,9 +2,15 @@
 header('Content-Type: application/json');
 
 require_once __DIR__.'/../../lib/Game.class.php';
+require_once __DIR__.'/../../lib/Auth.class.php';
+require_once __DIR__.'/../../lib/Mnogo.class.php';
 
-$data = json_decode(file_get_contents("php://input"), true);
+$data = file_get_contents("php://input");
 
-echo json_encode(array(
-    'success' => Game::save($data)
+Auth::checkSignature($data);
+
+$result = array_merge(Game::save(json_decode($data, true)), array(
+    'hasMnogo' => Mnogo::has()
 ));
+
+echo json_encode(is_array($result) ? $result : array('success' => true));
