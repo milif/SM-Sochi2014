@@ -766,3 +766,82 @@
 .b-gameEti-birds_red.state1 {
     background-position: -120px -128px;
 }
+
+/* Brending */
+.b-gameEti  .b-character.eti-print {
+    left: 2408px;
+    top: 434px;
+    width: 191px;
+    height: 326px;
+    z-index: 52;
+}
+.b-gameEti  .b-character.eti-print:before {
+    content: '';
+    position: absolute;
+    height: 326px;
+    right: 0;
+    left: 144px;
+    width: 60px;
+    background: url(asset/i/b-gameEti/decorations-tree.png) -198px -7300px no-repeat;
+    z-index: 10;
+}
+.b-gameEti  .b-character.eti-print .b-character-h {
+    display: block;
+    left: 0;
+    top: 0;
+    width: 191px;
+    height: 326px;
+    background: url(asset/i/b-gameEti/yeti_print.png) 0 0 no-repeat;
+}
+.b-gameEti  .b-character.eti-print .b-character-h__link {
+    display: block;
+    text-decoration: none;
+    height: 96px;
+    width: 120px;
+    position: absolute;
+    top: 210px;
+    left: 40px;
+    text-indent: -9999px;
+}
+
+/* b-brending mod_kiwi */
+.b-brending {
+    position: absolute;
+    z-index: 40;
+}
+.b-brending__link {
+    position: absolute;
+    text-decoration: none;
+    display: block;
+    text-indent: -9999px;
+}
+.b-brending.mod_kiwi {
+    background: url(asset/i/b-gameEti/logo-kiwi.png) 0 0 no-repeat;
+    width: 69px;
+    height: 235px;
+    z-index: 40;
+    left: 1320px;
+    top: 40px;
+}
+.b-brending.mod_kiwi .b-brending__link {
+    width: 68px;
+    height: 100px;
+    top: 56px;
+    left: 0;
+}
+.b-brending.mod_netprint {
+    background: url(asset/i/b-gameEti/picture-print.png) 0 0 no-repeat;
+    width: 123px;
+    height: 183px;
+    z-index: 40;
+    left: 3680px;
+    top: 360px;
+    z-index: 1010;
+}
+.b-brending.mod_netprint .b-brending__link {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
