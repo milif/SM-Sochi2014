@@ -21,7 +21,9 @@ if(!count($rs)){
         ");
 }
 while (true){
-    $rs = DB::query("SELECT id, data, type FROM `game_log` WHERE score IS NULL AND action = 'end' LIMIT 0,500;");
+    $q = "SELECT id, data, type FROM `game_log` WHERE score IS NULL AND action = 'end' LIMIT 0,500;";
+    echo $q."\n";
+    $rs = DB::query($q); 
     if(!count($rs)) break;
     foreach($rs as $item){
         $score = 0;

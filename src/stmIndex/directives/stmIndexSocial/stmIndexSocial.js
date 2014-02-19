@@ -174,7 +174,7 @@ angular.module('stmIndex')
     Social.add = function(uri, type, clbFn){   
         return Social.save({
             action: 'add',
-            uri: uri.replace(/^.*?\/\/[^\/]+/,''),
+            uri: uri,
             type: type
         }, clbFn);
     }
