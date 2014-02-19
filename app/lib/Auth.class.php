@@ -54,6 +54,7 @@ class Auth {
             $id = DB::lastInsertId();           
             
         }
+        if(!$id) return false;
         DB::query("DELETE FROM session WHERE expire < ".time());
         DB::query("INSERT INTO session (`key`, expire, user_id) VALUES (:cookie, $expire, $id)", array(':cookie'=>$cookie));
         Cache::set("user_".$cookie, array($id, $data, $refKey), $expire);
