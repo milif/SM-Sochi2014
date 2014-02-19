@@ -8,8 +8,6 @@ require_once __DIR__.'/Game.class.php';
 if(!isset($GAME_DATA)) $GAME_DATA = array();
 if(!isset($SHARE_URI)) $SHARE_URI = '/';
 
-define('APP_ROOT_URL', str_replace($_SERVER['DOCUMENT_ROOT'], '', __DIR__.'/www'));
-
 $api = array(
     "api/socials.php" => Socials::get($SHARE_URI)
 );
