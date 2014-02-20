@@ -520,7 +520,6 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                                     achieves[i].active = true;
                                 }
                             }
-                            var scoreDetails = bestGame.data ? (bestGame.data.score.detail || bestGame.data.score) : {};
                             var items = [];
                             for(var type in scoreDetails){
                                 items.push({

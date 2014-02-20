@@ -629,7 +629,6 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                             achieves[i].active = true;
                         }
                     }
-                    var scoreDetails = bestGame.data ? (bestGame.data.score.detail || bestGame.data.score) : {};
                     var items = [];
                     for(var type in scoreDetails){
                         items.push({
