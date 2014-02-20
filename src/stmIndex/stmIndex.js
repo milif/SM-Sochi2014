@@ -20,7 +20,7 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
     }])
     .run(['$rootScope', '$stmAuth', '$http', '$md5', function($rootScope, $stmAuth, $http, $md5){
     
-        $$ = angular;
+        var $$ = angular;
     
         $rootScope.$on('gameInit', auth);
         
