@@ -64,6 +64,7 @@ angular.module('stmIndex').directive('stmIndexPopup', function(){
                     }, function(){
                         if(!res.success) {
                             codeField.$setValidity('mask', false);
+                            form.error = 'error_' + res.error;
                             return;
                         }
                         $scope.mnogoSuccess = true;

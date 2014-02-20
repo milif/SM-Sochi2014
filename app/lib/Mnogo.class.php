@@ -8,7 +8,10 @@ class Mnogo {
     
         if(CLIENT_ID == 0 || !preg_match('/\d{8}/', $code)) return false;
         
-        DB::query("DELETE FROM mnogo_card WHERE user_id = ".CLIENT_ID);        
+        $rs = DB::query("SELECT id FROM mnogo_card WHERE `code` = :code", array(":code" => $code));
+        if(count($rs)) return 'busy';
+       
+        DB::query("DELETE FROM mnogo_card WHERE user_id = ".CLIENT_ID);  
         DB::query("INSERT INTO mnogo_card (user_id, code) VALUES (".CLIENT_ID.", :code);", array(":code" => $code));
         
         return true;
