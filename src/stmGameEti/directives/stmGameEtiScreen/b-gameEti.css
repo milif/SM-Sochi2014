@@ -216,6 +216,25 @@
     background-position: -29px -22px;
 }
 
+.b-gameEti  .b-character.eti-print {
+    left: 2408px;
+    top: 434px;
+    width: 167px;
+    height: 326px;
+    z-index: 52;
+}
+.b-gameEti  .b-character.eti-print .b-character-h {
+    right: -20px;
+    left: auto;
+    top: 0;
+    width: 0;
+    height: 326px;
+    background: url(asset/i/b-gameEti/yeti_print.png) 0 0 no-repeat;
+}
+.b-gameEti .b-character.eti-print .b-character-h.state_show {
+    width: 100%;
+}
+
 .b-gameEti .b-character.deer-skiing {
     top: 450px;
     z-index: 19;
@@ -768,31 +787,17 @@
 }
 
 /* Brending */
-.b-gameEti  .b-character.eti-print {
-    left: 2408px;
-    top: 434px;
-    width: 191px;
-    height: 326px;
-    z-index: 52;
-}
-.b-gameEti  .b-character.eti-print:before {
+.b-gameEti  .b-character.state_active.eti-print:before {
     content: '';
     position: absolute;
     height: 326px;
     right: 0;
     left: 144px;
     width: 60px;
-    background: url(asset/i/b-gameEti/decorations-tree.png) -198px -7300px no-repeat;
     z-index: 10;
+    background: url(asset/i/b-gameEti/decorations-tree.png) -198px -7300px no-repeat;
 }
-.b-gameEti  .b-character.eti-print .b-character-h {
-    display: block;
-    left: 0;
-    top: 0;
-    width: 191px;
-    height: 326px;
-    background: url(asset/i/b-gameEti/yeti_print.png) 0 0 no-repeat;
-}
+
 .b-gameEti  .b-character.eti-print .b-character-h__link {
     display: block;
     text-decoration: none;

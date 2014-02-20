@@ -592,20 +592,14 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                 }              
                 
                 if(!ACHIVE_IRON.active && men.x / PIXEL_IN_METER - startX > METERS_IRONNERVES){
-                    ACHIVE_IRON.active = true;
-                    Achiev.save({
-                        'key': 'biathlon.' + ACHIVE_IRON.type
-                    });
+                    saveAchiev(ACHIVE_IRON);
                 } 
                 if(!ACHIVE_LOIN.active){
                     if((men.x - eti.x) / PIXEL_IN_METER < METERS_LIONHEART) {
                         if(!ACHIVE_LOIN._in) {
                             ACHIVE_LOIN._in = true;
                             if(ACHIVE_LOIN.count++ == COUNT_LIONHEART -1){
-                                ACHIVE_LOIN.active = true;
-                                Achiev.save({
-                                    'key': 'biathlon.' + ACHIVE_LOIN.type
-                                });                                
+                                saveAchiev(ACHIVE_LOIN);                                
                             }
                         }
                     } else {
@@ -613,10 +607,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                     }                
                 }
                 if(!ACHIVE_LASTHERO.active && time - gameTime > TIME_LASTHERO * 60000){
-                    ACHIVE_LASTHERO.active = true;
-                    Achiev.save({
-                        'key': 'biathlon.' + ACHIVE_LASTHERO.type
-                    });                    
+                    saveAchiev(ACHIVE_LASTHERO);                  
                 }
                 
             }
@@ -657,6 +648,12 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                     });             
                 });                                                   
             
+            }
+            function saveAchiev(achiev){
+                achiev.active = true;
+                Achiev.save({
+                    'key': 'biathlon.' + achiev.type
+                });            
             }
             function showBonusPopup(popup){
                 bonusPopups.push(popup);
@@ -711,10 +708,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                 if(!find) return;
                 targetsShoots++;
                 if(!ACHIVE_STARHOOTER.active && targetsShoots >= COUNT_STARHOOTER ){
-                    ACHIVE_LASTHERO.active = true;
-                    Achiev.save({
-                        'key': 'biathlon.' + ACHIVE_STARHOOTER.type
-                    });                
+                    saveAchiev(ACHIVE_LASTHERO);                
                 }                                
                 isShootingHelp = false;
                 var shootX = targetX - K * (men.y - targetY);               

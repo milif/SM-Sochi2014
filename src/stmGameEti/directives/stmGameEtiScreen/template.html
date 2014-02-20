@@ -24,6 +24,7 @@
                     <div ng-show="showBigEti" class='b-character eti-fany'>
                         <div class='b-character-h'></div>
                     </div>
+                    
                     <div data-hover class='b-character women-skiing2'>
                         <div data-target data-move="true" data-check-tree="true" data-msg="in-women"
                              class='b-character-h'></div>
@@ -37,7 +38,7 @@
                              class='b-character-h'></div>
                     </div>
                     <div data-hover class='b-character deer-skiing'>
-                        <div data-target data-move="true" data-check-tree="true" data-msg="in-deer"
+                        <div data-target data-animal="true" data-deer="true" data-move="true" data-check-tree="true" data-msg="in-deer"
                              class='b-character-h'></div>
                     </div>
                     <div data-hover class='b-character eti-skiing'>
@@ -84,19 +85,19 @@
                         <div data-target data-eti="eti11" class='b-character-h'></div>
                     </div>
                     <div data-hover class='b-character bear anim_cubic'>
-                        <div data-target data-msg="in-beer" class='b-character-h'></div>
+                        <div data-target data-animal="true" data-msg="in-beer" class='b-character-h'></div>
                     </div>
                     <div data-hover class='b-character bear anim_cubic' style="left: 250px;">
-                        <div data-target data-msg="in-beer" class='b-character-h'></div>
+                        <div data-target data-animal="true" data-msg="in-beer" class='b-character-h'></div>
                     </div>
                     <div data-hover class='b-character bear anim_cubic' style="z-index: 100; left: 3450px;">
-                        <div data-target data-msg="in-beer" class='b-character-h'></div>
+                        <div data-target data-animal="true" data-msg="in-beer" class='b-character-h'></div>
                     </div>
                     <div data-hover class='b-character deer-sledge'>
-                        <div data-target data-move="true" data-msg="in-deer" class='b-character-h'></div>
+                        <div data-target data-animal="true" data-deer="true" data-move="true" data-msg="in-deer" class='b-character-h'></div>
                     </div>
                     <div data-hover class='b-character deer-sledge mod_1'>
-                        <div data-target data-move="true" data-msg="in-deer" class='b-character-h'></div>
+                        <div data-target data-animal="true" data-deer="true" data-move="true" data-msg="in-deer" class='b-character-h'></div>
                     </div>
                     <div data-hover class='b-character eti-full-face anim_cubic'>
                         <div data-target data-eti="eti12" class='b-character-h'></div>
@@ -109,9 +110,22 @@
                     </div>
                     <div data-hover class='b-character eti-full-face anim_cubic' style="bottom: 470px;left: 3350px;">
                         <div data-target data-eti="eti15" class='b-character-h'></div>
-                    </div>
-                    
-                    
+                    </div> 
+                    <div data-hover  class='b-character eti-print anim_cubic'>
+                        <div data-target data-eti="etiNetPrint" class='b-character-h'>
+                            <a class="b-character-h__link" href="http://www.sotmarket.ru/partner/netprint/" target="_blank">netprint</a>
+                        </div>
+                    </div>                     
+                        
+                    <!--
+                    <div data-hover  class='b-character eti-print anim_cubic' style="left:1928px;top:480px;">
+                        <div data-target data-eti="etiNetPrint2" class='b-character-h'>
+                            <a class="b-character-h__link" href="http://www.sotmarket.ru/partner/netprint/" target="_blank">netprint</a>
+                        </div>
+                    </div>                   
+                    -->
+                  
+                   
                     <!-- End Decorations item -->
 
                     <!-- Birds -->
@@ -142,12 +156,7 @@
                     <div class="eti-hover-tree" style="left: 454px; width: 223px; " data-tree=""></div>
                     <div class="eti-hover-tree" style="left: 316px; width: 60px; " data-tree=""></div>
 
-                    <!-- brending -->
-                    <div class='b-character eti-print'>
-                        <div class='b-character-h'>
-                            <a class="b-character-h__link" href="http://www.sotmarket.ru/partner/netprint/" target="_blank">netprint</a>
-                        </div>
-                    </div>
+
 
                     <div class="b-brending mod_kiwi">
                         <a href="http://www.sotmarket.ru/partner/qiwiwallet/" class="b-brending__link" target="_blank">qiwiwallet</a>
