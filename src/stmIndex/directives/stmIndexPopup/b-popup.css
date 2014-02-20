@@ -496,7 +496,9 @@
     position: relative;
     overflow: hidden;
 }
-
+.b-popup-mnogo > * {
+    height: 94px;
+}
 .b-popup-mnogo__icon {
     position: absolute;
     left: 24px;
@@ -637,12 +639,17 @@ a.b-form-top__more {
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     position: relative;
-    margin-top: -94px;   
     -webkit-transition: 0.2s linear all; /* Safari/Chrome */
     transition: 0.2s linear all; /* Future Browsers */ 
 }
-.b-popup-mnogo.state_success .b-popup-mnogo-note {
+.b-popup-mnogo-note.success_msg {
+    margin-top: -94px;
+}
+.b-popup-mnogo.state_success .b-popup-mnogo-note.success_msg {
     margin-top: 0;
+}
+.b-popup-mnogo.state_error .b-popup-mnogo-note.success_msg {
+    margin-top: -188px;
 }
 .b-popup-mnogo-note__top {
     font-size: 18px;

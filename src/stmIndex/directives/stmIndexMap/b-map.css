@@ -468,3 +468,166 @@
 .b-map-controls-down:hover {
     background-position: -131px -39px;
 }
+
+/* Zoom */
+/*==========================================================*/
+.b-map-controls-zoom {
+    background-image: url(asset/i/b-gameMap/zoom_sprite.png);
+    background-position: 0px -93px;
+    width: 22px;
+    height: 126px;
+    position: absolute;
+    top: 120px;
+    left: 26px;
+}
+.b-map-controls-zoom_bullet {
+    position: absolute;
+    z-index: 100;
+    width: 14px;
+    height: 14px;
+    -webkit-border-radius: 40px;
+    -moz-border-radius: 40px;
+    border-radius: 40px;
+    border: 2px solid #000;
+    background-color: #fff;
+    left: 2px;
+    top: 40px;
+    background-image: url(asset/i/b-gameMap/zoom_sprite.png);
+    background-position: -254.6px -87px;
+    -moz-box-shadow: 0 3px 0 rgba(0,0,0,.24);
+    -webkit-box-shadow: 0 3px 0 rgba(0,0,0,.24);
+    box-shadow: 0 3px 0 rgba(0,0,0,.24);
+}
+.b-map-controls-zoom_bullet:hover {
+    cursor: pointer;
+    background-image: none;
+    width: 18px;
+    height: 18px;
+    left: 0px;
+    margin-top: -2px;
+    border-color: #ed2759;
+}
+.b-map-controls-zoom-out {
+    cursor: pointer;
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    background-image: url(asset/i/b-gameMap/zoom_sprite.png);
+    background-position: -188px -147px;
+}
+.b-map-controls-zoom-out:hover {
+    background-position: -127px -149px;
+}
+.b-map-controls-zoom-in {
+    cursor: pointer;
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    background-image: url(asset/i/b-gameMap/zoom_sprite.png);
+    background-position: -66px -149px;
+}
+.b-map-controls-zoom-in:hover {
+    background-position: -67px -88px;
+}
+
+/* b-map-small */
+.b-map-small {
+    z-index: 1000;
+    border: 2px solid #000;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    position: absolute;
+    right: 20px;
+    top: 50px;
+    width: 180px;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+.b-map-small-button {
+    text-align: center;
+    font-size: 13px;
+    color: #000;
+    height: 25px;
+    line-height: 26px;
+    position: relative;
+}
+.b-map-small-button:before {
+    content: '';
+    position: absolute;
+    background-image: url(asset/i/b-gameMap/zoom_sprite.png);
+    background-position: -134px -93px;
+    width: 12px;
+    height: 11px;
+    right: 10px;
+    top: 8px;
+}
+.b-map-small-button:hover {
+    background-color: #ffd631;
+    cursor: pointer;
+}
+.b-map-small-button:active {
+    background-color: #ffd631;
+    -moz-box-shadow: inset 0 2px 2px 2px #ac7f07;
+    -webkit-box-shadow: inset 0 2px 2px 2px #ac7f07;
+    box-shadow: inset 0 2px 2px 2px #ac7f07;
+}
+.b-map-small.state_active .b-map-small-button:before {
+    top: 7px;
+    background-position: -196px -93px;
+}
+
+
+.b-map-small.state_active .b-map-small-h {
+    display: block;
+}
+.b-map-small-h {
+    display: none;
+    position: relative;
+    height: 160px;
+    background: url(asset/i/b-gameMap/small_map.png) -2px -2px no-repeat;
+    width: 180px;
+    border-bottom: 1px solid #ddd;
+}
+.b-map-small-contur {
+    background: url(asset/i/b-gameMap/zoom_sprite.png) 0 0 no-repeat;
+    width: 78px;
+    height: 43px;
+    position: absolute;
+    z-index: 100;
+}
+
+.b-map-small_bullet {
+    cursor: pointer;
+    position: absolute;
+    background: url(asset/i/b-gameMap/zoom_sprite.png) -197px 0px no-repeat;
+    width: 19px;
+    height: 22px;
+    z-index: 150;
+}
+.b-map-small_bullet:hover {
+    background-position: -128px 0px;
+}
+.b-map-small_bullet.mod_1 {
+    left: 40px;
+    top: 50px;
+}
+.b-map-small_bullet.mod_2 {
+    left: 150px;
+    top: 40px;
+}
+.b-map-small_bullet.mod_3 {
+    left: 80px;
+    top: 110px;
+}
+.b-map-small_bullet.mod_4 {
+    left: 150px;
+    top: 100px;
+}

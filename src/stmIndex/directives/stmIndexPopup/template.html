@@ -50,12 +50,12 @@
                 </div>
             </div>            
           </div>        
-          <div ng-show="gameData && !gameData.hasMnogo" ng-class="mnogoSuccess ? 'state_success' : ''" ng-show="gameData" class="b-popup-mnogo">
+          <div ng-show="gameData && !gameData.hasMnogo" ng-class="mnogoSuccess ? 'state_success' : (mnogoForm.error ? 'state_error ' + mnogoForm.error : '')" ng-show="gameData" class="b-popup-mnogo">
             <span class="b-popup-mnogo__icon"></span>
-            <div class="b-popup-mnogo-note">
+            <div class="b-popup-mnogo-note success_msg">
                  <div class="b-popup-mnogo-note__top">Ваша карта принята</div>
                  <div class="b-popup-mnogo-note__text">Бонусы будут начислены в самое ближайшее время</div>
-             </div>            
+            </div>                         
             <form name="mnogoForm" class="b-popup-form g-form">
                 <div>
                     <div class="b-form-top">
@@ -74,6 +74,10 @@
                     </div>
                 </div>
             </form>
+            <div class="b-popup-mnogo-note error_busy_msg">
+                 <div class="b-popup-mnogo-note__top">Упс.. карта не принята</div>
+                 <div class="b-popup-mnogo-note__text">Эта карта уже используется, но вы можете <a href="" ng-click="mnogoForm.error = null">указать другую</a>.</div>
+            </div>             
           </div>          
           <div class='b-popup-footer'>
             <div class="b-popup-footer-left">

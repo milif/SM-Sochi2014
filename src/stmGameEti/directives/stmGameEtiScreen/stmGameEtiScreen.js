@@ -56,29 +56,39 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
         'last': 'Последний шанс'
     };
 
+    var ACHIVE_AMONG = {
+            type: 'amongstrangers',
+            text: 'Свой среди чужих',
+            count: 0            
+        }; 
+    var ACHIVE_DEER = {
+            type: 'olenevod',
+            text: 'Оленевод',
+            count: 0            
+        };   
+    var ACHIVE_ANIMALS = {
+            type: 'allinclusive',
+            text: 'All Inclusive',
+            count: 0
+        };             
+
     var ACHIEVEMENTS = [
         {
             type: 'journalist',
             text: 'Журналист'            
         },
-        {
-            type: 'olenevod',
-            text: 'Оленевод'            
-        },
-        {
-            type: 'allinclusive',
-            text: 'All Inclusive'            
-        },
-        {
-            type: 'amongstrangers',
-            text: 'Свой среди чужих'            
-        }
+        ACHIVE_DEER,
+        ACHIVE_ANIMALS,
+        ACHIVE_AMONG
     ];
     
+    var COUNT_AMONG = 100; // Сколько надо сфотографировать ети для ачива Свой среди чужих
+    var COUNT_DEER = 10; // Сколько надо сфотографировать оленей для ачива Оленевод
     
     
     var $ = angular.element;
     var alertTpl;
+    var countAnimals;
     
     return {
         scope: {
@@ -86,8 +96,9 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
         templateUrl: 'partials/stmGameEti.directive:stmGameEtiScreen:template.html',
         compile: function(tElement){
             alertTpl = $compile(tElement.find('[data-alert]').remove());
+            countAnimals = tElement.find('[data-animal]').length;
         },
-        controller: ['$scope', '$element', '$interval', '$animate', '$timeout', 'Game', function($scope, $element, $interval, $animate, $timeout, Game){
+        controller: ['$scope', '$element', '$interval', '$animate', '$timeout', 'Game', 'Achiev', function($scope, $element, $interval, $animate, $timeout, Game, Achiev){
             
             var viewEl = $element.find('[data-view]');
             var backEl = viewEl.find('>:first');
@@ -142,7 +153,8 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                     e.preventDefault();
                 },
                 'click': function(e){
-                    if($(e.target).closest(viewEl).length == 0) return;
+                    var targetEl = $(e.target);
+                    if(targetEl.closest(viewEl).length == 0 || targetEl.closest('a').length > 0) return;
                     photo(e);
                 }          
             }
@@ -294,8 +306,12 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                             target.el.css('transition-duration', Math.round((target.endTime - time) * width / 1000000) + 's');
                         }
                         $animate.addClass(el, target.animCls, function(){
-                            if(target.isMove) target.el.removeClass(target.animCls);
+                            if(target.isMove) {
+                                target.el.removeClass(target.animCls);
+                                target.el.closest('[data-hover]').removeClass('state_active');
+                            }
                         });
+                        el.closest('[data-hover]').addClass('state_active');
 
                         el.data('target', target);
                         currentTargets.push(target);                        
@@ -303,7 +319,9 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                 }
             }
             function closeTarget(target){
-                if(!target.isMove) $animate.removeClass(target.el, target.animCls);
+                if(!target.isMove) $animate.removeClass(target.el, target.animCls, function(){
+                    target.el.closest('[data-hover]').removeClass('state_active');
+                });
                 currentTargets.splice(currentTargets.indexOf(target),1);
                 nextTargetTime = new Date().getTime() + (currentLevel[2] * 0.7 + Math.random() * currentLevel[2] * 0.6);
             }
@@ -328,11 +346,28 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                             }
                             if(!target.hasShoot){
                                 target.hasShoot = true;
-                                var eti = el.data('eti');
+                                var eti = el.data('eti'); 
+                                if(!ACHIVE_ANIMALS.active && el.data('animal')){
+                                    el.data('animal', false);
+                                    if(ACHIVE_ANIMALS.count++ == countAnimals - 1){
+                                        saveAchiev(ACHIVE_ANIMALS);
+                                    }
+                                }                               
+                                if(!ACHIVE_DEER.active && el.data('deer')){
+                                    if(ACHIVE_DEER.count++ == COUNT_DEER - 1){
+                                        saveAchiev(ACHIVE_DEER);
+                                    }
+                                }                                
+                                
                                 if(eti) {
                                     $scope.score += BONUS;
                                     $scope.ineti++;
                                     success = true;
+                                    if(!ACHIVE_AMONG.active){
+                                        if(ACHIVE_AMONG.count++ == COUNT_AMONG - 1){
+                                            saveAchiev(ACHIVE_AMONG);
+                                        }
+                                    }                                    
                                     if(!etis[eti]) {
                                         etis[eti] = 0;
                                         foundedEti++;
@@ -354,6 +389,12 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                     $scope.attempts--;
                     showMessage([outMsg[0], $scope.attempts == 1 ? lastMsg : targetName || outMsg[1], outMsg[2]], e);
                 }
+            }
+            function saveAchiev(achiev){
+                achiev.active = true;
+                Achiev.save({
+                    'key': 'yeti.' + achiev.type
+                });            
             }
             function showMessage(msg, e){
                

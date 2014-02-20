@@ -541,6 +541,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                                     score: scoreDetails[type]
                                 });
                             }
+                            if(items.length == 0) items = null;
                             scope.gameData = angular.extend(bestGame, {
                                 type: 'climber',
                                 score: scope.score,
