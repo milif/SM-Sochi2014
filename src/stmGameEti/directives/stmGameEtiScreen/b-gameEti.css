@@ -217,9 +217,9 @@
 }
 
 .b-gameEti  .b-character.eti-print {
-    left: 2408px;
+    left: 2373px;
     top: 434px;
-    width: 167px;
+    width: 200px;
     height: 326px;
     z-index: 52;
 }
@@ -792,7 +792,7 @@
     position: absolute;
     height: 326px;
     right: 0;
-    left: 144px;
+    left: 179px;
     width: 60px;
     z-index: 10;
     background: url(asset/i/b-gameEti/decorations-tree.png) -198px -7300px no-repeat;
@@ -844,9 +844,23 @@
     z-index: 1010;
 }
 .b-brending.mod_netprint .b-brending__link {
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
+    width: 105px;
+    height: 120px;
+    top: 52px;
+    left: 12px;
+    -moz-transform: rotate(-10deg);
+    -o-transform: rotate(-10deg);
+    -webkit-transform: rotate(-10deg);
+    transform: rotate(-10deg);
 }
 
+/* b-yeti-bank */
+.b-yeti-bank {
+    background: url(asset/i/b-gameEti/bank.png) 0 0 no-repeat;
+    width: 65px;
+    height: 73px;
+    position: absolute;
+    z-index: 50;
+    left: 2586px;
+    top: 570px;
+}
