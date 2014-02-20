@@ -520,7 +520,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                                     achieves[i].active = true;
                                 }
                             }
-                            var scoreDetails = bestGame.data.score.detail || bestGame.data.score;
+                            var scoreDetails = bestGame.data ? (bestGame.data.score.detail || bestGame.data.score) : {};
                             var items = [];
                             for(var type in scoreDetails){
                                 items.push({
@@ -528,6 +528,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                                     score: scoreDetails[type]
                                 });
                             }
+                            if(items.length == 0) items = null;
                             scope.gameData = angular.extend(bestGame, {
                                 type: 'climber',
                                 score: scope.score,
