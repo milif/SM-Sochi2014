@@ -27,6 +27,11 @@ class Cache {
         if(!$cache) return;
         $cache->set(CACHE_KEY_PREFIX.$key, $value,  0, $expire);   
     }
+    static public function remove($key){
+        $cache = self::getInstance();
+        if(!$cache) return;
+        $cache->delete(CACHE_KEY_PREFIX.$key);
+    }    
     static public function increment($key){
         $cache = self::getInstance();
         if(!$cache) return false;    
