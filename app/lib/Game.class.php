@@ -29,12 +29,12 @@ class Game {
         $row = $rs[0];
         return array(
             'data' => json_decode($row['data_game_'.$type], true),
-            'score' => $row['score_game_'.$type],
+            'score' => (int)$row['score_game_'.$type],
             'achievements' => explode(',', str_replace("$type.", '', $row['data_achievement_'.$type]))
         );
     }
     static public function getClimberPassed(){
         $rs = DB::query("SELECT climber_passed FROM `user` WHERE id = ".CLIENT_ID);
-        return is_array($rs) ? $rs[0]['climber_passed'] : 0;
+        return is_array($rs) ? (int)$rs[0]['climber_passed'] : 0;
     }    
 }
