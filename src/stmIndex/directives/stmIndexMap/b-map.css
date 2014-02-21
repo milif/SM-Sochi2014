@@ -597,11 +597,29 @@
     border-bottom: 1px solid #ddd;
 }
 .b-map-small-contur {
-    background: url(asset/i/b-gameMap/zoom_sprite.png) 0 0 no-repeat;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAEUlEQVQIW2N4pxHlywADIA4AIQ0DeycgPJcAAAAASUVORK5CYII=) 0 0 repeat;
     width: 78px;
     height: 43px;
     position: absolute;
     z-index: 100;
+    border: 1px solid #ee285a;
+}
+.b-map-small-contur:before,
+.b-map-small-contur:after {
+    content: '';
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    right: -2px;
+    bottom: -2px;
+    border-bottom: 1px solid rgba(0,0,0,.6);
+    border-right: 1px solid rgba(0,0,0,.6);
+}
+.b-map-small-contur:after {
+    left: 1px;
+    top: 1px;
+    right: -3px;
+    bottom: -3px;
 }
 
 .b-map-small_bullet {
