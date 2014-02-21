@@ -32,7 +32,7 @@
     </example>
     
  */
-angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '$interval', '$document', '$window', 'Game', 'Achiev', '$stmEnv', function($timeout, $interval, $document, $window, Game, Achiev, $stmEnv){
+angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '$interval', '$document', '$window', 'Game', 'Achiev', function($timeout, $interval, $document, $window, Game, Achiev){
 
     var ACHIVE_JOURNALIST = {
             type: 'journalist',
@@ -113,7 +113,6 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         manualTimeout,
                         gameTime = 0,
                         gamePassed = false,
-                        gamePassedCount = $stmEnv.gameData ? $stmEnv.gameData.passed : 0,
 
                         attempts = 5 + Math.round(Math.random() * 5),
 
@@ -515,7 +514,6 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                             action: 'end',
                             score: scope.score,
                             data: {
-                                passed: gamePassedCount,
                                 time: time - gameTime,
                                 final: gamePassed,
                                 score: scoreDetails                              
@@ -786,19 +784,12 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         
                         if(position >= (endPosition - topPipeMargin)) {
                             gamePassed = true;
-                            gamePassedCount++;
                                                         
                             ACHIVE_PIONEER.active = true;
                             Achiev.save({
                                 'key': 'climber.' + ACHIVE_PIONEER.type
                             });
                             
-                            if(!ACHIVE_KINGOFHILL.active && gamePassedCount >= 10) {
-                                ACHIVE_KINGOFHILL.active = true;
-                                Achiev.save({
-                                    'key': 'climber.' + ACHIVE_KINGOFHILL.type
-                                });
-                            }
                             moveBird();
                         } else {
                             manEl.css({

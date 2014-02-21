@@ -2,6 +2,7 @@
 
 require_once __DIR__.'/DB.class.php';
 require_once __DIR__.'/Auth.class.php';
+require_once __DIR__.'/Achiev.class.php';
 
 class Game {
     static public function save($data){
@@ -13,8 +14,12 @@ class Game {
         
         if($data['action'] != 'end') return;
         
-        if($type == 'climber'){
-            DB::query("UPDATE `user` SET climber_passed = :passed WHERE id = ".CLIENT_ID, array(':passed' => $data['data']['passed']));
+        if($type == 'climber' && $data['data']['final']){
+            DB::query("UPDATE `user` SET climber_passed = climber_passed + 1 WHERE id = ".CLIENT_ID);
+            $rs = DB::query("SELECT climber_passed FROM `user` WHERE id = ".CLIENT_ID);
+            if($rs[0]['climber_passed'] == 10 ) {
+                Achiev::add('climber.kingofhill');
+            }
         }
         
         $rs = DB::query("SELECT id FROM `user` WHERE score_game_$type <= :score AND id = ".CLIENT_ID, array(':score' => $score));

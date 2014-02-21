@@ -1,12 +1,6 @@
 <?php 
     $GTM_DATA = array('gameName' => 'climber');
     $SHARE_URI = '/climber/';
-    require __DIR__.'/../../lib/Game.class.php';
-    $ENV = array(
-        'gameData' => array(
-            'passed' => Game::getClimberPassed()
-        )
-    );
     require __DIR__.'/../../lib/init.php'; ?><!doctype html>
 <html ng-app="stmGameClimber" lang="ru">
 <head>
