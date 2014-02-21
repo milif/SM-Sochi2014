@@ -199,6 +199,14 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                                     }
 
                                     _down(step, true);
+
+                                    timeInAir = new Date();
+                                    if(!ACHIVE_RESISTANCE.active && (timeInAir - lastTimeOnGround) > 180000) { // 180000 ms == 3 minutes
+                                        ACHIVE_RESISTANCE.active = true;
+                                        Achiev.save({
+                                            'key': 'climber.' + ACHIVE_RESISTANCE.type
+                                        });
+                                    }
                                 } else if ((e.keyCode == 37 || e.keyCode == 39) && position !== startPosition) { // "arrow left or right"
                                     if(e.keyCode == 37) { // if left
                                         manEl.addClass('flip-left');
@@ -414,6 +422,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         missedBonusTime = null;
                         positionChangesNumber = 0;
                         popupInUse = false;
+                        ovisesPassedCounts = 0;
 
                         birdEl.css({
                             'top': 0,
@@ -485,16 +494,6 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                             type: 'climber',
                             action: 'start'
                         });
-
-                        $interval(function(){
-                            timeInAir = new Date();
-                            if(!ACHIVE_RESISTANCE.active && (timeInAir - lastTimeOnGround) > 180000) { // 180000 ms == 3 minutes
-                                ACHIVE_RESISTANCE.active = true;
-                                Achiev.save({
-                                    'key': 'climber.' + ACHIVE_RESISTANCE.type
-                                });
-                            }
-                        }, 1000);
                     }
 
                     function stopGame() {
