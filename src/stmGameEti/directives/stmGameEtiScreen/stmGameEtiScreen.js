@@ -213,6 +213,7 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
             
             function startGame(){
                 if(isGame) return;
+                ACHIVE_DEER.count = 0;
                 isGame = true;
                 startTime = new Date().getTime();
                 foundedEti = 0;

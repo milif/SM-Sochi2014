@@ -32,7 +32,7 @@
     </example>
     
  */
-angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '$interval', '$document', '$window', 'Game', 'Achiev', function($timeout, $interval, $document, $window, Game, Achiev){
+angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '$interval', '$document', '$window', 'Game', 'Achiev', '$stmEnv', function($timeout, $interval, $document, $window, Game, Achiev, $stmEnv){
 
     var ACHIVE_JOURNALIST = {
             type: 'journalist',
@@ -113,7 +113,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         manualTimeout,
                         gameTime = 0,
                         gamePassed = false,
-                        gamePassedCount = 0,
+                        gamePassedCount = $stmEnv.gameData ? $stmEnv.gameData.passed : 0,
 
                         attempts = 5 + Math.round(Math.random() * 5),
 
@@ -515,6 +515,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                             action: 'end',
                             score: scope.score,
                             data: {
+                                passed: gamePassedCount,
                                 time: time - gameTime,
                                 final: gamePassed,
                                 score: scoreDetails                              

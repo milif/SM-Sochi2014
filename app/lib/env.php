@@ -13,10 +13,11 @@ $api = array(
 );
 
 $userData = Auth::getUser();
-$ENV = array(
+$ENV = array_merge(array(
     'auth' => is_array($userData) ? array_merge($userData, array('refKey' => REF_KEY)) : null,
     'api' => $api
-);
+), isset($ENV) ? $ENV : array());
+
 if(IS_PRODUCTION){
     $ENV['gtm'] = array(
         'id'=> GTM_ID,

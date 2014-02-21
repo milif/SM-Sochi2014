@@ -13,7 +13,11 @@ class Game {
         
         if($data['action'] != 'end') return;
         
-        $rs = DB::query("SELECT id FROM `user` WHERE score_game_$type < :score AND id = ".CLIENT_ID, array(':score' => $score));
+        if($type == 'climber'){
+            DB::query("UPDATE `user` SET climber_passed = :passed WHERE id = ".CLIENT_ID, array(':passed' => $data['data']['passed']));
+        }
+        
+        $rs = DB::query("SELECT id FROM `user` WHERE score_game_$type <= :score AND id = ".CLIENT_ID, array(':score' => $score));
         if(count($rs)){
             DB::query("UPDATE `user` SET score_game_$type = :score, data_game_$type = :data WHERE id = ".CLIENT_ID, array(':score' => $score, ':data'=> $jsonData));
         }
@@ -29,4 +33,8 @@ class Game {
             'achievements' => explode(',', str_replace("$type.", '', $row['data_achievement_'.$type]))
         );
     }
+    static public function getClimberPassed(){
+        $rs = DB::query("SELECT climber_passed FROM `user` WHERE id = ".CLIENT_ID);
+        return is_array($rs) ? $rs[0]['climber_passed'] : 0;
+    }    
 }
