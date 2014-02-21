@@ -12,8 +12,9 @@ $api = array(
     "api/socials.php" => Socials::get($SHARE_URI)
 );
 
+$userData = Auth::getUser();
 $ENV = array(
-    'auth' => array_merge(Auth::getUser(), array('refKey' => REF_KEY)),
+    'auth' => is_array($userData) ? array_merge($userData, array('refKey' => REF_KEY)) : null,
     'api' => $api
 );
 if(IS_PRODUCTION){
