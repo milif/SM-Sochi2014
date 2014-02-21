@@ -148,8 +148,8 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         missedBonusTime = null,
                         positionChangesNumber = 0,
 
-                        positionOvis1 = 3700,
-                        positionOvis2 = 7800,
+                        positionOvis1 = 4600,
+                        positionOvis2 = 7600,
                         ovisesPassedCounts = 0,
                         ovisesIsInside = false,
 
