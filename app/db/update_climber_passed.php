@@ -16,7 +16,7 @@ while(true){
         if($itemData['final']) {
             DB::query("UPDATE `user` SET climber_passed = climber_passed + 1 WHERE id = ".$item['user_id']);
             $rs = DB::query("SELECT climber_passed FROM `user` WHERE id = ".$item['user_id']);
-            if($rs && $rs[0]['climber_passed'] >= 3 && !isset($added[$item['user_id']])) {
+            if($rs && $rs[0]['climber_passed'] >= 10 && !isset($added[$item['user_id']])) {
                 $added[$item['user_id']] = true;
                 Achiev::add('climber.kingofhill', $item['user_id']);
             }            
