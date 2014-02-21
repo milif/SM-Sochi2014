@@ -32,30 +32,36 @@
     </example>
     
  */
-angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '$interval', '$document', '$window', 'Game', function($timeout, $interval, $document, $window, Game){
+angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '$interval', '$document', '$window', 'Game', 'Achiev', function($timeout, $interval, $document, $window, Game, Achiev){
+
+    var ACHIVE_JOURNALIST = {
+            type: 'journalist',
+            text: 'Журналист'
+        },
+        ACHIVE_RESISTANCE = {
+            type: 'resistance',
+            text: 'За стойкость'
+        },
+        ACHIVE_PIONEER = {
+            type: 'pioneer',
+            text: 'Первопроходец'
+        },
+        ACHIVE_AMATEURFAUNA = {
+            type: 'amateurfauna',
+            text: 'Любитель фауны'
+        },
+        ACHIVE_KINGOFHILL = {
+            type: 'kingofhill',
+            text: 'Царь горы'
+        };
 
     var ACHIEVEMENTS = [
-        {
-            type: 'journalist',
-            text: 'Журналист'            
-        },
-        {
-            type: 'resistance',
-            text: 'За стойкость'            
-        },
-        {
-            type: 'pioneer',
-            text: 'Первопроходец'            
-        },        
-        {
-            type: 'amateurfauna',
-            text: 'Любитель фауны'            
-        },
-        {
-            type: 'kingofhill',
-            text: 'Царь горы'            
-        }
-    ];  
+        ACHIVE_JOURNALIST,
+        ACHIVE_RESISTANCE,
+        ACHIVE_PIONEER,
+        ACHIVE_AMATEURFAUNA,
+        ACHIVE_KINGOFHILL
+    ];
 
 
     return {
@@ -148,6 +154,8 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         ovisesPassedCounts = 0,
                         ovisesIsInside = false,
 
+                        timeInAir = 0,
+                        lastTimeOnGround = 0,
                         goingUp = false,
                         goingUpUsed = false,
                         blockUI = false,
@@ -478,9 +486,15 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                             action: 'start'
                         });
 
-                        $timeout(function(){
-                            // TODO send archivement "За стойкость"
-                        }, 180000); // 3 minutes
+                        $interval(function(){
+                            timeInAir = new Date();
+                            if(!ACHIVE_RESISTANCE.active && (timeInAir - lastTimeOnGround) > 180000) { // 180000 ms == 3 minutes
+                                ACHIVE_RESISTANCE.active = true;
+                                Achiev.save({
+                                    'key': 'climber.' + ACHIVE_RESISTANCE.type
+                                });
+                            }
+                        }, 1000);
                     }
 
                     function stopGame() {
@@ -507,19 +521,19 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                                 score: scoreDetails                              
                             }
                         }, function(){
-                            
                             $timeout(function(){
                                 position = startPosition;
                                 scope.showToolbar = false;
                                 scope.showStartPopup = true;
-                            }, 700); 
+                            }, 700);
                                                    
                             var achieves = angular.copy(ACHIEVEMENTS);
                             for(var i=0;i<achieves.length;i++){
-                                if(bestGame.achievements.indexOf(achieves[i].type) >= 0) {
+                                if(bestGame.achievements && bestGame.achievements.indexOf(achieves[i].type) >= 0) {
                                     achieves[i].active = true;
                                 }
                             }
+                            var scoreDetails = bestGame.data && (bestGame.data.score.detail || bestGame.data.score);
                             var items = [];
                             for(var type in scoreDetails){
                                 items.push({
@@ -641,6 +655,11 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                             step = 50;
                         }
 
+                        if(position === startPosition) {
+                            lastTimeOnGround = new Date();
+                            timeInAir = 0;
+                        }
+
                         updatePosition(position+step);
                         updateDistance(step);
 
@@ -720,8 +739,11 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                             ovisesIsInside = false;
                             ovisesPassedCounts++;
                         }
-                        if(ovisesPassedCounts === 5) {
-                            // TODO send archivement "Любитель фауны"
+                        if(!ACHIVE_AMATEURFAUNA.active && ovisesPassedCounts === 5) {
+                            ACHIVE_AMATEURFAUNA.active = true;
+                            Achiev.save({
+                                'key': 'climber.' + ACHIVE_AMATEURFAUNA.type
+                            });
                         }
 
                         var newstate;
@@ -765,9 +787,17 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         if(position >= (endPosition - topPipeMargin)) {
                             gamePassed = true;
                             gamePassedCount++;
-                            // TODO send archivement "Первопроходец"
-                            if(gamePassedCount >= 10) {
-                                // TODO send archivement "Царь горы"
+                                                        
+                            ACHIVE_PIONEER.active = true;
+                            Achiev.save({
+                                'key': 'climber.' + ACHIVE_PIONEER.type
+                            });
+                            
+                            if(!ACHIVE_KINGOFHILL.active && gamePassedCount >= 10) {
+                                ACHIVE_KINGOFHILL.active = true;
+                                Achiev.save({
+                                    'key': 'climber.' + ACHIVE_KINGOFHILL.type
+                                });
                             }
                             moveBird();
                         } else {
