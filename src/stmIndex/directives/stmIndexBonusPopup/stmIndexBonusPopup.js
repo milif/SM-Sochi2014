@@ -59,6 +59,17 @@ angular.module('stmIndex').directive('stmIndexBonusPopup', function(){
      */
      /**
        * @ngdoc method
+       * @name stmIndex.$stmBonus#put
+       * @methodOf stmIndex.$stmBonus
+       *
+       * @description
+       * Получение бонуса
+       *
+       * @param {String} type Тип бонуса
+       * @returns {Integer} Сколько бонусов полученно
+       */     
+     /**
+       * @ngdoc method
        * @name stmIndex.$stmBonus#hasAvailable
        * @methodOf stmIndex.$stmBonus
        *
