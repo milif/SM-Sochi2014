@@ -17,6 +17,7 @@
 }
 .g-ruble {
     font-family: 'ruble';
+    text-transform: none;
 }
 .g-noselect {
     -webkit-user-select: none;
@@ -910,4 +911,20 @@
     outline: thin dotted \9;
     background-color: rgb(255, 231, 231);
 }
+
+/* b-form-row */
+/*==========================================================*/
+.b-form-row {
+
+}
+.b-form-row__col {
+    float: left;
+}
+.size_1_3 {
+    width: 33.3334%;
+}
+.size_2_3 {
+    width: 66.6666%;
+}
+
 
