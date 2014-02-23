@@ -32,7 +32,7 @@
     </example>
     
  */
-angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '$interval', '$document', '$window', 'Game', 'Achiev', function($timeout, $interval, $document, $window, Game, Achiev){
+angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '$interval', '$document', '$window', 'Game', 'Achiev', '$stmBonus', function($timeout, $interval, $document, $window, Game, Achiev, $stmBonus){
 
     var ACHIVE_JOURNALIST = {
             type: 'journalist',
@@ -120,8 +120,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         doDownTimeout,
                         infoTimeout,
                         inScroll = false,
-                        scoreDetails,
-
+                        
                         isGameStart = false,
                         isUpPressed = false,
                         canBreakDown,
@@ -287,18 +286,26 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                     }
 
                     function initBonuses() {
+                        var bonusItem;
+                        var types;
+                        var item;
                         scope.bonuses = [];
-                        for(var i=0; i<50; i++) {
-                            var type = ['mnogo', 'sber', 'pickpoint'];
+                        $stmBonus.reset();
+                        var i=0;
+                        while($stmBonus.hasAvailable()) {
+                            types = $stmBonus.getAvailableTypes();
+                            bonusItem = types[Math.floor(Math.random() * types.length + 1) % types.length];
                             scope.bonuses.push({
                                 id: 'bonus'+i,
-                                type: type[Math.round(2*Math.random())],
-                                bonus: 50,
+                                type: bonusItem.type,
                                 timeout: (i < 10) ? 60 : (i < 30) ? 30 : 10,
                                 show: false,
-                                position: [Math.round(Math.random()) ? -135 : 50, 1000 + i*170 + Math.round(50*Math.random())]
+                                bonus: bonusItem.put(),
+                                position: [Math.round(Math.random()) ? -135 : 50, 600 + i*130 + Math.round(50*Math.random())]
                             });
+                            i++;
                         }
+                        $stmBonus.reset();
                         scope.popups = [];
                         scope.$on('hidePopoverSuccess', function(e, id){
                             for(var i=0; i<scope.popups.length;i++){
@@ -311,7 +318,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                     }
 
                     var lastBonusPopupPosition = -165;
-                    function showBonusPopup(bonus) {
+                    function showBonusPopup(bonus, score) {
                         var text = {
                             'mnogo': 'от Много.ру!',
                             'sber': 'Спасибо за упорство от Сбербанка!',
@@ -325,7 +332,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         scope.popups.push({
                             id: bonus.id,
                             type: bonus.type,
-                            bonus: bonus.bonus,
+                            bonus: score,
                             text: text[bonus.type],
                             position: [-500 - 10*Math.round(10*Math.random()), lastBonusPopupPosition]
                         });
@@ -346,10 +353,10 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         var bonus = scope.bonuses[index];
                         scope.$broadcast('removeBonus-'+bonus.id);
                         scope.bonuses[index].used = true;
-                        showBonusPopup(bonus);
-                        scope.score += bonus.bonus;
-                        scope.bonusesCollected[bonus.type] += bonus.bonus;
-                        scoreDetails[bonus.type] = scoreDetails[bonus.type] ? scoreDetails[bonus.type] + bonus.bonus : bonus.bonus;
+                        var bonusScore = $stmBonus.put(bonus.type);
+                        showBonusPopup(bonus, bonusScore);
+                        scope.score += bonusScore;
+                        scope.bonusesCollected[bonus.type] += bonusScore;
                         updateEnergy(10);
                         _update();
                     }
@@ -400,7 +407,6 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                     }
                     
                     function startGame() {
-                        scoreDetails = {};
                         scope.score = 0;
                         scope.energy = 100;
                         scope.distance = 0;
@@ -508,7 +514,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         }, 1000);
 
                         var time = new Date().getTime();
-                        
+                        var scoreDetails = $stmBonus.getScores();
                         var bestGame = Game.save({
                             type: 'climber',
                             action: 'end',
@@ -516,7 +522,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                             data: {
                                 time: time - gameTime,
                                 final: gamePassed,
-                                score: scoreDetails                              
+                                score: scoreDetails                            
                             }
                         }, function(){
                             $timeout(function(){
@@ -531,7 +537,6 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                                     achieves[i].active = true;
                                 }
                             }
-                            var scoreDetails = bestGame.data && (bestGame.data.score.detail || bestGame.data.score);
                             var items = [];
                             for(var type in scoreDetails){
                                 items.push({

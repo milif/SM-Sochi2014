@@ -9,7 +9,8 @@
  * @requires stmIndex.directive:stmIndexPopup
  * @requires stmIndex.directive:stmIndexButtonsPopup
  * @requires stmIndex.directive:stmIndexBonus
- * @requires stmIndex.directive:stmIndexBonusPopup
+ * @requires stmIndex.directive:stmIndexBonusPopup 
+ * @requires stmIndex.$stmBonus
  * @requires stmIndex.directive:stmIndexPopover
  * @requires stm.filter:range
  *
@@ -63,9 +64,8 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
     var JUMP_TIME = 1; // Сколько секунд длится прыжок
     var JUMP_HEIGHT = 100; // Высота прыжка (px)
     var BONUS_SUMM = 50; // Сколько прибавлять очков 
-    var BONUSES_COUNT = 50; // Число бонусов на игру    
-    var BONUSES_DISTANCE = 1000; // Оптимальное расстояние между бонусами
-    var BONUS_TYPES = ['sber','mnogo'/*,'pickpoint'*/]; // Типы бонусов
+    //var BONUSES_COUNT = 50; // Число бонусов на игру    
+    var BONUSES_DISTANCE = 1000; // Оптимальное расстояние между бонусами 
     var BONUS_JUMP = { // Надо подпрыгнуть
         y: JUMP_HEIGHT + 75,
         type: 'jump'
@@ -132,7 +132,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
         scope: {
         },
         templateUrl: 'partials/stmGameBiathlon.directive:stmGameBiathlonScreen:template.html',
-        controller: ['$element', '$interval', '$scope', '$window', '$timeout', 'Game', 'Achiev', function($element, $interval, $scope, $window, $timeout, Game, Achiev){
+        controller: ['$element', '$interval', '$scope', '$window', '$timeout', 'Game', 'Achiev','$stmBonus', function($element, $interval, $scope, $window, $timeout, Game, Achiev, $stmBonus){
                     
             var iterator;
             
@@ -151,7 +151,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
             var framesEl = {};
             var treesEl = [];
             var bonusPlaces = [BONUS_JUMP];
-            var bonuses = 0;
+            //var bonuses = 0;
             var bonusId = 0;
             var etiWarinigTime = 0;
             var etiWarinigCloseTime = 0;
@@ -184,7 +184,6 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                 key: 'space',
                 text: ''
             };
-            var scoreDetails;
             
             var prevTime = new Date().getTime();
             
@@ -262,10 +261,10 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
             $scope.$emit('gameInit');
             
             function startGame(){
+                $stmBonus.reset();
                 targetsShoots = 0;
                 startX = men.x;
                 $scope.etiWarinig = false;
-                scoreDetails = {};
                 men.speed = PLAYER_SPEED;
                 inSeet = false;
                 $scope.score = 0;
@@ -283,7 +282,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                 persons.push(eti);
                 
                 gameTime = 0;
-                bonuses = BONUSES_COUNT;
+                //bonuses = BONUSES_COUNT;
                 $scope.showStartPopup = false;
                 isGame = true;
                 $scope.inEti = false;
@@ -569,24 +568,26 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                                     bonus.show = false;
                                     bonus.take = true;
                                     
-                                    $scope.score += BONUS_SUMM;
-                                    if(!scoreDetails[bonus.type]) scoreDetails[bonus.type] = 0;
-                                    scoreDetails[bonus.type] += BONUS_SUMM;
+                                    var bonusScore = bonus.item.put();
                                     
-                                    bonuses--;
+                                    $scope.score += bonusScore;
+                                    
+                                    //bonuses--;
                                     showBonusPopup({
-                                        bonus: BONUS_SUMM,
+                                        bonus: bonusScore,
                                         id: bonusId++,
-                                        type: bonus.type,
+                                        type: bonus.item.type,
                                         position: [Math.round($element.width() -400 + Math.random() * 100), Math.round(50 + Math.random() * 50 )]
                                     });
                                 }
                             }
-                            continue;
-                        }
-                        
-                        if(bonusDist > 0 && bonusDist < 800 + Math.random() * 200 && bonuses > 0) {
-                            bonus.show = true;
+                            if(!bonus.item.hasAvailable()){
+                                bonus.show = false;
+                            }
+                        } else {
+                            if(bonusDist > 0 && bonusDist < 800 + Math.random() * 200 && bonus.item.hasAvailable()) {
+                                bonus.show = true;
+                            } 
                         }
                     }
                 }              
@@ -612,13 +613,14 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                 
             }
             function endGame(time){
+                var scoreDetails = $stmBonus.getScores();
                 var bestGame = Game.save({
                     type: 'biathlon',
                     action: 'end',
                     score: $scope.score,
                     data: {
                         time: new Date().getTime() - gameTime,
-                        final: bonuses <= 0,
+                        final: !$stmBonus.hasAvailable(),
                         distance: Math.round(finalDistance),
                         score: scoreDetails
                     }
@@ -769,18 +771,22 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                 var x = frameEl.points[0][0];
                 var y;
                 var data = {};
-                while(true){
+                var types = $stmBonus.getAvailableTypes();
+                var bonusItem;
+                while(types.length > 0){
                     x += 0.75 * BONUSES_DISTANCE + Math.random() * BONUSES_DISTANCE * 0.5;
-                    if(x > frameEl.width || bonuses <= 0) break;
+                    if(x > frameEl.width) break;
                     y =  getFrameY(frameEl, x, data);
                     place = data.angle > 35 ? BONUS_GO : bonusPlaces[Math.floor(Math.random() * bonusPlaces.length + 1) % bonusPlaces.length];
                     if(isNaN(y)) continue;
+                    bonusItem = types[Math.floor(Math.random() * types.length + 1) % types.length];
                     frameBonuses.push({
                         position: [x, y - place.y],
                         place: place,
                         id: bonusId++,
                         show: false,
-                        type: BONUS_TYPES[Math.floor(Math.random() * BONUS_TYPES.length + 1) % BONUS_TYPES.length]
+                        item: bonusItem,
+                        type: bonusItem.type
                     });
                 }
                 return frameBonuses;
