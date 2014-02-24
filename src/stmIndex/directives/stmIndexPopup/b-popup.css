@@ -275,6 +275,7 @@
     display: inline-block;
     width: 97px;
     height: 89px;
+    left: -1px;
 }
 
 .b-achive__h.achiv_climber_journalist.state_active {
@@ -289,7 +290,7 @@
     display: inline-block;
     width: 101px;
     height: 81px;
-    left: -8px;
+    left: -6px;
 }
 
 .b-achive__h.achiv_climber_pioneer.state_active {
@@ -304,7 +305,7 @@
     display: inline-block;
     width: 95px;
     height: 83px;
-    left: -8px;
+    left: -7px;
 }
 
 .b-achive__h.achiv_climber_amateurfauna.state_active {
@@ -319,6 +320,7 @@
     display: inline-block;
     width: 94px;
     height: 79px;
+    left: 1px;
 }
 
 .b-achive__h.achiv_climber_resistance.state_active {
@@ -333,7 +335,7 @@
     display: inline-block;
     width: 96px;
     height: 85px;
-    left: -6px;
+    left: -7px;
 }
 
 .b-achive__h.achiv_climber_kingofhill.state_active {
@@ -363,6 +365,8 @@
     display: inline-block;
     width: 87px;
     height: 85px;
+    left: 1px;
+    top: -2px;
 }
 
 .b-achive__h.achiv_biathlon_ironnerves.state_active {
@@ -377,6 +381,7 @@
     display: inline-block;
     width: 87px;
     height: 88px;
+    left: 1px;
 }
 
 .b-achive__h.achiv_biathlon_lionheart.state_active {
@@ -392,6 +397,7 @@
     width: 94px;
     height: 83px;
     bottom: -4px;
+    left: 1px;
 }
 
 .b-achive__h.achiv_biathlon_starshooter.state_active {
@@ -406,6 +412,8 @@
     display: inline-block;
     width: 87px;
     height: 90px;
+    left: 1px;
+    top: -8px;
 }
 
 .b-achive__h.achiv_biathlon_lasthero.state_active {
@@ -434,7 +442,7 @@
     display: inline-block;
     width: 104px;
     height: 95px;
-    left: -12px;
+    left: -11px;
 }
 
 .b-achive__h.achiv_yeti_allinclusive.state_active {
@@ -449,6 +457,7 @@
     display: inline-block;
     width: 98px;
     height: 97px;
+    left: 1px;
 }
 
 .b-achive__h.achiv_yeti_olenevod.state_active {
@@ -605,3 +614,176 @@ a.back-map {
     vertical-align: top;
     font-weight: bold;
 }
+
+
+/* l-popup-tabs */
+/*==========================================================*/
+.l-popup-tabs {
+
+}
+.b-popup-tabs {
+    padding-bottom: 24px;
+    border-bottom: 3px solid #000;
+}
+.b-popup-tabs_item {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 10px;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+    position: relative;
+    z-index: 10;
+}
+.b-popup-tabs_item-decor {
+    position: relative;
+    display: inline-block;
+    height: 27px;
+    margin-bottom: 4px;
+    background-image: url(asset/i/b-IndexPopup/b-popup-sprite2.png);
+}
+.b-popup-tabs_item-decor.mod_1 {
+    background-position: -47px -46px;
+    width: 27px;
+}
+.b-popup-tabs_item-decor.mod_2 {
+    background-position: -118px 0px;
+    width: 27px;
+}
+.b-popup-tabs_item-decor.mod_3 {
+    background-position: -71px 0px;
+    width: 27px;
+}
+.b-popup-tabs_item-decor.mod_4 {
+    background-position: 0px 0px;
+    width: 51px;
+}
+.b-popup-tabs_item-decor.mod_5 {
+    background-position: 0px -46px;
+    width: 27px;
+}
+.b-popup-tabs_item-text {
+    color: #666;
+}
+
+.b-popup-tabs_item .b-popup-tabs_item-decor:before {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    z-index: -1;
+    position: absolute;
+    content: '';
+    left: -2px;
+    top: -2px;
+    bottom: -2px;
+    right: -2px;
+}
+.b-popup-tabs_item:hover .b-popup-tabs_item-decor:before {
+    border: 3px solid #ffe98d;
+}
+.b-popup-tabs_item.state_active .b-popup-tabs_item-decor:before {
+    border: 3px solid #ffd731;
+}
+.b-popup-tabs_item.state_active .b-popup-tabs_item-text {
+    color: #000;
+}
+.b-popup-tabs_item.state_active:before {
+    position: absolute;
+    content: '';
+    left: 50%;
+    bottom: -27px;
+    background-image: url(asset/i/b-IndexPopup/b-popup-sprite2.png);
+    background-position: -94px -47px;
+    width: 24px;
+    height: 14px;
+    margin-left: -12px;
+}
+
+.b-popup-tab-content  {
+    display: none;
+    padding-top: 16px;
+    line-height: 16px;
+    height: 32px;
+    margin-bottom: 20px;
+    overflow: hidden;
+
+}
+
+.b-popup-tab-content.state_active {
+    display: block;
+}
+
+.b-popup-link-bonus {
+    display: inline-block;
+    padding-left: 22px;
+    font-size: 15px;
+    line-height: 16px;
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 34px;
+}
+.b-popup-link-bonus:before {
+    content: '';
+    background-image: url(asset/i/b-IndexPopup/b-popup-sprite2.png);
+    background-position: 0px -92px;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    left: 0;
+    top: 0px;
+}
+.b-popup-link-bonus-h {
+    border-bottom: 1px dotted #000;
+}
+.b-popup-link-bonus:hover .b-popup-link-bonus-h {
+    color: #f66b0e;
+    border-bottom: 1px dotted #f66b0e;
+}
+
+/* b-popup-tabs_item */
+.b-achive-item.mod_tabs {
+    margin: 0 8px;
+}
+.b-popup-tabs_item .b-achive:before {
+    position: absolute;
+    content: '';
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    top: -2px;
+    bottom: -3px;
+    right: -3px;
+    left: -2px;
+}
+.b-popup-tabs_item:hover .b-achive:before {
+    border: 4px solid #ffe98d;
+}
+.b-popup-tabs_item.state_active .b-achive:before {
+    border: 4px solid #ffd731;
+}
+
+/* b-popup-tabs_item */
+.b-popup-tabs_item .b-slide-result-item {
+    margin: 0 4px;
+}
+.b-popup-tabs_item .b-slide-result-item:before {
+    position: absolute;
+    content: '';
+    top: -3px;
+    left: 50%;
+    margin-left: -44px;
+    width: 80px;
+    height: 80px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
+    z-index: -1;
+}
+.b-popup-tabs_item:hover .b-slide-result-item:before {
+    border: 4px solid #ffe98d;
+}
+.b-popup-tabs_item.state_active .b-slide-result-item:before {
+    border: 4px solid #ffd731;
+}
+
