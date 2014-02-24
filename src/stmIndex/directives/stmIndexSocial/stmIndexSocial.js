@@ -5,6 +5,8 @@
  *
  * @requires stmIndex.directive:stmIndexSocial:b-social.css
  * @requires stmIndex.directive:stmIndexSocial:template.html
+ *
+ * @requires stmIndex.$stmSocial
  * 
  * @description
  * Панель соц. кнопок
@@ -25,7 +27,7 @@
  */
 
 angular.module('stmIndex')
-.directive('stmIndexSocial', ['Social', '$stmAuth', function(Social, $stmAuth){
+.directive('stmIndexSocial', ['Social', '$stmSocial', function(Social, $stmSocial){
     var BUTTONS = [
         {
             type: 'vk',
@@ -51,12 +53,7 @@ angular.module('stmIndex')
     
     var $ = angular.element;
     
-    var SHARE = {
-        url: $('meta[property="og:url"]').attr('content') || $('base').attr('href'),
-        image: $('meta[property="og:image"]').attr('content'),
-        title: $('meta[property="og:title"]').attr('content'),
-        description: $('meta[property="og:description"]').attr('content')
-    };
+    var SHARE = $stmSocial.share;
     
     var URL;
     
@@ -97,7 +94,7 @@ angular.module('stmIndex')
         var item = {
             type: button.type,
             onClick: function(){
-                URL = SHARE.url + ($stmAuth.isAuth ? '?ref=' + $stmAuth.data.refKey : '');
+                URL = $stmSocial.url();
                 button.onClick();
                 var response = Social.add(SHARE.url.replace($('base').attr('href'), '/'), button.type, function(){
                     if(response.success) {

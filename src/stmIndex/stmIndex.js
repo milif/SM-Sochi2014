@@ -2,6 +2,7 @@
  * 
  * @requires stm
  * @requires stm.$md5
+ * @requires stm.filter:stmNumber
  * @requires angularui/ui-utils.js
  *
  * @ngdoc overview
@@ -142,7 +143,7 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
        * @name stmIndex.$stmAuth#isAuth
        * @propertyOf stmIndex.$stmAuth
        *
-       * @returns {Boolean=} isAuth Авторизарован ли пользователь
+       * @returns {Boolean} Авторизарован ли пользователь
        */         
     .factory('$stmAuth', ['$stmEnv', '$location', function($stmEnv, $location){
         
