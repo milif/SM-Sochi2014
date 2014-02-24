@@ -77,8 +77,9 @@ angular.module('stmIndex')
         var id = 'vklike' + counter++;
         var vkEl = $('<div id="'+id+'"></div>');
         var params = {
-            type: 'button',
-            height: 22,
+            type: 'mini',
+            height: 20,
+            width: 100,
             pageUrl: share.url
         };
    
@@ -106,7 +107,7 @@ angular.module('stmIndex')
         });
     }      
     function likeFB(el){
-        var fbEl = $('<span><fb:like href="'+share.url+'" send="false" layout="button_count" width="450" show_faces="true"></fb:like></span>');
+        var fbEl = $('<span><fb:like href="'+share.url+'" send="false" layout="button_count" width="90" show_faces="false"></fb:like></span>');
         el.append(fbEl);
         fbApi(function(){
             this.XFBML.parse(fbEl.get(0));
@@ -137,7 +138,7 @@ angular.module('stmIndex')
         });
     }
     function likeTW(el){
-        var twEl = $('<a href="https://twitter.com/share" class="twitter-share-button" data-url="'+share.url+'" data-text="'+share.description+' '+share.url+'" data-lang="ru">Tweet</a>');
+        var twEl = $('<a href="https://twitter.com/share" class="twitter-share-button" data-url="'+share.url+'" data-text="'+share.description+' '+share.url+'" data-lang="ru" style="width: 138px;">Tweet</a>');
         el.append(twEl);
         (function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}})(document,"script","twitter-wjs");        
     }
