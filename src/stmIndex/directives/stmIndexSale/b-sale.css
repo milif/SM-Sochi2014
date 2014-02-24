@@ -1,7 +1,7 @@
 /* sale */
 /*==========================================================*/
-
 .l-sale {
+    min-width: 1000px;
     padding-top: 100px;
     background: url(asset/i/b-indexSale/b-sale-top.png) 50% 0 no-repeat #fff;
 }
@@ -63,6 +63,17 @@
     width: 406px;
     margin: 0 auto;
     position: relative;
+}
+.b-sale-subscribe > * {
+    -webkit-transition: 0.2s linear all; /* Safari/Chrome */
+    transition: 0.2s linear all; /* Future Browsers */     
+}
+.b-sale-subscribe.state_success .b-sale-subscribe-form {
+    opacity: 0;
+}
+.b-sale-subscribe-form {
+    position: relative;
+    z-index: 2;
 }
 .b-form-input-text.mod_subscribe {
     border-right: none;
@@ -261,7 +272,7 @@
     -webkit-border-radius: 0 0 5px 5px;
     -moz-border-radius: 0 0 5px 5px;
     border-radius: 0 0 5px 5px;
-    height: 48px;
+    height: 55px;
     position: relative;
 }
 .b-sale-sprint-roud-title {
@@ -506,6 +517,13 @@ a.b-button-sale:active,
     text-align: center;
     vertical-align: bottom;
 }
+.b-product-image-h {
+    height: 200px;
+}
+.b-product-image-h.mod_hor {
+    height: auto;
+    width: 180px;
+}
 a.b-sale-product-link {
     text-decoration: none;
     color: #000;
@@ -594,7 +612,8 @@ a.b-sale-br-link {
 /*==========================================================*/
 .b-sale-footer {
     width: 960px;
-    margin: 0 auto 20px auto;
+    margin: 0 auto;
+    padding-bottom: 20px;
 }
 .b-sale-footer-left {
     -webkit-box-sizing: border-box;
@@ -655,14 +674,19 @@ a.b-sale-br-link {
     line-height: 120%;
     text-transform: uppercase;
 }
-
 /* b-sale-subscribe__access  */
 .b-sale-subscribe__access {
+    opacity: 0;
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
+    bottom: 0;
     text-align: center;
+}
+.b-sale-subscribe.state_success .b-sale-subscribe__access {
+    opacity: 1;
+    z-index: 3;
 }
 .b-sale-subscribe__access-icon {
     width: 45px;
@@ -674,7 +698,7 @@ a.b-sale-br-link {
 .b-sale-subscribe__access-text {
     display: inline-block;
     margin-left: 8px;
-    font-size: 13px;
+    font-size: 15px;
     vertical-align: middle;
 }
 
@@ -692,4 +716,3 @@ a.b-sale-br-link {
 .b-sale-subscribe__access.mod_3 .b-sale-subscribe__access-icon {
     background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC0AAAAgCAMAAACxWgF2AAAB4FBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD4vhb/1jH4vxf/1TD4wBgDAwERDgP+0SwFBAH5wBn+1TF5zubXtCn5wxv4vhe8niQwKAkGBQEMCgL9zyn7yCH+0y4BAQD8zCb+0iwaFgUiHQfhrBRINwYmQEh5ZhfMoxzuuhtsWRP6xR72vxqwjxv5whvtuxxJPQ38yyX7yCL6xh/7ySKiiB9qVxL2vhiHbhaG5P/fsBzpxC05MAv3zy/8zCX6wxwvJwn6xiACAgCSexy9nySAaRWojSD6xB390Sv8zSeMdRv8yySNdBefhR/5wRnyvBlURg8NCwKdgBhvXBMjHQf+1C/6xR2Rdxi2mSP8yiT4vxiYfBiehR5YShFtWhN7Zxicgx6zkhz60jBgURIEAwGSeBjQpRrDnBo3LgoKCAJ0YRaxjhrKohz9zihKPg72vxn90CrVsykcFwXrxS0LCQIhHAZNQA5VRxBaShDgqxTMqyfzvBhIPA6sixnIqCb5wxz41zzsuRsTEARGOg35whrtuRoIBwJjUxO9mBr80zAZFQVOQQ/kvyzuyC7ltBo1LArbrBoQDQMfGgYXEwQ8MgxBNgzhwzYsJQjbuCrOoxr2zi8mIAc5Oh7Y23PdqRSq7MlwAAAACXRSTlOtKPPvJfLxACfK2tw+AAABp0lEQVR4XpXURXMbURSE0WuS1H1nRkxmZmaHmZmZmZmZmRn/aqpeJVWyPbJeen1W36IlWCoB2CwgpUEJlcB2JSERtCSn2SzZApEADLbhKBbg52e12d1fgABo/GqjL9w0uhwfrhfGqY0w+t4nrMsWwgsjmGs016xFxeKp8aoK9PUaneboCOYvmMImWoGOLhrtLqGzCNiTyIdn7UJ4pcceo9UdpLMjjCfP/PGMmajsdtjpwmjVavLWY7z47hujEQ0nyWrVf1q3kU/f4eOryTgbQfl0sl9ztNaR357jy8uJeGcMp9vpVOk4raccvv2B9ym/GPGoTtB61uPrN7h/OzfGFYS3eEzX6CSt9XE+eoCLW8fHyLDTVR+tNQ954ypiw3/xuUs432Zi+GrddIfbN6B2eW6M2ZpPq7uZzlgtjidU98Zw2cTIr9Wdx8z6gziwvxXYfYaro5pXmw2RJ46hAeFDJkYBrSvIIxFU7jMxCmpdRh4+2kYOqFporXIYJ+vUTutSz8Sw1Fo/J6q+OoBrtFsTikXQ3GSFfzdDpOg/XrNIgiEps7JlEgr+AXJqd3r8oem5AAAAAElFTkSuQmCC) 0 0 no-repeat;
 }
-

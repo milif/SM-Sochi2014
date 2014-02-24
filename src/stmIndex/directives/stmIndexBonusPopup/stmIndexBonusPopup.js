@@ -150,7 +150,7 @@ angular.module('stmIndex').factory('$stmBonus', [function(){
         TYPES['_' + TYPES[i].type] = TYPES[i];
     }
     var scores = {};
-    $stmBonus = {
+    var $stmBonus = {
         put: put,
         getScores: getScores,
         hasAvailable: hasAvailable,

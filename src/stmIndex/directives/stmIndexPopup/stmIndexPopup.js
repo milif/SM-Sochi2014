@@ -57,7 +57,7 @@ angular.module('stmIndex').directive('stmIndexPopup', function(){
             $scope.submitMnogo = function(){
                 var form = $scope.mnogoForm;
                 var codeField = form.code;
-                if(form.$valid) {
+                if(!$scope.mnogoIsSend && form.$valid) {
                     $scope.mnogoIsSend = true;
                     var res = Mnogo.save({
                         code: $scope.mnogo

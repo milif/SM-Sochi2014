@@ -7,19 +7,23 @@
             <div class="b-sale-logo__note">
                 Это Сочные игры и у тебя есть шанс выиграть <br> 
                 <b>Apple iPhone 5S, Apple iPad Mini или Apple iPod Nano</b>, а так же <br>
-                тысячи других <a href="#3">ценных подарков</a>!
+                тысячи других ценных подарков!
             </div>
 
         </div>
             
-        <div class="b-sale-subscribe">
-            <form action="#">
+        <div ng-class="subscribeSuccess ?  'state_success' : ''" class="b-sale-subscribe">
+            <div class="b-sale-subscribe__access mod_1">
+                        <div class="b-sale-subscribe__access-icon"></div>
+                        <div class="b-sale-subscribe__access-text">Письмо скоро прийдет!</div>
+            </div>
+            <form name="subscribeForm" class="b-sale-subscribe-form g-form" novalidate>
                 <div class="b-form-row g-clearfix">
                     <div class="b-form-row__col size_2_3">
-                        <input name="#" type="text" placeholder = "Электронная почта" class="b-form-input-text mod_subscribe">
+                        <input name="email" ng-model="email" required type="email" placeholder = "Электронная почта" class="b-form-input-text mod_subscribe">
                     </div>
                     <div class="b-form-row__col size_1_3">
-                         <span class="b-button b-button_scheme_red mod_subscribe">
+                         <span ng-class="subscribeForm.isSend ? 'state_loading' : ''" ng-click="submitSubscribe()" class="b-button b-button_scheme_red mod_subscribe">
                             <span class="b-button__text">Жду письма</span>
                             <button class="b-button__link"></button>
                         </span>
@@ -51,35 +55,38 @@
                     <div class="b-sale-timer__top">До начала продаж осталось</div>
                     <div class="b-sale-timer__list">
                         <div class="b-sale-timer__item">
-                            <div class="b-sale-timer__item-count">00</div>
+                            <div class="b-sale-timer__item-count">{{timer.dd}}</div>
                             <div class="b-sale-timer__item-note">дней</div>
                         </div>
                         <div class="b-sale-timer__space"></div>
                         <div class="b-sale-timer__item">
-                            <div class="b-sale-timer__item-count">00</div>
+                            <div class="b-sale-timer__item-count">{{timer.hh}}</div>
                             <div class="b-sale-timer__item-note">часов</div>
                         </div>
                         <div class="b-sale-timer__space"></div>
                         <div class="b-sale-timer__item">
-                            <div class="b-sale-timer__item-count">00</div>
+                            <div class="b-sale-timer__item-count">{{timer.mm}}</div>
                             <div class="b-sale-timer__item-note">минут</div>
                         </div>
                         <div class="b-sale-timer__space"></div>
                         <div class="b-sale-timer__item">
-                            <div class="b-sale-timer__item-count">00</div>
+                            <div class="b-sale-timer__item-count">{{timer.ss}}</div>
                             <div class="b-sale-timer__item-note">секунд</div>
                         </div>
                     </div>
                 </div>
-
-                <div class="b-sale-subscribe">
-                    <form action="#">
+                <div ng-class="subscribeSuccess ?  'state_success' : ''" class="b-sale-subscribe">
+                    <div class="b-sale-subscribe__access mod_2">
+                        <div class="b-sale-subscribe__access-icon"></div>
+                        <div class="b-sale-subscribe__access-text">Вскоре мы пригласим вас за подарками!</div>
+                    </div>
+                    <form name="subscribeForm" class="b-sale-subscribe-form g-form" novalidate>
                         <div class="b-form-row g-clearfix">
                             <div class="b-form-row__col size_2_3">
-                                <input name="#" type="text" placeholder = "Электронная почта" class="b-form-input-text mod_subscribe">
+                                <input name="email" ng-model="email" required type="email" placeholder = "Электронная почта" class="b-form-input-text mod_subscribe">
                             </div>
                             <div class="b-form-row__col size_1_3">
-                                 <span class="b-button b-button_scheme_red mod_subscribe">
+                                 <span ng-class="subscribeForm.isSend ? 'state_loading' : ''" ng-click="submitSubscribe()" class="b-button b-button_scheme_red mod_subscribe">
                                     <span class="b-button__text">Жду письма</span>
                                     <button class="b-button__link"></button>
                                 </span>
@@ -93,22 +100,9 @@
                 <div class="b-sale-sprint-roud__start">Старт</div>
                 <div class="b-sale-sprint-roud__end">Финиш</div>
                 <div class="b-sale-sprint-roud__line">
-                    <div class="b-sale-sprint-roud__line-item mod_1 scheme_blue">
-                        <div class="b-sale-sprint-roud__line-note">6 февраля</div>
+                    <div ng-repeat="date in dates" ng-class="date.cls" class="b-sale-sprint-roud__line-item">
+                        <div class="b-sale-sprint-roud__line-note">{{date.text}}</div>
                     </div>
-                    <div class="b-sale-sprint-roud__line-item mod_2 scheme_red">
-                        <div class="b-sale-sprint-roud__line-note">14 февраля</div>
-                    </div>
-                    <div class="b-sale-sprint-roud__line-item mod_3 scheme_red">
-                        <div class="b-sale-sprint-roud__line-note">23 февраля</div>
-                    </div>
-                    <div class="b-sale-sprint-roud__line-item mod_4 scheme_red">
-                        <div class="b-sale-sprint-roud__line-note">5 марта</div>
-                    </div>
-                    <div class="b-sale-sprint-roud__line-item mod_5 scheme_red">
-                        <div class="b-sale-sprint-roud__line-note">31 марта</div>
-                    </div>
-
                 </div>
             </div>
 
@@ -123,7 +117,7 @@
                 </div>
                 <div class="b-sale-game-bottom">
                     <div class="b-sale-game-bottom-note">Специальные подарки от NetPrint и Qiwi Wallet</div>
-                    <a href="#3" class="b-button-sale">Получить подарок</a>
+                    <a href="yeti/" class="b-button-sale">Получить подарок</a>
                 </div>
             </div>
             <div class="b-sale-game mod_2">
@@ -133,7 +127,7 @@
                 </div>
                 <div class="b-sale-game-bottom">
                     <div class="b-sale-game-bottom-note">Специальные подарки от NetPrint и Qiwi Wallet</div>
-                    <a href="#3" class="b-button-sale">Получить подарок</a>
+                    <a href="biathlon/" class="b-button-sale">Получить подарок</a>
                 </div>
             </div>
             <div class="b-sale-game mod_3">
@@ -143,7 +137,7 @@
                 </div>
                 <div class="b-sale-game-bottom">
                     <div class="b-sale-game-bottom-note">Специальные подарки от NetPrint и Qiwi Wallet</div>
-                    <a href="#3" class="b-button-sale">Получить подарок</a>
+                    <a href="climber/" class="b-button-sale">Получить подарок</a>
                 </div>
             </div>
         </div>
@@ -158,133 +152,21 @@
         
         <div class="b-sale-prods">
             <div class="b-sale-prods-h g-clearfix">
-                <div class="b-sale-prod">
+                <div ng-repeat="card in products" class="b-sale-prod">
                     <span class="b-sale-product-image">
-                        <img class="b-product-image-h" src="asset/i/b-indexSale/samsung.png">
+                        <img ng-class="card.modImg" class="b-product-image-h" ng-src="{{card.img}}">
                     </span>
                     <span class="b-sale-br">
-                        <a href="#" class="b-sale-br-link">Мобильные телефоны</a>&nbsp;/
+                        <a ng-href="{{card.subUrl}}" target="_blank" class="b-sale-br-link">{{card.subName}}</a>&nbsp;/
                     </span>
                     <span class="b-sale-product-title">
-                        Samsung Galaxy S3 i9300 16GB Marble White
+                        {{card.title}}
                     </span>
                     <div class="b-sale-conts">
-                        <div class="b-sale-cont scheme_gray">18 140 <span class="g-ruble">p</span></div>
-                        <div class="b-sale-cont scheme_yellow">18 140 <span class="g-ruble">p</span></div>
+                        <div ng-if="card.oldPrice" class="b-sale-cont scheme_gray">{{card.oldPrice | stmNumber}} <span class="g-ruble">p</span></div>
+                        <div class="b-sale-cont scheme_yellow">{{card.price | stmNumber}} <span class="g-ruble">p</span></div>
                     </div>
-                    <a href="#3" class="b-sale-product-link"></a>
-                </div>
-                <div class="b-sale-prod">
-                    <span class="b-sale-product-image">
-                        <img class="b-product-image-h" src="asset/i/b-indexSale/samsung.png">
-                    </span>
-                    <span class="b-sale-br">
-                        <a href="#" class="b-sale-br-link">Мобильные телефоны</a>&nbsp;/
-                    </span>
-                    <span class="b-sale-product-title">
-                        Samsung Galaxy S3 i9300 16GB Marble White
-                    </span>
-                    <div class="b-sale-conts">
-                        <div class="b-sale-cont scheme_gray">18 140 <span class="g-ruble">p</span></div>
-                        <div class="b-sale-cont scheme_yellow">18 140 <span class="g-ruble">p</span></div>
-                    </div>
-                    <a href="#3" class="b-sale-product-link"></a>
-                </div>
-                <div class="b-sale-prod">
-                    <span class="b-sale-product-image">
-                        <img class="b-product-image-h" src="asset/i/b-indexSale/samsung.png">
-                    </span>
-                    <span class="b-sale-br">
-                        <a href="#" class="b-sale-br-link">Мобильные телефоны</a>&nbsp;/
-                    </span>
-                    <span class="b-sale-product-title">
-                        Samsung Galaxy S3 i9300 16GB Marble White
-                    </span>
-                    <div class="b-sale-conts">
-                        <div class="b-sale-cont scheme_gray">18 140 <span class="g-ruble">p</span></div>
-                        <div class="b-sale-cont scheme_yellow">18 140 <span class="g-ruble">p</span></div>
-                    </div>
-                    <a href="#3" class="b-sale-product-link"></a>
-                </div>
-                <div class="b-sale-prod">
-                    <span class="b-sale-product-image">
-                        <img class="b-product-image-h" src="asset/i/b-indexSale/samsung.png">
-                    </span>
-                    <span class="b-sale-br">
-                        <a href="#" class="b-sale-br-link">Мобильные телефоны</a>&nbsp;/
-                    </span>
-                    <span class="b-sale-product-title">
-                        Samsung Galaxy S3 i9300 16GB Marble White
-                    </span>
-                    <div class="b-sale-conts">
-                        <div class="b-sale-cont scheme_gray">18 140 <span class="g-ruble">p</span></div>
-                        <div class="b-sale-cont scheme_yellow">18 140 <span class="g-ruble">p</span></div>
-                    </div>
-                    <a href="#3" class="b-sale-product-link"></a>
-                </div>
-                <div class="b-sale-prod">
-                    <span class="b-sale-product-image">
-                        <img class="b-product-image-h" src="asset/i/b-indexSale/samsung.png">
-                    </span>
-                    <span class="b-sale-br">
-                        <a href="#" class="b-sale-br-link">Мобильные телефоны</a>&nbsp;/
-                    </span>
-                    <span class="b-sale-product-title">
-                        Samsung Galaxy S3 i9300 16GB Marble White
-                    </span>
-                    <div class="b-sale-conts">
-                        <div class="b-sale-cont scheme_gray">18 140 <span class="g-ruble">p</span></div>
-                        <div class="b-sale-cont scheme_yellow">18 140 <span class="g-ruble">p</span></div>
-                    </div>
-                    <a href="#3" class="b-sale-product-link"></a>
-                </div>
-                <div class="b-sale-prod">
-                    <span class="b-sale-product-image">
-                        <img class="b-product-image-h" src="asset/i/b-indexSale/samsung.png">
-                    </span>
-                    <span class="b-sale-br">
-                        <a href="#" class="b-sale-br-link">Мобильные телефоны</a>&nbsp;/
-                    </span>
-                    <span class="b-sale-product-title">
-                        Samsung Galaxy S3 i9300 16GB Marble White
-                    </span>
-                    <div class="b-sale-conts">
-                        <div class="b-sale-cont scheme_gray">18 140 <span class="g-ruble">p</span></div>
-                        <div class="b-sale-cont scheme_yellow">18 140 <span class="g-ruble">p</span></div>
-                    </div>
-                    <a href="#3" class="b-sale-product-link"></a>
-                </div>
-                <div class="b-sale-prod">
-                    <span class="b-sale-product-image">
-                        <img class="b-product-image-h" src="asset/i/b-indexSale/samsung.png">
-                    </span>
-                    <span class="b-sale-br">
-                        <a href="#" class="b-sale-br-link">Мобильные телефоны</a>&nbsp;/
-                    </span>
-                    <span class="b-sale-product-title">
-                        Samsung Galaxy S3 i9300 16GB Marble White
-                    </span>
-                    <div class="b-sale-conts">
-                        <div class="b-sale-cont scheme_gray">18 140 <span class="g-ruble">p</span></div>
-                        <div class="b-sale-cont scheme_yellow">18 140 <span class="g-ruble">p</span></div>
-                    </div>
-                    <a href="#3" class="b-sale-product-link"></a>
-                </div>
-                <div class="b-sale-prod">
-                    <span class="b-sale-product-image">
-                        <img class="b-product-image-h" src="asset/i/b-indexSale/xbox.png">
-                    </span>
-                    <span class="b-sale-br">
-                        <a href="#" class="b-sale-br-link">Мобильные телефоны</a>&nbsp;/
-                    </span>
-                    <span class="b-sale-product-title">
-                        Samsung Galaxy S3 i9300 16GB Marble White
-                    </span>
-                    <div class="b-sale-conts">
-                        <div class="b-sale-cont scheme_gray">18 140 <span class="g-ruble">p</span></div>
-                        <div class="b-sale-cont scheme_yellow">18 140 <span class="g-ruble">p</span></div>
-                    </div>
-                    <a href="#3" class="b-sale-product-link"></a>
+                    <a ng-href="{{card.url}}" target="_blank" class="b-sale-product-link"></a>
                 </div>
             </div>
         </div>
@@ -296,56 +178,51 @@
                 <div class="b-sale-timer__top">До начала продаж осталось</div>
                 <div class="b-sale-timer__list">
                     <div class="b-sale-timer__item">
-                        <div class="b-sale-timer__item-count">00</div>
+                        <div class="b-sale-timer__item-count">{{timer.dd}}</div>
                         <div class="b-sale-timer__item-note">дней</div>
                     </div>
                     <div class="b-sale-timer__space"></div>
                     <div class="b-sale-timer__item">
-                        <div class="b-sale-timer__item-count">00</div>
+                        <div class="b-sale-timer__item-count">{{timer.hh}}</div>
                         <div class="b-sale-timer__item-note">часов</div>
                     </div>
                     <div class="b-sale-timer__space"></div>
                     <div class="b-sale-timer__item">
-                        <div class="b-sale-timer__item-count">00</div>
+                        <div class="b-sale-timer__item-count">{{timer.mm}}</div>
                         <div class="b-sale-timer__item-note">минут</div>
                     </div>
                     <div class="b-sale-timer__space"></div>
                     <div class="b-sale-timer__item">
-                        <div class="b-sale-timer__item-count">00</div>
+                        <div class="b-sale-timer__item-count">{{timer.ss}}</div>
                         <div class="b-sale-timer__item-note">секунд</div>
                     </div>
                 </div>
             </div>
 
-            <div class="b-sale-subscribe">
-                <form action="#" class="ng-pristine ng-valid">
-                    <div class="b-form-row g-clearfix">
-                        <div class="b-form-row__col size_2_3">
-                            <input name="#" type="text" placeholder="Электронная почта" class="b-form-input-text mod_subscribe">
-                        </div>
-                        <div class="b-form-row__col size_1_3">
-                             <span class="b-button b-button_scheme_red mod_subscribe">
-                                <span class="b-button__text">Жду письма</span>
-                                <button class="b-button__link"></button>
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="b-sale-subscribe__access mod_1">
+            <div ng-class="subscribeSuccess ?  'state_success' : ''" class="b-sale-subscribe">
+                    <div class="b-sale-subscribe__access mod_3">
                         <div class="b-sale-subscribe__access-icon"></div>
-                        <div class="b-sale-subscribe__access-text">Письмо скоро придет!</div>
+                        <div class="b-sale-subscribe__access-text">Считайте, что приглашение уже на почте!</div>
                     </div>
-                </form>
-
-               
+                    <form name="subscribeForm" class="b-sale-subscribe-form g-form" novalidate>
+                        <div class="b-form-row g-clearfix">
+                            <div class="b-form-row__col size_2_3">
+                                <input name="email" ng-model="email" required type="email" placeholder = "Электронная почта" class="b-form-input-text mod_subscribe">
+                            </div>
+                            <div class="b-form-row__col size_1_3">
+                                 <span ng-class="subscribeForm.isSend ? 'state_loading' : ''" ng-click="submitSubscribe()" class="b-button b-button_scheme_red mod_subscribe">
+                                    <span class="b-button__text">Жду письма</span>
+                                    <button class="b-button__link"></button>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
             </div>
         </div>
 
-        <div class="b-sale-footer g-cleafix">
+        <div class="b-sale-footer g-clearfix">
             <div class="b-sale-footer-left">
-                <div class="b-sale-footer-left-h">
-                    Lorem ipsum dolor sit amet, consectetur.
-                </div>
+                <div stm-index-social-like class="b-sale-footer-left-h"></div>
             </div>
             <div class="b-sale-footer-right">
                 <div class="b-sale-footer-right-title">Собери команду — <br>вместе призов больше </div>

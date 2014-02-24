@@ -167,6 +167,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         upButtonPressed = false,
                         goingDownButtonPopupTimeout,
                         popupInUse = false,
+                        clicksInterval,
                         keyEvents = {
                             'keydown': function (e) {
                                 if (e.keyCode == 38) { // "arrow up"
@@ -453,7 +454,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                             });
                         }, 500);
 
-                        $interval(function(){
+                        clicksInterval = $interval(function(){
                             clicksIntervalCount = clicksCount;
                             clicksCount = 0;
                         }, clicksRatioIntervalMs);
@@ -506,7 +507,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                             .off(blockUpEvents)
                             .off(keyEvents)
                             .on(blockUpEvents);
-
+                        $interval.cancel(clicksInterval);
                         $timeout(function(){
                             updatePosition(startPosition);
                             scope.showToolbar = false;
