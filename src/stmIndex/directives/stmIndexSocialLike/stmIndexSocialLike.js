@@ -107,7 +107,7 @@ angular.module('stmIndex')
         });
     }      
     function likeFB(el){
-        var fbEl = $('<span><fb:like href="'+share.url+'" send="false" layout="button_count" width="90" show_faces="false"></fb:like></span>');
+        var fbEl = $('<span style="display: inline-block;overflow: hidden;padding-top: 2px;height: 20px;"><fb:like href="'+share.url+'" send="false" layout="button_count" width="90" show_faces="false"></fb:like></span>');
         el.append(fbEl);
         fbApi(function(){
             this.XFBML.parse(fbEl.get(0));

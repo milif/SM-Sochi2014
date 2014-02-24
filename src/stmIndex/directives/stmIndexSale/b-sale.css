@@ -636,10 +636,6 @@ a.b-sale-br-link {
     display: table-cell;
     width: 306px;
 }
-.b-sale-footer-left-h > * {
-    display: inline-block;
-    height: 22px;
-}
 .b-sale-footer-right {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
