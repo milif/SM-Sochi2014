@@ -690,13 +690,14 @@
 }
 .b-gameEti-shots-item {
     display: inline-block;
-    background: url(asset/i/common/icons.png) -64px 0px no-repeat;
-    width: 45px;
-    height: 40px;
+    background-image: url(asset/i/common/icons.png);
+    background-position: -585px -163px;
+    width: 33px;
+    height: 33px;
     margin: 0 9px;
 }
 .b-gameEti-shots-item.state_active {
-    background-position: -111px 0px;
+    background-position: -585px -110px;
 }
 
 /* b-gameEti-shot */
