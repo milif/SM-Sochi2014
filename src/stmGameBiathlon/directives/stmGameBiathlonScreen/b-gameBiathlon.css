@@ -85,33 +85,6 @@
     margin-left: -35px;
     margin-top: -130px;    
 }
-/* b-gameBiathlon-popup */
-/*==========================================================*/
-.b-gameBiathlon-popup {
-    overflow: auto;
-    padding: 10px;
-    position: absolute;
-    z-index: 10000;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    right: 0;
-}
-.b-gameBiathlon-popup {
-    -webkit-transition: all linear 0.2s;
-    transition: all linear 0.2s;
-    opacity: 1;
-}
-
-.b-gameBiathlon-popup.ng-hide-add,
-.b-gameBiathlon-popup.ng-hide-remove {
-    display: block !important;
-}
-
-.b-gameBiathlon-popup.ng-hide {
-    opacity: 0;
-}
-
 /* Persons */
 /*==========================================================*/
 /* yeti */

@@ -676,35 +676,6 @@
     cursor: url(asset/i/b-gameEti/cursor.cur), auto;
 }
 
-/* b-popup */
-/*==========================================================*/
-.b-gameEti-popup {
-    position: absolute;
-    z-index: 10000;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    overflow: auto;
-    padding: 10px;
-}
-
-.b-gameEti-popup {
-    -webkit-transition: all linear 0.2s;
-    transition: all linear 0.2s;
-    line-height: 20px;
-    opacity: 1;
-}
-
-.b-gameEti-popup.ng-hide-add,
-.b-gameEti-popup.ng-hide-remove {
-    display: block !important;
-}
-
-.b-gameEti-popup.ng-hide {
-    opacity: 0;
-}
-
 /* b-gameEti-panel */
 /*==========================================================*/
 

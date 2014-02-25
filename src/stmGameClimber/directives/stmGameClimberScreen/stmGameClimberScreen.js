@@ -94,7 +94,15 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                     scope.$on('popupPlay', function(){
                         scope.play();
                     });                 
-                                    
+                       
+                    scope.showInfoPopup = false;
+                    scope.showInfo = function(){
+                        scope.showInfoPopup = true;
+                    }
+                    scope.closeInfo = function(){
+                        scope.showInfoPopup = false;
+                    }   
+                                                     
                     var $ = angular.element,
                         difficulty = attrs.difficulty,
                         g_pipeEl = iElement.find('.gameClimber-fone-h'),

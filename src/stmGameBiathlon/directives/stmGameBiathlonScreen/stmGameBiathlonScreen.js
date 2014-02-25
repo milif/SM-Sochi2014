@@ -243,6 +243,13 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
             $scope.eti = eti;
             $scope.traceFrames = track.frames;
             $scope.showStartPopup = true;
+            $scope.showInfoPopup = false;
+            $scope.showInfo = function(){
+                $scope.showInfoPopup = true;
+            }
+            $scope.closeInfo = function(){
+                $scope.showInfoPopup = false;
+            }
             $scope.play = startGame;
             $scope.$on('$destroy', function() {
                 $interval.cancel(iterator);
