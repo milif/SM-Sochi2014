@@ -948,7 +948,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonFrameContent', ['$co
             'update': '='
         },    
         controller:['$scope', '$element', '$rootScope', function($scope, $element, $rootScope){
-            $frameScope = $rootScope.$new();
+            var $frameScope = $rootScope.$new();
             tpl($frameScope, function(el){
                 $element.append(el);
             });  
