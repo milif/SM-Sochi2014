@@ -10,6 +10,12 @@ if(!count($rs)){
             ALTER TABLE `user` ADD INDEX `ref_key` (`ref_key`);
         ");
 }
+$rs = DB::query("SHOW COLUMNS FROM `user` LIKE 'climber_passed';");
+if(!count($rs)){
+        DB::query("
+            ALTER TABLE `user` ADD COLUMN `climber_passed` INT DEFAULT 0;
+        ");
+}
 $rs = DB::query("SHOW COLUMNS FROM `user` LIKE 'ref_id';");
 if(!count($rs)){
         DB::query("

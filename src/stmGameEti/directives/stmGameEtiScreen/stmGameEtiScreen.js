@@ -96,7 +96,12 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
         templateUrl: 'partials/stmGameEti.directive:stmGameEtiScreen:template.html',
         compile: function(tElement){
             alertTpl = $compile(tElement.find('[data-alert]').remove());
-            countAnimals = tElement.find('[data-animal]').length;
+            var animals = [];
+            tElement.find('[data-animal]').each(function(){
+                var animal = $(this).data('animal');
+                if(animals.indexOf(animal) < 0) animals.push(animal);
+            });
+            countAnimals = animals.length;
         },
         controller: ['$scope', '$element', '$interval', '$animate', '$timeout', 'Game', 'Achiev', function($scope, $element, $interval, $animate, $timeout, Game, Achiev){
             
@@ -138,6 +143,7 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                     startGame();
                 }, 0);
             };
+            
             
             var elEvents = {
                 'mousemove': function(e){
@@ -201,15 +207,18 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
             var foundedEti;
             var etis;
             var startTime;
+            var animals;
             
             $scope.$emit('gameInit');
             
             function startGame(){
                 if(isGame) return;
+                ACHIVE_DEER.count = 0;
                 isGame = true;
                 startTime = new Date().getTime();
                 foundedEti = 0;
                 etis = {};
+                animals = {};
                 $scope.score = 0;
                 $scope.showToolbar = true;
                 $scope.ineti = 0;
@@ -299,6 +308,7 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                             endTime: time + (currentLevel[1] * 0.7 + Math.random() * currentLevel[1] * 0.6),
                             animCls: 'state_show',
                             isMove: el.data('move'),
+                            animal: el.data('animal'),
                             isCheckTree: el.data('checkTree')
                         };
                         if(target.isMove) {
@@ -333,6 +343,7 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                 
                 var success = false;
                 var targetName;
+                var isAnimal = false;
                 
                 targets.filter(':visible').each(function(){
                     var el = $(this);   
@@ -347,8 +358,9 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                             if(!target.hasShoot){
                                 target.hasShoot = true;
                                 var eti = el.data('eti'); 
-                                if(!ACHIVE_ANIMALS.active && el.data('animal')){
-                                    el.data('animal', false);
+                                isAnimal = !!target.animal;
+                                if(!ACHIVE_ANIMALS.active && target.animal && !animals[target.animal]){
+                                    animals[target.animal] = true;
                                     if(ACHIVE_ANIMALS.count++ == countAnimals - 1){
                                         saveAchiev(ACHIVE_ANIMALS);
                                     }
@@ -386,7 +398,9 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                     }
                 });
                 if(!success){
-                    $scope.attempts--;
+                    if(!isAnimal) {
+                        $scope.attempts--;
+                    }                    
                     showMessage([outMsg[0], $scope.attempts == 1 ? lastMsg : targetName || outMsg[1], outMsg[2]], e);
                 }
             }

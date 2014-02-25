@@ -3,7 +3,7 @@
 require_once __DIR__.'/../config.php';
 
 if(isset($_GET['ref'])){
-    setcookie(SESSION_COOKIE.'_ref', $_GET['ref'].'.'.basename(dirname($_SERVER['REQUEST_URI'])), 0, dirname($_SERVER['REQUEST_URI']));
+    setcookie(SESSION_COOKIE.'_ref', $_GET['ref'].'.'.basename(dirname($_SERVER['REQUEST_URI'])), 0, APP_ROOT_URL.'/api/');
     header("Location: ".strtok($_SERVER["REQUEST_URI"],'?'));
     exit;
 }

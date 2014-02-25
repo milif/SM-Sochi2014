@@ -2,6 +2,7 @@
 
 require_once __DIR__.'/DB.class.php';
 require_once __DIR__.'/Auth.class.php';
+require_once __DIR__.'/Achiev.class.php';
 
 class Game {
     static public function save($data){
@@ -13,7 +14,15 @@ class Game {
         
         if($data['action'] != 'end') return;
         
-        $rs = DB::query("SELECT id FROM `user` WHERE score_game_$type < :score AND id = ".CLIENT_ID, array(':score' => $score));
+        if($type == 'climber' && $data['data']['final']){
+            DB::query("UPDATE `user` SET climber_passed = climber_passed + 1 WHERE id = ".CLIENT_ID);
+            $rs = DB::query("SELECT climber_passed FROM `user` WHERE id = ".CLIENT_ID);
+            if($rs[0]['climber_passed'] == 10 ) {
+                Achiev::add('climber.kingofhill');
+            }
+        }
+        
+        $rs = DB::query("SELECT id FROM `user` WHERE score_game_$type <= :score AND id = ".CLIENT_ID, array(':score' => $score));
         if(count($rs)){
             DB::query("UPDATE `user` SET score_game_$type = :score, data_game_$type = :data WHERE id = ".CLIENT_ID, array(':score' => $score, ':data'=> $jsonData));
         }
@@ -25,8 +34,12 @@ class Game {
         $row = $rs[0];
         return array(
             'data' => json_decode($row['data_game_'.$type], true),
-            'score' => $row['score_game_'.$type],
+            'score' => (int)$row['score_game_'.$type],
             'achievements' => explode(',', str_replace("$type.", '', $row['data_achievement_'.$type]))
         );
     }
+    static public function getClimberPassed(){
+        $rs = DB::query("SELECT climber_passed FROM `user` WHERE id = ".CLIENT_ID);
+        return is_array($rs) ? (int)$rs[0]['climber_passed'] : 0;
+    }    
 }

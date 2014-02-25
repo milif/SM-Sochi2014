@@ -1,97 +1,99 @@
 <!-- Popup -->
-<div class='b-popup-h'>
-    <div class='b-popup-hh'>
-        <div class='b-popup g-font'>
-            <div ng-if="gameData" class="b-popup__top-result">
-                    <div class="b-popup__top-result-title">
-                        <span class="b-icons b-icons_star2">
-                            <span class="b-icons__item"></span>
-                        </span>
-                        {{(gameData.score | number:0).replace(',',' ')}} баллов
-                    </div>
-                    <div ng-if="gameData.best.score > gameData.score" class="b-popup__top-result-note">{{(gameData.best.score | number:0).replace(',',' ')}} баллов — ваш лучший результат</div>
-                    <div ng-if="gameData.best.score <= gameData.score" class="b-popup__top-result-note">Это ваш лучший результат</div>
-                    <div ng-class="gameData._isDetails ? 'state_active' : '' " class="b-slide-result">
-                        <div class="b-slide-result-row">
-                            <div ng-repeat="bestitem in gameData.best.items" ng-class="'mod_' + bestitem.type" class="b-slide-result-item">
-                                <div class="b-slide-result-icon"></div>
-                                <div class="b-slide-result-text">{{(bestitem.score | number:0).replace(',',' ')}}</div>
-                            </div>
+<div ng-if="show" ng-class="hasClose ? 'mod_closable' : ''" class="b-popup-l">
+    <div style="height: 100%; width: 100%;">
+    <div class='b-popup-h'>
+        <div class='b-popup-hh'>
+            <div class='b-popup g-font'>
+                <span ng-if="hasClose" ng-click="close()" class="b-popup-close"></span>
+                <div ng-if="_gameData" class="b-popup__top-result">
+                        <div class="b-popup__top-result-title">
+                            <span class="b-icons b-icons_star2">
+                                <span class="b-icons__item"></span>
+                            </span>
+                            {{(_gameData.score | number:0).replace(',',' ')}} баллов
                         </div>
-                        
-                        <div ng-if="gameData.best.items" ng-click="gameData._isDetails = !gameData._isDetails" class="b-slide-result-arrow"></div>
+                        <div ng-if="_gameData.best.score > _gameData.score" class="b-popup__top-result-note">{{(_gameData.best.score | number:0).replace(',',' ')}} баллов — ваш лучший результат</div>
+                        <div ng-if="_gameData.best.score <= _gameData.score" class="b-popup__top-result-note">Это ваш лучший результат</div>
+                        <div ng-if="_gameData.best.items" ng-class="_gameData._isDetails ? 'state_active' : '' " class="b-slide-result">
+                            <div class="b-slide-result-row">
+                                <div ng-repeat="bestitem in _gameData.best.items" ng-class="'mod_' + bestitem.type" class="b-slide-result-item">
+                                    <div class="b-slide-result-icon"></div>
+                                    <div class="b-slide-result-text">{{(bestitem.score | number:0).replace(',',' ')}}</div>
+                                </div>
+                            </div>
+                            
+                            <div ng-if="_gameData.best.items" ng-click="_gameData._isDetails = !_gameData._isDetails" class="b-slide-result-arrow"></div>
 
-                    </div>
-                    
-                    <!--<a href="#2" class="b-popup-close"></a>-->
-
-            </div>
-
-            <div ng-if="gameData" class="b-achive-row">
-                <div ng-repeat="achieve in gameData.achievements" class="b-achive-item">
-                    <div class="b-achive">
-                        <div ng-class="'achiv_' + gameData.type + '_' + achieve.type + (achieve.active ? ' state_active' : '')" class="b-achive__h"></div>
-                    </div>
-                    <div class="b-achive-item-note" ng-bind-html="achieve.text"></div>
+                        </div>
+                       
                 </div>
-          </div>          
-          <div class='b-popup-content'>
-            <div ng-if="!gameData" ng-transclude></div>
-            <div ng-if="!gameData" class='b-popup-button'>
-                <div class='b-button button_size_big b-button_scheme_yellow'>
-                    <div class='b-button__text'>Играть</div>
-                    <a class='b-button__link' ng-click="play()" href=''></a>
-                </div>
-            </div>
-            <div ng-if="gameData" class="b-popup-button ng-scope">
-                <div class="b-button button_size_big b-button_scheme_yellow mod_1">
-                    <div class="b-button__text">Улучшить результат</div>
-                    <a ng-click="play()" class="b-button__link" ng-href=""></a>
-                </div>
-            </div>            
-          </div>        
-          <div ng-show="gameData && !gameData.hasMnogo" ng-class="mnogoSuccess ? 'state_success' : (mnogoForm.error ? 'state_error ' + mnogoForm.error : '')" ng-show="gameData" class="b-popup-mnogo">
-            <span class="b-popup-mnogo__icon"></span>
-            <div class="b-popup-mnogo-note success_msg">
-                 <div class="b-popup-mnogo-note__top">Ваша карта принята</div>
-                 <div class="b-popup-mnogo-note__text">Бонусы будут начислены в самое ближайшее время</div>
-            </div>                         
-            <form name="mnogoForm" class="b-popup-form g-form">
-                <div>
-                    <div class="b-form-top">
-                        Укажите номер карты Много.ру и получите бонусы
-                        <a href="http://www.mnogo.ru/anketa.html?range=879" target="_blank" class="b-form-top__more">
-                            Как получить карту?
-                        </a>
-                    </div>
 
-                    <div class="b-form-row">
-                        <input name="code" required ng-model="mnogo" type="text" ui-mask="9999 9999" placeholder = "XXXX XXXX" class="b-form-input-text mod_wide">
-                        <span ng-class="mnogoIsSend ? 'state_loading' : ''" ng-click="submitMnogo()" class="b-button mod_mnogo">
-                            <span class="b-button__text">Применить</span>
-                            <button class="b-button__link"></button>
-                        </span>
+                <div ng-if="_gameData" class="b-achive-row">
+                    <div ng-repeat="achieve in _gameData.achievements" class="b-achive-item">
+                        <div class="b-achive">
+                            <div ng-class="'achiv_' + _gameData.type + '_' + achieve.type + (achieve.active ? ' state_active' : '')" class="b-achive__h"></div>
+                        </div>
+                        <div class="b-achive-item-note" ng-bind-html="achieve.text"></div>
+                    </div>
+              </div>          
+              <div class='b-popup-content'>
+                <div ng-show="!_gameData" ng-transclude></div>
+                <div ng-if="hasFooter && !_gameData" class='b-popup-button'>
+                    <div class='b-button button_size_big b-button_scheme_yellow'>
+                        <div class='b-button__text'>Играть</div>
+                        <a class='b-button__link' ng-click="play()" href=''></a>
                     </div>
                 </div>
-            </form>
-            <div class="b-popup-mnogo-note error_busy_msg">
-                 <div class="b-popup-mnogo-note__top">Упс.. карта не принята</div>
-                 <div class="b-popup-mnogo-note__text">Эта карта уже используется, но вы можете <a href="" ng-click="mnogoForm.error = null">указать другую</a>.</div>
-            </div>             
-          </div>          
-          <div class='b-popup-footer'>
-            <div class="b-popup-footer-left">
-                <a href="map/" class="back-map">
-                    <span class="b-icons b-icons_arrow">
-                        <span class="b-icons__item"></span>
-                    </span>На карту
-                </a>
-            </div>
-            <div class="b-popup-footer-right">
-              <div class="b-popup-footer-share">Поделиться с друзьями:<div stm-index-social scheme="yellow" buttons-count="4" class="b-popup-social"></div></div>
-            </div>
-          </div>
-        </div>    
+                <div ng-if="_gameData" class="b-popup-button ng-scope">
+                    <div class="b-button button_size_big b-button_scheme_yellow mod_1">
+                        <div class="b-button__text">Улучшить результат</div>
+                        <a ng-click="play()" class="b-button__link" ng-href=""></a>
+                    </div>
+                </div>            
+              </div>        
+              <div ng-show="_gameData && !_gameData.hasMnogo" ng-class="mnogoSuccess ? 'state_success' : (mnogoForm.error ? 'state_error ' + mnogoForm.error : '')" ng-show="_gameData" class="b-popup-mnogo">
+                <span class="b-popup-mnogo__icon"></span>
+                <div class="b-popup-mnogo-note success_msg">
+                     <div class="b-popup-mnogo-note__top">Ваша карта принята</div>
+                     <div class="b-popup-mnogo-note__text">Бонусы будут начислены в самое ближайшее время</div>
+                </div>                         
+                <form name="$parent.mnogoForm" class="b-popup-form g-form" novalidate>
+                    <div>
+                        <div class="b-form-top">
+                            Укажите номер карты Много.ру и получите бонусы
+                            <a href="http://www.mnogo.ru/anketa.html?range=879" target="_blank" class="b-form-top__more">
+                                Как получить карту?
+                            </a>
+                        </div>
+
+                        <div class="b-form-row">
+                            <input name="code" required ng-model="$parent.mnogo" type="text" ui-mask="9999 9999" placeholder = "XXXX XXXX" class="b-form-input-text mod_wide">
+                            <span ng-class="mnogoIsSend ? 'state_loading' : ''" ng-click="submitMnogo()" class="b-button mod_mnogo">
+                                <span class="b-button__text">Применить</span>
+                                <button class="b-button__link"></button>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+                <div class="b-popup-mnogo-note error_busy_msg">
+                     <div class="b-popup-mnogo-note__top">Упс.. карта не принята</div>
+                     <div class="b-popup-mnogo-note__text">Эта карта уже используется, но вы можете <a href="" ng-click="mnogoForm.error = null">указать другую</a>.</div>
+                </div>             
+              </div>          
+              <div ng-if="hasFooter" class='b-popup-footer'>
+                <div class="b-popup-footer-left">
+                    <a href="map/" class="back-map">
+                        <span class="b-icons b-icons_arrow">
+                            <span class="b-icons__item"></span>
+                        </span>На карту
+                    </a>
+                </div>
+                <div class="b-popup-footer-right">
+                  <div class="b-popup-footer-share">Поделиться с друзьями:<div stm-index-social scheme="yellow" buttons-count="4" class="b-popup-social"></div></div>
+                </div>
+              </div>
+            </div>    
+        </div>
     </div>
-</div>
-<!-- End Popup -->
+    </div>
+</div>    

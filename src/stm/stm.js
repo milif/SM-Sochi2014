@@ -74,7 +74,7 @@ angular.module('stm',['ngAnimate','ngResource'])
                 layer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});
                 var f = document.getElementsByTagName('script')[0],j=document.createElement('script');
                 j.async=true;
-                j.src='//www.googletagmanager.com/gtm.js?dataLayer='+l+'&id='+id;
+                j.src='//www.googletagmanager.com/gtm.js?id='+id+'&l='+l;
                 f.parentNode.insertBefore(j,f);
             }
             return $stmGtm;
