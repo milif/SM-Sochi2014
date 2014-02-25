@@ -13,16 +13,10 @@
             <div data-targets-range="[1500, 2899]" data-track="4" data-points="[[38,34],[143, 116],[242, 189],[408, 300], [562, 390], [736, 479], [885, 541], [1033, 590], [1219, 639], [1423, 681],[1600, 708], [1796, 730], [1988, 746], [2219, 761], [2454, 770], [2637, 773]]" data-margin="[0, 774]" data-frames="[1,2,5]" class="b-gameBiathlonTrack-h screen_4"></div>
             <div data-targets-range="[0, 3018]" data-track="5" data-points="[[38,64],[238, 57],[513, 37],[773, 13], [991, 4], [1162, 1], [1292, 3], [1509, 14], [1706, 28], [1907, 42],[2073, 53], [2278, 60], [2445, 64], [2610, 66], [2942, 68]]" data-margin="[63, 66]" data-frames="[1,2,5]" class="b-gameBiathlonTrack-h screen_5"></div>    
         </div>
-        
         <div ng-repeat="frame in traceFrames" ng-style="frame.css" class="b-gameBiathlonTrack-h screen_{{frame.name}}">
             <div class="b-gameBiathlonTrack"></div>
-            <div ng-repeat="tree in frame.trees" class="b-biathlon-tree {{tree.name}}" ng-style="tree.css" ></div>
-            <div ng-repeat="target in frame.targets" class="b-biathlon-panel g-noselect" ng-style="target.css" >
-                <div ng-repeat="point in target.points track by $index" ng-class="point ? 'b-biathlon-panel-item_active' : ''" class="b-biathlon-panel-item"></div>
-            </div>
-            <div class="b-gameBiathlon-bonus" ng-repeat="bonus in frame.bonuses" stm-index-bonus="{{bonus.id}}" show="{{bonus.show}}" type="{{bonus.type}}" position="{{bonus.position}}"></div>
-        </div>
-        
+            <div stm-game-biathlon-frame-content update="frame.update" trees="frame.trees" bonuses="frame.bonuses" targets="frame.targets"></div>
+        </div>        
         <div ng-show="!inEti" ng-style="men.css" class="l-b-biathlon-men">
             <div ng-class="'b-biathlon-men_' + men.frameIndex" class="b-biathlon-men"></div>
         </div>
@@ -77,6 +71,10 @@
                 <div stm-index-popup-tabs class="l-popup-tabs">
                     <div class="b-popup-tabs">
                         <div class="b-popup-tabs_item">
+                            <div class="b-popup-tabs_item-decor mod_4"></div>
+                            <div class="b-popup-tabs_item-text">Выстрел</div>
+                        </div>                    
+                        <div class="b-popup-tabs_item">
                             <div class="b-popup-tabs_item-decor mod_1"></div>
                             <div class="b-popup-tabs_item-text">Ускорение</div>
                         </div>
@@ -88,11 +86,10 @@
                             <div class="b-popup-tabs_item-decor mod_3"></div>
                             <div class="b-popup-tabs_item-text">Присесть</div>
                         </div>
-                        <div class="b-popup-tabs_item">
-                            <div class="b-popup-tabs_item-decor mod_4"></div>
-                            <div class="b-popup-tabs_item-text">Выстрел</div>
-                        </div>
                     </div>
+                    <div class="b-popup-tab-content">
+                         Стрельба из винтовки по мишеням
+                    </div>                    
                     <div class="b-popup-tab-content">
                         Чтобы набрать скорость используй ускорение
                     </div>
@@ -101,9 +98,6 @@
                     </div>
                     <div class="b-popup-tab-content">
                         Приседай на склоне, чтобы набрать скорость
-                    </div>
-                    <div class="b-popup-tab-content">
-                        Получай ускорение метко попадая в цели
                     </div>
                 </div>
                 
@@ -115,41 +109,7 @@
                 <div class="b-popup-title">
                     Собирай бонусы от спонсоров
                 </div>
-
-                <div stm-index-popup-tabs class="l-popup-tabs">
-                    <div class="b-popup-tabs">
-                        <div class="b-popup-tabs_item">
-                            <div class="b-slide-result-item mod_mnogo">
-                                <div class="b-slide-result-icon"></div>
-                                <div class="b-slide-result-text">1000</div>
-                            </div> 
-                        </div>
-                        <div class="b-popup-tabs_item">
-                            <div class="b-slide-result-item mod_sber">
-                                <div class="b-slide-result-icon"></div>
-                                <div class="b-slide-result-text">200</div>
-                            </div> 
-                        </div>
-                        <div class="b-popup-tabs_item">
-                            <div class="b-slide-result-item mod_pickpoint">
-                                <div class="b-slide-result-icon"></div>
-                                <div class="b-slide-result-text">200</div>
-                            </div> 
-                        </div>
-                        
-                    </div>
-                    <div class="b-popup-tab-content">
-                        Собери 1000, и получи 1000 баллов Много.ру на свою карту
-                    </div>
-                    <div class="b-popup-tab-content">
-                        Набери 200 баллов, и получи 200 баллов Спасибо
-                    </div>
-                    <div class="b-popup-tab-content">
-                        Собери 200 баллов, чтобы получить промо-код на скидку<br> при покупке данными способами
-                    </div>
-                </div>
-
-
+                <div stm-index-popup-bonus-info></div>
                 <div class="b-popup-title">
                     Получай достижения
                 </div>
@@ -201,21 +161,21 @@
                                  <div class="b-achive-item-note">Звездный стрелок</div>
                              </div>
                         </div>
-                    </div>                    
+                    </div>                  
                     <div class="b-popup-tab-content">
-                        Вы можете получить ускорение метко попадая в цели
+                        Расскажи друзьям об игре через социальные сети.<br>Необходимо чтобы по вашей ссылке зарегистрировалось не мнее 5 друзей.
                     </div>
                     <div class="b-popup-tab-content">
-                        Вы можете получить ускорение метко попадая в цели
+                        Необходимо проехать более 5 км.
                     </div>
                     <div class="b-popup-tab-content">
-                        Вы можете получить ускорение метко попадая в цели
+                        Необходимо 5 раз сблизиться с йети до менее 10 метров,<br>не дав себя поймать.
                     </div>
                     <div class="b-popup-tab-content">
-                        Вы можете получить ускорение метко попадая в цели
+                        Необходимо продержаться в игре не менее 15 минут.
                     </div>
                     <div class="b-popup-tab-content">
-                        Вы можете получить ускорение метко попадая в цели
+                        Необходимо поразить не менее 100 мишений.
                     </div>
                 </div>
     </div>

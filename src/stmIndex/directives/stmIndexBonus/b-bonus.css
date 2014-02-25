@@ -32,6 +32,9 @@
 .b-bonus-sber {
   background-position: -86px -4px;
 }
+.b-bonus-qiwi {
+  background-position: -86px -85px;
+}
 
 .b-bonus.ng-leave {
   -webkit-transition: 0.5s ease-out all;

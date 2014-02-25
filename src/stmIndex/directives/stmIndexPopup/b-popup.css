@@ -239,6 +239,9 @@
 .b-slide-result-item.mod_pickpoint .b-slide-result-icon {
     background-position: -102px 0;
 }
+.b-slide-result-item.mod_qiwi .b-slide-result-icon {
+    background-position: -2px -188px;
+}
 .b-slide-result-text {
     color: #000;
     font-size: 21px;
@@ -735,8 +738,8 @@ a.back-map {
     display: none;
     padding-top: 16px;
     line-height: 16px;
-    height: 32px;
-    margin-bottom: 20px;
+    height: 48px;
+    margin-bottom: 10px;
     overflow: hidden;
 
 }

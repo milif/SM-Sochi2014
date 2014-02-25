@@ -363,7 +363,7 @@
   left: 50%;
   margin-left: -500px;
   bottom: 100px;
-  z-index: 10000;
+  z-index: 9000;
   -webkit-transition:all linear 0.2s;
   transition:all linear 0.2s;
   opacity: 1;

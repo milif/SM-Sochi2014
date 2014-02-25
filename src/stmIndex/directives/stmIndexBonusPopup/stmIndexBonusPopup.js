@@ -22,6 +22,8 @@
           <div stm-index-bonus-popup bonus="1500" type="mnogo"></div>
           <br>
           <div stm-index-bonus-popup bonus="500" type="sber"></div>
+          <br>
+          <div stm-index-bonus-popup bonus="500" type="qiwi"></div>
         <div>
       </file>
     </example>
@@ -32,7 +34,8 @@ angular.module('stmIndex').directive('stmIndexBonusPopup', function(){
     var TEXT = {
         'pickpoint': 'Спасибо за упорство от Пикпоинта!',
         'mnogo': 'от Много.ру!',
-        'sber': 'Спасибо за упорство от Сбербанка!'
+        'sber': 'Спасибо за упорство от Сбербанка!',
+        'qiwi': 'от Qiwi Wallet!'
     }
     return {
         scope: true,
@@ -121,16 +124,16 @@ angular.module('stmIndex').factory('$stmBonus', [function(){
         {
             type: 'mnogo',
             hasAvailable: hasAvailableFactory(function(score){
-                return score < 1000;
+                return true;
             }),
             put: putFactory(function(score){
-                return score < 50 ? 5 : 50;
+                return 25;
             })
         },
         {
             type: 'sber',
             hasAvailable: hasAvailableFactory(function(score){
-                return score < 200;
+                return true;
             }),
             put: putFactory(function(score){
                 return 10;
@@ -139,10 +142,19 @@ angular.module('stmIndex').factory('$stmBonus', [function(){
         {
             type: 'pickpoint',
             hasAvailable: hasAvailableFactory(function(score){
-                return score < 200;
+                return true;
             }),
             put: putFactory(function(score){
                 return 10;
+            })
+        },
+        {
+            type: 'qiwi',
+            hasAvailable: hasAvailableFactory(function(score){
+                return true;
+            }),
+            put: putFactory(function(score){
+                return 20;
             })
         }           
     ];

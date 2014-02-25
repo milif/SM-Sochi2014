@@ -266,8 +266,22 @@ angular.module('stmIndex').directive('stmIndexPopup', function(){
         
             $attrs.$observe('show', function(show){
                 $scope.show = 'show' in $attrs ? $scope.$eval(show) : true;
+                if($scope.show && $scope.hasClose) {
+                    $(document).on(closeEvents);
+                } else {
+                    $(document).off(closeEvents);
+                }
             });
             
+            var closeEvents = {
+                'keydown': function(e){
+                    if(e.which != 27 || !$scope.show) return;
+                    e.stopPropagation();
+                    $scope.$apply(function(){
+                        $scope.close();
+                    });
+                }
+            }
         
             $scope.$watch($attrs.gameData, function(){
                 $scope._gameData = $scope[$attrs.gameData];
@@ -317,7 +331,9 @@ angular.module('stmIndex').directive('stmIndexPopup', function(){
 .directive('stmIndexPopupTabs', ['$animate', function($animate){
     var cls = 'state_active';
     return function(scope, iElement){
-       iElement.find('>:eq(1),>*>:first,>*>:first [tab-active]').addClass('state_active');
+       var activeEl = iElement.find('[data-active]');
+       var index = activeEl.length > 0 ? activeEl.parent().children().index(activeEl) : 0;
+       iElement.find('>:eq('+(index+1)+'),>*>:eq('+index+'),>*>:eq('+index+') [tab-active]').addClass('state_active');
        iElement.on('click','> :first > *',function(){
             var el = $(this);
             if(el.hasClass(cls)) return;
@@ -327,6 +343,37 @@ angular.module('stmIndex').directive('stmIndexPopup', function(){
             $animate.addClass(iElement.find('>:eq('+(index+1)+')'), cls);         
        });
     }
+}])
+/**
+ * @ngdoc directive
+ * @name stmIndex.directive:stmIndexPopupBonusInfo
+ * @function
+ *
+ * @requires stmIndex.directive:stmIndexPopupBonusInfo:bonusinfo.html
+ * @requires stmIndex.directive:stmIndexPopup
+ *
+ * @example
+    <example module="appExample">
+      <file name="index.html">
+        <div class="example-info">
+            <div stm-index-popup-bonus-info></div>
+        </div>
+      </file>
+      <file name="style.css">
+         .example-info {
+            background: white;
+            padding: 20px;
+            text-align: center;
+            }
+      </file>      
+    </example>
+ * 
+ */
+.directive('stmIndexPopupBonusInfo', [function(){
+    return {
+        replace: true,
+        templateUrl: 'partials/stmIndex.directive:stmIndexPopupBonusInfo:bonusinfo.html'
+    };
 }])
     /**
      * @ngdoc interface

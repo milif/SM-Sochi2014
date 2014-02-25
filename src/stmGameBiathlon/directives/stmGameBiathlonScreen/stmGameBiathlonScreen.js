@@ -6,6 +6,7 @@
  * @requires stmGameBiathlon.directive:stmGameBiathlonScreen:b-gameBiathlon.css
  * @requires stmGameBiathlon.directive:stmGameBiathlonScreen:template.html
  * @requires stmGameBiathlon.directive:stmGameBiathlonWarningPopup
+ * @requires stmIndex.directive:stmIndexPopupBonusInfo
  * @requires stmIndex.directive:stmIndexPopup
  * @requires stmIndex.directive:stmIndexButtonsPopup
  * @requires stmIndex.directive:stmIndexBonus
@@ -43,7 +44,7 @@
     
  */
 
-angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function(){    
+angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', ['$compile', function($compile){    
     
     var FPS = 40; // Число кадров в секунду
     var CAMERA_MARGIN = 20; // Минимальное расстояние игрока до правой и левой границы экрана (%)
@@ -126,15 +127,27 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
     var METERS_LIONHEART = 10; // Как надо сблизится с Ети для ачива Храбрец
     var COUNT_LIONHEART = 5; // Сколько раз надо сблизится с Ети для ачива Храбрец
     var TIME_LASTHERO = 15; // Сколько минут надо продержаться в игре для ачива Последний герой
-    var COUNT_STARHOOTER = 3; // Сколько мишеней надо порязить для ачива Звездный стрелок
-          
+    var COUNT_STARHOOTER = 100; // Сколько мишеней надо поразить для ачива Звездный стрелок
+    
+    var framesTpl;
+        
     return {
         scope: {
         },
         templateUrl: 'partials/stmGameBiathlon.directive:stmGameBiathlonScreen:template.html',
-        controller: ['$element', '$interval', '$scope', '$window', '$timeout', 'Game', 'Achiev','$stmBonus', function($element, $interval, $scope, $window, $timeout, Game, Achiev, $stmBonus){
+        compile: function(tEl){
+            var framesEl = tEl.find('[data-frames]');
+            framesTpl = $compile(framesEl);
+            framesEl.replaceWith('<div data-frames>');
+        },
+        controller: ['$element', '$interval', '$scope', '$window', '$timeout', 'Game', 'Achiev','$stmBonus','$rootScope', function($element, $interval, $scope, $window, $timeout, Game, Achiev, $stmBonus, $rootScope){
+             
+            var $framesScope = $rootScope.$new(); 
                     
             var iterator;
+            
+            var viewWidth = $element.width();
+            var viewHeight = $element.height();
             
             var isGame = false;
             var isShootingHelp = true;
@@ -189,6 +202,12 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
             
             var iterateTasks = [];
             var startX;
+            $framesScope.$watch(function(){
+            
+            });   
+            framesTpl($framesScope, function(el){
+                $element.find('[data-frames]').replaceWith(el);
+            });            
             
             var globalEvents = {
                 'keydown': function(e){
@@ -234,9 +253,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
             initTrack();
             
             iterator = setInterval(function(){
-                $scope.$apply(function(){
-                    requestAnimationFrame(iterate);  
-                });                         
+                requestAnimationFrame(iterate);                           
             }, 1 / FPS * 1000);
             
             var bonusPopups = $scope.bonusPopups = [];
@@ -354,6 +371,8 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                 $scope.ready = true;
                 
                 prevTime = time;
+                
+                $scope.$digest();
             }
             function addIterateTask(task, done){
                 iterateTasks.push({
@@ -421,8 +440,8 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
             }
             function updateCamera(camera, persons, dTime){
                 
-                camera.width = $element.width();
-                camera.height = $element.height();
+                camera.width = viewWidth;
+                camera.height = viewHeight;
                 
                 if(persons.length == 0) return;
                 
@@ -507,8 +526,8 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                         left: Math.round(frame.x - camera.x + camera.width / 2),
                         top: Math.round(frame.y - camera.y + camera.height / 2)
                     };
+                    
                 }
-                
             }
 
             function showKeyHelp(help){
@@ -592,10 +611,12 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                             }
                             if(!bonus.item.hasAvailable()){
                                 bonus.show = false;
+                                frame.update = {};
                             }
                         } else {
                             if(bonusDist > 0 && bonusDist < 800 + Math.random() * 200 && bonus.item.hasAvailable()) {
                                 bonus.show = true;
+                                frame.update = {};
                             } 
                         }
                     }
@@ -743,6 +764,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                 frame = connectFrame(lastFrame);
                 track.frames.push(frame);
                 track.points = track.points.concat(frame.points);
+                if($framesScope.$$phase != "$digest") $framesScope.$digest();
             }
             function connectFrame(lastFrame){
                 var points = [];
@@ -911,4 +933,45 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
             }
         }]
     };
-}]);
+}])
+angular.module('stmGameBiathlon').directive('stmGameBiathlonFrameContent', ['$compile', function($compile){  
+   var tpl = $compile('<div ng-repeat="tree in trees" class="b-biathlon-tree {{tree.name}}" ng-style="tree.css" ></div>' +
+            '<div ng-repeat="target in targets" class="b-biathlon-panel g-noselect" ng-style="target.css" >' +
+                '<div ng-repeat="point in target.points track by $index" ng-class="point ? \'b-biathlon-panel-item_active\' : \'\'" class="b-biathlon-panel-item"></div>' +
+            '</div>'+
+            '<div class="b-gameBiathlon-bonus" ng-repeat="bonus in bonuses" stm-index-bonus="{{bonus.id}}" show="{{bonus.show}}" type="{{bonus.type}}" position="{{bonus.position}}"></div>');
+    return {
+        scope: {
+            'trees': '=',
+            'bonuses': '=',
+            'targets': '=',
+            'update': '='
+        },    
+        controller:['$scope', '$element', '$rootScope', function($scope, $element, $rootScope){
+            $frameScope = $rootScope.$new();
+            tpl($frameScope, function(el){
+                $element.append(el);
+            });  
+            $scope.$watch('update',function(trees){
+                setTimeout(function(){
+                    $frameScope.$apply();
+                }, 0);
+            });    
+            $scope.$watch('trees',function(trees){
+                $frameScope.trees = trees;
+                $scope.update = {};
+            });
+            $scope.$watch('targets',function(targets){
+                $frameScope.targets = targets;
+                $scope.update = {};
+            });
+            $scope.$watch('bonuses',function(bonuses){
+                $frameScope.bonuses = bonuses;
+                $scope.update = {};
+            });
+        }]
+    }
+
+}]);          
+
+;

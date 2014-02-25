@@ -41,13 +41,18 @@ class Auth {
             if($ref){
                 $ref = explode('.', $ref);
                 $rs = DB::query("SELECT id FROM `user` WHERE ref_key = :refKey", array(":refKey" => $ref[0]));
+                
                 if(count($rs)){
                     $refId = $rs[0]['id'];
-                    if($refId && isset($ref[1])){
-                        Achiev::add($ref[1].'.'.'journalist', $refId);
-                    }
                 }
             }        
+        
+            if($refId && isset($ref[1])){
+                $rs = DB::query("SELECT COUNT(*) cc FROM `user` WHERE ref_id = $refId");
+                if($rs[0]['cc'] >= 4 ) {
+                    Achiev::add($ref[1].'.'.'journalist', $refId);
+                }
+            }
         
             $refKey = uniqid();
             DB::query("INSERT INTO user (uri, data, ref_key, ref_id, partner_ref, partner_subref) VALUES (:uri, :data, '$refKey', $refId, :partnerRef, :partnerSubref)", array(':uri'=>$uri,':data'=>$dataJSON, ':partnerRef'=>$_COOKIE['partner'], ':partnerSubref'=>$_COOKIE['subref']));
