@@ -329,13 +329,13 @@
 }
 .b-gameBiathlon-shots-item {
     display: inline-block;
-    background: url(asset/i/common/icons.png) -6px -60px no-repeat;
-    width: 32px;
-    height: 34px;
-    margin: 0 4px;
+    background: url(asset/i/common/icons.png) -585px -55px no-repeat;
+    width: 35px;
+    height: 35px;
+    margin: 0 1px;
 }
 .b-gameBiathlon-shots-item.state_active {
-    background-position:  -62px -60px;
+    background-position: -585px 0px;
 }
 .b-gameBiathlon-buttons {
     left: 40px;

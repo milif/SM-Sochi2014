@@ -201,7 +201,7 @@
 /* b-progress-climber */
 /*==========================================================*/
 .b-progress-climber {
-  margin-top: 8px;
+  margin-top: 10px;
   position: relative;
   margin-left: 60px;
   margin-right: 60px;
@@ -213,13 +213,13 @@
 .b-progress-climber-icon {
   position: absolute;
   left: -26px;
-  top: 0px;
+  top: -4px;
 }
 
 .b-progress-climber-note {
   position: absolute;
   right: -60px;
-  top: 3px;
+  top: 0px;
   font-size: 10px;
   line-height: 12px;
   font-weight: bold;
@@ -230,7 +230,7 @@
 /* Progress bars */
 /*==========================================================*/
 .b-progressbar {
-  height: 16px;
+  height: 10px;
   background-color: #fff;
   position: relative;
   overflow: hidden;
