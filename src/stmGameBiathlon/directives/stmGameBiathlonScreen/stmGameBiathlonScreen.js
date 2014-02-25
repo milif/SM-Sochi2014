@@ -233,9 +233,11 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
             initTrees($element.find('[data-tree]'));
             initTrack();
             
-            iterator = $interval(function(){
-                requestAnimationFrame(iterate);
-            }, 1 / FPS * 1000, null, false);
+            iterator = setInterval(function(){
+                $scope.$apply(function(){
+                    requestAnimationFrame(iterate);  
+                });                         
+            }, 1 / FPS * 1000);
             
             var bonusPopups = $scope.bonusPopups = [];
             $scope.speedsMax = START_MORE_SPEED;
@@ -252,7 +254,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
             }
             $scope.play = startGame;
             $scope.$on('$destroy', function() {
-                $interval.cancel(iterator);
+                clearInterval(iterator);
             });
             $scope.$on('hidePopoverSuccess', function(e, id) {
                 for(var i=0; i<bonusPopups.length;i++){
@@ -772,6 +774,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', [function()
                     nextFrames: frameEl.nextFrames
                 };
             }
+
             function getBonuses(frameEl){
                 var frameBonuses = [];
                 var place;                

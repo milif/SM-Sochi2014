@@ -16,6 +16,19 @@ if(!count($rs)){
             ALTER TABLE `user` ADD COLUMN `climber_passed` INT DEFAULT 0;
         ");
 }
+$rs = DB::query("SHOW COLUMNS FROM `user` LIKE 'partner_ref';");
+if(!count($rs)){
+        DB::query("
+            ALTER TABLE `user` ADD COLUMN `partner_ref` VARCHAR(128);
+            ALTER TABLE `user` ADD COLUMN `partner_subref` VARCHAR(128);
+        ");
+}
+$rs = DB::query("SHOW COLUMNS FROM `user` LIKE 'created_at';");
+if(!count($rs)){
+        DB::query("
+            ALTER TABLE `user` ADD COLUMN `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP;
+        ");
+}
 $rs = DB::query("SHOW COLUMNS FROM `user` LIKE 'ref_id';");
 if(!count($rs)){
         DB::query("

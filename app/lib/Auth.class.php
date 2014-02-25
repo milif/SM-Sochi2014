@@ -50,7 +50,7 @@ class Auth {
             }        
         
             $refKey = uniqid();
-            DB::query("INSERT INTO user (uri, data, ref_key, ref_id) VALUES (:uri, :data, '$refKey', $refId)", array(':uri'=>$uri,':data'=>$dataJSON));
+            DB::query("INSERT INTO user (uri, data, ref_key, ref_id, partner_ref, partner_subref) VALUES (:uri, :data, '$refKey', $refId, :partnerRef, :partnerSubref)", array(':uri'=>$uri,':data'=>$dataJSON, ':partnerRef'=>$_COOKIE['partner'], ':partnerSubref'=>$_COOKIE['subref']));
             $id = DB::lastInsertId();           
             
         }
