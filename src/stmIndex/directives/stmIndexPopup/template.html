@@ -57,7 +57,7 @@
                      <div class="b-popup-mnogo-note__top">Ваша карта принята</div>
                      <div class="b-popup-mnogo-note__text">Бонусы будут начислены в самое ближайшее время</div>
                 </div>                         
-                <form name="mnogoForm" class="b-popup-form g-form" novalidate>
+                <form name="$parent.mnogoForm" class="b-popup-form g-form" novalidate>
                     <div>
                         <div class="b-form-top">
                             Укажите номер карты Много.ру и получите бонусы
@@ -67,7 +67,7 @@
                         </div>
 
                         <div class="b-form-row">
-                            <input name="code" required ng-model="mnogo" type="text" ui-mask="9999 9999" placeholder = "XXXX XXXX" class="b-form-input-text mod_wide">
+                            <input name="code" required ng-model="$parent.mnogo" type="text" ui-mask="9999 9999" placeholder = "XXXX XXXX" class="b-form-input-text mod_wide">
                             <span ng-class="mnogoIsSend ? 'state_loading' : ''" ng-click="submitMnogo()" class="b-button mod_mnogo">
                                 <span class="b-button__text">Применить</span>
                                 <button class="b-button__link"></button>
