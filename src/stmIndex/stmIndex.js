@@ -19,9 +19,10 @@ if (!window.requestAnimationFrame) {
 angular.module('stmIndex', ['stm', 'ui.utils'])
     .config([function(){
     }])
-    .run(['$rootScope', '$stmAuth', '$http', '$md5', function($rootScope, $stmAuth, $http, $md5){
+    .run(['$rootScope', '$stmAuth', '$http', '$md5', '$stmEnv', function($rootScope, $stmAuth, $http, $md5, $stmEnv){
     
         var $$ = angular;
+        var $ = angular.element;
     
         $rootScope.$on('gameInit', auth);
         
@@ -39,8 +40,59 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
                 'StmSignatureTime': time
             });
             return data;
-        }];           
-                    
+        }];    
+        
+        // Counters
+        if($stmEnv.isProduction){
+            initYandexMetrica();
+            initLiveInternet(); 
+        }
+        
+        function initYandexMetrica(){
+            var d = document,
+                w = window;
+            
+            w.yaParams = {};
+            //Yandex.Metrika
+            var c = 'yandex_metrika_callbacks';
+            (w[c] = w[c] || []).push(function() {
+                try {
+                    w.yaCounter20030233 = new Ya.Metrika({
+                        id:20030233,
+                        webvisor:true,
+                        clickmap:true,
+                        trackLinks:true,
+                        accurateTrackBounce:true,
+                        trackHash:true,
+                        ut:"noindex",
+                        params:w.yaParams||{}
+                    });
+                } catch(e) { }
+            });
+
+            var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function () { n.parentNode.insertBefore(s, n); };
+            s.type = "text/javascript";
+            s.async = true;
+            s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+            if (w.opera == "[object Opera]") {
+                d.addEventListener("DOMContentLoaded", f, false);
+            } else { f(); }
+            
+        }
+        function initLiveInternet(){
+            setTimeout(function(){ 
+                $('body').append('<img src="' + (("https:" == document.location.protocol) ? "https" : "http") + '://counter.yadro.ru/hit?t14.3;r'+
+                escape(document.referrer)+((typeof(screen)=='undefined')?'':
+                ';s'+screen.width+'*'+screen.height+'*'+(screen.colorDepth?
+                screen.colorDepth:screen.pixelDepth))+';u'+escape(document.URL)+
+                ';'+Math.random()+
+                '" '+
+                'border=0 width=1 height=1 style="position:absolute;top:0;">');
+            }, 500);
+        }             
     }])
     /**
      * @ngdoc interface

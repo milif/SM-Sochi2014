@@ -299,7 +299,7 @@
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
-  z-index: 100;
+  z-index: 10000;
   text-align: center;
   width: 206px;
   padding: 20px 0 26px 0px;

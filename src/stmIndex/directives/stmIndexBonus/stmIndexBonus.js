@@ -138,6 +138,7 @@ angular.module('stmIndex').directive('stmIndexBonus', function(){
                     };
                     $timeout(function(){
                         $scope.timeouted = true;
+                        
                         $timeout(function(){
                             $scope.hide = true;
                             /**
@@ -150,8 +151,10 @@ angular.module('stmIndex').directive('stmIndexBonus', function(){
                                *
                                * @param {String} id Id.
                                * 
-                               */                              
-                            $scope.$emit('bonusTimeout', index);
+                               */  
+                            $timeout(function(){                            
+                                $scope.$emit('bonusTimeout', index);
+                            }, 300);
                         }, 30);
                     }, $scope.duration / 2 * 1000);
                 }

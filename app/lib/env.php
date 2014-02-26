@@ -15,7 +15,8 @@ $api = array(
 $userData = Auth::getUser();
 $ENV = array_merge(array(
     'auth' => is_array($userData) ? array_merge($userData, array('refKey' => REF_KEY)) : null,
-    'api' => $api
+    'api' => $api,
+    'isProduction' => IS_PRODUCTION
 ), isset($ENV) ? $ENV : array());
 
 if(IS_PRODUCTION){
