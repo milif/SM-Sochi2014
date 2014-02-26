@@ -75,7 +75,11 @@ angular.module('stmIndex').directive('stmIndexToolbar', function(){
             });
             
             $scope.isAccount = /account/.test(url);
-            $scope.auth = $stmAuth.auth;
+            $scope.auth = function(){
+                $stmAuth.auth(function(){
+                    $location.url('/account/');
+                });
+            }
             $scope.$watch(function(){
                 if($scope.isAuth) return;
 

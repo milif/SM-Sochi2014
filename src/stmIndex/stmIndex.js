@@ -256,16 +256,16 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
         }
         function showLoginza(clbFn){
             LOGINZA.callback = function(token){
-                onAuth(token);
-                loginzaCloseFn.call(LOGINZA);
-                if(clbFn) clbFn();                
+                onAuth(token, clbFn);             
             }
             LOGINZA.show.call(disableEl.get(0));
         }
-        function onAuth(token){
+        function onAuth(token, clbFn){
             $rootScope.$apply(function(){
                 $stmAuth.isAuth = true;
                 $stmAuth.data = window['_' + token];             
+                LOGINZA.close();
+                if(clbFn) clbFn();
             });       
         }
     }]);

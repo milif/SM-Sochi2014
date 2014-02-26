@@ -58,7 +58,7 @@ angular.module('stmIndexPage').directive('stmIndexPageScreen', function(){
                 var url = $location.url();
                 if(url == '/map/') {
                     showMap();
-                } else if(newUrl != oldUrl){
+                } else if(newUrl != oldUrl && !/#/.test(url)){
                     window.location.reload();
                 }
             });
