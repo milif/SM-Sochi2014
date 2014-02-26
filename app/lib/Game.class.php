@@ -43,7 +43,7 @@ class Game {
         return array(
             'data' => json_decode($row['data_game_'.$type], true),
             'score' => (int)$row['score_game_'.$type],
-            'achievements' => explode(',', str_replace("$type.", '', $row['data_achievement_'.$type]))
+            'achievements' => $row['data_achievement_'.$type] == "" ? array() : explode(',', str_replace("$type.", '', $row['data_achievement_'.$type]))
         );
     }
     static public function getClimberPassed(){
