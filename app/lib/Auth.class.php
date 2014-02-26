@@ -21,13 +21,13 @@ class Auth {
         define('CLIENT_ID', self::$userData ? self::$userData[0] : 0);
         if(self::$userData) define('REF_KEY', self::$userData[2]);
         if(CLIENT_ID == 0 && !isset($_COOKIE[SESSION_COOKIE.'_stmuid'])) {
-            setcookie(SESSION_COOKIE.'_stmuid', uniqid(), 0, dirname(dirname($_SERVER['REQUEST_URI'])));
+            setcookie(SESSION_COOKIE.'_stmuid', uniqid(), 0, APP_ROOT_URL);
         }
     }
     static public function login($cookie, $uri, $data){
         if(!$uri) return false;
         $expire = time() + SESSION_TIME;
-        setcookie(SESSION_COOKIE, $cookie, $expire, dirname(dirname($_SERVER['REQUEST_URI'])));
+        setcookie(SESSION_COOKIE, $cookie, $expire, APP_ROOT_URL);
         $dataJSON = str_replace("'","",json_encode($data));
         $rs = DB::query("SELECT id, ref_key FROM user WHERE uri = :uri", array(':uri'=>$uri));
         if(count($rs)) {
@@ -68,6 +68,15 @@ class Auth {
         define('REF_KEY', $refKey);
         
         return true;
+    }
+    static public function logout(){
+        if(!CLIENT_ID) return true;
+        setcookie(SESSION_COOKIE, "", time()-3600, APP_ROOT_URL);
+        setcookie(SESSION_COOKIE, "", time()-3600, APP_ROOT_URL.'/../');
+        return true;
+    }
+    static public function isAuth(){
+        return !!CLIENT_ID;
     }
     static public function getUser(){
         return self::$userData ? self::$userData[1] : null;

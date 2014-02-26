@@ -114,6 +114,8 @@
 
 .l-sale-title-big {
     text-align: center;
+    position: relative;
+    margin-top: 60px;
 }
 /* b-sale-title-big */
 .b-sale-title-big {
@@ -571,6 +573,7 @@ a.b-sale-br-link {
 }
 .b-sale-cont.scheme_gray {
     background-color: #e5e5e5;
+    text-decoration: line-through;
 }
 .b-sale-cont.scheme_yellow {
     background-color: #fdd918;

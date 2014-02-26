@@ -7,6 +7,7 @@
  * @requires stmIndex.directive:stmIndexPopup:template.html
  *
  * @requires stmIndex.directive:stmIndexSocial
+ * @requires stmIndex.directive:stmIndexAchiev
  *
  * @description
  * Popup

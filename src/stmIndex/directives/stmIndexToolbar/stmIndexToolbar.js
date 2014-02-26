@@ -60,7 +60,8 @@ angular.module('stmIndex').directive('stmIndexToolbar', function(){
         replace: true,
         scope: true,
         templateUrl: 'partials/stmIndex.directive:stmIndexToolbar:template.html',
-        controller: ['$scope', '$attrs', '$element', '$location', function($scope, $attrs, $element, $location){
+        controller: ['$scope', '$attrs', '$element', '$location', '$stmAuth', function($scope, $attrs, $element, $location, $stmAuth){
+            var url = $location.url();
             var gameMenu = $scope.gameMenu = {
                 id: 'game',
                 items: GAME_MENU,
@@ -73,6 +74,19 @@ angular.module('stmIndex').directive('stmIndexToolbar', function(){
                 $scope.position = $scope.$eval(position) || $attrs.position;
             });
             
+            $scope.isAccount = /account/.test(url);
+            $scope.auth = $stmAuth.auth;
+            $scope.$watch(function(){
+                if($scope.isAuth) return;
+
+                $scope.isAuth = $stmAuth.isAuth;
+                if(!$scope.isAuth) return;
+                
+                var name = $stmAuth.data.name;
+                $scope.avatar = $stmAuth.data.photo || 'asset/i/b-toolbar/user.png';
+                $scope.name = name.first_name + " " + name.last_name;                
+            });
+
             
             var menus = $scope.menus = [
                 gameMenu
@@ -80,7 +94,7 @@ angular.module('stmIndex').directive('stmIndexToolbar', function(){
             $scope.betaInfo = {};
             $scope.clickBetaInfo = clickBetaInfo;
             $scope.clickMenu = clickMenu;
-            $scope.isAbout = /about/.test($location.url());
+            $scope.isAbout = /about/.test(url);
             $scope.logoClick = function (){
                 $scope.$emit('toolbarLogoClick');
             }

@@ -14,6 +14,7 @@
  * @requires stmIndex.$stmBonus
  * @requires stmIndex.directive:stmIndexPopover
  * @requires stm.filter:range
+ * @requires stmIndex.$stmAchievs
  *
  * @description
  * Экран игры Биатлон
@@ -44,7 +45,7 @@
     
  */
 
-angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', ['$compile', function($compile){    
+angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', ['$compile','$stmAchievs', function($compile, $stmAchievs){
     
     var FPS = 40; // Число кадров в секунду
     var CAMERA_MARGIN = 20; // Минимальное расстояние игрока до правой и левой границы экрана (%)
@@ -94,28 +95,13 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', ['$compile'
     
     var $ = angular.element;
     
-    var ACHIVE_IRON = {
-            type: 'ironnerves',
-            text: 'Железные нервы'            
-        };
-    var ACHIVE_LOIN = {
-            type: 'lionheart',
-            text: 'Храбрец',
-            count: 0            
-        }; 
-    var ACHIVE_LASTHERO = {
-            type: 'lasthero',
-            text: 'Последний герой'            
-        };
-    var ACHIVE_STARHOOTER = {
-            type: 'starshooter',
-            text: 'Звездный стрелок'            
-        };               
+    var achievs = $stmAchievs.biathlon;
+    var ACHIVE_IRON = achievs.keys.ironnerves;
+    var ACHIVE_LOIN = achievs.keys.lionheart;
+    var ACHIVE_LASTHERO = achievs.keys.lasthero;
+    var ACHIVE_STARHOOTER = achievs.keys.starshooter;
     var ACHIEVEMENTS = [
-        {
-            type: 'journalist',
-            text: 'Журналист'            
-        },
+        achievs.keys.journalist,
         ACHIVE_IRON,
         ACHIVE_LOIN,        
         ACHIVE_LASTHERO,

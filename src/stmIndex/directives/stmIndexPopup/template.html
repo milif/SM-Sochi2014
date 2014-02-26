@@ -28,12 +28,7 @@
                 </div>
 
                 <div ng-if="_gameData" class="b-achive-row">
-                    <div ng-repeat="achieve in _gameData.achievements" class="b-achive-item">
-                        <div class="b-achive">
-                            <div ng-class="'achiv_' + _gameData.type + '_' + achieve.type + (achieve.active ? ' state_active' : '')" class="b-achive__h"></div>
-                        </div>
-                        <div class="b-achive-item-note" ng-bind-html="achieve.text"></div>
-                    </div>
+                    <div ng-repeat="achieve in _gameData.achievements" stm-index-achiev="{{_gameData.type+'.'+achieve.type}}" text="{{achieve.text}}" active="{{achieve.active}}"></div>
               </div>          
               <div class='b-popup-content'>
                 <div ng-show="!_gameData" ng-transclude></div>

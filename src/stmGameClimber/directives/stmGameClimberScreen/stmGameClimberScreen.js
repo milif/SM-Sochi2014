@@ -12,6 +12,7 @@
  * @requires stmIndex.directive:stmIndexBonusPopup
  * @requires stmIndex.directive:stmIndexPopover
  * @requires stmIndex.directive:stmIndexButtonsPopup
+ * @requires stmIndex.$stmAchievs
  *
  * @description
  * Экран игры Альпинист
@@ -34,28 +35,13 @@
     </example>
     
  */
-angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '$interval', '$document', '$window', 'Game', 'Achiev', '$stmBonus', function($timeout, $interval, $document, $window, Game, Achiev, $stmBonus){
-
-    var ACHIVE_JOURNALIST = {
-            type: 'journalist',
-            text: 'Журналист'
-        },
-        ACHIVE_RESISTANCE = {
-            type: 'resistance',
-            text: 'За стойкость'
-        },
-        ACHIVE_PIONEER = {
-            type: 'pioneer',
-            text: 'Первопроходец'
-        },
-        ACHIVE_AMATEURFAUNA = {
-            type: 'amateurfauna',
-            text: 'Любитель фауны'
-        },
-        ACHIVE_KINGOFHILL = {
-            type: 'kingofhill',
-            text: 'Царь горы'
-        };
+angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '$interval', '$document', '$window', 'Game', 'Achiev', '$stmBonus', '$stmAchievs', function($timeout, $interval, $document, $window, Game, Achiev, $stmBonus, $stmAchievs){
+    var achievs = $stmAchievs.climber;
+    var ACHIVE_JOURNALIST = achievs.keys.journalist;
+    var ACHIVE_RESISTANCE = achievs.keys.resistance;
+    var ACHIVE_PIONEER = achievs.keys.pioneer;
+    var ACHIVE_AMATEURFAUNA = achievs.keys.amateurfauna;
+    var ACHIVE_KINGOFHILL = achievs.keys.kingofhill;
 
     var ACHIEVEMENTS = [
         ACHIVE_JOURNALIST,

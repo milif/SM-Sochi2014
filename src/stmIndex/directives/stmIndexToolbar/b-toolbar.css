@@ -169,6 +169,8 @@
     overflow: hidden;
     display: inline-block;
     vertical-align: middle;
+    width: 20px;
+    height: 20px; 
 }
 .b-toolbar-user__name {
     display: inline-block;

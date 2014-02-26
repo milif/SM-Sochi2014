@@ -57,7 +57,18 @@ module.exports = function(grunt) {
                 includeTemplates: [
                     '*'
                 ]
-            },                            
+            }, 
+            {  
+                name: 'stmCabinet', //  Module and package name 
+                include: [        // Include module components:
+                    'directive:stmCabinetScreen',
+                    'stm.directive:stmPreload'
+                ],
+                includeAsset: true,
+                includeTemplates: [
+                    '*'
+                ]
+            },                                       
             {  
                 name: 'stmIndex', 
                 include: [        // Include module components:

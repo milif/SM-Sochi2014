@@ -197,7 +197,7 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
        *
        * @returns {Boolean} Авторизарован ли пользователь
        */         
-    .factory('$stmAuth', ['$stmEnv', '$location', function($stmEnv, $location){
+    .factory('$stmAuth', ['$stmEnv', '$location', '$http', '$rootScope', function($stmEnv, $location, $http, $rootScope){
         
         var $ = angular.element;
         
@@ -220,7 +220,8 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
         var $stmAuth = {
             data: authData,
             isAuth: !!authData,
-            auth: auth
+            auth: auth,
+            logout: logout
         };
         
         return $stmAuth;
@@ -248,6 +249,11 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
             }
             disableEl.appendTo('body');            
         }
+        function logout(){
+            $http.post('api/auth.php?logout=1').then(function(){
+                window.location.reload();
+            });
+        }
         function showLoginza(clbFn){
             LOGINZA.callback = function(token){
                 onAuth(token);
@@ -257,8 +263,10 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
             LOGINZA.show.call(disableEl.get(0));
         }
         function onAuth(token){
-            $stmAuth.isAuth = true;
-            $stmAuth.data = window['_' + token];        
+            $rootScope.$apply(function(){
+                $stmAuth.isAuth = true;
+                $stmAuth.data = window['_' + token];             
+            });       
         }
     }]);
 

@@ -7,6 +7,7 @@
  * @requires stmGameEti.directive:stmGameEtiScreen:template.html
  * @requires stmIndex.directive:stmIndexPopup
  * @requires stm.filter:range
+ * @requires stmIndex.$stmAchievs
  *
  * @description
  * Экран игры Йети
@@ -30,7 +31,7 @@
     
  */
 
-angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootScope', function($compile, $rootScope){
+angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootScope', '$stmAchievs', function($compile, $rootScope, $stmAchievs){
 
     var ATTEMPTS = 5; // Сколько раз можно промазать
     var NO_PHOTO_TIME = 7000; // Время без снимком (ms)
@@ -55,28 +56,13 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
         'in-women': 'Ты попал<br>в женщину',
         'last': 'Последний шанс'
     };
-
-    var ACHIVE_AMONG = {
-            type: 'amongstrangers',
-            text: 'Свой среди чужих',
-            count: 0            
-        }; 
-    var ACHIVE_DEER = {
-            type: 'olenevod',
-            text: 'Оленевод',
-            count: 0            
-        };   
-    var ACHIVE_ANIMALS = {
-            type: 'allinclusive',
-            text: 'All Inclusive',
-            count: 0
-        };             
-
+    
+    var achievs = $stmAchievs.yeti;
+    var ACHIVE_AMONG = achievs.keys.amongstrangers;
+    var ACHIVE_DEER = achievs.keys.olenevod;
+    var ACHIVE_ANIMALS = achievs.keys.allinclusive;
     var ACHIEVEMENTS = [
-        {
-            type: 'journalist',
-            text: 'Журналист'            
-        },
+        achievs.keys.journalist,
         ACHIVE_DEER,
         ACHIVE_ANIMALS,
         ACHIVE_AMONG

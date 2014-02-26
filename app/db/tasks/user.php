@@ -8,6 +8,7 @@ if(!count($rs)){
         DB::query("
             ALTER TABLE `user` ADD COLUMN `ref_key` varchar(32);
             ALTER TABLE `user` ADD INDEX `ref_key` (`ref_key`);
+            ALTER TABLE `user` ADD INDEX `ref_id` (`ref_id`);
         ");
 }
 $rs = DB::query("SHOW COLUMNS FROM `user` LIKE 'climber_passed';");

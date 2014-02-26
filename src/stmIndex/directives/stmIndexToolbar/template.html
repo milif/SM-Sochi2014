@@ -14,13 +14,17 @@
         
         <!-- toolbar-right -->
         <div class="l-b-toolbar-right">
-            <!--
-            <div class="b-toolbar-button b-toolbar-button_state_active">
+            <div ng-if="isAuth" ng-class="isAccount ? 'b-toolbar-button_state_active' : ''" class="b-toolbar-button">
                 <div class="b-toolbar-user">
-                    <img class="b-toolbar-user__image" src="asset/i/b-toolbar/user.jpg" />
-                    <div class="b-toolbar-user__name">Юрий Китчев</div>
+                    <img class="b-toolbar-user__image" ng-src="{{avatar}}" />
+                    <div class="b-toolbar-user__name">{{name}}</div>
                 </div>
-            </div>-->
+                <a class="b-button__link"  href="account/"></a>
+            </div>
+            <div ng-if="!isAuth" class="b-toolbar-button">
+                <span>Личный кабинет</span>
+                <span class="b-button__link" ng-click="auth()"></span>
+            </div>
             <span ng-class="isAbout ? 'b-toolbar-button_state_active' : ''" class="b-toolbar-button">
                 <span>О проекте</span>
                 <a class="b-button__link"  href="about/"></a>

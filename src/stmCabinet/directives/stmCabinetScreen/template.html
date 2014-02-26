@@ -5,12 +5,12 @@
             <div class="b-cabinet-top-title">Личные достижения</div>
             <div class="b-cabinet-userpic">
                 <div class="b-cabinet-userpic-img">
-                    <img src="asset/i/b-indexCabinet/userpic.png" alt="image" class="b-cabinet-userpic-img-h">
+                    <img ng-src="{{avatar}}" alt="image" class="b-cabinet-userpic-img-h">
                     <span class="b-cabinet-userpic-img-ico mod_helmet"></span>
                 </div>
                 <div class="b-cabinet-userpic-cont">
-                    <span class="b-cabinet-userpic-name">Юрий К.</span>
-                    <span class="b-cabinet-userpic-link">Выйти</span>
+                    <span class="b-cabinet-userpic-name">{{name}}</span>
+                    <span ng-click="logout()" class="b-cabinet-userpic-link">Выйти</span>
                 </div>
             </div>
 
@@ -18,32 +18,32 @@
                 <div class="b-cabinet-result-top">
                     <div class="b-cabinet-result-column">
                         <div class="b-cabinet-result-count">
-                            18<span class="b-cabinet-result-count-h">/55</span>
+                            {{achievCount}}<span class="b-cabinet-result-count-h">/14</span>
                         </div>
                         <div class="b-cabinet-result-hint">трофеев</div>
                     </div>
                     <div class="b-cabinet-result-column">
                         <div class="b-cabinet-result-count">
-                            17 210
+                            {{score | stmNumber}}
                         </div>
                         <div class="b-cabinet-result-hint">баллов</div>
                     </div>
                     <div class="b-cabinet-result-column">
                         <div class="b-cabinet-result-count">
-                            8<span class="b-cabinet-result-count-h">/99+</span>
+                            {{friends}}<span class="b-cabinet-result-count-h">/99+</span>
                         </div>
                         <div class="b-cabinet-result-hint">друзей</div>
                     </div>
                 </div>
                 <div class="b-cabinet-result-bottom">
-                    <div class="b-cabinet-social" stm-index-social></div>
+                    <div class="b-cabinet-social" buttons-count="4" stm-index-social></div>
                 </div>
             </div>
 
             <div class="b-cabinet-prize">
                 <div class="b-cabinet-prize-note">
                     <div class="b-cabinet-prize-note-title">Призы</div>
-                    <div class="b-cabinet-prize-note-hint">5 000 000<span class="g-ruble">p</span></div>
+                    <div class="b-cabinet-prize-note-hint">2 000 000<span class="g-ruble">p</span></div>
                 </div>
                 <div class="b-cabinet-prize-ico"></div>
 
@@ -58,40 +58,25 @@
                         Сочные Цены
                     </div>
                     <div class="b-cabinet-product-list">
-                        <div class="b-cabinet-product-item">
+                        <div ng-repeat="card in products" class="b-cabinet-product-item">
                             <div class="b-cabinet-product-item-img">
-                                <img src="asset/i/b-indexCabinet/userpic.png" alt="image" class="b-cabinet-product-item-img-h">
+                                <a ng-href="{{card.url}}" target="_blank"><img ng-class="card.modImg" ng-src="{{card.img}}" alt="image" class="b-cabinet-product-item-img-h"></a>
                             </div>
                             <div class="b-cabinet-product-item-text">
-                                <a href="#3" class="b-cabinet-product-item-section">Наушники для ноутбука и ПК </a>
-                                <a href="#3" class="b-cabinet-product-item-link">Наушкики Monster Beats Solo HD Red</a>
-                                <span class="b-cabinet-product-price-old">10 350</span>&nbsp;<span class="b-cabinet-product-price">9 350<span class="g-ruble">p</span></span>
-                                <span class="b-cabinet-product-date">12.02.2014</span>
-                            </div>
-                        </div>
-                        <div class="b-cabinet-product-item">
-                            <div class="b-cabinet-product-item-img">
-                                <img src="asset/i/b-indexCabinet/userpic.png" alt="image" class="b-cabinet-product-item-img-h">
-                            </div>
-                            <div class="b-cabinet-product-item-text">
-                                <a href="#3" class="b-cabinet-product-item-link">Купон на скидку 500 руб. при покупке одежды и обуви Quelle</a>
-                                <span class="b-cabinet-product-date">12.02.2014</span>
-                            </div>
-                        </div>
-                        <div class="b-cabinet-product-item">
-                            <div class="b-cabinet-product-item-img">
-                                <img src="asset/i/b-indexCabinet/userpic.png" alt="image" class="b-cabinet-product-item-img-h">
-                            </div>
-                            <div class="b-cabinet-product-item-text">
-                                <a href="#3" class="b-cabinet-product-item-link">Подарок — бесплатная печать 20 фотографий в NetPrint.ru</a>
-                                <span class="b-cabinet-product-date">12.02.2014</span>
+                                <a ng-href="{{card.subUrl}}" target="_blank" class="b-cabinet-product-item-section">{{card.subName}}</a><br>
+                                <a ng-href="{{card.url}}" target="_blank" class="b-cabinet-product-item-link">{{card.title}}</a><br>
+                                <span class="b-cabinet-product-price-old">{{card.oldPrice | stmNumber}}</span>&nbsp;<span class="b-cabinet-product-price">{{card.price | stmNumber}}<span class="g-ruble">p</span></span>
+                                <!--<span class="b-cabinet-product-date">12.02.2014</span>-->
                             </div>
                         </div>
                     </div>
+                    <br/>
+                    <a href="sale/#gifts">Другие товары распродажи</a>
                 </div>
                 <!-- /Product -->
 
                 <!-- Partners -->
+                <!--
                 <div class="b-cabinet-partners">
                     <div class="b-cabinet-partners-list">
                         <div class="b-cabinet-partners-item">
@@ -126,8 +111,10 @@
                     <a href="" class="b-cabinet-partners-all">Все партнеры проекта</a>
 
                 </div>
+                -->
                 <!-- /Partners -->
                 <!-- Event -->
+                <!--
                 <div class="b-cabinet-events">
                     <div class="b-cabinet-events-title">Сочные События</div>
                     <div class="b-cabinet-event-list">
@@ -153,100 +140,31 @@
                         </div>
                     </div>
                 </div>
+                -->
                 <!-- /Event -->
             </div>
-            <div class="b-cabinet-main-content">
+            <div ng-repeat="game in games | orderBy:'title'" class="b-cabinet-main-content">
                 
                 <div class="b-cabinet-game">
                     <div class="b-cabinet-game-top">
-                        <div class="b-cabinet-game-top-title">Альпинист<span class="b-cabinet-game-q"></span></div>
-                        <div class="b-cabinet-game-result"><span class="b-cabinet-game-s"></span>2 700</div>
-                    </div>
+                        <div class="b-cabinet-game-top-title">{{game.title}}<!--<span class="b-cabinet-game-q"></span>--></div>
+                        <div class="b-cabinet-game-result"><span class="b-cabinet-game-s"></span>{{game.score | stmNumber}}</div>
+                    </div>                                    
                     <div class="b-cabinet-game-line">
-                        <div class="b-cabinet-game-item">
-                            <img src="asset/i/b-indexCabinet/ico.png" alt="image" class="b-cabinet-game-item-img">
-                            <div class="b-cabinet-game-item-note">Друг барана</div>
-                        </div>
-                        <div class="b-cabinet-game-item">
-                            <img src="asset/i/b-indexCabinet/ico.png" alt="image" class="b-cabinet-game-item-img">
-                            <div class="b-cabinet-game-item-note">Упорство <br>в крови</div>
-                        </div>
-                        <div class="b-cabinet-game-item">
-                            <img src="asset/i/b-indexCabinet/ico.png" alt="image" class="b-cabinet-game-item-img">
-                            <div class="b-cabinet-game-item-note">Друг барана</div>
-                        </div>
-                        <div class="b-cabinet-game-item">
-                            <img src="asset/i/b-indexCabinet/ico.png" alt="image" class="b-cabinet-game-item-img">
-                            <div class="b-cabinet-game-item-note">Упорство <br>в крови</div>
-                        </div>
-                        <div class="b-cabinet-game-item">
-                            <img src="asset/i/b-indexCabinet/ico.png" alt="image" class="b-cabinet-game-item-img">
-                            <div class="b-cabinet-game-item-note">Друг барана</div>
-                        </div>
-                        <div class="b-cabinet-game-item">
-                            <img src="asset/i/b-indexCabinet/ico.png" alt="image" class="b-cabinet-game-item-img">
-                            <div class="b-cabinet-game-item-note">Упорство <br>в крови</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="b-cabinet-game">
-                    <div class="b-cabinet-game-top">
-                        <div class="b-cabinet-game-top-title">Альпинист<span class="b-cabinet-game-q"></span></div>
-                        <div class="b-cabinet-game-result"><span class="b-cabinet-game-s"></span>2 700</div>
-                    </div>
-                    <div class="b-cabinet-game-line">
-                        <div class="b-cabinet-game-item">
-                            <img src="asset/i/b-indexCabinet/ico.png" alt="image" class="b-cabinet-game-item-img">
-                            <div class="b-cabinet-game-item-note">Друг барана</div>
-                        </div>
-                        <div class="b-cabinet-game-item">
-                            <img src="asset/i/b-indexCabinet/ico.png" alt="image" class="b-cabinet-game-item-img">
-                            <div class="b-cabinet-game-item-note">Упорство <br>в крови</div>
-                        </div>
-                        <div class="b-cabinet-game-item">
-                            <img src="asset/i/b-indexCabinet/ico.png" alt="image" class="b-cabinet-game-item-img">
-                            <div class="b-cabinet-game-item-note">Друг барана</div>
-                        </div>
-                        <div class="b-cabinet-game-item">
-                            <img src="asset/i/b-indexCabinet/ico.png" alt="image" class="b-cabinet-game-item-img">
-                            <div class="b-cabinet-game-item-note">Упорство <br>в крови</div>
-                        </div>
-                        <div class="b-cabinet-game-item">
-                            <img src="asset/i/b-indexCabinet/ico.png" alt="image" class="b-cabinet-game-item-img">
-                            <div class="b-cabinet-game-item-note">Друг барана</div>
-                        </div>
-                        <div class="b-cabinet-game-item">
-                            <img src="asset/i/b-indexCabinet/ico.png" alt="image" class="b-cabinet-game-item-img">
-                            <div class="b-cabinet-game-item-note">Упорство <br>в крови</div>
-                        </div>
-                        <div class="b-cabinet-game-item">
-                            <img src="asset/i/b-indexCabinet/ico.png" alt="image" class="b-cabinet-game-item-img">
-                            <div class="b-cabinet-game-item-note">Друг барана</div>
-                        </div>
-                        <div class="b-cabinet-game-item">
-                            <img src="asset/i/b-indexCabinet/ico.png" alt="image" class="b-cabinet-game-item-img">
-                            <div class="b-cabinet-game-item-note">Упорство <br>в крови</div>
-                        </div>
-                        <div class="b-cabinet-game-item">
-                            <img src="asset/i/b-indexCabinet/ico.png" alt="image" class="b-cabinet-game-item-img">
-                            <div class="b-cabinet-game-item-note">Друг барана</div>
-                        </div>
-                        <div class="b-cabinet-game-item">
-                            <img src="asset/i/b-indexCabinet/ico.png" alt="image" class="b-cabinet-game-item-img">
-                            <div class="b-cabinet-game-item-note">Упорство <br>в крови</div>
-                        </div>
+                        <div ng-repeat="achieve in game.achievs" stm-index-achiev="{{game.type+'.'+achieve.type}}" text="{{achieve.text}}" active="{{achieve.active}}"></div>                    
                     </div>
                 </div>
             </div>
         </div>
         <div class="b-cabinet-footer">
-            <div class="b-cabinet-footer-title">Больше цвета — ближе победа</div>
+            <!--<div class="b-cabinet-footer-title">Больше цвета — ближе победа</div>-->
+            <br><br>
             <div class="b-cabinet-footer-note">Каждое новое достижение увеличивает ваши нашсы в борьбе за главный приз</div>
             <div class='b-button mod_prize'>
                 <div class='b-button__text'>Что можно выиграть?</div>
-                <a class='b-button__link' href=''></a>
+                <a class='b-button__link' href="sale/#gifts"></a>
             </div>
         </div>
     </div>
 </div>
+<div stm-index-toolbar position="top"></div>
