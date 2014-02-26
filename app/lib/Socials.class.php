@@ -30,7 +30,7 @@ class Socials {
         
         $count = Cache::increment('socials.'.$type.".".$uri);
         if($count === false){
-            $count = self::getCounter($type) + 1;
+            $count = self::getCounter($uri, $type) + 1;
             Cache::increment('socials.'.$type.".".$uri);
         }
         
