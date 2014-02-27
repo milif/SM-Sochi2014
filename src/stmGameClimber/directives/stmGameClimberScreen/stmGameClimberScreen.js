@@ -13,6 +13,8 @@
  * @requires stmIndex.directive:stmIndexPopover
  * @requires stmIndex.directive:stmIndexButtonsPopup
  * @requires stmIndex.$stmAchievs
+ * @requires stmIndex.directive:stmIndexAchievsInfo
+ * @requires stmIndex.directive:stmIndexTabs 
  *
  * @description
  * Экран игры Альпинист
@@ -56,6 +58,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
         templateUrl: 'partials/stmGameClimber.directive:stmGameClimberScreen:template.html',
         controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs) {
         
+          $scope.achievsInfo = angular.copy(achievs);
           $scope.endPosition = 0;
           $scope.score = 0;
           $scope.popupScoreShow = false;

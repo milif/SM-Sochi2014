@@ -8,6 +8,10 @@ require_once __DIR__.'/Game.class.php';
 if(!isset($GAME_DATA)) $GAME_DATA = array();
 if(!isset($SHARE_URI)) $SHARE_URI = '/';
 
+if(isset($_GET['email'])){
+    setcookie('email', $_GET['email'], time() + 604800, APP_ROOT_URL);
+}
+
 $api = array(
     "api/socials.php" => Socials::get($SHARE_URI)
 );

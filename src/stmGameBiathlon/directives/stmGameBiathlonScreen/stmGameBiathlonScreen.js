@@ -15,6 +15,8 @@
  * @requires stmIndex.directive:stmIndexPopover
  * @requires stm.filter:range
  * @requires stmIndex.$stmAchievs
+ * @requires stmIndex.directive:stmIndexAchievsInfo
+ * @requires stmIndex.directive:stmIndexTabs
  *
  * @description
  * Экран игры Биатлон
@@ -243,6 +245,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', ['$compile'
             }, 1 / FPS * 1000);
             
             var bonusPopups = $scope.bonusPopups = [];
+            $scope.achievsInfo = angular.copy(achievs);
             $scope.speedsMax = START_MORE_SPEED;
             $scope.men = men;
             $scope.eti = eti;

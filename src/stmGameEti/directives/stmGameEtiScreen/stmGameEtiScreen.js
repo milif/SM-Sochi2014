@@ -8,6 +8,7 @@
  * @requires stmIndex.directive:stmIndexPopup
  * @requires stm.filter:range
  * @requires stmIndex.$stmAchievs
+ * @requires stmIndex.directive:stmIndexAchievsInfo
  *
  * @description
  * Экран игры Йети
@@ -112,7 +113,7 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                 }, 1000 + Math.random() * 1000);
             }            
             $scope.owlCls = '';
-            
+            $scope.achievsInfo = angular.copy(achievs);
             $scope.ineti = 0;
             $scope.showToolbar = false;
             $scope.attemptsCount = ATTEMPTS;

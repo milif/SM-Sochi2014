@@ -9,6 +9,7 @@
  * @requires stmIndex.directive:stmIndexToolbar
  * @requires stmIndex.directive:stmIndexAchiev
  * @requires stmIndex.$stmAchievs
+ * @requires stmIndex.directive:stmIndexAchievsInfo
  *
  * @description
  * Экран личного кабинета

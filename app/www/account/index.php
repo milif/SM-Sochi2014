@@ -14,7 +14,7 @@
     shuffle($products);
     
     $ENV = array(
-        'products' => array_slice($products, 0, 5),
+        'products' => array_slice($products, 0, 6),
         'games' => Game::getUserData(),
         'friends' => User::getFriendsCount()
     );

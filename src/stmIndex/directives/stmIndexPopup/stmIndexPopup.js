@@ -329,22 +329,6 @@ angular.module('stmIndex').directive('stmIndexPopup', function(){
         }]
     };
 })
-.directive('stmIndexPopupTabs', ['$animate', function($animate){
-    var cls = 'state_active';
-    return function(scope, iElement){
-       var activeEl = iElement.find('[data-active]');
-       var index = activeEl.length > 0 ? activeEl.parent().children().index(activeEl) : 0;
-       iElement.find('>:eq('+(index+1)+'),>*>:eq('+index+'),>*>:eq('+index+') [tab-active]').addClass('state_active');
-       iElement.on('click','> :first > *',function(){
-            var el = $(this);
-            if(el.hasClass(cls)) return;
-            var index = el.parent().children().index(el);
-            iElement.find('>:first >.' + cls + ',> .' + cls+',[tab-active].'+cls).removeClass(cls);
-            iElement.find('>*>:eq('+index+'),>*>:eq('+index+') [tab-active]').addClass(cls);
-            $animate.addClass(iElement.find('>:eq('+(index+1)+')'), cls);         
-       });
-    }
-}])
 /**
  * @ngdoc directive
  * @name stmIndex.directive:stmIndexPopupBonusInfo
@@ -352,6 +336,7 @@ angular.module('stmIndex').directive('stmIndexPopup', function(){
  *
  * @requires stmIndex.directive:stmIndexPopupBonusInfo:bonusinfo.html
  * @requires stmIndex.directive:stmIndexPopup
+ * @requires stmIndex.directive:stmIndexTabs
  *
  * @example
     <example module="appExample">
@@ -373,6 +358,7 @@ angular.module('stmIndex').directive('stmIndexPopup', function(){
 .directive('stmIndexPopupBonusInfo', [function(){
     return {
         replace: true,
+        scope: true,
         templateUrl: 'partials/stmIndex.directive:stmIndexPopupBonusInfo:bonusinfo.html'
     };
 }])
