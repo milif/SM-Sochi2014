@@ -11,11 +11,13 @@ class Auth {
         if(is_null(self::$userData)){
             if(!isset($_COOKIE[SESSION_COOKIE])){
                 self::$userData = false;
-            } elseif(self::$userData = Cache::get("user_".$_COOKIE[SESSION_COOKIE])) {
             } else {
-                $rs = DB::query("SELECT b.id, b.data, b.ref_key, a.expire FROM session as a LEFT JOIN user as b ON b.id=a.user_id WHERE a.key= :key AND expire > ".time(), array(':key'=>$_COOKIE[SESSION_COOKIE]));
-                self::$userData = count($rs) ? array($rs[0]['id'] ,json_decode($rs[0]['data'], true), $rs[0]['ref_key']) : false;
-                Cache::set("user_".$_COOKIE[SESSION_COOKIE], self::$userData, $rs[0]['expire']);
+                self::$userData = Cache::get("user_".$_COOKIE[SESSION_COOKIE]);
+                if(!self::$userData || !self::$userData[1]){
+                    $rs = DB::query("SELECT b.id, b.data, b.ref_key, a.expire FROM session as a LEFT JOIN user as b ON b.id=a.user_id WHERE a.key= :key AND expire > ".time(), array(':key'=>$_COOKIE[SESSION_COOKIE]));
+                    self::$userData = count($rs) ? array($rs[0]['id'] ,json_decode($rs[0]['data'], true), $rs[0]['ref_key']) : false;
+                    Cache::set("user_".$_COOKIE[SESSION_COOKIE], self::$userData, $rs[0]['expire']);
+                }                
             }
         }
         define('CLIENT_ID', self::$userData ? self::$userData[0] : 0);
