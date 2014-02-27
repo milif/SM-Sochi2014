@@ -71,8 +71,14 @@ class Auth {
     }
     static public function logout(){
         if(!CLIENT_ID) return true;
-        setcookie(SESSION_COOKIE, "", -1, APP_ROOT_URL);
-        if(APP_ROOT_URL != "") setcookie(SESSION_COOKIE, "", -1, APP_ROOT_URL.'/../');
+        
+        if(APP_ROOT_URL == "") {
+            setcookie(SESSION_COOKIE, "", -1, "/");
+        } else {
+            setcookie(SESSION_COOKIE, "", -1, APP_ROOT_URL);
+            setcookie(SESSION_COOKIE, "", -1, APP_ROOT_URL.'/../');
+        }
+
         return true;
     }
     static public function isAuth(){
