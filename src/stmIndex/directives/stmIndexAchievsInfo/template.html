@@ -1,0 +1,8 @@
+                <div stm-index-tabs class="l-popup-tabs">
+                    <div class="b-popup-tabs">
+                        <div ng-repeat="achiev in achievs" ng-class="achiev.tabActive ? 'state_active' : ''" class="b-popup-tabs_item">
+                             <div class="mod_tabs" stm-index-achiev="{{type+'.'+achiev.type}}" text="{{achiev.text}}" active="{{achiev.active}}"></div>
+                        </div>
+                    </div>                  
+                    <div ng-repeat="achiev in achievs" class="b-popup-tab-content" ng-bind-html="achiev.descr"></div>
+                </div>
