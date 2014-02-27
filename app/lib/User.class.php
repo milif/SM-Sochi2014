@@ -8,7 +8,7 @@ class User {
     static public function getFriendsCount(){
         if(CLIENT_ID == 0) return 0;
         $key = 'friends.'.CLIENT_ID;
-        $counter = Cache::get();
+        $counter = Cache::get($key);
         if($counter !== false) return (int)$counter;
         
         $rs = DB::query("SELECT COUNT(*) as count FROM `user` WHERE ref_id = ".CLIENT_ID);
