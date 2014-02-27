@@ -21,13 +21,13 @@ class Auth {
         define('CLIENT_ID', self::$userData ? self::$userData[0] : 0);
         if(self::$userData) define('REF_KEY', self::$userData[2]);
         if(CLIENT_ID == 0 && !isset($_COOKIE[SESSION_COOKIE.'_stmuid'])) {
-            setcookie(SESSION_COOKIE.'_stmuid', uniqid(), 0, APP_ROOT_URL);
+            setcookie(SESSION_COOKIE.'_stmuid', uniqid(), 0, APP_ROOT_URL == "" ? "/" : APP_ROOT_URL);
         }
     }
     static public function login($cookie, $uri, $data){
         if(!$uri) return false;
         $expire = time() + SESSION_TIME;
-        setcookie(SESSION_COOKIE, $cookie, $expire, APP_ROOT_URL);
+        setcookie(SESSION_COOKIE, $cookie, $expire, APP_ROOT_URL == "" ? "/" : APP_ROOT_URL);
         $dataJSON = str_replace("'","",json_encode($data));
         $rs = DB::query("SELECT id, ref_key FROM user WHERE uri = :uri", array(':uri'=>$uri));
         if(count($rs)) {

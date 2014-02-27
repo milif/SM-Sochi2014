@@ -47,8 +47,8 @@ angular.module('stmIndex').directive('stmIndexSale', function(){
             text: '23 февраля'
         },
         {
-            date: '2014-03-05',
-            text: '5 марта'
+            date: '2014-03-21',
+            text: '21 марта'
         },
         {
             date: '2014-02-31',
