@@ -6,7 +6,7 @@
     require __DIR__.'/../../lib/User.class.php';
     
     if(!Auth::isAuth()){
-        header('Location: '.APP_ROOT_URL == "" ? "/" : APP_ROOT_URL);
+        header('Location: '.(APP_ROOT_URL == "" ? "/" : APP_ROOT_URL));
         exit;
     }
     
