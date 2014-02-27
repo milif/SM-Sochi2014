@@ -1,3 +1,4 @@
+"use strict";
 /**
  * @ngdoc directive
  * @name stmCabinet.directive:stmCabinetScreen

@@ -1,3 +1,4 @@
+"use strict";
 /**
  * @ngdoc directive
  * @name stmIndex.directive:stmIndexBonusPopup

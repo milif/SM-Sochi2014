@@ -93,6 +93,7 @@
 }
 .b-button.mod_subscribe .b-button__text {
     font-size: 15px;
+    line-height: 38px;
 }
 
 .b-form-row.mod_hint {

@@ -1,3 +1,4 @@
+"use strict";
 /**
  * @requires jquery/jquery.js
  * @requires angular/angular.js
