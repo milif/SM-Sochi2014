@@ -24,6 +24,7 @@
     <example module="appExample">
       <file name="index.html">
         <div ng-controller="Controller">
+
             <div stm-index-popup class="example-popup">
                 <div class='b-popup-title'>
                   Альпинист — восхождение по канату<br>на самую высокую гору мира
@@ -32,6 +33,62 @@
                   Для движения наверх нажимай стрелку <b><i>Вверх.</i></b><br>Уклоняйся от падающих сосулек и собирай бонусы<br>от спонсора игры — «Сбербанка»
                 </div>       
             </div>
+            <div stm-index-popup class="example-popup">
+                <div class='b-popup-title'>
+                  Завершение регистрации
+                </div>
+                <form class="g-form g-text_left g-form_margin-40">
+                    <div class="b-form-row">
+                        <label for="fio" class="b-form-label">Фамилия, Имя и Отчество</label>
+                        <input type="text" name="fio" id="fio" class="b-form-input-text" placeholder="Ф.И.О.">
+                    </div>
+                    <div class="b-form-row">
+                        <label for="e-mail" class="b-form-label">Электронная почта</label>
+                        <input type="text" name="e-mail" id="e-mail" class="b-form-input-text" placeholder="E-mail">
+                    </div>
+                    <div class="g-clearfix">
+                        <div class="b-column-form b-column-form_size_3-8">
+                            <div class="b-form-row">
+                                <label for="phone" class="b-form-label">Номер телефона</label>
+                                <input type="text" name="phone" id="phone" class="b-form-input-text" placeholder="Телефон">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="g-clearfix">
+                        <div class="b-column-form b-column-form_size_3-8">
+                            <div class="b-form-row">
+                                <label for="birthday" class="b-form-label">Дата рождения</label>
+                                <input type="text" name="birthday" id="birthday" class="b-form-input-text" placeholder="День рождения">
+                            </div>
+                        </div>
+                        <div class="b-column-form b-column-form_size_5-8 g-clearfix">
+                            <div class="b-form-row">
+                                <div class="b-column-form-ins">
+                                    <label for="birthday" class="b-form-label">Пол</label>
+                                    <ul class="b-sex">
+                                        <li class="b-sex___item"><span class="custom-checkbox custom-checkbox_first">
+                                            <input type="radio" name="color" id="color-black" checked="checked" class="custom-checkbox-hide"><span class="custom-checkbox__text">Мужской</span></span>
+                                        </li>
+                                        <li class="b-sex___item"><span class="custom-checkbox custom-checkbox_last state_active">
+                                            <input type="radio" name="color" id="color-white" class="custom-checkbox-hide"><span class="custom-checkbox__text">Женский</span></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="b-form-row">
+                        <div class="terms-action">
+                            <div class="terms-action__left">
+                                <input type="checkbox" name="action" id="action" class="b-checkbox">
+                            </div>
+                            <label for="action">Принимаю</label> <br> <a href="#" class="terms-action__link">Условия акции</a>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            
             <div stm-index-popup game-data="game" class="example-popup"></div>
             <div stm-index-popup game-data="gameNoDetails" class="example-popup"></div>
             <div stm-index-popup footer="false" closable="true" class="example-popup">
