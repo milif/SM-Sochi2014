@@ -488,7 +488,10 @@
 .b-cabinet-game-top-title {
     font-size: 23px;
 }
-
+.b-cabinet-game-top-title .__a {
+    color: #000;
+    text-decoration: none;
+}
 .b-cabinet-game-result {
     white-space: nowrap;
     font-size: 18px;

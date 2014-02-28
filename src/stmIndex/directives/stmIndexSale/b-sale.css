@@ -634,8 +634,8 @@ a.b-sale-br-link {
 }
 .b-sale-footer-left-h {
     height: 110px;
-    padding-left: 50px;
-    padding-right: 25px;
+    padding-left: 30px;
+    padding-right: 20px;
     vertical-align: middle;
     display: table-cell;
     width: 306px;
@@ -645,6 +645,9 @@ a.b-sale-br-link {
 }
 .b-sale-footer-left-h > *:first-child {
     margin-bottom: 20px;
+}
+.b-sale-footer-left-h .twitter-share-button {
+    width: 125px!important;
 }
 .b-sale-footer-right {
     -webkit-box-sizing: border-box;
