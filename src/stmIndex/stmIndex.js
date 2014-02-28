@@ -202,7 +202,7 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
         
         var $ = angular.element;
         
-        var disableEl = $('<a href="https://loginza.ru/api/widget?token_url=' + encodeURIComponent($('base').get(0).href + 'api/auth.php') + '"></a>')
+        var disableEl = $('<a href="https://loginza.ru/api/widget?token_url=' + encodeURIComponent($('base').get(0).href + 'api/auth.php') + '&providers_set=vkontakte,facebook,google,odnoklassniki"></a>')
                 .click(function(e){
                     e.preventDefault();
                 })

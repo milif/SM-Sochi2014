@@ -354,8 +354,50 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                 'height': 183,
                 'cols': 7
             };
+            $scope.item30 = {
+                'frames': 80,
+                'fps': 30,
+                'width': 386,
+                'height': 276,
+                'cols': 2
+            };
+            $scope.item31 = {
+                'frames': 10,
+                'fps': 30,
+                'width': 200,
+                'height': 230,
+                'cols': 5
+            };
+            $scope.item32 = {
+                'frames': 48,
+                'fps': 30,
+                'width': 250,
+                'height': 230,
+                'cols': 4
+            };
+            $scope.item33 = {
+                'frames': 40,
+                'fps': 30,
+                'width': 230,
+                'height': 210,
+                'cols': 4
+            };
+            $scope.item34 = {
+                'frames': 72,
+                'fps': 30,
+                'width': 480,
+                'height': 230,
+                'cols': 2
+            };
+            $scope.item35 = {
+                'frames': 70,
+                'fps': 30,
+                'width': 950,
+                'height': 280,
+                'cols': 1
+            };            
             
-            var itemsCount = 29;
+            var itemsCount = 35;
             for(var index=1; index<=itemsCount; index++) {
                 $scope['item'+index]._frameIndex = 0;
             }

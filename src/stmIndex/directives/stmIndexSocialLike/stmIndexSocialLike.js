@@ -57,6 +57,7 @@ angular.module('stmIndex')
         likeFB(el);
         likeTW(el);
         likeGP(el);
+        likeOK(el);
     };
     
     function vkApi(clbFn){
@@ -127,6 +128,15 @@ angular.module('stmIndex')
             clbFn.call(gapi.plusone);
         });
     }    
+    function okApi(clbFn){
+        var apiUrl = "http://connect.ok.ru/connect.js";
+        if(!okApi.loaded) {
+            okApi.loaded = true;          
+        }       
+        get(apiUrl, function(){
+            clbFn.call(OK.CONNECT);
+        });
+    }     
     function likeGP(el){
         var gpEl = $('<span></span>');
         el.append(gpEl);
@@ -138,6 +148,14 @@ angular.module('stmIndex')
             });
         });
     }
+    function likeOK(el){
+        var id = 'ok' + counter++;
+        var gpEl = $('<span id="'+id+'"></span>');                
+        el.append(gpEl);
+        okApi(function(){
+            this.insertShareWidget(id, share.url, "{width:85,height:20,st:'straight',sz:20,nt:1}");
+        });
+    }    
     function likeTW(el){
         var twEl = $('<a href="https://twitter.com/share" class="twitter-share-button" data-url="'+share.url+'" data-text="'+share.description+' '+share.url+'" data-lang="ru" style="width: 118px;">Tweet</a>');
         el.append(twEl);
