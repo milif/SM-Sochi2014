@@ -73,7 +73,8 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', ['$compile'
     var JUMP_TIME = 1; // Сколько секунд длится прыжок
     var JUMP_HEIGHT = 100; // Высота прыжка (px)
     var BONUS_SUMM = 50; // Сколько прибавлять очков 
-    //var BONUSES_COUNT = 50; // Число бонусов на игру    
+    //var BONUSES_COUNT = 50; // Число бонусов на игру   
+    var BONUS_TYPES = ['mnogo', 'sber', 'qiwi', 'dpd']; 
     var BONUSES_DISTANCE = 1000; // Оптимальное расстояние между бонусами 
     var BONUS_JUMP = { // Надо подпрыгнуть
         y: JUMP_HEIGHT + 75,
@@ -646,7 +647,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', ['$compile'
                     score: $scope.score,
                     data: {
                         time: new Date().getTime() - gameTime,
-                        final: !$stmBonus.hasAvailable(),
+                        final: !$stmBonus.hasAvailable(BONUS_TYPES),
                         distance: Math.round(finalDistance),
                         score: scoreDetails
                     }
@@ -799,7 +800,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', ['$compile'
                 var x = frameEl.points[0][0];
                 var y;
                 var data = {};
-                var types = $stmBonus.getAvailableTypes();
+                var types = $stmBonus.getAvailableTypes(BONUS_TYPES);
                 var bonusItem;
                 while(types.length > 0){
                     x += 0.75 * BONUSES_DISTANCE + Math.random() * BONUSES_DISTANCE * 0.5;

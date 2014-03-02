@@ -51,12 +51,14 @@
     background: #fff url("asset/i/b-indexBonusPopup/b-indexBonusPopup.png") center 0 no-repeat;
     /*border: 3px solid #000;*/
 }
-
 .b-bonus-popup-pickpoint {
     background-position: center -146px;
 }
 .b-bonus-popup-qiwi {
     background-position: center -216px;
+}
+.b-bonus-popup-dpd {
+    background-position: center -292px;
 }
 .b-bonus-popup-mnogo {
     background-position: center -73px;

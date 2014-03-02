@@ -25,6 +25,8 @@
           <div stm-index-bonus-popup bonus="500" type="sber"></div>
           <br>
           <div stm-index-bonus-popup bonus="500" type="qiwi"></div>
+          <br>
+          <div stm-index-bonus-popup bonus="500" type="dpd"></div>
         <div>
       </file>
     </example>
@@ -34,6 +36,7 @@
 angular.module('stmIndex').directive('stmIndexBonusPopup', function(){
     var TEXT = {
         'pickpoint': 'Спасибо за упорство от Пикпоинта!',
+        'dpd': 'Спасибо за упорство от DPD!',
         'mnogo': 'от Много.ру!',
         'sber': 'Спасибо за упорство от Сбербанка!',
         'qiwi': 'от Qiwi Wallet!'
@@ -141,6 +144,15 @@ angular.module('stmIndex').factory('$stmBonus', [function(){
             })
         },  
         {
+            type: 'qiwi',
+            hasAvailable: hasAvailableFactory(function(score){
+                return true;
+            }),
+            put: putFactory(function(score){
+                return 20;
+            })
+        },
+        {
             type: 'pickpoint',
             hasAvailable: hasAvailableFactory(function(score){
                 return true;
@@ -150,14 +162,14 @@ angular.module('stmIndex').factory('$stmBonus', [function(){
             })
         },
         {
-            type: 'qiwi',
+            type: 'dpd',
             hasAvailable: hasAvailableFactory(function(score){
                 return true;
             }),
             put: putFactory(function(score){
-                return 20;
+                return 10;
             })
-        }           
+        }                 
     ];
     for(var i=0;i<TYPES.length;i++){
         TYPES['_' + TYPES[i].type] = TYPES[i];
@@ -195,15 +207,17 @@ angular.module('stmIndex').factory('$stmBonus', [function(){
     function getScores(){
         return angular.copy(scores);
     }
-    function hasAvailable(){
+    function hasAvailable(inTypes){
         for(var i=0;i<TYPES.length;i++){
+            if(inTypes && inTypes.indexOf(TYPES[i].type) < 0) continue;
             if(TYPES[i].hasAvailable()) return true;
         }
         return false;        
     }
-    function getAvailableTypes(){
+    function getAvailableTypes(inTypes){
         var types = [];
         for(var i=0;i<TYPES.length;i++){
+            if(inTypes && inTypes.indexOf(TYPES[i].type) < 0) continue;
             if(TYPES[i].hasAvailable()) {
                 types.push(TYPES[i]);
             }

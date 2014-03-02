@@ -42,13 +42,16 @@
     
  */
 angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '$interval', '$document', '$window', 'Game', 'Achiev', '$stmBonus', '$stmAchievs', function($timeout, $interval, $document, $window, Game, Achiev, $stmBonus, $stmAchievs){
+
+    var BONUS_TYPES = ['mnogo', 'sber', 'qiwi', 'pickpoint']; 
+
     var achievs = $stmAchievs.climber;
     var ACHIVE_JOURNALIST = achievs.keys.journalist;
     var ACHIVE_RESISTANCE = achievs.keys.resistance;
     var ACHIVE_PIONEER = achievs.keys.pioneer;
     var ACHIVE_AMATEURFAUNA = achievs.keys.amateurfauna;
     var ACHIVE_KINGOFHILL = achievs.keys.kingofhill;
-
+    
     var ACHIEVEMENTS = [
         ACHIVE_JOURNALIST,
         ACHIVE_RESISTANCE,
@@ -336,7 +339,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         ) {
                             return;
                         }
-                        var types = $stmBonus.getAvailableTypes();
+                        var types = $stmBonus.getAvailableTypes(BONUS_TYPES);
                         var bonusItem = types[Math.floor(Math.random() * types.length + 1) % types.length];
                         bonuses.push({
                                 id: 'bonus' + idBonus++,
