@@ -63,15 +63,9 @@
     line-height: 120%;
     display: block;
 }
-.b-cabinet-userpic-link {
+.b-cabinet .b-cabinet-userpic-link {
     font-size: 11px;
     color: #a1a1a1;
-    border-bottom: 1px dotted;
-    cursor: pointer;
-}
-.b-cabinet-userpic-link:hover {
-    border-color: #f66b0e;
-    color: #f66b0e;
 }
 .b-cabinet-userpic-cont {
     text-align: left;
@@ -261,6 +255,7 @@
 }
 .b-cabinet-product-item-img-h.mod_hor {
     width: 78px;
+    height: auto;
 }
 .b-cabinet-product-item-text {
     overflow: hidden;

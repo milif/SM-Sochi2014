@@ -11,6 +11,17 @@ if(!count($rs)){
             ALTER TABLE `user` ADD INDEX `ref_id` (`ref_id`);
         ");
 }
+$rs = DB::query("SHOW COLUMNS FROM `user` LIKE 'email';");
+if(!count($rs)){
+        DB::query("
+            ALTER TABLE `user` ADD COLUMN `email` varchar(32);
+            ALTER TABLE `user` ADD COLUMN `age` date;
+            ALTER TABLE `user` ADD COLUMN `phone` varchar(32);
+            ALTER TABLE `user` ADD COLUMN `name` varchar(255);
+            ALTER TABLE `user` ADD COLUMN `gender` varchar(16);
+            ALTER TABLE `user` ADD COLUMN `registrated` timestamp;
+        ");
+}
 $rs = DB::query("SHOW COLUMNS FROM `user` LIKE 'climber_passed';");
 if(!count($rs)){
         DB::query("

@@ -45,7 +45,19 @@ module.exports = function(grunt) {
                 includeTemplates: [
                     '*'
                 ]
-            },    
+            }, 
+            {  
+                name: 'stmIndexConfirmation', //  Package name
+                module: 'stmIndex', // Module name
+                include: [        // Include module components:
+                    'directive:stmIndexConfirmation',
+                    'stm.directive:stmPreload'
+                ],
+                includeAsset: true,
+                includeTemplates: [
+                    '*'
+                ]
+            },                
             {  
                 name: 'stmIndexSale', //  Package name
                 module: 'stmIndex', // Module name
@@ -119,7 +131,7 @@ module.exports = function(grunt) {
             }
             
         ],
-        lib: ['src/**/*.js'],
+        lib: ['src/**/*.+(js|html)'],
         components: ['build/components'],
         buildDir: 'build/app',
         modulesDir: 'www/modules',
@@ -128,7 +140,7 @@ module.exports = function(grunt) {
     
     builddocs:{
         main: ['appExample'],
-        lib: ['docs/appExample/**/*.js', 'src/**/*.js'],
+        lib: ['docs/appExample/**/*.+(js|html)', 'src/**/*.+(js|html)'],
         components: ['build/components'],
         buildDir: 'build/docs/modules',
         partialsDir: 'build/docs/partials'

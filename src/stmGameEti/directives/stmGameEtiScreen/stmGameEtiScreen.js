@@ -6,6 +6,10 @@
  *
  * @requires stmGameEti.directive:stmGameEtiScreen:b-gameEti.css
  * @requires stmGameEti.directive:stmGameEtiScreen:template.html
+ * @requires stmIndex:playButton.html
+ * @requires stmIndex:mnogoForm.html
+ * @requires stmIndex:bonusInfo.html
+ * @requires stmIndex:gameInfo.html
  * @requires stmIndex.directive:stmIndexPopup
  * @requires stm.filter:range
  * @requires stmIndex.$stmAchievs
@@ -121,12 +125,14 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
             $scope.stateCls = 'state_stopGame';
             $scope.showBigEti = true;
             $scope.showStartPopup = true;
+            $scope.showGamePopup = false;
             $scope.position = {
                 x: viewEl.width() / 2,
                 y: viewEl.height() / 2
             }
             $scope.play = function(){
                 $scope.showStartPopup = false;
+                $scope.showGamePopup = false;
                 $timeout(function(){
                     startGame();
                 }, 0);
@@ -468,7 +474,7 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                     
                     $timeout(function(){
                         $scope.showToolbar = false;
-                        $scope.showStartPopup = true;                
+                        $scope.showGamePopup = true;                
                     }, 700);
                     
                     var achieves = angular.copy(ACHIEVEMENTS);

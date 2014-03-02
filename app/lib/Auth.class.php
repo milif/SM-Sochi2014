@@ -62,14 +62,15 @@ class Auth {
             
         }
         if(!$id) return false;
+        
         DB::query("DELETE FROM session WHERE expire < ".time());
         DB::query("INSERT INTO session (`key`, expire, user_id) VALUES (:cookie, $expire, $id)", array(':cookie'=>$cookie));
-        Cache::set("user_".$cookie, array($id, $data, $refKey), $expire);
+        self::$userData = array($id, $data, $refKey);
+        Cache::set("user_".$cookie, self::$userData, $expire);
         
-        define('CLIENT_ID', $id);
         define('REF_KEY', $refKey);
         
-        return true;
+        return $id;
     }
     static public function logout(){
         if(!CLIENT_ID) return true;

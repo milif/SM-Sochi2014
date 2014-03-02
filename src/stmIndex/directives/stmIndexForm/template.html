@@ -1,0 +1,11 @@
+                <form ng-class="isValidate ? 'state_validate' : ''" name="form" class="g-form b-form g-text_left g-form_margin-40 g-font" novalidate>
+                    <div ng-repeat="field in fields" class="b-form-row g-clearfix">
+                        <div ng-if="!isArray(field)" stm-index-form-field="field"></div>
+                        <div ng-if="isArray(field)">
+                            <div ng-repeat="column in field" ng-class="'b-column-form_size_' + column.size + ( $last ? ' g-clearfix' : '')" class="b-column-form">
+                                    <div stm-index-form-field="column"></div>
+                            </div>
+                        </div>                        
+                    </div>
+                    <div ng-transclude></div>
+                </form>

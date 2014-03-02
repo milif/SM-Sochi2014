@@ -98,7 +98,8 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
             }            
             
             $element.on('mousedown', function(e){
-                if($(e.target).closest('[data-controls],[ng-transclude]').length > 0) return;
+                var targetEl = $(e.target);
+                if(targetEl.closest('[data-controls],[ng-transclude]').length > 0 || targetEl.closest('.b-map').length == 0) return;
                 if($scope.inScroll === true) {
                     return;
                 }
@@ -559,14 +560,18 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
 
             var keyEvents = {
                 'keydown': function (e) {
-                    e.preventDefault();
+                    if($(e.target).closest('input, textarea').length > 0) return;
                     if (e.keyCode == 87 || e.keyCode == 38) { // "W" || "arrow up"
+                        e.preventDefault();
                         $scope.moveView('up');
                     } else if (e.keyCode == 65 || e.keyCode == 37) { // "A" || "arrow left"
+                        e.preventDefault();
                         $scope.moveView('left');
                     } else if (e.keyCode == 83 || e.keyCode == 40) { // "S" || "arrow down"
+                        e.preventDefault();
                         $scope.moveView('down');
                     } else if (e.keyCode == 68 || e.keyCode == 39) { // "D" || "arrow right"
+                        e.preventDefault();
                         $scope.moveView('right');
                     }
                 },

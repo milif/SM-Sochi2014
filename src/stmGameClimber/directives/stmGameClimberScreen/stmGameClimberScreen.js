@@ -6,8 +6,12 @@
  *
  * @requires stmGameClimber.directive:stmGameClimberScreen:b-gameClimber.css
  * @requires stmGameClimber.directive:stmGameClimberScreen:template.html
+ * @requires stmIndex:playButton.html
+ * @requires stmIndex:mnogoForm.html
+ * @requires stmIndex:bonusInfo.html
+ * @requires stmIndex:gameInfo.html
  * @requires stmIndex.directive:stmIndexPopup
- * @requires stmIndex.directive:stmIndexPopupBonusInfo
+ * @requires stmIndex.directive:stmIndexBonusInfo
  * @requires stmIndex.directive:stmIndexBonus
  * @requires stmIndex.directive:stmIndexBonusPopup
  * @requires stmIndex.directive:stmIndexPopover
@@ -70,6 +74,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
               $scope.distanceMeters = $scope.distance / 100;
           });
           $scope.showStartPopup = true;
+          $scope.showGamePopup = false;
           $scope.showToolbar = false;
           $scope.manPositionLeft = false;
           $scope.scoreIncrement = 500;
@@ -450,6 +455,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         scope.energy = 100;
                         scope.distance = 0;
                         scope.showStartPopup = false;
+                        scope.showGamePopup = false;
                         moodPopupUsed = false;
                         goingUpUsed = false;
                         attempts = 5 + Math.round(Math.random() * 5);
@@ -546,7 +552,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         $timeout(function(){
                             updatePosition(startPosition);
                             scope.showToolbar = false;
-                            scope.showStartPopup = true;
+                            scope.showGamePopup = true;
                         }, 1000);
 
                         var time = new Date().getTime();
@@ -564,7 +570,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                             $timeout(function(){
                                 position = startPosition;
                                 scope.showToolbar = false;
-                                scope.showStartPopup = true;
+                                scope.showGamePopup = true;
                             }, 700);
                                                    
                             var achieves = angular.copy(ACHIEVEMENTS);

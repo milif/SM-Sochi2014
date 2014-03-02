@@ -117,12 +117,16 @@
                 <div ng-click="showInfo()" class="b-popup-link-bonus">
                     <span class="b-popup-link-bonus-h">Бонусы и трофеи</span>
                 </div>
+                <div ng-include="'partials/stmIndex:playButton.html'"></div>
+    </div>
+    <div stm-index-popup header="'partials/stmIndex:bonusInfo.html'" content-after="'partials/stmIndex:mnogoForm.html'" show="{{showGamePopup}}">
+        <div ng-include="'partials/stmIndex:gameInfo.html'"></div>        
     </div>
     <div show="{{showInfoPopup}}" stm-index-popup footer="false" closable="closeInfo">
                 <div class="b-popup-title">
                     Собирай бонусы от спонсоров
                 </div>
-                <div stm-index-popup-bonus-info></div>
+                <div stm-index-bonus-info></div>
                 <div class="b-popup-title">
                     Получай достижения
                 </div>

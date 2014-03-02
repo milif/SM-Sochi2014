@@ -222,6 +222,10 @@
                 <div class="b-popup-title">
                     Получай достижения
                 </div>
-                <div stm-index-achievs-info="achievsInfo" tab-active="true" type="yeti"></div>            
+                <div stm-index-achievs-info="achievsInfo" tab-active="true" type="yeti"></div>
+                <div ng-include="'partials/stmIndex:playButton.html'"></div>            
     </div>
+    <div stm-index-popup header="'partials/stmIndex:bonusInfo.html'" content-after="'partials/stmIndex:mnogoForm.html'" show="{{showGamePopup}}">
+        <div ng-include="'partials/stmIndex:gameInfo.html'"></div>        
+    </div>    
 </div>    

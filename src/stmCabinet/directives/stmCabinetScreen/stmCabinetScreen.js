@@ -85,10 +85,14 @@ angular.module('stmCabinet').directive('stmCabinetScreen', function(){
             $scope.friends = $stmEnv.friends > 99 ? '99+' : $stmEnv.friends;
             $scope.products = $stmEnv.products;
             
-            var name = $stmAuth.data.name;
-            $scope.avatar = $stmAuth.data.photo || 'asset/i/b-indexCabinet/userpic.png';
-            $scope.name = name.first_name + " " + name.last_name[0] + ".";
             
+            $scope.authData = $stmAuth.data;
+            $scope.getName = function(){
+                var name = $stmAuth.data.name;
+                if(!name) return '';
+                name = name.split(" ");
+                return name[0] + " " + name[1][0] + ".";
+            }            
          }]
      };
  });

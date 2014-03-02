@@ -1,0 +1,15 @@
+/* Confirmation */
+/*==========================================================*/
+.l-confirmation {
+    padding-top: 40px;
+    background-color: #ffd631;
+    overflow: hidden;
+    min-width: 1000px;
+}
+.l-confirmation-h {
+    position: relative;
+    z-index: 10;
+    width: 760px;
+    padding-top: 1px;
+    margin: 0 auto;
+}

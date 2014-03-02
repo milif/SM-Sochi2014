@@ -8,23 +8,23 @@
  * @requires stmIndex.directive:stmIndexPopup:template.html
  *
  * @requires stmIndex.directive:stmIndexSocial
- * @requires stmIndex.directive:stmIndexAchiev
  *
  * @description
  * Popup
  *
  * @element ANY
  *
- * @param {Expression=} game-data Данные о прохождении игры
+ * @param {String=} header Шаблон заголовка
+ * @param {String=} contentAfter Шаблон блока после контента
  * @param {Boolean=} closable Закрываемый
  * @param {Boolean=} footer Наличие футера
  * @param {Boolean=} show Видимость
+ * @param {Boolean=} fixed Позицирование
  *
  * @example
     <example module="appExample">
       <file name="index.html">
         <div ng-controller="Controller">
-
             <div stm-index-popup class="example-popup">
                 <div class='b-popup-title'>
                   Альпинист — восхождение по канату<br>на самую высокую гору мира
@@ -32,202 +32,9 @@
                 <div class='b-popup-note'>
                   Для движения наверх нажимай стрелку <b><i>Вверх.</i></b><br>Уклоняйся от падающих сосулек и собирай бонусы<br>от спонсора игры — «Сбербанка»
                 </div>       
-            </div>
-            <div stm-index-popup class="example-popup">
-                <div class='b-popup-title'>
-                  Завершение регистрации
-                </div>
-                <form class="g-form g-text_left g-form_margin-40">
-                    <div class="b-form-row">
-                        <label for="fio" class="b-form-label">Фамилия, Имя и Отчество</label>
-                        <input type="text" name="fio" id="fio" class="b-form-input-text" placeholder="Ф.И.О.">
-                    </div>
-                    <div class="b-form-row">
-                        <label for="e-mail" class="b-form-label">Электронная почта</label>
-                        <input type="text" name="e-mail" id="e-mail" class="b-form-input-text" placeholder="E-mail">
-                    </div>
-                    <div class="g-clearfix">
-                        <div class="b-column-form b-column-form_size_3-8">
-                            <div class="b-form-row">
-                                <label for="phone" class="b-form-label">Номер телефона</label>
-                                <input type="text" name="phone" id="phone" class="b-form-input-text" placeholder="Телефон">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="g-clearfix">
-                        <div class="b-column-form b-column-form_size_3-8">
-                            <div class="b-form-row">
-                                <label for="birthday" class="b-form-label">Дата рождения</label>
-                                <input type="text" name="birthday" id="birthday" class="b-form-input-text" placeholder="День рождения">
-                            </div>
-                        </div>
-                        <div class="b-column-form b-column-form_size_5-8 g-clearfix">
-                            <div class="b-form-row">
-                                <div class="b-column-form-ins">
-                                    <label for="birthday" class="b-form-label">Пол</label>
-                                    <ul class="b-sex">
-                                        <li class="b-sex___item"><span class="custom-checkbox custom-checkbox_first">
-                                            <input type="radio" name="color" id="color-black" checked="checked" class="custom-checkbox-hide"><span class="custom-checkbox__text">Мужской</span></span>
-                                        </li>
-                                        <li class="b-sex___item"><span class="custom-checkbox custom-checkbox_last state_active">
-                                            <input type="radio" name="color" id="color-white" class="custom-checkbox-hide"><span class="custom-checkbox__text">Женский</span></span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="b-form-row">
-                        <div class="terms-action">
-                            <div class="terms-action__left">
-                                <input type="checkbox" name="action" id="action" class="b-checkbox">
-                            </div>
-                            <label for="action">Принимаю</label> <br> <a href="#" class="terms-action__link">Условия акции</a>
-                        </div>
-                    </div>
-                </form>
-
-            </div>
-            
+            </div>            
             <div stm-index-popup game-data="game" class="example-popup"></div>
             <div stm-index-popup game-data="gameNoDetails" class="example-popup"></div>
-            <div stm-index-popup footer="false" closable="true" class="example-popup">
-                <div class="b-popup-title">
-                    Собирайте бонусы от спонсоров
-                </div>
-
-                <div stm-index-popup-tabs class="l-popup-tabs">
-                    <div class="b-popup-tabs">
-                        <div class="b-popup-tabs_item">
-                            <div class="b-slide-result-item mod_mnogo">
-                                <div class="b-slide-result-icon"></div>
-                                <div class="b-slide-result-text">100</div>
-                            </div> 
-                        </div>
-                        <div class="b-popup-tabs_item">
-                            <div class="b-slide-result-item mod_sber">
-                                <div class="b-slide-result-icon"></div>
-                                <div class="b-slide-result-text">100</div>
-                            </div> 
-                        </div>
-                        <div class="b-popup-tabs_item">
-                            <div class="b-slide-result-item mod_pickpoint">
-                                <div class="b-slide-result-icon"></div>
-                                <div class="b-slide-result-text">100</div>
-                            </div> 
-                        </div>
-                        
-                    </div>
-                    <div class="b-popup-tab-content">
-                        Соберите 10, и получите 10 баллов Много.ру на свою карту
-                    </div>
-                    <div class="b-popup-tab-content">
-                        Вы можете получить ускорение метко попадая в цели
-                    </div>
-                    <div class="b-popup-tab-content">
-                        Соберите 10, и получите 10 баллов Много.ру на свою карту
-                    </div>
-                </div>
-
-
-                <div class="b-popup-title">
-                    Получайте достижения
-                </div>
-                
-                <div stm-index-popup-tabs class="l-popup-tabs">
-                    <div class="b-popup-tabs">
-                        <div class="b-popup-tabs_item">
-                             <div class="b-achive-item mod_tabs">
-                                 <div class="b-achive">
-                                     <div tab-active class="b-achive__h achiv_climber_journalist">
-                                     </div>
-                                 </div>
-                                 <div class="b-achive-item-note">Оленевод</div>
-                             </div>
-                        </div>
-                        <div class="b-popup-tabs_item">
-                            <div class="b-achive-item mod_tabs">
-                                 <div class="b-achive">
-                                     <div tab-active class="b-achive__h achiv_climber_pioneer">
-                                     </div>
-                                 </div>
-                                 <div class="b-achive-item-note">Оленевод</div>
-                             </div>
-                        </div>
-                        <div class="b-popup-tabs_item">
-                            <div class="b-achive-item mod_tabs">
-                                 <div class="b-achive">
-                                     <div tab-active class="b-achive__h achiv_climber_amateurfauna">
-                                     </div>
-                                 </div>
-                                 <div class="b-achive-item-note">Оленевод</div>
-                             </div>
-                        </div>
-                        <div class="b-popup-tabs_item">
-                            <div class="b-achive-item mod_tabs">
-                                 <div class="b-achive">
-                                     <div tab-active class="b-achive__h achiv_yeti_amongstrangers">
-                                     </div>
-                                 </div>
-                                 <div class="b-achive-item-note">Оленевод</div>
-                             </div>
-                        </div>
-                    </div>
-                    <div class="b-popup-tab-content">
-                        Вы можете получить ускорение метко попадая в цели
-                    </div>
-                    <div class="b-popup-tab-content">
-                        Вы можете получить ускорение метко попадая в цели
-                    </div>
-                    <div class="b-popup-tab-content">
-                        Вы можете получить ускорение метко попадая в цели
-                    </div>
-                    <div class="b-popup-tab-content">
-                        Вы можете получить ускорение метко попадая в цели
-                    </div>
-                </div>  
-            </div>          
-            <div stm-index-popup  class="example-popup">
-                <div class='b-popup-title'>
-                  Биатлон — не дай себя догнать Йети
-                </div> 
-                <div stm-index-popup-tabs class="l-popup-tabs">
-                    <div class="b-popup-tabs">
-                        <div class="b-popup-tabs_item">
-                            <div class="b-popup-tabs_item-decor mod_1"></div>
-                            <div class="b-popup-tabs_item-text">Ускорение</div>
-                        </div>
-                        <div class="b-popup-tabs_item">
-                            <div class="b-popup-tabs_item-decor mod_2"></div>
-                            <div class="b-popup-tabs_item-text">Прыжок</div>
-                        </div>
-                        <div class="b-popup-tabs_item">
-                            <div class="b-popup-tabs_item-decor mod_3"></div>
-                            <div class="b-popup-tabs_item-text">Присесть</div>
-                        </div>
-                        <div class="b-popup-tabs_item">
-                            <div class="b-popup-tabs_item-decor mod_4"></div>
-                            <div class="b-popup-tabs_item-text">Выстрел</div>
-                        </div>
-                    </div>
-                    <div class="b-popup-tab-content">
-                        Чтобы набрать скорость используйте ускорение
-                    </div>
-                    <div class="b-popup-tab-content">
-                        Прыгайте чтобы дотянуться до бонусов
-                    </div>
-                    <div class="b-popup-tab-content">
-                        Вы можете присесть на склоне, чтобы набрать скорость
-                    </div>
-                    <div class="b-popup-tab-content">
-                        Вы можете получить ускорение метко попадая в цели
-                    </div>
-                </div>
-                
-                <div class="b-popup-link-bonus">
-                    <span class="b-popup-link-bonus-h">Бонусы и трофеи</span>
-                </div>                       
-            </div>
         </div>
       </file>
       <file name="style.css">
@@ -321,16 +128,9 @@ angular.module('stmIndex').directive('stmIndexPopup', function(){
         scope: true,
         transclude: true,
         templateUrl: 'partials/stmIndex.directive:stmIndexPopup:template.html',
-        controller: ['$scope', '$attrs', 'Mnogo', '$element', function($scope, $attrs, Mnogo, $element){
-        
-            $attrs.$observe('show', function(show){
-                $scope.show = 'show' in $attrs ? $scope.$eval(show) : true;
-                if($scope.show && $scope.hasClose) {
-                    $(document).on(closeEvents);
-                } else {
-                    $(document).off(closeEvents);
-                }
-            });
+        controller: ['$scope', '$attrs', '$element', '$timeout', function($scope, $attrs, $element, $timeout){
+            var cntEl = $element.parent();
+            var showChanged = false;            
             
             var closeEvents = {
                 'keydown': function(e){
@@ -341,12 +141,17 @@ angular.module('stmIndex').directive('stmIndexPopup', function(){
                     });
                 }
             }
-        
-            $scope.$watch($attrs.gameData, function(){
-                $scope._gameData = $scope[$attrs.gameData];
+            
+            $attrs.$observe('show', function(show){
+                $scope.show = 'show' in $attrs ? $scope.$eval(show) : true;
             });
+    
+            $scope.contentAfter = $attrs.contentAfter ? $scope.$eval($attrs.contentAfter) || $attrs.contentAfter: false;
+            $scope.header = $attrs.header ? $scope.$eval($attrs.header) || $attrs.header: false;
+            $scope.isFixed = $attrs.fixed ? $scope.$eval($attrs.fixed) : false;
             $scope.hasFooter = $attrs.footer ? $scope.$eval($attrs.footer) : true;
             $scope.hasClose = !!($attrs.closable ? $scope.$eval($attrs.closable) : false);
+            $scope.hasMask = !!($attrs.mask ? $scope.$eval($attrs.mask) : false);
             
             if($scope.hasClose) {
                 $element.on('click', function(e){
@@ -356,90 +161,47 @@ angular.module('stmIndex').directive('stmIndexPopup', function(){
                     });
                 });
             }
-            
-            $scope.play = function(){
-                $scope.$emit('popupPlay');
-            }
+            $scope.$watch('show', function(show){
+                if(!showChanged && show){
+                    $scope.show = false;
+                    $timeout(function(){
+                        $scope.show = true;
+                    }, 30);
+                }
+                if(show && $scope.hasClose) {
+                    $(document).on(closeEvents);
+                } else {
+                    $(document).off(closeEvents);
+                }
+                if(show) {
+                    if(cntEl.get(0).clientHeight < cntEl.get(0).scrollHeight) 
+                        cntEl
+                            .addClass('view_popup')
+                            .css({
+                                overflow: 'hidden',
+                                marginRight: 15
+                            });
+                } else if(showChanged){
+                    $timeout(function(){
+                        if($scope.show) return;
+                        if(cntEl.find('> [stm-index-popup]:visible').length == 1) {
+                            cntEl
+                                .removeClass('view_popup')
+                                .css({
+                                    overflow: 'visible',
+                                    marginRight: 0
+                                });
+                        }
+                    }, 200);
+                }
+                showChanged = true;                
+            });
+
             $scope.close = function(){
                 if($scope[$attrs.closable]) $scope[$attrs.closable]();
                 $scope.$emit('popupClose');
-            }
-            $scope.submitMnogo = function(){
-                var form = $scope.mnogoForm;
-                var codeField = form.code;
-                if(!$scope.mnogoIsSend && form.$valid) {
-                    $scope.mnogoIsSend = true;
-                    var res = Mnogo.save({
-                        code: $scope.mnogo
-                    }, function(){
-                        if(!res.success) {
-                            codeField.$setValidity('mask', false);
-                            form.error = 'error_' + res.error;
-                            return;
-                        }
-                        $scope.mnogoSuccess = true;
-                    });
-                    res.$promise.finally(function(){
-                        $scope.mnogoIsSend = false;
-                    });
-                }
+                $scope.show = false;
             }
         }]
     };
-})
-/**
- * @ngdoc directive
- * @name stmIndex.directive:stmIndexPopupBonusInfo
- * @function
- *
- * @requires stmIndex.directive:stmIndexPopupBonusInfo:bonusinfo.html
- * @requires stmIndex.directive:stmIndexPopup
- * @requires stmIndex.directive:stmIndexTabs
- *
- * @example
-    <example module="appExample">
-      <file name="index.html">
-        <div class="example-info">
-            <div stm-index-popup-bonus-info></div>
-        </div>
-      </file>
-      <file name="style.css">
-         .example-info {
-            background: white;
-            padding: 20px;
-            text-align: center;
-            }
-      </file>      
-    </example>
- * 
- */
-.directive('stmIndexPopupBonusInfo', [function(){
-    return {
-        replace: true,
-        scope: true,
-        templateUrl: 'partials/stmIndex.directive:stmIndexPopupBonusInfo:bonusinfo.html'
-    };
-}])
-    /**
-     * @ngdoc interface
-     * @name stmIndex.Mnogo
-     * @description
-     *
-     * Внешний интерфейс карты Много.ру
-     * 
-     */
-    /**
-       * @ngdoc method
-       * @name stmIndex.Mnogo#save
-       * @methodOf stmIndex.Mnogo
-       *
-       * @description
-       * Сохраняет данные о карте
-       *
-       * @param {Object} params Данные игры:
-       *
-       *   - **`code`** – {String} – Номер карты
-       */         
-    .factory('Mnogo', ['$resource', function($resource){
-        return $resource('api/mnogo.php');
-    }]);
+});

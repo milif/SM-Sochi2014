@@ -7,7 +7,11 @@
  * @requires stmGameBiathlon.directive:stmGameBiathlonScreen:b-gameBiathlon.css
  * @requires stmGameBiathlon.directive:stmGameBiathlonScreen:template.html
  * @requires stmGameBiathlon.directive:stmGameBiathlonWarningPopup
- * @requires stmIndex.directive:stmIndexPopupBonusInfo
+ * @requires stmIndex:playButton.html
+ * @requires stmIndex:mnogoForm.html
+ * @requires stmIndex:bonusInfo.html
+ * @requires stmIndex:gameInfo.html 
+ * @requires stmIndex.directive:stmIndexBonusInfo
  * @requires stmIndex.directive:stmIndexPopup
  * @requires stmIndex.directive:stmIndexButtonsPopup
  * @requires stmIndex.directive:stmIndexBonus
@@ -252,6 +256,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', ['$compile'
             $scope.eti = eti;
             $scope.traceFrames = track.frames;
             $scope.showStartPopup = true;
+            $scope.showGamePopup = false;
             $scope.showInfoPopup = false;
             $scope.showInfo = function(){
                 $scope.showInfoPopup = true;
@@ -300,6 +305,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', ['$compile'
                 gameTime = 0;
                 //bonuses = BONUSES_COUNT;
                 $scope.showStartPopup = false;
+                $scope.showGamePopup = false;
                 isGame = true;
                 $scope.inEti = false;
                 $scope.speeds = moreSpeedAttempts = START_MORE_SPEED;
@@ -314,7 +320,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', ['$compile'
                 buttons.active = false;
                 $scope.showToolbar = false;             
                 isGame = false;
-                $scope.showStartPopup = true;
+                $scope.showGamePopup = true;
                 $($window).off(globalEvents);
                 persons.splice(persons.indexOf(eti), 1);
                 

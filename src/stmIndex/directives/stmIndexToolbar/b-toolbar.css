@@ -13,18 +13,21 @@
     background-color: #0d0d0d;
     font-size: 0;
     position: fixed;
-    width: 100%;
     z-index: 999;
     margin-top: auto;
     left: 0;
+    right: 0;
     display: none;
+}
+.view_popup .l-b-toolbar {
+    right: 15px;
 }
 .l-b-toolbar.pos_top {
     top: 0;
     margin-top: 0;
     display: block;
-    -webkit-transition: 0.5s all linear;
-    transition: 0.5s all linear;    
+    -webkit-transition: 0.5s top linear;
+    transition: 0.5s top linear;    
 }
 .l-b-toolbar.pos_bottom {
     top: 100%;

@@ -1,0 +1,26 @@
+                        <div ng-if="field.type == 'text'">
+                            <label for="field{{$index}}" class="b-form-label">{{field.label}}</label>
+                            <input type="text" ng-model="model[field.name]" ng-pattern="field.pattern" ng-required="field.required" name="field" id="field{{$index}}" class="b-form-input-text" placeholder="{{field.placeholder}}">
+                        </div>
+                        <div ng-if="field.type == 'email'">
+                            <label for="field{{$index}}" class="b-form-label">{{field.label}}</label>
+                            <input type="email" ng-model="model[field.name]" ng-required="field.required" name="{{field.name}}" id="field{{$index}}" class="b-form-input-text" placeholder="E-mail">
+                        </div>
+                        <div ng-if="field.type == 'phone'" class="g-clearfix">
+                            <div ng-init="field.country=countries[0]; model[field.name+'_country'] = countries[0].prefix;" class="b-column-form b-column-form_size_3-8">
+                                    <label for="field{{$index}}" class="b-form-label">{{field.label}} <span class="__country"><span ng-repeat="country in countries" ng-click="field.country = country; field.mask = country.mask; $parent.model[field.name] = ''; model[field.name+'_country'] = country.prefix;" ng-class="country.code == field.country.code ? 'state_active' :'' " class="a-pseudo __country_item">{{country.name}}</span></span></label>
+                                    <input ui-mask="{{field.country.mask}}" type="text" ng-required="field.required" name="field" ng-model="model[field.name]" id="field{{$index}}" class="b-form-input-text" >
+                            </div>
+                        </div>
+                        <div ng-if="field.type == 'date'" class="g-clearfix">
+                            <label for="field{{$index}}" class="b-form-label">{{field.label}}</label>
+                            <input ui-mask="99.99.9999" type="text" ng-model="model[field.name]" date ng-required="field.required" name="field" id="field{{$index}}" class="b-form-input-text" placeholder="дд.мм.гггг">
+                        </div>                        
+                        <div ng-if="field.type == 'switch'" ng-init="model[field.name]= model[field.name] || field.values[0][1]"  class="b-column-form-ins g-clearfix">
+                                    <label for="birthday" class="b-form-label">Пол</label>
+                                    <ul class="b-sex">
+                                        <li ng-repeat="item in field.values" ng-click="model[field.name] = item[1]" class="b-sex___item"><span ng-class="model[field.name] == item[1] ? 'state_active' : ''" class="custom-checkbox custom-checkbox_first">
+                                            <input ng-model="model[field.name]" type="radio" name="field" id="color-black" value="{{item[1]}}" class="custom-checkbox-hide"><span class="custom-checkbox__text">{{item[0]}}</span></span>
+                                        </li>
+                                    </ul>
+                         </div>

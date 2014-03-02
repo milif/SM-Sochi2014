@@ -81,17 +81,13 @@ angular.module('stmIndex').directive('stmIndexToolbar', function(){
                     $location.url('/account/');
                 });
             }
+            
+            $scope.authData = $stmAuth.data; 
+            
             $scope.$watch(function(){
                 if($scope.isAuth) return;
-
-                $scope.isAuth = $stmAuth.isAuth;
-                if(!$scope.isAuth) return;
-                
-                var name = $stmAuth.data.name;
-                $scope.avatar = $stmAuth.data.photo || 'asset/i/b-toolbar/user.png';
-                $scope.name = name.first_name + " " + name.last_name;                
+                $scope.isAuth = $stmAuth.isAuth;                            
             });
-
             
             var menus = $scope.menus = [
                 gameMenu

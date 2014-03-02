@@ -16,8 +16,8 @@
         <div class="l-b-toolbar-right">
             <div ng-if="isAuth" ng-class="isAccount ? 'b-toolbar-button_state_active' : ''" class="b-toolbar-button">
                 <div class="b-toolbar-user">
-                    <img class="b-toolbar-user__image" ng-src="{{avatar}}" />
-                    <div class="b-toolbar-user__name">{{name}}</div>
+                    <img class="b-toolbar-user__image" ng-src="{{authData.avatar || 'asset/i/b-toolbar/user.png'}}" />
+                    <div class="b-toolbar-user__name">{{authData.name}}</div>
                 </div>
                 <a class="b-button__link"  href="account/"></a>
             </div>

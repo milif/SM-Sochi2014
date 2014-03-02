@@ -5,12 +5,12 @@
             <div class="b-cabinet-top-title">Личные достижения</div>
             <div class="b-cabinet-userpic">
                 <div class="b-cabinet-userpic-img">
-                    <img ng-src="{{avatar}}" alt="image" class="b-cabinet-userpic-img-h">
+                    <img ng-src="{{authData.avatar || 'asset/i/b-indexCabinet/userpic.png'}}" alt="image" class="b-cabinet-userpic-img-h">
                     <span class="b-cabinet-userpic-img-ico mod_helmet"></span>
                 </div>
                 <div class="b-cabinet-userpic-cont">
-                    <span class="b-cabinet-userpic-name">{{name}}</span>
-                    <span ng-click="logout()" class="b-cabinet-userpic-link">Выйти</span>
+                    <span class="b-cabinet-userpic-name">{{getName(authData.name)}}</span>
+                    <a href="." ng-click="logout()" class="b-cabinet-userpic-link">Выйти</a>
                 </div>
             </div>
 
