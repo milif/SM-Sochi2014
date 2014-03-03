@@ -175,4 +175,5 @@ input[type="checkbox"],
 input[type="radio"] {
   box-sizing: border-box;
   padding: 0;
+  margin-right: 4px;
 }

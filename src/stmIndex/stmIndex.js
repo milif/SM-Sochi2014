@@ -65,7 +65,9 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
         
         function showRegForm(){
             var model = $stmAuth.data;
+            model.confirm = true;
             var $formScope = $rootScope.$new();
+            $formScope.model = model;
             var form = $formScope.formCfg = {
                 model: model,
                 fields: [
