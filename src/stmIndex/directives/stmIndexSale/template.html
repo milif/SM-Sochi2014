@@ -100,9 +100,16 @@
                 <div class="b-sale-sprint-roud__start">Старт</div>
                 <div class="b-sale-sprint-roud__end">Финиш</div>
                 <div class="b-sale-sprint-roud__line">
-                    <div class="b-sale-sprint-roud__line-active" style="width: 40%;"></div>
-                    <div ng-repeat="date in dates" ng-class="date.cls" class="b-sale-sprint-roud__line-item">
-                        <div class="b-sale-sprint-roud__line-note">{{date.text}}</div>
+                    <div class="b-sale-sprint-roud__line-h">
+                        <div class="b-sale-sprint-roud__line-active __normal">
+                            <div ng-repeat="date in dates" ng-style="date.css" class="b-sale-sprint-roud__line-active-itembg __normal"></div>
+                        </div>                    
+                        <div class="b-sale-sprint-roud__line-active" ng-style="lineCss">
+                            <div ng-repeat="date in dates" ng-style="date.css" class="b-sale-sprint-roud__line-active-itembg"></div>
+                        </div>
+                        <div ng-repeat="date in dates" ng-style="date.css" ng-class="date.cls" class="b-sale-sprint-roud__line-item">
+                            <div class="b-sale-sprint-roud__line-note">{{date.text}}</div>
+                        </div>
                     </div>
                 </div>
             </div>

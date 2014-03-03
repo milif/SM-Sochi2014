@@ -52,7 +52,7 @@ angular.module('stmIndex').directive('stmIndexSale', function(){
             text: '21 марта'
         },
         {
-            date: '2014-02-31',
+            date: '2014-03-31',
             text: '31 марта'
         }
     ];
@@ -99,18 +99,27 @@ angular.module('stmIndex').directive('stmIndexSale', function(){
                     mm: mm,
                     ss: ss
                 }
-                updateDates($scope.dates);
+                updateDates($scope.dates, $scope);
                 if(diffTime == 0) $interval.cancel(timerInterval);
             }
         }]       
     };
-    function updateDates(dates){
+    function updateDates(dates, $scope){
         var time = new Date().getTime();
         var dateTime;
+        var startTime = new Date(dates[0].date).getTime();
+        var timeLength = new Date(dates[dates.length - 1].date).getTime() - startTime;
         for(var i=0;i<dates.length;i++){
             dateTime = new Date(dates[i].date).getTime();
+            dates[i].css = {
+                left: Math.round((dateTime - startTime) / timeLength * 912) + 'px'
+            }
             dates[i].cls = 'mod_' + (i+1) +' scheme_' + (dateTime < time ? 'blue' : 'red');
         }
+        
+        $scope.lineCss = {
+            width: Math.round((time - startTime) / timeLength * 100) +'%'
+        };
     }
     function timePart(value){
         var part = '' + value;

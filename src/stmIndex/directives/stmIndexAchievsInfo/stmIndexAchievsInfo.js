@@ -68,6 +68,10 @@ angular.module('stmIndex').directive('stmIndexAchievsInfo', function(){
             });
             $attrs.$observe('stmIndexAchievsInfo', function(data){
                 achievs = $scope.achievs = $scope.$eval(data);
+                for(var i=0;i<achievs.length;i++){
+                    achievs[i].tabActive = false;
+                    if(tabActive) achievs[i].active = false;
+                }
                 achievs[activeIndex].tabActive = true;
                 if(tabActive) {
                      achievs[activeIndex].active = true;
