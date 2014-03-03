@@ -311,6 +311,15 @@
     width: 932px;
     height: 21px;
 }
+.b-sale-sprint-roud__line-active {
+    position: absolute;
+    background-image: url(asset/i/b-indexSale/sale-sprite.png);
+    background-position: 0px -398px;
+    display: inline-block;
+    width: 932px;
+    height: 21px;
+}
+
 
 .b-sale-sprint-roud__line-item {
     position: absolute;
