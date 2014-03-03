@@ -50,7 +50,7 @@ class User {
             $authData = Auth::getUser();        
             $userData = array(
                 'email' => $authData['email'],
-                'dob' => isset($authData['dob']) ? substr($authData['dob'], 8) . substr($authData['dob'], 5, 2) . substr($authData['dob'], 0,4) : NULL,
+                'dob' => isset($authData['dob']) ? substr($authData['dob'], 5, 2) . substr($authData['dob'], 8) . substr($authData['dob'], 0,4) : NULL,
                 'gender' => isset($authData['gender']) && $authData['gender'] != "F" ? 'male' : 'female',
                 'avatar' => isset($authData['photo']) ? $authData['photo'] : NULL ,
                 'name' => $authData['name']['first_name'].' '.$authData['name']['last_name']
