@@ -893,6 +893,8 @@
     -webkit-transition: all 0.2s linear;
     transition: all 0.2s linear;    
 }
+
+.g-form .ng-valid.ng-pristine,
 .g-form.state_validate .ng-invalid:focus,
 .g-form .ng-dirty.ng-invalid:focus,
 .g-form input:focus,

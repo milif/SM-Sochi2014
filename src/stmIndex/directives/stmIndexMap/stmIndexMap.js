@@ -396,9 +396,170 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                 'width': 950,
                 'height': 280,
                 'cols': 1
-            };            
-            
-            var itemsCount = 35;
+            };   
+            $scope.item36 = {
+                'frames': 16,
+                'fps': 30,
+                'width': 150,
+                'height': 170,
+                'cols': 6
+            };
+            $scope.item37 = {
+                'frames': 24,
+                'fps': 30,
+                'width': 400,
+                'height': 150,
+                'cols': 2
+            };
+            $scope.item38 = {
+                'frames': 80,
+                'fps': 30,
+                'width': 200,
+                'height': 138,
+                'cols': 5
+            };
+            $scope.item39 = {
+                'frames': 81,
+                'fps': 30,
+                'width': 290,
+                'height': 180,
+                'cols': 3
+            };
+            $scope.item40 = {
+                'frames': 12,
+                'fps': 30,
+                'width': 208,
+                'height': 160,
+                'cols': 4
+            };  
+            $scope.item41 = {
+                'frames': 64,
+                'fps': 30,
+                'width': 250,
+                'height': 150,
+                'cols': 4
+            };
+            $scope.item42 = {
+                'frames': 38,
+                'fps': 30,
+                'width': 120,
+                'height': 130,
+                'cols': 8
+            };
+            $scope.item43 = {
+                'frames': 40,
+                'fps': 30,
+                'width': 240,
+                'height': 200,
+                'cols': 4
+            };
+            $scope.item44 = {
+                'frames': 50,
+                'fps': 30,
+                'width': 490,
+                'height': 500,
+                'cols': 2
+            };
+            $scope.item45 = {
+                'frames': 48,
+                'fps': 30,
+                'width': 120,
+                'height': 120,
+                'cols': 8
+            }; 
+            $scope.item46 = {
+                'frames': 48,
+                'fps': 30,
+                'width': 120,
+                'height': 130,
+                'cols': 8
+            };
+            $scope.item47 = {
+                'frames': 19,
+                'fps': 30,
+                'width': 232,
+                'height': 134,
+                'cols': 4
+            };
+            $scope.item48 = {
+                'frames': 60,
+                'fps': 30,
+                'width': 136,
+                'height': 140,
+                'cols': 7
+            };
+            $scope.item49 = {
+                'frames': 102,
+                'fps': 30,
+                'width': 60,
+                'height': 50,
+                'cols': 17
+            };
+            $scope.item50 = {
+                'frames': 75,
+                'fps': 30,
+                'width': 180,
+                'height': 120,
+                'cols': 5
+            };  
+            $scope.item51 = {
+                'frames': 22,
+                'fps': 30,
+                'width': 86,
+                'height': 56,
+                'cols': 11
+            };
+            $scope.item52 = {
+                'frames': 12,
+                'fps': 30,
+                'width': 90,
+                'height': 160,
+                'cols': 11
+            };
+            $scope.item53 = {
+                'frames': 56,
+                'fps': 30,
+                'width': 326,
+                'height': 198,
+                'cols': 3
+            };
+            $scope.item54 = {
+                'frames': 38,
+                'fps': 30,
+                'width': 142,
+                'height': 184,
+                'cols': 7
+            };
+            $scope.item55 = {
+                'frames': 20,
+                'fps': 30,
+                'width': 118,
+                'height': 190,
+                'cols': 8
+            }; 
+            $scope.item56 = {
+                'frames': 84,
+                'fps': 30,
+                'width': 230,
+                'height': 214,
+                'cols': 4
+            };
+            $scope.item57 = {
+                'frames': 26,
+                'fps': 30,
+                'width': 550,
+                'height': 290,
+                'cols': 1
+            };  
+            $scope.item58 = {
+                'frames': 39,
+                'fps': 30,
+                'width': 314,
+                'height': 210,
+                'cols': 3
+            };                  
+                        
+            var itemsCount = 58;
             for(var index=1; index<=itemsCount; index++) {
                 $scope['item'+index]._frameIndex = 0;
             }
