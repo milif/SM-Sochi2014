@@ -86,8 +86,7 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
                     {
                         type: 'phone',
                         label: 'Номер телефона',
-                        name: 'phone',
-                        required: true
+                        name: 'phone'
                     },
                     [
                         {

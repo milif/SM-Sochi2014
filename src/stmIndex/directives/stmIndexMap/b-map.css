@@ -318,8 +318,8 @@
     background: url("asset/i/b-gameMap/proskater_sheet_2x40.png") 0 0 no-repeat;
 }
 .b-game-item31 {
-    left: 1911px;
-    top: 1148px;
+    left: 1698px;
+    top: 1132px;
     width: 200px;
     height: 230px;
     background: url("asset/i/b-gameMap/playing_dude_sheet_5x2.png") 0 0 no-repeat;
@@ -352,15 +352,242 @@
     height: 280px;
     background: url("asset/i/b-gameMap/icecream_sheet_1x70.png") 0 0 no-repeat;
 }
-
-
-.b-game-item-static-quelle {
-    left: 120px;
-    top: 2300px;
-    width: 624px;
-    height: 283px;
-    background: url("asset/i/b-gameMap/b-gameMap-quelle.png") 0 0 no-repeat;
-    z-index: 20;
+.b-game-item36 {
+    left: 1630px;
+    top: 1779px;
+    width: 150px;
+    height: 170px;
+    background: url("asset/i/b-gameMap/proskater_sheet_6x3.png") 0 0 no-repeat;
+}
+.b-game-item37 {
+    left: 3299px;
+    top: 1056px;
+    width: 400px;
+    height: 150px;
+    background: url("asset/i/b-gameMap/yeti5_sheet_2x12.png") 0 0 no-repeat;
+}
+.b-game-item38 {
+    left: 3139px;
+    top: 667px;
+    width: 200px;
+    height: 138px;
+    background: url("asset/i/b-gameMap/yeti4_sheet_5x16.png") 0 0 no-repeat;
+}
+.b-game-item39 {
+    left: 2083px;
+    top: 715px;
+    width: 290px;
+    height: 180px;
+    background: url("asset/i/b-gameMap/skiers_sheet_3x27.png") 0 0 no-repeat;
+}
+.b-game-item40 {
+    left: 1121px;
+    top: 1950px;
+    width: 208px;
+    height: 160px;
+    background: url("asset/i/b-gameMap/wolfs_sheet_4x3.png") 0 0 no-repeat;
+}
+.b-game-item41 {
+    left: 3254px;
+    top: 2340px;
+    width: 250px;
+    height: 150px;
+    background: url("asset/i/b-gameMap/roosters_sheet_4x16.png") 0 0 no-repeat;
+}
+.b-game-item42 {
+    left: 1995px;
+    top: 556px;
+    width: 120px;
+    height: 130px;
+    background: url("asset/i/b-gameMap/yeti3_sheet_8x5.png") 0 0 no-repeat;
+}
+.b-game-item43 {
+    left: 2464px;
+    top: 1900px;
+    width: 240px;
+    height: 200px;
+    background: url("asset/i/b-gameMap/worker1_sheet_4x10.png") 0 0 no-repeat;
+}
+.b-game-item44 {
+    left: 2182px;
+    top: 1547px;
+    width: 490px;
+    height: 500px;
+    background: url("asset/i/b-gameMap/traktor_sheet_2x25.png") 0 0 no-repeat;
+}
+.b-game-item45 {
+    left: 1992px;
+    top: 1169px;
+    width: 120px;
+    height: 120px;
+    background: url("asset/i/b-gameMap/paparazzi5_sheet_8x6.png") 0 0 no-repeat;
+}
+.b-game-item46 {
+    left: 1833px;
+    top: 1818px;
+    width: 120px;
+    height: 130px;
+    background: url("asset/i/b-gameMap/paparazzi4_sheet_8x6.png") 0 0 no-repeat;
+}
+.b-game-item47 {
+    left: 1856px;
+    top: 2960px;
+    width: 232px;
+    height: 134px;
+    background: url("asset/i/b-gameMap/paparazzi3_sheet_4x5.png") 0 0 no-repeat;
+}
+.b-game-item48 {
+    left: 234px;
+    top: 510px;
+    width: 136px;
+    height: 140px;
+    background: url("asset/i/b-gameMap/paparazzi1_sheet_7x9.png") 0 0 no-repeat;
+}
+.b-game-item49 {
+    left: 1992px;
+    top: 1169px;
+    width: 60px;
+    height: 50px;
+    background: url("asset/i/b-gameMap/black_friday5_sheet_17x6.png") 0 0 no-repeat;
+}
+.b-game-item50 {
+    left: 1992px;
+    top: 1169px;
+    width: 180px;
+    height: 120px;
+    background: url("asset/i/b-gameMap/black_friday_4_sheet_5x15.png") 0 0 no-repeat;
+}
+.b-game-item51 {
+    left: 1992px;
+    top: 1169px;
+    width: 86px;
+    height: 56px;
+    background: url("asset/i/b-gameMap/mermaid_2_sheet_11x2.png") 0 0 no-repeat;
+}
+.b-game-item52 {
+    left: 3382px;
+    top: 1620px;
+    width: 90px;
+    height: 160px;
+    background: url("asset/i/b-gameMap/mermaid4_sheet_11x2.png") 0 0 no-repeat;
+}
+.b-game-item53 {
+    left: 500px;
+    top: 1249px;
+    width: 326px;
+    height: 198px;
+    background: url("asset/i/b-gameMap/mermaid5_sheet_3x19.png") 0 0 no-repeat;
+}
+.b-game-item54 {
+    left: 3368px;
+    top: 2496px;
+    width: 142px;
+    height: 184px;
+    background: url("asset/i/b-gameMap/sportexpress_sheet_7x6.png") 0 0 no-repeat;
+}
+.b-game-item55 {
+    left: 2635px;
+    top: 2299px;
+    width: 118px;
+    height: 190px;
+    background: url("asset/i/b-gameMap/snowboard_girl_sheet_8x3.png") 0 0 no-repeat;
+}
+.b-game-item56 {
+    left: 2925px;
+    top: 2100px;
+    width: 230px;
+    height: 214px;
+    background: url("asset/i/b-gameMap/maxim_sheet_4x21.png") 0 0 no-repeat;
+}
+.b-game-item57 {
+    left: 142px;
+    top: 2282px;
+    width: 550px;
+    height: 290px;
+    background: url("asset/i/b-gameMap/quelle_2_sheet_1x26.png") 0 0 no-repeat;
+}
+.b-game-item58 {
+    left: 962px;
+    top: 1278px;
+    width: 314px;
+    height: 210px;
+    background: url("asset/i/b-gameMap/quelle_sheet_3x13.png") 0 0 no-repeat;
+}
+.b-game-clothing {
+    position: absolute;
+    z-index: 1;
+    cursor: pointer;
+    background: url("asset/i/b-gameMap/clothing.png") 50% 50% no-repeat;
+}
+.b-game-clothing.mod_snowboard {
+    left: 15px;
+    top: 47px; 
+    width: 91px;
+    height: 58px;
+    background-position: -54px -1px;    
+}
+.b-game-clothing.mod_snowboard-bra {
+    left: 37px;
+    top: 58px;
+    width: 41px;
+    height: 28px;
+    background-position: -4px -4px;   
+}
+.b-game-clothing.mod_maxim1-bra {
+    left: 147px;
+    top: 65px;
+    width: 30px;
+    height: 16px;
+    background-position: -300px -5px;  
+}
+.b-game-clothing.mod_maxim1 {
+    left: 117px;
+    top: 45px;
+    width: 78px;
+    height: 58px;
+    background-position: -153px -2px;  
+}
+.b-game-clothing.mod_maxim2-bra {
+    left: 37px;
+    top: 123px;
+    width: 33px;
+    height: 32px;
+    background-position: -10px -38px;  
+}
+.b-game-clothing.mod_maxim2 {
+    left: 17px;
+    top: 118px;
+    width: 57px;
+    height: 60px;
+    background-position: -240px -1px; 
+}
+.b-game-clothing.mod_mermaid5 {
+    left: 268px;
+    top: 116px;
+    width: 25px;
+    height: 21px;
+    background-position: -339px -5px;
+}
+.b-game-clothing.mod_mermaid4 {
+    left: 37px;
+    top: 37px;
+    width: 32px;
+    height: 34px;
+    background-position: -302px -23px;
+}
+.b-game-clothing.mod_mermaid1 {
+    left: 137px;
+    top: 66px;
+    width: 35px;
+    height: 32px;
+    background-position: -341px -27px;
+}
+.b-game-clothing.mod_mermaid2 {
+    left: 448px;
+    top: 124px;
+    width: 35px;
+    height: 26px;
+    background-position: -377px -1px;
 }
 
 .b-game-item-static-dpd {
