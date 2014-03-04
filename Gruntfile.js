@@ -29,6 +29,9 @@ module.exports = function(grunt) {
                     'directive:stmIndexPageScreen',
                     'stm.directive:stmPreload'
                 ],
+                disable: [
+                    'stmIndex.directive:stmIndexMap:mapitems.css'
+                ],
                 includeAsset: true,
                 includeTemplates: [
                     '*'
@@ -64,7 +67,7 @@ module.exports = function(grunt) {
                 include: [        // Include module components:
                     'directive:stmIndexSale',
                     'stm.directive:stmPreload'
-                ],
+                ],                
                 includeAsset: true,
                 includeTemplates: [
                     '*'
@@ -135,7 +138,8 @@ module.exports = function(grunt) {
         components: ['build/components'],
         buildDir: 'build/app',
         modulesDir: 'www/modules',
-        partialsDir: 'partials'
+        partialsDir: 'partials',
+        separateCss: true
     },
     
     builddocs:{

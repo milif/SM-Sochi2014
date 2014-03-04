@@ -5,6 +5,7 @@
  * @function
  *
  * @requires stmIndex.directive:stmIndexMap:b-map.css
+ * @requires stmIndex.directive:stmIndexMap:mapitems.css
  * @requires stmIndex.directive:stmIndexMap:template.html
  *
  * @description

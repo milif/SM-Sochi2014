@@ -31,9 +31,6 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
         var $ = angular.element;
     
         $rootScope.$on('gameInit', auth);
-        $rootScope.$on('beforeLoad', function(e, assests){
-                       
-        });
         $rootScope.$on('loaded', function(){
             if($stmAuth.isAuth && !$stmAuth.data.isReg) {
                 showRegForm();
