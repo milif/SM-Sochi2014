@@ -3,7 +3,7 @@
 <head>
   <title>Карта</title>
   <link rel="stylesheet" href="index.css" type="text/css">
-  <base href="../"></base>
+  <base href="<?php echo APP_ROOT_URL.'/'; ?>"></base>
   <!-- @include stmIndex -->
   <?php echo $head; ?>
 </head>

@@ -9,7 +9,7 @@
 <head>
   <title>Подтверждение E-mail — Сочные игры 2014</title>
   <link rel="stylesheet" href="index.css" type="text/css"/>
-  <base href="../" />
+  <base href="<?php echo APP_ROOT_URL.'/'; ?>" />
   <!-- @include stmIndexConfirmation -->
   <?php echo $head; ?>
 </head>

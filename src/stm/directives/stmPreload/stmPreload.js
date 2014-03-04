@@ -74,6 +74,7 @@ angular.module('stm').directive('stmPreload', ['$compile', function($compile){
                 });
             });            
             function preload(){
+                $scope.$emit('beforeLoad', assets);
                 var item;
                 var count = 0;
                 for(var i=0;i<assets.length;i++){

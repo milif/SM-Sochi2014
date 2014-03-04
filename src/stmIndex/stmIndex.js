@@ -31,6 +31,9 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
         var $ = angular.element;
     
         $rootScope.$on('gameInit', auth);
+        $rootScope.$on('beforeLoad', function(e, assests){
+                       
+        });
         $rootScope.$on('loaded', function(){
             if($stmAuth.isAuth && !$stmAuth.data.isReg) {
                 showRegForm();
@@ -43,26 +46,8 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
                     if(!$stmAuth.data.isReg) showRegForm();
                 });
             }
-        }         
-                    
-        // Simple signature implementation
-        $http.defaults.transformRequest = [function(data, headers){
-            if(!$stmAuth.isAuth || !data) return JSON.stringify(data);
-            var time = Math.round(new Date().getTime() / 1000);
-            if($$.isObject(data)) data = JSON.stringify(data);
-            $$.extend(headers(),{
-                'StmSignature': $md5(data + time + 'WEKTIF'),
-                'StmSignatureTime': time
-            });
-            return data;
-        }];    
-        
-        // Counters
-        if($stmEnv.isProduction){
-            initYandexMetrica();
-            initLiveInternet(); 
-        }
-        
+        }  
+               
         function showRegForm(){
             var model = $stmAuth.data;
             model.confirm = true;
@@ -131,7 +116,26 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
                     });
                 }
             }
-        }        
+        }
+                            
+        // Simple signature implementation
+        $http.defaults.transformRequest = [function(data, headers){
+            if(!$stmAuth.isAuth || !data) return JSON.stringify(data);
+            var time = Math.round(new Date().getTime() / 1000);
+            if($$.isObject(data)) data = JSON.stringify(data);
+            $$.extend(headers(),{
+                'StmSignature': $md5(data + time + 'WEKTIF'),
+                'StmSignatureTime': time
+            });
+            return data;
+        }];    
+        
+        // Counters
+        if($stmEnv.isProduction){
+            initYandexMetrica();
+            initLiveInternet(); 
+        }
+               
         function initYandexMetrica(){
             var d = document,
                 w = window;
