@@ -126,8 +126,18 @@ angular.module('stmIndex').directive('stmIndexForm', function(){
     return {
         templateUrl: 'partials/stmIndex.directive:stmIndexForm:field.html',
         controller: ['$attrs', '$scope', '$timeout', function($attrs, $scope, $timeout){
+            var field;
+            $scope.onBlurMask = function(e){
+                var modelCtrl = $(e.target).data('$ngModelController');
+                if(!field.required) setTimeout(function(){
+                    if(modelCtrl.$viewValue != '') return;
+                    $scope.$apply(function(){
+                         modelCtrl.$setValidity('required', true);
+                    });                   
+                }, 0);                
+            };
             $attrs.$observe('stmIndexFormField', function(value){
-                $scope.field = $scope.$eval(value);
+                field = $scope.field = $scope.$eval(value);
                 if($scope.field.type == 'date') $timeout(function(){
                     $scope.$parent[$scope.field.name] = "";
                 }, 0);
