@@ -13,7 +13,7 @@ if($_POST['token']) {
   $loginza = new LoginzaAPI;
   $userDataJson = json_encode($loginza->getAuthInfo($_POST['token']));
   $userData = json_decode($userDataJson, true);
-  $userId = Auth::login($_POST['token'], $userData['identity'], $userData);
+  $userId = Auth::login(md5(uniqid(null, true)), $userData['identity'], $userData);
   if(!$userId) exit();
   $userData = User::getData($userId);
   echo "

@@ -515,7 +515,7 @@
 .b-game-clothing {
     position: absolute;
     z-index: 1;
-    cursor: pointer;
+    /*cursor: pointer;*/
     background: url("asset/i/b-gameMap/clothing.png") 50% 50% no-repeat;
 }
 .b-game-clothing.mod_snowboard {
