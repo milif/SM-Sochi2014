@@ -669,11 +669,11 @@
 /* b-cursor  */
 /*==========================================================*/
 .b-gameEti.state_stopGame {
-    cursor: default;
+    cursor: default!important;
 }
 
 .b-gameEti {
-    cursor: url(asset/i/b-gameEti/cursor.cur), auto;
+    /*cursor: url(asset/i/b-gameEti/cursor.cur), auto;*/
 }
 
 /* b-gameEti-panel */

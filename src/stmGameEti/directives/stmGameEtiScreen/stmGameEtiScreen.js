@@ -434,9 +434,11 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                 $scope.title = title;
                 $scope.text = text;
                 $scope.mod = msg[2];
-                $scope.left = e.pageX - offsetLeft + viewEl.scrollLeft() + (leftOrRight ? -300 : 100);
-                $scope.top = viewEl.height() / 2 + viewEl.scrollTop() - Math.round(Math.random() * 200);
-                $scope.width = width;
+                $scope.css = {
+                    left: e.pageX - offsetLeft + viewEl.scrollLeft() + (leftOrRight ? -300 : 100),
+                    top: viewEl.height() / 2 + viewEl.scrollTop() - Math.round(Math.random() * 200),
+                    width: width
+                };
                                 
                 alertTpl($scope, function(el){
                     el.appendTo(viewEl);
