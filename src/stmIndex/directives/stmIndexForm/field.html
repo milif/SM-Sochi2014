@@ -14,7 +14,7 @@
                         </div>
                         <div ng-if="field.type == 'date'" class="g-clearfix">
                             <label for="field{{$id}}" class="b-form-label">{{field.label}}</label>
-                            <input id="field{{$id}}" ui-mask="99.99.9999" type="text" ng-model="model[field.name]" date ng-required="field.required" name="field" class="b-form-input-text" placeholder="дд.мм.гггг">
+                            <input ng-blur = "onBlurMask($event)" id="field{{$id}}" ui-mask="99.99.9999" type="text" ng-model="model[field.name]" date ng-required="field.required" name="field" class="b-form-input-text" placeholder="дд.мм.гггг">
                         </div>                        
                         <div ng-if="field.type == 'switch'" ng-init="model[field.name]= model[field.name] || field.values[0][1]"  class="b-column-form-ins g-clearfix">
                                     <label for="birthday" class="b-form-label">Пол</label>
