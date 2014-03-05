@@ -41,10 +41,45 @@
                     </div>
                 </div>
             </div>
+            <div stm-index-popover tooltip="true" element="#game-menu">
+                <div ng-class="'pos_' +  childHead.type" class="b-toolbar-popup g-font b-toolbar-popup_top_left" style="text-align: left;">
+                    <div class="b-toolbar-popup__list">
+                        <div class="b-toolbar-popup__list-item b-toolbar-popup__list-item_style1 b-toolbar-popup__list-item ng-scope __list-item-top">
+                            <img ng-src="asset/i/b-toolbar/alp.png" alt="image" class="b-toolbar-popup__list-userpic" src="asset/i/b-toolbar/alp.png">
+                            <div class="b-toolbar-popup__list-note">
+                                <div class="b-toolbar-popup__list-title ng-binding">Альпинист</div>
+                                <div class="b-toolbar-popup__list-info ng-binding">Стремление и упорство приносят результат!</div>
+                            </div>
+                            <a href="climber/" class="b-toolbar-popup__list-link"></a>
+                        </div>
+                        <div class="b-toolbar-popup__list-item b-toolbar-popup__list-item_style1 b-toolbar-popup__list-item ng-scope">
+                            <img ng-src="asset/i/b-toolbar/biatlon.png" alt="image" class="b-toolbar-popup__list-userpic" src="asset/i/b-toolbar/biatlon.png">
+                            <div class="b-toolbar-popup__list-note">
+                                <div class="b-toolbar-popup__list-title ng-binding">Биатлон</div>
+                                <div class="b-toolbar-popup__list-info ng-binding" >Точность и скорость выстрелов — залог успеха.</div>
+                            </div>
+                            <a href="biathlon/" class="b-toolbar-popup__list-link"></a>
+                        </div>
+                        <div class="b-toolbar-popup__list-item b-toolbar-popup__list-item_style1 b-toolbar-popup__list-item ng-scope">
+                            <img ng-src="asset/i/b-toolbar/yeti.png" alt="image" class="b-toolbar-popup__list-userpic" src="asset/i/b-toolbar/yeti.png">
+                            <div class="b-toolbar-popup__list-note">
+                                <div class="b-toolbar-popup__list-title ng-binding">Фотоохота на Йети</div>
+                                <div class="b-toolbar-popup__list-info ng-binding">Говорят, Йети не любят фотографироваться.</div>
+                            </div>
+                            <a href="yeti/" class="b-toolbar-popup__list-link"></a>
+                        </div>
+
+                    </div>
+                    <div class="b-toolbar-popup__bottom">
+                        <div buttons-count="4" stm-index-social></div>
+                    </div>
+                    <i class="b-popup-queue b-popup-queue_top_left"></i>
+                </div>            
+            </div>
             <div class="b-indexPage-button">
                 <span class="b-button b-button_size_medium3 b-button_scheme_red mod_b-indexPage-button">
                     <span class="b-button__text">Играть</span>
-                    <a class="b-button__link"  href="map/"></a>
+                    <span id="game-menu" class="b-button__link"></span>
                 </span>
             </div>
         </div>
@@ -52,5 +87,5 @@
 </div>
 <div ng-style="mapStyle" class="b-indexPage-map-l">
     <div game="gameMap" stm-index-map position="mapPosition" class="b-indexPage-map"></div>
-</div>    
+</div>
 <div stm-index-toolbar position="{{toolbarPosition}}"></div>

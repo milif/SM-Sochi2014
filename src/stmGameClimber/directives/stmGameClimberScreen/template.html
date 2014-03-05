@@ -10,8 +10,8 @@
                 <div class='gameClimber-fone-bonuses'>
                   <div ng-repeat="bonus in bonuses" stm-index-bonus="{{bonus.id}}" type="{{bonus.type}}" position="{{bonus.position}}" timeout="{{bonus.timeout}}" show="{{bonus.show}}"></div>
                 </div>
-                <div class="gameClimber-flag-qiwi" style="left: 400px;top:2813px;"><a href="http://www.sotmarket.ru/partner/qiwiwallet/" target="_blank"></a></div>
-                <div class="gameClimber-flag-qiwi gameClimber-flag-qiwi2" style="left: 324px;top:4030px;"><a href="http://www.sotmarket.ru/partner/qiwiwallet/" target="_blank"></a></div>
+                <div class="gameClimber-flag-qiwi" style="left: 400px;top:2813px;"><!--<a href="http://www.sotmarket.ru/partner/qiwiwallet/" target="_blank"></a>--></div>
+                <div class="gameClimber-flag-qiwi gameClimber-flag-qiwi2" style="left: 324px;top:4030px;"><!--<a href="http://www.sotmarket.ru/partner/qiwiwallet/" target="_blank"></a>--></div>
               </div>
             </div>       
           </div>
@@ -52,7 +52,7 @@
                       </span>
                     </div>
                     <div class='b-progressbar b-progressbar_scheme_red'>
-                      <div class='b-progressbar__line' style='width: {{energy}}%'></div>
+                      <div class='b-progressbar__line' ng-style ="energyCss"></div>
                     </div>
                     <div class='b-progress-climber-note'>
                       {{energy | number:0}} %
@@ -65,7 +65,7 @@
                       </span>
                     </div>
                     <div class='b-progressbar b-progressbar_scheme_blue'>
-                      <div class='b-progressbar__line' style='width: {{distancePercent}}%'></div>
+                      <div class='b-progressbar__line' ng-style = "distanceCss"></div>
                     </div>
                     <div class='b-progress-climber-note'>
                       {{distanceMeters | number:0}} м
@@ -86,8 +86,50 @@
           </div>          
     </div>
     <!-- End Panel -->
-    <div data-start-popup stm-index-popup game-data="gameData" class="b-gameClimber-popup mod_start" ng-show="showStartPopup">
-        <div class='b-popup-title'>Альпинист &mdash; стремление и упорство<br> приносят результат</div>
-        <div class='b-popup-note'>Для движения наверх нажимай стрелку <b>«вверх»</b>.<br>Собирай бонусы от <a href="about/#partners">партнёров</a> и зарабатывай дополнительные баллы!</div>
+    <div data-start-popup stm-index-popup game-data="gameData" show="{{showStartPopup}}">
+                <div class='b-popup-title'>Альпинист &mdash; стремление и упорство<br> приносят результат</div>
+                <div stm-index-tabs class="l-popup-tabs">
+                    <div class="b-popup-tabs">
+                        <div class="b-popup-tabs_item">
+                            <div class="b-popup-tabs_item-decor mod_6"></div>
+                            <div class="b-popup-tabs_item-text">Влево</div>
+                        </div>
+                        <div data-active class="b-popup-tabs_item">
+                            <div class="b-popup-tabs_item-decor mod_2"></div>
+                            <div class="b-popup-tabs_item-text">Вверх</div>
+                        </div>                        
+                        <div class="b-popup-tabs_item">
+                            <div class="b-popup-tabs_item-decor mod_1"></div>
+                            <div class="b-popup-tabs_item-text">Вправо</div>
+                        </div>
+                    </div>
+                    <div class="b-popup-tab-content">
+                         Смена положения игрока по отношению к канату влево.
+                    </div>
+                    <div class="b-popup-tab-content">
+                        Движение игрока вверх на одну позицию.
+                    </div>
+                    <div class="b-popup-tab-content">
+                        Смена положения игрока по отношению к канату вправо.
+                    </div>
+                </div>
+                
+                <div ng-click="showInfo()" class="b-popup-link-bonus">
+                    <span class="b-popup-link-bonus-h">Бонусы и трофеи</span>
+                </div>
+                <div ng-include="'partials/stmIndex:playButton.html'"></div>
     </div>
+    <div stm-index-popup header="'partials/stmIndex:bonusInfo.html'" content-after="'partials/stmIndex:mnogoForm.html'" show="{{showGamePopup}}">
+        <div ng-include="'partials/stmIndex:gameInfo.html'"></div>        
+    </div>
+    <div show="{{showInfoPopup}}" stm-index-popup footer="false" closable="closeInfo">
+                <div class="b-popup-title">
+                    Собирай бонусы от спонсоров
+                </div>
+                <div stm-index-bonus-info></div>
+                <div class="b-popup-title">
+                    Получай достижения
+                </div>
+                <div stm-index-achievs-info="achievsInfo" tab-active="true" type="climber"></div>
+    </div>    
 </div>    

@@ -9,3 +9,10 @@ CREATE TABLE IF NOT EXISTS `subscribe` (
   KEY `time` (`time`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 ");
+$rs = DB::query("SHOW COLUMNS FROM `subscribe` LIKE 'partner_ref';");
+if(!count($rs)){
+        DB::query("
+            ALTER TABLE `subscribe` ADD COLUMN `partner_ref` VARCHAR(128);
+            ALTER TABLE `subscribe` ADD COLUMN `partner_subref` VARCHAR(128);
+        ");
+}

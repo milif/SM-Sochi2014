@@ -1,0 +1,60 @@
+/* Confirmation */
+/*==========================================================*/
+.l-confirmation {
+    padding-top: 40px;
+    background-color: #fed710;
+    overflow: hidden;
+    min-width: 1000px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
+}
+.l-confirmation-h {
+    position: relative;
+    z-index: 10;
+    width: 760px;
+    padding-top: 1px;
+    margin: 0 auto;
+    display: table;
+    height: 100%;
+}
+.l-confirmation-hh {
+    display: table-cell;
+    vertical-align: middle;
+}
+.b-confirmation {
+    text-align: center;
+    position: relative;
+    color: #000;
+    padding-top: 64px;
+    margin-bottom: 40px;
+}
+.b-confirmation:before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    background: url(asset/i/b-confirmation/mail.png) 0 0 no-repeat;
+    width: 80px;
+    height: 52px;
+    margin-left: -40px;
+}
+.b-confirmation-title {
+    font-size: 24px;
+    margin-bottom: 6px;
+    line-height: 1.4;
+}
+.b-confirmation-note {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+.b-confirmation-hint {
+    font-size: 11px;
+    color: #a38d1f;
+}
+.b-confirmation-hint a {
+    color: #000;
+}

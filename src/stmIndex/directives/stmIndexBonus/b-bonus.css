@@ -20,7 +20,7 @@
   z-index: 100;
   background: url("asset/i/b-indexBonus/b-indexBonusIcons.png") 0 0 no-repeat;
 }
-
+.b-bonus-dpd,
 .b-bonus-pickpoint {
   background-position: -4px -86px;
 }
@@ -31,6 +31,9 @@
 
 .b-bonus-sber {
   background-position: -86px -4px;
+}
+.b-bonus-qiwi {
+  background-position: -86px -85px;
 }
 
 .b-bonus.ng-leave {

@@ -1,0 +1,22 @@
+<!-- @name stmIndex:regform.html -->
+<div stm-index-popup mask="true" show="{{isShow}}" fixed="true" footer="false">
+    <div class='b-popup-title'>
+        Завершение регистрации
+    </div>
+    <div stm-index-form="formCfg" model="form">   
+                    <div class="b-form-row">
+                        <div class="terms-action">
+                            <div class="terms-action__left">
+                                <input ng-model="model.confirm" value="true" type="checkbox" name="confirm" required id="confirmReg" class="b-checkbox">
+                            </div>
+                            <label for="confirmReg">Принимаю</label> <br> <a href="http://files.sotmarket.ru/aktsii/pravila-aktsii-sochnye-igry.pdf" target="_blank" class="terms-action__link">Условия акции</a>
+                        </div>
+                    </div>    
+    </div>
+                <div class="b-popup-button">
+                    <div ng-class="isSend ? 'state_loading' : ''" class="b-button button_size_big b-button_scheme_yellow">
+                        <div class="b-button__text">Играть</div>
+                        <span class="b-button__link" ng-click="submit()" ></span>
+                    </div>
+                </div>     
+</div>  

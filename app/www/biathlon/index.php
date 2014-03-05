@@ -6,7 +6,7 @@
 <head>
   <title>Биатлон</title>
   <link rel="stylesheet" href="index.css" type="text/css">
-  <base href="../"></base>
+  <base href="<?php echo APP_ROOT_URL.'/'; ?>"></base>
   <!-- @include stmGameBiathlon -->
   <?php echo $head; ?>
 </head>

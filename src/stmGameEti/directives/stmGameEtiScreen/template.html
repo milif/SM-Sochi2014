@@ -1,6 +1,6 @@
 <!-- gameEti -->
 <div class="b-gameEti-l g-font">
-    <div data-view class='b-gameEti' ng-class="stateCls">
+    <div data-view class='b-gameEti' ng-class="stateCls" style="cursor: url(asset/i/b-gameEti/cursor.cur), auto;">
         <div class='b-gameEti-h'>
             <div class='b-gameEti-fone'>
                 <div class='b-gameEti-fone-h'>
@@ -111,28 +111,21 @@
                     <div data-hover class='b-character eti-full-face anim_cubic' style="bottom: 470px;left: 3350px;">
                         <div data-target data-eti="eti15" class='b-character-h'></div>
                     </div> 
+                    
                     <div data-hover  class='b-character eti-print anim_cubic'>
                         <div data-target data-eti="etiNetPrint" class='b-character-h'>
-                            <a class="b-character-h__link" href="http://www.sotmarket.ru/partner/netprint/" target="_blank">netprint</a>
+                            <!--<a class="b-character-h__link" href="http://www.sotmarket.ru/partner/netprint/" target="_blank">netprint</a>-->
                         </div>
-                    </div>                     
-                      
+                    </div>
+
+
                     <!--
                     <div data-hover  class='b-character eti-print anim_cubic' style="left:1928px;top:480px;">
                         <div data-target data-eti="etiNetPrint2" class='b-character-h'>
                             <a class="b-character-h__link" href="http://www.sotmarket.ru/partner/netprint/" target="_blank">netprint</a>
                         </div>
                     </div>                   
-                    -->
-                    <div data-hover class='b-character bear anim_cubic' style="z-index: 100; left: 3450px;">
-                        <div data-target data-animal="bear" data-msg="in-beer" class='b-character-h'></div>
-                    </div> 
-                    <div data-hover class='b-character bear anim_cubic' style="z-index: 100; left: 3450px;">
-                        <div data-target data-animal="bear" data-msg="in-beer" class='b-character-h'></div>
-                    </div>
-                    <div data-hover class='b-character deer-sledge'>
-                        <div data-target data-animal="deer-sledge" data-deer="true" data-move="true" data-msg="in-deer" class='b-character-h'></div>
-                    </div>                  
+                    -->                  
                     <!-- End Decorations item -->
 
                     <!-- Birds -->
@@ -144,7 +137,7 @@
                     <div class='b-cursor'></div>
                     <!-- End Cursor -->
                     <!-- Alert -->
-                    <div data-alert class='b-gameEti-alert mod_{{mod}}' style='left: {{left}}px; top: {{top}}px; width: {{width}}px;'>
+                    <div data-alert ng-class="'mod_' + mod" class="b-gameEti-alert" ng-style='css'>
                         <div class='b-gameEti-alert-title' ng-bind-html="title"></div>
                         <div ng-show="text" class='b-gameEti-alert-note' ng-bind-html="text"></div>
                     </div>
@@ -166,12 +159,14 @@
 
 
                     <div class="b-brending mod_kiwi">
-                        <a href="http://www.sotmarket.ru/partner/qiwiwallet/" class="b-brending__link" target="_blank">qiwiwallet</a>
+                        <!--<a href="http://www.sotmarket.ru/partner/qiwiwallet/" class="b-brending__link" target="_blank">qiwiwallet</a>-->
                     </div>
 
                     <div class="b-brending mod_netprint">
-                        <a href="http://www.sotmarket.ru/partner/netprint/" class="b-brending__link" target="_blank">netprint</a>
+                        <!--<a href="http://www.sotmarket.ru/partner/netprint/" class="b-brending__link" target="_blank">netprint</a>-->
                     </div>
+
+                    <div class="b-yeti-bank"></div>
 
                 </div>
             </div>
@@ -240,12 +235,20 @@
         </div>
     </div>
     <!-- End Panel -->
-    <div stm-index-popup popup-width="690" game-data="gameData" class="b-gameEti-popup" ng-show="showStartPopup">
-        <div class='b-popup-title'>
-             Фотоохота на Йети
-        </div>
-        <div class='b-popup-note'>
-            Для снимка используй <b>левую кнопку мыши</b>.<!-- <br>Сделай снимок курьера <a href="http://www.netprint.ru/" target="_blank">NetPrint</a> и получи фоторамку в подарок!-->
-        </div>        
+    <div stm-index-popup popup-width="690" game-data="gameData" show="{{showStartPopup}}">
+                <div class='b-popup-title'>
+                     Фотоохота на Йети
+                </div>
+                <div class='b-popup-note'>
+                    Для снимка используй <b>левую кнопку мыши</b>.<!-- <br>Сделай снимок курьера <a href="http://www.netprint.ru/" target="_blank">NetPrint</a> и получи фоторамку в подарок!-->
+                </div>
+                <div class="b-popup-title">
+                    Получай достижения
+                </div>
+                <div stm-index-achievs-info="achievsInfo" tab-active="true" type="yeti"></div>
+                <div ng-include="'partials/stmIndex:playButton.html'"></div>            
     </div>
+    <div stm-index-popup header="'partials/stmIndex:bonusInfo.html'" content-after="'partials/stmIndex:mnogoForm.html'" show="{{showGamePopup}}">
+        <div ng-include="'partials/stmIndex:gameInfo.html'"></div>        
+    </div>    
 </div>    

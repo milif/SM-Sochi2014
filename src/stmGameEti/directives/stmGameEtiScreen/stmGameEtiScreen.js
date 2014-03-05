@@ -1,3 +1,4 @@
+"use strict";
 /**
  * @ngdoc directive
  * @name stmGameEti.directive:stmGameEtiScreen
@@ -5,8 +6,14 @@
  *
  * @requires stmGameEti.directive:stmGameEtiScreen:b-gameEti.css
  * @requires stmGameEti.directive:stmGameEtiScreen:template.html
+ * @requires stmIndex:playButton.html
+ * @requires stmIndex:mnogoForm.html
+ * @requires stmIndex:bonusInfo.html
+ * @requires stmIndex:gameInfo.html
  * @requires stmIndex.directive:stmIndexPopup
  * @requires stm.filter:range
+ * @requires stmIndex.$stmAchievs
+ * @requires stmIndex.directive:stmIndexAchievsInfo
  *
  * @description
  * Экран игры Йети
@@ -30,7 +37,7 @@
     
  */
 
-angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootScope', function($compile, $rootScope){
+angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootScope', '$stmAchievs', function($compile, $rootScope, $stmAchievs){
 
     var ATTEMPTS = 5; // Сколько раз можно промазать
     var NO_PHOTO_TIME = 7000; // Время без снимком (ms)
@@ -55,28 +62,13 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
         'in-women': 'Ты попал<br>в женщину',
         'last': 'Последний шанс'
     };
-
-    var ACHIVE_AMONG = {
-            type: 'amongstrangers',
-            text: 'Свой среди чужих',
-            count: 0            
-        }; 
-    var ACHIVE_DEER = {
-            type: 'olenevod',
-            text: 'Оленевод',
-            count: 0            
-        };   
-    var ACHIVE_ANIMALS = {
-            type: 'allinclusive',
-            text: 'All Inclusive',
-            count: 0
-        };             
-
+    
+    var achievs = $stmAchievs.yeti;
+    var ACHIVE_AMONG = achievs.keys.amongstrangers;
+    var ACHIVE_DEER = achievs.keys.olenevod;
+    var ACHIVE_ANIMALS = achievs.keys.allinclusive;
     var ACHIEVEMENTS = [
-        {
-            type: 'journalist',
-            text: 'Журналист'            
-        },
+        achievs.keys.journalist,
         ACHIVE_DEER,
         ACHIVE_ANIMALS,
         ACHIVE_AMONG
@@ -126,19 +118,21 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                 }, 1000 + Math.random() * 1000);
             }            
             $scope.owlCls = '';
-            
+            $scope.achievsInfo = angular.copy(achievs);
             $scope.ineti = 0;
             $scope.showToolbar = false;
             $scope.attemptsCount = ATTEMPTS;
             $scope.stateCls = 'state_stopGame';
             $scope.showBigEti = true;
             $scope.showStartPopup = true;
+            $scope.showGamePopup = false;
             $scope.position = {
                 x: viewEl.width() / 2,
                 y: viewEl.height() / 2
             }
             $scope.play = function(){
                 $scope.showStartPopup = false;
+                $scope.showGamePopup = false;
                 $timeout(function(){
                     startGame();
                 }, 0);
@@ -214,6 +208,8 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
             function startGame(){
                 if(isGame) return;
                 ACHIVE_DEER.count = 0;
+                ACHIVE_AMONG.count = 0;
+                ACHIVE_ANIMALS.count = 0;
                 isGame = true;
                 startTime = new Date().getTime();
                 foundedEti = 0;
@@ -438,9 +434,11 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                 $scope.title = title;
                 $scope.text = text;
                 $scope.mod = msg[2];
-                $scope.left = e.pageX - offsetLeft + viewEl.scrollLeft() + (leftOrRight ? -300 : 100);
-                $scope.top = viewEl.height() / 2 + viewEl.scrollTop() - Math.round(Math.random() * 200);
-                $scope.width = width;
+                $scope.css = {
+                    left: e.pageX - offsetLeft + viewEl.scrollLeft() + (leftOrRight ? -300 : 100),
+                    top: viewEl.height() / 2 + viewEl.scrollTop() - Math.round(Math.random() * 200),
+                    width: width
+                };
                                 
                 alertTpl($scope, function(el){
                     el.appendTo(viewEl);
@@ -478,7 +476,7 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                     
                     $timeout(function(){
                         $scope.showToolbar = false;
-                        $scope.showStartPopup = true;                
+                        $scope.showGamePopup = true;                
                     }, 700);
                     
                     var achieves = angular.copy(ACHIEVEMENTS);

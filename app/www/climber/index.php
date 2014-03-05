@@ -6,7 +6,7 @@
 <head>
   <title>Альпинист</title>
   <link rel="stylesheet" href="index.css" type="text/css">
-  <base href="../"></base>
+  <base href="<?php echo APP_ROOT_URL.'/'; ?>"></base>
   <!-- @include stmGameClimber -->
   <?php echo $head; ?>
 </head>

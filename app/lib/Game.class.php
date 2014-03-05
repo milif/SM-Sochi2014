@@ -5,6 +5,7 @@ require_once __DIR__.'/Auth.class.php';
 require_once __DIR__.'/Achiev.class.php';
 
 class Game {
+    static $types = array('biathlon', 'yeti', 'climber');
     static public function save($data){
         if(CLIENT_ID == 0) return false;
         $type = $data['type'];
@@ -28,14 +29,21 @@ class Game {
         }
         return self::getUserData($type);
     }
-    static public function getUserData($type){
+    static public function getUserData($type = null){
+        if(!$type) {
+            $types = array();
+            foreach(self::$types as $type){
+                $types[$type] = self::getUserData($type);
+            }
+            return $types;
+        }
         $rs = DB::query("SELECT data_game_$type, data_achievement_$type, score_game_$type FROM `user` WHERE id = ".CLIENT_ID);
         if(!count($rs)) return array();
         $row = $rs[0];
         return array(
             'data' => json_decode($row['data_game_'.$type], true),
             'score' => (int)$row['score_game_'.$type],
-            'achievements' => explode(',', str_replace("$type.", '', $row['data_achievement_'.$type]))
+            'achievements' => $row['data_achievement_'.$type] == "" ? array() : explode(',', str_replace("$type.", '', $row['data_achievement_'.$type]))
         );
     }
     static public function getClimberPassed(){

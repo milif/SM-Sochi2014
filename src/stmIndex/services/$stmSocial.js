@@ -1,3 +1,4 @@
+"use strict";
 /**
  * @ngdoc service
  * @name stmIndex.$stmSocial
@@ -40,6 +41,6 @@ angular.module('stmIndex').factory('$stmSocial', ['$stmAuth', function($stmAuth)
        * @returns {String} URL
        */    
     function url(){
-        return share.url + ($stmAuth.isAuth ? '?ref=' + $stmAuth.data.refKey : '');
+        return share.url + ($stmAuth.isAuth ? '?r=' + $stmAuth.data.refKey : '');
     }
 }]);

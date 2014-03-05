@@ -29,6 +29,9 @@ module.exports = function(grunt) {
                     'directive:stmIndexPageScreen',
                     'stm.directive:stmPreload'
                 ],
+                disable: [
+                    'stmIndex.directive:stmIndexMap:mapitems.css'
+                ],
                 includeAsset: true,
                 includeTemplates: [
                     '*'
@@ -45,19 +48,42 @@ module.exports = function(grunt) {
                 includeTemplates: [
                     '*'
                 ]
-            },    
+            }, 
             {  
-                name: 'stmIndexSale', //  Package name
+                name: 'stmIndexConfirmation', //  Package name
                 module: 'stmIndex', // Module name
                 include: [        // Include module components:
-                    'directive:stmIndexSale',
+                    'directive:stmIndexConfirmation',
                     'stm.directive:stmPreload'
                 ],
                 includeAsset: true,
                 includeTemplates: [
                     '*'
                 ]
-            },                            
+            },                
+            {  
+                name: 'stmIndexSale', //  Package name
+                module: 'stmIndex', // Module name
+                include: [        // Include module components:
+                    'directive:stmIndexSale',
+                    'stm.directive:stmPreload'
+                ],                
+                includeAsset: true,
+                includeTemplates: [
+                    '*'
+                ]
+            }, 
+            {  
+                name: 'stmCabinet', //  Module and package name 
+                include: [        // Include module components:
+                    'directive:stmCabinetScreen',
+                    'stm.directive:stmPreload'
+                ],
+                includeAsset: true,
+                includeTemplates: [
+                    '*'
+                ]
+            },                                       
             {  
                 name: 'stmIndex', 
                 include: [        // Include module components:
@@ -108,16 +134,17 @@ module.exports = function(grunt) {
             }
             
         ],
-        lib: ['src/**/*.js'],
+        lib: ['src/**/*.+(js|html)'],
         components: ['build/components'],
         buildDir: 'build/app',
         modulesDir: 'www/modules',
-        partialsDir: 'partials'
+        partialsDir: 'partials',
+        separateCss: true
     },
     
     builddocs:{
         main: ['appExample'],
-        lib: ['docs/appExample/**/*.js', 'src/**/*.js'],
+        lib: ['docs/appExample/**/*.+(js|html)', 'src/**/*.+(js|html)'],
         components: ['build/components'],
         buildDir: 'build/docs/modules',
         partialsDir: 'build/docs/partials'

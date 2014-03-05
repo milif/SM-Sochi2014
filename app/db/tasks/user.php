@@ -8,12 +8,37 @@ if(!count($rs)){
         DB::query("
             ALTER TABLE `user` ADD COLUMN `ref_key` varchar(32);
             ALTER TABLE `user` ADD INDEX `ref_key` (`ref_key`);
+            ALTER TABLE `user` ADD INDEX `ref_id` (`ref_id`);
+        ");
+}
+$rs = DB::query("SHOW COLUMNS FROM `user` LIKE 'email';");
+if(!count($rs)){
+        DB::query("
+            ALTER TABLE `user` ADD COLUMN `email` varchar(32);
+            ALTER TABLE `user` ADD COLUMN `age` date;
+            ALTER TABLE `user` ADD COLUMN `phone` varchar(32);
+            ALTER TABLE `user` ADD COLUMN `name` varchar(255);
+            ALTER TABLE `user` ADD COLUMN `gender` varchar(16);
+            ALTER TABLE `user` ADD COLUMN `registrated` timestamp;
         ");
 }
 $rs = DB::query("SHOW COLUMNS FROM `user` LIKE 'climber_passed';");
 if(!count($rs)){
         DB::query("
             ALTER TABLE `user` ADD COLUMN `climber_passed` INT DEFAULT 0;
+        ");
+}
+$rs = DB::query("SHOW COLUMNS FROM `user` LIKE 'partner_ref';");
+if(!count($rs)){
+        DB::query("
+            ALTER TABLE `user` ADD COLUMN `partner_ref` VARCHAR(128);
+            ALTER TABLE `user` ADD COLUMN `partner_subref` VARCHAR(128);
+        ");
+}
+$rs = DB::query("SHOW COLUMNS FROM `user` LIKE 'created_at';");
+if(!count($rs)){
+        DB::query("
+            ALTER TABLE `user` ADD COLUMN `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP;
         ");
 }
 $rs = DB::query("SHOW COLUMNS FROM `user` LIKE 'ref_id';");

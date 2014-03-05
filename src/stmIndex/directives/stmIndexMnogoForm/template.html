@@ -1,0 +1,29 @@
+              <div ng-class="mnogoSuccess ? 'state_success' : (mnogoForm.error ? 'state_error ' + mnogoForm.error : '')" class="b-popup-mnogo">
+                <span class="b-popup-mnogo__icon"></span>
+                <div class="b-popup-mnogo-note success_msg">
+                     <div class="b-popup-mnogo-note__top">Ваша карта принята</div>
+                     <div class="b-popup-mnogo-note__text">Бонусы будут начислены в самое ближайшее время</div>
+                </div>                         
+                <form name="$parent.mnogoForm" class="b-popup-form g-form" novalidate>
+                    <div>
+                        <div class="b-form-top">
+                            Укажите номер карты Много.ру и получите бонусы
+                            <a href="http://www.mnogo.ru/anketa.html?range=879" target="_blank" class="b-form-top__more">
+                                Как получить карту?
+                            </a>
+                        </div>
+
+                        <div class="b-form-row">
+                            <input name="code" required ng-model="mnogo" type="text" ui-mask="9999 9999" placeholder = "XXXX XXXX" class="b-form-input-text mod_wide">
+                            <span ng-class="mnogoIsSend ? 'state_loading' : ''" ng-click="submitMnogo()" class="b-button mod_mnogo">
+                                <span class="b-button__text">Применить</span>
+                                <button class="b-button__link"></button>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+                <div class="b-popup-mnogo-note error_busy_msg">
+                     <div class="b-popup-mnogo-note__top">Упс.. карта не принята</div>
+                     <div class="b-popup-mnogo-note__text">Эта карта уже используется, но вы можете <a href="" ng-click="mnogoForm.error = null">указать другую</a>.</div>
+                </div>
+              </div>

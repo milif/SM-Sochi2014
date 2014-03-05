@@ -1,9 +1,15 @@
+"use strict";
 /**
  * 
  * @requires stm
  * @requires stm.$md5
  * @requires stm.filter:stmNumber
  * @requires angularui/ui-utils.js
+ *
+ * @includes stmIndex.$stmAuth
+ * @includes stmIndex:regform.html
+ * @includes stmIndex.directive:stmIndexPopup
+ * @includes stmIndex.directive:stmIndexForm 
  *
  * @ngdoc overview
  * @name stmIndex
@@ -15,20 +21,100 @@ if (!window.requestAnimationFrame) {
         window.requestAnimationFrame = function(callback) {
             setTimeout(callback, 10);
         };
-}        
+} 
 angular.module('stmIndex', ['stm', 'ui.utils'])
     .config([function(){
     }])
-    .run(['$rootScope', '$stmAuth', '$http', '$md5', function($rootScope, $stmAuth, $http, $md5){
+    .run(['$rootScope', '$stmAuth', '$http', '$md5', '$stmEnv', '$compile', '$timeout', 'User', '$templateCache', function($rootScope, $stmAuth, $http, $md5, $stmEnv, $compile, $timeout, User, $templateCache){
     
         var $$ = angular;
+        var $ = angular.element;
     
         $rootScope.$on('gameInit', auth);
+        $rootScope.$on('loaded', function(){
+            if($stmAuth.isAuth && !$stmAuth.data.isReg) {
+                showRegForm();
+            }            
+        });
         
         function auth(){
-            if(!$stmAuth.isAuth) $stmAuth.auth();
-        }         
-                    
+            if(!$stmAuth.isAuth) {
+                $stmAuth.auth(function(){
+                    if(!$stmAuth.data.isReg) showRegForm();
+                });
+            }
+        }  
+               
+        function showRegForm(){
+            var model = $stmAuth.data;
+            model.confirm = true;
+            var $formScope = $rootScope.$new();
+            $formScope.model = model;
+            var form = $formScope.formCfg = {
+                model: model,
+                fields: [
+                    {
+                        type: 'text',
+                        label: 'Фамилия, Имя и Отчество',
+                        placeholder: 'Ф.И.О.',
+                        name: 'name',
+                        required: true,
+                        pattern: /^[a-яa-z]{2,}\s+[a-яa-z]+/i
+                    },
+                    {
+                        type: 'email',
+                        label: 'Электронная почта',
+                        name: 'email',
+                        required: true
+                    },
+                    {
+                        type: 'phone',
+                        label: 'Номер телефона',
+                        name: 'phone'
+                    },
+                    [
+                        {
+                            type: 'date',
+                            label: 'Дата рождения',
+                            name: 'dob',
+                            required: true,
+                            size: '3-8'
+                        },
+                        {
+                            type: 'switch',
+                            label: 'Пол',
+                            name: 'gender',
+                            required: true,
+                            values: [['Мужской', 'male'], ['Женский', 'female']],
+                            size: '5-8'
+                        }                        
+                    ]
+                ]
+            }
+            
+            $http.get('partials/stmIndex:regform.html', {cache: $templateCache}).success(function(template) {
+                $compile(template)($formScope, function(el){
+                    $('body').append(el);
+                }); 
+            });
+
+            $formScope.isShow = true;
+            $formScope.submit = function(){
+                if(form.validate() && !$formScope.isSend) {
+                    $formScope.isSend = true;
+                    var res = User.save(model, function(){
+                        if(!res.success) {
+                            return;
+                        }
+                        $formScope.isShow = false;                
+                    });
+                    res.$promise.finally(function(){
+                        $formScope.isSend = false;
+                    });
+                }
+            }
+        }
+                            
         // Simple signature implementation
         $http.defaults.transformRequest = [function(data, headers){
             if(!$stmAuth.isAuth || !data) return JSON.stringify(data);
@@ -39,8 +125,59 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
                 'StmSignatureTime': time
             });
             return data;
-        }];           
-                    
+        }];    
+        
+        // Counters
+        if($stmEnv.isProduction){
+            initYandexMetrica();
+            initLiveInternet(); 
+        }
+               
+        function initYandexMetrica(){
+            var d = document,
+                w = window;
+            
+            w.yaParams = {};
+            //Yandex.Metrika
+            var c = 'yandex_metrika_callbacks';
+            (w[c] = w[c] || []).push(function() {
+                try {
+                    w.yaCounter20030233 = new Ya.Metrika({
+                        id:20030233,
+                        webvisor:true,
+                        clickmap:true,
+                        trackLinks:true,
+                        accurateTrackBounce:true,
+                        trackHash:true,
+                        ut:"noindex",
+                        params:w.yaParams||{}
+                    });
+                } catch(e) { }
+            });
+
+            var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function () { n.parentNode.insertBefore(s, n); };
+            s.type = "text/javascript";
+            s.async = true;
+            s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+            if (w.opera == "[object Opera]") {
+                d.addEventListener("DOMContentLoaded", f, false);
+            } else { f(); }
+            
+        }
+        function initLiveInternet(){
+            setTimeout(function(){ 
+                $('body').append('<img src="' + (("https:" == document.location.protocol) ? "https" : "http") + '://counter.yadro.ru/hit?t14.3;r'+
+                escape(document.referrer)+((typeof(screen)=='undefined')?'':
+                ';s'+screen.width+'*'+screen.height+'*'+(screen.colorDepth?
+                screen.colorDepth:screen.pixelDepth))+';u'+escape(document.URL)+
+                ';'+Math.random()+
+                '" '+
+                'border=0 width=1 height=1 style="position:absolute;top:0;">');
+            }, 500);
+        }             
     }])
     /**
      * @ngdoc interface
@@ -115,98 +252,25 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
         return $resource('api/game.php');
     }])
     /**
-     * @ngdoc service
-     * @name stmIndex.$stmAuth
+     * @ngdoc interface
+     * @name stmIndex.User
      * @description
      *
-     * Сервис авторизации
+     * Внешний интерфейс пользователя
      * 
-     */
-     /**
+     */    
+    /**
        * @ngdoc method
-       * @name stmIndex.$stmAuth#auth
-       * @methodOf stmIndex.$stmAuth
+       * @name stmIndex.User#save
+       * @methodOf stmIndex.User
        *
        * @description
-       * Выполняет процедуру авторизации
+       * Сохраняет данные о пользователе
        *
-       * @param {Function=} clbFn Вызывается по окончанию авторизации
+       * @param {Object} params Данные пользователя
+       *            
        */    
-     /**
-       * @ngdoc property
-       * @name stmIndex.$stmAuth#auth
-       * @propertyOf stmIndex.$stmAuth
-       * @returns {Object} Данные авторизации. Если пользователь не авторизован, то `null`
-       */        
-     /**
-       * @ngdoc property
-       * @name stmIndex.$stmAuth#isAuth
-       * @propertyOf stmIndex.$stmAuth
-       *
-       * @returns {Boolean} Авторизарован ли пользователь
-       */         
-    .factory('$stmAuth', ['$stmEnv', '$location', function($stmEnv, $location){
-        
-        var $ = angular.element;
-        
-        var disableEl = $('<a href="https://loginza.ru/api/widget?token_url=' + encodeURIComponent($('base').get(0).href + 'api/auth.php') + '"></a>')
-                .click(function(e){
-                    e.preventDefault();
-                })
-                .css({
-                    position: 'fixed',
-                    top: 0,
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    zIndex: 99999,
-                    cursor: 'default'
-                });
-    
-        var authData = $stmEnv.auth;
-    
-        var $stmAuth = {
-            data: authData,
-            isAuth: !!authData,
-            auth: auth
-        };
-        
-        return $stmAuth;
-        
-        function auth(clbFn){
-            if(!window.LOGINZA){
-                $.getScript('http://loginza.ru/js/widget.js', function(){
-                    $('<style>#loginza_auth_form{z-index: 999999!important;} #loginza_auth_form > *:first-child{display:none!important;}</style>').appendTo('head');
-                    setTimeout(function(){
-                        LOGINZA.ajax = true;
-                        var loginzaCloseFn = LOGINZA.close;
-                        $.extend(LOGINZA, {
-                            'ajax': true,
-                            'close': function(){
-                                if(!$stmAuth.isAuth) return;
-                                loginzaCloseFn.call(LOGINZA);
-                                disableEl.remove();
-                            }                           
-                        });
-                        showLoginza(clbFn);
-                    }, 50);
-                });
-            } else {
-                showLoginza(clbFn);
-            }
-            disableEl.appendTo('body');            
-        }
-        function showLoginza(clbFn){
-            LOGINZA.callback = function(token){
-                onAuth(token);
-                loginzaCloseFn.call(LOGINZA);
-                if(clbFn) clbFn();                
-            }
-            LOGINZA.show.call(disableEl.get(0));
-        }
-        function onAuth(token){
-            $stmAuth.isAuth = true;
-            $stmAuth.data = window['_' + token];        
-        }
-    }]);
+    .factory('User', ['$resource', '$stmEnv', function($resource, $stmEnv){
+        return $resource('api/user.php');
+    }]);;
 

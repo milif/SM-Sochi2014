@@ -1,3 +1,4 @@
+"use strict";
 /**
  * @ngdoc directive
  * @name stmIndexPage.directive:stmIndexPageScreen
@@ -7,6 +8,7 @@
  * @requires stmIndexPage.directive:stmIndexPageScreen:template.html
  * @requires stmIndex.directive:stmIndexMap
  * @requires stmIndex.directive:stmIndexToolbar
+ * @requires stmIndex.directive:stmIndexPopover
  * 
  * @description
  * Главная страница
@@ -56,15 +58,19 @@ angular.module('stmIndexPage').directive('stmIndexPageScreen', function(){
             $scope.mapPosition = {x: 600, y: 0};
             $scope.$on('$locationChangeSuccess', function(e, newUrl, oldUrl){  
                 var url = $location.url();
-                if(url == '/map/') {
-                    showMap();
-                } else if(newUrl != oldUrl){
+                if(newUrl != oldUrl && !/#/.test(url)){
                     window.location.reload();
                 }
             });
             $scope.$on('loaded',function(){
                 $scope.showPage = true;
             });
+            
+            $scope.$watch(function(){
+                $scope.childHead = $scope.$$childHead;
+            });
+
+            /*
             function showMap(e){
                 $scope.gameMap = true;
                 $scope.pageStyle = {
@@ -89,6 +95,7 @@ angular.module('stmIndexPage').directive('stmIndexPageScreen', function(){
                 }, 700);
                 
             }
+            */
         }]
     };
 });

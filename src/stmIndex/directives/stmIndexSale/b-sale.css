@@ -93,6 +93,7 @@
 }
 .b-button.mod_subscribe .b-button__text {
     font-size: 15px;
+    line-height: 38px;
 }
 
 .b-form-row.mod_hint {
@@ -114,6 +115,8 @@
 
 .l-sale-title-big {
     text-align: center;
+    position: relative;
+    margin-top: 60px;
 }
 /* b-sale-title-big */
 .b-sale-title-big {
@@ -299,6 +302,22 @@
     width: 932px;
     margin: 3px auto 0 auto;
 }
+.b-sale-sprint-roud__line-h {
+    position: relative;
+    margin-right: 20px;
+}
+.b-sale-sprint-roud__line-active-itembg {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 0;
+    background-position: -647px -62px;
+    background-image: url(asset/i/b-indexSale/sale-sprite.png);
+}
+.b-sale-sprint-roud__line-active-itembg.__normal {
+    background-position: -647px -40px;
+}
+/*
 .b-sale-sprint-roud__line:before {
     content: '';
     position: absolute;
@@ -308,9 +327,23 @@
     width: 932px;
     height: 21px;
 }
+*/
+.b-sale-sprint-roud__line-active {
+    overflow: hidden;
+    position: absolute;
+    background-image: url(asset/i/b-indexSale/sale-sprite.png);
+    background-position: 0px -398px;
+    display: inline-block;
+    width: 932px;
+    height: 21px;
+}
+.b-sale-sprint-roud__line-active.__normal {
+    background-position: -327px -420px;
+}
 
 .b-sale-sprint-roud__line-item {
     position: absolute;
+    margin-left: 4px;
     width: 12px;
     height: 12px;
     -webkit-box-sizing: border-box;
@@ -398,7 +431,7 @@
 .b-sale-game-top {
     padding: 16px 0 0 18px;
     font-size: 13px;
-    width: 206px;
+    width: 195px;
 }
 .b-sale-game-top-title {
     font-size: 18px;
@@ -571,6 +604,7 @@ a.b-sale-br-link {
 }
 .b-sale-cont.scheme_gray {
     background-color: #e5e5e5;
+    text-decoration: line-through;
 }
 .b-sale-cont.scheme_yellow {
     background-color: #fdd918;
@@ -630,11 +664,20 @@ a.b-sale-br-link {
 }
 .b-sale-footer-left-h {
     height: 110px;
-    padding-left: 56px;
-    padding-right: 40px;
+    padding-left: 30px;
+    padding-right: 20px;
     vertical-align: middle;
     display: table-cell;
     width: 306px;
+}
+.b-sale-footer-left-h > * {
+    display: inline-block!important;
+}
+.b-sale-footer-left-h > *:first-child {
+    margin-bottom: 20px;
+}
+.b-sale-footer-left-h .twitter-share-button {
+    width: 125px!important;
 }
 .b-sale-footer-right {
     -webkit-box-sizing: border-box;

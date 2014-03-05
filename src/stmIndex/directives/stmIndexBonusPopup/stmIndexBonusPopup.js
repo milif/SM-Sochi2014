@@ -1,3 +1,4 @@
+"use strict";
 /**
  * @ngdoc directive
  * @name stmIndex.directive:stmIndexBonusPopup
@@ -22,6 +23,10 @@
           <div stm-index-bonus-popup bonus="1500" type="mnogo"></div>
           <br>
           <div stm-index-bonus-popup bonus="500" type="sber"></div>
+          <br>
+          <div stm-index-bonus-popup bonus="500" type="qiwi"></div>
+          <br>
+          <div stm-index-bonus-popup bonus="500" type="dpd"></div>
         <div>
       </file>
     </example>
@@ -31,8 +36,10 @@
 angular.module('stmIndex').directive('stmIndexBonusPopup', function(){
     var TEXT = {
         'pickpoint': 'Спасибо за упорство от Пикпоинта!',
+        'dpd': 'Спасибо за упорство от DPD!',
         'mnogo': 'от Много.ру!',
-        'sber': 'Спасибо за упорство от Сбербанка!'
+        'sber': 'Спасибо за упорство от Сбербанка!',
+        'qiwi': 'от Qiwi Wallet!'
     }
     return {
         scope: true,
@@ -121,30 +128,48 @@ angular.module('stmIndex').factory('$stmBonus', [function(){
         {
             type: 'mnogo',
             hasAvailable: hasAvailableFactory(function(score){
-                return score < 1000;
+                return true;
             }),
             put: putFactory(function(score){
-                return score < 50 ? 5 : 50;
+                return 25;
             })
         },
         {
             type: 'sber',
             hasAvailable: hasAvailableFactory(function(score){
-                return score < 200;
+                return true;
             }),
             put: putFactory(function(score){
                 return 10;
             })
         },  
         {
+            type: 'qiwi',
+            hasAvailable: hasAvailableFactory(function(score){
+                return true;
+            }),
+            put: putFactory(function(score){
+                return 20;
+            })
+        },
+        {
             type: 'pickpoint',
             hasAvailable: hasAvailableFactory(function(score){
-                return score < 200;
+                return true;
             }),
             put: putFactory(function(score){
                 return 10;
             })
-        }           
+        },
+        {
+            type: 'dpd',
+            hasAvailable: hasAvailableFactory(function(score){
+                return true;
+            }),
+            put: putFactory(function(score){
+                return 10;
+            })
+        }                 
     ];
     for(var i=0;i<TYPES.length;i++){
         TYPES['_' + TYPES[i].type] = TYPES[i];
@@ -182,15 +207,17 @@ angular.module('stmIndex').factory('$stmBonus', [function(){
     function getScores(){
         return angular.copy(scores);
     }
-    function hasAvailable(){
+    function hasAvailable(inTypes){
         for(var i=0;i<TYPES.length;i++){
+            if(inTypes && inTypes.indexOf(TYPES[i].type) < 0) continue;
             if(TYPES[i].hasAvailable()) return true;
         }
         return false;        
     }
-    function getAvailableTypes(){
+    function getAvailableTypes(inTypes){
         var types = [];
         for(var i=0;i<TYPES.length;i++){
+            if(inTypes && inTypes.indexOf(TYPES[i].type) < 0) continue;
             if(TYPES[i].hasAvailable()) {
                 types.push(TYPES[i]);
             }

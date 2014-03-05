@@ -1,3 +1,4 @@
+"use strict";
 /**
  * @ngdoc directive
  * @name stmIndex.directive:stmIndexBonus
@@ -24,6 +25,7 @@
             <div class="b-sample" >
               <div ng-repeat="bonus in bonuses" stm-index-bonus="{{bonus.id}}" type="{{bonus.type}}" position="{{bonus.pos}}" timeout="{{bonus.timeout}}"></div>
               <div stm-index-bonus="bonusId3" type="mnogo" position="[350, 50]"></div>
+              <div stm-index-bonus="bonusId3" type="qiwi" position="[550, 50]"></div>
               <div stm-index-bonus="bonusId4" type="sber" position="[450, 50]" timeout="20"></div>
             </div>
         </div>
@@ -52,7 +54,7 @@
         function bonusesCtrl($scope, $timeout){
             $scope.show = function(){
                 $scope.bonuses = [
-                    {pos: [50, 50], type: "mnogo", timeout: 10, show: false }, 
+                    {pos: [50, 50], type: "qiwi", timeout: 10, show: false }, 
                     {pos: [150, 50], type: "sber", timeout: 2 }, 
                     {pos: [250, 50], type: "pickpoint"}
                 ];
@@ -137,6 +139,7 @@ angular.module('stmIndex').directive('stmIndexBonus', function(){
                     };
                     $timeout(function(){
                         $scope.timeouted = true;
+                        
                         $timeout(function(){
                             $scope.hide = true;
                             /**
@@ -149,8 +152,10 @@ angular.module('stmIndex').directive('stmIndexBonus', function(){
                                *
                                * @param {String} id Id.
                                * 
-                               */                              
-                            $scope.$emit('bonusTimeout', index);
+                               */  
+                            $timeout(function(){                            
+                                $scope.$emit('bonusTimeout', index);
+                            }, 300);
                         }, 30);
                     }, $scope.duration / 2 * 1000);
                 }

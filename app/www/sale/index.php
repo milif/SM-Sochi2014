@@ -10,7 +10,7 @@
 <head>
   <title>Вагон подарков — Сочные игры 2014</title>
   <link rel="stylesheet" href="index.css" type="text/css"/>
-  <base href="../" />
+  <base href="<?php echo APP_ROOT_URL.'/'; ?>" />
   <!-- @include stmIndexSale -->
   <?php echo $head; ?>
 </head>

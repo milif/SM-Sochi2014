@@ -1,3 +1,4 @@
+"use strict";
 /**
  * @ngdoc directive
  * @name stmIndex.directive:stmIndexSocial
@@ -42,13 +43,14 @@ angular.module('stmIndex')
             onClick: clickTW
         },
         {
-            type: 'gp',
-            onClick: clickGP
-        },
-        {
             type: 'ok',
             onClick: clickOK
-        }
+        }        
+        /*{
+            type: 'gp',
+            onClick: clickGP
+        },*/
+
     ]; 
     
     var $ = angular.element;
@@ -77,7 +79,7 @@ angular.module('stmIndex')
         shareWindow("https://plus.google.com/share?url="+encodeURIComponent(URL)+"&t="+encodeURIComponent(SHARE.description));
     }
     function clickOK(){
-        
+        shareWindow("http://www.odnoklassniki.ru/dk?st.cmd=addShare&st.s=1&st._surl="+encodeURIComponent(URL)+"&st.comments="+encodeURIComponent(SHARE.description));
     }   
     function shareWindow(url, width, height){
         var screenWidth = $(window).width(),

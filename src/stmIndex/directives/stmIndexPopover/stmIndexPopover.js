@@ -1,3 +1,4 @@
+"use strict";
 /**
  * @ngdoc directive
  * @name stmIndex.directive:stmIndexPopover
@@ -10,12 +11,14 @@
  * Popover implementation
  *
  * @element ANY
- * @param {String} stmIndexPopover component id 
- * @param {Array} position set position [x, y]
- * @param {Array} offset set offset [dx, dy]
- * @param {Integer} hideEventTimeout Время до завершения закрытия
- * @param {Boolean} hideOnClickout Закрытие по клику в сторону
- * @param {String} popoverType Тип показа (bottom|top|default)
+ * @param {String=} stmIndexPopover component id 
+ * @param {Array=} position set position [x, y]
+ * @param {Array=} offset set offset [dx, dy]
+ * @param {Integer=} hideEventTimeout Время до завершения закрытия
+ * @param {Boolean=} hideOnClickout Закрытие по клику в сторону
+ * @param {Boolean=} tooltip Компонент является тултипом
+ * @param {Boolean=} element Селектор элеметов на которые вешается тултип
+ * @param {String=} popoverType Тип показа (bottom|top|default)
  *
  * @example
     <example module="appExample">
@@ -71,8 +74,11 @@ angular.module('stmIndex').directive('stmIndexPopover', function(){
         templateUrl: 'partials/stmIndex.directive:stmIndexPopover:template.html',
         transclude: true,
         replace: true,
-        controller: ['$scope', '$attrs', '$timeout', '$element', '$window', function($scope, $attrs, $timeout, $element, $window){           
-            var autoOpen = !$attrs.show;
+        controller: ['$scope', '$attrs', '$timeout', '$element', '$window', function($scope, $attrs, $timeout, $element, $window){         
+
+            var isTooltip = $attrs.tooltip ? $scope.$eval($attrs.tooltip) : false;
+        
+            var autoOpen = !$attrs.show && !isTooltip;
             var windowEl = $($window);
             
             var globalEvents = {
@@ -83,6 +89,14 @@ angular.module('stmIndex').directive('stmIndexPopover', function(){
                 }
             }
             
+            if(isTooltip){
+                $element.parent().on('mousedown', $attrs.element, function(e){
+                    $scope.$apply(function(){
+                        showTooltip(e);
+                    });
+                });
+            }
+            
             if(autoOpen){
                 $scope.hide = true;
                 $timeout(function(){
@@ -90,8 +104,8 @@ angular.module('stmIndex').directive('stmIndexPopover', function(){
                 }, 30);
             }
             
-            var hideTimeout = $attrs.hideEventTimeout ? $scope.$eval($attrs.hideEventTimeout) : 500;
-            var isHideOnClickout = $attrs.hideOnClickout ? $scope.$eval($attrs.hideOnClickout) : false;
+            var hideTimeout = $attrs.hideEventTimeout ? $scope.$eval($attrs.hideEventTimeout) : ( isTooltip ? 0 : 500);
+            var isHideOnClickout = $attrs.hideOnClickout ? $scope.$eval($attrs.hideOnClickout) : isTooltip;
             var offset = $attrs.offset ? $scope.$eval($attrs.offset) : [0,0];
             var position;
             
@@ -115,13 +129,42 @@ angular.module('stmIndex').directive('stmIndexPopover', function(){
                 $scope.$on('hidePopover-' + $scope.id, hide);                
             });
             $attrs.$observe('position', function(pos){
+                if(!$attrs.position) return;
                 position = $scope.$eval(pos);
                 updatePosition();
             });                   
             $attrs.$observe('show', function(showAttr){
+                if(!$attrs.show) {
+                    $scope.hide = true;
+                    return;
+                }
                 if($scope.$eval(showAttr)) show();
                 else hide();
             });
+            function showTooltip(e){
+                var el = $(e.target);
+                var offset = el.offset();
+                var windowEl = $(window);
+                  
+                var offsetParentEl;
+                if($element.is('.ng-hide')){
+                    $element.removeClass('ng-hide');
+                    offsetParentEl = $element.offsetParent();
+                    $element.addClass('ng-hide')
+                } else {
+                    offsetParentEl = $element.offsetParent();
+                }
+                var cntOffset = offsetParentEl.offset();
+                var isTop = offset.top > windowEl.height() - offset.top - el.outerHeight();
+                $scope.type = isTop ? 'top' : 'bottom';
+                if(isTop){
+                    position = [-cntOffset.left + offset.left, -cntOffset.top + offsetParentEl.outerHeight() - offset.top];
+                } else {
+                    position = [-cntOffset.left + offset.left, -cntOffset.top + offset.top + el.outerHeight()];
+                }
+                updatePosition();               
+                show();            
+            }
             function show(){
                 if(!$scope.hide) return;
                 $scope.hide = false;
