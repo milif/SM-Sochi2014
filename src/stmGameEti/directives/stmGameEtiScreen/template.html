@@ -1,6 +1,6 @@
 <!-- gameEti -->
 <div class="b-gameEti-l g-font">
-    <div data-view class='b-gameEti' ng-class="stateCls">
+    <div data-view class='b-gameEti' ng-class="stateCls" style="cursor: url(asset/i/b-gameEti/cursor.cur), auto;">
         <div class='b-gameEti-h'>
             <div class='b-gameEti-fone'>
                 <div class='b-gameEti-fone-h'>
@@ -137,7 +137,7 @@
                     <div class='b-cursor'></div>
                     <!-- End Cursor -->
                     <!-- Alert -->
-                    <div data-alert class='b-gameEti-alert mod_{{mod}}' style='left: {{left}}px; top: {{top}}px; width: {{width}}px;'>
+                    <div data-alert ng-class="'mod_' + mod" class="b-gameEti-alert" ng-style='css'>
                         <div class='b-gameEti-alert-title' ng-bind-html="title"></div>
                         <div ng-show="text" class='b-gameEti-alert-note' ng-bind-html="text"></div>
                     </div>

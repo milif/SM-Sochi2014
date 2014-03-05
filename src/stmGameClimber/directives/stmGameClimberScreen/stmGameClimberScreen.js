@@ -71,9 +71,12 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
           $scope.popupScoreShow = false;
           $scope.popupMoodShow = false;
           $scope.energy = 100;
+          $scope.energyCss = {
+            width: '100%'
+          };
           $scope.distance = 0;
           $scope.$watch('distance', function() {
-              $scope.distancePercent = Math.min($scope.distance / ($scope.endPosition - 1300) * 100, 100) ;
+              $scope.distanceCss = { width: Math.round(Math.min($scope.distance / ($scope.endPosition - 1300) * 100, 100)) + '%'} ;
               $scope.distanceMeters = $scope.distance / 100;
           });
           $scope.showStartPopup = true;
@@ -287,11 +290,12 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
 
                     function updateEnergy(incrementValue) {
                         scope.energy = Math.min(Math.max(0, scope.energy + incrementValue), 100);
+                        scope.energyCss.width = scope.energy + '%';
                     }
 
                     function updateDistance(incrementValue) {
                         scope.distance = Math.min(Math.max(0, scope.distance + incrementValue), endPosition);
-                        scope.distancePercent = scope.distance / (endPosition - topPipeMargin) * 100;
+                        scope.distanceCss.width = Math.round(scope.distance / (endPosition - topPipeMargin) * 100) + '%';
                     }
                     /*
                     function initBonuses() {

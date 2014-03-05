@@ -52,7 +52,7 @@
                       </span>
                     </div>
                     <div class='b-progressbar b-progressbar_scheme_red'>
-                      <div class='b-progressbar__line' style='width: {{energy}}%'></div>
+                      <div class='b-progressbar__line' ng-style ="energyCss"></div>
                     </div>
                     <div class='b-progress-climber-note'>
                       {{energy | number:0}} %
@@ -65,7 +65,7 @@
                       </span>
                     </div>
                     <div class='b-progressbar b-progressbar_scheme_blue'>
-                      <div class='b-progressbar__line' style='width: {{distancePercent}}%'></div>
+                      <div class='b-progressbar__line' ng-style = "distanceCss"></div>
                     </div>
                     <div class='b-progress-climber-note'>
                       {{distanceMeters | number:0}} м
