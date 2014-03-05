@@ -2,9 +2,15 @@
 /*==========================================================*/
 .l-confirmation {
     padding-top: 40px;
-    background-color: #ffd631;
+    background-color: #fed710;
     overflow: hidden;
     min-width: 1000px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
 }
 .l-confirmation-h {
     position: relative;
@@ -12,6 +18,12 @@
     width: 760px;
     padding-top: 1px;
     margin: 0 auto;
+    display: table;
+    height: 100%;
+}
+.l-confirmation-hh {
+    display: table-cell;
+    vertical-align: middle;
 }
 .b-confirmation {
     text-align: center;
