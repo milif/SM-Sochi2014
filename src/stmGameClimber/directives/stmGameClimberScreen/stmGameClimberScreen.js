@@ -457,6 +457,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                     }
                     
                     function startGame() {
+                        $stmBonus.reset();
                         scope.bonuses = [];
                         scope.score = 0;
                         scope.energy = 100;
