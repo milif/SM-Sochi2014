@@ -737,7 +737,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', ['$compile'
                 if(!find) return;
                 targetsShoots++;
                 if(!ACHIVE_STARHOOTER.active && targetsShoots >= COUNT_STARHOOTER ){
-                    saveAchiev(ACHIVE_LASTHERO);                
+                    saveAchiev(ACHIVE_STARHOOTER);                
                 }                                
                 isShootingHelp = false;
                 var shootX = targetX - K * (men.y - targetY);               
