@@ -39,17 +39,17 @@
 
 angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootScope', '$stmAchievs', function($compile, $rootScope, $stmAchievs){
 
-    var ATTEMPTS = 5; // Сколько раз можно промазать
+    var ATTEMPTS = 8; // Сколько раз можно промазать
     var NO_PHOTO_TIME = 7000; // Время без снимком (ms)
     var ITERATE_TIMEOUT = 100; // Пауза между итерациями (ms)
     var FIRST_TARGET_TIMEOUT = 3000; // Через какое время появится первая цель (ms)
     var BONUS = 50; // Сколько очков давать за фото йети
-    var LEVELS_TABLE = [ // Таблица уровней сложности [[ время до от начала игры (s), через какое время исчезает цель (ms), какой интервал между целями (ms), сколько целей одновременно (i)]]
-        [60, 3000, 2000, 1],
-        [120, 2000, 1500, 1],
-        [180, 1500, 1000, 1],
-        [240, 1500, 1000, 2],
-        [300, 1000, 1000, 2]
+    var LEVELS_TABLE = [ // Таблица уровней сложности [[ время до от начала игры (s), через какое время исчезает цель (ms), какой интервал между целями (ms), сколько целей одновременно (i), сколько времени разрешено без снимков]]
+        [60, 3000, 2000, 1, 15000],
+        [120, 2000, 1500, 1, 15000],
+        [180, 1500, 1000, 1, 15000],
+        [240, 1500, 1000, 2, 10000],
+        [300, 1000, 1000, 2, 10000],
     ];
     var TITLES_OUT = ["Промах!", "Мимо!", "Упс!", "Пыщь!", "Почти!"];
     var MSGS = {    
@@ -116,7 +116,9 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                 owlTimer = $timeout(function(){
                     $scope.owlCls = '';
                 }, 1000 + Math.random() * 1000);
-            }            
+            }
+            
+            $scope.photoSlide = 0;       
             $scope.owlCls = '';
             $scope.achievsInfo = angular.copy(achievs);
             $scope.ineti = 0;
@@ -202,6 +204,7 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
             var etis;
             var startTime;
             var animals;
+            var timer;
             
             $scope.$emit('gameInit');
             
@@ -219,10 +222,11 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                 $scope.showToolbar = true;
                 $scope.ineti = 0;
                 $scope.attempts = ATTEMPTS;
-                nextTargetTime = new Date().getTime() + FIRST_TARGET_TIMEOUT;
-                lastPhotoTime = new Date().getTime();
+                nextTargetTime = startTime + FIRST_TARGET_TIMEOUT;
+                lastPhotoTime = startTime;
                 currentTargets = [];
                 currentLevel = LEVELS_TABLE[0];
+                timer = startTime + currentLevel[4];
                 
                 $element.on(elEvents);
                 $scope.stateCls = '';
@@ -323,6 +327,13 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                         currentTargets.push(target);                        
                     }                   
                 }
+                
+                var diffTime = Math.round(Math.max(0, timer - time) / 1000);
+                $scope.isTimeAlert = diffTime * 1000 < currentLevel[4] * 0.4;
+                $scope.timer = diffTime >= 10 ? diffTime + "" : "0" + diffTime;
+                if(diffTime == 0) {
+                    stopGame();
+                }
             }
             function closeTarget(target){
                 if(!target.isMove) $animate.removeClass(target.el, target.animCls, function(){
@@ -351,6 +362,7 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                             if(target.isCheckTree && $(e.target).closest('[data-tree]').length > 0) {
                                 return false;
                             }
+                            timer = new Date().getTime() + currentLevel[4];
                             if(!target.hasShoot){
                                 target.hasShoot = true;
                                 var eti = el.data('eti'); 
@@ -370,6 +382,7 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                                 if(eti) {
                                     $scope.score += BONUS;
                                     $scope.ineti++;
+                                    animatePhoto();
                                     success = true;
                                     if(!ACHIVE_AMONG.active){
                                         if(ACHIVE_AMONG.count++ == COUNT_AMONG - 1){
@@ -388,7 +401,6 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                             } else if(el.data('eti')) {
                                 success = true;
                             }
-                            
                             return false;                        
                         }
                     }
@@ -399,6 +411,13 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                     }                    
                     showMessage([outMsg[0], $scope.attempts == 1 ? lastMsg : targetName || outMsg[1], outMsg[2]], e);
                 }
+            }
+            function animatePhoto(){
+                if($scope.photoSlide) return;
+                $scope.photoSlide = true;
+                $timeout(function(){
+                    $scope.photoSlide = false;      
+                }, 600);
             }
             function saveAchiev(achiev){
                 achiev.active = true;

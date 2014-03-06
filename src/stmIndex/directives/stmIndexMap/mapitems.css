@@ -416,6 +416,13 @@
     height: 210px;
     background: url("asset/i/b-gameMap/quelle_sheet_3x13.png") 0 0 no-repeat;
 }
+.b-game-item59 {
+    left: 2486px;
+    top: 3150px;
+    width: 282px;
+    height: 160px;
+    background: url("asset/i/b-gameMap/cycle1_sheet_3x29.png") 0 0 no-repeat;
+}
 .b-game-clothing {
     position: absolute;
     z-index: 1;

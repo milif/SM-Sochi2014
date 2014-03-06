@@ -195,17 +195,17 @@
                 </div>
                 <div class='b-gamePanel-column mod_third'>
 
-                    <div class="b-gamePanel-block">
+                    <div ng-class="isTimeAlert ? 'mod_alert' : ''" class="b-gamePanel-block">
                         <span class="b-icons b-icons_time">
                             <span class="b-icons__item"></span>
                         </span>
                         <div class="b-gamePanel-block__text">
-                            00:10
+                            00:{{timer}}
                         </div>
                     </div>
                     
                     <!-- b-gamePanel-block mod_photos slide1..4 -->
-                    <div class="b-gamePanel-block mod_photos ">
+                    <div ng-class="photoSlide ? 'animate-addphoto' : ''" class="b-gamePanel-block mod_photos ">
                         <span class="b-icons b-icons_photos">
                             <span class="b-icons__item"></span>
                         </span>

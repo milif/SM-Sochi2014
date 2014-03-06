@@ -1058,6 +1058,10 @@ a.terms-action__link {
   left: -20px;
   top: -2px;
 }
+.b-gamePanel-block {
+    -webkit-transition: background-color 0.15s linear;
+    transition: background-color 0.15s linear;
+}
 .b-gamePanel-block.mod_alert {
   background-color: #ee2b5a;
 }
@@ -1072,7 +1076,7 @@ a.terms-action__link {
   height: 30px;
   left: 50%;
   margin-left: -15px;
-  top: -45px;
+  bottom: 32px;
   opacity: 0;
 }
 .b-gamePanel-block.mod_photos.slide1 .b-gamePanel-block__slide {
@@ -1115,6 +1119,3 @@ a.terms-action__link {
   opacity: 1;
   height: 8px;
 }
-
-
-=======

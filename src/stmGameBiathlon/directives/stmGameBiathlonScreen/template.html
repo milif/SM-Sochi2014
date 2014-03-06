@@ -52,9 +52,9 @@
                     </ul>
                 </div>
                 <div class='b-gamePanel-column mod_third'>
-                    <div class="b-gamePanel-block mod_eti mod_alert">
+                    <div ng-class=" distanceEti < 15 ? 'mod_alert' : ''" class="b-gamePanel-block mod_eti">
                         <div class="b-gamePanel-block__text">
-                            8 <span class="b-gamePanel-block__text-h">м</span>
+                            {{distanceEti | stmNumber:0}} <span class="b-gamePanel-block__text-h">м</span>
                         </div>
                     </div>
                     <div class="b-gamePanel-block">
@@ -62,7 +62,7 @@
                             <span class="b-icons__item"></span>
                         </span>
                         <div class="b-gamePanel-block__text">
-                            22 <span class="b-gamePanel-block__text-h">км</span>
+                            {{distance | stmNumber:2}} <span class="b-gamePanel-block__text-h">км</span>
                         </div>
                     </div>
                     <span class="b-button b-button_size_medium4 b-button_scheme_yellow">

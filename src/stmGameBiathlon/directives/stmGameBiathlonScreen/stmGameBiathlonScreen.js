@@ -62,7 +62,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', ['$compile'
     var COUNT_TREES_NEAR = 3; // Максимальное число деревьев в куче
     var TREES_DISTANCE = 300; // Оптимальное расстояние между деревьями в куче (px)
     var K = 140 / 397; // Коэфф. угла выстрела
-    var START_MORE_SPEED = 5; // Начальное число ускорений
+    var START_MORE_SPEED = 7; // Начальное число ускорений
     var ADD_SPEED = 100; // На сколько увеличивать скорость игрока
     var DOWN_SPEED = 10; // На сколько уменьшать скорость игрока за секунду
     var PLAYER_SPEED = 400; // Начальная скорость игрока
@@ -283,6 +283,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', ['$compile'
             $scope.$emit('gameInit');
             
             function startGame(){
+                ACHIVE_LOIN.count = 0;
                 $stmBonus.reset();
                 targetsShoots = 0;
                 startX = men.x;
@@ -290,6 +291,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', ['$compile'
                 men.speed = PLAYER_SPEED;
                 inSeet = false;
                 $scope.score = 0;
+                $scope.distance = 0;
                 $scope.showToolbar = true;
                 $scope.eti = eti = {
                     x: men.x - camera.width * 1.3,
@@ -554,6 +556,8 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', ['$compile'
                         this.frameIndex = Math.round(gTime / 1000 * this.framePerSec) % this.frameCount;
                     }
                     if(!$scope.inEti){
+                        $scope.distance = (men.x - startX) / PIXEL_IN_METER / 1000;
+                        $scope.distanceEti = Math.max(0, (men.x - eti.x) / PIXEL_IN_METER);
                         var downSpeed = DOWN_SPEED * dTime / 1000 - this.angle * dTime / 1000;
                         if(!inSeet) downSpeed = Math.max(0, downSpeed);                     
                         this.speed -= downSpeed;
@@ -571,6 +575,8 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', ['$compile'
                             
                             endGame();
                         }
+                    } else {
+                        $scope.distanceEti = 0;
                     }
                     if(this.speed < 20) stopGame();
                     

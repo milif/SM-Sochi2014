@@ -248,7 +248,7 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                 'cols': 3,
                 'over': false,
                 'circle15': true,
-                'left': 2950,
+                'leftStart': 2950,
                 'dx': 0
             };
             $scope.item16 = {
@@ -558,9 +558,20 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                 'width': 314,
                 'height': 210,
                 'cols': 3
+            };
+            $scope.item59 = {
+                'frames': 86,
+                'fps': 30,
+                'width': 282,
+                'height': 160,
+                'cols': 3,
+                'over': false,
+                'circle15': true,
+                'leftStart': 2486,
+                'dx': 0
             };                  
                         
-            var itemsCount = 58;
+            var itemsCount = 59;
             for(var index=1; index<=itemsCount; index++) {
                 $scope['item'+index]._frameIndex = 0;
             }
@@ -611,7 +622,7 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                             } else if(frameIndex > 34 && frameIndex < 71) {
                                 item.dx--;
                             }
-                            item.left = 2950 - item.dx * 5;
+                            item.left = item.leftStart - item.dx * 5;
                             item.css.left = item.left + 'px';
                         } else {
                             item.dx = 0;
