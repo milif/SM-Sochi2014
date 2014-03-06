@@ -29,6 +29,10 @@ angular.module('stmIndex').directive('stmIndexBonusInfo', [function(){
     return {
         replace: true,
         scope: true,
-        templateUrl: 'partials/stmIndex.directive:stmIndexBonusInfo:template.html'
+        templateUrl: 'partials/stmIndex.directive:stmIndexBonusInfo:template.html',
+        controller: ['$attrs', '$scope', function($attrs, $scope){
+            $scope.isDPD = 'dpd' in $attrs;
+            $scope.isPickpoint = 'pickpoint' in $attrs;
+        }]
     };
 }]);
