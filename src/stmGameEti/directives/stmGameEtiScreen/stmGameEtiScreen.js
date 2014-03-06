@@ -332,7 +332,8 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                 $scope.isTimeAlert = diffTime * 1000 < currentLevel[4] * 0.4;
                 $scope.timer = diffTime >= 10 ? diffTime + "" : "0" + diffTime;
                 if(diffTime == 0) {
-                    stopGame();
+                    $scope.attempts--;
+                    timer += currentLevel[4];
                 }
             }
             function closeTarget(target){
@@ -345,6 +346,8 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
             function photo(e){
             
                 pusk.clone().get(0).play();
+                
+                timer = new Date().getTime() + currentLevel[4];
                 
                 lastPhotoTime = new Date().getTime();
                 
@@ -362,7 +365,6 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                             if(target.isCheckTree && $(e.target).closest('[data-tree]').length > 0) {
                                 return false;
                             }
-                            timer = new Date().getTime() + currentLevel[4];
                             if(!target.hasShoot){
                                 target.hasShoot = true;
                                 var eti = el.data('eti'); 
