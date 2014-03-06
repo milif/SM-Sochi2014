@@ -196,9 +196,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', ['$compile'
             
             var iterateTasks = [];
             var startX;
-            $framesScope.$watch(function(){
-            
-            });   
+ 
             framesTpl($framesScope, function(el){
                 $element.find('[data-frames]').replaceWith(el);
             });            
@@ -719,7 +717,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', ['$compile'
                     left: Math.round(person.x - camera.x + camera.width / 2),
                     top: Math.round(person.y - camera.y + camera.height / 2) - (person.DY || 0),
                     transform: 'rotate(' + Math.round(person.angle) + 'deg)'
-                }   
+                }
             }
             function shoot(time){
             
@@ -959,7 +957,10 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonFrameContent', ['$co
                 setTimeout(function(){
                     $frameScope.$apply();
                 }, 0);
-            });    
+            });
+            $scope.$on('$destroy', function(){
+                $frameScope.$destroy();
+            });
             $scope.$watch('trees',function(trees){
                 $frameScope.trees = trees;
                 $scope.update = {};
