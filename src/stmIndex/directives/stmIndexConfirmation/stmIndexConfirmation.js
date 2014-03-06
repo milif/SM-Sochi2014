@@ -33,7 +33,10 @@
 angular.module('stmIndex').directive('stmIndexConfirmation', function(){
     return {
         templateUrl: 'partials/stmIndex.directive:stmIndexConfirmation:template.html',
-        controller: ['$stmEnv', '$scope', '$interval', '$location', function($stmEnv, $scope, $interval, $location){
+        controller: ['$stmEnv', '$scope', '$interval', '$location', '$stmAuth', function($stmEnv, $scope, $interval, $location, $stmAuth){
+            $scope.admitad = $stmEnv.admitad;
+            $scope.actionpay = $stmEnv.actionpay;
+            $scope.userKey = $stmEnv.userKey;
             $scope.msg = $stmEnv.confirmMsg;
             $scope.time = 12;
             var endTime = new Date().getTime() + 12000;

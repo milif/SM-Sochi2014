@@ -126,7 +126,7 @@
 .b-toolbar-link .__a-pseudo, .b-toolbar-link sup,
 .b-toolbar-link .__a-pseudo:hover {
     color: #fcd620;
-    font-style: italic;
+    /*font-style: italic;*/
 }
 
 .b-toolbar-link sup {
