@@ -10,7 +10,10 @@
 
 defined('START_TRACK_DATE')  OR define('START_TRACK_DATE' , 1373914800);// '2013-07-15 22:00:00');
 $db=mysql_connect(DB_HOST,DB_USER,DB_PASSWORD);
-mysql_select_db('default_sm', $db);
+if(is_resource($db))
+{
+    mysql_select_db('default_sm', $db);
+}
 
 
 //start of partner_aliass.php
@@ -108,13 +111,26 @@ elseif (isset($_GET['topadvert']) && $_GET['topadvert'] != '') {
     unset($_GET['pin']);
 }
 elseif (isset($_GET['actionpay']) && $_GET['actionpay'] != '') {
+    $woCanonical=true;
     if (isset($_GET['clicknd']) && $_GET['clicknd'] == 1) {
         $_GET['ref'] = 55885;
         unset($_GET['clicknd']);
+        $promo_available=true;
     }
     elseif (isset($_GET['retarget']) && $_GET['retarget'] == 1) {
         $_GET['ref'] = 57103;
         unset($_GET['retarget']);
+        $promo_available=true;
+    }
+    elseif (isset($_GET['landing']) && $_GET['landing'] == 1) {
+        $_GET['ref'] = 57209;
+        unset($_GET['landing']);
+        $promo_available=true;
+    }
+    elseif (isset($_GET['media']) && $_GET['media'] == 1) {
+        $_GET['ref'] = 57213;
+        unset($_GET['media']);
+        $promo_available=true;
     }
     else {
         $_GET['ref'] = 49417;
@@ -631,7 +647,7 @@ function get_reftype_low()
  */
 function get_reftype_ignore()
 {
-    return get_reftype_by_ids(array(70));
+    return array();//get_reftype_by_ids(array(70));
 }
 
 /**

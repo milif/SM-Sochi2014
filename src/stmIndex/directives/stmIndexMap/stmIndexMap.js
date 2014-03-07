@@ -46,8 +46,11 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
         controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
             var viewEl = $element.find('>:first');
             var backEl = viewEl.find('>:first');
+            var kPreview = 178 / backEl.width();
             
             var storedPosition;
+            var preview = {};
+            
             try { 
                 storedPosition = JSON.parse(localStorage.getItem('_stmSochiMapPosition'));
             } catch(e){};
@@ -56,7 +59,8 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                 x: 0, 
                 y: 0
             });
-            
+            $scope.preview = preview;
+                        
             $rootScope.$on('toolbarLogoClick', function(){
                 if(!$scope.game || $scope.inScroll) return;
                 $scope.inScroll = true;
@@ -119,9 +123,19 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                 var position = $scope.position;
                 viewEl.scrollLeft(position.x);
                 viewEl.scrollTop(position.y);
+                updatePreview(position);
             });
-
-
+            
+            function updatePreview(position){
+                preview.css = {
+                    width: Math.round(viewEl.width() * kPreview),
+                    height: Math.round(viewEl.height() * kPreview),
+                    left: Math.round(position.x * kPreview),
+                    top: Math.round(position.y * kPreview)
+                }
+            }
+            
+            // Animation
 
             var FPS = $attrs && $attrs.fps || 50;
 
