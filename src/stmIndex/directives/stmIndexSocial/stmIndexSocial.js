@@ -38,18 +38,18 @@ angular.module('stmIndex')
             type: 'fb',
             onClick: clickFB
         },
-        {
+        /*{
             type: 'tw',
             onClick: clickTW
-        },
+        },*/
+        {
+            type: 'gp',
+            onClick: clickGP
+        },        
         {
             type: 'ok',
             onClick: clickOK
-        }        
-        /*{
-            type: 'gp',
-            onClick: clickGP
-        },*/
+        }
 
     ]; 
     
