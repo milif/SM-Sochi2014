@@ -31,5 +31,8 @@ if(IS_PRODUCTION){
         ), isset($GTM_DATA) ? $GTM_DATA : array()))
     );
 }
+if(isset($ENV['auth']['name'])) {
+    $ENV['auth']['name'] = iconv("UTF-8", "UTF-8//IGNORE", $ENV['auth']['name']);
+}
 echo '<script type="text/javascript">angular.module("stm").value("$stmEnv", JSON.parse(\''.str_replace('\n','',json_encode($ENV)).'\'))</script>';
 
