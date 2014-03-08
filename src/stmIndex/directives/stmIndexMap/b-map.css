@@ -12,6 +12,8 @@
   height: 3380px;
   width: 3770px;
   background: url("asset/i/b-gameMap/b-gameMap-fone.png") 0 0 no-repeat;
+  -webkit-transition: 0.2s left linear, 0.2s top linear;
+  transition: 0.2s left linear, 0.2s top linear;
 }
 
 /* b-game-run */

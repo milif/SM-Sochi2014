@@ -43,16 +43,26 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
         },
         transclude: true,
         templateUrl: 'partials/stmIndex.directive:stmIndexMap:template.html',
-        controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs){
+        controller: ['$scope', '$element', '$attrs', '$timeout', function($scope, $element, $attrs, $timeout){
             var viewEl = $element.find('>:first');
             var backEl = viewEl.find('>:first');
+            backEl.data('_transition', backEl.css('transition'));
             var kPreview = 178 / backEl.width();
+            var previewEl = $element.find('[data-preview]');
+            var previewConturEl = $element.find('[data-preview-contur]');
+            previewConturEl.data('_transition', previewConturEl.css('transition'));
             
+            var backCss;
             var storedPosition;
             var preview = {};
             
+            var drag;
+            var inClick = true;
+            
+            $scope.isPreview = true;
             try { 
                 storedPosition = JSON.parse(localStorage.getItem('_stmSochiMapPosition'));
+                $scope.isPreview = JSON.parse(localStorage.getItem('_stmSochiMapIsPreview'));
             } catch(e){};
             
             $scope.position = normalizePosition($scope.position || storedPosition || {
@@ -60,32 +70,50 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                 y: 0
             });
             $scope.preview = preview;
+            $scope.showPreview = function(isPreview){
+                $scope.isPreview = isPreview;
+                localStorage.setItem('_stmSochiMapIsPreview', JSON.stringify(isPreview));
+            }
+            $scope.startDragPreview = function(e){
+                inClick = true;
+                e.preventDefault();
+                windowEl.on(dragPreviewEvents);
+                drag = {
+                    x: e.pageX,
+                    y: e.pageY,
+                    pos: $scope.position
+                }
+                $timeout(function(){ 
+                    if(!drag) return;
+                    $scope.inMovePreview = true;
+                }, 50);
+            }
+            $scope.posMap = function(e){
+                if(!inClick) return;
+                console.log('1111')
+                var offset = previewEl.offset();
+                $scope.position = normalizePosition({
+                    x: ((e.pageX - offset.left) - preview.css.width / 2) / kPreview,
+                    y: ((e.pageY - offset.top) - preview.css.height / 2) / kPreview
+                })                
+            }
                         
             $rootScope.$on('toolbarLogoClick', function(){
-                if(!$scope.game || $scope.inScroll) return;
-                $scope.inScroll = true;
-                viewEl.animate({
-                    'scrollTop': 0,
-                    'scrollLeft': 0
-                }, 1000, function(){
-                    $scope.inScroll = false;
-                    $scope.position = {
-                        x: 0,
-                        y: 0
-                    }
-                });
-                
+                $scope.position = {
+                    x: 0,
+                    y: 0
+                }                
             });
             
             $scope.$watch('game',function(isGame){
                 if(isGame) $scope.$emit('gameInit');
             });
            
-            $scope.inMove = false;
+            $scope.inMove = false;            
             
-            var drag;
             var dragEvents = {
                 'mousemove': function(e){
+                    removeMapTransition();
                     $scope.$apply(function(){
                         $scope.position = normalizePosition({
                             x: drag.pos.x + drag.x - e.pageX,
@@ -94,17 +122,41 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                     });
                 },
                 'mouseup': function(){
-                    localStorage.setItem('_stmSochiMapPosition', JSON.stringify($scope.position));
+                    drag = null;
+                    addMapTransition();
                     $scope.$apply(function(){
                         $scope.inMove = false;
                     });
                     windowEl.off(dragEvents);
                 }
-            }            
+            }
+            var dragPreviewEvents = {
+                'mousemove': function(e){
+                    inClick = false;
+                    removeMapTransition();
+                    $scope.$apply(function(){
+                        $scope.position = normalizePosition({
+                            x: drag.pos.x - (drag.x - e.pageX) / kPreview,
+                            y: drag.pos.y - (drag.y - e.pageY) / kPreview
+                        });
+                    });
+                },
+                'mouseup': function(){
+                    drag = null;
+                    $scope.$apply(function(){
+                        $scope.inMovePreview = false;
+                    });
+                    setTimeout(function(){
+                        inClick = true;
+                    }, 0);
+                    addMapTransition();
+                    windowEl.off(dragPreviewEvents);
+                }
+            }          
             
             $element.on('mousedown', function(e){
                 var targetEl = $(e.target);
-                if(targetEl.closest('[data-controls],[ng-transclude]').length > 0 || targetEl.closest('.b-map').length == 0) return;
+                if(targetEl.closest('[data-controls],[ng-transclude],[data-preview-h]').length > 0 || targetEl.closest('.b-map').length == 0) return;
                 if($scope.inScroll === true) {
                     return;
                 }
@@ -115,17 +167,27 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                     y: e.pageY,
                     pos: $scope.position
                 }
-                $scope.$apply(function(){
+                $timeout(function(){
+                    if(!drag) return;
                     $scope.inMove = true;
-                });
+                }, 50);
             });
-            $scope.$watch('position', function(){
-                var position = $scope.position;
-                viewEl.scrollLeft(position.x);
-                viewEl.scrollTop(position.y);
+            $scope.$watch('position', function(position){
+                $scope.backCss = {
+                    left: -position.x,
+                    top: -position.y
+                };
                 updatePreview(position);
+                localStorage.setItem('_stmSochiMapPosition', JSON.stringify(position));
             });
-            
+            function removeMapTransition(){
+                previewConturEl.css('transition', 'none');
+                backEl.css('transition', 'none');
+            }
+            function addMapTransition(){
+                backEl.css('transition', backEl.data('_transition'));
+                previewConturEl.css('transition', previewConturEl.data('_transition'));
+            }
             function updatePreview(position){
                 preview.css = {
                     width: Math.round(viewEl.width() * kPreview),
@@ -134,6 +196,13 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                     top: Math.round(position.y * kPreview)
                 }
             }
+            
+            function normalizePosition(pos){
+                return {
+                    x: Math.max(0,Math.min(pos.x, backEl.width() - viewEl.width())),
+                    y: Math.max(0,Math.min(pos.y, backEl.height() - viewEl.height()))
+                };
+            }            
             
             // Animation
 
@@ -693,18 +762,8 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                     }
                 }
             }
-            function normalizePosition(pos){
-                return {
-                    x: Math.max(0,Math.min(pos.x, backEl.width() - viewEl.width())),
-                    y: Math.max(0,Math.min(pos.y, backEl.height() - viewEl.height()))
-                };
-            }
 
             $scope.moveView = function(direction) {
-                if($scope.inScroll === true) {
-                    return;
-                }
-                $scope.inScroll = true;
                 var stepX = viewEl.width() * 0.75,
                     stepY = viewEl.height() * 0.75,
                     timeout = 1000,
@@ -714,35 +773,28 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                         newPosition = normalizePosition({
                             x: $scope.position.x + stepX,
                             y: $scope.position.y
-                        });
-                        $(viewEl).animate({'scrollLeft': newPosition.x}, timeout);
+                        });;
                         break;
                     case 'left':
                         newPosition = normalizePosition({
                             x: $scope.position.x - stepX,
                             y: $scope.position.y
                         });
-                        $(viewEl).animate({'scrollLeft': newPosition.x}, timeout);
                         break;
                     case 'up':
                         newPosition = normalizePosition({
                             x: $scope.position.x,
                             y: $scope.position.y - stepY
                         });
-                        $(viewEl).animate({'scrollTop': newPosition.y}, timeout);
                         break;
                     case 'down':
                         newPosition = normalizePosition({
                             x: $scope.position.x,
                             y: $scope.position.y + stepY
                         });
-                        $(viewEl).animate({'scrollTop': newPosition.y}, timeout);
                         break;
                 }
-                $timeout(function(){
-                    $scope.position = newPosition;
-                    $scope.inScroll = false;
-                }, timeout + 100);
+                $scope.position = newPosition;
             };
 
             var keyEvents = {
