@@ -600,6 +600,44 @@
 .b-map-controls-down:hover {
     background-position: -131px -39px;
 }
+/* Quiz */
+/*==========================================================*/
+.b-map__quiz-img {
+    margin-right: 9px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -moz-box-shadow: 1px 1px 3px 0 rgba(0,0,0, .7);
+    -webkit-box-shadow: 1px 1px 3px 0 rgba(0,0,0, .7);
+    box-shadow: 1px 1px 3px 0 rgba(0,0,0, .7);
+    border: 1px solid #000;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    overflow: hidden;
+    width: 34px;
+    height: 34px;
+    position: absolute;
+    top: -16px;
+    left: 50%;
+    margin-left: -17px;
+}
+.b-tooltip__quiz {
+    cursor: pointer;
+    padding-top: 18px;
+}
+.b-map__quiz-title {
+    font-size: 16px;
+    font-weight: bold;
+}
+.b-map__quiz-note {
+    white-space: nowrap;
+    padding-top: 4px;
+}
+.b-map__quiz-note i {
+    font-style: normal;
+    color: #6c6c6c;
+}
 
 /* Zoom */
 /*==========================================================*/

@@ -22,6 +22,27 @@
 .b-tooltip.__pos_bottom_left {
     margin-bottom: 7px;
 }
+/* b-tooltip__close */
+.b-tooltip__close {
+    background: url('asset/i/common/icons-pack.png') 0 -161px no-repeat;
+    height: 13px;
+    width: 13px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+.b-tooltip__close:before{
+    content: '';
+    position: absolute;
+    top: -2px;
+    bottom: -2px;
+    right: -2px;
+    left: -2px;
+}
+.b-tooltip__close:hover {
+    background-position: 0 -184px;
+    cursor: pointer;
+}
 .b-tooltip-lock,
 .b-tooltip-info {
     display: block;

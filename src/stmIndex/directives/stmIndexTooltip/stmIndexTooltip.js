@@ -12,6 +12,7 @@
  *
  * @element ANY
  * @param {String} position Позиция (top_left|bottom_left)
+ * @param {Boolean} closable Закрываемый
  * @example
     <example module="appExample">
       <file name="index.html">
@@ -23,6 +24,18 @@
                 Нужно <a href="#">войти</a>, чтобы сохранять игровые достижения
             </div>         
          </div>
+         <br/>
+         <div stm-index-tooltip position="bottom_left" closable="true" style="width: 293px;">
+            <div class="b-tooltip__quiz">
+                <div class="b-map__quiz-img"></div>
+                <div class="b-map__quiz-title">
+                    Да, это ещё один! 
+                </div>
+                <div class="b-map__quiz-note">
+                    Осталось: 15/<i>24</i> &nbsp;&nbsp; Осталось времени: 01:21:<i>03</i>
+                </div>
+            </div>                 
+         </div>         
          <br>
          <div stm-index-tooltip class="mod_beta">
             <p>Мы произвели тестовый запуск Сочных Игр. Все игроки могут начать тренировки, и подойти подготовленно к официальному запуску.</p>
@@ -43,9 +56,10 @@ angular.module('stmIndex').directive('stmIndexTooltip', function(){
         transclude: true,
         templateUrl: 'partials/stmIndex.directive:stmIndexTooltip:template.html',
         controller:['$attrs', '$scope', function($attrs, $scope){
+            $scope.isClosable = $attrs.closable ? $scope.$eval($attrs.closable) : false;
             $attrs.$observe('position', function(position){
                 $scope._position = position || 'top_left';
-            });    
+            }); 
         }]
     };
 });
