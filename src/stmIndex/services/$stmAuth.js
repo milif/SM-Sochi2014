@@ -36,7 +36,7 @@
         var $$ = angular;
         var $ = angular.element;
         
-        var disableEl = $('<a href="https://loginza.ru/api/widget?token_url=' + encodeURIComponent($('base').get(0).href + 'api/auth.php') + '&providers_set=vkontakte,facebook,google,odnoklassniki"></a>')
+        var disableEl = $('<a href="https://loginza.ru/api/widget?token_url=' + encodeURIComponent($('base').get(0).href + 'api/auth.php') + '&providers_set=vkontakte,facebook,google,odnoklassniki,twitter,mailruapi,yandex,linkedin,livejournal,openid,mailru,myopenid,webmoney, rambler,flickr,lastfm,verisign,aol,steam"></a>')
                 .click(function(e){
                     e.preventDefault();
                 })
