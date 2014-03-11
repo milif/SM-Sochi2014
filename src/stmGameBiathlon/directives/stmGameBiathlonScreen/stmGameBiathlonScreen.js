@@ -178,7 +178,8 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', ['$compile'
                 angle: 0,
                 framePerSec: 4,
                 frameCount: 4,
-                update: updatePlayer
+                update: updatePlayer,
+                DY: 0
             };
             var eti = {};
             var persons = [men];           
@@ -593,6 +594,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', ['$compile'
                         bonusDist = bonus.position[0] + frame.x - men.x;
                         if(bonus.show) {
                             if(Math.abs(bonusDist) < 50){
+console.log(Math.abs(men.y -70 - men.DY - (bonus.position[1] + frame.y)))                            
                                 if(Math.abs(men.y -70 - men.DY - (bonus.position[1] + frame.y)) < 30) {
                                     bonus.show = false;
                                     bonus.take = true;
