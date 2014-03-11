@@ -593,8 +593,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', ['$compile'
                         if(bonus.take) continue;
                         bonusDist = bonus.position[0] + frame.x - men.x;
                         if(bonus.show) {
-                            if(Math.abs(bonusDist) < 50){
-console.log(Math.abs(men.y -70 - men.DY - (bonus.position[1] + frame.y)))                            
+                            if(Math.abs(bonusDist) < 50){                          
                                 if(Math.abs(men.y -70 - men.DY - (bonus.position[1] + frame.y)) < 30) {
                                     bonus.show = false;
                                     bonus.take = true;
