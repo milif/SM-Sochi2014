@@ -552,6 +552,8 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                     }
 
                     function stopGame() {
+                        if(!isGameStart) return;
+                        isGameStart = false;
                         $(keyObj)
                             .off(blockUpEvents)
                             .off(keyEvents)
