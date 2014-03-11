@@ -3,12 +3,13 @@
     $confirm = User::confirmEmail($_GET['i'], $_GET['h']);
     $ENV = array(
         'confirmMsg' => $confirm === true ? 'Адрес электронной почты подтвержден.' : $confirm
-    );     
+    );
+    $partner = User::getPartnerByKey($_GET['i']);
     if($confirm === true){
-        $admitad = preg_match('/^([^\.]+)/', $_COOKIE['subref'], $admitadReg) ? $admitadReg[1] : $_COOKIE['subref']; 
+        $admitad = preg_match('/^([^\.]+)/', $partner[1], $admitadReg) ? $admitadReg[1] : $partner[1]; 
         $ENV = array_merge($ENV, array(
-            'admitad' => in_array($_COOKIE['partner'], array('35626', '55887', '57105', '57135', '57143')) ? $admitad : null,
-            'actionpay' => in_array($_COOKIE['partner'], array('49417','55885','57103', '57209', '57213')) ? $_COOKIE['subref'] : null,
+            'admitad' => in_array($partner[0], array('35626', '55887', '57105', '57135', '57143')) ? $admitad : null,
+            'actionpay' => in_array($partner[0], array('49417','55885','57103', '57209', '57213')) ? $partner[1] : null,
             'userKey' => $_GET['i']        
         ));
     } 
