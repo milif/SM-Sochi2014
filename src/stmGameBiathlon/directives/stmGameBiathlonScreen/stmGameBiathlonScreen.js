@@ -623,7 +623,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', ['$compile'
                     }
                 }              
                 
-                if(!ACHIVE_IRON.active && men.x / PIXEL_IN_METER - startX > METERS_IRONNERVES){
+                if(!ACHIVE_IRON.active && (men.x - startX) / PIXEL_IN_METER > METERS_IRONNERVES){
                     saveAchiev(ACHIVE_IRON);
                 } 
                 if(!ACHIVE_LOIN.active){
