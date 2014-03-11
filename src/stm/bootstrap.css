@@ -181,6 +181,12 @@
   font-size: 30px;
   line-height: 60px;
 }
+.button_size_big.mod_style .b-button__text {
+  text-transform: none;
+  font-weight: normal;
+}
+
+
 
 /* MOD scheme-white */
 .b-button_scheme_white {
@@ -328,7 +334,9 @@
   cursor: default !important;
 }
 
-
+.mod_thin {
+  padding: 0 26px;
+}
 
 
 /*==========================================================*/
@@ -1013,6 +1021,9 @@ a.terms-action__link {
 }
 .g-align_right {
   text-align: right;
+}
+.g-text_center {
+  text-align: center;
 }
 .size_1_3 {
     width: 33.3334%;
