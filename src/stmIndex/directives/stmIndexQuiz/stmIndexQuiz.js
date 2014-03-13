@@ -43,7 +43,7 @@ angular.module('stmIndex').directive('stmIndexQuiz', function(){
             var endTime;
             
             var model = $scope.model = {};
-            var answers = {};
+            var answers;
             $scope.state = 'start';
             $scope.start = start;
             $scope.next = function(){
@@ -93,6 +93,7 @@ angular.module('stmIndex').directive('stmIndexQuiz', function(){
                 };
             }
             function start(){
+                answers = {};
                 quiz.splice(0, quiz.length);
                 shuffle(questions);
                 for(var i=0;i<3;i++){
