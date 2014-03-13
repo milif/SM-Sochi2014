@@ -10,9 +10,10 @@
         $ENV = array_merge($ENV, array(
             'admitad' => in_array($partner[0], array('35626', '55887', '57105', '57135', '57143')) ? $admitad : null,
             'actionpay' => in_array($partner[0], array('49417','55885','57103', '57209', '57213')) ? $partner[1] : null,
+            'am15' => in_array($partner[0], array('57211','54479')) ? true : null,
             'userKey' => $_GET['i']        
         ));
-    } 
+    }
     require __DIR__.'/../../lib/init.php'; ?><!doctype html>
 <html ng-app="stmIndex" lang="ru">
 <head>

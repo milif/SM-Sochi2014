@@ -33,12 +33,15 @@
 angular.module('stmIndex').directive('stmIndexConfirmation', function(){
     return {
         templateUrl: 'partials/stmIndex.directive:stmIndexConfirmation:template.html',
-        controller: ['$stmEnv', '$scope', '$interval', '$location', function($stmEnv, $scope, $interval, $location){
+        controller: ['$stmEnv', '$scope', '$interval', '$location', '$http', function($stmEnv, $scope, $interval, $location, $http){
             $scope.admitad = $stmEnv.admitad;
             $scope.actionpay = $stmEnv.actionpay;
             $scope.userKey = $stmEnv.userKey;
             $scope.msg = $stmEnv.confirmMsg;
             $scope.time = 12;
+            if($stmEnv.am15) {
+                $http.jsonp('//am15.net/pixel.php?f=js&rid=47701');
+            }
             var endTime = new Date().getTime() + 12000;
             var cancelTimer = $interval(function(){
                 var diffTime = endTime - new Date().getTime();
