@@ -63,11 +63,11 @@ angular.module('stmIndex').directive('stmIndexMap', ['$stmEnv', '$window', funct
             
             var backCss;
             var storedPosition;
-            //var foundedAchievs = {};
             var achievTooltips = {};
             var preview = {};
             
             var drag;
+            var inDrag = false;
             var inClick = true;
             var cancelHideQuiz = {};
             
@@ -83,12 +83,14 @@ angular.module('stmIndex').directive('stmIndexMap', ['$stmEnv', '$window', funct
                     return;
                 };
                 addFoundedAchiev(key, type, position, isBottom);
+                /*
                 var mapPosition = $scope.position;
                 var posY = isBottom ? position[1] : backEl.height() - position[1];
                 $scope.position = {
                     x: Math.min(position[0] - 80, Math.max(mapPosition.x, position[0] + 250 - viewEl.width())), 
                     y: Math.min(posY - 150, Math.max(mapPosition.y, posY + 100 - viewEl.height()))
                 };
+                */
             }
             $scope.closeQuizPopup = function(){
                 $scope.showQuizPopup = false;
@@ -174,6 +176,7 @@ angular.module('stmIndex').directive('stmIndexMap', ['$stmEnv', '$window', funct
             
             var dragEvents = {
                 'mousemove': function(e){
+                    inDrag = true;
                     removeMapTransition();
                     $scope.$apply(function(){
                         $scope.position = normalizePosition({
@@ -183,6 +186,9 @@ angular.module('stmIndex').directive('stmIndexMap', ['$stmEnv', '$window', funct
                     });
                 },
                 'mouseup': function(){
+                    $timeout(function(){
+                        inDrag = false;
+                    }, 0);                
                     drag = null;
                     addMapTransition();
                     $scope.$apply(function(){
@@ -242,6 +248,7 @@ angular.module('stmIndex').directive('stmIndexMap', ['$stmEnv', '$window', funct
                 localStorage.setItem('_stmSochiMapPosition', JSON.stringify(position));
             });
             function showQuizPopup(type){
+                if(inDrag) return;
                 var achiev = stmMapAchiev.getByType(type);
                 if(achiev.isQuiz){          
                     var quiz = QUIZ[type];
