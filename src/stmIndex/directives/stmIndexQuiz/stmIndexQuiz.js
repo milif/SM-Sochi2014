@@ -44,7 +44,7 @@ angular.module('stmIndex').directive('stmIndexQuiz', function(){
             
             var model = $scope.model = {};
             var answers;
-            
+            $scope.state = 'start';
             $scope.start = start;
             $scope.next = function(){
                 $scope.$emit('quizNext', quiz);
