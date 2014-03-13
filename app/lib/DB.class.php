@@ -7,8 +7,8 @@ class DB {
     static public function getInstance(){
         if(is_null(self::$PDO)){
             try {
-                self::$PDO = new PDO('mysql:dbname='.DB_NAME.';host='.DB_HOST.';charset=UTF8', DB_USER, DB_PASSWORD);
-                self::query('SET NAMES utf8;');
+                self::$PDO = new PDO('mysql:dbname='.DB_NAME.';host='.DB_HOST, DB_USER, DB_PASSWORD);
+                self::$PDO->exec('SET NAMES utf8;');
             } catch (PDOException $e) {
                 self::$PDO = false;
             }
