@@ -135,7 +135,7 @@ class Product {
                 'img'=>'http://img-sotmarket.ru/standart/img/notebook/apple/apple-macbook-air-11-mid-2013-md712-1-3.png',
                 'subUrl'=>'http://www.sotmarket.ru/category/notebook.html',
                 'subName'=>'Ноутбуки',
-                'title'=>'Apple MacBook Air 13\" Mid 2013 MD760',
+                'title'=>'Apple MacBook Air 13" Mid 2013 MD760',
                 'url'=>'http://www.sotmarket.ru/product/apple-macbook-air-13-mid-2013-md760.html',
                 'oldPrice'=>43560,
                 'price'=>19990,

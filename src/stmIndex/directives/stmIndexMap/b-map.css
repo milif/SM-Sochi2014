@@ -9,6 +9,7 @@
 }
 .b-map-h {
   position: relative;
+  z-index: 1;
   height: 3380px;
   width: 3770px;
   background: url("asset/i/b-gameMap/b-gameMap-fone.png") 0 0 no-repeat;

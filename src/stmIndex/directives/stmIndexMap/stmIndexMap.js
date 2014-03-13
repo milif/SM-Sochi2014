@@ -7,6 +7,8 @@
  * @requires stmIndex.directive:stmIndexMap:b-map.css
  * @requires stmIndex.directive:stmIndexMap:mapitems.css
  * @requires stmIndex.directive:stmIndexMap:template.html
+ * @requires stmIndex.stmMapAchiev
+ * @requires stmIndex.directive:stmIndexQuiz
  *
  * @description
  * Карта
@@ -31,7 +33,9 @@
     
  */
 
-angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$document', '$window', '$rootScope', function($timeout, $interval, $document, $window, $rootScope){
+angular.module('stmIndex').directive('stmIndexMap', ['$stmEnv', '$window', function($stmEnv, $window){
+
+    var QUIZ = $stmEnv.quiz;
 
     var $ = angular.element;
     var windowEl = $($window);
@@ -43,7 +47,12 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
         },
         transclude: true,
         templateUrl: 'partials/stmIndex.directive:stmIndexMap:template.html',
-        controller: ['$scope', '$element', '$attrs', '$timeout', function($scope, $element, $attrs, $timeout){
+        controller: ['$scope', '$element', '$attrs', '$timeout', 'stmMapAchiev', '$interval', '$document', '$rootScope', function($scope, $element, $attrs, $timeout, stmMapAchiev, $interval, $document, $rootScope){
+            
+            $rootScope.$on('auth', function(){
+                window.location.reload();
+            });
+        
             var viewEl = $element.find('>:first');
             var backEl = viewEl.find('>:first');
             backEl.data('_transition', backEl.css('transition'));
@@ -54,16 +63,49 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
             
             var backCss;
             var storedPosition;
+            var foundedAchievs = {};
+            var achievTooltips = [];
             var preview = {};
             
             var drag;
             var inClick = true;
             
+            $scope.showQuiz = function(type, position){
+                if(type in foundedAchievs) return;
+                foundedAchievs[type] = position;
+                addFoundedAchiev(type, position);
+                var mapPosition = $scope.position;
+                var posY = backEl.height() - position[1];
+                $scope.position = {
+                    x: Math.min(position[0] - 80, Math.max(mapPosition.x, position[0] + 250 - viewEl.width())), 
+                    y: Math.min(posY - 150, Math.max(mapPosition.y, posY + 100 - viewEl.height()))
+                };
+                $scope.foundedAchievs++;
+                localStorage.setItem('_stmSochiFoundedAchievs', JSON.stringify(foundedAchievs));
+            }
+            $scope.closeQuizPopup = function(){
+                $scope.showQuizPopup = false;
+            }
+            
             $scope.isPreview = true;
+            $scope.foundedAchievs = 0;
+            $scope.totalAchievs = stmMapAchiev.total;
+            
             try { 
                 storedPosition = JSON.parse(localStorage.getItem('_stmSochiMapPosition'));
+            } catch(e){};
+            try { 
                 $scope.isPreview = JSON.parse(localStorage.getItem('_stmSochiMapIsPreview'));
             } catch(e){};
+            try { 
+                foundedAchievs = JSON.parse(localStorage.getItem('_stmSochiFoundedAchievs')) || {};
+                for(var type in foundedAchievs){
+                    addFoundedAchiev(type, foundedAchievs[type]);
+                    $scope.foundedAchievs++;
+                }
+            } catch(e){};
+            
+            $scope.achievTooltips = achievTooltips;
             
             $scope.position = normalizePosition($scope.position || storedPosition || {
                 x: 0, 
@@ -90,14 +132,15 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
             }
             $scope.posMap = function(e){
                 if(!inClick) return;
-                console.log('1111')
                 var offset = previewEl.offset();
                 $scope.position = normalizePosition({
                     x: ((e.pageX - offset.left) - preview.css.width / 2) / kPreview,
                     y: ((e.pageY - offset.top) - preview.css.height / 2) / kPreview
                 })                
             }
-                        
+            $scope.$on('quizNext', function(){
+                $scope.showQuizPopup = false;
+            });       
             $rootScope.$on('toolbarLogoClick', function(){
                 $scope.position = {
                     x: 0,
@@ -156,7 +199,7 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
             
             $element.on('mousedown', function(e){
                 var targetEl = $(e.target);
-                if(targetEl.closest('[data-controls],[ng-transclude],[data-preview-h]').length > 0 || targetEl.closest('.b-map').length == 0) return;
+                if(targetEl.closest('[data-controls],[ng-transclude],[data-preview-h],[stm-index-popup]').length > 0 || targetEl.closest('.b-map').length == 0) return;
                 if($scope.inScroll === true) {
                     return;
                 }
@@ -180,6 +223,26 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                 updatePreview(position);
                 localStorage.setItem('_stmSochiMapPosition', JSON.stringify(position));
             });
+            
+            function addFoundedAchiev(type, position){
+                var achiev = stmMapAchiev.getByType(type);
+                achiev.active = $stmEnv.achievs.indexOf('map.' + type) >= 0;
+                achievTooltips.push({
+                    achiev: achiev,
+                    type: type,
+                    position: position,
+                    time: achiev.time,
+                    onClick: function(){
+                        if(achiev.active) return;
+                        if(achiev.isQuiz){
+                            var quiz = QUIZ[type];
+                            quiz.achiev = achiev;
+                            quiz.descr = $element.find('[data-quiz-descr='+type+']').html();
+                            $scope.showQuizPopup = quiz;
+                        }
+                    }
+                });            
+            }
             function removeMapTransition(){
                 previewConturEl.css('transition', 'none');
                 backEl.css('transition', 'none');
@@ -207,11 +270,17 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
             // Animation
 
             var FPS = $attrs && $attrs.fps || 50;
-
+            var iterator;
             var startTime = new Date().getTime();
-            var iterator = $interval(function(){
-                requestAnimationFrame(iterate);
-            }, 1 / FPS * 1000);
+            $scope.animate = function(id, active){
+                var item = $scope['item'+id];
+                item.over = active;
+                if(item._frameIndex == 0) item._startTime = new Date().getTime() - startTime;
+                $interval.cancel(iterator);
+                iterator = $interval(function(){
+                    requestAnimationFrame(iterate);
+                }, 1 / FPS * 1000);
+            }
             $scope.$on('$destroy', function() {
                 $interval.cancel(iterator, false);
             });
@@ -318,8 +387,8 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                 'fps': 30,
                 'width': 477,
                 'height': 106,
-                'over': true,
-                'move': true,
+                'over': false, //true,
+                'move': false, //true,
                 'left': -500,
                 'cols': 2
             };
@@ -654,12 +723,13 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                 'dx': 0
             };                  
                         
-            var itemsCount = 59;
+            var itemsCount = 59;           
             for(var index=1; index<=itemsCount; index++) {
                 $scope['item'+index]._frameIndex = 0;
             }
             function iterate(){
                 var time = new Date().getTime() - startTime;
+                var hasAnimate = false;
                 for(var index=1; index<=itemsCount; index++) {
                     var item = $scope['item'+index];
                     
@@ -676,6 +746,7 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                     var isAnimate = item.over === true || frameIndex !=0;
                     
                     if(isAnimate) {
+                        hasAnimate = true;
                         item.css = {
                             'background-position': '-' + horizontalIndex * item.width + 'px -' + verticalIndex * item.height + 'px'
                         };
@@ -761,6 +832,7 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
                         };
                     }
                 }
+                if(!hasAnimate) $interval.cancel(iterator);
             }
 
             $scope.moveView = function(direction) {
@@ -799,20 +871,22 @@ angular.module('stmIndex').directive('stmIndexMap', ['$timeout', '$interval', '$
 
             var keyEvents = {
                 'keydown': function (e) {
-                    if($(e.target).closest('input, textarea').length > 0) return;
-                    if (e.keyCode == 87 || e.keyCode == 38) { // "W" || "arrow up"
-                        e.preventDefault();
-                        $scope.moveView('up');
-                    } else if (e.keyCode == 65 || e.keyCode == 37) { // "A" || "arrow left"
-                        e.preventDefault();
-                        $scope.moveView('left');
-                    } else if (e.keyCode == 83 || e.keyCode == 40) { // "S" || "arrow down"
-                        e.preventDefault();
-                        $scope.moveView('down');
-                    } else if (e.keyCode == 68 || e.keyCode == 39) { // "D" || "arrow right"
-                        e.preventDefault();
-                        $scope.moveView('right');
-                    }
+                    $scope.$apply(function(){
+                        if($(e.target).closest('input, textarea').length > 0) return;
+                        if (e.keyCode == 87 || e.keyCode == 38) { // "W" || "arrow up"
+                            e.preventDefault();
+                            $scope.moveView('up');
+                        } else if (e.keyCode == 65 || e.keyCode == 37) { // "A" || "arrow left"
+                            e.preventDefault();
+                            $scope.moveView('left');
+                        } else if (e.keyCode == 83 || e.keyCode == 40) { // "S" || "arrow down"
+                            e.preventDefault();
+                            $scope.moveView('down');
+                        } else if (e.keyCode == 68 || e.keyCode == 39) { // "D" || "arrow right"
+                            e.preventDefault();
+                            $scope.moveView('right');
+                        }                    
+                    });
                 },
                 'keyup': function (e) {
                     if (e.keyCode == 38) {

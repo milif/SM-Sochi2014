@@ -60,90 +60,104 @@
       </div>    
     </div>
     <!-- End climber -->
-    <div class="b-game-item b-game-item1" ng-style="item1.css" ng-mouseenter="item1.over = true" ng-mouseleave="item1.over = false"></div>
-    <div class="b-game-item b-game-item2" ng-style="item2.css" ng-mouseenter="item2.over = true" ng-mouseleave="item2.over = false"></div>
-    <div class="b-game-item b-game-item3" ng-style="item3.css" ng-mouseenter="item3.over = true" ng-mouseleave="item3.over = false"></div>
-    <div class="b-game-item b-game-item4" ng-style="item4.css" ng-mouseenter="item4.over = true" ng-mouseleave="item4.over = false"></div>
-    <div class="b-game-item b-game-item5" ng-style="item5.css" ng-mouseenter="item5.over = true" ng-mouseleave="item5.over = false"></div>
-    <div class="b-game-item b-game-item6" ng-style="item6.css" ng-mouseenter="item6.over = true" ng-mouseleave="item6.over = false"></div>
-    <div class="b-game-item b-game-item7" ng-style="item7.css" ng-mouseenter="item7.over = true" ng-mouseleave="item7.over = false"></div>
-    <div class="b-game-item b-game-item8" ng-style="item8.css" ng-mouseenter="item8.over = true" ng-mouseleave="item8.over = false"></div>
-    <div class="b-game-item b-game-item9" ng-style="item9.css" ng-mouseenter="item9.over = true" ng-mouseleave="item9.over = false"></div>
-    <div class="b-game-item b-game-item10" ng-style="item10.css" ng-mouseenter="item10.over = true" ng-mouseleave="item10.over = false"></div>
-    <div class="b-game-item b-game-item11" ng-style="item11.css" ng-mouseenter="item11.over = true" ng-mouseleave="item11.over = false"></div>
-    <div class="b-game-item b-game-item12" ng-style="item12.css" ng-mouseenter="item12.over = true" ng-mouseleave="item12.over = false"></div>
-    <div class="b-game-item b-game-item13" ng-style="item13.css" ng-mouseenter="item13.over = true" ng-mouseleave="item13.over = false"></div>
+    <div class="b-game-item b-game-item1" ng-style="item1.css" ng-mouseenter="animate(1,true)" ng-mouseleave="animate(1,false)"></div>
+    <div class="b-game-item b-game-item2" ng-style="item2.css" ng-mouseenter="animate(2,true)" ng-mouseleave="animate(2,false)"></div>
+    <div class="b-game-item b-game-item3" ng-style="item3.css" ng-mouseenter="animate(3,true)" ng-mouseleave="animate(3,false)"></div>
+    <div class="b-game-item b-game-item4" ng-style="item4.css" ng-mouseenter="animate(4,true)" ng-mouseleave="animate(4,false)"></div>
+    <div class="b-game-item b-game-item5" ng-style="item5.css" ng-mouseenter="animate(5,true)" ng-mouseleave="animate(5,false)"></div>
+    <div class="b-game-item b-game-item6" ng-style="item6.css" ng-mouseenter="animate(6,true)" ng-mouseleave="animate(6,false)"></div>
+    <div class="b-game-item b-game-item7" ng-style="item7.css" ng-mouseenter="animate(7,true)" ng-mouseleave="animate(7,false)"></div>
+    <div class="b-game-item b-game-item8" ng-style="item8.css" ng-mouseenter="animate(8,true)" ng-mouseleave="animate(8,false)"></div>
+    <div class="b-game-item b-game-item9" ng-style="item9.css" ng-mouseenter="animate(9,true)" ng-mouseleave="animate(9,false)"></div>
+    <div class="b-game-item b-game-item10" ng-style="item10.css" ng-mouseenter="animate(10,true)" ng-mouseleave="animate(10,false)"></div>
+    <div class="b-game-item b-game-item11" ng-style="item11.css" ng-mouseenter="animate(11,true)" ng-mouseleave="animate(11,false)"></div>
+    <div class="b-game-item b-game-item12" ng-style="item12.css" ng-mouseenter="animate(12,true)" ng-mouseleave="animate(12,false)"></div>
+    <div class="b-game-item b-game-item13" ng-style="item13.css" ng-mouseenter="animate(13,true)" ng-mouseleave="animate(13,false)"></div>
     
     <!--<div class="b-game-item b-game-item14" ng-style="item14.css"></div>-->
-    <div ng-mouseenter="item15.over = true" ng-mouseleave="item15.over = false" class="b-game-item b-game-item15" ng-style="item15.css"></div>
-    <div class="b-game-item b-game-item16" ng-style="item16.css" ng-mouseenter="item16.over = true" ng-mouseleave="item16.over = false"></div>
-    <div class="b-game-item b-game-item17" ng-style="item17.css" ng-mouseenter="item17.over = true" ng-mouseleave="item17.over = false"></div>
-    <div class="b-game-item b-game-item18" ng-style="item18.css" ng-mouseenter="item18.over = true" ng-mouseleave="item18.over = false"></div>
-    <div class="b-game-item b-game-item19" ng-style="item19.css" ng-mouseenter="item19.over = true" ng-mouseleave="item19.over = false"></div>
+    <div class="b-game-item b-game-item15" ng-style="item15.css" ng-mouseenter="animate(15,true)" ng-mouseleave="animate(15,false)"></div>
+    <div class="b-game-item b-game-item16" ng-style="item16.css" ng-mouseenter="animate(16,true)" ng-mouseleave="animate(16,false)"></div>
+    <div class="b-game-item b-game-item17" ng-style="item17.css" ng-mouseenter="animate(17,true)" ng-mouseleave="animate(17,false)"></div>
+    <div class="b-game-item b-game-item18" ng-style="item18.css" ng-mouseenter="animate(18,true)" ng-mouseleave="animate(18,false)"></div>
+    <div class="b-game-item b-game-item19" ng-click="showQuiz('caveoffear', [1630, 1030])" ng-style="item19.css" ng-mouseenter="animate(19,true)" ng-mouseleave="animate(19,false)"></div>
     
-    <div class="b-game-item b-game-item20" ng-style="item20.css" ng-mouseenter="item20.over = true" ng-mouseleave="item20.over = false">
+    <div class="b-game-item b-game-item20" ng-style="item20.css" ng-mouseenter="animate(20,true)" ng-mouseleave="animate(20,false)">
         <div class="b-game-clothing mod_mermaid1"></div>
     </div>    
-    <div class="b-game-item b-game-item21" ng-style="item21.css" ng-mouseenter="item21.over = true" ng-mouseleave="item21.over = false"></div>
-    <div class="b-game-item b-game-item22" ng-style="item22.css" ng-mouseenter="item22.over = true" ng-mouseleave="item22.over = false"></div>
-    <div class="b-game-item b-game-item23" ng-style="item23.css" ng-mouseenter="item23.over = true" ng-mouseleave="item23.over = false"></div>
-    <div class="b-game-item b-game-item24" ng-style="item24.css" ng-mouseenter="item24.over = true" ng-mouseleave="item24.over = false"></div>
-    <div class="b-game-item b-game-item25" ng-style="item25.css" ng-mouseenter="item25.over = true" ng-mouseleave="item25.over = false"></div>
-    <div class="b-game-item b-game-item26" ng-style="item26.css" ng-mouseenter="item26.over = true" ng-mouseleave="item26.over = false"></div>
-    <div class="b-game-item b-game-item27" ng-style="item27.css" ng-mouseenter="item27.over = true" ng-mouseleave="item27.over = false"></div>
-    <div class="b-game-item b-game-item28" ng-style="item28.css" ng-mouseenter="item28.over = true" ng-mouseleave="item28.over = false"></div>
-    <div class="b-game-item b-game-item29" ng-style="item29.css" ng-mouseover="item29.over = true" ng-mouseleave="item29.over = false"></div>
-    <div class="b-game-item b-game-item30" ng-style="item30.css" ng-mouseenter="item30.over = true" ng-mouseleave="item30.over = false"></div>
-    <div class="b-game-item b-game-item31" ng-style="item31.css" ng-mouseenter="item31.over = true" ng-mouseleave="item31.over = false"></div>
-    <div class="b-game-item b-game-item32" ng-style="item32.css" ng-mouseenter="item32.over = true" ng-mouseleave="item32.over = false"></div>
-    <div class="b-game-item b-game-item33" ng-style="item33.css" ng-mouseenter="item33.over = true" ng-mouseleave="item33.over = false"></div>
-    <div class="b-game-item b-game-item34" ng-style="item34.css" ng-mouseenter="item34.over = true" ng-mouseleave="item34.over = false"></div>
-    <div class="b-game-item b-game-item35" ng-style="item35.css" ng-mouseenter="item35.over = true" ng-mouseleave="item35.over = false"></div>
-    <div class="b-game-item b-game-item36" ng-style="item36.css" ng-mouseenter="item36.over = true" ng-mouseleave="item36.over = false"></div>
-    <div class="b-game-item b-game-item37" ng-style="item37.css" ng-mouseenter="item37.over = true" ng-mouseleave="item37.over = false"></div>
-    <div class="b-game-item b-game-item38" ng-style="item38.css" ng-mouseenter="item38.over = true" ng-mouseleave="item38.over = false"></div>
-    <div class="b-game-item b-game-item39" ng-style="item39.css" ng-mouseenter="item39.over = true" ng-mouseleave="item39.over = false"></div>
-    <div class="b-game-item b-game-item40" ng-style="item40.css" ng-mouseenter="item40.over = true" ng-mouseleave="item40.over = false"></div>
-    <div class="b-game-item b-game-item41" ng-style="item41.css" ng-mouseenter="item41.over = true" ng-mouseleave="item41.over = false"></div>
-    <div class="b-game-item b-game-item42" ng-style="item42.css" ng-mouseenter="item42.over = true" ng-mouseleave="item42.over = false"></div>
-    <div class="b-game-item b-game-item44" ng-style="item44.css" ng-mouseenter="item44.over = true" ng-mouseleave="item44.over = false"></div>
-    <div class="b-game-item b-game-item45" ng-style="item45.css" ng-mouseenter="item45.over = true" ng-mouseleave="item45.over = false"></div>
-    <div class="b-game-item b-game-item43" ng-style="item43.css" ng-mouseenter="item43.over = true" ng-mouseleave="item43.over = false"></div>
-    <div class="b-game-item b-game-item46" ng-style="item46.css" ng-mouseenter="item46.over = true" ng-mouseleave="item46.over = false"></div>
-    <div class="b-game-item b-game-item47" ng-style="item47.css" ng-mouseenter="item47.over = true" ng-mouseleave="item47.over = false"></div>
-    <div class="b-game-item b-game-item48" ng-style="item48.css" ng-mouseenter="item48.over = true" ng-mouseleave="item48.over = false"></div>
-    <!--<div class="b-game-item b-game-item49" ng-style="item49.css" ng-mouseenter="item49.over = true" ng-mouseleave="item49.over = false"></div>
-    <div class="b-game-item b-game-item50" ng-style="item50.css" ng-mouseenter="item50.over = true" ng-mouseleave="item50.over = false"></div>-->
-    <!--<div class="b-game-item b-game-item51" ng-style="item51.css" ng-mouseenter="item51.over = true" ng-mouseleave="item51.over = false"></div>-->
+    <div class="b-game-item b-game-item21" ng-style="item21.css" ng-mouseenter="animate(21,true)" ng-mouseleave="animate(21,false)"></div>
+    <div class="b-game-item b-game-item22" ng-style="item22.css" ng-mouseenter="animate(22,true)" ng-mouseleave="animate(22,false)"></div>
+    <div class="b-game-item b-game-item23" ng-style="item23.css" ng-mouseenter="animate(23,true)" ng-mouseleave="animate(23,false)"></div>
+    <div class="b-game-item b-game-item24" ng-style="item24.css" ng-mouseenter="animate(24,true)" ng-mouseleave="animate(24,false)"></div>
+    <div class="b-game-item b-game-item25" ng-style="item25.css" ng-mouseenter="animate(25,true)" ng-mouseleave="animate(25,false)"></div>
+    <div class="b-game-item b-game-item26" ng-style="item26.css" ng-mouseenter="animate(26,true)" ng-mouseleave="animate(26,false)"></div>
+    <div class="b-game-item b-game-item27" ng-style="item27.css" ng-mouseenter="animate(27,true)" ng-mouseleave="animate(27,false)"></div>
+    <div class="b-game-item b-game-item28" ng-style="item28.css" ng-mouseenter="animate(28,true)" ng-mouseleave="animate(28,false)"></div>
+    <div class="b-game-item b-game-item29" ng-style="item29.css" ng-mouseenter="animate(29,true)" ng-mouseleave="animate(29,false)"></div>
+    <div class="b-game-item b-game-item30" ng-style="item30.css" ng-mouseenter="animate(30,true)" ng-mouseleave="animate(30,false)"></div>
+    <div class="b-game-item b-game-item31" ng-style="item31.css" ng-mouseenter="animate(31,true)" ng-mouseleave="animate(31,false)"></div>
+    <div class="b-game-item b-game-item32" ng-style="item32.css" ng-mouseenter="animate(32,true)" ng-mouseleave="animate(32,false)"></div>
+    <div class="b-game-item b-game-item33" ng-style="item33.css" ng-mouseenter="animate(33,true)" ng-mouseleave="animate(33,false)"></div>
+    <div class="b-game-item b-game-item34" ng-style="item34.css" ng-mouseenter="animate(34,true)" ng-mouseleave="animate(34,false)"></div>
+    <div class="b-game-item b-game-item35" ng-style="item35.css" ng-mouseenter="animate(35,true)" ng-mouseleave="animate(35,false)"></div>
+    <div class="b-game-item b-game-item36" ng-style="item36.css" ng-mouseenter="animate(36,true)" ng-mouseleave="animate(36,false)"></div>
+    <div class="b-game-item b-game-item37" ng-style="item37.css" ng-mouseenter="animate(37,true)" ng-mouseleave="animate(37,false)"></div>
+    <div class="b-game-item b-game-item38" ng-style="item38.css" ng-mouseenter="animate(38,true)" ng-mouseleave="animate(38,false)"></div>
+    <div class="b-game-item b-game-item39" ng-style="item39.css" ng-mouseenter="animate(39,true)" ng-mouseleave="animate(39,false)"></div>
+    <div class="b-game-item b-game-item40" ng-style="item40.css" ng-mouseenter="animate(40,true)" ng-mouseleave="animate(40,false)"></div>
+    <div class="b-game-item b-game-item41" ng-style="item41.css" ng-mouseenter="animate(41,true)" ng-mouseleave="animate(41,false)"></div>
+    <div class="b-game-item b-game-item42" ng-style="item42.css" ng-mouseenter="animate(42,true)" ng-mouseleave="animate(42,false)"></div>
+    <div class="b-game-item b-game-item44" ng-style="item44.css" ng-mouseenter="animate(44,true)" ng-mouseleave="animate(44,false)"></div>
+    <div class="b-game-item b-game-item45" ng-style="item45.css" ng-mouseenter="animate(45,true)" ng-mouseleave="animate(45,false)"></div>
+    <div class="b-game-item b-game-item43" ng-style="item43.css" ng-mouseenter="animate(43,true)" ng-mouseleave="animate(43,false)"></div>
+    <div class="b-game-item b-game-item46" ng-style="item46.css" ng-mouseenter="animate(46,true)" ng-mouseleave="animate(46,false)"></div>
+    <div class="b-game-item b-game-item47" ng-style="item47.css" ng-mouseenter="animate(47,true)" ng-mouseleave="animate(47,false)"></div>
+    <div class="b-game-item b-game-item48" ng-style="item48.css" ng-mouseenter="animate(48,true)" ng-mouseleave="animate(48,false)"></div>
+    <!--<div class="b-game-item b-game-item49" ng-style="item49.css" ng-mouseenter="animate(49,true)" ng-mouseleave="animate(49,false)"></div>
+    <div class="b-game-item b-game-item50" ng-style="item50.css" ng-mouseenter="animate(50,true)" ng-mouseleave="animate(50,false)"></div>-->
+    <!--<div class="b-game-item b-game-item51" ng-style="item51.css" ng-mouseenter="animate(51,true)" ng-mouseleave="animate(51,false)"></div>-->
     
-    <div class="b-game-item b-game-item52" ng-style="item52.css" ng-mouseenter="item52.over = true" ng-mouseleave="item52.over = false">
+    <div class="b-game-item b-game-item52" ng-style="item52.css" ng-mouseenter="animate(52,true)" ng-mouseleave="animate(52,false)">
         <div class="b-game-clothing mod_mermaid4"></div>
     </div>
-    <div class="b-game-item b-game-item53" ng-style="item53.css" ng-mouseenter="item53.over = true" ng-mouseleave="item53.over = false">
+    <div class="b-game-item b-game-item53" ng-style="item53.css" ng-mouseenter="animate(53,true)" ng-mouseleave="animate(53,false)">
         <div class="b-game-clothing mod_mermaid5"></div>
     </div>
-    <div class="b-game-item b-game-item54" ng-style="item54.css" ng-mouseenter="item54.over = true" ng-mouseleave="item54.over = false"></div>
-    <div class="b-game-item b-game-item55" ng-style="item55.css" ng-mouseenter="item55.over = true" ng-mouseleave="item55.over = false">
+    <div class="b-game-item b-game-item54" ng-style="item54.css" ng-mouseenter="animate(54,true)" ng-mouseleave="animate(54,false)"></div>
+    <div class="b-game-item b-game-item55" ng-style="item55.css" ng-mouseenter="animate(55,true)" ng-mouseleave="animate(55,false)">
         <div class="b-game-clothing mod_snowboard-bra"></div>
         <div class="b-game-clothing mod_snowboard"></div>
     </div>
-    <div class="b-game-item b-game-item56" ng-style="item56.css" ng-mouseenter="item56.over = true" ng-mouseleave="item56.over = false">
+    <div class="b-game-item b-game-item56" ng-click="showQuiz('maxim', [2925, 1205])" ng-style="item56.css" ng-mouseenter="animate(56,true)" ng-mouseleave="animate(56,false)">
         <div class="b-game-clothing mod_maxim1-bra"></div>
         <div class="b-game-clothing mod_maxim1"></div>
         <div class="b-game-clothing mod_maxim2-bra"></div>
         <div class="b-game-clothing mod_maxim2"></div>
     </div>
-    <div class="b-game-item b-game-item57" ng-style="item57.css" ng-mouseenter="item57.over = true" ng-mouseleave="item57.over = false">
+    <div class="b-game-item b-game-item57" ng-style="item57.css" ng-mouseenter="animate(57,true)" ng-mouseleave="animate(57,false)">
         <div class="b-game-clothing mod_mermaid2"></div>
     </div>
-    <div class="b-game-item b-game-item58" ng-style="item58.css" ng-mouseenter="item58.over = true" ng-mouseleave="item58.over = false"></div>
-    <div ng-mouseenter="item59.over = true" ng-mouseleave="item59.over = false" class="b-game-item b-game-item59" ng-style="item59.css"></div>
+    <div class="b-game-item b-game-item58" ng-style="item58.css" ng-mouseenter="animate(58,true)" ng-mouseleave="animate(58,false)"></div>
+    <div class="b-game-item b-game-item59" ng-style="item59.css" ng-mouseenter="animate(59,true)" ng-mouseleave="animate(59,false)"></div>
     <div class="b-game-item b-game-item-static-trees"></div>
     <div class="b-map-decor mod_balloon"></div>
     <div class="b-map-decor mod_cloud1"></div>
     <div class="b-map-decor mod_cloud2"></div>
     <div class="b-map-decor mod_tree1"></div>
-    <div class="b-map-decor mod_tree2"></div>    
+    <div class="b-map-decor mod_tree2"></div>  
+    <div ng-repeat="item in achievTooltips" stm-index-popover="{{'achiev' + item.type}}" popover-type="top" position="item.position">
+        <div stm-index-tooltip position="bottom_left" style="width: auto;">
+           <div ng-class="item.achiev.active ? 'state_active' : ''" ng-click="item.onClick()" class="b-tooltip__quiz">
+               <div ng-class="'achiev_' + item.type" class="b-map__quiz-img"></div>
+               <div class="b-map__quiz-title">{{item.achiev.text}}</div>
+               <div ng-if="foundedAchievs < totalAchievs" class="b-map__quiz-note">
+                   Осталось: {{foundedAchievs}}/<i>{{totalAchievs}}</i>
+               </div>
+               <div ng-if="foundedAchievs == totalAchievs" class="b-map__quiz-note">
+                   Найдены все {{totalAchievs}}!
+               </div>
+           </div>                 
+        </div>  
+    </div>      
   </div>
   <div ng-class="game ? 'state_active' : ''" data-controls class="b-map-controls">
       <div class="b-map-controls-left" ng-click="moveView('left');"></div>
@@ -151,7 +165,6 @@
       <div class="b-map-controls-up" ng-click="moveView('up');"></div>
       <div class="b-map-controls-down" ng-click="moveView('down');"></div>
   </div>
-
   <!--
   <div class="b-map-controls-zoom">
       <div class="b-map-controls-zoom_bullet"></div>
@@ -170,7 +183,13 @@
       </div>
       <div ng-click="showPreview(!isPreview)" class="b-map-small-button">Миникарта</div>
   </div>
-
+  <div style="display: none;">
+    <div data-quiz-descr="caveoffear">Правильно ответьте на вопросы от Всеволода Страха</div>
+    <div data-quiz-descr="maxim">Правильно ответьте на вопросы от журнала «Maxim»</div>
+  </div>
+  <div show="{{showQuizPopup}}" stm-index-popup footer="false" closable="closeQuizPopup">
+    <div stm-index-quiz="showQuizPopup"></div>
+  </div>  
 </div>
 <div ng-transclude></div>
 <!-- End MAP -->

@@ -100,5 +100,14 @@ class User {
         Cache::remove('userdata.'.CLIENT_ID);
         Cache::remove('isreg.'.CLIENT_ID);
         return true;
-    }    
+    }   
+    static public function getMapAchives(){
+        if(CLIENT_ID == 0) return null;
+        $rs = DB::query("SELECT data_achievement_map FROM `user` WHERE id = ".CLIENT_ID);
+        $achievs = array();
+        if(count($rs)){
+            $achievs = $rs[0]['data_achievement_map'] ? explode(',', $rs[0]['data_achievement_map']) : array();
+        }
+        return $achievs;
+    }     
 }

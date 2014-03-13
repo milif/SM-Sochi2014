@@ -616,15 +616,31 @@
     background-clip: padding-box;
     overflow: hidden;
     width: 34px;
-    height: 34px;
+    height: 30px;
+    top: -12px;
     position: absolute;
-    top: -16px;
     left: 50%;
     margin-left: -17px;
+    background: #fff url(asset/i/b-quiz/quiz-small-sprite.png) no-repeat;
+}
+.b-map__quiz-img.achiev_caveoffear {
+    background-position: -327px -117px;
+}
+.b-tooltip__quiz.state_active .b-map__quiz-img.achiev_caveoffear {
+    background-position: -384px -117px;;
+}
+.b-map__quiz-img.achiev_maxim {
+    background-position: -107px -267px;
+}
+.b-tooltip__quiz.state_active .b-map__quiz-img.achiev_maxim {
+    background-position: -156px -267px;
 }
 .b-tooltip__quiz {
     cursor: pointer;
     padding-top: 18px;
+}
+.b-tooltip__quiz.state_active {
+    cursor: default;
 }
 .b-map__quiz-title {
     font-size: 16px;

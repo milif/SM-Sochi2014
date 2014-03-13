@@ -1,122 +1,89 @@
 <!-- quiz -->
-<div class="b-quiz g-font">
-    <div class="b-quiz-title g-text_center">Правильно ответьте на вопросы от Евросети<br>за 2 минуты и получите достижение</div>
+<div ng-if="state == 'start'" class="b-quiz g-font">
+    <div class="b-quiz-title g-text_center"><span ng-bind-html="quiz.descr"></span><br>за {{ (quiz.achiev.time / 60) | stmHowMany:' минуту':' минуты':' минут'}} и получите достижение:</div>
 
     <div class="b-quiz-achive">
         <div class="b-quiz-achive-item mod_decor">
-            <div class="b-quiz-achive-item__h mod_wolf state_active "></div>
+            <div ng-class="'mod_' + quiz.achiev.type" class="b-quiz-achive-item__h state_active"></div>
         </div>
-        <div class="b-quiz-achive-note">Желтая карточка</div>
+        <div class="b-quiz-achive-note">{{quiz.achiev.text}}</div>
     </div>
     <div class="b-quiz-text g-text_center">
-        <p>Каждый новый трофей приближает вас к <a href="#3">победе</a></p>
+        <p>Каждый новый трофей приближает вас к победе</p>
     </div>
     <div class="b-quiz-button g-text_center">
-        <span class="b-button button_size_big mod_style b-button_scheme_yellow mod_thin"><span class="b-button__text">Начать</span><a href="#3" class="b-button__link"></a></span>
+        <span class="b-button button_size_big mod_style b-button_scheme_yellow mod_thin"><span class="b-button__text">Начать</span><span ng-click="start()" class="b-button__link"></span></span>
     </div>
 </div>
 <!-- End quiz -->
-<br>
-<br>
-<br>
-<br>
 <!-- quiz -->
-<div class="b-quiz g-font">
-    <div class="b-quiz-q g-text_center">Вопрос 2 из 10</div>
-    <div class="b-quiz-title g-text_center">Как называется специальная услуга DPD, при которой курьер сопровождает груз всю дорогу: от отправителя до получателя?</div>
-    <div class="b-quiz-time g-text_center">Осталось 2 минуты и 11 секунд</div>
+<div ng-if="state == 'go'" class="b-quiz g-font">
+    <div class="b-quiz-q g-text_center"><span ng-if="index + 1 < quiz.length">Вопрос {{index + 1}} из {{quiz.length}}</span><span ng-if="index + 1 == quiz.length">Последний вопрос</span></div>
+    <div class="b-quiz-title g-text_center" ng-bind-html="quiz[index].question"></div>
+    <div ng-class="time <= 15 ? 'mod_alert' : ''" class="b-quiz-time g-text_center">Осталось <span ng-if="time >= 60">{{ m | stmHowMany:' минутa':' минуты':' минут'}} и </span> {{s}} секунд</div>
 
     <div class="b-quiz-panel">
-
-        <form action="#">
-            <div class="b-quiz-form-row">
-                <input type="text" class="b-form-input-text ng-pristine ng-invalid ng-invalid-required" placeholder="Ваш ответ">
-            </div>
-        </form>
-
-        <div class="b-quiz-button g-text_center">
-            <span class="b-button button_size_big mod_style b-button_scheme_yellow mod_thin"><span class="b-button__text">Начать</span><a href="#3" class="b-button__link"></a></span>
-        </div>
-    </div>
-</div>
-<!-- End quiz -->
-<br>
-<br>
-<br>
-<br>
-<!-- quiz -->
-<div class="b-quiz g-font">
-    <div class="b-quiz-q g-text_center">Последний вопрос</div>
-    <div class="b-quiz-title g-text_center">Как называется специальная услуга DPD, при которой курьер сопровождает груз всю дорогу: от отправителя до получателя?</div>
-    <div class="b-quiz-time mod_alert g-text_center">Осталось 15 секунд</div>
-
-    <div class="b-quiz-panel">
-
-        <form action="#">
-            <div class="b-quiz-form-row-radio">
+        <div ng-if="quiz[index].type == 'radio'" class="b-quiz-form-row-radio">
                 <div class="b-quiz-form-row-radio__h">
-                    <input id="radio-input-1" type="radio" value="myValue 1" name="radio-group" checked="checked"  class="radio-input-r">
-                    <label for="radio-input-1" class="input-radio">Сопроводилово</label><br>
-                    <input id="radio-input-2" type="radio" value="myValue 2" name="radio-group" class="radio-input-r">
-                    <label for="radio-input-2" class="input-radio">Экспедирование</label><br>
-                    <input id="radio-input-3" type="radio" value="myValue 3" name="radio-group"  class="radio-input-r">
-                    <label for="radio-input-3" class="input-radio">Логистический надзор</label>
+                    <div ng-repeat="item in quiz[index].answer">
+                        <input id="quiz-radio-{{$index}}" ng-model="model.answer" type="radio" value="{{item}}" name="answer" class="radio-input-r">
+                        <label for="quiz-radio-{{$index}}" class="input-radio">{{item}}</label><br ng-if="!$last">                    
+                    </div>                    
                 </div>
-            </div>
-        </form>
-
+        </div>    
+        <div ng-if="quiz[index].type == 'text'" class="b-quiz-form-row">
+            <input ng-model="model.answer" type="text" class="b-form-input-text" placeholder="Ваш ответ">
+        </div>
+        <div ng-if="quiz[index].page" class="__page">Перейдите на <a ng-href="{{quiz[index].page}}" target="_blank" class="a-blank">данную страницу</a>, чтобы найти ответ</div>
         <div class="b-quiz-button g-text_center">
-            <span class="b-button button_size_big mod_style b-button_scheme_yellow mod_thin"><span class="b-button__text">Начать</span><a href="#3" class="b-button__link"></a></span>
+            <span ng-class="inCheck ? 'state_loading' : ''" class="b-button button_size_big mod_style b-button_scheme_yellow mod_thin"><span class="b-button__text">Ответить</span><span ng-click="answer()" class="b-button__link"></span></span>
         </div>
     </div>
 </div>
 <!-- End quiz -->
-<br>
-<br>
-<br>
-<br>
 <!-- quiz -->
-<div class="b-quiz g-font">
-    <div class="b-quiz-top">
+<div ng-if="state == 'end' && (isTimeout || !checked.passed)"  class="b-quiz g-font">
+    <div ng-if="isTimeout" class="b-quiz-top">
+        <div class="b-quiz-top-title">Время вышло!</div>
+    </div>
+    <div ng-if="checked.correct > 0" class="b-quiz-top">
         <div class="b-quiz-top-title">Неплохо!</div>
-        <div class="b-quiz-top-note">2 правильных ответа из 10</div>
+        <div class="b-quiz-top-note">{{ checked.correct | stmHowMany:' правильный ответ':' правильных ответа':' правильных ответов' }} из {{quiz.length}}</div>
+    </div>
+    <div ng-if="checked.correct == 0" class="b-quiz-top">
+        <div class="b-quiz-top-title">Плохо!</div>
+        <div class="b-quiz-top-note">Нет правильных ответов</div>
     </div>
     <div class="b-quiz-notes g-text_center">
-        <p>Но трофей достанется тому, кто правильно ответит на все вопросы</p>
+        <p>Трофей достанется тому, кто правильно ответит на все вопросы</p>
     </div>
     <div class="b-quiz-achive">
         <div class="b-quiz-achive-item">
-            <div class="b-quiz-achive-item__h mod_wolf"></div>
+            <div ng-class="'mod_' + quiz.achiev.type" class="b-quiz-achive-item__h"></div>
         </div>
-        <div class="b-quiz-achive-note"></div>
+        <div class="b-quiz-achive-note">{{quiz.achiev.text}}</div>
     </div>
     <div class="b-quiz-button g-text_center">
-        <span class="b-button button_size_big mod_style b-button_scheme_yellow mod_thin"><span class="b-button__text">Еще раз</span><a href="#3" class="b-button__link"></a></span>
+        <span class="b-button button_size_big mod_style b-button_scheme_yellow mod_thin"><span class="b-button__text">Еще раз</span><span ng-click="start()" class="b-button__link"></span></span>
     </div>
 </div>
 <!-- End quiz -->
-<br>
-<br>
-<br>
-<br>
-<br>
 <!-- quiz -->
-<div class="b-quiz g-font">
+<div ng-if="state == 'end' && checked.passed && !isTimeout"  class="b-quiz g-font">
     <div class="b-quiz-top">
-        <div class="b-quiz-top-title">Неплохо!</div>
-        <div class="b-quiz-top-note">2 правильных ответа из 10</div>
+        <div class="b-quiz-top-title">Вы ответили правильно!</div>
     </div>
     <div class="b-quiz-notes g-text_center">
-        <p>Но трофей достанется тому, кто правильно ответит на все вопросы</p>
-    </div>
+        <p>Этот трофей теперь ваш</p>
+    </div>    
     <div class="b-quiz-achive">
         <div class="b-quiz-achive-item mod_decor">
-            <div class="b-quiz-achive-item__h mod_wolf state_active"></div>
+            <div ng-class="'mod_' + quiz.achiev.type" class="b-quiz-achive-item__h state_active"></div>
         </div>
-        <div class="b-quiz-achive-note">Этот трофей ваш</div>
+        <div class="b-quiz-achive-note">{{quiz.achiev.text}}</div>
     </div>
     <div class="b-quiz-button g-text_center">
-        <span class="b-button button_size_big mod_style b-button_scheme_yellow mod_thin"><span class="b-button__text">Следующее задание</span><a href="#3" class="b-button__link"></a></span>
+        <span class="b-button button_size_big mod_style b-button_scheme_yellow mod_thin"><span class="b-button__text">Следующее задание</span><span ng-click="next()" class="b-button__link"></span></span>
     </div>
 </div>
 <!-- End quiz -->

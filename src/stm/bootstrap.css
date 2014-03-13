@@ -40,6 +40,19 @@
     color: #0066cc;
     text-decoration: underline;
 }
+.g-font .a-blank {
+    padding-right: 14px;
+    position: relative;
+}
+.g-font .a-blank:before {
+    background: url(asset/i/common/icons-pack.png) -1px -330px no-repeat;
+    width: 11px;
+    height: 11px;
+    content: '';
+    position: absolute;
+    right: 0px;
+    top: 1px;
+}
 .g-font .a-pseudo {
     cursor: pointer;
     color: #0066cc;

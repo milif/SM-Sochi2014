@@ -40,6 +40,7 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
         function auth(){
             if(!$stmAuth.isAuth) {
                 $stmAuth.auth(function(){
+                    $rootScope.$emit('auth');
                     if(!$stmAuth.data.isReg) showRegForm();
                 });
             }

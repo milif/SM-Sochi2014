@@ -1,4 +1,11 @@
-<?php require __DIR__.'/../../lib/init.php'; ?><!doctype html>
+<?php  
+    require_once __DIR__.'/../../lib/User.class.php';
+    require_once __DIR__.'/../../lib/Quiz.class.php';
+    $ENV = array(
+        'quiz' => Quiz::getAll(),
+        'achievs' => User::getMapAchives()
+    );
+    require __DIR__.'/../../lib/init.php'; ?><!doctype html>
 <html ng-app="stmIndex" lang="ru">
 <head>
   <title>Карта</title>
