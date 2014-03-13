@@ -44,7 +44,7 @@ angular.module('stmIndex').directive('stmIndexQuiz', function(){
             
             var model = $scope.model = {};
             var answers;
-            $scope.state = 'start';
+            
             $scope.start = start;
             $scope.next = function(){
                 $scope.$emit('quizNext', quiz);
@@ -62,6 +62,8 @@ angular.module('stmIndex').directive('stmIndexQuiz', function(){
             var quiz = $scope.quiz = $scope.$eval($attrs.stmIndexQuiz);
             var questions = $$.copy(quiz);
             quiz.splice(0, quiz.length - 3);
+            
+            if(quiz.achiev.active) start();
             
             $scope.$on('$destroy', function() {
                 $interval.cancel(cancelQuizTimer);

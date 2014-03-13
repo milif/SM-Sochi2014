@@ -257,7 +257,7 @@ angular.module('stmIndex').directive('stmIndexMap', ['$stmEnv', '$window', funct
             }           
             function addFoundedAchiev(key, type, position, isBottom){
                 var achiev = stmMapAchiev.getByType(type);
-                achiev.active = $stmEnv.achievs.indexOf('map.' + type) >= 0;
+                achiev.active = achiev.active || $stmEnv.achievs.indexOf('map.' + type) >= 0;
                 achievTooltips[key] = {
                     id: key,
                     achiev: achiev,
