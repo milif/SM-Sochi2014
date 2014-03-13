@@ -635,12 +635,42 @@
 .b-tooltip__quiz.state_active .b-map__quiz-img.achiev_maxim {
     background-position: -156px -267px;
 }
+.b-map__quiz-img.achiev_groupon {
+    background-position: -4px -167px;
+}
+.b-tooltip__quiz.state_active .b-map__quiz-img.achiev_groupon {
+    background-position: -53px -167px;
+}
+.b-map__quiz-img.achiev_sportexpress {
+    background-position: -320px -267px;
+}
+.b-tooltip__quiz.state_active .b-map__quiz-img.achiev_sportexpress {
+    background-position: -369px -267px;
+}
+.b-map__quiz-img.achiev_qiwi {
+    background-position: -427px -222px;
+}
+.b-tooltip__quiz.state_active .b-map__quiz-img.achiev_qiwi {
+    background-position: -484px -222px;
+}
+.b-map__quiz-img.achiev_pickpoint {
+    background-position: -213px -165px;
+}
+.b-tooltip__quiz.state_active .b-map__quiz-img.achiev_pickpoint {
+    background-position: -265px -165px;
+}
+.b-map__quiz-img.achiev_dpd {
+    background-position: -4px -218px;
+}
+.b-tooltip__quiz.state_active .b-map__quiz-img.achiev_dpd {
+    background-position: -53px -218px;
+}
 .b-tooltip__quiz {
     cursor: pointer;
     padding-top: 18px;
 }
-.b-tooltip__quiz.state_active {
-    cursor: default;
+.b-tooltip__quiz .a-pseudo {
+    color: #fff;
 }
 .b-map__quiz-title {
     font-size: 16px;

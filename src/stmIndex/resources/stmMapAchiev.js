@@ -22,9 +22,11 @@
        */         
     angular.module('stmIndex').factory('stmMapAchiev', ['$resource', function($resource){
         var achievs = [
-            { // Нет ачивки
+            {
                 type: 'pickpoint',
-                text: 'PickPoint'
+                text: 'PickPoint',
+                isQuiz: true,
+                time: 120
             },
             { // Нет ачивки
                 type: 'quelle',
@@ -52,15 +54,21 @@
             },
             {
                 type: 'dpd',
-                text: 'DPD'
+                text: 'DPD',
+                isQuiz: true,
+                time: 120
             },            
             {
                 type: 'groupon',
-                text: 'Groupon'
+                text: 'Groupon',
+                isQuiz: true,
+                time: 120
             },
             {
                 type: 'qiwi',
-                text: 'Вопрос от Qiwi'
+                text: 'Вопрос от Qiwi',
+                isQuiz: true,
+                time: 120
             },
             {
                 type: 'mnogo',
@@ -72,7 +80,9 @@
             },
             {
                 type: 'sportexpress',
-                text: 'СпортЭкспресс'
+                text: 'СпортЭкспресс',
+                isQuiz: true,
+                time: 120
             }
         ];
         var keys = {};

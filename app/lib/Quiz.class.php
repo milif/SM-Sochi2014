@@ -11,7 +11,6 @@ class Quiz {
         foreach($rs as $id => $row){
             if($row['type'] == 'radio') {
                 $answer = explode(';', $row['answer']);
-                shuffle($answer);
             } else {
                 $answer = null;
             }

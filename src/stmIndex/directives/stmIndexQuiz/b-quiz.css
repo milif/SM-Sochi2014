@@ -417,14 +417,14 @@
     height: 79px;
 }
 
-.b-quiz-achive-item__h.mod_pic {
+.b-quiz-achive-item__h.mod_pickpoint {
     background-position: -516px -400px;
     display: inline-block;
     width: 96px;
     height: 79px;
 }
 
-.b-quiz-achive-item__h.mod_pic.state_active {
+.b-quiz-achive-item__h.mod_pickpoint.state_active {
     background-position: -644px -400px;
     display: inline-block;
     width: 96px;
@@ -445,28 +445,28 @@
     height: 104px;
 }
 
-.b-quiz-achive-item__h.mod_qiwi {
+.b-quiz-achive-item__h.mod_qiwibuy {
     background-position: -980px -140px;
     display: inline-block;
     width: 87px;
     height: 92px;
 }
 
-.b-quiz-achive-item__h.mod_qiwi.state_active {
+.b-quiz-achive-item__h.mod_qiwibuy.state_active {
     background-position: -1110px -140px;
     display: inline-block;
     width: 87px;
     height: 92px;
 }
 
-.b-quiz-achive-item__h.mod_qiwiq {
+.b-quiz-achive-item__h.mod_qiwi {
     background-position: -1040px -530px;
     display: inline-block;
     width: 87px;
     height: 92px;
 }
 
-.b-quiz-achive-item__h.mod_qiwiq.state_active {
+.b-quiz-achive-item__h.mod_qiwi.state_active {
     background-position: -1180px -530px;
     display: inline-block;
     width: 87px;
@@ -573,14 +573,14 @@
     height: 79px;
 }
 
-.b-quiz-achive-item__h.mod_sport {
+.b-quiz-achive-item__h.mod_sportexpress {
     background-position: -780px -650px;
     display: inline-block;
     width: 87px;
     height: 79px;
 }
 
-.b-quiz-achive-item__h.mod_sport.state_active {
+.b-quiz-achive-item__h.mod_sportexpress.state_active {
     background-position: -900px -650px;
     display: inline-block;
     width: 87px;

@@ -56,7 +56,8 @@ angular.module('stmIndex').directive('stmIndexTooltip', function(){
         transclude: true,
         templateUrl: 'partials/stmIndex.directive:stmIndexTooltip:template.html',
         controller:['$attrs', '$scope', function($attrs, $scope){
-            $scope.isClosable = $attrs.closable ? $scope.$eval($attrs.closable) : false;
+            $scope.close = $attrs.closable ? $scope.$eval($attrs.closable) : false;
+            $scope.isClosable = !!$scope.close;
             $attrs.$observe('position', function(position){
                 $scope._position = position || 'top_left';
             }); 

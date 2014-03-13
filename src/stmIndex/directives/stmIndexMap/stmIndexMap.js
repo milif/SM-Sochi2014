@@ -63,25 +63,30 @@ angular.module('stmIndex').directive('stmIndexMap', ['$stmEnv', '$window', funct
             
             var backCss;
             var storedPosition;
-            var foundedAchievs = {};
-            var achievTooltips = [];
+            //var foundedAchievs = {};
+            var achievTooltips = {};
             var preview = {};
             
             var drag;
             var inClick = true;
             
-            $scope.showQuiz = function(type, position){
-                if(type in foundedAchievs) return;
-                foundedAchievs[type] = position;
-                addFoundedAchiev(type, position);
+            $scope.showQuiz = function(e, noToggle){
+                var el = $(e.target).closest('[data-quiz]');
+                var type = el.data('quiz');
+                var position = el.data('position');
+                var isBottom = !!el.data('bottom');
+                var key = el.data('key') || type;
+                if(key in achievTooltips) {
+                    if(!noToggle) $scope.$broadcast('hidePopover-' + key);
+                    return;
+                };
+                addFoundedAchiev(key, type, position, isBottom);
                 var mapPosition = $scope.position;
-                var posY = backEl.height() - position[1];
+                var posY = isBottom ? position[1] : backEl.height() - position[1];
                 $scope.position = {
                     x: Math.min(position[0] - 80, Math.max(mapPosition.x, position[0] + 250 - viewEl.width())), 
                     y: Math.min(posY - 150, Math.max(mapPosition.y, posY + 100 - viewEl.height()))
                 };
-                $scope.foundedAchievs++;
-                localStorage.setItem('_stmSochiFoundedAchievs', JSON.stringify(foundedAchievs));
             }
             $scope.closeQuizPopup = function(){
                 $scope.showQuizPopup = false;
@@ -96,13 +101,6 @@ angular.module('stmIndex').directive('stmIndexMap', ['$stmEnv', '$window', funct
             } catch(e){};
             try { 
                 $scope.isPreview = JSON.parse(localStorage.getItem('_stmSochiMapIsPreview'));
-            } catch(e){};
-            try { 
-                foundedAchievs = JSON.parse(localStorage.getItem('_stmSochiFoundedAchievs')) || {};
-                for(var type in foundedAchievs){
-                    addFoundedAchiev(type, foundedAchievs[type]);
-                    $scope.foundedAchievs++;
-                }
             } catch(e){};
             
             $scope.achievTooltips = achievTooltips;
@@ -140,7 +138,10 @@ angular.module('stmIndex').directive('stmIndexMap', ['$stmEnv', '$window', funct
             }
             $scope.$on('quizNext', function(){
                 $scope.showQuizPopup = false;
-            });       
+            });     
+            $scope.$on('hidePopoverSuccess', function(e, id){
+                delete achievTooltips[id];
+            });  
             $rootScope.$on('toolbarLogoClick', function(){
                 $scope.position = {
                     x: 0,
@@ -224,16 +225,20 @@ angular.module('stmIndex').directive('stmIndexMap', ['$stmEnv', '$window', funct
                 localStorage.setItem('_stmSochiMapPosition', JSON.stringify(position));
             });
             
-            function addFoundedAchiev(type, position){
+            function addFoundedAchiev(key, type, position, isBottom){
                 var achiev = stmMapAchiev.getByType(type);
                 achiev.active = $stmEnv.achievs.indexOf('map.' + type) >= 0;
-                achievTooltips.push({
+                achievTooltips[key] = {
+                    id: key,
                     achiev: achiev,
                     type: type,
+                    isBottom: isBottom,
                     position: position,
                     time: achiev.time,
+                    closeQuizTooltip: function(){
+                        $scope.$broadcast('hidePopover-' + key);
+                    },
                     onClick: function(){
-                        if(achiev.active) return;
                         if(achiev.isQuiz){
                             var quiz = QUIZ[type];
                             quiz.achiev = achiev;
@@ -241,7 +246,7 @@ angular.module('stmIndex').directive('stmIndexMap', ['$stmEnv', '$window', funct
                             $scope.showQuizPopup = quiz;
                         }
                     }
-                });            
+                };            
             }
             function removeMapTransition(){
                 previewConturEl.css('transition', 'none');

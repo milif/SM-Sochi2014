@@ -1,5 +1,5 @@
 <div class="b-tooltip g-font" ng-class="'__pos_'+_position">
     <div class="b-tooltip__body" ng-transclude></div>
-    <span ng-if="isClosable" class="b-tooltip__close"></span>
+    <span ng-click="close()" ng-if="isClosable" class="b-tooltip__close"></span>
     <i ng-class="'b-tooltip-queue_'+_position" class="b-tooltip-queue"></i>
 </div>

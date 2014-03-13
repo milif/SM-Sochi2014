@@ -23,17 +23,19 @@
     <div ng-class="time <= 15 ? 'mod_alert' : ''" class="b-quiz-time g-text_center">Осталось <span ng-if="time >= 60">{{ m | stmHowMany:' минутa':' минуты':' минут'}} и </span> {{s}} секунд</div>
 
     <div class="b-quiz-panel">
-        <div ng-if="quiz[index].type == 'radio'" class="b-quiz-form-row-radio">
-                <div class="b-quiz-form-row-radio__h">
-                    <div ng-repeat="item in quiz[index].answer">
-                        <input id="quiz-radio-{{$index}}" ng-model="model.answer" type="radio" value="{{item}}" name="answer" class="radio-input-r">
-                        <label for="quiz-radio-{{$index}}" class="input-radio">{{item}}</label><br ng-if="!$last">                    
-                    </div>                    
-                </div>
-        </div>    
-        <div ng-if="quiz[index].type == 'text'" class="b-quiz-form-row">
-            <input ng-model="model.answer" type="text" class="b-form-input-text" placeholder="Ваш ответ">
-        </div>
+        <form ng-submit="answer()">
+            <div ng-if="quiz[index].type == 'radio'" class="b-quiz-form-row-radio">
+                    <div class="b-quiz-form-row-radio__h">
+                        <div ng-repeat="item in quiz[index].answer">
+                            <input id="quiz-radio-{{$index}}" name="answer" ng-model="model.answer" type="radio" value="{{item}}" name="answer" class="radio-input-r">
+                            <label for="quiz-radio-{{$index}}" class="input-radio">{{item}}</label><br ng-if="!$last">                    
+                        </div>                    
+                    </div>
+            </div>    
+            <div ng-if="quiz[index].type == 'text'" class="b-quiz-form-row">
+                <input ng-model="model.answer" name="answer" type="text" class="b-form-input-text" placeholder="Ваш ответ">
+            </div>
+        </form>
         <div ng-if="quiz[index].page" class="__page">Перейдите на <a ng-href="{{quiz[index].page}}" target="_blank" class="a-blank">данную страницу</a>, чтобы найти ответ</div>
         <div class="b-quiz-button g-text_center">
             <span ng-class="inCheck ? 'state_loading' : ''" class="b-button button_size_big mod_style b-button_scheme_yellow mod_thin"><span class="b-button__text">Ответить</span><span ng-click="answer()" class="b-button__link"></span></span>
@@ -55,11 +57,12 @@
         <div class="b-quiz-top-note">Нет правильных ответов</div>
     </div>
     <div class="b-quiz-notes g-text_center">
-        <p>Трофей достанется тому, кто правильно ответит на все вопросы</p>
+        <p ng-if="!quiz.achiev.active">Трофей достанется тому, кто правильно ответит на все вопросы</p>
+        <p ng-if="quiz.achiev.active">Но трофей уже ваш</p>
     </div>
     <div class="b-quiz-achive">
-        <div class="b-quiz-achive-item">
-            <div ng-class="'mod_' + quiz.achiev.type" class="b-quiz-achive-item__h"></div>
+        <div ng-class="quiz.achiev.active ? 'mod_decor' : ''" class="b-quiz-achive-item">
+            <div ng-class="'mod_' + quiz.achiev.type + (quiz.achiev.active ? ' state_active' : '')" class="b-quiz-achive-item__h"></div>
         </div>
         <div class="b-quiz-achive-note">{{quiz.achiev.text}}</div>
     </div>

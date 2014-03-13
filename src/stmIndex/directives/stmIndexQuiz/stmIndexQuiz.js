@@ -33,6 +33,7 @@
 
 
 angular.module('stmIndex').directive('stmIndexQuiz', function(){
+    var $$ = angular;
     return {
         scope: true,
         templateUrl: 'partials/stmIndex.directive:stmIndexQuiz:template.html',
@@ -55,14 +56,31 @@ angular.module('stmIndex').directive('stmIndexQuiz', function(){
                     $scope.index--;
                     end();
                 }
+                prepareRadio();
                 model.answer = null;
             };
             var quiz = $scope.quiz = $scope.$eval($attrs.stmIndexQuiz);
+            var questions = $$.copy(quiz);
+            quiz.splice(0, quiz.length - 3);
             
             $scope.$on('$destroy', function() {
                 $interval.cancel(cancelQuizTimer);
             });            
-            
+            function prepareRadio(){
+                var question = quiz[$scope.index];
+                if(question.type == 'radio'){
+                    if(!question._answer){
+                        question._answer = $$.copy(question.answer);
+                        question._correct = question._answer.splice(0,1)[0];
+                    }
+                    question.answer = [];
+                    shuffle(question._answer);
+                    for(var i=0;i<Math.min(4, question._answer.length);i++){
+                        question.answer.push(question._answer[i]);
+                    }
+                    question.answer.splice(Math.floor(Math.random() * question.answer.length), 0, question._correct);
+                }                
+            }
             function updateTime(){
                 var time = $scope.time = Math.round(Math.max(0, endTime - new Date().getTime()) / 1000);
                 $scope.m = Math.floor(time / 60);
@@ -75,7 +93,13 @@ angular.module('stmIndex').directive('stmIndexQuiz', function(){
                 };
             }
             function start(){
+                quiz.splice(0, quiz.length);
+                shuffle(questions);
+                for(var i=0;i<3;i++){
+                    quiz.push(questions[i]);
+                }
                 $scope.index = 0;
+                prepareRadio();
                 $scope.isTimeout = false;
                 endTime = new Date().getTime() + quiz.achiev.time * 1000;
                 updateTime();
@@ -99,6 +123,10 @@ angular.module('stmIndex').directive('stmIndexQuiz', function(){
                     $scope.inCheck = false;
                 });                
             }
+            function shuffle(o){ //v1.0
+                for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+                return o;
+            }         
         }]
     };
     
