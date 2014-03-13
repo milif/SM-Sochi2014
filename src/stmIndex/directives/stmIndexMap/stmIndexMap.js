@@ -69,6 +69,7 @@ angular.module('stmIndex').directive('stmIndexMap', ['$stmEnv', '$window', funct
             
             var drag;
             var inClick = true;
+            var cancelHideQuiz = {};
             
             $scope.showQuiz = function(e, noToggle){
                 var el = $(e.target).closest('[data-quiz]');
@@ -76,6 +77,7 @@ angular.module('stmIndex').directive('stmIndexMap', ['$stmEnv', '$window', funct
                 var position = el.data('position');
                 var isBottom = !!el.data('bottom');
                 var key = el.data('key') || type;
+                $timeout.cancel(cancelHideQuiz[key]);
                 if(key in achievTooltips) {
                     if(!noToggle) $scope.$broadcast('hidePopover-' + key);
                     return;
@@ -113,6 +115,21 @@ angular.module('stmIndex').directive('stmIndexMap', ['$stmEnv', '$window', funct
             $scope.showPreview = function(isPreview){
                 $scope.isPreview = isPreview;
                 localStorage.setItem('_stmSochiMapIsPreview', JSON.stringify(isPreview));
+            }
+            $scope.startQuiz = function(e){
+                showQuizPopup($(e.target).closest('[data-quiz]').data('quiz'));           
+            }
+            $scope.enterQuizTooltip = function(key){
+                $timeout.cancel(cancelHideQuiz[key]);
+            }
+            $scope.outQuizTooltip = function(key){
+                hideQuizTimeout(key);
+            }
+            $scope.hideQuiz = function(e){
+                var el = $(e.target).closest('[data-quiz]');
+                var type = el.data('quiz');
+                var key = el.data('key') || type;
+                hideQuizTimeout(key);
             }
             $scope.startDragPreview = function(e){
                 inClick = true;
@@ -224,7 +241,20 @@ angular.module('stmIndex').directive('stmIndexMap', ['$stmEnv', '$window', funct
                 updatePreview(position);
                 localStorage.setItem('_stmSochiMapPosition', JSON.stringify(position));
             });
-            
+            function showQuizPopup(type){
+                var achiev = stmMapAchiev.getByType(type);
+                if(achiev.isQuiz){          
+                    var quiz = QUIZ[type];
+                    quiz.achiev = achiev;
+                    quiz.descr = $element.find('[data-quiz-descr='+type+']').html();
+                    $scope.showQuizPopup = quiz;
+                }                
+            }
+            function hideQuizTimeout(key){
+                cancelHideQuiz[key] = $timeout(function(){
+                    $scope.$broadcast('hidePopover-' + key);
+                }, 1500); 
+            }           
             function addFoundedAchiev(key, type, position, isBottom){
                 var achiev = stmMapAchiev.getByType(type);
                 achiev.active = $stmEnv.achievs.indexOf('map.' + type) >= 0;
@@ -239,12 +269,7 @@ angular.module('stmIndex').directive('stmIndexMap', ['$stmEnv', '$window', funct
                         $scope.$broadcast('hidePopover-' + key);
                     },
                     onClick: function(){
-                        if(achiev.isQuiz){
-                            var quiz = QUIZ[type];
-                            quiz.achiev = achiev;
-                            quiz.descr = $element.find('[data-quiz-descr='+type+']').html();
-                            $scope.showQuizPopup = quiz;
-                        }
+                        showQuizPopup(type);
                     }
                 };            
             }

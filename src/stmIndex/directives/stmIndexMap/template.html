@@ -60,7 +60,7 @@
       </div>    
     </div>
     <!-- End climber -->
-    <div class="b-game-item b-game-item1" ng-style="item1.css" ng-mouseenter="animate(1,true);showQuiz($event, true)" ng-mouseleave="animate(1,false)" data-position="[3170, 1559]" data-quiz="groupon" ng-click="showQuiz($event)"></div>
+    <div class="b-game-item b-game-item1" ng-style="item1.css" ng-mouseenter="animate(1,true);showQuiz($event, true)" ng-mouseleave="animate(1,false);hideQuiz($event)" data-position="[3170, 1559]" ng-click="startQuiz($event)" data-quiz="groupon" ng-click="showQuiz($event)"></div>
     <div class="b-game-item b-game-item2" ng-style="item2.css" ng-mouseenter="animate(2,true)" ng-mouseleave="animate(2,false)"></div>
     <div class="b-game-item b-game-item3" ng-style="item3.css" ng-mouseenter="animate(3,true)" ng-mouseleave="animate(3,false)"></div>
     <div class="b-game-item b-game-item4" ng-style="item4.css" ng-mouseenter="animate(4,true)" ng-mouseleave="animate(4,false)"></div>
@@ -71,23 +71,23 @@
     <div class="b-game-item b-game-item9" ng-style="item9.css" ng-mouseenter="animate(9,true)" ng-mouseleave="animate(9,false)"></div>
     <div class="b-game-item b-game-item10" ng-style="item10.css" ng-mouseenter="animate(10,true)" ng-mouseleave="animate(10,false)"></div>
     <div class="b-game-item b-game-item11" ng-style="item11.css" ng-mouseenter="animate(11,true)" ng-mouseleave="animate(11,false)"></div>
-    <div class="b-game-item b-game-item12" ng-style="item12.css" data-position="[2381, 2507]" data-quiz="pickpoint" ng-click="showQuiz($event)" ng-mouseenter="animate(12,true);showQuiz($event, true)" ng-mouseleave="animate(12,false)"></div>
+    <div class="b-game-item b-game-item12" ng-style="item12.css" data-position="[2381, 2507]" ng-click="startQuiz($event)" data-quiz="pickpoint" ng-click="showQuiz($event)" ng-mouseenter="animate(12,true);showQuiz($event, true)" ng-mouseleave="animate(12,false);hideQuiz($event)"></div>
     <div class="b-game-item b-game-item13" ng-style="item13.css" ng-mouseenter="animate(13,true)" ng-mouseleave="animate(13,false)"></div>
     
     <!--<div class="b-game-item b-game-item14" ng-style="item14.css"></div>-->
-    <div class="b-game-item b-game-item15" ng-style="item15.css" data-position="[3004, 1779]" data-quiz="dpd" ng-click="showQuiz($event)" ng-mouseenter="animate(15,true);showQuiz($event, true)" ng-mouseleave="animate(15,false)"></div>
+    <div class="b-game-item b-game-item15" ng-style="item15.css" data-position="[3004, 1779]" ng-click="startQuiz($event)" data-quiz="dpd" ng-click="showQuiz($event)" ng-mouseenter="animate(15,true);showQuiz($event, true)" ng-mouseleave="animate(15,false);hideQuiz($event)"></div>
     <div class="b-game-item b-game-item16" ng-style="item16.css" ng-mouseenter="animate(16,true)" ng-mouseleave="animate(16,false)"></div>
     <div class="b-game-item b-game-item17" ng-style="item17.css" ng-mouseenter="animate(17,true)" ng-mouseleave="animate(17,false)"></div>
     <div class="b-game-item b-game-item18" ng-style="item18.css" ng-mouseenter="animate(18,true)" ng-mouseleave="animate(18,false)"></div>
-    <div data-position="[1630, 1030]" data-quiz="caveoffear" ng-click="showQuiz($event)" class="b-game-item b-game-item19" ng-style="item19.css" ng-mouseenter="animate(19,true);showQuiz($event, true);" ng-mouseleave="animate(19,false)"></div>
+    <div data-position="[1630, 1030]" data-quiz="caveoffear" ng-click="startQuiz($event)" class="b-game-item b-game-item19" ng-style="item19.css" ng-mouseenter="animate(19,true);showQuiz($event, true);" ng-mouseleave="animate(19,false);hideQuiz($event)"></div>
     
     <div class="b-game-item b-game-item20" ng-style="item20.css" ng-mouseenter="animate(20,true)" ng-mouseleave="animate(20,false)">
         <div class="b-game-clothing mod_mermaid1"></div>
     </div>    
     <div class="b-game-item b-game-item21" ng-style="item21.css" ng-mouseenter="animate(21,true)" ng-mouseleave="animate(21,false)"></div>
     <div class="b-game-item b-game-item22" ng-style="item22.css" ng-mouseenter="animate(22,true)" ng-mouseleave="animate(22,false)"></div>
-    <div class="b-game-item b-game-item23" ng-style="item23.css" data-position="[3144, 2857]" data-bottom="true" data-quiz="qiwi" ng-click="showQuiz($event)" ng-mouseenter="animate(23,true);showQuiz($event, true)" ng-mouseleave="animate(23,false);"></div>
-    <div class="b-game-item b-game-item24" ng-style="item24.css" data-position="[1015, 2439]" data-key="qiwi2" data-quiz="qiwi" ng-click="showQuiz($event)" ng-mouseenter="animate(24,true);showQuiz($event, true)" ng-mouseleave="animate(24,false)"></div>
+    <div class="b-game-item b-game-item23" ng-style="item23.css" ng-click="startQuiz($event)" data-position="[3144, 2857]" data-bottom="true" data-quiz="qiwi" ng-click="showQuiz($event)" ng-mouseenter="animate(23,true);showQuiz($event, true)" ng-mouseleave="animate(23,false);hideQuiz($event)"></div>
+    <div class="b-game-item b-game-item24" ng-style="item24.css" ng-click="startQuiz($event)" data-position="[1015, 2439]" data-key="qiwi2" data-quiz="qiwi" ng-click="showQuiz($event)" ng-mouseenter="animate(24,true);showQuiz($event, true)" ng-mouseleave="animate(24,false);hideQuiz($event)"></div>
     <div class="b-game-item b-game-item25" ng-style="item25.css" ng-mouseenter="animate(25,true)" ng-mouseleave="animate(25,false)"></div>
     <div class="b-game-item b-game-item26" ng-style="item26.css" ng-mouseenter="animate(26,true)" ng-mouseleave="animate(26,false)"></div>
     <div class="b-game-item b-game-item27" ng-style="item27.css" ng-mouseenter="animate(27,true)" ng-mouseleave="animate(27,false)"></div>
@@ -122,12 +122,12 @@
     <div class="b-game-item b-game-item53" ng-style="item53.css" ng-mouseenter="animate(53,true)" ng-mouseleave="animate(53,false)">
         <div class="b-game-clothing mod_mermaid5"></div>
     </div>
-    <div class="b-game-item b-game-item54" ng-style="item54.css" data-position="[3420, 2685]" data-bottom="true" data-quiz="sportexpress" ng-click="showQuiz($event)" ng-mouseenter="animate(54,true);showQuiz($event, true)" ng-mouseleave="animate(54,false)"></div>
+    <div class="b-game-item b-game-item54" ng-style="item54.css" ng-click="startQuiz($event)" data-position="[3420, 2685]" data-bottom="true" data-quiz="sportexpress" ng-click="showQuiz($event)" ng-mouseenter="animate(54,true);showQuiz($event, true)" ng-mouseleave="animate(54,false);hideQuiz($event)"></div>
     <div class="b-game-item b-game-item55" ng-style="item55.css" ng-mouseenter="animate(55,true)" ng-mouseleave="animate(55,false)">
         <div class="b-game-clothing mod_snowboard-bra"></div>
         <div class="b-game-clothing mod_snowboard"></div>
     </div>
-    <div class="b-game-item b-game-item56" ng-style="item56.css" data-position="[2925, 2329]" data-bottom="true" data-quiz="maxim" ng-click="showQuiz($event)" ng-mouseenter="animate(56,true);showQuiz($event, true)" ng-mouseleave="animate(56,false)">
+    <div class="b-game-item b-game-item56" ng-style="item56.css" ng-click="startQuiz($event)" data-position="[2925, 2329]" data-bottom="true" data-quiz="maxim" ng-click="showQuiz($event)" ng-mouseenter="animate(56,true);showQuiz($event, true)" ng-mouseleave="animate(56,false);hideQuiz($event)">
         <div class="b-game-clothing mod_maxim1-bra"></div>
         <div class="b-game-clothing mod_maxim1"></div>
         <div class="b-game-clothing mod_maxim2-bra"></div>
@@ -137,7 +137,7 @@
         <div class="b-game-clothing mod_mermaid2"></div>
     </div>
     <div class="b-game-item b-game-item58" ng-style="item58.css" ng-mouseenter="animate(58,true)" ng-mouseleave="animate(58,false)"></div>
-    <div class="b-game-item b-game-item59" ng-style="item59.css" data-position="[2548, 250]" data-quiz="dpd" ng-click="showQuiz($event)" ng-mouseenter="animate(59,true);showQuiz($event, true)" ng-mouseleave="animate(59,false)"></div>
+    <div class="b-game-item b-game-item59" ng-style="item59.css" ng-click="startQuiz($event)" data-position="[2548, 250]" data-quiz="dpd" ng-click="showQuiz($event)" ng-mouseenter="animate(59,true);showQuiz($event, true)" ng-mouseleave="animate(59,false);hideQuiz($event)"></div>
     <div class="b-game-item b-game-item-static-trees"></div>
     <div class="b-map-decor mod_balloon"></div>
     <div class="b-map-decor mod_cloud1"></div>
@@ -145,7 +145,7 @@
     <div class="b-map-decor mod_tree1"></div>
     <div class="b-map-decor mod_tree2"></div>  
     <div ng-repeat="item in achievTooltips" stm-index-popover="{{item.id}}" popover-type="{{item.isBottom ? 'bottom' :'top'}}" position="item.position">
-        <div stm-index-tooltip closable="item.closeQuizTooltip" position="{{item.isBottom ? 'top_left' :'bottom_left'}}" style="width: auto;">
+        <div ng-mouseenter="enterQuizTooltip(item.id)" ng-mouseleave="outQuizTooltip(item.id)" stm-index-tooltip closable="item.closeQuizTooltip" position="{{item.isBottom ? 'top_left' :'bottom_left'}}" style="width: auto;">
            <div ng-class="item.achiev.active ? 'state_active' : ''" ng-click="item.onClick()" class="b-tooltip__quiz">
                <div ng-class="'achiev_' + item.type" class="b-map__quiz-img"></div>
                <div class="b-map__quiz-title">{{item.achiev.text}}</div>
