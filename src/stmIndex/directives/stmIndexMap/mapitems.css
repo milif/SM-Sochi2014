@@ -900,3 +900,25 @@
 .b-map.state_move [data-quiz] {
     cursor: move;
 }
+/* Banners */
+/*==========================================================*/
+.b-map-banners {
+    position: absolute;
+    display: block;
+    z-index: 10;
+    background: url(asset/i/b-gameMap/banners.png) no-repeat;
+}
+.b-map-banners.mod_sportexpress {
+    width: 194px;
+    height: 116px;
+    left: 3088px;
+    top: 2542px;  
+    background-position: 10px 25px;  
+}
+.b-map-banners.mod_sportexpress-small {
+    width: 123px;
+    height: 60px;
+    left: 2309px;
+    top: 403px;
+    background-position: 9px -83px;  
+}

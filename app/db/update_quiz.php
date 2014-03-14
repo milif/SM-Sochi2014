@@ -33,7 +33,7 @@ foreach($data as $i => $row){
     if($_type == 'текст') $type = 'text';
     elseif(mb_strpos($_type, 'радио', 0, 'UTF-8') !== FALSE) $type = 'radio';
     if(!$type) continue;
-    $answer = preg_replace( array('/\s+\n/','/[\n;]+/','/[,]+$/','/(^|,)\s+/', '/;$/'), array("\n",';','','',''),$row[3]);
+    $answer = preg_replace( array('/\s+\n/','/[\n;]+/','/[,]+$/','/(^\s+|,\s+$)/', '/;$/'), array("\n",';','','',''),$row[3]);
     $page = trim($row[4]); 
     DB::query("INSERT INTO `quiz` (`quiz`, `question`, `type`, `answer`, `page`) VALUES (:quiz, :question, :type, :answer, :page);", array(':quiz' => $quiz,':question' => $question, ':type' => $type, ':answer' => $answer, ':page' => $page));
 }

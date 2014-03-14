@@ -5,6 +5,7 @@
  * @function
  *
  * @requires stmIndex.directive:stmIndexQuiz:b-quiz.css
+ * @requires stmIndex.directive:stmIndexQuiz:b-quiz-achiev.css
  * @requires stmIndex.directive:stmIndexQuiz:template.html
  *
  * @requires stm.filter:stmHowMany
@@ -37,7 +38,7 @@ angular.module('stmIndex').directive('stmIndexQuiz', function(){
     return {
         scope: true,
         templateUrl: 'partials/stmIndex.directive:stmIndexQuiz:template.html',
-        controller: ['$scope', '$attrs', '$timeout', '$interval', 'stmQuiz', function($scope, $attrs, $timeout, $interval, stmQuiz){
+        controller: ['$scope', '$attrs', '$timeout', '$interval', 'stmQuiz', '$element', function($scope, $attrs, $timeout, $interval, stmQuiz, $element){
             
             var cancelQuizTimer;
             var endTime;
@@ -55,9 +56,11 @@ angular.module('stmIndex').directive('stmIndexQuiz', function(){
                 if($scope.index++ == quiz.length - 1){
                     $scope.index--;
                     end();
-                }
+                    return;
+                } 
                 prepareRadio();
                 model.answer = null;
+                $timeout(focusInput, 30);
             };
             var quiz = $scope.quiz = $scope.$eval($attrs.stmIndexQuiz);
             var questions = quiz._questions = quiz._questions || $$.copy(quiz);
@@ -67,7 +70,10 @@ angular.module('stmIndex').directive('stmIndexQuiz', function(){
             
             $scope.$on('$destroy', function() {
                 $interval.cancel(cancelQuizTimer);
-            });            
+            });
+            function focusInput(){
+                $element.find('input[type=text]').focus();
+            }
             function prepareRadio(){
                 var question = quiz[$scope.index];
                 if(question.type == 'radio'){
@@ -96,6 +102,7 @@ angular.module('stmIndex').directive('stmIndexQuiz', function(){
             }
             function start(){
                 answers = {};
+                model.answer = null;
                 quiz.splice(0, quiz.length);
                 shuffle(questions);
                 for(var i=0;i<3;i++){
@@ -110,6 +117,7 @@ angular.module('stmIndex').directive('stmIndexQuiz', function(){
                 $timeout(function(){
                     $scope.state = 'go';
                 }, 0);
+                $timeout(focusInput, 30);
             }            
             function end(){
                 $interval.cancel(cancelQuizTimer);

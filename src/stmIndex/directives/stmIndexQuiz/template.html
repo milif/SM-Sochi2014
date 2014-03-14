@@ -23,7 +23,7 @@
     <div ng-class="time <= 15 ? 'mod_alert' : ''" class="b-quiz-time g-text_center">Осталось <span ng-if="time >= 60">{{ m | stmHowMany:' минутa':' минуты':' минут'}} и </span> {{s}} секунд</div>
 
     <div class="b-quiz-panel">
-        <form ng-submit="answer()">
+        <form ng-submit="answer()" class="g-form disable_validstate">
             <div ng-if="quiz[index].type == 'radio'" class="b-quiz-form-row-radio">
                     <div class="b-quiz-form-row-radio__h">
                         <div ng-repeat="item in quiz[index].answer">
@@ -32,7 +32,7 @@
                         </div>                    
                     </div>
             </div>    
-            <div ng-if="quiz[index].type == 'text'" class="b-quiz-form-row">
+            <div ng-if="quiz[index].type == 'text'" class="b-quiz-form-row" ng-init="focusInput()">
                 <input ng-model="model.answer" name="answer" type="text" class="b-form-input-text" placeholder="Ваш ответ">
             </div>
         </form>
@@ -86,7 +86,7 @@
         <div class="b-quiz-achive-note">{{quiz.achiev.text}}</div>
     </div>
     <div class="b-quiz-button g-text_center">
-        <span class="b-button button_size_big mod_style b-button_scheme_yellow mod_thin"><span class="b-button__text">Следующее задание</span><span ng-click="next()" class="b-button__link"></span></span>
+        <span class="b-button button_size_big mod_style b-button_scheme_yellow mod_thin"><span class="b-button__text">Закрыть</span><span ng-click="next()" class="b-button__link"></span></span>
     </div>
 </div>
 <!-- End quiz -->

@@ -253,7 +253,7 @@ angular.module('stmIndex').directive('stmIndexMap', ['$stmEnv', '$window', funct
                 if(achiev.isQuiz){          
                     var quiz = QUIZ[type];
                     quiz.achiev = achiev;
-                    quiz.descr = $element.find('[data-quiz-descr='+type+']').html();
+                    quiz.descr = 'Правильно ответьте на вопросы от ' + achiev.descrFrom;
                     $scope.showQuizPopup = quiz;
                 }                
             }

@@ -70,7 +70,7 @@
     <div class="b-game-item b-game-item8" ng-style="item8.css" ng-mouseenter="animate(8,true)" ng-mouseleave="animate(8,false)"></div>
     <div class="b-game-item b-game-item9" ng-style="item9.css" ng-mouseenter="animate(9,true)" ng-mouseleave="animate(9,false)"></div>
     <div class="b-game-item b-game-item10" ng-style="item10.css" data-position="[1566, 310]" ng-click="startQuiz($event)" data-quiz="mnogo" ng-mouseenter="animate(10,true);showQuiz($event, true)" ng-mouseleave="animate(10,false)"></div>
-    <div class="b-game-item b-game-item11" ng-style="item11.css" ng-mouseenter="animate(11,true)" ng-mouseleave="animate(11,false)"></div>
+    <div class="b-game-item b-game-item11" ng-style="item11.css" ng-mouseenter="animate(11,true)" ng-mouseleave="animate(11,false);hideQuiz($event)"></div>
     <div class="b-game-item b-game-item12" ng-style="item12.css" data-position="[2381, 2507]" ng-click="startQuiz($event)" data-quiz="pickpoint" ng-mouseenter="animate(12,true);showQuiz($event, true)" ng-mouseleave="animate(12,false);hideQuiz($event)"></div>
     <div class="b-game-item b-game-item13" ng-style="item13.css" data-position="[3328, 310]" ng-click="startQuiz($event)" data-quiz="sotmarket" ng-mouseenter="animate(13,true);showQuiz($event, true)" ng-mouseleave="animate(13,false)"></div>
     
@@ -79,7 +79,7 @@
     <div class="b-game-item b-game-item16" ng-style="item16.css" ng-mouseenter="animate(16,true)" ng-mouseleave="animate(16,false)"></div>
     <div class="b-game-item b-game-item17" ng-style="item17.css" ng-mouseenter="animate(17,true)" ng-mouseleave="animate(17,false)"></div>
     <div class="b-game-item b-game-item18" ng-style="item18.css" ng-mouseenter="animate(18,true)" ng-mouseleave="animate(18,false)"></div>
-    <div data-position="[1630, 1030]" data-quiz="caveoffear" ng-click="startQuiz($event)" class="b-game-item b-game-item19" ng-style="item19.css" ng-mouseenter="animate(19,true);showQuiz($event, true);" ng-mouseleave="animate(19,false);hideQuiz($event)"></div>
+    <div data-position="[1630, 1030]" data-quiz="caveoffear" ng-click="startQuiz($event)" class="b-game-item b-game-item19" ng-style="item19.css" ng-mouseenter="animate(19,true);showQuiz($event, true);" ng-mouseleave="animate(19,false);hideQuiz($event);hideQuiz($event)"></div>
     
     <div class="b-game-item b-game-item20" ng-style="item20.css" ng-mouseenter="animate(20,true)" ng-mouseleave="animate(20,false)">
         <div class="b-game-clothing mod_mermaid1"></div>
@@ -136,7 +136,7 @@
     <div class="b-game-item b-game-item57" ng-style="item57.css" data-position="[508, 1051]" data-quiz="quelle" ng-click="startQuiz($event)" ng-mouseenter="animate(57,true);showQuiz($event, true)" ng-mouseleave="animate(57,false)">
         <div class="b-game-clothing mod_mermaid2"></div>
     </div>
-    <div class="b-game-item b-game-item58" ng-style="item58.css" ng-click="startQuiz($event)" data-position="[1065, 2080]" data-key="quelle2" data-quiz="quelle" ng-mouseenter="animate(58,true);showQuiz($event, true)" ng-mouseleave="animate(58,false)"></div>
+    <div class="b-game-item b-game-item58" ng-style="item58.css" ng-click="startQuiz($event)" data-position="[1065, 2080]" data-key="quelle2" data-quiz="quelle" ng-mouseenter="animate(58,true);showQuiz($event, true)" ng-mouseleave="animate(58,false);hideQuiz($event)"></div>
     <div class="b-game-item b-game-item59" ng-style="item59.css" ng-click="startQuiz($event)" data-position="[2548, 250]" data-quiz="dpd" ng-mouseenter="animate(59,true);showQuiz($event, true)" ng-mouseleave="animate(59,false);hideQuiz($event)"></div>
     <div class="b-game-item b-game-item-static-trees"></div>
     <div class="b-map-decor mod_balloon"></div>
@@ -144,6 +144,8 @@
     <div class="b-map-decor mod_cloud2"></div>
     <div class="b-map-decor mod_tree1"></div>
     <div class="b-map-decor mod_tree2"></div>  
+    <a href="http://www.sotmarket.ru/partner/sport_express" class="b-map-banners mod_sportexpress" target="_blank"></a>
+    <a href="http://www.sotmarket.ru/partner/sport_express" class="b-map-banners mod_sportexpress-small" target="_blank"></a>
     <div ng-repeat="item in achievTooltips" stm-index-popover="{{item.id}}" popover-type="{{item.isBottom ? 'bottom' :'top'}}" position="item.position">
         <div ng-mouseenter="enterQuizTooltip(item.id)" ng-mouseleave="outQuizTooltip(item.id)" stm-index-tooltip closable="item.closeQuizTooltip" position="{{item.isBottom ? 'top_left' :'bottom_left'}}" style="width: auto;">
            <div ng-class="item.achiev.active ? 'state_active' : ''" ng-click="item.onClick()" class="b-tooltip__quiz">
@@ -183,16 +185,6 @@
           
       </div>
       <div ng-click="showPreview(!isPreview)" class="b-map-small-button">Миникарта</div>
-  </div>
-  <div style="display: none;">
-    <div data-quiz-descr="caveoffear">Правильно ответьте на вопросы от Всеволода Страха</div>
-    <div data-quiz-descr="maxim">Правильно ответьте на вопросы от журнала «Maxim»</div>
-    <div data-quiz-descr="groupon">Правильно ответьте на вопросы от «Groupon»</div>
-    <div data-quiz-descr="sportexpress">Правильно ответьте на вопросы<br>от газеты «Спорт-Экспресс»</div>
-    <div data-quiz-descr="qiwi">Правильно ответьте на вопросы от «Qiwi Wallet»</div>
-    <div data-quiz-descr="pickpoint">Правильно ответьте на вопросы от «PickPoint»</div>
-    <div data-quiz-descr="dpd">Правильно ответьте на вопросы от «DPD»</div>
-    <div data-quiz-descr="mnogo">Правильно ответьте на вопросы от клуба «Много.ру»</div>
   </div>
   <div show="{{showQuizPopup}}" stm-index-popup footer="false" closable="closeQuizPopup">
     <div stm-index-quiz="showQuizPopup"></div>

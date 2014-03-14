@@ -11,6 +11,8 @@
  * @requires stmIndex.directive:stmIndexAchiev
  * @requires stmIndex.$stmAchievs
  * @requires stmIndex.directive:stmIndexAchievsInfo
+ * @requires stmIndex.directive:stmIndexQuiz:b-quiz-achiev.css
+ * @requires stmIndex.stmMapAchiev
  *
  * @description
  * Экран личного кабинета
@@ -53,7 +55,7 @@ angular.module('stmCabinet').directive('stmCabinetScreen', function(){
     
      return {
          templateUrl: 'partials/stmCabinet.directive:stmCabinetScreen:template.html',
-         controller: ['$scope', '$stmAuth', '$location', '$stmEnv', '$stmAchievs', function($scope, $stmAuth, $location, $stmEnv, $stmAchievs){
+         controller: ['$scope', '$stmAuth', '$location', '$stmEnv', '$stmAchievs', 'stmMapAchiev', function($scope, $stmAuth, $location, $stmEnv, $stmAchievs, stmMapAchiev){
             $scope.logout = function(){
                 $stmAuth.logout();
             }
@@ -79,12 +81,15 @@ angular.module('stmCabinet').directive('stmCabinetScreen', function(){
                 achievCount += game.achievements.length;
             }
             
+            stmMapAchiev.setActive($stmEnv.mapAchievs);
+            
             $scope.score = score;
             $scope.games = gamesArr;
             $scope.achievCount = achievCount;
             $scope.friends = $stmEnv.friends > 99 ? '99+' : $stmEnv.friends;
             $scope.products = $stmEnv.products;
             
+            $scope.quizAchievs = stmMapAchiev.getAll();          
             
             $scope.authData = $stmAuth.data;
             $scope.getName = function(){

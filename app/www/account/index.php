@@ -14,9 +14,10 @@
     shuffle($products);
     
     $ENV = array(
-        'products' => array_slice($products, 0, 6),
+        'products' => array_slice($products, 0, 10),
         'games' => Game::getUserData(),
-        'friends' => User::getFriendsCount()
+        'friends' => User::getFriendsCount(),
+        'mapAchievs' => User::getMapAchives()
     );
     
     require __DIR__.'/../../lib/init.php'; ?><!doctype html>
