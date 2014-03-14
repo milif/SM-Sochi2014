@@ -11,7 +11,7 @@ class Game {
         $type = $data['type'];
         $score = $data['score'];
         $jsonData = json_encode($data['data']);
-        DB::query("INSERT INTO game_log (user_id, type, action, score, data) VALUES (".CLIENT_ID.", :type, :action, :score, :data)", array(':type'=> $type, ':action'=>$data['action'], ':score' => $score, ':data'=> $jsonData));
+        DB::query("INSERT INTO game_log (user_id, type, action, score, data, uid) VALUES (".CLIENT_ID.", :type, :action, :score, :data, :uid)", array(':type'=> $type, ':action'=>$data['action'], ':score' => $score, ':data'=> $jsonData, ':uid' => $data['uid']));
         
         if($data['action'] != 'end') return;
         

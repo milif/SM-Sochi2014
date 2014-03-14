@@ -20,6 +20,13 @@ if(!count($rs)){
             ALTER TABLE `game_log` ADD INDEX `score` (`score`);
         ");
 }
+$rs = DB::query("SHOW COLUMNS FROM `game_log` LIKE 'uid';");
+if(!count($rs)){
+        DB::query("
+            ALTER TABLE `game_log` ADD COLUMN `uid` BIGINT;
+            ALTER TABLE `game_log` ADD INDEX `uid` (`uid`);
+        ");
+}
 while (true){
     $q = "SELECT id, data, type FROM `game_log` WHERE score IS NULL AND action = 'end' LIMIT 0,500;";
     echo $q."\n";

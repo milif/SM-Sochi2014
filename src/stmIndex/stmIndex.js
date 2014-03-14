@@ -250,7 +250,17 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
        *            
        */         
     .factory('Game', ['$resource', '$stmEnv', function($resource, $stmEnv){
-        return $resource('api/game.php');
+        var Game = $resource('api/game.php');
+        var saveMethod = Game.save;
+        var uid;
+        Game.save = function(params){
+            if(params.action == 'start') {
+                uid = new Date().getTime();
+            }
+            params.uid = uid;
+            return saveMethod.apply(this, arguments);
+        }
+        return Game;
     }])
     /**
      * @ngdoc interface
