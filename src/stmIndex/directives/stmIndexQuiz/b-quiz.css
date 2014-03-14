@@ -559,14 +559,14 @@
     height: 92px;
 }
 
-.b-quiz-achive-item__h.mod_sot {
+.b-quiz-achive-item__h.mod_sotmarket {
     background-position: -518px -650px;
     display: inline-block;
     width: 87px;
     height: 79px;
 }
 
-.b-quiz-achive-item__h.mod_sot.state_active {
+.b-quiz-achive-item__h.mod_sotmarket.state_active {
     background-position: -650px -650px;
     display: inline-block;
     width: 87px;

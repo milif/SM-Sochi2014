@@ -60,7 +60,7 @@ angular.module('stmIndex').directive('stmIndexQuiz', function(){
                 model.answer = null;
             };
             var quiz = $scope.quiz = $scope.$eval($attrs.stmIndexQuiz);
-            var questions = $$.copy(quiz);
+            var questions = quiz._questions = quiz._questions || $$.copy(quiz);
             quiz.splice(0, quiz.length - 3);
             
             if(quiz.achiev.active) start();

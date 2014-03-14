@@ -665,6 +665,25 @@
 .b-tooltip__quiz.state_active .b-map__quiz-img.achiev_dpd {
     background-position: -53px -218px;
 }
+.b-map__quiz-img.achiev_mnogo {
+    background-position: -439px -116px;
+}
+.b-tooltip__quiz.state_active .b-map__quiz-img.achiev_mnogo {
+    background-position: -488px -116px;
+}
+.b-map__quiz-img.achiev_sotmarket {
+    background-position: -213px -267px;
+}
+.b-tooltip__quiz.state_active .b-map__quiz-img.achiev_sotmarket {
+    background-position: -267px -267px;
+}
+.b-map__quiz-img.achiev_quelle {
+    background-position: -426px -166px;
+}
+.b-tooltip__quiz.state_active .b-map__quiz-img.achiev_quelle {
+    background-position: -479px -166px;
+}
+ 
 .b-tooltip__quiz {
     cursor: pointer;
     padding-top: 18px;
@@ -873,4 +892,11 @@
 .b-map-small_bullet.mod_4 {
     left: 150px;
     top: 100px;
+}
+
+.b-map [data-quiz] {
+    cursor: pointer;
+}
+.b-map.state_move [data-quiz] {
+    cursor: move;
 }

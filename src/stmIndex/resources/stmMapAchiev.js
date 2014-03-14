@@ -30,16 +30,24 @@
             },
             { // Нет ачивки
                 type: 'quelle',
-                text: 'Quelle'
+                text: 'Quelle',
+                isQuiz: true,
+                time: 120
             }, 
+            /*
             { // Нет ачивки
                 type: 'proskeyter',
-                text: 'Proskeyter'
+                text: 'Proskeyter',
+                isQuiz: true,
+                time: 120
             },  
             { // Нет ачивки
                 type: 'softkey',
-                text: 'Софткей'
+                text: 'Софткей',
+                isQuiz: true,
+                time: 120
             },                       
+            */
             {
                 type: 'caveoffear',
                 text: 'Пещера Страха',
@@ -72,11 +80,15 @@
             },
             {
                 type: 'mnogo',
-                text: 'Mnogo.ru'
+                text: 'Mnogo.ru',
+                isQuiz: true,
+                time: 120
             },
             {
                 type: 'sotmarket',
-                text: 'Сотмаркет'
+                text: 'Сотмаркет',
+                isQuiz: true,
+                time: 120
             },
             {
                 type: 'sportexpress',
