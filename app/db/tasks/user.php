@@ -2,7 +2,10 @@
 
 require_once __DIR__.'/achievement_log.php';
 require_once __DIR__.'/game_log.php';
-
+$rs = DB::query("SHOW COLUMNS FROM `user` LIKE 'data_achievement_other';");
+if(!count($rs)){
+    DB::query("ALTER TABLE `user` ADD COLUMN `data_achievement_other` TEXT;");
+}
 $rs = DB::query("SHOW COLUMNS FROM `user` LIKE 'data_achievement_map';");
 if(!count($rs)){
     DB::query("ALTER TABLE `user` ADD COLUMN `data_achievement_map` TEXT;");

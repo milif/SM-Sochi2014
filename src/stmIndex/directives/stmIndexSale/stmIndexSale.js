@@ -9,6 +9,7 @@
  *
  * @requires stmIndex.directive:stmIndexToolbar
  * @requires stmIndex.directive:stmIndexSocialLike
+ * @requires stmIndex.directive:stmIndexPopup
  *
  * @description
  * Sale
@@ -59,7 +60,7 @@ angular.module('stmIndex').directive('stmIndexSale', function(){
     return {
         scope: {},
         templateUrl: 'partials/stmIndex.directive:stmIndexSale:template.html',
-        controller: ['$stmEnv', '$interval', '$scope', 'Subscribe', '$element', function($stmEnv, $interval, $scope, Subscribe, $element){
+        controller: ['$stmEnv', '$interval', '$scope', 'Subscribe', '$element', '$timeout', '$stmAuth', function($stmEnv, $interval, $scope, Subscribe, $element, $timeout, $stmAuth){
             var timerInterval = $interval(updateTimer, 1000, null, false);
             
             $scope.email = "";
@@ -75,6 +76,7 @@ angular.module('stmIndex').directive('stmIndexSale', function(){
                         if(!res.success) {
                             return;
                         }
+                        showShare();
                         $scope.subscribeSuccess = true;
                     });
                     res.$promise.finally(function(){
@@ -83,9 +85,25 @@ angular.module('stmIndex').directive('stmIndexSale', function(){
                 }
             }            
             $scope.products = $stmEnv.products;
+            $scope.closeSharePopup = function(){
+                $scope.showSharePopup = false;
+            }            
             
             updateTimer();
             
+            if(localStorage.getItem('_stmSochiShareSale')) $timeout(showShare, 1000);
+            
+            function showShare(){
+                if($stmAuth.isAuth){
+                    $scope.showSharePopup = true;
+                    localStorage.removeItem('_stmSochiShareSale');
+                    return;
+                }
+                $stmAuth.auth(function(){
+                    localStorage.setItem('_stmSochiShareSale', true);
+                    window.location.reload();
+                });
+            }
             function updateTimer(){
 
                 var diffTime = Math.max(0, Math.round(($stmEnv.time - new Date().getTime()) / 1000));

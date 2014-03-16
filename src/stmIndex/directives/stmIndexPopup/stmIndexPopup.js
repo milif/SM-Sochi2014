@@ -150,8 +150,13 @@ angular.module('stmIndex').directive('stmIndexPopup', function(){
             $scope.header = $attrs.header ? $scope.$eval($attrs.header) || $attrs.header: false;
             $scope.isFixed = $attrs.fixed ? $scope.$eval($attrs.fixed) : false;
             $scope.hasFooter = $attrs.footer ? $scope.$eval($attrs.footer) : true;
+            $scope.hasMap = $attrs.gomap ? $scope.$eval($attrs.gomap) : true;
             $scope.hasClose = !!($attrs.closable ? $scope.$eval($attrs.closable) : false);
             $scope.hasMask = !!($attrs.mask ? $scope.$eval($attrs.mask) : false);
+            var popupCss = $scope.popupCss = {};
+            if($attrs.width){
+                popupCss.minWidth = popupCss.width = $scope.$eval($attrs.width);
+            }
             
             if($scope.hasClose) {
                 $element.on('click', function(e){
@@ -184,7 +189,7 @@ angular.module('stmIndex').directive('stmIndexPopup', function(){
                 } else if(showChanged){
                     $timeout(function(){
                         if($scope.show) return;
-                        if(cntEl.find('> [stm-index-popup]:visible').length == 1) {
+                        if(cntEl.find('> [stm-index-popup] > *:visible').length == 1) {
                             cntEl
                                 .removeClass('view_popup')
                                 .css({

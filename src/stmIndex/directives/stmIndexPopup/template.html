@@ -2,7 +2,7 @@
 <div ng-if="show" ng-class=" (isFixed ? 'view_fixed' : '' ) + (hasClose ? ' mod_closable' : hasMask ? ' mod_mask' : '')" class="b-popup-l">
     <div class='b-popup-h'>
         <div class='b-popup-hh'>
-            <div class='b-popup g-font'>
+            <div class='b-popup g-font' ng-style="popupCss">
               <span ng-if="hasClose" ng-click="close()" class="b-popup-close"></span>
               <div ng-if="header" ng-include="header"></div>                       
               <div class='b-popup-content'>
@@ -10,15 +10,18 @@
               </div> 
               <div ng-if="contentAfter" ng-include="contentAfter"></div>         
               <div ng-if="hasFooter" class='b-popup-footer'>
-                <div class="b-popup-footer-left">
+                <div ng-if="hasMap" class="b-popup-footer-left">
                     <a href="map/" class="back-map">
                         <span class="b-icons b-icons_arrow">
                             <span class="b-icons__item"></span>
                         </span>На карту
                     </a>
                 </div>
-                <div class="b-popup-footer-right">
+                <div ng-if="hasMap" class="b-popup-footer-right">
                   <div class="b-popup-footer-share">Поделиться с друзьями:<div stm-index-social scheme="yellow" buttons-count="4" class="b-popup-social"></div></div>
+                </div>
+                <div ng-if="!hasMap" class="b-popup-footer-share">
+                  Поделиться с друзьями:<div stm-index-social scheme="yellow" buttons-count="4" class="b-popup-social"></div>
                 </div>
               </div>
             </div>    

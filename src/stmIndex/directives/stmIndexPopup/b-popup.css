@@ -81,10 +81,6 @@
   right: 0;
   top: 0;
   border-left: 3px solid #000;
-  background-color: #ffd731;
-  -webkit-border-radius: 0 0 18px 0;
-  -moz-border-radius: 0 0 18px 0;
-  border-radius: 0 0 18px 0;
 }
 
 /* link-back-map */
@@ -109,6 +105,15 @@
   text-align: center;
   font-size: 13px;
   color: #645301;
+  background-color: #ffd731;
+  -webkit-border-radius: 0 0 18px 0;
+  -moz-border-radius: 0 0 18px 0;
+  border-radius: 0 0 18px 0;
+}
+.b-popup-footer > .b-popup-footer-share {
+  -webkit-border-radius: 0 0 18px 18px;
+  -moz-border-radius: 0 0 18px 18px;
+  border-radius: 0 0 18px 18px;
 }
 
 .b-popup-h {

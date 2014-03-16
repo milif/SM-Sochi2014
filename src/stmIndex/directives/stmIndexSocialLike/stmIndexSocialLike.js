@@ -82,7 +82,7 @@ angular.module('stmIndex')
             type: 'mini',
             height: 20,
             width: 100,
-            pageUrl: share.url
+            pageUrl: $stmSocial.url()
         };
    
         el.append(vkEl);
@@ -109,7 +109,7 @@ angular.module('stmIndex')
         });
     }      
     function likeFB(el){
-        var fbEl = $('<span style="display: inline-block;overflow: hidden;padding-top: 2px;height: 20px;"><fb:like href="'+share.url+'" send="false" layout="button_count" width="90" show_faces="false"></fb:like></span>');
+        var fbEl = $('<span style="display: inline-block;overflow: hidden;padding-top: 2px;height: 20px;"><fb:like href="'+$stmSocial.url()+'" send="false" layout="button_count" width="90" show_faces="false"></fb:like></span>');
         el.append(fbEl);
         fbApi(function(){
             this.XFBML.parse(fbEl.get(0));
@@ -142,7 +142,7 @@ angular.module('stmIndex')
         el.append(gpEl);
         gpApi(function(){
             this.render(gpEl.get(0), {
-                href: share.url,
+                href: $stmSocial.url(),
                 size: 'medium',
                 width: 70,
             });
@@ -153,11 +153,11 @@ angular.module('stmIndex')
         var gpEl = $('<span id="'+id+'"></span>');                
         el.append(gpEl);
         okApi(function(){
-            this.insertShareWidget(id, share.url, "{width:85,height:20,st:'straight',sz:20,nt:1}");
+            this.insertShareWidget(id, $stmSocial.url(), "{width:85,height:20,st:'straight',sz:20,nt:1}");
         });
     }    
     function likeTW(el){
-        var twEl = $('<a href="https://twitter.com/share" class="twitter-share-button" data-url="'+share.url+'" data-text="'+share.description+' '+share.url+'" data-lang="ru" style="width: 118px;">Tweet</a>');
+        var twEl = $('<a href="https://twitter.com/share" class="twitter-share-button" data-url="'+$stmSocial.url()+'" data-text="'+share.description+' '+$stmSocial.url()+'" data-lang="ru" style="width: 118px;">Tweet</a>');
         el.append(twEl);
         (function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}})(document,"script","twitter-wjs");        
     }

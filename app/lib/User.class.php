@@ -109,5 +109,14 @@ class User {
             $achievs = $rs[0]['data_achievement_map'] ? explode(',', $rs[0]['data_achievement_map']) : array();
         }
         return $achievs;
+    }    
+    static public function getOtherAchives(){
+        if(CLIENT_ID == 0) return null;
+        $rs = DB::query("SELECT data_achievement_other FROM `user` WHERE id = ".CLIENT_ID);
+        $achievs = array();
+        if(count($rs)){
+            $achievs = $rs[0]['data_achievement_other'] ? explode(',', $rs[0]['data_achievement_other']) : array();
+        }
+        return $achievs;
     }     
 }

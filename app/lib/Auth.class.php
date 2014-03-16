@@ -51,7 +51,9 @@ class Auth {
         
             if($refId && isset($ref[1])){
                 $rs = DB::query("SELECT COUNT(*) cc FROM `user` WHERE ref_id = $refId");
-                if($rs[0]['cc'] >= 4 ) {
+                if($ref[1] == 'sale'){
+                    Achiev::add('other.friends', $refId);
+                } elseif($rs[0]['cc'] >= 4 ) {
                     Achiev::add($ref[1].'.'.'journalist', $refId);
                 }
             }

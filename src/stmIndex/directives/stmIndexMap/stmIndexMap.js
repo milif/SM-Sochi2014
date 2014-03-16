@@ -9,6 +9,7 @@
  * @requires stmIndex.directive:stmIndexMap:template.html
  * @requires stmIndex.stmMapAchiev
  * @requires stmIndex.directive:stmIndexQuiz
+ * @requires stmIndex.$stmCheck18
  *
  * @description
  * Карта
@@ -47,7 +48,7 @@ angular.module('stmIndex').directive('stmIndexMap', ['$stmEnv', '$window', funct
         },
         transclude: true,
         templateUrl: 'partials/stmIndex.directive:stmIndexMap:template.html',
-        controller: ['$scope', '$element', '$attrs', '$timeout', 'stmMapAchiev', '$interval', '$document', '$rootScope', function($scope, $element, $attrs, $timeout, stmMapAchiev, $interval, $document, $rootScope){
+        controller: ['$scope', '$element', '$attrs', '$timeout', 'stmMapAchiev', '$interval', '$document', '$rootScope', '$stmCheck18', function($scope, $element, $attrs, $timeout, stmMapAchiev, $interval, $document, $rootScope, $stmCheck18){
             
             $rootScope.$on('auth', function(){
                 window.location.reload();
@@ -146,6 +147,16 @@ angular.module('stmIndex').directive('stmIndexMap', ['$stmEnv', '$window', funct
                     if(!drag) return;
                     $scope.inMovePreview = true;
                 }, 50);
+            }
+            $scope.removeClothing = function(e, is18){
+                e.stopPropagation();
+                if(is18) {
+                    $stmCheck18(function(){
+                        $scope.removeClothing(e);
+                    }, viewEl); 
+                    return;
+                }
+                $(e.target).fadeOut(200);
             }
             $scope.posMap = function(e){
                 if(!inClick) return;

@@ -17,7 +17,8 @@
         'products' => array_slice($products, 0, 10),
         'games' => Game::getUserData(),
         'friends' => User::getFriendsCount(),
-        'mapAchievs' => User::getMapAchives()
+        'mapAchievs' => User::getMapAchives(),
+        'otherAchievs' => User::getOtherAchives()
     );
     
     require __DIR__.'/../../lib/init.php'; ?><!doctype html>

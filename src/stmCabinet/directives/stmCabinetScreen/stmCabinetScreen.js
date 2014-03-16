@@ -12,7 +12,9 @@
  * @requires stmIndex.$stmAchievs
  * @requires stmIndex.directive:stmIndexAchievsInfo
  * @requires stmIndex.directive:stmIndexQuiz:b-quiz-achiev.css
+ * @requires stmIndex:b-other-achiev.css
  * @requires stmIndex.stmMapAchiev
+ * @requires stmIndex.stmOtherAchiev
  *
  * @description
  * Экран личного кабинета
@@ -55,7 +57,7 @@ angular.module('stmCabinet').directive('stmCabinetScreen', function(){
     
      return {
          templateUrl: 'partials/stmCabinet.directive:stmCabinetScreen:template.html',
-         controller: ['$scope', '$stmAuth', '$location', '$stmEnv', '$stmAchievs', 'stmMapAchiev', function($scope, $stmAuth, $location, $stmEnv, $stmAchievs, stmMapAchiev){
+         controller: ['$scope', '$stmAuth', '$location', '$stmEnv', '$stmAchievs', 'stmMapAchiev', 'stmOtherAchiev', function($scope, $stmAuth, $location, $stmEnv, $stmAchievs, stmMapAchiev, stmOtherAchiev){
             $scope.logout = function(){
                 $stmAuth.logout();
             }
@@ -82,6 +84,7 @@ angular.module('stmCabinet').directive('stmCabinetScreen', function(){
             }
             
             stmMapAchiev.setActive($stmEnv.mapAchievs);
+            stmOtherAchiev.setActive($stmEnv.otherAchievs);
             
             $scope.score = score;
             $scope.games = gamesArr;
@@ -89,7 +92,14 @@ angular.module('stmCabinet').directive('stmCabinetScreen', function(){
             $scope.friends = $stmEnv.friends > 99 ? '99+' : $stmEnv.friends;
             $scope.products = $stmEnv.products;
             
-            $scope.quizAchievs = stmMapAchiev.getAll();          
+            $scope.quizAchievs = stmMapAchiev.getAll();   
+            $scope.otherAchievs = stmOtherAchiev.getAll();  
+            $scope.otherScore = 0;  
+            
+            for(var i=0;i<$scope.otherAchievs.length;i++){
+                if(!$scope.otherAchievs[i].active) continue;
+                $scope.otherScore += $scope.otherAchievs[i].bonus;
+            }
             
             $scope.authData = $stmAuth.data;
             $scope.getName = function(){

@@ -1,0 +1,20 @@
+<div stm-index-popup footer="false" show="{{showPopup}}" closable="closePopup" width="360">
+    <br>
+    Данные изображения предназначены<br>
+    для просмотра только лицам,<br>
+    достигнувшим совершеннолетия.
+    <div class="b-confirm18-title">
+        Вам уже есть 18 лет?
+    </div>
+    <div>
+        <div class="b-button button_size_big mod_thin mod_style b-button_scheme_yellow" style="width: 140px;">
+            <div class="b-button__text">Да</div>
+            <span class="b-button__link" ng-click="yes()"></span>
+        </div> 
+        &nbsp;&nbsp;
+        <div class="b-button button_size_big mod_thin mod_style b-button_scheme_blue" style="width: 140px;">
+            <div class="b-button__text">Нет</div>
+            <span class="b-button__link" ng-click="closePopup()"></span>
+        </div>   
+    </div>
+</div>

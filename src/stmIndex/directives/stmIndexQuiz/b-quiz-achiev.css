@@ -146,21 +146,6 @@
     width: 87px;
     height: 82px;
 }
-
-.b-quiz-achive-item__h.mod_friends {
-    background-position: -1000px 0px;
-    display: inline-block;
-    width: 99px;
-    height: 91px;
-}
-
-.b-quiz-achive-item__h.mod_friends.state_active {
-    background-position: -1120px 0px;
-    display: inline-block;
-    width: 99px;
-    height: 91px;
-}
-
 .b-quiz-achive-item__h.mod_game {
     background-position: -226px -140px;
     display: inline-block;

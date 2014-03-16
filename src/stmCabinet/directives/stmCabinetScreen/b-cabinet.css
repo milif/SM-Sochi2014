@@ -212,14 +212,14 @@
     position: relative;
     z-index: 5;
     padding-top: 130px;
-    padding-bottom: 60px;
+    padding-bottom: 10px;
 }
 
 .b-cabinet-main-sidebar {
     float: left;
     width: 276px;
     padding: 0 40px 0 34px;
-    min-height: 900px;
+    min-height: 1400px;
 }
 
 /* b-cabinet-product */
@@ -517,7 +517,7 @@
 
 /* b-cabinet-game-line */
 .b-cabinet-game-line {
-    padding-top: 10px;
+    padding: 10px 0 0 5px;
 }
 
 /* b-cabinet-footer */

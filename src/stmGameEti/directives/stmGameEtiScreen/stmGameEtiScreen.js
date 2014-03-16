@@ -463,7 +463,9 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                                 
                 alertTpl($scope, function(el){
                     el.appendTo(viewEl);
-                    $animate.leave(el);
+                    $animate.leave(el, function(){
+                        $scope.$destroy();
+                    });
                 });
             }
             function stopGame(){
