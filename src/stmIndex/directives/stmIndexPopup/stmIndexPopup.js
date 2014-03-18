@@ -129,8 +129,7 @@ angular.module('stmIndex').directive('stmIndexPopup', function(){
         transclude: true,
         templateUrl: 'partials/stmIndex.directive:stmIndexPopup:template.html',
         controller: ['$scope', '$attrs', '$element', '$timeout', function($scope, $attrs, $element, $timeout){
-            var cntEl = $element.parent();
-            var showChanged = false;            
+            var cntEl = $element.parent();         
             
             var closeEvents = {
                 'keydown': function(e){
@@ -143,9 +142,16 @@ angular.module('stmIndex').directive('stmIndexPopup', function(){
             }
             
             $attrs.$observe('show', function(show){
-                $scope.show = 'show' in $attrs ? $scope.$eval(show) : true;
+                $scope.show = 'show' in $attrs ? $scope.$eval(show) : false;
+                if(!('show' in $attrs)){
+                    $timeout(function(){
+                        $scope.show = true;
+                    }, 30);
+                }
             });
-    
+            $scope.$on('closePopup-' + $attrs.stmIndexPopup, function(){
+                $scope.close();
+            });
             $scope.contentAfter = $attrs.contentAfter ? $scope.$eval($attrs.contentAfter) || $attrs.contentAfter: false;
             $scope.header = $attrs.header ? $scope.$eval($attrs.header) || $attrs.header: false;
             $scope.isFixed = $attrs.fixed ? $scope.$eval($attrs.fixed) : false;
@@ -167,12 +173,6 @@ angular.module('stmIndex').directive('stmIndexPopup', function(){
                 });
             }
             $scope.$watch('show', function(show){
-                if(!showChanged && show){
-                    $scope.show = false;
-                    $timeout(function(){
-                        $scope.show = true;
-                    }, 30);
-                }
                 if(show && $scope.hasClose) {
                     $(document).on(closeEvents);
                 } else {
@@ -186,7 +186,7 @@ angular.module('stmIndex').directive('stmIndexPopup', function(){
                                 overflow: 'hidden',
                                 marginRight: 15
                             });
-                } else if(showChanged){
+                } else {
                     $timeout(function(){
                         if($scope.show) return;
                         if(cntEl.find('> [stm-index-popup] > *:visible').length == 1) {
@@ -197,13 +197,12 @@ angular.module('stmIndex').directive('stmIndexPopup', function(){
                                     marginRight: 0
                                 });
                         }
+                        if($scope[$attrs.closable]) $scope[$attrs.closable]();
                     }, 200);
-                }
-                showChanged = true;                
+                }              
             });
 
             $scope.close = function(){
-                if($scope[$attrs.closable]) $scope[$attrs.closable]();
                 $scope.$emit('popupClose');
                 $scope.show = false;
             }

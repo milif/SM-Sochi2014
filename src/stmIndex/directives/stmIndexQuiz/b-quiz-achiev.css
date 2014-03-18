@@ -119,28 +119,28 @@
     height: 85px;
 }
 
-.b-quiz-achive-item__h.mod_eti {
+.b-quiz-achive-item__h.mod_yeti {
     background-position: -230px -770px;
     display: inline-block;
     width: 87px;
     height: 88px;
 }
 
-.b-quiz-achive-item__h.mod_eti.state_active {
+.b-quiz-achive-item__h.mod_yeti.state_active {
     background-position: -360px -770px;
     display: inline-block;
     width: 87px;
     height: 88px;
 }
 
-.b-quiz-achive-item__h.mod_fb {
+.b-quiz-achive-item__h.mod_actually {
     background-position: 0px -650px;
     display: inline-block;
     width: 87px;
     height: 82px;
 }
 
-.b-quiz-achive-item__h.mod_fb.state_active {
+.b-quiz-achive-item__h.mod_actually.state_active {
     background-position: -110px -650px;
     display: inline-block;
     width: 87px;
@@ -360,7 +360,7 @@
     height: 85px;
 }
 
-.b-quiz-achive-item__h.mod_roga {
+.b-quiz-achive-item__h.mod_horns {
     background-position: -260px -6px;
     display: inline-block;
     width: 104px;
@@ -368,7 +368,7 @@
     left: -8px;
 }
 
-.b-quiz-achive-item__h.mod_roga.state_active {
+.b-quiz-achive-item__h.mod_horns.state_active {
     background-position: -384px -6px;
     display: inline-block;
     width: 104px;
@@ -460,7 +460,7 @@
     height: 98px;
 }
 
-.b-quiz-achive-item__h.mod_wanted {
+.b-quiz-achive-item__h.mod_yetiwanted {
     background-position: -512px -280px;
     display: inline-block;
     width: 102px;
@@ -468,7 +468,7 @@
     height: 79px;
 }
 
-.b-quiz-achive-item__h.mod_wanted.state_active {
+.b-quiz-achive-item__h.mod_yetiwanted.state_active {
     background-position: -650px -280px;
     display: inline-block;
     width: 102px;

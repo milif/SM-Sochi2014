@@ -347,8 +347,8 @@
     background: url("asset/i/b-gameMap/paparazzi1_sheet_7x9.png") 0 0 no-repeat;
 }
 .b-game-item49 {
-    left: 1992px;
-    top: 1169px;
+    left: 3400px;
+    top: 1817px;
     width: 60px;
     height: 50px;
     background: url("asset/i/b-gameMap/black_friday5_sheet_17x6.png") 0 0 no-repeat;
@@ -526,7 +526,98 @@
     background: url("asset/i/b-gameMap/b-gameMap-trees.png") 0 0 no-repeat;
     z-index: 20;
 }
-
+/* b-map-place */
+/*==========================================================*/
+.b-map-place {
+    position: absolute;
+    z-index: 11;
+}
+.b-map-place.mod_wanted {
+    width: 55px;
+    height: 76px;
+    top: 923px;
+    left: 3001px;
+}
+.b-map-place.mod_wanted1 {
+    width: 64px;
+    height: 76px;
+    top: 2580px;
+    left: 2587px;
+}
+.b-map-place.mod_wanted2 {
+    width: 64px;
+    height: 76px;
+    top: 2302px;
+    left: 3422px;
+}
+.b-map-place.mod_wanted3 {
+    width: 64px;
+    height: 76px;
+    top: 49px;
+    left: 13px;
+    -webkit-transform: rotate(-20deg);
+    transform: rotate(-20deg);
+}
+.b-map-place.mod_yeti1 {
+    width: 41px;
+    height: 57px;
+    left: 45px;
+    top: 41px;
+}
+.b-map-place.mod_yeti2 {
+    width: 41px;
+    height: 101px;
+    left: 7px;
+    top: 19px;
+}
+.b-map-place.mod_yeti3 {
+    width: 72px;
+    height: 105px;
+    left: 119px;
+    top: 23px;
+}
+.b-map-place.mod_yeti4 {
+    width: 116px;
+    height: 120px;
+    left: 236px;
+    top: 11px;
+}
+.b-map-place.mod_yeti5 {
+    width: 88px;
+    height: 159px;
+    left: 86px;
+    top: 7px;
+}
+.b-map-place.mod_horns1 {
+    width: 84px;
+    height: 90px;
+    left: 0px;
+    top: 12px;
+}
+.b-map-place.mod_horns2 {
+    width: 88px;
+    height: 100px;
+    left: 90px;
+    top: 0px;
+}
+.b-map-place.mod_horns3 {
+    width: 56px;
+    height: 83px;
+    left: 11px;
+    top: 12px;
+}
+.b-map-place.mod_horns4 {
+    width: 70px;
+    height: 77px;
+    left: 71px;
+    top: 37px;
+}
+.b-map-place.mod_horns5{
+    width: 70px;
+    height: 77px;
+    left: 157px;
+    top: 17px;
+}
 /* b-map-controls */
 /*==========================================================*/
 .b-map-controls,
@@ -683,10 +774,36 @@
 .b-tooltip__quiz.state_active .b-map__quiz-img.achiev_quelle {
     background-position: -479px -166px;
 }
+.b-map__quiz-img.achiev_yetiwanted {
+    background-position: -213px -116px;
+}
+.b-tooltip__quiz.state_active .b-map__quiz-img.achiev_yetiwanted {
+    background-position: -269px -116px;
+}
+.b-map__quiz-img.achiev_yeti {
+    background-position: -96px -320px;
+}
+.b-tooltip__quiz.state_active .b-map__quiz-img.achiev_yeti {
+    background-position: -149px -320px;
+}
+.b-map__quiz-img.achiev_horns {
+    background-position: -110px -4px;
+}
+.b-tooltip__quiz.state_active .b-map__quiz-img.achiev_horns {
+    background-position: -161px -4px;
+}
+.b-map__quiz-img.achiev_actually {
+    background-position: -0px -269px;
+}
+.b-tooltip__quiz.state_active .b-map__quiz-img.achiev_actually {
+    background-position: -45px -269px;
+}
  
 .b-tooltip__quiz {
-    cursor: pointer;
     padding-top: 18px;
+}
+.b-tooltip__quiz.mod_pointer {
+    cursor: pointer;
 }
 .b-tooltip__quiz .a-pseudo {
     color: #fff;

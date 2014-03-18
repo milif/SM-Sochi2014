@@ -219,7 +219,7 @@
     float: left;
     width: 276px;
     padding: 0 40px 0 34px;
-    min-height: 1400px;
+    min-height: 1600px;
 }
 
 /* b-cabinet-product */
@@ -519,7 +519,9 @@
 .b-cabinet-game-line {
     padding: 10px 0 0 5px;
 }
-
+.b-cabinet-game-line.mod_nodescription {
+    margin-bottom: -20px;
+}
 /* b-cabinet-footer */
 .b-cabinet-footer {
     padding-top: 60px;
@@ -574,4 +576,6 @@
     font-size: 11px;
     color: gray;
     padding-top: 5px;
+    height: 72px;
+    overflow: hidden;
 }

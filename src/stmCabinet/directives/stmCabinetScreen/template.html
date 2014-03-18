@@ -158,14 +158,14 @@
             <div class="b-cabinet-main-content">                
                 <div class="b-cabinet-game">
                     <div class="b-cabinet-game-top mod_noscore">
-                        <div class="b-cabinet-game-top-title"><a href="map/" class="__a">Вопросы от Партнеров</a><!--<span class="b-cabinet-game-q"></span>--></div>
+                        <div class="b-cabinet-game-top-title"><a href="map/" class="__a">Квест на карте</a><!--<span class="b-cabinet-game-q"></span>--></div>
                     </div>                                    
                     <div class="b-cabinet-game-line mod_nodescription">
                         <div ng-repeat="achiev in quizAchievs" class="b-quiz-achive __quiz-achiev">
                             <div class="b-quiz-achive-item">
                                 <div ng-class="'mod_' + achiev.type + (achiev.active ? ' state_active' : '')" class="b-quiz-achive-item__h"></div>
                             </div>
-                            <div class="b-quiz-achive-note ng-binding">{{achiev.text}}<div class="__achiev-comment">Найдите и ответьте<br>на 3 вопроса<br> {{achiev.descrFrom}}</div></div>
+                            <div class="b-quiz-achive-note ng-binding">{{achiev.text}}<div ng-if="achiev.isQuest" class="__achiev-comment" ng-bind-html="achiev.descr"></div><div ng-if="achiev.isQuiz" class="__achiev-comment">Найдите и ответьте<br>на 3 вопроса<br> {{achiev.descrFrom}}</div></div>
                         </div>                                      
                     </div>
                 </div>
@@ -181,7 +181,7 @@
                             <div class="b-quiz-achive-item">
                                 <div ng-class="'mod_' + achiev.type + (achiev.active ? ' state_active' : '')" class="b-quiz-achive-item__h"></div>
                             </div>
-                            <div class="b-quiz-achive-note ng-binding">{{achiev.text}}<div class="__achiev-comment">{{achiev.descrFrom}}</div></div>
+                            <div class="b-quiz-achive-note ng-binding">{{achiev.text}}<div class="__achiev-comment" ng-bind-html="achiev.descrFrom"></div></div>
                         </div>                                      
                     </div>
                 </div>

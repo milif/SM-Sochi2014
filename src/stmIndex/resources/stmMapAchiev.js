@@ -23,6 +23,30 @@
     angular.module('stmIndex').factory('stmMapAchiev', ['$resource', function($resource){
         var achievs = [
             {
+                type: 'yetiwanted',
+                text: 'Плакат Йети',
+                isQuest: true,
+                descr: 'Найти на карте<br>все плакаты Йети'
+            },
+            {
+                type: 'yeti',
+                text: 'Сыщик Йети',
+                isQuest: true,
+                descr: 'Найти на карте<br>всех Йети'
+            },
+            {
+                type: 'horns',
+                text: 'Все рогатые',
+                isQuest: true,
+                descr: 'Найти на карте<br>всех рогатых'
+            },
+            {
+                type: 'actually',
+                text: 'Я в деле',
+                isQuest: true,
+                descr: 'Найти на карте<br>всех, кто "в деле"'
+            },
+            {
                 type: 'pickpoint',
                 text: 'PickPoint',
                 isQuiz: true,
@@ -106,6 +130,7 @@
                 time: 120,
                 descrFrom: 'газеты «Спорт-Экспресс»'
             }
+            
         ];
         var keys = {};
         

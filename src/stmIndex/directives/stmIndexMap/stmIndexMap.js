@@ -64,7 +64,9 @@ angular.module('stmIndex').directive('stmIndexMap', ['$stmEnv', '$window', funct
             
             var backCss;
             var storedPosition;
-            var achievTooltips = {};
+            var achievTooltips = [];
+            var questCounts = {};
+            var questTotals = {};
             var preview = {};
             
             var drag;
@@ -72,31 +74,32 @@ angular.module('stmIndex').directive('stmIndexMap', ['$stmEnv', '$window', funct
             var inClick = true;
             var cancelHideQuiz = {};
             
+            $element.find('[data-quest]').each(function(){
+                var type = $(this).data('quest');
+                questTotals[type] = (questTotals[type] || 0) + 1;
+            });
+            
+            $scope.showQuest = function(e){
+                var el = $(e.target).closest('[data-quest]');
+                var type = el.data('quest');            
+                showTooltip(el, type, false, true);
+            }
             $scope.showQuiz = function(e, noToggle){
                 var el = $(e.target).closest('[data-quiz]');
-                var type = el.data('quiz');
-                var position = el.data('position');
-                var isBottom = !!el.data('bottom');
-                var key = el.data('key') || type;
-                $timeout.cancel(cancelHideQuiz[key]);
-                if(key in achievTooltips) {
-                    if(!noToggle) $scope.$broadcast('hidePopover-' + key);
-                    return;
-                };
-                addFoundedAchiev(key, type, position, isBottom);
-                /*
-                var mapPosition = $scope.position;
-                var posY = isBottom ? position[1] : backEl.height() - position[1];
-                $scope.position = {
-                    x: Math.min(position[0] - 80, Math.max(mapPosition.x, position[0] + 250 - viewEl.width())), 
-                    y: Math.min(posY - 150, Math.max(mapPosition.y, posY + 100 - viewEl.height()))
-                };
-                */
+                var type = el.data('quiz');            
+                showTooltip(el, type, noToggle);
             }
             $scope.closeQuizPopup = function(){
-                $scope.showQuizPopup = false;
+                $scope.showQuizPopup = false;              
             }
-            
+            $scope.closeQuestPopup = function(isManual){
+                if(isManual){
+                    $scope.$broadcast('closePopup-quest');
+                    return;
+                }
+                $scope.showQuestPopup = false;
+            }
+            $scope.showQuestPopup = false;
             $scope.isPreview = true;
             $scope.foundedAchievs = 0;
             $scope.totalAchievs = stmMapAchiev.total;
@@ -128,9 +131,9 @@ angular.module('stmIndex').directive('stmIndexMap', ['$stmEnv', '$window', funct
             $scope.outQuizTooltip = function(key){
                 hideQuizTimeout(key);
             }
-            $scope.hideQuiz = function(e){
-                var el = $(e.target).closest('[data-quiz]');
-                var type = el.data('quiz');
+            $scope.hideTooltip = function(e){
+                var el = $(e.target).closest('[data-quiz],[data-quest]');
+                var type = el.data('quiz') || el.data('quest');
                 var key = el.data('key') || type;
                 hideQuizTimeout(key);
             }
@@ -167,9 +170,10 @@ angular.module('stmIndex').directive('stmIndexMap', ['$stmEnv', '$window', funct
                 })                
             }
             $scope.$on('quizNext', function(){
-                $scope.showQuizPopup = false;
-            });     
+                $scope.$broadcast('closePopup-quiz');
+            });   
             $scope.$on('hidePopoverSuccess', function(e, id){
+                achievTooltips.splice(achievTooltips.indexOf(achievTooltips[id]), 1);
                 delete achievTooltips[id];
             });  
             $rootScope.$on('toolbarLogoClick', function(){
@@ -272,25 +276,59 @@ angular.module('stmIndex').directive('stmIndexMap', ['$stmEnv', '$window', funct
                 cancelHideQuiz[key] = $timeout(function(){
                     $scope.$broadcast('hidePopover-' + key);
                 }, 1500); 
-            }           
-            function addFoundedAchiev(key, type, position, isBottom){
+            } 
+            function showTooltip(el, type, noToggle, isPosMap){
+                if(inDrag) return;
+                var position = el.data('position');
+                var isBottom = !!el.data('bottom');
+                var key = el.data('key') || type;
+                $timeout.cancel(cancelHideQuiz[key]);
+                if(key in achievTooltips) {
+                    if(!noToggle) $scope.$broadcast('hidePopover-' + key);
+                    return;
+                };
                 var achiev = stmMapAchiev.getByType(type);
                 achiev.active = achiev.active || $stmEnv.achievs.indexOf('map.' + type) >= 0;
-                achievTooltips[key] = {
+                var count;
+                if(achiev.isQuest) { 
+                    var questCount = questCounts[type] = questCounts[type] || [];               
+                    if(questCount.indexOf(key) < 0) questCount.push(key);
+                    count = questCount.length;
+                    if(questCount.length == questTotals[type]) {
+                        if(!achiev.active) {
+                            achiev.add();
+                            $scope.showQuestPopup = achiev;
+                            return;
+                        }
+                    }
+                }
+                achievTooltips.push({
                     id: key,
                     achiev: achiev,
                     type: type,
                     isBottom: isBottom,
                     position: position,
                     time: achiev.time,
+                    count: count,
+                    total: questTotals[type],                    
                     closeQuizTooltip: function(){
                         $scope.$broadcast('hidePopover-' + key);
                     },
-                    onClick: function(){
+                    onClick: achiev.isQuiz ? function(){
                         showQuizPopup(type);
-                    }
-                };            
-            }
+                    } : null
+                });
+                achievTooltips[key] = achievTooltips[achievTooltips.length - 1];
+                if(isPosMap) {
+                    var mapPosition = $scope.position;
+                    var posY = isBottom ? position[1] : backEl.height() - position[1];
+                    $scope.position = {
+                        x: Math.min(position[0] - 80, Math.max(mapPosition.x, position[0] + 250 - viewEl.width())), 
+                        y: Math.min(posY - 150, Math.max(mapPosition.y, posY + 100 - viewEl.height()))
+                    };                
+                }                     
+                             
+            }          
             function removeMapTransition(){
                 previewConturEl.css('transition', 'none');
                 backEl.css('transition', 'none');
@@ -690,14 +728,14 @@ angular.module('stmIndex').directive('stmIndexMap', ['$stmEnv', '$window', funct
                 'cols': 7
             };
             $scope.item49 = {
-                'frames': 102,
+                'frames': 90,
                 'fps': 30,
                 'width': 60,
                 'height': 50,
                 'cols': 17
             };
             $scope.item50 = {
-                'frames': 75,
+                'frames': 74,
                 'fps': 30,
                 'width': 180,
                 'height': 120,
