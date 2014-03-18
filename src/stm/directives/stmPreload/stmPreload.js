@@ -97,9 +97,7 @@ angular.module('stm').directive('stmPreload', ['$compile', function($compile){
                         $scope.percent = 100;
                         isLoad = true;
                         $scope.$apply(function(){
-                            $animate.leave(maskEl, function(){
-                                $scope.$destroy();
-                            });
+                            $animate.leave(maskEl);
                             $element
                                 .css('overflow', $element.data('_overflow'));
                         /**
