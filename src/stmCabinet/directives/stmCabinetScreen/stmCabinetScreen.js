@@ -96,9 +96,12 @@ angular.module('stmCabinet').directive('stmCabinetScreen', function(){
             $scope.otherAchievs = stmOtherAchiev.getAll();  
             $scope.otherScore = 0;  
             
+            var bonus;
             for(var i=0;i<$scope.otherAchievs.length;i++){
+                bonus = $scope.otherAchievs[i].bonus;
                 if(!$scope.otherAchievs[i].active) continue;
-                $scope.otherScore += $scope.otherAchievs[i].bonus;
+                $scope.otherScore += bonus;
+                $scope.score += bonus;
             }
             
             $scope.authData = $stmAuth.data;
