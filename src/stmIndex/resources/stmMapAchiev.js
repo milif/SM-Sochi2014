@@ -60,14 +60,14 @@
                 time: 120,
                 descrFrom: 'магазина «Quelle»'
             }, 
-            /*
             { // Нет ачивки
                 type: 'proskeyter',
                 text: 'Proskeyter',
                 isQuiz: true,
                 time: 120
             },  
-            { // Нет ачивки
+            /*
+            { // Нет на карте
                 type: 'softkey',
                 text: 'Софткей',
                 isQuiz: true,

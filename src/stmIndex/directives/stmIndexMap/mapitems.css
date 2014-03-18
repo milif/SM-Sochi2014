@@ -798,6 +798,12 @@
 .b-tooltip__quiz.state_active .b-map__quiz-img.achiev_actually {
     background-position: -45px -269px;
 }
+.b-map__quiz-img.achiev_proskeyter {
+    background-position: -320px -319px;
+}
+.b-tooltip__quiz.state_active .b-map__quiz-img.achiev_proskeyter {
+    background-position: -368px -319px;
+}
  
 .b-tooltip__quiz {
     padding-top: 18px;

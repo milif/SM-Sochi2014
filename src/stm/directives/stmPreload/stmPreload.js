@@ -46,7 +46,7 @@
 angular.module('stm').directive('stmPreload', ['$compile', function($compile){    
 
     var $ = angular.element;
-    var tpl = $compile('<div ng-class="state" class="b-preload"><div class="__loader"></div></div>');
+    var tpl = $compile('<div ng-class="state" class="b-preload g-font"><div class="__loader"></div><div ng-if="showPercent" class="__percent">{{percent}}%</div></div>');
     
     return {
         scope: true,
@@ -55,7 +55,10 @@ angular.module('stm').directive('stmPreload', ['$compile', function($compile){
             var maskEl;
             var isLoad = true;
             var assets;
+            var count;
+            
             $scope.window = window;
+            $scope.showPercent = false;
             $attrs.$observe('stmPreload', function(attr){
                 assets = $scope.$eval(attr) || window._assets;
                 if(!assets || !isLoad) return;
@@ -63,6 +66,9 @@ angular.module('stm').directive('stmPreload', ['$compile', function($compile){
                 $timeout(function(){
                     if(!isLoad) $scope.state = "state_loading";
                 }, 500);
+                $timeout(function(){
+                    if(!isLoad) $scope.showPercent = true;
+                }, 1000);
                 tpl($scope, function(el){
                     $element.append(el);
                     maskEl = el;
@@ -75,7 +81,7 @@ angular.module('stm').directive('stmPreload', ['$compile', function($compile){
             });            
             function preload(){
                 var item;
-                var count = 0;
+                count = 0;
                 for(var i=0;i<assets.length;i++){
                     item = assets[i];
                     if(/\.(png|jpg|gif)\s*$/i.test(item)){
@@ -88,9 +94,12 @@ angular.module('stm').directive('stmPreload', ['$compile', function($compile){
                 }
                 function onload(){
                     if(count-- == 1) {
+                        $scope.percent = 100;
                         isLoad = true;
                         $scope.$apply(function(){
-                            $animate.leave(maskEl);
+                            $animate.leave(maskEl, function(){
+                                $scope.$destroy();
+                            });
                             $element
                                 .css('overflow', $element.data('_overflow'));
                         /**
@@ -104,6 +113,9 @@ angular.module('stm').directive('stmPreload', ['$compile', function($compile){
                            */                                
                             $scope.$emit('loaded');
                         });                            
+                    } else {    
+                        $scope.percent = Math.round((assets.length - count) / assets.length * 100);
+                        $scope.$digest();                        
                     }
                 }
             }

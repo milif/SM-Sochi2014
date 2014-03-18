@@ -119,6 +119,20 @@
     height: 85px;
 }
 
+.b-quiz-achive-item__h.mod_proskeyter {
+    background-position: -774px -771px;
+    display: inline-block;
+    width: 110px;
+    height: 85px;
+    left: -7px;
+}
+
+.b-quiz-achive-item__h.mod_proskeyter.state_active {
+    background-position: -891px -771px;
+    display: inline-block;
+    width: 110px;
+    height: 85px;
+}
 .b-quiz-achive-item__h.mod_yeti {
     background-position: -230px -770px;
     display: inline-block;
