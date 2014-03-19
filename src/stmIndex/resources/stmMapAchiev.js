@@ -150,9 +150,12 @@
         return stmMapAchiev;
         
         function setActive(data){
+            var count = 0;
             for(var i=0;i<achievs.length;i++){
                 achievs[i].active = data.indexOf('map.' + achievs[i].type) >= 0;
+                if(achievs[i].active) count++;
             }
+            return count;
         }
         function getAll(){
             return achievs;

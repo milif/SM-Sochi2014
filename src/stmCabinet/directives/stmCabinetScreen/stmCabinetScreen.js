@@ -74,17 +74,17 @@ angular.module('stmCabinet').directive('stmCabinetScreen', function(){
                 achievs = $$.copy($stmAchievs[gameType]);
                 for(var i=0;i<achievs.length;i++){
                     achievs[i].active = game.achievements.indexOf(achievs[i].type) >= 0;
+                    if(achievs[i].active) achievCount++;
                 }
                 gamesArr.push(game);
                 game.type = gameType;
                 game.achievs = achievs;
                 game.title = GAME_TITLES[gameType];
                 score += game.score;
-                achievCount += game.achievements.length;
             }
-            achievCount += $stmEnv.mapAchievs.length + $stmEnv.otherAchievs.length;
-            stmMapAchiev.setActive($stmEnv.mapAchievs);
-            stmOtherAchiev.setActive($stmEnv.otherAchievs);
+            
+            achievCount += stmMapAchiev.setActive($stmEnv.mapAchievs);
+            achievCount += stmOtherAchiev.setActive($stmEnv.otherAchievs);
             
             $scope.score = score;
             $scope.games = gamesArr;
