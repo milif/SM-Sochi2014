@@ -82,7 +82,7 @@ angular.module('stmCabinet').directive('stmCabinetScreen', function(){
                 score += game.score;
                 achievCount += game.achievements.length;
             }
-            
+            achievCount += $stmEnv.mapAchievs.length + $stmEnv.otherAchievs.length;
             stmMapAchiev.setActive($stmEnv.mapAchievs);
             stmOtherAchiev.setActive($stmEnv.otherAchievs);
             
