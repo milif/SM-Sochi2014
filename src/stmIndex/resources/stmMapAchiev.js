@@ -62,10 +62,10 @@
             }, 
             { // Нет ачивки
                 type: 'proskeyter',
-                text: 'Proskeyter',
+                text: 'Proskater',
                 isQuiz: true,
                 time: 120,
-                descrFrom: 'магазина «Proskeyter.ru»'
+                descrFrom: 'магазина «Proskater.ru»'
             },  
             /*
             { // Нет на карте
