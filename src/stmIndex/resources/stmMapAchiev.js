@@ -64,7 +64,8 @@
                 type: 'proskeyter',
                 text: 'Proskeyter',
                 isQuiz: true,
-                time: 120
+                time: 120,
+                descrFrom: 'магазина «Proskeyter.ru»'
             },  
             /*
             { // Нет на карте

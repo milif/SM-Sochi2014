@@ -52,6 +52,12 @@ angular.module('stmIndex').directive('stmIndexToolbar', function(){
             desc: "Говорят, Йети не любят фотографироваться.",
             icon: "asset/i/b-toolbar/yeti.png",
             url: "yeti/"
+        },
+        {
+            title: "Квест на карте",
+            desc: "Пройди все квесты на карте Сочных Игр.",
+            icon: "asset/i/b-toolbar/map.png",
+            url: "map/"
         }
     ];
     
