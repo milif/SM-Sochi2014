@@ -491,6 +491,9 @@
     color: #000;
     text-decoration: none;
 }
+.b-cabinet-game-top-title .__play {
+    font-size: 13px;
+}
 .b-cabinet-game-result {
     white-space: nowrap;
     font-size: 18px;
