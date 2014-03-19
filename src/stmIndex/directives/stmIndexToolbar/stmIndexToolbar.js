@@ -89,7 +89,9 @@ angular.module('stmIndex').directive('stmIndexToolbar', function(){
             }
             
             $scope.authData = $stmAuth.data; 
-            
+            $scope.clickSelfPage = function(){
+                window.location.reload();
+            }
             $scope.$watch(function(){
                 if($scope.isAuth) return;
                 $scope.isAuth = $stmAuth.isAuth;                            

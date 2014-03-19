@@ -49,7 +49,7 @@
                     <div class="b-toolbar-popup__list-title">{{item.title}}</div>
                     <div class="b-toolbar-popup__list-info" ng-bind-html="item.desc"></div>
                 </div>
-                <a href="{{item.url}}" class="b-toolbar-popup__list-link"></a>
+                <a href="{{item.url}}" ng-click="clickSelfPage()" class="b-toolbar-popup__list-link"></a>
             </div>
             <!--
             <div class="b-toolbar-popup__list-item b-toolbar-popup__list-item_style1 b-toolbar-popup__list-item  b-toolbar-popup__list-item_margin-top">
