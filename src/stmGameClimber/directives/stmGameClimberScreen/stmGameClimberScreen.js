@@ -210,12 +210,6 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                                     _down(step, true);
 
                                     timeInAir = new Date();
-                                    if(!ACHIVE_RESISTANCE.active && (timeInAir - lastTimeOnGround) > 180000) { // 180000 ms == 3 minutes
-                                        ACHIVE_RESISTANCE.active = true;
-                                        Achiev.save({
-                                            'key': 'climber.' + ACHIVE_RESISTANCE.type
-                                        });
-                                    }
                                 } else if ((e.keyCode == 37 || e.keyCode == 39) && position !== startPosition) { // "arrow left or right"
                                     if(e.keyCode == 37) { // if left
                                         manEl.addClass('flip-left');
@@ -784,6 +778,13 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                     }
 
                     function _update() {
+
+                        if(!ACHIVE_RESISTANCE.active && scope.score >= 300) { 
+                            ACHIVE_RESISTANCE.active = true;
+                            Achiev.save({
+                                'key': 'climber.' + ACHIVE_RESISTANCE.type
+                            });
+                        }
 
                         position = Math.min(Math.max(startPosition, position), endPosition);
 

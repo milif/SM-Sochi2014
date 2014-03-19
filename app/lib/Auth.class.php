@@ -53,7 +53,7 @@ class Auth {
                 $rs = DB::query("SELECT COUNT(*) cc FROM `user` WHERE ref_id = $refId");
                 if($ref[1] == 'sale'){
                     Achiev::add('other.friends', $refId);
-                } elseif($rs[0]['cc'] >= 4 ) {
+                } else {
                     Achiev::add($ref[1].'.'.'journalist', $refId);
                 }
             }

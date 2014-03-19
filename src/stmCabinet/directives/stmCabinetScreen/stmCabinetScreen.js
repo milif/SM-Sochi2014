@@ -95,6 +95,7 @@ angular.module('stmCabinet').directive('stmCabinetScreen', function(){
             $scope.quizAchievs = stmMapAchiev.getAll();   
             $scope.otherAchievs = stmOtherAchiev.getAll();  
             $scope.otherScore = 0;  
+            $scope.achievTotal = $stmAchievs.total + stmMapAchiev.total + stmOtherAchiev.total;
             
             var bonus;
             for(var i=0;i<$scope.otherAchievs.length;i++){

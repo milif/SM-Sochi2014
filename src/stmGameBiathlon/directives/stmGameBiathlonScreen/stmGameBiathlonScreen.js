@@ -120,8 +120,8 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', ['$compile'
     var METERS_IRONNERVES = 5000; // Когда давайть ачив Железные нервы
     var METERS_LIONHEART = 10; // Как надо сблизится с Ети для ачива Храбрец
     var COUNT_LIONHEART = 5; // Сколько раз надо сблизится с Ети для ачива Храбрец
-    var TIME_LASTHERO = 15; // Сколько минут надо продержаться в игре для ачива Последний герой
-    var COUNT_STARHOOTER = 100; // Сколько мишеней надо поразить для ачива Звездный стрелок
+    var METERS_LASTHERO = 15000; // Сколько метров надо проехать для ачива Последний герой
+    var SCORE_STARHOOTER = 5000; // Сколько баллов надо заработать для ачива Звездный стрелок
     
     var framesTpl;
         
@@ -639,7 +639,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', ['$compile'
                         ACHIVE_LOIN._in = false;
                     }                
                 }
-                if(!ACHIVE_LASTHERO.active && time - gameTime > TIME_LASTHERO * 60000){
+                if(!ACHIVE_LASTHERO.active && (men.x - startX) / PIXEL_IN_METER > METERS_LASTHERO){
                     saveAchiev(ACHIVE_LASTHERO);                  
                 }
                 
@@ -741,7 +741,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', ['$compile'
                 }
                 if(!find) return;
                 targetsShoots++;
-                if(!ACHIVE_STARHOOTER.active && targetsShoots >= COUNT_STARHOOTER ){
+                if(!ACHIVE_STARHOOTER.active && $scope.score >= SCORE_STARHOOTER ){
                     saveAchiev(ACHIVE_STARHOOTER);                
                 }                                
                 isShootingHelp = false;

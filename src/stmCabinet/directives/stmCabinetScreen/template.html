@@ -18,7 +18,7 @@
                 <div class="b-cabinet-result-top">
                     <div class="b-cabinet-result-column">
                         <div class="b-cabinet-result-count">
-                            {{achievCount}}<span class="b-cabinet-result-count-h">/14</span>
+                            {{achievCount}}<span class="b-cabinet-result-count-h">/{{achievTotal}}</span>
                         </div>
                         <div class="b-cabinet-result-hint">трофеев</div>
                     </div>
@@ -147,7 +147,7 @@
                 
                 <div class="b-cabinet-game">
                     <div class="b-cabinet-game-top">
-                        <div class="b-cabinet-game-top-title"><a href="{{game.type}}/" class="__a">{{game.title}}</a><!--<span class="b-cabinet-game-q"></span>--></div>
+                        <div class="b-cabinet-game-top-title"><a href="{{game.type}}/" class="__a">{{game.title}}</a> &mdash; <a href="{{game.type}}/">играть</a><!--<span class="b-cabinet-game-q"></span>--></div>
                         <div class="b-cabinet-game-result"><span class="b-cabinet-game-s"></span>{{game.score | stmNumber}}</div>
                     </div>                                    
                     <div class="b-cabinet-game-line">
@@ -158,7 +158,7 @@
             <div class="b-cabinet-main-content">                
                 <div class="b-cabinet-game">
                     <div class="b-cabinet-game-top mod_noscore">
-                        <div class="b-cabinet-game-top-title"><a href="map/" class="__a">Квест на карте</a><!--<span class="b-cabinet-game-q"></span>--></div>
+                        <div class="b-cabinet-game-top-title"><a href="map/" class="__a">Квест на карте</a> &mdash; <a href="map/">начать квест</a><!--<span class="b-cabinet-game-q"></span>--></div>
                     </div>                                    
                     <div class="b-cabinet-game-line mod_nodescription">
                         <div ng-repeat="achiev in quizAchievs" class="b-quiz-achive __quiz-achiev">
@@ -166,26 +166,16 @@
                                 <div ng-class="'mod_' + achiev.type + (achiev.active ? ' state_active' : '')" class="b-quiz-achive-item__h"></div>
                             </div>
                             <div class="b-quiz-achive-note ng-binding">{{achiev.text}}<div ng-if="achiev.isQuest" class="__achiev-comment" ng-bind-html="achiev.descr"></div><div ng-if="achiev.isQuiz" class="__achiev-comment">Найдите и ответьте<br>на 3 вопроса<br> {{achiev.descrFrom}}</div></div>
-                        </div>                                      
-                    </div>
-                </div>
-            </div>
-            <div class="b-cabinet-main-content">                
-                <div class="b-cabinet-game">
-                    <div class="b-cabinet-game-top">
-                        <div class="b-cabinet-game-top-title">Другие достижения<!--<span class="b-cabinet-game-q"></span>--></div>
-                        <div class="b-cabinet-game-result"><span class="b-cabinet-game-s"></span>{{otherScore | stmNumber}}</div>
-                    </div>                                    
-                    <div class="b-cabinet-game-line mod_nodescription">
+                        </div>  
                         <div ng-repeat="achiev in otherAchievs" class="b-quiz-achive __quiz-achiev">
                             <div class="b-quiz-achive-item">
                                 <div ng-class="'mod_' + achiev.type + (achiev.active ? ' state_active' : '')" class="b-quiz-achive-item__h"></div>
                             </div>
                             <div class="b-quiz-achive-note ng-binding">{{achiev.text}}<div class="__achiev-comment" ng-bind-html="achiev.descrFrom"></div></div>
-                        </div>                                      
+                        </div>                                                             
                     </div>
                 </div>
-            </div>                       
+            </div>                      
         </div>
         <div class="b-cabinet-footer">
             <!--<div class="b-cabinet-footer-title">Больше цвета — ближе победа</div>-->

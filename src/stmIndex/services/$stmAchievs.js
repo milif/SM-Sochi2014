@@ -12,43 +12,38 @@
 
 angular.module('stmIndex').factory('$stmAchievs', [function(){ 
                     
-    var JOURNALIST_TEXT = 'Расскажи друзьям об игре через социальные сети.<br>Необходимо, чтобы по вашей ссылке зарегистрировалось не менее 5 друзей.';
+    var JOURNALIST_TEXT = 'Расскажи друзьям об игре через социальные сети.<br>Собери самую большую команду и получи специальный приз Игры.';
 
     var $stmAchievs = {
         'biathlon': [
             {
-                type: 'journalist',
-                text: 'Журналист',
-                descr: JOURNALIST_TEXT
+                type: 'lasthero',
+                text: 'Последний герой',
+                descr: 'Необходимо проехать не менее 15 км.'          
             },
             {
-                type: 'ironnerves',
-                text: 'Железные нервы',
-                descr: 'Необходимо проехать более 5 км.'          
+                type: 'starshooter',
+                text: 'Звездный стрелок',
+                descr: 'Необходимо заработать не менее 5000 баллов.'         
             },
             {
                 type: 'lionheart',
                 text: 'Храбрец',
                 count: 0,
                 descr: 'Необходимо 5 раз сблизиться с йети менее чем на 10 метров,<br>не дав себя поймать.'        
-            },
+            },                    
             {
-                type: 'lasthero',
-                text: 'Последний герой',
-                descr: 'Необходимо продержаться в игре не менее 15 минут.'          
+                type: 'ironnerves',
+                text: 'Железные нервы',
+                descr: 'Необходимо проехать более 5 км.'          
             },
-            {
-                type: 'starshooter',
-                text: 'Звездный стрелок',
-                descr: 'Необходимо поразить не менее 100 мишений.'         
-            }                  
-        ],
-        'yeti': [
             {
                 type: 'journalist',
                 text: 'Журналист',
                 descr: JOURNALIST_TEXT
-            },    
+            }                           
+        ],
+        'yeti': [   
             {
                 type: 'amongstrangers',
                 text: 'Свой среди чужих',
@@ -66,43 +61,51 @@ angular.module('stmIndex').factory('$stmAchievs', [function(){
                 text: 'All Inclusive',
                 count: 0,
                 descr: 'Необходимо сфотографировать всех животных за одну попытку игры.'
-            }
-        ],
-        'climber': [
+            },
             {
                 type: 'journalist',
                 text: 'Журналист',
                 descr: JOURNALIST_TEXT
-            },
-            {
-                type: 'resistance',
-                text: 'За стойкость',
-                descr: 'Продержись не менее 3х минут на канате.'
-            },
+            }            
+        ],
+        'climber': [
             {
                 type: 'pioneer',
                 text: 'Первопроходец',
                 descr: 'Необходимо покорить вершину хотя бы один раз.'
-            },
+            },       
+            {
+                type: 'resistance',
+                text: 'За стойкость',
+                descr: 'Набери 300 баллов за одну попытку.'
+            },  
             {
                 type: 'amateurfauna',
                 text: 'Любитель фауны',
                 descr: 'Необходимо слазить 5 раз от одного барана до другого<br>в рамках одной попытки.'
-            },
+            },                       
             {
                 type: 'kingofhill',
                 text: 'Царь горы',
                 descr: 'Необходимо совершить 10 успешных восхождений.'
-            }    
+            },           
+            {
+                type: 'journalist',
+                text: 'Журналист',
+                descr: JOURNALIST_TEXT
+            }   
         ]
     };
+    var total = 0;
     for(var type in $stmAchievs){
         var achievs = $stmAchievs[type];
         var keys = achievs.keys = {};
         for(var i=0;i<achievs.length;i++){
             keys[achievs[i].type] = achievs[i];
+            total++;
         }
     }
+    $stmAchievs.total = total;
     return $stmAchievs;
 
 }]);
