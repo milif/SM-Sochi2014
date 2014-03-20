@@ -60,7 +60,19 @@ module.exports = function(grunt) {
                 includeTemplates: [
                     '*'
                 ]
-            },                
+            },   
+            {  
+                name: 'stmIndexUnsubscribe', //  Package name
+                module: 'stmIndex', // Module name
+                include: [        // Include module components:
+                    'directive:stmIndexUnsubscribe',
+                    'stm.directive:stmPreload'
+                ],
+                includeAsset: true,
+                includeTemplates: [
+                    '*'
+                ]
+            },                         
             {  
                 name: 'stmIndexSale', //  Package name
                 module: 'stmIndex', // Module name

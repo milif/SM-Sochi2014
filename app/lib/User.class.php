@@ -7,6 +7,8 @@ require_once __DIR__.'/Cache.class.php';
 class User {
     const CONFIRM_ERROR = 'Ошибка при подтверждении адреса электронной почты.';
     const CONFIRM_ERROR_HAS = 'Данный аккаунт уже зарегистрирован.';
+    const UNSUBSCRIBE_ERROR = 'Ошибка при отписке.';
+    const UNSUBSCRIBE_ERROR_HAS = 'Е-mail %s уже отписан от рассылки.';
     static public function getFriendsCount(){
         if(CLIENT_ID == 0) return 0;
         $key = 'friends.'.CLIENT_ID;
@@ -82,9 +84,20 @@ class User {
         DB::query("UPDATE `user` SET `is_confirmed` = 1 WHERE `id` = ".$rs[0]['id']);
         return true;
     }
+    static public function unsubscribe($refKey, $checkHash){
+        $rs = DB::query("SELECT id, is_subscribe, email FROM `user` WHERE `ref_key` = :refKey", array(':refKey' => $refKey));
+        if(!count($rs) || md5($rs[0]['id'].'unsubscribe') != $checkHash) return self::UNSUBSCRIBE_ERROR;
+        if($rs[0]['is_subscribe'] == 0) return sprintf(self::UNSUBSCRIBE_ERROR_HAS, $rs[0]['email']);
+        DB::query("UPDATE `user` SET `is_subscribe` = 0 WHERE `id` = ".$rs[0]['id']);
+        return true;
+    }
     static public function getPartnerByKey($key){
         $rs = DB::query("SELECT `partner_ref`, `partner_subref` FROM `user` WHERE `ref_key` = :key;", array(':key' => $key));
         return count($rs) > 0 ? array($rs[0]['partner_ref'], $rs[0]['partner_subref']) : null;
+    }
+    static public function getEmailByKey($key){
+        $rs = DB::query("SELECT `email` FROM `user` WHERE `ref_key` = :key;", array(':key' => $key));
+        return count($rs) > 0 ? $rs[0]['email'] : null;
     }
     static public function save($data){
         if(CLIENT_ID == 0) return false;
