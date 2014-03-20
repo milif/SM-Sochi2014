@@ -39,7 +39,9 @@ angular.module('stmIndex').directive('stmIndexBonusPopup', function(){
         'dpd': 'Спасибо за упорство от DPD!',
         'mnogo': 'от Много.ру!',
         'sber': 'Спасибо за упорство от Сбербанка!',
-        'qiwi': 'от Qiwi Wallet!'
+        'qiwi': 'от Qiwi Wallet!',
+        'proskater': 'от интернет-скейтшопа Proskater.ru!',
+        'quelle': 'от интернет-магазина QUELLE!'
     }
     return {
         scope: true,
@@ -169,7 +171,25 @@ angular.module('stmIndex').factory('$stmBonus', [function(){
             put: putFactory(function(score){
                 return 10;
             })
-        }                 
+        },
+        {
+            type: 'proskater',
+            hasAvailable: hasAvailableFactory(function(score){
+                return true;
+            }),
+            put: putFactory(function(score){
+                return 15;
+            })
+        },
+        {
+            type: 'quelle',
+            hasAvailable: hasAvailableFactory(function(score){
+                return true;
+            }),
+            put: putFactory(function(score){
+                return 15;
+            })
+        }             
     ];
     for(var i=0;i<TYPES.length;i++){
         TYPES['_' + TYPES[i].type] = TYPES[i];

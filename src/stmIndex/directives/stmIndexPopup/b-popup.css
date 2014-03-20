@@ -285,6 +285,12 @@ a.back-map {
 .b-slide-result-item.mod_qiwi .b-slide-result-icon {
     background-position: -2px -188px;
 }
+.b-slide-result-item.mod_proskater .b-slide-result-icon {
+    background-position: -103px -188px;
+}
+.b-slide-result-item.mod_quelle .b-slide-result-icon {
+    background-position: -197px -187px;
+}
 .b-slide-result-text {
     color: #000;
     font-size: 21px;

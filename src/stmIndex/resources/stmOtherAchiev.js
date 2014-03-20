@@ -25,7 +25,7 @@
             {
                 type: 'friends',
                 text: 'Друганы',
-                bonus: 500,
+                bonus: 100,
                 descrFrom: 'Расскажи о Сочных Играх друзьям'
             }
         ];

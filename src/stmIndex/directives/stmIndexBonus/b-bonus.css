@@ -35,6 +35,12 @@
 .b-bonus-qiwi {
   background-position: -86px -85px;
 }
+.b-bonus-proskater {
+  background-position: -5px -172px;
+}
+.b-bonus-quelle {
+  background-position: -86px -171px;
+}
 
 .b-bonus.ng-leave {
   -webkit-transition: 0.5s ease-out all;

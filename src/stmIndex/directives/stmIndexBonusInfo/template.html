@@ -24,6 +24,18 @@
                                 <div class="b-slide-result-text">500</div>
                             </div> 
                         </div>
+                        <div ng-if="isProskater" class="b-popup-tabs_item">
+                            <div class="b-slide-result-item mod_proskater">
+                                <div class="b-slide-result-icon"></div>
+                                <div class="b-slide-result-text">975</div>
+                            </div> 
+                        </div>
+                        <div ng-if="isQuelle" class="b-popup-tabs_item">
+                            <div class="b-slide-result-item mod_quelle">
+                                <div class="b-slide-result-icon"></div>
+                                <div class="b-slide-result-text">480</div>
+                            </div> 
+                        </div>
                     </div>
                     <div class="b-popup-tab-content">
                          Бонусы от Много.ру. Каждая банка &mdash; 25 бонусов.<br>Необходимо собрать 40 банок, чтобы получить 1000 бонусов на свою бонусную карту!
@@ -39,6 +51,12 @@
                     </div>
                     <div class="b-popup-tab-content">
                          Бонусы от Qiwi Wallet. Каждая птичка &mdash; 20 бонусов.<br>Неоходимо собрать не менее 25 птичек, чтобы получить скидку на заказ<br> при оплате через кошелек Qiwi.
+                    </div>
+                    <div ng-if="isProskater" class="b-popup-tab-content">
+                         Бонусы от Proskater.ru. Каждый скейт &mdash; 15 бонусов.<br>Неоходимо собрать не менее 65 скейтов, чтобы получить сертификат на скидку в 1000р.<br>от интернет-скейтшопа Proskater.ru.
+                    </div>
+                    <div ng-if="isQuelle" class="b-popup-tab-content">
+                         Бонусы от QUELLE. Каждый джемпер  - 15 бонусов.<br>Необходимо собрать не менее 32 джемперов, чтобы получить сертификат<br>на скидку в 500р.от интернет-магазина QUELLE.
                     </div>
 </div>
 

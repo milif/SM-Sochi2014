@@ -94,7 +94,8 @@ angular.module('stmCabinet').directive('stmCabinetScreen', function(){
             
             $scope.quizAchievs = stmMapAchiev.getAll();   
             $scope.otherAchievs = stmOtherAchiev.getAll();  
-            $scope.otherScore = 0;  
+            $scope.otherScore = 0;
+            $scope.mapScore = 0;  
             $scope.achievTotal = $stmAchievs.total + stmMapAchiev.total + stmOtherAchiev.total;
             
             var bonus;
@@ -102,6 +103,12 @@ angular.module('stmCabinet').directive('stmCabinetScreen', function(){
                 bonus = $scope.otherAchievs[i].bonus;
                 if(!$scope.otherAchievs[i].active) continue;
                 $scope.otherScore += bonus;
+                $scope.score += bonus;
+            }
+            for(var i=0;i<$scope.quizAchievs.length;i++){
+                bonus = $scope.quizAchievs[i].bonus;
+                if(!$scope.quizAchievs[i].active) continue;
+                $scope.mapScore += bonus;
                 $scope.score += bonus;
             }
             

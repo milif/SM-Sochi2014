@@ -75,6 +75,7 @@
     top: 1000px;
     width: 116px;
     height: 134px;
+    cursor: pointer;
     background: url("asset/i/b-gameMap/paper_boy_sheet_8x9.png") 0 0 no-repeat;
 }
 
@@ -115,6 +116,7 @@
     top: 620px;
     width: 134px;
     height: 136px;
+    cursor: pointer;
     background: url("asset/i/b-gameMap/deer_sheet_7x3.png") 0 0 no-repeat;
 }
 
@@ -187,6 +189,7 @@
     top: 2500px;
     width: 128px;
     height: 124px;
+    cursor: pointer;
     background: url("asset/i/b-gameMap/ram2_sheet_8x5.png") 0 0 no-repeat;
 }
 
@@ -203,6 +206,7 @@
     top: 1565px;
     width: 154px;
     height: 172px;
+    cursor: pointer;
     background: url("asset/i/b-gameMap/skater_dude2_sheet_6x15.png") 0 0 no-repeat;
 }
 
@@ -211,6 +215,7 @@
     top: 1770px;
     width: 130px;
     height: 183px;
+    cursor: pointer;
     background: url("asset/i/b-gameMap/skater_dude3_sheet_7x3.png") 0 0 no-repeat;
 }
 .b-game-item30 {
@@ -351,6 +356,7 @@
     top: 1817px;
     width: 60px;
     height: 50px;
+    cursor: pointer;
     background: url("asset/i/b-gameMap/black_friday5_sheet_17x6.png") 0 0 no-repeat;
 }
 .b-game-item50 {
@@ -358,6 +364,7 @@
     top: 1169px;
     width: 180px;
     height: 120px;
+    cursor: pointer;
     background: url("asset/i/b-gameMap/black_friday_4_sheet_5x15.png") 0 0 no-repeat;
 }
 .b-game-item51 {
@@ -531,6 +538,7 @@
 .b-map-place {
     position: absolute;
     z-index: 11;
+    cursor: pointer;
 }
 .b-map-place.mod_wanted {
     width: 55px;

@@ -26,24 +26,28 @@
                 type: 'yetiwanted',
                 text: 'Плакат Йети',
                 isQuest: true,
+                bonus: 100,
                 descr: 'Найти на карте<br>все плакаты Йети'
             },
             {
                 type: 'yeti',
                 text: 'Сыщик Йети',
                 isQuest: true,
+                bonus: 100,
                 descr: 'Найти на карте<br>всех Йети'
             },
             {
                 type: 'horns',
                 text: 'Все рогатые',
                 isQuest: true,
+                bonus: 100,
                 descr: 'Найти на карте<br>всех рогатых'
             },
             {
                 type: 'actually',
                 text: 'Я в деле',
                 isQuest: true,
+                bonus: 100,
                 descr: 'Найти на карте<br>всех, кто "в деле"'
             },
             {
@@ -51,6 +55,7 @@
                 text: 'PickPoint',
                 isQuiz: true,
                 time: 120,
+                bonus: 150,
                 descrFrom: '«PickPoint»'
             },
             {
@@ -58,6 +63,7 @@
                 text: 'Quelle',
                 isQuiz: true,
                 time: 120,
+                bonus: 200,
                 descrFrom: 'магазина «Quelle»'
             }, 
             { // Нет ачивки
@@ -65,6 +71,7 @@
                 text: 'Proskater',
                 isQuiz: true,
                 time: 120,
+                bonus: 200,
                 descrFrom: 'магазина «Proskater.ru»'
             },  
             /*
@@ -80,6 +87,7 @@
                 text: 'Пещера Страха',
                 isQuiz: true,
                 time: 120,
+                bonus: 300,
                 descrFrom: 'Всеволода Страха'
             },
             {
@@ -87,6 +95,7 @@
                 text: 'Maxim',
                 isQuiz: true,
                 time: 120,
+                bonus: 100,
                 descrFrom: 'журнала «Maxim»'
             },
             {
@@ -94,6 +103,7 @@
                 text: 'Сотмаркет',
                 isQuiz: true,
                 time: 120,
+                bonus: 200,
                 descrFrom: 'магазина «Сотмаркет»'
             },            
             {
@@ -101,6 +111,7 @@
                 text: 'DPD',
                 isQuiz: true,
                 time: 120,
+                bonus: 150,
                 descrFrom: '«DPD»'
             },            
             {
@@ -108,6 +119,7 @@
                 text: 'Groupon',
                 isQuiz: true,
                 time: 120,
+                bonus: 150,
                 descrFrom: '«Groupon»'
             },
             {
@@ -115,6 +127,7 @@
                 text: 'Вопрос от Qiwi',
                 isQuiz: true,
                 time: 120,
+                bonus: 200,
                 descrFrom: '«Qiwi Wallet»'
             },
             {
@@ -122,6 +135,7 @@
                 text: 'Mnogo.ru',
                 isQuiz: true,
                 time: 120,
+                bonus: 150,
                 descrFrom: 'клуба «Много.ру»'
             },
             {
@@ -129,6 +143,7 @@
                 text: 'СпортЭкспресс',
                 isQuiz: true,
                 time: 120,
+                bonus: 150,
                 descrFrom: 'газеты «Спорт-Экспресс»'
             }
             

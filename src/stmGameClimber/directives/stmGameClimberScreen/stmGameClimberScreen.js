@@ -43,7 +43,7 @@
  */
 angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '$interval', '$document', '$window', 'Game', 'Achiev', '$stmBonus', '$stmAchievs', function($timeout, $interval, $document, $window, Game, Achiev, $stmBonus, $stmAchievs){
 
-    var BONUS_TYPES = ['mnogo', 'sber', 'qiwi', 'pickpoint']; 
+    var BONUS_TYPES = ['mnogo', 'sber', 'qiwi', 'pickpoint', 'quelle']; 
 
     var achievs = $stmAchievs.climber;
     var ACHIVE_JOURNALIST = achievs.keys.journalist;
@@ -577,10 +577,10 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                                 scope.showGamePopup = true;
                             }, 700);
                                                    
-                            var achieves = angular.copy(ACHIEVEMENTS);
-                            for(var i=0;i<achieves.length;i++){
-                                if(bestGame.achievements && bestGame.achievements.indexOf(achieves[i].type) >= 0) {
-                                    achieves[i].active = true;
+                            
+                            for(var i=0;i<achievs.length;i++){
+                                if(bestGame.achievements && bestGame.achievements.indexOf(achievs[i].type) >= 0) {
+                                    achievs[i].active = true;
                                 }
                             }
                             var items = [];
@@ -598,7 +598,7 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                                     score: bestGame.score,
                                     items: items
                                 },
-                                achievements: achieves
+                                achievements: achievs
                             });              
                         });                        
                     }

@@ -33,6 +33,8 @@ angular.module('stmIndex').directive('stmIndexBonusInfo', [function(){
         controller: ['$attrs', '$scope', function($attrs, $scope){
             $scope.isDPD = 'dpd' in $attrs;
             $scope.isPickpoint = 'pickpoint' in $attrs;
+            $scope.isQuelle = 'quelle' in $attrs;
+            $scope.isProskater = 'proskater' in $attrs;
         }]
     };
 }]);

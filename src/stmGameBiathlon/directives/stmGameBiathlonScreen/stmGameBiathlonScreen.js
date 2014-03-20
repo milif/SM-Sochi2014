@@ -74,7 +74,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', ['$compile'
     var JUMP_HEIGHT = 100; // Высота прыжка (px)
     var BONUS_SUMM = 50; // Сколько прибавлять очков 
     //var BONUSES_COUNT = 50; // Число бонусов на игру   
-    var BONUS_TYPES = ['mnogo', 'sber', 'qiwi', 'dpd']; 
+    var BONUS_TYPES = ['mnogo', 'sber', 'qiwi', 'dpd', 'proskater']; 
     var BONUSES_DISTANCE = 1000; // Оптимальное расстояние между бонусами 
     var BONUS_JUMP = { // Надо подпрыгнуть
         y: JUMP_HEIGHT + 75,
@@ -657,10 +657,9 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', ['$compile'
                         score: scoreDetails
                     }
                 }, function(){
-                    var achieves = angular.copy(ACHIEVEMENTS);
-                    for(var i=0;i<achieves.length;i++){
-                        if(bestGame.achievements.indexOf(achieves[i].type) >= 0) {
-                            achieves[i].active = true;
+                    for(var i=0;i<achievs.length;i++){
+                        if(bestGame.achievements.indexOf(achievs[i].type) >= 0) {
+                            achievs[i].active = true;
                         }
                     }
                     var items = [];
@@ -678,7 +677,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', ['$compile'
                             score: bestGame.score,
                             items: items
                         },
-                        achievements: achieves
+                        achievements: achievs
                     });             
                 });                                                   
             
