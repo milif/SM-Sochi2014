@@ -8,7 +8,7 @@ class User {
     const CONFIRM_ERROR = 'Ошибка при подтверждении адреса электронной почты.';
     const CONFIRM_ERROR_HAS = 'Данный аккаунт уже зарегистрирован.';
     const UNSUBSCRIBE_ERROR = 'Ошибка при отписке.';
-    const UNSUBSCRIBE_ERROR_HAS = 'Е-mail %s уже отписан от рассылки.';
+    const UNSUBSCRIBE_ERROR_HAS = 'Адрес <b>%s</b> уже отписан от всех рассылок.';
     static public function getFriendsCount(){
         if(CLIENT_ID == 0) return 0;
         $key = 'friends.'.CLIENT_ID;

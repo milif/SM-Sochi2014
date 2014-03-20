@@ -2,7 +2,7 @@
     require __DIR__.'/../../lib/User.class.php';
     $unsubscribe = User::unsubscribe($_GET['i'], $_GET['h']);
     $ENV = array(
-        'unsubscribeMsg' => $unsubscribe === true ? 'E-mail '.User::getEmailByKey($_GET['i']).' успешно отписан от рассылки.' : $unsubscribe
+        'unsubscribeMsg' => $unsubscribe === true ? 'Адрес <b>'.User::getEmailByKey($_GET['i']).'</b> отписан от всех рассылок.' : $unsubscribe
     );
     require __DIR__.'/../../lib/init.php'; ?><!doctype html>
 <html ng-app="stmIndex" lang="ru">
