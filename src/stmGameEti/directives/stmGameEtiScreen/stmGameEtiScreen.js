@@ -502,10 +502,9 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                         $scope.showGamePopup = true;                
                     }, 700);
                     
-                    var achieves = angular.copy(ACHIEVEMENTS);
-                    for(var i=0;i<achieves.length;i++){
-                        if(bestGame.achievements.indexOf(achieves[i].type) >= 0) {
-                            achieves[i].active = true;
+                    for(var i=0;i<achievs.length;i++){
+                        if(bestGame.achievements.indexOf(achievs[i].type) >= 0) {
+                            achievs[i].active = true;
                         }
                     }
                     $scope.gameData = angular.extend(bestGame, {
@@ -514,7 +513,7 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                         best: {
                             score: bestGame.score
                         },
-                        achievements: achieves
+                        achievements: achievs
                     });                    
                 });
             }

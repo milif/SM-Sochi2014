@@ -52,6 +52,7 @@
     top: 585px;
     width: 170px;
     height: 180px;
+    cursor: pointer;
     background: url("asset/i/b-gameMap/yeti1_sheet_6x5.png") 0 0 no-repeat;
 }
 .b-game-item9 {
