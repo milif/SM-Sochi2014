@@ -1033,18 +1033,27 @@
 }
 /* Banners */
 /*==========================================================*/
-.b-map-banners {
+.b-map-slider {
     position: absolute;
-    display: block;
-    z-index: 10;
-    background: url(asset/i/b-gameMap/banners.png) no-repeat;
-}
-.b-map-banners.mod_sportexpress {
+    z-index: 10;    
     width: 194px;
     height: 116px;
     left: 3088px;
-    top: 2542px;  
+    top: 2542px;     
+}
+.b-map-banners {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: url(asset/i/b-gameMap/banners.png) no-repeat;
+}
+.b-map-banners.mod_sportexpress {
     background-position: 10px 25px;  
+}
+.b-map-banners.mod_quelle {
+    background-position: 0px 0px;  
 }
 .b-map-banners.mod_sportexpress-small {
     width: 123px;

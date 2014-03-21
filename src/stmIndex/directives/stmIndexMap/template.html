@@ -172,8 +172,11 @@
     <div class="b-map-decor mod_tree2"></div>
     <div class="b-map-place mod_wanted" data-quest="yetiwanted" data-key="yw2" data-position="[2990, 2468]" ng-click="showQuest($event)" ng-mouseleave="hideTooltip($event)"></div>
     <div class="b-map-place mod_wanted1" data-quest="yetiwanted" data-key="yw3" data-position="[2564, 812]" ng-click="showQuest($event)" ng-mouseleave="hideTooltip($event)"></div>
-    <div class="b-map-place mod_wanted2" data-quest="yetiwanted" data-key="yw4" data-position="[3401, 1088]" ng-click="showQuest($event)" ng-mouseleave="hideTooltip($event)"></div>   
-    <a href="http://www.sotmarket.ru/partner/sport_express" class="b-map-banners mod_sportexpress" target="_blank"></a>
+    <div class="b-map-place mod_wanted2" data-quest="yetiwanted" data-key="yw4" data-position="[3401, 1088]" ng-click="showQuest($event)" ng-mouseleave="hideTooltip($event)"></div>
+    <div data-slider class="b-map-slider">
+        <a href="http://www.sotmarket.ru/partner/sport_express" class="b-map-banners mod_sportexpress" target="_blank"></a>
+        <!--<a href="http://www.sotmarket.ru/partner/sport_express" class="b-map-banners mod_quelle" target="_blank"></a>-->
+    </div>
     <a href="http://www.sotmarket.ru/partner/sport_express" class="b-map-banners mod_sportexpress-small" target="_blank"></a>
     <div ng-repeat="item in achievTooltips" stm-index-popover="{{item.id}}" popover-type="{{item.isBottom ? 'bottom' :'top'}}" position="item.position">
         <div ng-mouseenter="enterQuizTooltip(item.id)" ng-mouseleave="outQuizTooltip(item.id)" stm-index-tooltip closable="item.closeQuizTooltip" position="{{item.isBottom ? 'top_left' :'bottom_left'}}" style="width: auto;">

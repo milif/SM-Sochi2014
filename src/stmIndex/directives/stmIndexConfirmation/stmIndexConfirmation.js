@@ -42,6 +42,7 @@ angular.module('stmIndex').directive('stmIndexConfirmation', function(){
             if($stmEnv.am15) {
                 $http.jsonp('//am15.net/pixel.php?f=js&rid=47701');
             }
+            if(/noredirect=1/.test($location.url())) return;
             var endTime = new Date().getTime() + 12000;
             var cancelTimer = $interval(function(){
                 var diffTime = endTime - new Date().getTime();
