@@ -29,7 +29,7 @@
     text-indent: -9999px;
     margin: 0 auto 8px auto;
 }
-.sochiprice-title {
+.sochiprice-title-top {
     font-size: 24px;
     margin-bottom: 30px;
 }
@@ -69,10 +69,12 @@
     z-index: 100;
     background-color: #fff;
     color: #000;
+    cursor: default;
     border-top: 3px solid #f63461;
 }
 .sochiprice-menu__item.state_active a.sochiprice-menu__item-link {
-    color: #000;
+    color: #000 !important;
+    cursor: default;
 }
 
 a.sochiprice-menu__item-link {
