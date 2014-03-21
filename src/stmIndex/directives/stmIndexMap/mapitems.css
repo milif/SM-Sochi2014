@@ -1041,24 +1041,59 @@
     left: 3088px;
     top: 2542px;     
 }
+.b-map-slider.mod_small {
+    position: absolute;
+    z-index: 10;    
+    width: 123px;
+    height: 60px;
+    left: 2309px;
+    top: 403px;    
+}
+.b-map-slider .__decor {
+    position: absolute;
+    z-index: 999;    
+    width: 58px;
+    height: 27px;
+    left: 0px;
+    top: 91px;
+    background: url(asset/i/b-gameMap/banners.png) -242px -1px no-repeat;
+}
+.b-map-slider .__decor.mod_right{   
+    width: 28px;
+    height: 32px;
+    left: 168px;
+    top: 87px;
+    background-position: -270px -35px;
+}
 .b-map-banners {
     position: absolute;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background: url(asset/i/b-gameMap/banners.png) no-repeat;
+    background: #fff url(asset/i/b-gameMap/banners.png) no-repeat;
 }
 .b-map-banners.mod_sportexpress {
     background-position: 10px 25px;  
 }
-.b-map-banners.mod_quelle {
-    background-position: 0px 0px;  
+.b-map-banners.mod_dpd {
+    background-position: 0px -161px; 
+}
+.b-map-banners.mod_qiwi {
+    background-position: 0px -339px;
+}
+.b-map-banners.mod_pickpoint {
+    background-position: 0px -517px;
 }
 .b-map-banners.mod_sportexpress-small {
-    width: 123px;
-    height: 60px;
-    left: 2309px;
-    top: 403px;
-    background-position: 9px -83px;  
+    background-position: 9px -82px; 
+}
+.b-map-banners.mod_dpd-small {
+    background-position: 1px -280px;
+}
+.b-map-banners.mod_qiwi-small {
+    background-position: 1px -457px;
+}
+.b-map-banners.mod_pickpoint-small {
+    background-position: 1px -635px;
 }

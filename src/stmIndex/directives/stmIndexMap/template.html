@@ -174,10 +174,35 @@
     <div class="b-map-place mod_wanted1" data-quest="yetiwanted" data-key="yw3" data-position="[2564, 812]" ng-click="showQuest($event)" ng-mouseleave="hideTooltip($event)"></div>
     <div class="b-map-place mod_wanted2" data-quest="yetiwanted" data-key="yw4" data-position="[3401, 1088]" ng-click="showQuest($event)" ng-mouseleave="hideTooltip($event)"></div>
     <div data-slider class="b-map-slider">
-        <a href="http://www.sotmarket.ru/partner/sport_express" class="b-map-banners mod_sportexpress" target="_blank"></a>
-        <!--<a href="http://www.sotmarket.ru/partner/sport_express" class="b-map-banners mod_quelle" target="_blank"></a>-->
+        <a href="http://www.sotmarket.ru/partner/sport_express/" target="_blank">
+            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="b-map-banners mod_sportexpress"/>
+        </a>
+        <a href="http://www.sotmarket.ru/partner/dpd/" target="_blank">
+            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="b-map-banners mod_dpd"/>
+        </a>
+        <a href="http://www.sotmarket.ru/partner/pickpoint/" target="_blank">
+            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="b-map-banners mod_pickpoint"/>
+        </a>
+        <a href="http://www.sotmarket.ru/partner/qiwiwallet/" target="_blank">
+            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="b-map-banners mod_qiwi"/>
+        </a>
+        <div class="__decor"></div>
+        <div class="__decor mod_right"></div>
     </div>
-    <a href="http://www.sotmarket.ru/partner/sport_express" class="b-map-banners mod_sportexpress-small" target="_blank"></a>
+    <div data-slider class="b-map-slider mod_small">
+        <a href="http://www.sotmarket.ru/partner/sport_express/" target="_blank">
+            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="b-map-banners mod_sportexpress-small"/>
+        </a>
+        <a href="http://www.sotmarket.ru/partner/dpd/" target="_blank">
+            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="b-map-banners mod_dpd-small"/>
+        </a>
+        <a href="http://www.sotmarket.ru/partner/pickpoint/" target="_blank">
+            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="b-map-banners mod_pickpoint-small"/>
+        </a>
+        <a href="http://www.sotmarket.ru/partner/qiwiwallet/" target="_blank">
+            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="b-map-banners mod_qiwi-small"/>
+        </a>
+    </div>    
     <div ng-repeat="item in achievTooltips" stm-index-popover="{{item.id}}" popover-type="{{item.isBottom ? 'bottom' :'top'}}" position="item.position">
         <div ng-mouseenter="enterQuizTooltip(item.id)" ng-mouseleave="outQuizTooltip(item.id)" stm-index-tooltip closable="item.closeQuizTooltip" position="{{item.isBottom ? 'top_left' :'bottom_left'}}" style="width: auto;">
            <div ng-class="(item.achiev.active ? 'state_active' : '') + ( item.onClick ? ' mod_pointer' : '')" ng-click="item.onClick()" class="b-tooltip__quiz">
