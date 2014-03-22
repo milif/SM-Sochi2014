@@ -2,6 +2,7 @@
 /*==========================================================*/
 .l-sochiprice {
     min-width: 1000px;
+    padding-bottom: 1px;
 }
 
 .sochiprice-container {
@@ -10,7 +11,7 @@
 }
 .sochiprice-header {
     padding-top: 20px;
-    background-color: #ffd631;
+    background: url(asset/i/b-IndexSochiPrice/sochiprice-header.png) 50% 0 no-repeat #ffd631;
 }
 
 .sochiprice-logo {
@@ -88,11 +89,14 @@ a.sochiprice-menu__item-link {
 .sochiprice-content {
     padding-top: 38px;
     background-color: #fff;
+    padding-bottom: 1px;
 }
 .sochiprice-title {
     font-size: 36px;
+    line-height: 120%;
     color: #000;
     text-align: center;
+    margin-bottom: 32px;
 }
 
 .sochiprice-select-panel {
@@ -283,10 +287,16 @@ a.sochiprice-product-title:hover {
 }
 .sochiprice-paginator__item {
     font-size: 18px;
+    line-height: 120%;
     display: inline-block;
     margin: 0 20px;
 }
 .sochiprice-paginator__item.state_disabled {
+    color: #d6d5d5;
+    cursor: default;
+}
+.sochiprice-paginator__item.state_disabled a.sochiprice-paginator__item-link {
+    text-decoration: none;
     color: #d6d5d5;
     cursor: default;
 }
@@ -324,10 +334,7 @@ a.sochiprice-paginator__item-link:before {
     margin-top: -18px;
     z-index: -1;
 }
-.sochiprice-paginator__item:last-child a.sochiprice-paginator__item-link,
-.sochiprice-paginator__item:first-child a.sochiprice-paginator__item-link {
-    text-decoration: none;
-}
+
 
 /* sochiprice-sel */
 /*==========================================================*/
