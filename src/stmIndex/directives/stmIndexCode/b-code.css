@@ -1,0 +1,18 @@
+/* CODE */
+/*==========================================================*/
+.hint-code-form-error {
+    background-color: #ee255b;
+    color: #fff;
+    text-align: center;
+    -webkit-border-radius: 0 0 3px 3px;
+    -moz-border-radius: 0 0 3px 3px;
+    border-radius: 0 0 3px 3px;
+    padding: 10px 0 4px 0;
+    position: relative;
+    z-index: -1;
+    margin-top: -8px;
+}
+.g-form .ng-dirty.ng-invalid.mod_code {
+    background-color: #fff;
+    color: #ee255b;
+}
