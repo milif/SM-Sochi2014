@@ -13,13 +13,13 @@ if(isset($_GET['email'])){
     setcookie(SESSION_COOKIE.'_email', $_GET['email'], time() + 604800, APP_ROOT_URL);
 }
 
-$api = array(
+$API = array_merge(array(
     "api/socials.php" => Socials::get($SHARE_URI)
-);
+), isset($API) ? $API : array());
 
 $ENV = array_merge(array(
     'auth' => User::getData(),
-    'api' => $api,
+    'api' => $API,
     'isProduction' => IS_PRODUCTION
 ), isset($ENV) ? $ENV : array());
 

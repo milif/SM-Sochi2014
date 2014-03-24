@@ -86,6 +86,18 @@ module.exports = function(grunt) {
                 ]
             }, 
             {  
+                name: 'stmIndexPrice', //  Package name
+                module: 'stmIndex', // Module name
+                include: [        // Include module components:
+                    'directive:stmIndexSochiPrice',
+                    'stm.directive:stmPreload'
+                ],                
+                includeAsset: true,
+                includeTemplates: [
+                    '*'
+                ]
+            },             
+            {  
                 name: 'stmCabinet', //  Module and package name 
                 include: [        // Include module components:
                     'directive:stmCabinetScreen',

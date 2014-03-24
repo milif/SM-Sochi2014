@@ -1,6 +1,35 @@
 <?php
 
+require_once __DIR__.'/DB.class.php';
+require_once __DIR__.'/Cache.class.php';
+
 class Product {
+    static public function getTotalItems($category){
+        $key = "goods.$category";
+        $total = Cache::get($key);
+        if($total !== false){
+            return $total;
+        }
+        $rs = DB::query("SELECT COUNT(*) cc FROM goods WHERE `category` = :category", array(
+            ':category' => $category
+        ));
+        $total = (int)$rs[0]['cc'];
+        Cache::set($key, $total);
+        return $total;
+    }
+    static public function getItems($category, $order = 'id', $limit, $offset = 0){
+        $key = "goods.$category.$order.$limit.$offset";
+        $rs = Cache::get($key);
+        if($rs !== false){
+            return $rs;
+        }
+        $rs = DB::query("SELECT title, url,	img, sub_name subName, sub_url subUrl, price, oldprice oldPrice, category FROM goods WHERE `category` = :category ORDER BY :order LIMIT ".((int)$limit)." OFFSET ".((int)$offset).";", array(
+            ':category' => $category,
+            ':order' => $order
+        ));
+        Cache::set($key, $rs);
+        return $rs;
+    }
     static public function getSale(){ 
         return array(
             array(
