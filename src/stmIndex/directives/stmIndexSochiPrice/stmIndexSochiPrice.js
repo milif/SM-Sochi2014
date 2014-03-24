@@ -7,7 +7,7 @@
  * @requires stmIndex.directive:stmIndexSochiPrice:b-sochiprice.css
  * @requires stmIndex.directive:stmIndexSochiPrice:template.html
  *
- * @requires stmIndex.directive:stmIndexToolbar
+ * @requires stmIndex.stmGoods
  *
  * @description
  * About
@@ -32,8 +32,8 @@
  */
 
 
-angular.module('stmIndex').directive('stmIndexSochiPrice', function(){
+angular.module('stmIndex').directive('stmIndexSochiPrice', ['stmGoods', function(stmGoods){
     return {
         templateUrl: 'partials/stmIndex.directive:stmIndexSochiPrice:template.html'
     };
-});
+}]);
