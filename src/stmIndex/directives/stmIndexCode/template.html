@@ -1,25 +1,42 @@
 <!-- CODE-->
-<div class="g-font">
-    
-    <br>
-    <br>
-        <div class="b-popup-note g-text_center">
+<div class="b-code g-font">
+    <div ng-if="!codeData">
+        <div class="__head g-text_center">
             Введите секретный код, <br>
             чтобы активировать достижения
         </div>
-
-        <form name="#" >
+        <form name="model.form" ng-submit="submit()" class="g-form" novalidate>
             <div class="b-form-row g-clearfix">
-                <input name="code" type="text" class="b-form-input-text">
+                <input ng-model="model.code" ng-keydown="removeInvalidCode()" name="code" required type="text" class="b-form-input-text __input">
+                <div class="hint-code-form-error">
+                    {{error}}
+                </div>
             </div>
             <div class="b-form-row">
-                 <span class="b-button b-button_scheme_yellow b-button_size_medium3 mod_style mod_wide-button">
+                <span ng-class="isSend ? 'state_loading' : ''" class="b-button b-button_scheme_yellow b-button_size_medium3 mod_style mod_wide-button">
                     <span class="b-button__text">Подтвердить</span>
-                    <button class="b-button__link"></button>
+                    <button ng-click="submit()" class="b-button__link"></button>
                 </span>
             </div>
         </form>
-
+    </div>
+    <div ng-if="codeData">
+            <div class="b-popup-note g-text_center">
+                Вы получаете достижение:
+            </div>
+            <div class="b-popup-note g-text_center">
+                <div ng-repeat="achiev in codeData.achievs" stm-index-achiev="{{achiev.key}}" text="{{achiev.text}}" active="true"></div>
+            </div>
+            <div class="b-form-row">
+                    <span class="b-button b-button_scheme_yellow b-button_size_medium3 mod_style mod_wide-button">
+                        <span class="b-button__text">Закрыть</span>
+                        <button ng-click="close()" class="b-button__link"></button>
+                    </span>
+            </div>
+        
+    </div>
+    </div>
+<!--
     <br>
     <br>
     <br>
@@ -114,4 +131,5 @@
         </form>
 
 </div>
+-->
 <!-- End CODE -->

@@ -1,5 +1,18 @@
 /* CODE */
 /*==========================================================*/
+.b-code .__input {
+    text-align: center;
+    z-index: 1;
+    position: relative;
+}
+.b-code .__head {
+    font-size: 16px;
+    margin-bottom: 14px;
+}    
+.b-code .__input.ng-invalid-code + .hint-code-form-error {
+    margin-top: -2px;
+    opacity: 1;
+}
 .hint-code-form-error {
     background-color: #ee255b;
     color: #fff;
@@ -7,12 +20,12 @@
     -webkit-border-radius: 0 0 3px 3px;
     -moz-border-radius: 0 0 3px 3px;
     border-radius: 0 0 3px 3px;
-    padding: 10px 0 4px 0;
+    padding: 2px 0 0px 0;
     position: relative;
-    z-index: -1;
-    margin-top: -8px;
-}
-.g-form .ng-dirty.ng-invalid.mod_code {
-    background-color: #fff;
-    color: #ee255b;
+    margin-top: -28px;
+    opacity: 0;
+    height: 26px;
+    line-height: 26px;
+    -webkit-transition: 0.2s linear all; /* Safari/Chrome */
+    transition: 0.2s linear all; /* Future Browsers */ 
 }

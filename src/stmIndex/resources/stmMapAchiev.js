@@ -152,6 +152,7 @@
         
         for(var i=0;i<achievs.length;i++){
             keys[achievs[i].type] = achievs[i];
+            achievs[i].key = "map." + achievs[i].type;
             achievs[i].add = add;
         }
     
@@ -182,6 +183,6 @@
             });
         }
         function getByType(type){
-            return keys[type];
+            return  keys[type.replace('map.', '')];
         }
     }]) 
