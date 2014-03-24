@@ -1,6 +1,9 @@
                         <div class="b-achive-item">
-                            <div class="b-achive">
-                                <div ng-class="'achiv_' + mod + (active ? ' state_active' : '')" class="b-achive__h"></div>
-                            </div>
-                            <div class="b-achive-item-note" ng-bind-html="text"></div>
-                        </div> 
+                            <div >
+                                <div class="b-achive">
+                                    <div ng-if="!isQuiz" ng-class="'achiv_' + mod + (active ? ' state_active' : '')" class="b-achive__h"></div>
+                                    <div ng-if="isQuiz" ng-class="'mod_' + mod + (active ? ' state_active' : '')" class="b-quiz-achive-item__h"></div>
+                                </div>
+                                <div class="b-achive-item-note" ng-bind-html="text"></div>
+                            </div>                        
+                        </div>

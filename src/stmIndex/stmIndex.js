@@ -8,6 +8,7 @@
  *
  * @includes stmIndex.$stmAuth
  * @includes stmIndex:regform.html
+ * @includes stmIndex:code.html
  * @includes stmIndex.directive:stmIndexPopup
  * @includes stmIndex.directive:stmIndexForm 
  *
@@ -21,20 +22,29 @@ if (!window.requestAnimationFrame) {
         window.requestAnimationFrame = function(callback) {
             setTimeout(callback, 10);
         };
-} 
+}
 angular.module('stmIndex', ['stm', 'ui.utils'])
     .config([function(){
     }])
-    .run(['$rootScope', '$stmAuth', '$http', '$md5', '$stmEnv', '$compile', '$timeout', 'User', '$templateCache', function($rootScope, $stmAuth, $http, $md5, $stmEnv, $compile, $timeout, User, $templateCache){
+    .run(['$rootScope', '$stmAuth', '$http', '$md5', '$stmEnv', '$compile', '$timeout', 'User', '$templateCache', '$location', function($rootScope, $stmAuth, $http, $md5, $stmEnv, $compile, $timeout, User, $templateCache, $location){
     
         var $$ = angular;
         var $ = angular.element;
     
+        var isLoaded = false;
+    
         $rootScope.$on('gameInit', auth);
         $rootScope.$on('loaded', function(){
+            isLoaded = true;
             if($stmAuth.isAuth && !$stmAuth.data.isReg) {
                 showRegForm();
             }            
+        });
+        
+        $rootScope.$on('$locationChangeSuccess', function(){
+            if($stmAuth.isAuth && $location.hash() == 'code' && /(\/map\/|\/account\/)/.test($location.url())){
+                showCodeForm();
+            }
         });
         
         function auth(){
@@ -45,7 +55,28 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
                 });
             }
         }  
-               
+        function showCodeForm(){
+            if(!isLoaded) {
+                $timeout(showCodeForm, 500);
+                return;
+            }
+            var $codeScope = $rootScope.$new();
+            
+            $codeScope.$on('closeCode', function(){
+                $codeScope.$broadcast('closePopup-code');
+            });
+            
+            $http.get('partials/stmIndex:code.html', {cache: $templateCache}).success(function(template) {
+                $compile(template)($codeScope, function(el){
+                    $('body').append(el);
+                }); 
+            });
+
+            $codeScope.isShow = true;
+            $codeScope.closeCode = function(){
+                $codeScope.$destroy();
+            };
+        }
         function showRegForm(){
             var model = $stmAuth.data;
             model.confirm = true;

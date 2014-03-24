@@ -102,10 +102,17 @@ angular.module('stmIndex').factory('$stmAchievs', [function(){
         var keys = achievs.keys = {};
         for(var i=0;i<achievs.length;i++){
             keys[achievs[i].type] = achievs[i];
+            achievs[i].key = type + '.' + achievs[i].type;
             total++;
         }
     }
+    $stmAchievs.get = get;
     $stmAchievs.total = total;
     return $stmAchievs;
+    
+    function get(type){
+        var type = type.split('.');
+        return $stmAchievs[type[0]] ? $stmAchievs[type[0]].keys[type[1]] : null;
+    }
 
 }]);
