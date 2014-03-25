@@ -53,7 +53,7 @@ angular.module('stmIndex').directive('stmIndexCode', function(){
                 var codeField = form.code;
                 if(!$scope.isSend && form.$valid) {
                     $scope.isSend = true;
-                    var res = stmCode.send(model.code, function(){
+                    var res = stmCode.send(model.code.toUpperCase(), function(){
                         if(!res.success) {
                             codeField.$setValidity('code', false);
                             
