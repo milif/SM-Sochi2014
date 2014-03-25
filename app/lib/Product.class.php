@@ -27,8 +27,21 @@ class Product {
             ':category' => $category,
             ':order' => $order
         ));
-        Cache::set($key, $rs);
-        return $rs;
+        $data = array();
+        foreach($rs as $item){
+            $data[] = array(
+                'title' => $item['title'],
+                'url' => $item['url'],
+                'img' => $item['img'], 
+                'subName' => $item['subName'], 
+                'subUrl' => $item['subUrl'], 
+                'price' => (int)$item['price'], 
+                'oldPrice' => $item['oldPrice'],
+                'category' => $item['category']
+            );
+        }
+        Cache::set($key, $data);
+        return $data;
     }
     static public function getSale(){ 
         return array(

@@ -10,7 +10,7 @@
  * @requires stmIndex.stmGoods
  *
  * @description
- * About
+ * Страница цен
  *
  * @element ANY
  *
@@ -34,6 +34,10 @@
 
 angular.module('stmIndex').directive('stmIndexSochiPrice', ['stmGoods', function(stmGoods){
     return {
-        templateUrl: 'partials/stmIndex.directive:stmIndexSochiPrice:template.html'
+        templateUrl: 'partials/stmIndex.directive:stmIndexSochiPrice:template.html',
+        controller: ['$scope', '$stmEnv', function($scope, $stmEnv){
+            var goodsParams = $stmEnv.goods;
+            $scope.goods = stmGoods.getItems(goodsParams.category, goodsParams.offset, goodsParams.limit, goodsParams.order);
+        }]
     };
 }]);
