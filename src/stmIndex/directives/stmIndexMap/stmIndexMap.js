@@ -10,6 +10,7 @@
  * @requires stmIndex.stmMapAchiev
  * @requires stmIndex.directive:stmIndexQuiz
  * @requires stmIndex.$stmCheck18
+ * @requires stmIndex:unoslider.js
  *
  * @description
  * Карта
@@ -73,6 +74,22 @@ angular.module('stmIndex').directive('stmIndexMap', ['$stmEnv', '$window', funct
             var inDrag = false;
             var inClick = true;
             var cancelHideQuiz = {};
+            
+            $element.find('[data-slider]').each(function(){
+                $(this).unoslider({
+                  preset: 'blind_left',
+                  indicator: false,
+                  navigation: false,
+                  responsive: false,
+                  slideshow:{
+                    hoverPause: true,
+                    speed: 2,
+                    timer: false,
+                    autostart: true
+                  },
+                  slidesTag: 'a'
+                });
+            });
             
             $element.find('[data-quest]').each(function(){
                 var type = $(this).data('quest');

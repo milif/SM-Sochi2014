@@ -35,6 +35,8 @@ angular.module('stmIndex').directive('stmIndexAchiev', function(){
         controller: ['$scope', '$attrs', function($scope, $attrs){
             $attrs.$observe('stmIndexAchiev', function(type){
                 $scope.mod = type.replace('.','_');
+                $scope.isQuiz = /^(map\.|other\.)/.test(type);
+                if($scope.isQuiz) $scope.mod = type.split('.')[1];
             });
             $attrs.$observe('text', function(text){
                 $scope.text = text;

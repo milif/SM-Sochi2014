@@ -198,7 +198,10 @@
   text-transform: none;
   font-weight: normal;
 }
-
+.b-button.mod_style .b-button__text {
+  text-transform: none;
+  font-weight: normal;
+}
 
 
 /* MOD scheme-white */
@@ -397,6 +400,11 @@
 
 .mod_thin {
   padding: 0 26px;
+}
+
+.b-button.mod_wide-button {
+  width: 100%;
+  text-align: center;
 }
 
 

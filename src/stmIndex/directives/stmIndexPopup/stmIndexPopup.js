@@ -163,6 +163,9 @@ angular.module('stmIndex').directive('stmIndexPopup', function(){
             if($attrs.width){
                 popupCss.minWidth = popupCss.width = $scope.$eval($attrs.width);
             }
+            if($attrs.minWidth){
+                popupCss.minWidth = $scope.$eval($attrs.minWidth);
+            }
             
             if($scope.hasClose) {
                 $element.on('click', function(e){
