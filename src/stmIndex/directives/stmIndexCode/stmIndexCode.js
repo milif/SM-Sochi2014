@@ -65,8 +65,10 @@ angular.module('stmIndex').directive('stmIndexCode', function(){
                         var achiev;
                         for(var i=0;i<achievsData.length;i++){
                             achiev = $stmAchievs.get(achievsData[i]) || stmMapAchiev.getByType(achievsData[i]) || stmOtherAchiev.getByType(achievsData[i]);
-                            achiev.active = true;
-                            if(achiev) achievs.push(achiev);
+                            if(achiev) {
+                                achievs.push(achiev);
+                                achiev.active = true;
+                            }
                         }
                         $scope.codeData = {
                             achievs: achievs
