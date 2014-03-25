@@ -14,11 +14,11 @@ for($i=0;$i<$count;$i++){
             ':expire' => $expire,
             ':achievs' => $achievs
         ));
+        
         if(!$ok) continue;
-        else {
-            echo $code."\n";    
-            break;
-        }
+        
+        echo $code."\n";    
+        break;
     }
 }
 
