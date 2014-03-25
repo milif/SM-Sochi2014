@@ -8,12 +8,18 @@ $count = (int)$argv[1];
 $expire = $argv[2];
 $achievs = implode(",", array_slice($argv, 3));
 for($i=0;$i<$count;$i++){
-    $code = genCode();
-    DB::query("INSERT INTO `code` (code, achievs, expire_date) VALUES ('$code', :achievs, :expire)", array(
-        ':expire' => $expire,
-        ':achievs' => $achievs
-    ));
-    echo $code."\n";
+    while(true){
+        $code = genCode();
+        $ok = DB::update("INSERT INTO `code` (code, achievs, expire_date) VALUES ('$code', :achievs, :expire)", array(
+            ':expire' => $expire,
+            ':achievs' => $achievs
+        ));
+        if(!$ok) continue;
+        else {
+            echo $code."\n";    
+            break;
+        }
+    }
 }
 
 function genCode(){

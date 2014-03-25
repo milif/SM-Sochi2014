@@ -23,6 +23,12 @@ class DB {
         if($rs) return $sth->fetchAll();
         return array();
     }
+    static public function update($sql, $params = array()){
+        $PDO = self::getInstance();
+        if(!$PDO) return array();
+        $sth = $PDO->prepare($sql);
+        return $sth->execute($params);
+    }
     static public function lastInsertId(){
         $PDO = self::getInstance();
         if(!$PDO) return 0;
