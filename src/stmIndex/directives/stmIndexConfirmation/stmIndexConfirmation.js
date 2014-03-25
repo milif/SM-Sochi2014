@@ -36,11 +36,15 @@ angular.module('stmIndex').directive('stmIndexConfirmation', function(){
         controller: ['$stmEnv', '$scope', '$interval', '$location', '$http', function($stmEnv, $scope, $interval, $location, $http){
             $scope.admitad = $stmEnv.admitad;
             $scope.actionpay = $stmEnv.actionpay;
+            $scope.cityadspix = $stmEnv.cityadspix;
             $scope.userKey = $stmEnv.userKey;
             $scope.msg = $stmEnv.confirmMsg;
             $scope.time = 12;
             if($stmEnv.am15) {
                 $http.jsonp('//am15.net/pixel.php?f=js&rid=47701');
+            }
+            if($stmEnv.cityadspix) {
+                $http.jsonp('https://cityadspix.com/track/'+$stmEnv.userKey+'/ct/q3/c/383?click_id='+$stmEnv.cityadspix+'&md=2');
             }
             if(/noredirect=1/.test($location.url())) return;
             var endTime = new Date().getTime() + 12000;
