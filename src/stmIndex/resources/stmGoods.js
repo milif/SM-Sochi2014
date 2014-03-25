@@ -24,13 +24,13 @@
         
         return stmGoods;
         
-        function getItems(category, offset, limit, order){
+        function getItems(category, offset, limit, order, clbFn){
             return stmGoods.get({
                 category: category, 
                 offset: offset, 
                 limit: limit, 
                 order: order
-            });
+            }, clbFn);
         };
         
     }]) 

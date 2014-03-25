@@ -37,7 +37,10 @@ angular.module('stmIndex').directive('stmIndexSochiPrice', ['stmGoods', function
         templateUrl: 'partials/stmIndex.directive:stmIndexSochiPrice:template.html',
         controller: ['$scope', '$stmEnv', function($scope, $stmEnv){
             var goodsParams = $stmEnv.goods;
-            $scope.goods = stmGoods.getItems(goodsParams.category, goodsParams.offset, goodsParams.limit, goodsParams.order);
+            $scope.goods = stmGoods.getItems(goodsParams.category, goodsParams.offset, goodsParams.limit, goodsParams.order, function(){
+                $scope.lastPage = Math.ceil($scope.goods.total / goodsParams.limit) - 1;
+                $scope.page = Math.floor(goodsParams.offset / goodsParams.limit); 
+            });
         }]
     };
 }]);
