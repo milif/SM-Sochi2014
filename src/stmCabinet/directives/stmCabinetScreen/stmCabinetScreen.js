@@ -71,7 +71,7 @@ angular.module('stmCabinet').directive('stmCabinetScreen', function(){
             
             for(var gameType in games){
                 game = games[gameType];
-                achievs = $$.copy($stmAchievs[gameType]);
+                achievs = $stmAchievs[gameType];
                 for(var i=0;i<achievs.length;i++){
                     achievs[i].active = game.achievements.indexOf(achievs[i].type) >= 0;
                     if(achievs[i].active) achievCount++;
