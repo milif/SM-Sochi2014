@@ -74,6 +74,7 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
 
             $codeScope.isShow = true;
             $codeScope.closeCode = function(){
+                $location.hash('.');
                 $codeScope.$destroy();
             };
         }

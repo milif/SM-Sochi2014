@@ -196,7 +196,10 @@
     text-align: center;
 }
 
-
+.b-cabinet-code {
+    font-size: 18px;
+    margin-top: 20px;
+}
 
 /* b-cabinet-main */
 .b-cabinet-main {
