@@ -9,7 +9,7 @@ class Code {
     static public function usecode($code){
     
         if(CLIENT_ID == 0) return false;
-        $rs = DB::query("SELECT id, user_id, achievs FROM code WHERE `code` = :code", array(":code" => $code));
+        $rs = DB::query("SELECT id, user_id, achievs FROM code WHERE `code` = :code AND `expire_date` > '".date('Y-m-d H:i:s')."'", array(":code" => $code));
         
         if(!count($rs)) return self::ERROR_CODE;
         if($rs[0]['user_id']) return self::ERROR_USED;
