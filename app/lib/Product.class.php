@@ -4,29 +4,110 @@ require_once __DIR__.'/DB.class.php';
 require_once __DIR__.'/Cache.class.php';
 
 class Product {
-    static public function getTotalItems($category){
+    protected static $FILTERS = array(
+        'f.price' => array(
+            array(
+                'text' => 'Любая',
+                'value' => null
+            ),
+            array( 
+                'text' => 'до 5 000<span class="g-ruble">p</span>',
+                'value' => '-5000'
+            ),
+            array( 
+                'text' => '5 000 — 15 000<span class="g-ruble">p</span>',
+                'value' => '5000-15000'
+            ),
+            array( 
+                'text' => 'свыше 15 000<span class="g-ruble">p</span>',
+                'value' => '15000-'
+            )           
+        ),
+        'f.discount' => array(
+            array(
+                'text' => 'Любая',
+                'value' => null
+            ),
+            array( 
+                'text' => 'до 30%',
+                'value' => '-30'
+            ),
+            array( 
+                'text' => '30% — 50%',
+                'value' => '30-50'
+            ),
+            array( 
+                'text' => 'более 50%',
+                'value' => '50-'
+            )        
+        )
+    );
+    static public function getFilters(){
+        return self::$FILTERS;
+    }
+    static public function getTotalItems($category, $filters){
         $key = "goods.$category";
+        foreach(self::$FILTERS as $filterName => $filter){
+            $key .= ".".(isset($filters[$filterName]) ? $filters[$filterName] : null);
+        }        
         $total = Cache::get($key);
         if($total !== false){
             return $total;
         }
-        $rs = DB::query("SELECT COUNT(*) cc FROM goods WHERE `category` = :category", array(
+        $filtersForQ = self::applyFiltersForQ($filters);         
+        $rs = DB::query("SELECT COUNT(*) cc FROM goods WHERE `category` = :category {$filtersForQ[0]}", array_merge(array(
             ':category' => $category
-        ));
+        ), $filtersForQ[1]));
         $total = (int)$rs[0]['cc'];
         Cache::set($key, $total);
         return $total;
     }
-    static public function getItems($category, $order = 'id', $limit, $offset = 0){
+    static public function applyFiltersForQ($filters){
+        $filtersQ = '';
+        $filtersQP = array();
+        foreach(self::$FILTERS as $filterName => $filter){
+            $value = isset($filters[$filterName]) ? $filters[$filterName] : null;
+            if($value !== NULL) {
+                if($filterName == 'f.price') {
+                    $value = explode('-', $value);
+                    if($value[0]) {
+                        $filtersQ .= " AND price > :priceFrom ";
+                        $filtersQP[':priceFrom'] = (int)$value[0];
+                    }
+                    if($value[1]) {
+                        $filtersQ .= " AND price <= :priceTo ";
+                        $filtersQP[':priceTo'] = (int)$value[1];
+                    }
+                } else if($filterName == 'f.discount') {
+                    $value = explode('-', $value);
+                    if($value[0]) {
+                        $filtersQ .= " AND discount > :discountFrom ";
+                        $filtersQP[':discountFrom'] = (int)$value[0];
+                    }
+                    if($value[1]) {
+                        $filtersQ .= " AND discount <= :discountTo ";
+                        $filtersQP[':discountTo'] = (int)$value[1];
+                    }
+                }          
+            }
+        }
+        return array($filtersQ, $filtersQP);        
+    }
+    static public function getItems($category, $filters, $order = 'id', $limit, $offset = 0){
         $key = "goods.$category.$order.$limit.$offset";
+        foreach(self::$FILTERS as $filterName => $filter){
+            $key .= ".".(isset($filters[$filterName]) ? $filters[$filterName] : null);
+        }
         $rs = Cache::get($key);
         if($rs !== false){
             return $rs;
         }
-        $rs = DB::query("SELECT title, url,	img, sub_name subName, sub_url subUrl, price, oldprice oldPrice, category FROM goods WHERE `category` = :category ORDER BY :order LIMIT ".((int)$limit)." OFFSET ".((int)$offset).";", array(
+        $filtersForQ = self::applyFiltersForQ($filters);         
+        $q = "SELECT title, url, img, sub_name subName, sub_url subUrl, price, oldprice oldPrice, category FROM goods WHERE `category` = :category {$filtersForQ[0]} ORDER BY :order LIMIT ".((int)$limit)." OFFSET ".((int)$offset).";";
+        $rs = DB::query($q, array_merge(array(
             ':category' => $category,
             ':order' => $order
-        ));
+        ), $filtersForQ[1]));
         $data = array();
         foreach($rs as $item){
             $data[] = array(

@@ -162,7 +162,7 @@ a.sochiprice-menu__item-link {
 
 .sochiprice-product:hover {
     padding-top: 29px;
-    height: 381px;
+    height: 383px;
     border: 2px solid #f53361;
     -moz-box-shadow: 0 1px 4px rgba(0,0,0,.13);
     -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.13);
@@ -431,7 +431,10 @@ a.sochiprice-paginator__item-link:before {
     bottom: -5px;
     background-color: #fff;
 }
-
+.sochiprice-selectbox.state_dropdown .sochiprice-select:after {
+    top: 10px;
+    right: 7px;
+}
 .sochiprice-select-dropdown {
     display: none;
     -webkit-border-radius: 0 6px 6px 6px;
@@ -472,6 +475,7 @@ a.sochiprice-paginator__item-link:before {
 .sochiprice-select-dropdown ul li i {
     color: #8a8a8a;
     font-size: 11px;
-    padding-left: 4px;
+    padding-left: 10px;
+    padding-right: 5px;
     font-style: normal;
 }

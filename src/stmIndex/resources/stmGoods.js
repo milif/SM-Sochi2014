@@ -18,18 +18,23 @@
        */         
     angular.module('stmIndex').factory('stmGoods', ['$resource', function($resource){
     
-        var stmGoods = $resource('api/goods.php?c=:category&o=:offset&l=:limit&s=:order');
+        var stmGoods = $resource('api/goods.php?c=:category&o=:offset&l=:limit&s=:order&f=:filters');
         
         stmGoods.getItems = getItems;
         
         return stmGoods;
         
-        function getItems(category, offset, limit, order, clbFn){
+        function getItems(category, filters, offset, limit, order, clbFn){
+            var f = [];
+            for(var i=0;i<filters.length;i++){
+                f.push(filters[i].value);
+            }
             return stmGoods.get({
                 category: category, 
                 offset: offset, 
                 limit: limit, 
-                order: order
+                order: order,
+                filters: f.join(',')
             }, clbFn);
         };
         
