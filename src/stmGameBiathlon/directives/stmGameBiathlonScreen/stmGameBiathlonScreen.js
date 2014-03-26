@@ -794,7 +794,11 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', ['$compile'
                     width: frameEl.width,
                     x: frameX,
                     y: frameY,
-                    nextFrames: frameEl.nextFrames
+                    nextFrames: frameEl.nextFrames,
+                    vitekCss: {
+                        left: 0,
+                        top: frameEl.margin[0]
+                    }
                 };
             }
 
@@ -905,6 +909,7 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', ['$compile'
                         points: el.data('points'),
                         targetsRange: el.data('targetsRange'),
                         nextFrames: el.data('frames')
+                        
                     }; 
                     el.remove();                 
                 });

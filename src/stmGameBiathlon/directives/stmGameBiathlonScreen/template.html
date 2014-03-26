@@ -14,7 +14,9 @@
             <div data-targets-range="[0, 3018]" data-track="5" data-points="[[38,64],[238, 57],[513, 37],[773, 13], [991, 4], [1162, 1], [1292, 3], [1509, 14], [1706, 28], [1907, 42],[2073, 53], [2278, 60], [2445, 64], [2610, 66], [2942, 68]]" data-margin="[63, 66]" data-frames="[1,2,5]" class="b-gameBiathlonTrack-h screen_5"></div>    
         </div>
         <div ng-repeat="frame in traceFrames" ng-style="frame.css" class="b-gameBiathlonTrack-h screen_{{frame.name}}">
-            <div class="b-gameBiathlonTrack"></div>
+            <div class="b-gameBiathlonTrack">
+                <div ng-style="frame.vitekCss" class="__vitek"><a href="http://www.sotmarket.ru/partner/vitek/" target="_blank"></a></div>
+            </div>
             <div stm-game-biathlon-frame-content update="frame.update" trees="frame.trees" bonuses="frame.bonuses" targets="frame.targets"></div>
         </div>        
         <div ng-show="!inEti" ng-style="men.css" class="l-b-biathlon-men">

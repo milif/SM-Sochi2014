@@ -85,6 +85,23 @@
     margin-left: -35px;
     margin-top: -130px;    
 }
+.b-gameBiathlonTrack .__vitek {
+    position: absolute;
+    z-index: 1;
+    width: 194px;
+    height: 177px;
+    margin-top: -145px;
+    margin-left: -175px;
+    background: url(asset/i/b-gameBiathlon/vitek.png) no-repeat;
+}
+.b-gameBiathlonTrack .__vitek a {
+    position: absolute;
+    z-index: 1;
+    width: 146px;
+    height: 44px;
+    left: 31px;
+    top: 17px;
+}
 /* Persons */
 /*==========================================================*/
 /* yeti */
