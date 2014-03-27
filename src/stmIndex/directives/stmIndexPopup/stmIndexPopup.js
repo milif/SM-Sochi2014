@@ -192,7 +192,8 @@ angular.module('stmIndex').directive('stmIndexPopup', function(){
                 } else {
                     $timeout(function(){
                         if($scope.show) return;
-                        if(cntEl.find('> [stm-index-popup] > *:visible').length == 1) {
+                        var visibleEls = cntEl.find('> [stm-index-popup] > *:visible');
+                        if(visibleEls.length == 0 || (visibleEls.length == 1 && visibleEls.closest($element).length == 1)) {
                             cntEl
                                 .removeClass('view_popup')
                                 .css({
