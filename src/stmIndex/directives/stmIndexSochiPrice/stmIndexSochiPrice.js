@@ -56,7 +56,7 @@ angular.module('stmIndex').directive('stmIndexSochiPrice', ['stmGoods', function
     
     return {
         templateUrl: 'partials/stmIndex.directive:stmIndexSochiPrice:template.html',
-        controller: ['$scope', '$stmEnv', '$element', '$timeout', function($scope, $stmEnv, $element, $timeout){
+        controller: ['$scope', '$stmEnv', '$element', '$timeout', '$location', function($scope, $stmEnv, $element, $timeout, $location){
         
             $element.css('backgroundColor', '#fff');
         
@@ -104,7 +104,7 @@ angular.module('stmIndex').directive('stmIndexSochiPrice', ['stmGoods', function
                     }
                 }
                 if(item.value != null) urlParams.push(sel.type.replace('.', '_') + '=' + item.value);
-                window.location.href = 'price/' + $scope.urlParams();
+                $location.url('/price/' + $scope.urlParams());
             }
             $scope.showDropdown = function(sel){
                 if(sel.active) return;
