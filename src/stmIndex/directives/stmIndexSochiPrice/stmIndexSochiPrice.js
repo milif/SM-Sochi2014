@@ -104,7 +104,7 @@ angular.module('stmIndex').directive('stmIndexSochiPrice', ['stmGoods', function
                     }
                 }
                 if(item.value != null) urlParams.push(sel.type.replace('.', '_') + '=' + item.value);
-                $location.url('/price/' + $scope.urlParams());
+                window.location.href = 'price/' + $scope.urlParams();
             }
             $scope.showDropdown = function(sel){
                 if(sel.active) return;
