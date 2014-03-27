@@ -27,7 +27,9 @@ class DB {
         $PDO = self::getInstance();
         if(!$PDO) return array();
         $sth = $PDO->prepare($sql);
-        return $sth->execute($params);
+        $ok = $sth->execute($params);
+        //if(!$ok) var_dump($sth->errorInfo());
+        return $ok;
     }
     static public function lastInsertId(){
         $PDO = self::getInstance();
