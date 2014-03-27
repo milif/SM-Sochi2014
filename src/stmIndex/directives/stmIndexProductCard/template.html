@@ -1,0 +1,29 @@
+<div class="sochiprice-product">
+                        <a target="_blank" ng-href="{{item.url}}" class="sochiprice-product-a"></a>
+                        <div class="sochiprice-product-top">
+                            <div class="sochiprice-product-top-h">
+                                Экономия {{(item.oldPrice - item.price) | stmNumber}}<span class="g-ruble">p</span>
+                            </div>
+                        </div>
+
+                        <div class="sochiprice-product-img">
+                            <img ng-class="item.ratio > 0.96 ? 'mod_hor' : 'mod_ver'" ng-src="{{item.img}}" alt="{{item.title}}" class="sochiprice-product-img-h">
+                        </div>
+
+                        <div class="sochiprice-product-note">
+                            <a ng-href="{{item.subUrl}}" target="_blank" class="sochiprice-product-cat">{{item.subName}}</a>
+                            <div class="sochiprice-product-note-h">
+                                <a data-url ng-href="{{item.url}}" target="_blank" class="sochiprice-product-title">
+                                    {{item.title}}
+                                </a>
+                                <!--
+                                <div class="sochiprice-product-info">
+                                    Необычные и очень удобные  
+                                </div>
+                                -->
+                            </div>
+                            <div class="sochiprice-product-labels">
+                                <span class="sochiprice-product-old">{{item.oldPrice | stmNumber}}</span><span class="sochiprice-product-price">{{item.price | stmNumber}}<span class="g-ruble">p</span></span>
+                            </div>
+                        </div>
+</div>                    
