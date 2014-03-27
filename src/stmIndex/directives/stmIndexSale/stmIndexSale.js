@@ -10,6 +10,7 @@
  * @requires stmIndex.directive:stmIndexToolbar
  * @requires stmIndex.directive:stmIndexSocialLike
  * @requires stmIndex.directive:stmIndexPopup
+ * @requires stmIndex.directive:stmIndexProductCard
  *
  * @description
  * Sale
@@ -37,24 +38,16 @@
 angular.module('stmIndex').directive('stmIndexSale', function(){
     var DATES = [
         {
-            date: '2014-02-06',
-            text: '6 февраля'
-        },
-        {
-            date: '2014-02-14',
-            text: '14 февраля'
-        },
-        {
-            date: '2014-02-23',
-            text: '23 февраля'
-        },
-        {
-            date: '2014-03-21',
-            text: '21 марта'
+            date: '2014-03-06',
+            text: '6 марта'
         },
         {
             date: '2014-03-31',
             text: '31 марта'
+        },
+        {
+            date: '2014-04-30',
+            text: '30 апреля'
         }
     ];
     return {
@@ -65,8 +58,9 @@ angular.module('stmIndex').directive('stmIndexSale', function(){
             
             $scope.email = "";
             $scope.dates = DATES;
-            $scope.submitSubscribe = function(){
-                var form = $scope.subscribeForm;
+            var modelSubscribe = $scope.modelSubscribe = {};
+            $scope.submitSubscribe = function(noShare){
+                var form = modelSubscribe.form;
                 var emailField = form.email;
                 if(!form.isSend && form.$valid) {
                     form.isSend = true;
@@ -76,7 +70,7 @@ angular.module('stmIndex').directive('stmIndexSale', function(){
                         if(!res.success) {
                             return;
                         }
-                        showShare();
+                        if(!noShare) showShare();
                         $scope.subscribeSuccess = true;
                     });
                     res.$promise.finally(function(){
@@ -87,7 +81,17 @@ angular.module('stmIndex').directive('stmIndexSale', function(){
             $scope.products = $stmEnv.products;
             $scope.closeSharePopup = function(){
                 $scope.showSharePopup = false;
-            }            
+            }   
+            
+            $scope.clickProduct = function(e, item){
+                if($stmAuth.isAuth || $scope.subscribeSuccess) return;
+                e.preventDefault();
+                $scope.subscribePopupProductUrl = item.url;
+                $scope.showSubscribePopup = true;
+            }
+            $scope.closeSubscribePopup = function(){
+                $scope.showSubscribePopup = false;
+            }
             
             updateTimer();
             
@@ -132,7 +136,7 @@ angular.module('stmIndex').directive('stmIndexSale', function(){
             dates[i].css = {
                 left: Math.round((dateTime - startTime) / timeLength * 912) + 'px'
             }
-            dates[i].cls = 'mod_' + (i+1) +' scheme_' + (dateTime < time ? 'blue' : 'red');
+            dates[i].cls = (i == 0 ? 'mod_first' : i == dates.length-1 ? 'mod_last' : '') +' scheme_' + (dateTime < time ? 'blue' : 'red');
         }
         
         $scope.lineCss = {

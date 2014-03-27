@@ -10,6 +10,7 @@
  * @requires stmIndex.directive:stmIndexSochiPrice:template.html
  *
  * @requires stmIndex.stmGoods
+ * @requires stmIndex.directive:stmIndexProductCard
  *
  * @description
  * Страница цен

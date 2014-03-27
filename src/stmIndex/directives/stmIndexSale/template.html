@@ -17,14 +17,14 @@
                         <div class="b-sale-subscribe__access-icon"></div>
                         <div class="b-sale-subscribe__access-text">Письмо скоро придет!</div>
             </div>
-            <form name="subscribeForm" class="b-sale-subscribe-form g-form" novalidate>
+            <form name="modelSubscribe.form" class="b-sale-subscribe-form g-form" ng-submit="submitSubscribe()" novalidate>
                 <div class="b-form-row g-clearfix">
                     <div class="b-form-row__col size_2_3">
-                        <input name="email" ng-model="email" required type="email" placeholder = "Электронная почта" class="b-form-input-text mod_subscribe">
+                        <input name="email" ng-model="modelSubscribe.email" required type="email" placeholder = "Электронная почта" class="b-form-input-text mod_subscribe">
                     </div>
                     <div class="b-form-row__col size_1_3">
                          <span ng-class="subscribeForm.isSend ? 'state_loading' : ''" ng-click="submitSubscribe()" class="b-button b-button_scheme_red mod_subscribe">
-                            <span class="b-button__text">Жду письма</span>
+                            <span class="b-button__text">Начать игру</span>
                             <button class="b-button__link"></button>
                         </span>
                     </div>
@@ -42,8 +42,8 @@
                 </div>
             </div>
 
-            <p>Привествуем Вас на первых в Рунете Сочных Играх. <br>
-            Игровой марафон продлится 6 недель, до 31 марта 2014 года. Все участники получат подарки и сувениры от партнеров и спонсоров проекта, а самые активные поборятся за главные призы и доступ к закрытой распродаже Сочные Цены.</p>
+            <p>Привествуем Вас на первых в Рунете Сочных Играх.<br>
+            Игровой марафон продлится до 30 апреля. Ура! Все участники получат подарки и сувениры от партнеров и спонсоров проекта, а самые активные поборятся за главные призы и доступ к закрытой распродаже Сочные Цены.</p>
 
         </div>
 
@@ -80,14 +80,14 @@
                         <div class="b-sale-subscribe__access-icon"></div>
                         <div class="b-sale-subscribe__access-text">Вскоре мы пригласим вас за подарками!</div>
                     </div>
-                    <form name="subscribeForm" class="b-sale-subscribe-form g-form" novalidate>
+                    <form name="modelSubscribe.form" class="b-sale-subscribe-form g-form" ng-submit="submitSubscribe()" novalidate>
                         <div class="b-form-row g-clearfix">
                             <div class="b-form-row__col size_2_3">
-                                <input name="email" ng-model="email" required type="email" placeholder = "Электронная почта" class="b-form-input-text mod_subscribe">
+                                <input name="email" ng-model="modelSubscribe.email" required type="email" placeholder = "Электронная почта" class="b-form-input-text mod_subscribe">
                             </div>
                             <div class="b-form-row__col size_1_3">
                                  <span ng-class="subscribeForm.isSend ? 'state_loading' : ''" ng-click="submitSubscribe()" class="b-button b-button_scheme_red mod_subscribe">
-                                    <span class="b-button__text">Жду письма</span>
+                                    <span class="b-button__text">Участвовать</span>
                                     <button class="b-button__link"></button>
                                 </span>
                             </div>
@@ -160,22 +160,7 @@
         
         <div class="b-sale-prods">
             <div class="b-sale-prods-h g-clearfix">
-                <div ng-repeat="card in products" class="b-sale-prod">
-                    <span class="b-sale-product-image">
-                        <img ng-class="card.modImg" class="b-product-image-h" ng-src="{{card.img}}">
-                    </span>
-                    <span class="b-sale-br">
-                        <a ng-href="{{card.subUrl}}" target="_blank" class="b-sale-br-link">{{card.subName}}</a>&nbsp;/
-                    </span>
-                    <span class="b-sale-product-title">
-                        {{card.title}}
-                    </span>
-                    <div class="b-sale-conts">
-                        <div ng-if="card.oldPrice" class="b-sale-cont scheme_gray">{{card.oldPrice | stmNumber}}</div>
-                        <div class="b-sale-cont scheme_yellow">{{card.price | stmNumber}}<span class="g-ruble">p</span></div>
-                    </div>
-                    <a ng-href="{{card.url}}" target="_blank" class="b-sale-product-link"></a>
-                </div>
+                <div ng-repeat="item in products" stm-index-product-card="item" ng-click="clickProduct($event, item)"></div>
             </div>
         </div>
         
@@ -212,21 +197,23 @@
                         <div class="b-sale-subscribe__access-icon"></div>
                         <div class="b-sale-subscribe__access-text">Считайте, что приглашение уже на почте!</div>
                     </div>
-                    <form name="subscribeForm" class="b-sale-subscribe-form g-form" novalidate>
+                    <form name="modelSubscribe.form" class="b-sale-subscribe-form g-form" ng-submit="submitSubscribe()" novalidate>
                         <div class="b-form-row g-clearfix">
                             <div class="b-form-row__col size_2_3">
-                                <input name="email" ng-model="email" required type="email" placeholder = "Электронная почта" class="b-form-input-text mod_subscribe">
+                                <input name="email" ng-model="modelSubscribe.email" required type="email" placeholder = "Электронная почта" class="b-form-input-text mod_subscribe">
                             </div>
                             <div class="b-form-row__col size_1_3">
                                  <span ng-class="subscribeForm.isSend ? 'state_loading' : ''" ng-click="submitSubscribe()" class="b-button b-button_scheme_red mod_subscribe">
-                                    <span class="b-button__text">Жду письма</span>
+                                    <span class="b-button__text">Получить</span>
                                     <button class="b-button__link"></button>
                                 </span>
                             </div>
                         </div>
                     </form>
             </div>
+            <div class="b-sale-copy"> © <a href="/">Сотмаркет</a> 2005–2014 </div>
         </div>
+        
 
         <div class="b-sale-footer g-clearfix">
             <div class="b-sale-footer-left">
@@ -248,6 +235,37 @@
     <div class="b-popup-note">
       Расскажи о Сочных Играх своим друзьям.<br>
       Собери сильную команду и получи второй<br>
-      приз &mdash; новый Apple iPad 
+      приз &mdash; новый Apple iPad
+    </div>
+</div>
+<div ng-if="showSubscribePopup" stm-index-popup footer="false" fixed="true" closable="closeSubscribePopup" width="520" class="b-sale-popup-subscribe">
+      <div ng-class="subscribeSuccess ?  'state_success' : ''" class="b-sale-subscribe">
+                    <div class="b-sale-subscribe__access mod_popup">
+                        <div class="b-sale-subscribe__access-icon"></div>
+                        <div class="b-sale-subscribe__access-text">Считайте, что приглашение уже на почте!</div>
+                        <p>Перейти на <a ng-href="{{subscribePopupProductUrl}}" target="_blank">страницу товара</a>.<p>
+                    </div>      
+                    <form name="modelSubscribe.form" class="b-sale-subscribe-form g-form" ng-submit="submitSubscribe(true)" novalidate>
+                        <div class="__title">
+                              Для доступа к товарам по указанным ценам,<br>
+                              оставьте свою электронную почту
+                        </div>
+                        <div class="b-form-row g-clearfix">
+                            <div class="b-form-row__col size_2_3">
+                                <input name="email" ng-model="modelSubscribe.email" required type="email" placeholder = "Электронная почта" class="b-form-input-text mod_subscribe">
+                            </div>
+                            <div class="b-form-row__col size_1_3">
+                                 <span ng-class="subscribeForm.isSend ? 'state_loading' : ''" ng-click="submitSubscribe(true)" class="b-button b-button_scheme_red mod_subscribe">
+                                    <span class="b-button__text">Получить доступ</span>
+                                    <button class="b-button__link"></button>
+                                </span>
+                            </div>
+                        </div>
+                    </form>      
+        </div>
+        <div class="__saledate">
+            Первая распродажа состоится совсем скоро:
+            <div class="__saledate-date">31 марта</div>
+        </div>
     </div>
 </div>

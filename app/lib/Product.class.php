@@ -143,7 +143,7 @@ class Product {
                 'url'=>'http://www.sotmarket.ru/product/apple-ipod-nano-16gb.html',
                 'oldPrice'=>6960,
                 'price'=>3490,
-                'modImg'=>'mod_hor'
+                'ratio'=>1
             ),
             array(
                 'img'=>'http://img-sotmarket.ru/standart/img/mp3_pleer/apple/f01_apple_ipod_touch_5g_5.png',
@@ -207,7 +207,7 @@ class Product {
                 'url'=>'http://www.sotmarket.ru/product/sony-playstation-4.html',
                 'oldPrice'=>26990,
                 'price'=>14990,
-                'modImg'=>'mod_hor'
+                'ratio'=>1
             ),
             array(
                 'img'=>'http://img-sotmarket.ru/standart/img/igrovie_pristavki/microsoft/f03_microsoft_xbox_360_250gb_1.png',
@@ -262,7 +262,7 @@ class Product {
                 'url'=>'http://www.sotmarket.ru/product/apple-macbook-air-13-mid-2013-md760.html',
                 'oldPrice'=>43560,
                 'price'=>19990,
-                'modImg'=>'mod_hor'
+                'ratio'=>1
             )
         );
     }
