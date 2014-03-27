@@ -1105,3 +1105,6 @@
 .b-map-banners.mod_pickpoint-small {
     background-position: 1px -635px;
 }
+.b-map .b-map-slider {
+    display: block;
+}
