@@ -103,7 +103,7 @@ class Product {
             return $rs;
         }
         $filtersForQ = self::applyFiltersForQ($filters);         
-        $q = "SELECT title, url, img, sub_name subName, sub_url subUrl, price, oldprice oldPrice, category FROM goods WHERE `category` = :category {$filtersForQ[0]} ORDER BY :order LIMIT ".((int)$limit)." OFFSET ".((int)$offset).";";
+        $q = "SELECT title, url, img, sub_name subName, sub_url subUrl, price, oldprice oldPrice, category, ratio FROM goods WHERE `category` = :category {$filtersForQ[0]} ORDER BY :order LIMIT ".((int)$limit)." OFFSET ".((int)$offset).";";
         $rs = DB::query($q, array_merge(array(
             ':category' => $category,
             ':order' => $order
@@ -118,7 +118,8 @@ class Product {
                 'subUrl' => $item['subUrl'], 
                 'price' => (int)$item['price'], 
                 'oldPrice' => $item['oldPrice'],
-                'category' => $item['category']
+                'category' => $item['category'],
+                'ratio' => (float)$item['ratio']
             );
         }
         Cache::set($key, $data);

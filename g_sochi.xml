@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<!DOCTYPE yml_catalog SYSTEM "shops.dtd">
+<yml_catalog date="2014-03-27 16:02">
+
+<shop>
+<name>SotMarket.ru</name>
+<company>SotMarket</company>
+<url>http://www.sotmarket.ru/</url>
+
+<currencies>
+<currency id="RUR" rate="1"/>
+</currencies>
+<categories>
+<category id="11" parentId="492">Мобильные телефоны</category>
+<category id="15" parentId="507">Чехлы для телефонов</category>
+<category id="16" parentId="499">Разное</category>
+<category id="20" parentId="507">Наушники для телефона</category>
+<category id="39" parentId="2415">MP3 плееры</category>
+<category id="48" parentId="493">Ноутбуки</category>
+<category id="49" parentId="494">Фотоаппараты</category>
+<category id="52" parentId="497">Мультиварки</category>
+<category id="54" parentId="494">Цифровые фоторамки</category>
+<category id="56" parentId="511">Сумки и чехлы для фотоаппаратов</category>
+<category id="61" parentId="513">Наушники для плеера</category>
+<category id="71" parentId="493">Планшеты</category>
+<category id="273" parentId="2417">Игровые приставки</category>
+<category id="389" parentId="387">Видеорегистраторы</category>
+<category id="522" parentId="494">Видеокамеры</category>
+<category id="559" parentId="492">Радиотелефоны</category>
+<category id="875" parentId="2415">Цифровые метеостанции</category>
+<category id="1097" parentId="497">Электрические чайники</category>
+<category id="1099" parentId="2733">Необычные гаджеты</category>
+<category id="1161" parentId="497">Миксеры</category>
+<category id="1243" parentId="497">Кофеварки и кофемашины</category>
+<category id="1281" parentId="1129">Массажеры</category>
+<category id="1335" parentId="1129">Фены</category>
+<category id="1341" parentId="2321">Пылесосы</category>
+<category id="1383" parentId="1103">Очистители и увлажнители воздуха</category>
+<category id="1411" parentId="1521">Наручные часы</category>
+<category id="1421" parentId="2415">Магнитолы</category>
+<category id="2195" parentId="2047">Ручные измельчители овощей</category>
+<category id="2735" parentId="2733">Неокуб</category>
+</categories>
+<offers>
+<offer id="11595" available="true">
+<url>http://www.sotmarket.ru/product/headset_ipod.html</url>
+<price>490</price>
+<currencyId>RUR</currencyId>
+<categoryId>61</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/hands_free/apple/naushniki_ipod.jpg</picture>
+<name>Наушники для Apple iPod</name>
+<param name="Цвет">Оранжевый,Розовый</param></offer>
+<offer id="58267" available="true">
+<url>http://www.sotmarket.ru/product/headphones_sennheiser_cx_400.html</url>
+<price>2410</price>
+<currencyId>RUR</currencyId>
+<categoryId>61</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/hands_free/sennheiser/headphones_sennheiser_cx_400_2.jpg</picture>
+<name>Sennheiser CX 400</name>
+<param name="Цвет">Белые,Белый,Черные</param></offer>
+<offer id="82696" available="true">
+<url>http://www.sotmarket.ru/product/nikon_d3100_kit_18-55_vr.html</url>
+<price>9990</price>
+<oldprice>16490</oldprice>
+<currencyId>RUR</currencyId>
+<categoryId>49</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/photo/nikon/f01_nikon_d3100_kit_18_55_vr_3.jpg</picture>
+<name>Nikon D3100 Kit 18-55 VR чёрный</name>
+<param name="Цвет">Red,Черный</param></offer>
+<offer id="85303" available="true">
+<url>http://www.sotmarket.ru/product/avtoregistrator_dod_f900lhd.html</url>
+<price>4800</price>
+<currencyId>RUR</currencyId>
+<categoryId>389</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/aksessuary_automobile/videoregistratory/dod/auto_videoreg_dod_f900lhd_1.jpg</picture>
+<name>DOD F900LHD</name>
+<param name="Цвет">Black,Silver</param></offer>
+<offer id="128098" available="true">
+<url>http://www.sotmarket.ru/product/apple_ipod_shuffle_4_2gb.html</url>
+<price>990</price>
+<oldprice>2540</oldprice>
+<currencyId>RUR</currencyId>
+<categoryId>39</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/mp3_pleer/apple/f01_apple_ipod_shuffle_5_2gb_4.jpg</picture>
+<name>Apple iPod shuffle 4G 2GB</name>
+<param name="Цвет">Black,Blue,Green,Orange,Pink,Purple,Red,Silver,Slate,Yellow</param></offer>
+<offer id="184285" available="true">
+<url>http://www.sotmarket.ru/product/dect-panasonic-kx-tg1611ru.html</url>
+<price>1250</price>
+<currencyId>RUR</currencyId>
+<categoryId>559</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/radiotelefony/panasonic/f01_panasonic_kx_tg1611ru.jpeg</picture>
+<name>Panasonic KX-TG1611RU</name>
+<param name="Цвет">Бежевый,Белый,Красный,Серый,Фиолетовый</param></offer>
+<offer id="268211" available="true">
+<url>http://www.sotmarket.ru/product/sagem-d16t.html</url>
+<price>820</price>
+<currencyId>RUR</currencyId>
+<categoryId>559</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/radiotelefony/sagem/sagem_d16t.jpg</picture>
+<name>Sagem D16T</name>
+<description>Sagem D16T&#160;- доступный радиотелефон с базовыми функциями, обладающий достаточно большими кнопками и понятным интерфейсом. В комплекте идут база и трубка.</description>
+</offer>
+<offer id="299629" available="true">
+<url>http://www.sotmarket.ru/product/nikon-d800-body.html</url>
+<price>97990</price>
+<currencyId>RUR</currencyId>
+<categoryId>49</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/photo/nikon/f01_nikon_d800_body_4.jpg</picture>
+<name>Nikon D800 Body</name>
+<description>Выпуском профессионального зеркального фотоаппарата Nikon D800 Body компания Nikon значительно расширила обычным снимкам небывалую четкость, контрастность, отличную цветопередачу и дала возможность фотографировать даже в при недостаточном освещении. Большой ЖК-дисплей диагональю 3.2 дюйма и разрешением в 921000 пикселей передает самые тонкие оттенки цветов, делая снимки естественным, а просмотр кадров впечатляющим. Благодаря экрану обращаться с настройками меню стало проще простого. Все функции Nikon D800 Body точно проиллюстрированы на экране, а кнопка &#171;помощь&#187; всегда поможет Вам разобраться в случае незнания предназначения той или иной функции. Nikon D800 сделан в прочном крупном корпусе.</description>
+</offer>
+<offer id="413779" available="true">
+<url>http://www.sotmarket.ru/product/gembird-pf-15-1.html</url>
+<price>810</price>
+<currencyId>RUR</currencyId>
+<categoryId>54</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/photoramki/gembird/f01_gembird_pf_15_1_3.png</picture>
+<name>Gembird PF-15-1</name>
+<description>Gembird PF-15-1 - цифровая фоторамка-брелок с цветным LCD-экраном. Этот брелок может хранить в памяти до 150 фотографий. В комплекте есть переходник для подключения к компьютеру и подзарядки. Фоторамку Gembird PF-15-1 можно также использовать в качестве часов и календаря.</description>
+</offer>
+<offer id="425855" available="true">
+<url>http://www.sotmarket.ru/product/vitek-vt-1161.html</url>
+<price>2014</price>
+<currencyId>RUR</currencyId>
+<categoryId>1097</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/bytovaya_tehnika/dlya_kuhni/elektricheskie_chainiki/vitek/f02_vitek_vt_1161.jpg</picture>
+<name>VITEK VT-1161</name>
+<description>VITEK VT-1161 - простой в использовании электрический чайник с керамическим корпусом. Позволяет вам выбирать температуру нагрева воды. Чайник имеет объем 1.7 литра, а его мощность составляет 2200 Вт.</description>
+</offer>
+<offer id="435423" available="true">
+<url>http://www.sotmarket.ru/product/panasonic-mk-gb1wtq.html</url>
+<price>1870</price>
+<currencyId>RUR</currencyId>
+<categoryId>1161</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/bytovaya_tehnika/dlya_kuhni/miksery/panasonic/f02_panasonic_mk_gb1wtq.png</picture>
+<name>Panasonic MK-GB1WTQ</name>
+<description>Panasonic MKGB1WTQ - это удобный и надежный стационарный миксер с мощным двигателем в 200 Вт и вращающейся чашей. Пять режимов скорости позволяют запустить миксер в том режиме, который Вам необходим. MKGB1WTQ отличается простотой в использовании, высоким качеством, компактным и стильным дизайном.</description>
+</offer>
+<offer id="454109" available="true">
+<url>http://www.sotmarket.ru/product/delonghi-ecam-23-420.html</url>
+<price>35990</price>
+<currencyId>RUR</currencyId>
+<categoryId>1243</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/bytovaya_tehnika/dlya_kuhni/kofevarki/delonghi/f01_ecam_4.jpg</picture>
+<name>Delonghi ECAM 23.420</name>
+<description>Delonghi ECAM 23.420 - компактная кофемашина с интересным дизайном. Это уникальная система, обеспечивающая простоту и быстроту получения чашки превосходного натурального кофе, и также возможность приготовления горячих напитков.</description>
+</offer>
+<offer id="465827" available="true">
+<url>http://www.sotmarket.ru/product/philips-fc8767.html</url>
+<price>6160</price>
+<currencyId>RUR</currencyId>
+<categoryId>1341</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/bytovaya_tehnika/dlya_doma/pilesosi/philips/f01_philips_fc8767_2.png</picture>
+<name>Philips FC8767</name>
+<description>С пылесосом Philips FC 8767 вы узнаете что такое по-настоящему чистый пол. Благодаря особой конструкции насадка AeroSeal собирает больше пыли за один подход. Она аккуратно приподнимает ворс ковра, чтобы собрать пыль даже с его самых глубоких слоев. Благодаря плотному прилеганию щетки к поверхности вся пыль мощным потоком воздуха засасывается в циклонную камеру. Технология PowerCyclone обеспечивает идеальные результаты уборки в три этапа: поток воздуха с частичками пыли и грязи поступает в камеру PowerCyclone; быстрая циркуляция воздуха обеспечивает эффективное оседание частичек пыли в циклонической камере; воздух выходит из камеры через лопасти, которые эффективно отделяют пыль от воздуха. Мотор мощностью 2100 Вт обеспечивает силу всасывания 370 Вт для идеальных результатов уборки. Специальная конструкция контейнера для сбора пыли во время его очистки не дает образовываться облаку пыли. Благодаря его особой конструкции и сглаженным краям вся собранная пыль скапливается на одной стороне контейнера и плавно сбрасывается в мусорное ведро. Фильтр из вспененного материала можно легко мыть под струей воды. Это увеличит срок его службы. Большой радиус действия для Вашего удобства.</description>
+</offer>
+<offer id="466643" available="true">
+<url>http://www.sotmarket.ru/product/apple-ipod-nano-16gb.html</url>
+<price>3490</price>
+<oldprice>6810</oldprice>
+<currencyId>RUR</currencyId>
+<categoryId>39</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/mp3_pleer/apple/f01_apple_ipod_nano_7g_1.png</picture>
+<name>Apple iPod nano 7G 16GB</name>
+<param name="Цвет">Black,Blue,Green,Grey,Pink,Purple,Red,Silver,Slate,Yellow,Красный</param></offer>
+<offer id="466723" available="true">
+<url>http://www.sotmarket.ru/product/apple-ipod-touch-5g-32gb.html</url>
+<price>5990</price>
+<oldprice>12890</oldprice>
+<currencyId>RUR</currencyId>
+<categoryId>39</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/mp3_pleer/apple/f01_apple_ipod_touch_5g_5.png</picture>
+<name>Apple iPod touch 5G 32GB</name>
+<param name="Цвет">Black,Blue,Gray,Pink,Red,Silver,White,White/Silver,Yellow,Красный</param></offer>
+<offer id="469683" available="true">
+<url>http://www.sotmarket.ru/product/vitek-vt-1390.html</url>
+<price>990</price>
+<oldprice>1790</oldprice>
+<currencyId>RUR</currencyId>
+<categoryId>1281</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/bytovaya_tehnika/individualnyj_ukhod/masajeri/vitek/f03_vitek_vt_1390.jpg</picture>
+<name>VITEK VT-1390</name>
+<description>VITEK VT-1390 - это практичная и легкая массажная подушка для использования дома или в салоне автомобиля. Она идеально подходит не только для водителей, но и для людей, которые проводят много времени за компьютером. VITEK VT-1390 поможет снять усталость, улучшить кровообращение и повысить общий тонус организма. Регулярный массаж при помощи массажера VITEK VT-1390 укрепляет весь организм в целом, успокаивает и помогает снять стресс,что благополучно сказывается на состоянии здоровья.</description>
+</offer>
+<offer id="474409" available="true">
+<url>http://www.sotmarket.ru/product/vitek-vt-1761.html</url>
+<price>2014</price>
+<oldprice>2840</oldprice>
+<currencyId>RUR</currencyId>
+<categoryId>1383</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/bytovaya_tehnika/dlya_doma/ochistiteli_uvlajniteli_vozduxa/kenwood/f01_vt_2.jpg</picture>
+<name>VITEK VT-1761</name>
+<description>VITEK VT-1761 втягивает сухой и загрязнённый воздух, а производит увлажнённый, свежий, чистый и здоровый. Вода поглощает не только пыль и неприятные запахи, но также формальдегиды, аллергены, так же отлично справляется с табачным дымом.</description>
+</offer>
+<offer id="475291" available="true">
+<url>http://www.sotmarket.ru/product/vitek-vt-3460.html</url>
+<price>2014</price>
+<oldprice>2460</oldprice>
+<currencyId>RUR</currencyId>
+<categoryId>1421</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/multimedia/audio_magnitola/vitek/f03_vitek_vt_3460.jpg</picture>
+<name>VITEK VT-3460</name>
+<description>Современная CD-MP3 магнитола VITEK VT-3460 придется по вкусу многим пользователям. Данная модель может считывать информацию с флэш-карт и компакт дисков, а два динамика общей мощностью в 2.4 Вт смогут обеспечить качественное звучание. VITEK VT-3460 также отлично работает с AM и FM диапазонами, благодаря встроенному радиотюнеру.</description>
+</offer>
+<offer id="480329" available="true">
+<url>http://www.sotmarket.ru/product/xbox-360-microsoft-250gb-kinect-and-kinect-adventures.html</url>
+<price>6990</price>
+<oldprice>13790</oldprice>
+<currencyId>RUR</currencyId>
+<categoryId>273</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/elektronika-i-komputery/elektronika/televizory-audio-video/igrovie_pristavki/xbox-360-microsoft-250gb-kinect-and-kinect-adventures-1-1.jpg</picture>
+<name>Microsoft Xbox 360 250GB + KINECT + Kinect Adventures</name>
+<description>Microsoft Xbox 360 250Gb - новая игровая консоль в стильном корпусе + современный игровой контроллер нового поколения KINECT, и в подарок игра Kinect Adventure. Емкость жесткого диска составляет 250 Гб. Он подходит для загрузки и хранения фильмов высокой четкости, игр, дополнительных компонентов, музыкальных файлов и других важных данных. Играйте без ограничений в свои любимые игры с игровой консолью Microsoft Xbox 360 250GB.</description>
+</offer>
+<offer id="502271" available="true">
+<url>http://www.sotmarket.ru/product/apple-ipad-mini-wi-fi-16gb.html</url>
+<price>8490</price>
+<oldprice>12590</oldprice>
+<currencyId>RUR</currencyId>
+<categoryId>71</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/planshetnie_pc/apple/f03_apple_ipad_mini_wi_fi.png</picture>
+<name>Apple iPad mini Wi-Fi 16GB</name>
+<param name="Цвет">Black,White</param></offer>
+<offer id="580747" available="true">
+<url>http://www.sotmarket.ru/product/samsung-i9082-galaxy-grand-duos.html</url>
+<price>7990</price>
+<oldprice>12990</oldprice>
+<currencyId>RUR</currencyId>
+<categoryId>11</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/mobile/samsung/f03_samsung_i9080_galaxy_grand_1.png</picture>
+<name>Samsung i9082 Galaxy Grand Duos</name>
+<param name="Цвет">Blue,White,Белый</param></offer>
+<offer id="612935" available="true">
+<url>http://www.sotmarket.ru/product/sony-cyber-shot-dsc-wx200.html</url>
+<price>3390</price>
+<oldprice>6900</oldprice>
+<currencyId>RUR</currencyId>
+<categoryId>49</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/photo/sony/f03_sony_cyber_shot_dsc_wx200_6.png</picture>
+<name>Sony Cyber-shot DSC-WX200</name>
+<param name="Цвет">Серебристый,Черный</param></offer>
+<offer id="626335" available="true">
+<url>http://www.sotmarket.ru/product/neokub-216-alfa-5mm-n-216b.html</url>
+<price>1050</price>
+<currencyId>RUR</currencyId>
+<categoryId>2735</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/podarki/neokub/neokub-216-alfa-5mm-n-216b.jpg</picture>
+<name>Неокуб Альфа 216 NC-216</name>
+<param name="Цвет">Белый,Бирюзовый,Голубой,Зеленый,Золото,Красный,Оранжевый,Розовый,Серебряный,Синий,Сталь,Фиолетовый,Черный</param></offer>
+<offer id="648557" available="true">
+<url>http://www.sotmarket.ru/product/sony-xperia-z.html</url>
+<price>10040</price>
+<oldprice>16210</oldprice>
+<currencyId>RUR</currencyId>
+<categoryId>11</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/mobile/sony/f03_sony_xperia_z_2.png</picture>
+<name>Sony Xperia Z C6603</name>
+<param name="Цвет">Black,Purple,White</param></offer>
+<offer id="659651" available="true">
+<url>http://www.sotmarket.ru/product/sony-xperia-tablet-z-16gb.html</url>
+<price>9990</price>
+<oldprice>17360</oldprice>
+<currencyId>RUR</currencyId>
+<categoryId>71</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/planshetnie_pc/sony/f03_sony_xperia_tablet_z_3.png</picture>
+<name>Sony Xperia Tablet Z 16GB</name>
+<param name="Цвет">Black,White</param></offer>
+<offer id="696331" available="true">
+<url>http://www.sotmarket.ru/product/samsung-galaxy-s4-16gb.html</url>
+<price>10990</price>
+<oldprice>19990</oldprice>
+<currencyId>RUR</currencyId>
+<categoryId>11</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/telefony/mobiles/samsung-galaxy-s4-16gb-0-16.jpg</picture>
+<name>Samsung Galaxy S4 i9500 16GB</name>
+<param name="Цвет">Black,Blue,Brown,Pink,Purple,Red,White</param></offer>
+<offer id="697425" available="true">
+<url>http://www.sotmarket.ru/product/philips-hp-8230.html</url>
+<price>1730</price>
+<currencyId>RUR</currencyId>
+<categoryId>1335</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/bytovaya_tehnika/individualnyj_ukhod/feny/philips/philips-hp-8230-0-1.png</picture>
+<name>Philips HP 8230</name>
+<description>Фен Philips HP 8230 позаботится о вашей безупречной прическе. Он обладает мощностью 2100 Вт и имеет 6 режимов работы. У него есть удобная петля для подвешивания и подача холодного воздуха, а концентратор размером 14 мм сделает использование фена еще удобнее.</description>
+</offer>
+<offer id="727753" available="true">
+<url>http://www.sotmarket.ru/product/kopilka-ischezajushchie-monety-91745.html</url>
+<price>390</price>
+<currencyId>RUR</currencyId>
+<categoryId>1099</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/multimedia/neobychnye_gadzhety/jevrika/kopilka-ischezajushchie-monety-91745-0.png</picture>
+<name>Копилка Эврика Исчезающие монеты 91745</name>
+<description>Копилка Эврика Исчезающие монеты 91745 станет необычным украшением интерьера. Она выполнена в виде ящика для фокусов, в который нужно опустить монетку и она исчезнет. Такая копилка может стать хорошим примером оптической иллюзии.</description>
+</offer>
+<offer id="732697" available="true">
+<url>http://www.sotmarket.ru/product/moser-4331-0050.html</url>
+<price>3460</price>
+<currencyId>RUR</currencyId>
+<categoryId>1335</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/bytovaya_tehnika/individualnyj_ukhod/feny/moser/moser-4331-0050-0-1.png</picture>
+<name>Moser 4331-0050</name>
+<description>Фен Moser 4331-0050 создаст прекрасное настроение и позаботится о безупречной прическе. Он имеет всего 6 режимов: 4 режима нагрева и 2 режима интенсивности воздушного потока. Разные режимы нагрева и скорости помогают высушить волосы и смоделировать прическу за довольно короткое время. Дополнительно в наличии имеется режим подачи холодного воздуха и функция ионизации. Петля подвешивания позволяет подвешивать его на стене в любом удобном месте.</description>
+</offer>
+<offer id="794525" available="true">
+<url>http://www.sotmarket.ru/product/samsung-galaxy-s4-mini-i9190.html</url>
+<price>9990</price>
+<oldprice>14990</oldprice>
+<currencyId>RUR</currencyId>
+<categoryId>11</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/mobile/mobile/samsung-galaxy-s4-mini-i9190-0-2.png</picture>
+<name>Samsung Galaxy S4 mini i9190</name>
+<param name="Цвет">Black,Blue,Brown,Gray,Orange,Pink,Purple,Red,White,Yellow,Белый</param></offer>
+<offer id="814355" available="true">
+<url>http://www.sotmarket.ru/product/apple-macbook-air-13-mid-2013-md760.html</url>
+<price>19990</price>
+<oldprice>43240</oldprice>
+<currencyId>RUR</currencyId>
+<categoryId>48</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/notebook/apple/apple-macbook-air-11-mid-2013-md712-1-3.png</picture>
+<name>Apple MacBook Air 13&quot; Mid 2013 MD760</name>
+<description>Необычно тонкий корпус ноутбука Apple MacBook Air 13&quot; Mid 2013 MD760 с диагональю в 13 дюймов собрал в себя весь опыт и новейшие наработки Apple. Он оснащён flash-накопителями для увеличения скорости отклика и надёжности. Его трекпад полностью поддерживает жесты Multi-Touch. Он необычайно тонкий и лёгкий, но его большой и мощный аккумулятор позволяет работать много часов подряд. Мощный процессор гарантирует бесперебойную работу даже в режиме многозадачности.</description>
+</offer>
+<offer id="841265" available="true">
+<url>http://www.sotmarket.ru/product/nokia-lumia-925.html</url>
+<price>8590</price>
+<oldprice>17990</oldprice>
+<currencyId>RUR</currencyId>
+<categoryId>11</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/mobile/nokia/nokia-lumia-925-0-1.jpg</picture>
+<name>Nokia Lumia 925</name>
+<param name="Цвет">Black,Grey,White</param></offer>
+<offer id="882219" available="true">
+<url>http://www.sotmarket.ru/product/samsung-galaxy-tab-3-7-0-sm-t2100-8gb.html</url>
+<price>4090</price>
+<oldprice>6990</oldprice>
+<currencyId>RUR</currencyId>
+<categoryId>71</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/planshetnie_pc/samsung/samsung-galaxy-tab-3-7-0-sm-t2100-8gb-0-2.jpg</picture>
+<name>Samsung GALAXY Tab 3 7.0 SM-T210 8GB</name>
+<param name="Цвет">Black,Brown,White</param></offer>
+<offer id="905879" available="true">
+<url>http://www.sotmarket.ru/product/samsung-galaxy-gear.html</url>
+<price>6390</price>
+<oldprice>11760</oldprice>
+<currencyId>RUR</currencyId>
+<categoryId>1411</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/chasi/naruchnye/samsung/samsung-galaxy-gear-0-3.png</picture>
+<name>Samsung Galaxy Gear</name>
+<param name="Цвет">Beige,Gold,Green,Grey,Orange,White,Белый,Черные</param></offer>
+<offer id="906483" available="true">
+<url>http://www.sotmarket.ru/product/sony-xperia-z1.html</url>
+<price>24990</price>
+<currencyId>RUR</currencyId>
+<categoryId>11</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/mobile/sony/sony-xperia-z1-0-1.png</picture>
+<name>Sony Xperia Z1 C6903</name>
+<param name="Цвет">Black,Purple,White</param></offer>
+<offer id="908505" available="true">
+<url>http://www.sotmarket.ru/product/nicer-dicer-plus.html</url>
+<price>1490</price>
+<currencyId>RUR</currencyId>
+<categoryId>2195</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/dlya_remonta_i_sada/dom/kuhnya/aksessuary-dlya-kuhni/ruchnye-izmelchiteli-ovoshhei/nicer-dicer-plus-1.jpg</picture>
+<name>Овощерезка Nicer Dicer Plus</name>
+<description>Nicer Dicer Plus - ручная овощерезка с удобным контейнером для измельченных продуктов. Она легка в эксплуатации и не требует особого ухода. Ножи из нержавеющей стали очень остры и не требуют заточки. С этим прибором и комплектом насадок можно быстро нарезать любые продукты. Разрезать овощи и фрукты на восемь и четыре кусочка или натереть. Сделать аккуратные кубики, соломку или нарезать ломтики для украшения стола.</description>
+</offer>
+<offer id="926455" available="true">
+<url>http://www.sotmarket.ru/product/enc-dvr-127.html</url>
+<price>1690</price>
+<currencyId>RUR</currencyId>
+<categoryId>389</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/aksessuary_automobile/videoregistratory/endever/enc-dvr-127-0-4.jpg</picture>
+<name>ENC DVR-127</name>
+<description>ENC DVR-127 - это видеорегистратор, созданный специально для фиксации происшествий на дороге. Снятое видео может быть убедительным доказательством при решении спорных вопросов при авариях. Данная модель станет верным помощником при всевозможных дорожных ситуациях. Высокое разрешение видеозаписи и большой угол обзора позволит получить качественную и информативную картинку, на которой можно будет разобрать и номера автомобилей, и лица людей. С ENC DVR-127 вы будете чувствовать себя уверенней, так как видеорегистратор обезопасит вас от неправдивых обвинений. Данная модель проста в обращении и очень удобна. Существенным достоинством данного регистратора является то, что у него есть экран с диагональю 2.5 дюйма. Используя такой экран, можно прямо в салоне автомобиля, не подключаясь ни к каким сторонним устройствам, просматривать видео, что во многих случаях помогает прямо на месте доказать, что вы ни в чём не виноваты. Регистратор легко крепится к лобовому стеклу на присоске, потребляет минимум энергии и имеет привлекательный внешний вид.</description>
+</offer>
+<offer id="930071" available="true">
+<url>http://www.sotmarket.ru/product/chehol-oblozhka-sony-xperia-z-partner-slim-case.html</url>
+<price>780</price>
+<currencyId>RUR</currencyId>
+<categoryId>15</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/telefony/aksessyary_dlya_mobilnikh/chehol/chehly_all/chehol/chehol-oblozhka-sony-xperia-z-partner-slim-case-0.jpg</picture>
+<name>Чехол-обложка для Sony Xperia Z Partner Slim Case</name>
+<param name="Цвет">Белый,Красный,Черный</param></offer>
+<offer id="942995" available="true">
+<url>http://www.sotmarket.ru/product/vitek-vt-4211.html</url>
+<price>2014</price>
+<currencyId>RUR</currencyId>
+<categoryId>52</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/dlya_remonta_i_sada/dom/bytovaya_tekhnika/dlya_kuhni/multivarki/vitek-vt-4211-0-1.jpg</picture>
+<name>VITEK VT-4211</name>
+<description>VITEK VT-4211 - это многофункциональная мультиварка, способная приготовить практически любое блюдо. С её помощью можно тушить, варить, выпекать, жарить и готовить на пару. От вас требуется минимум усилий, необходимо лишь поместить в нее продукты и задать программу приготовления. Еда приготовится точно в назначенный срок, например, к приходу с работы. Можно отложить начало приготовления вплоть до 24 часов. Герметичная чаша сохраняет все полезные вещества в продуктах. Управление мультиваркой VITEK VT-4211 предельно просто. У нее уже есть 10 встроенных программ.</description>
+</offer>
+<offer id="959291" available="true">
+<url>http://www.sotmarket.ru/product/apple-ipad-air-4g-32gb.html</url>
+<price>15990</price>
+<oldprice>27200</oldprice>
+<currencyId>RUR</currencyId>
+<categoryId>71</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/elektronika-i-komputery/noutbuki_plansheti/planshet/apple-ipad-air-4g-64gb-0-6.png</picture>
+<name>Apple iPad Air Wi-Fi + 4G 32GB</name>
+<param name="Цвет">Black/Grey,Gray,Silver,White/Silver</param></offer>
+<offer id="972303" available="true">
+<url>http://www.sotmarket.ru/product/lg-nexus-5-16gb.html</url>
+<price>16450</price>
+<currencyId>RUR</currencyId>
+<categoryId>11</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/telefony/mobiles/lg-nexus-5-16gb-0-7.png</picture>
+<name>LG Nexus 5 16GB</name>
+<param name="Цвет">Black,White</param></offer>
+<offer id="992557" available="true">
+<url>http://www.sotmarket.ru/product/samsung-galaxy-note-3-n9005-32gb.html</url>
+<price>26990</price>
+<currencyId>RUR</currencyId>
+<categoryId>11</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/mobile/samsung/samsung-galaxy-note-3-n9000-32gb-0-1.png</picture>
+<name>Samsung Galaxy Note 3 N9005 32GB</name>
+<param name="Цвет">Black,White,Красный</param></offer>
+<offer id="1007375" available="true">
+<url>http://www.sotmarket.ru/product/bekker-bk-9350.html</url>
+<price>600</price>
+<currencyId>RUR</currencyId>
+<categoryId>1243</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/dlya_remonta_i_sada/dom/bytovaya_tekhnika/dlya_kuhni/kofevarki_i_kofemashiny/bekker-bk-9350-0.jpg</picture>
+<name>Bekker BK-9350</name>
+<description>Bekker BK-9350 - компактная кофеварка объемом 300 мл. Этого количества хватает на 3 чашки кофе. Бакелитовая ручка модели выдерживает температуру достаточно высокую температуру. С кофеваркой Bekker BK-9350 вы каждое утро сможете наслаждаться ароматным напитком.</description>
+</offer>
+<offer id="1014861" available="true">
+<url>http://www.sotmarket.ru/product/apple-iphone-5s-16gb-silver.html</url>
+<price>14490</price>
+<oldprice>27680</oldprice>
+<currencyId>RUR</currencyId>
+<categoryId>11</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/telefony/mobiles/apple-iphone-5s-16gb-silver-2.jpg</picture>
+<name>Apple iPhone 5S 16GB Silver</name>
+<param name="Цвет">Silver,White</param></offer>
+<offer id="1055749" available="true">
+<url>http://www.sotmarket.ru/product/endever-skyline-mc-28.html</url>
+<price>3180</price>
+<currencyId>RUR</currencyId>
+<categoryId>52</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/dlya_remonta_i_sada/dom/bytovaya_tekhnika/dlya_kuhni/multivarki/endever-skyline-mc-28-0-1.jpg</picture>
+<name>ENDEVER SkyLine MC-28</name>
+<description>Мультиварка-электрогриль Endever Skyline МС-28 &#8211; это современное многофункциональное устройство для приготовления пищи. Имеет 18 автоматических режимов работы и совмещает в себе сразу несколько популяр&#173;ных приборов кухонной техники.</description>
+</offer>
+<offer id="1073557" available="true">
+<url>http://www.sotmarket.ru/product/sony-xperia-z1-compact.html</url>
+<price>21990</price>
+<currencyId>RUR</currencyId>
+<categoryId>11</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/telefony/mobiles/sony-xperia-z1-compact-0-5.png</picture>
+<name>Sony Xperia Z1 Compact</name>
+<param name="Цвет">Black,Lime,Pink,White,Белый</param></offer>
+<offer id="1083625" available="true">
+<url>http://www.sotmarket.ru/product/ritmix-rh-450bth.html</url>
+<price>1610</price>
+<currencyId>RUR</currencyId>
+<categoryId>20</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/telefony/mobiles/aksessyary_dlya_mobilnikh/hands_free/ritmix-rh-450bth-0-1.png</picture>
+<name>Ritmix RH-450BTH</name>
+<description>Ritmix RH-450BTH - беспроводная стереогарнитура с качественным звуком уровня Hi-Fi, идеальная для использования вместе со смартфонами, планшетами и другими гаджетами. Устройство работает по протоколу Bluetooth 3.0 и поддерживает технологию ускоренной передачи данных EDR, также имеется возможность проводной передачи звука. Гарнитура отличается эргономичным дизайном и складной конструкцией. RH-450BTH поддерживает одновременное беспроводное подключение к двум устройствам, например, телефону и плееру. При входящем звонке плеер автоматически ставится на паузу, и можно говорить по телефону. После отбоя плеер снова начинает воспроизведение.</description>
+</offer>
+<offer id="1112639" available="true">
+<url>http://www.sotmarket.ru/product/vitek-vt-2503.html</url>
+<price>2014</price>
+<oldprice>2390</oldprice>
+<currencyId>RUR</currencyId>
+<categoryId>1335</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/dlya_remonta_i_sada/dom/bytovaya_tekhnika/individualnyj_ukhod/feny/vitek-vt-2503-0.jpg</picture>
+<name>VITEK VT-2503</name>
+<description>Набор для сушки и укладки волос VITEK VT-2503 сочетает в себе фен и щипцы для выпрямления волос - всё, что необходимо для создания аккуратной укладки. С ним вы всегда будете выглядеть превосходно. Он позволяет быстро высушить волосы, уложить их в прическу, придать желаемый объём или разгладить непослушные локоны. В конструкции предусмотрена петля для подвешивания. Данная модель имеет стильный и яркий дизайн.</description>
+</offer>
+<offer id="1132363" available="true">
+<url>http://www.sotmarket.ru/product/chexol-knizhka-dlya-samsung-galaxy-s4-i9500-untamo-timber-utimbs4.html</url>
+<price>290</price>
+<currencyId>RUR</currencyId>
+<categoryId>15</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/telefony/mobiles/aksessyary_dlya_mobilnikh/chehol/chexol-knizhka-dlya-samsung-galaxy-s4-i9500-untamo-timber-utimbs4-0-8.jpg</picture>
+<name>Чехол-книжка для Samsung Galaxy S4 i9500 Untamo Timber UTIMBS4</name>
+<param name="Цвет">Белый,Бирюзовый,Ваниль,Дымчато-синий,Малиновый,Розовый,Светло-коричневый,Темно-синий,Терракотовый,Черный,Шоколад</param></offer>
+<offer id="1144681" available="true">
+<url>http://www.sotmarket.ru/product/rascheska-stilart-36ld-17086.html</url>
+<price>260</price>
+<currencyId>RUR</currencyId>
+<categoryId>16</categoryId>
+<picture width='1200' height='1200'>http://img.sotmarket.ru/1200x1200/img/elektronika-i-komputery/aksessyary/raznoe/rascheska-stilart-36ld-17086-0.jpg</picture>
+<name>Расческа Stilart 36LD-17086</name>
+<description>Массажная расческа Stilart 36LD-17086 восстанавливает структуру волос, улучшает их питание и состояние кожи головы за счет стимулирования волосяных луковици. Зубцы расчески имеют закругленный дизайн, благодаря чему легко скользят по поверхности волоса не повреждая кутикулу. Данная модель имеет стильный дизайн.</description>
+</offer>
+</offers>
+</shop>
+</yml_catalog>

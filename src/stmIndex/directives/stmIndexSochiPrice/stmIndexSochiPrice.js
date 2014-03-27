@@ -91,7 +91,8 @@ angular.module('stmIndex').directive('stmIndexSochiPrice', ['stmGoods', function
             
             
             $scope.urlParams = function(params){
-                return urlParams.length > 0 ? '?' + urlParams.concat(params || []).join('&') : '';
+                params = urlParams.concat(params || []);
+                return params.length > 0 ? '?' + params.join('&') : '';
             }
             $scope.select = function(sel, item){
                 if(sel.selected == item) return;
