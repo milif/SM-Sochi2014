@@ -74,6 +74,7 @@ angular.module('stm').directive('stmPreload', ['$compile', function($compile){
                     maskEl = el;
                     $element
                         .data('_overflow', $element.css('overflow'))
+                        .data('_overflowY', $element.css('overflow-y'))
                         .css('overflow','hidden')
                         .scrollTop(0);                
                     preload();
@@ -99,7 +100,8 @@ angular.module('stm').directive('stmPreload', ['$compile', function($compile){
                         $scope.$apply(function(){
                             $animate.leave(maskEl);
                             $element
-                                .css('overflow', $element.data('_overflow'));
+                                .css('overflow', $element.data('_overflow'))
+                                .css('overflow-y', $element.data('_overflowY'));
                         /**
                            * @ngdoc event
                            * @name stm.directive:stmPreload#loaded

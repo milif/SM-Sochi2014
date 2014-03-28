@@ -1,47 +1,17 @@
 <?php 
     require __DIR__.'/../../lib/Product.class.php';
-
-    $category = isset($_GET['c']) ? $_GET['c'] : 'home';
-    $limit = 12;
-    $page = isset($_GET['p']) ? $_GET['p'] : 0;
-    $offset = $page * $limit;
-    $order = isset($_GET['s']) ? $_GET['s'] : 'id';
-    $filterValues = array(
-        'f.price' => isset($_GET['f_price']) ? $_GET['f_price'] : null,
-        'f.discount' => isset($_GET['f_discount']) ? $_GET['f_discount'] : null,
-    );
-    $page = "api/goods.php?c=$category&o=$offset&l=$limit&s=$order&f=".implode(',', $filterValues);
     
-    $API = array(
-        $page => array(
-            'items' => Product::getItems($category, $filterValues, $order, $limit, $offset),
-            'total' => Product::getTotalItems($category, $filterValues)
-        )
-    );
-    $filters = Product::getFilters();
-    $filterValuesQ = array();
-    foreach($filters as $filterName => $filterItems){
-        $filterValuesQ[] = array(
-            'type' => $filterName,
-            'value' => $filterValues[$filterName]
-        );
-        foreach($filterItems as $key => $item){
-            $filters[$filterName][$key]['total'] = Product::getTotalItems($category, 
-                array_merge($filterValues, array($filterName => $item['value']))
-            );
-        }    
-    }
+    $params = Product::getParamsFrom($_GET);
+    $filters = Product::getFilters($params);
 
     $ENV = array(
         'goods' => array(
-            'category' => $category,
-            'offset' => $offset,
-            'limit' => $limit,
-            'order' => $order,
-            'filters' => array(
-                'items' => $filters,
-                'values' => $filterValuesQ
-             )
+            'filters' => $filters,
+            'items' => array(
+                'data' => Product::getItems($params),
+                'total' => (int)Product::getTotalItems($params)
+            ),
+            'params' => $params
         )
     );
     

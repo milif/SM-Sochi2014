@@ -36,5 +36,24 @@ class Cache {
         $cache = self::getInstance();
         if(!$cache) return false;    
         return $cache->increment(CACHE_KEY_PREFIX.$key);
-    }    
+    }  
+    static public function clear(){
+        $cache = self::getInstance();
+        if(!$cache) return;
+        $allSlabs = $cache->getExtendedStats('slabs');
+        $items = $cache->getExtendedStats('items');
+        foreach($allSlabs as $server => $slabs) {
+            foreach($slabs AS $slabId => $slabMeta) {
+                $cdump = $cache->getExtendedStats('cachedump',(int)$slabId);
+                foreach($cdump AS $keys => $arrVal) {
+                    if (!is_array($arrVal)) continue;
+                    foreach($arrVal AS $k => $v) {                  
+                        if(strpos($k, CACHE_KEY_PREFIX) === 0){
+                            $cache->delete($k);
+                        }
+                    }
+                }
+            }
+        }   
+    }  
 }

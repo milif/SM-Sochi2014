@@ -22,7 +22,6 @@ $ENV = array_merge(array(
     'api' => $API,
     'isProduction' => IS_PRODUCTION
 ), isset($ENV) ? $ENV : array());
-
 if(IS_PRODUCTION){
     $ENV['gtm'] = array(
         'id'=> GTM_ID,

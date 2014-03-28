@@ -9,7 +9,7 @@
         </div>
         
         <ul class="sochiprice-menu">
-            <li ng-repeat="item in menu" class="sochiprice-menu__item" ng-class="item == category ? 'state_active' : ''"><a ng-href="price/{{item.isRoot ? '' : '?c=' + item.type}}" class="sochiprice-menu__item-link">{{item.title}}</a></li>
+            <li ng-repeat="item in menu" class="sochiprice-menu__item" ng-class="item == category ? 'state_active' : ''"><a ng-href="{{baseUrl + (item.isRoot ? '' : '?c=' + item.type)}}" class="sochiprice-menu__item-link">{{item.title}}</a></li>
         </ul>
 
     </div>
@@ -24,26 +24,26 @@
                     <div>                       
                        <div class="sochiprice-sel">
                            <label class="sochiprice-select-label">Скидка</label>
-                           <div ng-class="discountSel.active ? 'state_dropdown' : ''" class="sochiprice-selectbox">
-                               <div ng-click="showDropdown(discountSel)" class="sochiprice-select">
-                                   <div class="sochiprice-selусе-text" ng-bind-html="discountSel.selected.text"></div>
+                           <div ng-class="filters['f.discount'].active ? 'state_dropdown' : ''" class="sochiprice-selectbox">
+                               <div ng-click="showDropdown(filters['f.discount'])" class="sochiprice-select">
+                                   <div class="sochiprice-selусе-text" ng-bind-html="filters['f.discount'].selected.text"></div>
                                </div>
                                <div class="sochiprice-select-dropdown">
                                    <ul>
-                                       <li ng-repeat="item in discountSel" ng-class=" item == priceSel.selected ? 'sochiprice-selected' : ''" ng-click="select(discountSel, item)"><span ng-bind-html="item.text"></span><i>{{item.total}}</i></li>
+                                       <li ng-repeat="item in filters['f.discount']" ng-class=" item == filters['f.discount'].selected ? 'sochiprice-selected' : ''" ng-click="doFilter('f.discount', item)"><span ng-bind-html="item.text"></span><i>{{item.total}}</i></li>
                                    </ul>
                                </div>
                            </div>
                        </div>                       
                        <div class="sochiprice-sel">
                            <label class="sochiprice-select-label">Цена</label>
-                           <div ng-class="priceSel.active ? 'state_dropdown' : ''" class="sochiprice-selectbox">
-                               <div ng-click="showDropdown(priceSel)" class="sochiprice-select">
-                                   <div class="sochiprice-selусе-text" ng-bind-html="priceSel.selected.text"></div>
+                           <div ng-class="filters['f.price'].active ? 'state_dropdown' : ''" class="sochiprice-selectbox">
+                               <div ng-click="showDropdown(filters['f.price'])" class="sochiprice-select">
+                                   <div class="sochiprice-selусе-text" ng-bind-html="filters['f.price'].selected.text"></div>
                                </div>
                                <div class="sochiprice-select-dropdown">
                                    <ul>
-                                       <li ng-repeat="item in priceSel" ng-class=" item == priceSel.selected ? 'sochiprice-selected' : ''" ng-click="select(priceSel, item)"><span ng-bind-html="item.text"></span><i>{{item.total}}</i></li>
+                                       <li ng-repeat="item in filters['f.price']" ng-class=" item == filters['f.price'].selected ? 'sochiprice-selected' : ''" ng-click="doFilter('f.price', item)"><span ng-bind-html="item.text"></span><i>{{item.total}}</i></li>
                                    </ul>
                                </div>
                            </div>
@@ -54,15 +54,18 @@
             
             <div class="sochiprice-product-list">
                 <div class="sochiprice-product-list-h">
-                    <div ng-repeat="item in goods.items" stm-index-product-card="item"></div>                 
+                    <div ng-repeat="item in goods.items.data" style="display: inline-block;">
+                        <div stm-index-product-card="item"></div>
+                    </div> 
                 </div>
+                <div ng-if="isGoodsLoading" class="g-loadmask"></div>
             </div>
 
             <ul ng-if="lastPage > 0" class="sochiprice-paginator">
                 <li ng-if="page == 0" class="sochiprice-paginator__item state_disabled">← Назад</li>
-                <li ng-if="page > 0" class="sochiprice-paginator__item"><a ng-href="price/{{ page > 1 ? urlParams(['p=' + (page - 1)]) : urlParams()}}" class="sochiprice-paginator__item-link">← Назад</a></li>
-                <li ng-repeat="n in [] | range:(pageRange[1] - pageRange[0] + 1)" ng-class="n + pageRange[0] == page ? 'state_active' : ''" class="sochiprice-paginator__item"><a ng-href="price/{{(n + pageRange[0]) > 0 ? urlParams(['p=' + (pageRange[0] + n)]) : urlParams()}}" class="sochiprice-paginator__item-link">{{(pageRange[0] + n + 1)}}</a></li>
-                <li ng-if="page < lastPage" class="sochiprice-paginator__item"><a href="price/{{urlParams(['p=' + (page + 1)])}}" class="sochiprice-paginator__item-link">Вперед →</a></li>
+                <li ng-if="page > 0" class="sochiprice-paginator__item"><a ng-href="{{getUrl({p: page-1})}}" class="sochiprice-paginator__item-link">← Назад</a></li>
+                <li ng-repeat="n in [] | range:(pageRange[1] - pageRange[0] + 1)" ng-class="n + pageRange[0] == page ? 'state_active' : ''" class="sochiprice-paginator__item"><a ng-href="{{getUrl({p: pageRange[0] + n})}}" class="sochiprice-paginator__item-link">{{(pageRange[0] + n + 1)}}</a></li>
+                <li ng-if="page < lastPage" class="sochiprice-paginator__item"><a href="{{getUrl({p: page + 1})}}" class="sochiprice-paginator__item-link">Вперед →</a></li>
                 <li ng-if="page == lastPage" class="sochiprice-paginator__item state_disabled">Вперед →</li>
             </ul>
         </div>

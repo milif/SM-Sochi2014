@@ -1200,3 +1200,27 @@ a.terms-action__link {
   opacity: 1;
   height: 8px;
 }
+/* g-loadmask */
+/*==========================================================*/
+.g-loadmask {
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0.7;
+    background: #fff url(asset/i/common/loader_big.gif) 50% 50% no-repeat;
+}
+.g-loadmask.ng-enter,
+.g-loadmask.ng-leave {
+    -webkit-transition: all linear 0.2s;
+    transition: all linear 0.2s;
+}
+.g-loadmask.ng-leave-active,
+.g-loadmask.ng-enter {
+    opacity: 0;
+}
+.g-loadmask.ng-enter-active {
+    opacity: 0.7;
+}

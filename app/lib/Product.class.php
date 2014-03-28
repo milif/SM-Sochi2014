@@ -42,11 +42,43 @@ class Product {
             )        
         )
     );
-    static public function getFilters(){
-        return self::$FILTERS;
+    static public function getParamsFrom(&$data){
+    
+        $category = isset($data['c']) ? $data['c'] : 'home';
+        $limit = 12;
+        $page = isset($data['p']) ? $data['p'] : 0;
+        $offset = $page * $limit;
+        $order = isset($data['s']) ? $data['s'] : 'id';
+        $filterValues = array(
+            'f.price' => isset($data['f_price']) ? $data['f_price'] : null,
+            'f.discount' => isset($data['f_discount']) ? $data['f_discount'] : null,
+        );
+        
+        return array(
+            'category' => $category,
+            'limit' => $limit,
+            'offset' => $offset,
+            'order' => $order,
+            'filters' => $filterValues
+        );
     }
-    static public function getTotalItems($category, $filters){
-        $key = "goods.$category";
+    static public function getFilters($params){
+        $filters = self::$FILTERS;
+        $filterValues = $params['filters'];
+        foreach($filters as $filterName => $filterItems){
+            foreach($filterItems as $key => $item){
+                $params['filters'] = array_merge($filterValues, array(
+                    $filterName => $item['value']    
+                ));
+                $filters[$filterName][$key]['total'] = Product::getTotalItems($params);
+            }    
+        }
+        return $filters;
+    }
+    static public function getTotalItems($params){
+        $category = $params['category'];
+        $filters = $params['filters'];
+        $key = "goods.total.$category";
         foreach(self::$FILTERS as $filterName => $filter){
             $key .= ".".(isset($filters[$filterName]) ? $filters[$filterName] : null);
         }        
@@ -93,7 +125,14 @@ class Product {
         }
         return array($filtersQ, $filtersQP);        
     }
-    static public function getItems($category, $filters, $order = 'id', $limit, $offset = 0){
+    static public function getItems($params){
+    
+        $category = $params['category'];
+        $filters = $params['filters'];
+        $order = $params['order'];
+        $limit = $params['limit'];     
+        $offset = $params['offset']; 
+        
         $key = "goods.$category.$order.$limit.$offset";
         foreach(self::$FILTERS as $filterName => $filter){
             $key .= ".".(isset($filters[$filterName]) ? $filters[$filterName] : null);
@@ -102,7 +141,7 @@ class Product {
         if($rs !== false){
             return $rs;
         }
-        $filtersForQ = self::applyFiltersForQ($filters);         
+        $filtersForQ = self::applyFiltersForQ($filters);
         $q = "SELECT title, url, img, sub_name subName, sub_url subUrl, price, oldprice oldPrice, category, ratio FROM goods WHERE `category` = :category {$filtersForQ[0]} ORDER BY :order LIMIT ".((int)$limit)." OFFSET ".((int)$offset).";";
         $rs = DB::query($q, array_merge(array(
             ':category' => $category,

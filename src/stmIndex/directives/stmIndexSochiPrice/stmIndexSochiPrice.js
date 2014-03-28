@@ -56,55 +56,34 @@ angular.module('stmIndex').directive('stmIndexSochiPrice', ['stmGoods', function
     
     return {
         templateUrl: 'partials/stmIndex.directive:stmIndexSochiPrice:template.html',
-        controller: ['$scope', '$stmEnv', '$element', '$timeout', '$location', function($scope, $stmEnv, $element, $timeout, $location){
+        controller: ['$scope', '$stmEnv', '$element', '$timeout', '$location', '$rootScope', function($scope, $stmEnv, $element, $timeout, $location, $rootScope){
         
             $element.css('backgroundColor', '#fff');
         
-            var goodsParams = $stmEnv.goods;
-            var filters = goodsParams.filters;
-            for(var i=0;i<MENU.length;i++){
-                if(MENU[i].type == goodsParams.category){
-                    $scope.category = MENU[i];
-                    break;
-                }                
-            }
+            var goodsParams = $scope.goodsParams = $stmEnv.goods.params;
+            var filterValues = goodsParams.filters;
+            
+            var filters;  
+            var goods;          
             
             $scope.menu = MENU;
+                      
+            var baseUrl = $scope.baseUrl = $location.url().replace(/[\?#].*?$/,'').replace(/^\//, '');
             
-            var urlParams = [];
-            if(goodsParams.category != 'home') {
-                urlParams.push('c=' + goodsParams.category);
-            }            
-            for(var i=0;i<filters.values.length;i++){
-                filters.values[filters.values[i].type] = filters.values[i];
-                if(filters.values[i].value){
-                    urlParams.push(filters.values[i].type.replace('.', '_')+'=' + filters.values[i].value);
-                }
-            }            
+            $scope.getUrl = getUrl;
             
-            var priceSel = $scope.priceSel = filters.items['f.price'];
-            priceSel.type = 'f.price';
-            setSelected(priceSel, filters.values['f.price'].value);
-            var discountSel = $scope.discountSel = filters.items['f.discount'];
-            discountSel.type = 'f.discount';
-            setSelected(discountSel, filters.values['f.discount'].value);
+            $rootScope.$on('$locationChangeSuccess', function(e, url){
+                var params = $location.search();
+                goodsParams.offset = params.p ? parseInt(params.p) * goodsParams.limit : 0;
+                goodsParams.category = params.c ? params.c : 'home';
+                filterValues['f.price'] = params.f_price || null;
+                filterValues['f.discount'] = params.f_discount || null;
+            });
             
-            
-            $scope.urlParams = function(params){
-                params = urlParams.concat(params || []);
-                return params.length > 0 ? '?' + params.join('&') : '';
-            }
-            $scope.select = function(sel, item){
-                if(sel.selected == item) return;
-                sel.selected = item;
-                for(var i=0;i<urlParams.length;i++){
-                    if(urlParams[i].indexOf(sel.type.replace('.', '_')) >= 0) {
-                        urlParams.splice(i, 1);
-                        break;
-                    }
-                }
-                if(item.value != null) urlParams.push(sel.type.replace('.', '_') + '=' + item.value);
-                window.location.href = 'price/' + $scope.urlParams();
+            $scope.doFilter = function(type, item){
+                setSelected(type, item);
+                filterValues[type] = item.value;  
+                goodsParams.offset = 0;         
             }
             $scope.showDropdown = function(sel){
                 if(sel.active) return;
@@ -121,16 +100,76 @@ angular.module('stmIndex').directive('stmIndexSochiPrice', ['stmGoods', function
                 sel.active = true;       
                              
             }
-            $scope.goods = stmGoods.getItems(goodsParams.category, filters.values, goodsParams.offset, goodsParams.limit, goodsParams.order, function(){
-                $scope.lastPage = Math.ceil($scope.goods.total / goodsParams.limit) - 1;
+            var isGoodsInit = false;
+            var cancelLoaderTimeout;
+            $scope.$watch('goodsParams', function(){          
+                if(isGoodsInit) {
+                    $scope.goods = goods = stmGoods.getItems(goodsParams, onUpdateGoods);
+                    $timeout.cancel(cancelLoaderTimeout);
+                    cancelLoaderTimeout = $timeout(function(){
+                        $scope.isGoodsLoading = true;
+                    }, 500);                    
+                    goods.$promise.finally(function(){
+                        $timeout.cancel(cancelLoaderTimeout);
+                        $scope.isGoodsLoading = false;
+                    });
+                } else {
+                    $scope.goods = goods = $stmEnv.goods;
+                    onUpdateGoods();
+                    isGoodsInit = true;
+                }
+                          
+                for(var i=0;i<MENU.length;i++){
+                    if(MENU[i].type == goodsParams.category){
+                        $scope.category = MENU[i];
+                        break;
+                    }                
+                }           
+                
+                $location.url(getUrl());
+            }, true);
+
+            function onUpdateGoods(){
+                
+                $scope.filters = filters = goods.filters;                          
+            
+                $scope.lastPage = Math.ceil(goods.items.total / goodsParams.limit) - 1;
                 $scope.page = Math.floor(goodsParams.offset / goodsParams.limit);
                 
-                var range = 7;
+                for(var type in filters){
+                    setSelected(filters[type], filterValues[type]);              
+                } 
                 
+                var range = 7;
+                      
                 var pageLeft = Math.max(0, Math.min($scope.lastPage, $scope.page + (range - 1) / 2) - range + 1);
                 var pageRight = Math.min($scope.lastPage, pageLeft + range - 1);
-                $scope.pageRange = [pageLeft, pageRight];
-            });
+                $scope.pageRange = [pageLeft, pageRight];         
+            }
+            function getUrl(params){
+                
+                params = params || {};
+            
+                var urlParams = [];
+                if(goodsParams.category != 'home') {
+                    urlParams.push('c=' + goodsParams.category);
+                } 
+                
+                for(var type in filterValues){
+                    if(filterValues[type]){
+                        urlParams.push(type.replace('.', '_')+'=' + filterValues[type]);
+                    }
+                }
+                
+                var page = Math.floor(goodsParams.offset / goodsParams.limit);
+                
+                if('p' in params ? params.p > 0 : page > 0) {
+                    urlParams.push('p=' + (params.p ? params.p : page));
+                }
+                
+                return baseUrl + (urlParams.length > 0 ? '?' + urlParams.join('&') : '');
+            }        
+
         }]
     };
     
