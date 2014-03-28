@@ -56,7 +56,7 @@ angular.module('stmIndex').directive('stmIndexSochiPrice', ['stmGoods', function
     
     return {
         templateUrl: 'partials/stmIndex.directive:stmIndexSochiPrice:template.html',
-        controller: ['$scope', '$stmEnv', '$element', '$timeout', '$location', '$rootScope', function($scope, $stmEnv, $element, $timeout, $location, $rootScope){
+        controller: ['$scope', '$stmEnv', '$element', '$timeout', '$location', '$rootScope', '$q', function($scope, $stmEnv, $element, $timeout, $location, $rootScope, $q){
         
             $element.css('backgroundColor', '#fff');
         
@@ -102,14 +102,19 @@ angular.module('stmIndex').directive('stmIndexSochiPrice', ['stmGoods', function
             }
             var isGoodsInit = false;
             var cancelLoaderTimeout;
+            var loadedGoods;
             $scope.$watch('goodsParams', function(){          
                 if(isGoodsInit) {
-                    $scope.goods = goods = stmGoods.getItems(goodsParams, onUpdateGoods);
+                    if(loadedGoods) $q.reject(loadedGoods.$promise);
+                    loadedGoods = stmGoods.getItems(goodsParams, function(){
+                        $scope.goods = goods = loadedGoods;
+                        onUpdateGoods();
+                    });
                     $timeout.cancel(cancelLoaderTimeout);
                     cancelLoaderTimeout = $timeout(function(){
                         $scope.isGoodsLoading = true;
                     }, 500);                    
-                    goods.$promise.finally(function(){
+                    loadedGoods.$promise.finally(function(){
                         $timeout.cancel(cancelLoaderTimeout);
                         $scope.isGoodsLoading = false;
                     });
