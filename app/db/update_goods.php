@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__.'/../lib/DB.class.php';
+require_once __DIR__.'/../lib/Cache.class.php';
 
 DB::query('TRUNCATE TABLE `goods`;');
 
@@ -39,6 +40,8 @@ foreach($items as $itemNode){
     );
     DB::update('INSERT INTO `goods` (url, title, img, sub_name, sub_url, price, oldprice, category, discount, ratio) VALUES (:url, :title, :img, :subName, :subUrl, :price, :oldprice, :category, :discount, :ratio)', $params);
 }
+
+Cache::clear();
 
 function nodeToArray($itemNode){
     $itemData = array();
