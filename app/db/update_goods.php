@@ -34,7 +34,7 @@ foreach($items as $itemNode){
         ':price' => (int)$itemData['price']['value'],
         ':oldprice' => (int)$itemData['oldprice']['value'],
         ':category' => 'home',
-        ':discount' => (int)$itemData['oldprice']['value'] - (int)$itemData['price']['value'],
+        ':discount' => (1 - (int)$itemData['price']['value'] / (int)$itemData['oldprice']['value']) * 100,
         ':ratio' =>	(int)$itemData['picture']['attrs']['width'] / (int)$itemData['picture']['attrs']['height']
     );
     DB::update('INSERT INTO `goods` (url, title, img, sub_name, sub_url, price, oldprice, category, discount, ratio) VALUES (:url, :title, :img, :subName, :subUrl, :price, :oldprice, :category, :discount, :ratio)', $params);
