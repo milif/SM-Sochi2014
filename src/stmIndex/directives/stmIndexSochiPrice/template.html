@@ -20,35 +20,36 @@
         <div class="sochiprice-container">
             <div class="sochiprice-title">{{category.title}}</div>
             
-            <div class="sochiprice-select-panel">
-                    <div>                       
-                       <div class="sochiprice-sel">
-                           <label class="sochiprice-select-label">Скидка</label>
-                           <div ng-class="filters['f.discount'].active ? 'state_dropdown' : ''" class="sochiprice-selectbox">
-                               <div ng-click="showDropdown(filters['f.discount'])" class="sochiprice-select">
-                                   <div class="sochiprice-selусе-text" ng-bind-html="filters['f.discount'].selected.text"></div>
+            <div class="sochiprice-select-panel">  
+                       <div class="sochiprice-sel-l">
+                           <div class="sochiprice-sel">
+                               <label class="sochiprice-select-label">Скидка</label>
+                               <div ng-class="filters['f.discount'].active ? 'state_dropdown' : ''" class="sochiprice-selectbox">
+                                   <div ng-click="showDropdown(filters['f.discount'])" class="sochiprice-select">
+                                       <div class="sochiprice-selусе-text" ng-bind-html="filters['f.discount'].selected.text"></div>
+                                   </div>
+                                   <div class="sochiprice-select-dropdown">
+                                       <ul>
+                                           <li ng-repeat="item in filters['f.discount']" ng-class=" item == filters['f.discount'].selected ? 'sochiprice-selected' : ''" ng-click="doFilter('f.discount', item)"><span ng-bind-html="item.text"></span><i>{{item.total}}</i></li>
+                                       </ul>
+                                   </div>
                                </div>
-                               <div class="sochiprice-select-dropdown">
-                                   <ul>
-                                       <li ng-repeat="item in filters['f.discount']" ng-class=" item == filters['f.discount'].selected ? 'sochiprice-selected' : ''" ng-click="doFilter('f.discount', item)"><span ng-bind-html="item.text"></span><i>{{item.total}}</i></li>
-                                   </ul>
-                               </div>
-                           </div>
-                       </div>                       
-                       <div class="sochiprice-sel">
-                           <label class="sochiprice-select-label">Цена</label>
-                           <div ng-class="filters['f.price'].active ? 'state_dropdown' : ''" class="sochiprice-selectbox">
-                               <div ng-click="showDropdown(filters['f.price'])" class="sochiprice-select">
-                                   <div class="sochiprice-selусе-text" ng-bind-html="filters['f.price'].selected.text"></div>
-                               </div>
-                               <div class="sochiprice-select-dropdown">
-                                   <ul>
-                                       <li ng-repeat="item in filters['f.price']" ng-class=" item == filters['f.price'].selected ? 'sochiprice-selected' : ''" ng-click="doFilter('f.price', item)"><span ng-bind-html="item.text"></span><i>{{item.total}}</i></li>
-                                   </ul>
-                               </div>
-                           </div>
+                           </div>                       
                        </div>
-
+                       <div class="sochiprice-sel-l">                       
+                           <div class="sochiprice-sel">
+                               <label class="sochiprice-select-label">Цена</label>
+                               <div ng-class="filters['f.price'].active ? 'state_dropdown' : ''" class="sochiprice-selectbox">
+                                   <div ng-click="showDropdown(filters['f.price'])" class="sochiprice-select">
+                                       <div class="sochiprice-selусе-text" ng-bind-html="filters['f.price'].selected.text"></div>
+                                   </div>
+                                   <div class="sochiprice-select-dropdown">
+                                       <ul>
+                                           <li ng-repeat="item in filters['f.price']" ng-class=" item == filters['f.price'].selected ? 'sochiprice-selected' : ''" ng-click="doFilter('f.price', item)"><span ng-bind-html="item.text"></span><i>{{item.total}}</i></li>
+                                       </ul>
+                                   </div>
+                               </div>
+                           </div>
                     </div>
             </div>
             

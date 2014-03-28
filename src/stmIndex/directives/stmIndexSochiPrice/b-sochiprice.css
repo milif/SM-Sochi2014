@@ -183,10 +183,13 @@ a.sochiprice-paginator__item-link:before {
 
 /* sochiprice-sel */
 /*==========================================================*/
+.sochiprice-sel-l {
+    display: inline-block;
+    width: 180px;
+}
 .sochiprice-sel {
     position: relative;
     display: inline-block;
-    margin-right: 50px;
 }
 
 .sochiprice-select-label {
