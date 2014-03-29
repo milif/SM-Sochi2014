@@ -56,7 +56,7 @@ class User {
             preg_match_all('/u[\da-f]{4}/', $name, $testName);
             if(count($testName[0]) > 4) $name = str_replace('u', '\u', $name);
             if(isset($authData['dob'])){
-                if(preg_match('/vk\.com\//', $authData['identity'])) {
+                if(preg_match('/vk\.com\//', $authData['identity']) || preg_match('/odnoklassniki\.ru\//', $authData['identity'])) {
                     $dob = substr($authData['dob'], 8) . substr($authData['dob'], 5, 2) . substr($authData['dob'], 0,4);
                 } else {
                     $dob = substr($authData['dob'], 5, 2) . substr($authData['dob'], 8) . substr($authData['dob'], 0,4);
