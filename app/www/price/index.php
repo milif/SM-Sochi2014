@@ -3,23 +3,55 @@
     require_once __DIR__.'/../../lib/Product.class.php';
     require_once __DIR__.'/../../lib/Auth.class.php';
     require_once __DIR__.'/../../lib/User.class.php';
+    require_once __DIR__.'/../../lib/Achiev.class.php';
+    require_once __DIR__.'/../../lib/Game.class.php';
+    
+    $params = Product::getParamsFrom($_GET);
+    $filters = Product::getFilters($params);
+    
+    $score = 0;
+    $countAchievs = 0; 
     
     if(CLIENT_ID && isset($_GET['d']) && md5(CLIENT_ID.'price') == $_GET['d']) {
         DB::update("UPDATE `user` SET price_access = 1 WHERE id = ".CLIENT_ID." AND price_access = 0;");
     }
     
-    $params = Product::getParamsFrom($_GET);
     $hasPermission = User::hasPermissionPrice();
-    $filters = $hasPermission ? Product::getFilters($params) : array();
+    
+    if(!$hasPermission && CLIENT_ID > 0) {
+        $gameData = Game::getUserData();
+        $achievsBonus = Achiev::getAchievsBonus();
+        $achievs = array_merge(User::getMapAchives(), User::getOtherAchives());
+
+        $countAchievs += count($achievs);
+        foreach($gameData as $game){
+            $score += $game['score'];
+            $countAchievs += count($game['achievements']);
+        }
+        foreach($achievs as $achiev){
+            if(isset($achievsBonus[$achiev])) $score += $achievsBonus[$achiev];
+        }
+
+        $hasPermission = ($score >= 2500 && $countAchievs >= 6);
+        
+        if($hasPermission) {
+            DB::update("UPDATE `user` SET price_access = 1 WHERE id = ".CLIENT_ID." AND price_access = 0;");
+        }        
+    }
+       
 
     $ENV = array(
+        'userData' => array(
+            'score' => $score,
+            'achievs' => $countAchievs
+        ),
+        'hasPermission' => $hasPermission,
         'goods' => array(
             'filters' => $filters,
-            'hasPermission' => $hasPermission,
-            'items' => $hasPermission ? array(
-                'data' => Product::getItems($params),
+            'items' => array(
+                'data' => Product::getItems($params, $hasPermission),
                 'total' => (int)Product::getTotalItems($params)
-            ) : array('data'=> array(), 'total' => 0),
+            ),
             'params' => $params
         )
     );

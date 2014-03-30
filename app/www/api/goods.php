@@ -6,13 +6,13 @@ require_once __DIR__.'/../../lib/User.class.php';
 
 $params = Product::getParamsFrom($_GET);   
 $hasPermission = User::hasPermissionPrice(); 
-$filters = $hasPermission ? Product::getFilters($params) : array();
+$filters = Product::getFilters($params);
 
 echo json_encode( array(
     'filters' => $filters,
     'hasPermission' => $hasPermission,
-    'items' => $hasPermission ? array(
-        'data' => Product::getItems($params),
+    'items' => array(
+        'data' => Product::getItems($params, $hasPermission),
         'total' => (int)Product::getTotalItems($params)
-    ) : array('data'=> array(), 'total' => 0),
+    )
 ));

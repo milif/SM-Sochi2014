@@ -61,7 +61,8 @@ angular.module('stmCabinet').directive('stmCabinetScreen', function(){
             $scope.logout = function(){
                 $stmAuth.logout();
             }
-
+            
+            var achievsBonus = $stmEnv.achievsBonus;
             var games = $stmEnv.games;
             var game;
             var gamesArr = [];
@@ -100,13 +101,13 @@ angular.module('stmCabinet').directive('stmCabinetScreen', function(){
             
             var bonus;
             for(var i=0;i<$scope.otherAchievs.length;i++){
-                bonus = $scope.otherAchievs[i].bonus;
+                bonus = achievsBonus['other.' + $scope.otherAchievs[i].type];
                 if(!$scope.otherAchievs[i].active) continue;
                 $scope.otherScore += bonus;
                 $scope.score += bonus;
             }
             for(var i=0;i<$scope.quizAchievs.length;i++){
-                bonus = $scope.quizAchievs[i].bonus;
+                bonus = achievsBonus['map.' + $scope.quizAchievs[i].type];
                 if(!$scope.quizAchievs[i].active) continue;
                 $scope.mapScore += bonus;
                 $scope.score += bonus;

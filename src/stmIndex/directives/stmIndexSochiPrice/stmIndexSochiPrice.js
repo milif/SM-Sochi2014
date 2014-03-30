@@ -5,6 +5,7 @@
  * @function
  *
  * @requires stm.filter:range
+ * @requires stm.filter:stmHowMany
  * 
  * @requires stmIndex.directive:stmIndexSochiPrice:b-sochiprice.css
  * @requires stmIndex.directive:stmIndexSochiPrice:template.html
@@ -67,14 +68,15 @@ angular.module('stmIndex').directive('stmIndexSochiPrice', ['stmGoods', function
             var goods;          
             
             $scope.menu = MENU;
-                      
-            var baseUrl = $scope.baseUrl = $location.url().replace(/[\?#].*?$/,'').replace(/^\//, '');
-            
-            if(!$stmAuth.isAuth) {
+            $scope.userData = $stmEnv.userData;
+            $scope.hasPermission = $stmEnv.hasPermission;
+            $scope.auth = function(){
                 $stmAuth.auth(function(){
                     window.location.reload();
                 });
-            }
+            }  
+                     
+            var baseUrl = $scope.baseUrl = $location.url().replace(/[\?#].*?$/,'').replace(/^\//, '');
             
             $scope.isAuth = $stmAuth.isAuth;
             $scope.getUrl = getUrl;

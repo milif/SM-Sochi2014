@@ -4,6 +4,26 @@ require_once __DIR__.'/DB.class.php';
 require_once __DIR__.'/Auth.class.php';
 
 class Achiev {
+    static public function getAchievsBonus(){
+        return array(
+            'other.friends' => 100,
+            'map.yetiwanted'=> 100,
+            'map.yeti' => 100,
+            'map.horns'=> 100,
+            'map.actually' => 100,
+            'map.pickpoint' => 150,
+            'map.quelle' => 200,
+            'map.proskeyter' => 200,
+            'map.caveoffear' => 300,
+            'map.maxim' => 100,
+            'map.sotmarket' => 200,
+            'map.dpd' => 150,
+            'map.groupon' => 150,
+            'map.qiwi' => 200,
+            'map.mnogo'=> 150,
+            'map.sportexpress' => 150
+        );
+    }
     static public function add($achiev, $userId = CLIENT_ID){
         $achievData = explode('.', $achiev);
         $rs = DB::query("SELECT id FROM `achievement_log` WHERE user_id = $userId AND `key` = :achiev;", array(':achiev' => $achiev));

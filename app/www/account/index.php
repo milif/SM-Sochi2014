@@ -1,9 +1,10 @@
 <?php 
     
-    require __DIR__.'/../../lib/Auth.class.php';
-    require __DIR__.'/../../lib/Product.class.php';
-    require __DIR__.'/../../lib/Game.class.php';
-    require __DIR__.'/../../lib/User.class.php';
+    require_once __DIR__.'/../../lib/Auth.class.php';
+    require_once __DIR__.'/../../lib/Product.class.php';
+    require_once __DIR__.'/../../lib/Game.class.php';
+    require_once __DIR__.'/../../lib/User.class.php';
+    require_once __DIR__.'/../../lib/Achiev.class.php';
     
     if(!Auth::isAuth()){
         header('Location: '.(APP_ROOT_URL == "" ? "/" : APP_ROOT_URL));
@@ -18,7 +19,8 @@
         'games' => Game::getUserData(),
         'friends' => User::getFriendsCount(),
         'mapAchievs' => User::getMapAchives(),
-        'otherAchievs' => User::getOtherAchives()
+        'otherAchievs' => User::getOtherAchives(),
+        'achievsBonus' => Achiev::getAchievsBonus()
     );
     
     require __DIR__.'/../../lib/init.php'; ?><!doctype html>

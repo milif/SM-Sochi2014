@@ -125,7 +125,7 @@ class Product {
         }
         return array($filtersQ, $filtersQP);        
     }
-    static public function getItems($params){
+    static public function getItems($params, $isPromo = false){
     
         $category = $params['category'];
         $filters = $params['filters'];
@@ -139,7 +139,7 @@ class Product {
         }
         $rs = Cache::get($key);
         if($rs !== false){
-            return $rs;
+            return $isPromo ? $rs : self::_removePromo($rs);
         }
         $filtersForQ = self::applyFiltersForQ($filters);
         $q = "SELECT title, url, img, sub_name subName, sub_url subUrl, price, oldprice oldPrice, category, ratio FROM goods WHERE `category` = :category {$filtersForQ[0]} ORDER BY :order LIMIT ".((int)$limit)." OFFSET ".((int)$offset).";";
@@ -162,6 +162,12 @@ class Product {
             );
         }
         Cache::set($key, $data);
+        return $isPromo ? $data : self::_removePromo($data);
+    }
+    static private function _removePromo(&$data){
+        foreach($data as $k=>$item){
+            $data[$k]['url'] = preg_replace('/.coupon=[\w\d]+/', '', $item['url']);
+        }
         return $data;
     }
     static public function getSale(){ 
