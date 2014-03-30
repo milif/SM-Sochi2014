@@ -33,7 +33,7 @@
             if(isset($achievsBonus[$achiev])) $score += $achievsBonus[$achiev];
         }
 
-        $hasPermission = (($score >= 2500 && $countAchievs >= 6) || $isSber);
+        $hasPermission = ($score >= 2500 || $countAchievs >= 6 || $isSber);
         
         if($hasPermission) {
             DB::update("UPDATE `user` SET price_access = 1 WHERE id = ".CLIENT_ID." AND price_access = 0;");
