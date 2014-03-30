@@ -26,7 +26,7 @@
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     width: 220px;
-    height: 393px;
+    height: 413px;
     border: 1px solid #e9e9e9;
     -moz-border-radius: 8px;
     -webkit-border-radius: 8px;
@@ -99,6 +99,24 @@
     padding: 0 10px;
     font-size: 11px;
 }
+.sochiprice-product-note .__promo {
+    font-size: 11px;
+    line-height: 16px;
+}
+.sochiprice-product-note .__promo-code {
+    height: 16px;
+    margin-top: auto;
+    padding: 1px 5px;
+    border-radius: 2px;
+    vertical-align: middle;
+    text-shadow: 0 1px 0 rgba(255,255,255,.5);
+    background-color: #fddc76;
+    display: inline-block;
+    white-space: nowrap;
+    font-weight: bold;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+}
 .sochiprice-product:hover .sochiprice-product-note {
     padding: 0 9px;
 }
@@ -112,11 +130,13 @@ a.sochiprice-product-cat {
     z-index: 20;
 }
 a.sochiprice-product-title {
-    display: inline-block;
+    display: block;
     color: #000;
     text-decoration: none;
     font-size: 16px;
     line-height: 18px;
+    max-height: 54px;
+    overflow: hidden;
     margin-bottom: 6px;
     margin-top: 8px;
     position: relative;
@@ -132,7 +152,7 @@ a.sochiprice-product-title:hover {
 .sochiprice-product-labels {
     font-size: 16px;
     position: absolute;
-    top: 94px;
+    top: 114px;
     left: 10px;
 }
 .sochiprice-product:hover .sochiprice-product-labels {

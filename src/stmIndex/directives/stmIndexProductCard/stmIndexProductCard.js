@@ -36,7 +36,9 @@ angular.module('stmIndex').directive('stmIndexProductCard', [function(){
         replace: true,
         templateUrl: 'partials/stmIndex.directive:stmIndexProductCard:template.html',
         controller: ['$scope', '$attrs', '$element', function($scope, $attrs, $element){
-            $scope.item = $scope.$eval($attrs.stmIndexProductCard);
+            var item = $scope.item = $scope.$eval($attrs.stmIndexProductCard);
+            var promo = /coupon=([\w\d]+)/.exec(item.url);
+            if(promo) item.promo = promo[1];
         }]
     };
 }]);

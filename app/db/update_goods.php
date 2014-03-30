@@ -26,7 +26,7 @@ foreach($items as $itemNode){
     if(!$available) continue;
     $itemData = nodeToArray($itemNode);
     if(!isset($itemData['oldprice']) || $itemData['currencyId']['value'] != 'RUR' || !isset($itemData['promo']['value'])) {
-        var_dump($itemData['oldprice'], $itemData['currencyId']['value'], $itemData['promo']['value']);
+        var_dump('Error in '.$itemData['url']['value'], $itemData['oldprice'], $itemData['currencyId']['value'], $itemData['promo']['value']);
         continue;
     }
     $params = array(
