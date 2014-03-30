@@ -82,8 +82,9 @@ angular.module('stmIndex').directive('stmIndexSochiPrice', ['stmGoods', function
             
             $scope.doFilter = function(type, item){
                 setSelected(type, item);
-                filterValues[type] = item.value;  
-                goodsParams.offset = 0;         
+                var params = {p: 0};
+                params[type] = item.value;
+                $location.url(getUrl(params));                     
             }
             $scope.showDropdown = function(sel){
                 if(sel.active) return;
@@ -130,8 +131,6 @@ angular.module('stmIndex').directive('stmIndexSochiPrice', ['stmGoods', function
                         break;
                     }                
                 }           
-                
-                $location.url(getUrl());
             }, true);
 
             function onUpdateGoods(){
@@ -159,10 +158,11 @@ angular.module('stmIndex').directive('stmIndexSochiPrice', ['stmGoods', function
                 if(goodsParams.category != 'home') {
                     urlParams.push('c=' + goodsParams.category);
                 } 
-                
+                var v;
                 for(var type in filterValues){
-                    if(filterValues[type]){
-                        urlParams.push(type.replace('.', '_')+'=' + filterValues[type]);
+                    v = type in params ? params[type] : filterValues[type];
+                    if(v){
+                        urlParams.push(type.replace('.', '_')+'=' + v);
                     }
                 }
                 
