@@ -25,9 +25,12 @@ foreach($items as $itemNode){
     $available = $itemNode->attributes->getNamedItem('available')->textContent == 'true';
     if(!$available) continue;
     $itemData = nodeToArray($itemNode);
-    if(!isset($itemData['oldprice']) || $itemData['currencyId']['value'] != 'RUR') continue;
+    if(!isset($itemData['oldprice']) || $itemData['currencyId']['value'] != 'RUR' || !isset($itemData['promo']['value'])) {
+        var_dump($itemData['oldprice'], $itemData['currencyId']['value'], $itemData['promo']['value']);
+        continue;
+    }
     $params = array(
-        ':url' => $itemData['url']['value'],
+        ':url' => $itemData['url']['value'].(isset($itemData['promo']['value']) ? '?coupon='.$itemData['promo']['value'] : ''),
         ':title' =>	$itemData['name']['value'],
         ':img' => $itemData['picture']['value'],
         ':subName' => $categories[$itemData['categoryId']['value']]['title'],

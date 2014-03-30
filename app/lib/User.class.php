@@ -131,5 +131,9 @@ class User {
             $achievs = $rs[0]['data_achievement_other'] ? explode(',', $rs[0]['data_achievement_other']) : array();
         }
         return $achievs;
-    }     
+    }   
+    static public function hasPermissionPrice(){
+        $rs = DB::query("SELECT COUNT(*) cc FROM `user` WHERE id = ".CLIENT_ID." AND price_access = 1;");
+        return $rs[0]['cc'] > 0;
+    }
 }

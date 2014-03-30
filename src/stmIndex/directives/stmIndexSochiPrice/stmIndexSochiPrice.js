@@ -56,7 +56,7 @@ angular.module('stmIndex').directive('stmIndexSochiPrice', ['stmGoods', function
     
     return {
         templateUrl: 'partials/stmIndex.directive:stmIndexSochiPrice:template.html',
-        controller: ['$scope', '$stmEnv', '$element', '$timeout', '$location', '$rootScope', '$q', function($scope, $stmEnv, $element, $timeout, $location, $rootScope, $q){
+        controller: ['$scope', '$stmEnv', '$element', '$timeout', '$location', '$rootScope', '$q', '$stmAuth', function($scope, $stmEnv, $element, $timeout, $location, $rootScope, $q, $stmAuth){
         
             $element.css('backgroundColor', '#fff');
         
@@ -70,6 +70,13 @@ angular.module('stmIndex').directive('stmIndexSochiPrice', ['stmGoods', function
                       
             var baseUrl = $scope.baseUrl = $location.url().replace(/[\?#].*?$/,'').replace(/^\//, '');
             
+            if(!$stmAuth.isAuth) {
+                $stmAuth.auth(function(){
+                    window.location.reload();
+                });
+            }
+            
+            $scope.isAuth = $stmAuth.isAuth;
             $scope.getUrl = getUrl;
             
             $rootScope.$on('$locationChangeSuccess', function(e, url){

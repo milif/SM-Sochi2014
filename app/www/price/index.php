@@ -1,16 +1,25 @@
 <?php 
-    require __DIR__.'/../../lib/Product.class.php';
+    require_once __DIR__.'/../../lib/DB.class.php';
+    require_once __DIR__.'/../../lib/Product.class.php';
+    require_once __DIR__.'/../../lib/Auth.class.php';
+    require_once __DIR__.'/../../lib/User.class.php';
+    
+    if(CLIENT_ID && isset($_GET['d']) && md5(CLIENT_ID.'price') == $_GET['d']) {
+        DB::update("UPDATE `user` SET price_access = 1 WHERE id = ".CLIENT_ID." AND price_access = 0;");
+    }
     
     $params = Product::getParamsFrom($_GET);
-    $filters = Product::getFilters($params);
+    $hasPermission = User::hasPermissionPrice();
+    $filters = $hasPermission ? Product::getFilters($params) : array();
 
     $ENV = array(
         'goods' => array(
             'filters' => $filters,
-            'items' => array(
+            'hasPermission' => $hasPermission,
+            'items' => $hasPermission ? array(
                 'data' => Product::getItems($params),
                 'total' => (int)Product::getTotalItems($params)
-            ),
+            ) : array('data'=> array(), 'total' => 0),
             'params' => $params
         )
     );

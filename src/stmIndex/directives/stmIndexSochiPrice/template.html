@@ -8,8 +8,8 @@
             <div class="sochiprice-title-top">Здесь только сочные скидки <b>до 90%</b></div>
         </div>
         
-        <ul class="sochiprice-menu">
-            <li ng-repeat="item in menu" class="sochiprice-menu__item" ng-class="item == category ? 'state_active' : ''"><a ng-href="{{baseUrl + (item.isRoot ? '' : '?c=' + item.type)}}" class="sochiprice-menu__item-link">{{item.title}}</a></li>
+        <ul class="sochiprice-menu mod_none">
+            <!--<li ng-repeat="item in menu" class="sochiprice-menu__item" ng-class="item == category ? 'state_active' : ''"><a ng-href="{{baseUrl + (item.isRoot ? '' : '?c=' + item.type)}}" class="sochiprice-menu__item-link">{{item.title}}</a></li>-->
         </ul>
 
     </div>
@@ -17,7 +17,11 @@
 
     <!-- sochi content -->
     <div class="sochiprice-content">
-        <div class="sochiprice-container">
+        <div ng-if="!goods.hasPermission" class="sochiprice-container">
+            <div ng-if="isAuth" class="sochiprice-info">У вас нет доступа к сочным скидкам :(</div>
+            <div ng-if="!isAuth" class="sochiprice-info">Требуется авторизация</div>         
+        </div>
+        <div ng-if="goods.hasPermission" class="sochiprice-container">
             <div class="sochiprice-title">{{category.title}}</div>
             
             <div class="sochiprice-select-panel">  

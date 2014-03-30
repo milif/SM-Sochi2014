@@ -1,7 +1,7 @@
 <?php 
     require __DIR__.'/../../lib/Product.class.php';
     $ENV = array(
-        'time' => strtotime("2014-04-01 00:00:00 Europe/Moscow") * 1000,
+        'time' => strtotime("2014-03-31 00:00:00 Europe/Moscow") * 1000,
         'products' => Product::getSale()
     );    
     $SHARE_URI = '/sale/';

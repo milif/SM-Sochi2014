@@ -34,6 +34,10 @@
     font-size: 24px;
     margin-bottom: 30px;
 }
+.sochiprice-info {
+    text-align: center;
+    font-size: 20px;    
+}
 
 /* sochiprice-menu */
 .sochiprice-menu {
@@ -47,6 +51,9 @@
     position: relative;
     margin: 0;
     padding: 0;
+}
+.sochiprice-menu.mod_none {
+    height: 7px;
 }
 .sochiprice-menu:after {
     content: '';
