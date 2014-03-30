@@ -5,7 +5,7 @@
     if($time >= $toTime) {
         $toTime = strtotime("2014-05-01 00:00:00 Europe/Moscow");
     }
-    $ENV = array
+    $ENV = array (
         'time' => $toTime * 1000,
         'products' => Product::getSale()
     );    
