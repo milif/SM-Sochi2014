@@ -22,9 +22,10 @@
         $gameData = Game::getUserData();
         $achievsBonus = Achiev::getAchievsBonus();
         $achievs = array_merge(User::getMapAchives(), User::getOtherAchives());
-
+        $isSber = false;
         $countAchievs += count($achievs);
         foreach($gameData as $game){
+            $isSber = isset($game['data']['score']) && isset($game['data']['score']['sber']) && (int)$game['data']['score']['sber'] >= 200;
             $score += $game['score'];
             $countAchievs += count($game['achievements']);
         }
@@ -32,7 +33,7 @@
             if(isset($achievsBonus[$achiev])) $score += $achievsBonus[$achiev];
         }
 
-        $hasPermission = ($score >= 2500 && $countAchievs >= 6);
+        $hasPermission = (($score >= 2500 && $countAchievs >= 6) || $isSber);
         
         if($hasPermission) {
             DB::update("UPDATE `user` SET price_access = 1 WHERE id = ".CLIENT_ID." AND price_access = 0;");
