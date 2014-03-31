@@ -23,8 +23,11 @@
                                 </div>
                                 -->
                             </div>
-                            <div class="sochiprice-product-labels">
+                            <div ng-if="!item.saled" class="sochiprice-product-labels">
                                 <span class="sochiprice-product-old">{{item.oldPrice | stmNumber}}</span><span class="sochiprice-product-price">{{item.price | stmNumber}}<span class="g-ruble">p</span></span>
+                            </div>
+                            <div ng-if="item.saled" class="sochiprice-product-labels">
+                                <span class="sochiprice-product-old mod_saled">товар распродан</span>
                             </div>
                         </div>
 </div>                    

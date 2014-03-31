@@ -171,6 +171,9 @@ a.sochiprice-product-title:hover {
     z-index: 10;
     margin-right: 4px;
 }
+.sochiprice-product-old.mod_saled {
+    text-decoration: none;
+}
 .sochiprice-product-price:before,
 .sochiprice-product-old:before
  {

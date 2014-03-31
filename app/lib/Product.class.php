@@ -91,7 +91,7 @@ class Product {
             ':category' => $category
         ), $filtersForQ[1]));
         $total = (int)$rs[0]['cc'];
-        Cache::set($key, $total);
+        Cache::set($key, $total, 600);
         return $total;
     }
     static public function applyFiltersForQ($filters){
@@ -142,7 +142,7 @@ class Product {
             return $isPromo ? $rs : self::_removePromo($rs);
         }
         $filtersForQ = self::applyFiltersForQ($filters);
-        $q = "SELECT title, url, img, sub_name subName, sub_url subUrl, price, oldprice oldPrice, category, ratio FROM goods WHERE `category` = :category {$filtersForQ[0]} ORDER BY :order LIMIT ".((int)$limit)." OFFSET ".((int)$offset).";";
+        $q = "SELECT title, url, img, sub_name subName, sub_url subUrl, price, oldprice oldPrice, category, ratio, saled FROM goods WHERE `category` = :category {$filtersForQ[0]} ORDER BY :order LIMIT ".((int)$limit)." OFFSET ".((int)$offset).";";
         $rs = DB::query($q, array_merge(array(
             ':category' => $category,
             ':order' => $order
@@ -158,10 +158,11 @@ class Product {
                 'price' => (int)$item['price'], 
                 'oldPrice' => $item['oldPrice'],
                 'category' => $item['category'],
-                'ratio' => (float)$item['ratio']
+                'ratio' => (float)$item['ratio'],
+                'saled' => (int)$item['saled'] > 0
             );
         }
-        Cache::set($key, $data);
+        Cache::set($key, $data, 600);
         return $isPromo ? $data : self::_removePromo($data);
     }
     static private function _removePromo(&$data){

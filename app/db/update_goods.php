@@ -23,6 +23,7 @@ foreach($items as $itemNode){
 $items = $doc->getElementsByTagName ('offer');
 foreach($items as $itemNode){
     $available = $itemNode->attributes->getNamedItem('available')->textContent == 'true';
+    $saled = $itemNode->attributes->getNamedItem('saled')->textContent == 'true';
     if(!$available) continue;
     $itemData = nodeToArray($itemNode);
     if(!isset($itemData['oldprice']) || $itemData['currencyId']['value'] != 'RUR' || !isset($itemData['promo']['value'])) {
@@ -39,9 +40,10 @@ foreach($items as $itemNode){
         ':oldprice' => (int)$itemData['oldprice']['value'],
         ':category' => 'home',
         ':discount' => (1 - (int)$itemData['price']['value'] / (int)$itemData['oldprice']['value']) * 100,
-        ':ratio' =>	(int)$itemData['picture']['attrs']['width'] / (int)$itemData['picture']['attrs']['height']
+        ':ratio' =>	(int)$itemData['picture']['attrs']['width'] / (int)$itemData['picture']['attrs']['height'],
+        ':saled' => $saled ? 1 : 0
     );
-    DB::update('INSERT INTO `goods` (url, title, img, sub_name, sub_url, price, oldprice, category, discount, ratio) VALUES (:url, :title, :img, :subName, :subUrl, :price, :oldprice, :category, :discount, :ratio)', $params);
+    DB::update('INSERT INTO `goods` (url, title, img, sub_name, sub_url, price, oldprice, category, discount, ratio, saled) VALUES (:url, :title, :img, :subName, :subUrl, :price, :oldprice, :category, :discount, :ratio, :saled)', $params);
 }
 
 Cache::clear();
