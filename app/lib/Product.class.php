@@ -45,7 +45,7 @@ class Product {
     static public function getParamsFrom(&$data){
     
         $category = isset($data['c']) ? $data['c'] : 'home';
-        $limit = 12;
+        $limit = 24;
         $page = isset($data['p']) ? $data['p'] : 0;
         $offset = $page * $limit;
         $order = isset($data['s']) ? $data['s'] : 'id';

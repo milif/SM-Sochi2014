@@ -60,7 +60,7 @@
                     <div class="b-cabinet-product-list">
                         <div ng-repeat="card in products" class="b-cabinet-product-item">
                             <div class="b-cabinet-product-item-img">
-                                <a ng-href="{{card.url}}" target="_blank"><img ng-class="card.modImg" ng-src="{{card.img}}" alt="image" class="b-cabinet-product-item-img-h"></a>
+                                <a ng-href="{{card.url}}" target="_blank"><img ng-class="card.ratio > 0.9 ? 'mod_hor' : ''" ng-src="{{card.img}}" alt="image" class="b-cabinet-product-item-img-h"></a>
                             </div>
                             <div class="b-cabinet-product-item-text">
                                 <a ng-href="{{card.subUrl}}" target="_blank" class="b-cabinet-product-item-section">{{card.subName}}</a><br>
