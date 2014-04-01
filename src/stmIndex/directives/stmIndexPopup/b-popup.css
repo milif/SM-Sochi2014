@@ -53,6 +53,11 @@
   line-height: 35px;
   margin-bottom: 24px;
 }
+.b-popup-title .__note {
+    color: gray; 
+    font-size: 13px; 
+    line-height: normal;
+}
 
 .b-popup-note {
   line-height: 24px;

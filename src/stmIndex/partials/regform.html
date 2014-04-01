@@ -1,7 +1,8 @@
 <!-- @name stmIndex:regform.html -->
-<div stm-index-popup mask="true" show="{{isShow}}" fixed="true" footer="false">
+<div ng-if="isShow" stm-index-popup mask="true" fixed="true" closable="closeRegForm" footer="false">
     <div class='b-popup-title'>
-        Завершение регистрации
+        Завершите регистрацию
+        <p class="__note">Необходимо достоверно заполнить данные для участия в закрытой распродаже<br>и розыгрыше призов.</p>
     </div>
     <div stm-index-form="formCfg" model="form">   
                     <div class="b-form-row">

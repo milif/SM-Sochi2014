@@ -38,7 +38,7 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
             isLoaded = true;
             if($stmAuth.isAuth && !$stmAuth.data.isReg) {
                 showRegForm();
-            }            
+            }         
         });
         
         $rootScope.$on('$locationChangeSuccess', function(){
@@ -132,6 +132,9 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
             });
 
             $formScope.isShow = true;
+            $formScope.closeRegForm = function(){
+                $formScope.isShow = false;
+            }            
             $formScope.submit = function(){
                 if(form.validate() && !$formScope.isSend) {
                     $formScope.isSend = true;
