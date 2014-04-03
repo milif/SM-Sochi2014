@@ -35,6 +35,23 @@
             </div>            
             <div stm-index-popup game-data="game" class="example-popup"></div>
             <div stm-index-popup game-data="gameNoDetails" class="example-popup"></div>
+
+            <div stm-index-popup class="example-popup">
+                <div class='b-popup-title'>
+                    Альпинист — восхождение по канату<br>на самую высокую гору мира
+                </div>
+                <div class='b-popup-attent g-clearfix'>
+                    <div class="b-button b-button_size_normal b-button_scheme_red2 mod_fl-position">
+                        <div class="b-button__text">Подтвердить</div>
+                        <a class="b-button__link" href="#sale"></a>
+                    </div>
+                    <div class='b-popup-attent__text'>
+                        Ваша электронная почта не подтверждена. Это важно.
+                    </div>
+                </div
+            </div>
+
+
         </div>
       </file>
       <file name="style.css">
