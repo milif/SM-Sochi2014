@@ -8,6 +8,7 @@
  *
  * @includes stmIndex.$stmAuth
  * @includes stmIndex:regform.html
+ * @includes stmIndex:confirmemail.html
  * @includes stmIndex:code.html
  * @includes stmIndex.directive:stmIndexPopup
  * @includes stmIndex.directive:stmIndexForm 
@@ -38,7 +39,15 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
             isLoaded = true;
             if($stmAuth.isAuth && !$stmAuth.data.isReg) {
                 showRegForm();
-            }         
+            } 
+            if($stmAuth.isAuth && $stmEnv.requireConfirm) {
+                var time = parseInt(localStorage.getItem('_stmSochiConfirmTime') || 0);
+                var curTime = new Date().getTime();
+                if(time < curTime) {
+                    showConfirmEmail();
+                    localStorage.setItem('_stmSochiConfirmTime', curTime + 86400000);
+                }
+            }            
         });
         
         $rootScope.$on('$locationChangeSuccess', function(){
@@ -54,7 +63,70 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
                     if(!$stmAuth.data.isReg) showRegForm();
                 });
             }
-        }  
+        }
+        
+        var apiConfirmEmail = 'api/confirmemail.php';
+        function showConfirmEmail(){
+
+            var $scope = $rootScope.$new();
+            var model = $scope.model = {};
+            $scope.closeConfirm = function(){
+                $scope.$destroy();
+            };
+            
+            $scope.send = function(){
+                $timeout(send, 0);
+            };
+            $scope.start = function(){
+                $timeout(start, 0);
+            };
+            $scope.changeEmail = function(){
+                $timeout(email, 0);
+            }
+                       
+            $scope.submit = function(){
+                var form = model.form;
+                if(!$scope.isSend && form.$valid) {
+                    $scope.isSend = true;
+                    var email = model.email;
+                    var res = $http.post(apiConfirmEmail, {
+                        send: true,
+                        email: email
+                    });
+                    res.success(function(data){
+                        if(data.success){
+                            $scope.state = 'send';
+                            $stmAuth.data.email = email;
+                        }
+                    });
+                    res.finally(function(){
+                        $scope.isSend = false;
+                    });
+                }
+            }            
+            
+            start();
+            
+            $http.get('partials/stmIndex:confirmemail.html', {cache: $templateCache}).success(function(template) {
+                $compile(template)($scope, function(el){
+                    $('body').append(el);
+                }); 
+            });
+            function start(){
+                $scope.state = "start";
+                model.email = $stmAuth.data.email;
+            }
+            function send(){
+                $scope.state = 'send';
+                $http.post(apiConfirmEmail, {
+                    send: true
+                });
+            }
+            function email(){
+                model.email = '';
+                $scope.state = "email";
+            }
+        }
         function showCodeForm(){
             if(!isLoaded) {
                 $timeout(showCodeForm, 500);
@@ -77,7 +149,7 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
                 $location.hash('.');
                 $codeScope.$destroy();
             };
-        }
+        }        
         function showRegForm(){
             var model = $stmAuth.data;
             model.confirm = true;
@@ -110,7 +182,6 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
                             type: 'date',
                             label: 'Дата рождения',
                             name: 'dob',
-                            required: true,
                             size: '3-8'
                         },
                         {
@@ -142,7 +213,7 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
                         if(!res.success) {
                             return;
                         }
-                        $formScope.isShow = false;                
+                        $formScope.$broadcast('closePopup-regform');                
                     });
                     res.$promise.finally(function(){
                         $formScope.isSend = false;
