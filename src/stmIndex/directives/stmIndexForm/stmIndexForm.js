@@ -165,7 +165,7 @@ angular.module('stmIndex').directive('stmIndexForm', function(){
       }
    };
    function isValid(value){
-      if(!value) return false;
+      if(!value) return true;
       var date = value.replace(/[^\d]/g,'');
       
       if(date.length != 8) return false;

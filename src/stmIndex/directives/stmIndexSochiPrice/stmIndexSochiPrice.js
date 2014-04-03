@@ -12,6 +12,7 @@
  *
  * @requires stmIndex.stmGoods
  * @requires stmIndex.directive:stmIndexProductCard
+ * @requires stmIndex.directive:stmIndexToolbar 
  *
  * @description
  * Страница цен

@@ -37,7 +37,6 @@ class Auth {
             $refKey = $rs[0]['ref_key'];
             DB::query("UPDATE user SET data='$dataJSON' WHERE uri= :uri", array(':uri'=>$uri));
         } else {
-        
             $ref = $_COOKIE[SESSION_COOKIE.'_ref'];
             $refId = 0;
             if($ref){

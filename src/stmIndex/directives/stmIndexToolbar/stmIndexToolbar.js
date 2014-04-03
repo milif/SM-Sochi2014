@@ -104,6 +104,7 @@ angular.module('stmIndex').directive('stmIndexToolbar', function(){
             $scope.clickBetaInfo = clickBetaInfo;
             $scope.clickMenu = clickMenu;
             $scope.isAbout = /about/.test(url);
+            $scope.isPrice = /price/.test(url);
             $scope.logoClick = function (){
                 $scope.$emit('toolbarLogoClick');
             }

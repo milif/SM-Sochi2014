@@ -20,6 +20,19 @@ class User {
         Cache::set($key, $count, 1200);
         return (int)$count;
     }
+    static public function isConfirmation($userId = 0){
+        if(!$userId) $userId = CLIENT_ID;
+        if(!$userId) return false;
+        if(!CLIENT_ID) return false;
+        $key = 'isconfrm.'.$userId;
+        $isConfrm = Cache::get($key);
+        if($isConfrm !== false) return !!$isConfrm;
+        
+        $rs = DB::query("SELECT COUNT(*) as count FROM `user` WHERE `is_confirmed` > 0 AND id = ".$userId);
+        $isConfrm = $rs[0]['count'];
+        Cache::set($key, $isConfrm, 1200);
+        return !!$isConfrm;
+    }    
     static public function isRegistrated($userId = 0){
         if(!$userId) $userId = CLIENT_ID;
         if(!$userId) return false;
@@ -44,10 +57,11 @@ class User {
         $isReg = User::isRegistrated($userId);
         
         if($isReg){
-            $rs = DB::query("SELECT name, avatar FROM `user` WHERE id = ".$userId);
+            $rs = DB::query("SELECT name, avatar, email FROM `user` WHERE id = ".$userId);
             $userData = array(
                 'avatar' => $rs[0]['avatar'],
-                'name' => $rs[0]['name']                
+                'name' => $rs[0]['name'],
+                'email' => $rs[0]['email']            
             );
         } else {
             $authData = Auth::getUser(); 
@@ -82,6 +96,7 @@ class User {
         if(!count($rs) || md5($rs[0]['id']) != $checkHash) return self::CONFIRM_ERROR;
         if($rs[0]['is_confirmed'] > 0) return self::CONFIRM_ERROR_HAS;
         DB::query("UPDATE `user` SET `is_confirmed` = 1 WHERE `id` = ".$rs[0]['id']);
+        Cache::remove('isconfrm.'.$rs[0]['id']);
         return true;
     }
     static public function unsubscribe($refKey, $checkHash){
