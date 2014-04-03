@@ -202,6 +202,7 @@ angular.module('stmIndex').directive('stmIndexPopup', function(){
                     if(cntEl.get(0).clientHeight < cntEl.get(0).scrollHeight) 
                         cntEl
                             .addClass('view_popup')
+                            .data('_overflow', cntEl.css('overflow'))
                             .css({
                                 overflow: 'hidden',
                                 marginRight: 15
@@ -214,7 +215,7 @@ angular.module('stmIndex').directive('stmIndexPopup', function(){
                             cntEl
                                 .removeClass('view_popup')
                                 .css({
-                                    overflow: 'visible',
+                                    overflow: cntEl.data('_overflow'),
                                     marginRight: 0
                                 });
                         }

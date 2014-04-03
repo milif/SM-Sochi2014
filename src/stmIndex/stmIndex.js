@@ -33,8 +33,9 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
         var $ = angular.element;
     
         var isLoaded = false;
-    
+ 
         $rootScope.$on('gameInit', auth);
+        $rootScope.$on('showConfirmPopup', showConfirmEmail);
         $rootScope.$on('loaded', function(){
             isLoaded = true;
             if($stmAuth.isAuth && !$stmAuth.data.isReg) {
