@@ -302,3 +302,21 @@ a.back-map {
     font-weight: bold;
 }
 
+/* b-popup-attent */
+.b-popup-attent {
+    text-align: left;
+    background-color: #ed0b0b;
+    margin: 0 -20px;
+    color: #fff;
+    font-size: 14px;
+    text-shadow: 0 -1px 0 #a70002;
+    padding: 6px 0 8px 20px;
+    }
+.b-popup-attent__text {
+  padding-top: 6px;
+}
+.b-button.mod_fl-position {
+  float: right;
+  margin-left: 20px;
+  margin-right: 20px;
+}
