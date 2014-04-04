@@ -120,9 +120,10 @@ class User {
     static public function save($data){
         if(CLIENT_ID == 0) return false;
         $userData = Auth::getUser();
-        $rs = DB::query("SELECT COUNT(*) cc FROM `user` WHERE registrated > 0 AND id = ".CLIENT_ID);
-        $isRegistrated = $rs[0]['cc'] > 0;
-        DB::update("UPDATE `user` SET `avatar` = :avatar, `email` = :email, `dob` = :dob, `name` = :name, `phone` = :phone, ".($isRegistrated ? '' : 'registrated = NOW(),')." `gender` = :gender WHERE id = ".CLIENT_ID, array(
+        $rs = DB::query("SELECT email FROM `user` WHERE registrated > 0 AND id = ".CLIENT_ID);
+        $isRegistrated = count($rs) > 0;
+        $isResetConfirmation = $isRegistrated && $rs[0]['email'] != $data['email'];
+        DB::update("UPDATE `user` SET `avatar` = :avatar, `email` = :email, `dob` = :dob, `name` = :name, `phone` = :phone, ".($isRegistrated ? '' : 'registrated = NOW(),').($isResetConfirmation ? 'is_confirmed = 0,' : '')." `gender` = :gender WHERE id = ".CLIENT_ID, array(
             ':email'=>$data['email'],
             ':dob'=>$data['dob'],
             ':name' => $data['name'],
