@@ -95,8 +95,8 @@ class User {
         return $userData;
     }      
     static public function confirmEmail($refKey, $checkHash){
-        $rs = DB::query("SELECT id, is_confirmed FROM `user` WHERE `ref_key` = :refKey", array(':refKey' => $refKey));
-        if(!count($rs) || md5($rs[0]['id']) != $checkHash) return self::CONFIRM_ERROR;
+        $rs = DB::query("SELECT id, email, is_confirmed FROM `user` WHERE `ref_key` = :refKey", array(':refKey' => $refKey));
+        if(!count($rs) || md5($rs[0]['id'].$rs[0]['email']) != $checkHash) return self::CONFIRM_ERROR;
         if($rs[0]['is_confirmed'] > 0) return self::CONFIRM_ERROR_HAS;
         DB::query("UPDATE `user` SET `is_confirmed` = 1 WHERE `id` = ".$rs[0]['id']);
         Cache::remove('isconfrm.'.$rs[0]['id']);
