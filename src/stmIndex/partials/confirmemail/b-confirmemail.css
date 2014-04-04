@@ -1,0 +1,44 @@
+.b-confirmemail {
+    position: relative;
+    padding-top: 55px;
+    font-size: 18px;
+}
+.b-confirmemail:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -29px;
+    width: 59px;
+    height: 47px;
+    background: url(asset/i/b-confirmemail/email.png) 0 0 no-repeat;
+}
+.b-confirmemail.mod_email:before {
+    margin-left: -82px;
+    width: 165px;
+    background-position: -62px 0;
+}
+.b-confirmemail .__note {
+    color: #959595;
+}
+.b-confirmemail .__actions {
+    padding: 10px 0;
+    font-size: 16px;
+}
+.b-confirmemail .__email {
+    margin: 20px 20px 0;
+}
+.b-confirmemail .__email-send {
+    position: relative;
+    margin-top: 30px;
+}
+.b-confirmemail .__email-back {
+    position: absolute;
+    line-height: 60px;
+    height: 60px;
+    left: 0;
+}
+.b-confirmemail .a-pseudo {
+    color: #000;
+}

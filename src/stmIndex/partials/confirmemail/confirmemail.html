@@ -1,0 +1,36 @@
+<!-- 
+    @name stmIndex:confirmemail.html 
+    @requires stmIndex:confirmemail.html:b-confirmemail.css
+-->
+<div stm-index-popup mask="true" fixed="true" closable="closeConfirm" footer="false" class="g-font">
+    <div ng-class="state == 'email' ? 'mod_email' : ''" class="b-confirmemail">
+        <div ng-if="state == 'start'">
+            <p>Электронная почта <b>{{model.email}}</b><br>указанная вами при регистрации все еще не подтверждена.</p>
+            <p class="__note">Возможно, вы не получили письмо с информацией<br>для подтверждения. Мы готовы выслать его ещё раз.</p>
+            <div class="__actions">
+                <span ng-click="send()" class="a-pseudo">Прислать письмо</span>
+                <br>
+                <br>
+                <span ng-click="changeEmail()" class="a-pseudo">Указать другой адрес электронной почты</span>
+            </div>
+        </div>
+        <div ng-if="state == 'email'" class="__email">
+            <form name="model.form" ng-submit="submit()" class="g-form" novalidate>
+                <input ng-model="model.email" name="email" required type="email" placeholder="Введите новый адрес электронной почты" class="b-form-input-text __input" />
+                <div class="__email-send">
+                    <span class="__email-back">← <span ng-click="start()" class="a-pseudo">Назад</span></span>
+                    <span style="padding: 0 25px;" ng-class="isSend ? 'state_loading' : ''" class="b-button b-button_scheme_yellow button_size_big mod_style">
+                        <span class="b-button__text">Подтвердить</span>
+                        <button type="submit" class="b-button__link"></button>
+                    </span>
+                </div>
+            </form>
+        </div>        
+        <div ng-if="state == 'send'">
+            <p>На адрес <b>{{model.email}}</b><br>отправлена информация для подтверждения. Обычно, наше<br>письмо приходит не позже чем через 5 минут.</p>
+            <div class="__actions">
+                <span ng-click="start()" class="a-pseudo">Прислать письмо еще раз</span>
+            </div>
+        </div>
+    </div>    
+</div>  
