@@ -5,7 +5,7 @@
 <div stm-index-popup mask="true" fixed="true" closable="closeConfirm" footer="false" class="g-font">
     <div ng-class="state == 'email' ? 'mod_email' : ''" class="b-confirmemail">
         <div ng-if="state == 'start'">
-            <p>Электронная почта <b>{{model.email}}</b><br>указанная вами при регистрации все еще не подтверждена.</p>
+            <p>Электронная почта <b>{{model.email}}</b>,<br>указанная вами при регистрации, все еще не подтверждена.</p>
             <p class="__note">Возможно, вы не получили письмо с информацией<br>для подтверждения. Мы готовы выслать его ещё раз.</p>
             <div class="__actions">
                 <span ng-click="send()" class="a-pseudo">Прислать письмо</span>
