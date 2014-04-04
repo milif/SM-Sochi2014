@@ -152,7 +152,7 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
             };
         }        
         function showRegForm(){
-            var model = $stmAuth.data;
+            var model = $$.copy($stmAuth.data);
             model.confirm = true;
             var $formScope = $rootScope.$new();
             $formScope.model = model;
@@ -214,6 +214,7 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
                         if(!res.success) {
                             return;
                         }
+                        $$.extend($stmAuth.data, model);
                         $formScope.$broadcast('closePopup-regform');                
                     });
                     res.$promise.finally(function(){

@@ -124,11 +124,11 @@ angular.module('stmCabinet').directive('stmCabinetScreen', function(){
                 return name[0] + " " + name[1][0] + ".";
             } 
             
-            var model = $stmAuth.data;
-            $scope.model = model;
+            var model = $scope.model = {};
             var form = $scope.formCfg = {
                 model: model,
                 fields: [
+                    
                     {
                         type: 'text',
                         label: 'Фамилия, Имя и Отчество',
@@ -177,6 +177,7 @@ angular.module('stmCabinet').directive('stmCabinetScreen', function(){
                         if(!res.success) {
                             return;
                         }
+                        $$.extend($stmAuth.data, model);
                         $scope.$broadcast('closePopup-editprofile');                
                     });
                     res.$promise.finally(function(){
@@ -186,6 +187,7 @@ angular.module('stmCabinet').directive('stmCabinetScreen', function(){
             }            
             function edit(){
                 $scope.isShowEdit = true;
+                $$.extend(model, $stmAuth.data);               
             }
             
                        
