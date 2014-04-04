@@ -98,7 +98,7 @@ angular.module('stmIndex')
             onClick: function(){
                 URL = $stmSocial.url();
                 button.onClick();
-                var response = Social.add(SHARE.url.replace($('base').attr('href'), '/'), button.type, function(){
+                var response = Social.add(SHARE.url.replace($('base').attr('href'), '/').replace(/\w+:\/\/[^\/]+/, ''), button.type, function(){
                     if(response.success) {
                         socials.counters[button.type] = (socials.counters[button.type] + 1) || 1;
                     }
