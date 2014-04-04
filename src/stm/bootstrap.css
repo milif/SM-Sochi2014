@@ -925,11 +925,7 @@
     line-height: 24px;
 }
 .b-text a {
-    text-decoration: underline;
     color: #000;
-}
-.b-text a:hover {
-    text-decoration: none;
 }
 .b-text p {
     margin: 0 0 1.3em 0;
