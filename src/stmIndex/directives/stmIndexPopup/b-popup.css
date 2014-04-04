@@ -310,10 +310,11 @@ a.back-map {
     color: #fff;
     font-size: 14px;
     text-shadow: 0 -1px 0 #a70002;
-    padding: 6px 0 8px 20px;
+    padding: 6px 0 6px 20px;
     }
 .b-popup-attent__text {
-  padding-top: 6px;
+    line-height: 30px;
+    height: 30px;
 }
 .b-button.mod_fl-position {
   float: right;
