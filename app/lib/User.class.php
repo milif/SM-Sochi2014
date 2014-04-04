@@ -64,7 +64,7 @@ class User {
                 'email' => $rs[0]['email'],
                 'phone' => $rs[0]['phone'],
                 'gender' => $rs[0]['gender'],
-                'dob' => date('dmY', strtotime($rs[0]['dob']))
+                'dob' => $rs[0]['dob'] ? date('dmY', strtotime($rs[0]['dob'])) : ''
             );
         } else {
             $authData = Auth::getUser(); 
