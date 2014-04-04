@@ -3,7 +3,7 @@
  * @requires jquery/jquery.js
  * @requires angular/angular.js
  * @requires angular/angular-animate.js
- * @requires angular/angular-resource.js 
+ * @requires angular/angular-resource.js
  *
  * @requires stm:bootstrap.css
  *
