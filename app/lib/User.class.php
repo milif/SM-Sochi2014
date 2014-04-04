@@ -57,11 +57,14 @@ class User {
         $isReg = User::isRegistrated($userId);
         
         if($isReg){
-            $rs = DB::query("SELECT name, avatar, email FROM `user` WHERE id = ".$userId);
+            $rs = DB::query("SELECT name, avatar, email, phone, gender, dob FROM `user` WHERE id = ".$userId);
             $userData = array(
                 'avatar' => $rs[0]['avatar'],
                 'name' => $rs[0]['name'],
-                'email' => $rs[0]['email']            
+                'email' => $rs[0]['email'],
+                'phone' => $rs[0]['phone'],
+                'gender' => $rs[0]['gender'],
+                'dob' => date('dmY', strtotime($rs[0]['dob']))
             );
         } else {
             $authData = Auth::getUser(); 
@@ -117,7 +120,9 @@ class User {
     static public function save($data){
         if(CLIENT_ID == 0) return false;
         $userData = Auth::getUser();
-        DB::query("UPDATE `user` SET `avatar` = :avatar, `email` = :email, `dob` = :dob, `name` = :name, `phone` = :phone, registrated = NOW(), `gender` = :gender WHERE id = ".CLIENT_ID, array(
+        $rs = DB::query("SELECT COUNT(*) cc FROM `user` WHERE registrated > 0 AND id = ".CLIENT_ID);
+        $isRegistrated = $rs[0]['cc'] > 0;
+        DB::update("UPDATE `user` SET `avatar` = :avatar, `email` = :email, `dob` = :dob, `name` = :name, `phone` = :phone, ".($isRegistrated ? '' : 'registrated = NOW(),')." `gender` = :gender WHERE id = ".CLIENT_ID, array(
             ':email'=>$data['email'],
             ':dob'=>$data['dob'],
             ':name' => $data['name'],

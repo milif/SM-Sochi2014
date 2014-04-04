@@ -7,6 +7,7 @@
  * @requires stmCabinet.directive:stmCabinetScreen:b-cabinet.css
  * @requires stmCabinet.directive:stmCabinetScreen:template.html
  *
+ * @requires stmIndex.directive:stmIndexForm
  * @requires stmIndex.directive:stmIndexToolbar
  * @requires stmIndex.directive:stmIndexAchiev
  * @requires stmIndex.$stmAchievs
@@ -57,7 +58,7 @@ angular.module('stmCabinet').directive('stmCabinetScreen', function(){
     
      return {
          templateUrl: 'partials/stmCabinet.directive:stmCabinetScreen:template.html',
-         controller: ['$scope', '$stmAuth', '$location', '$stmEnv', '$stmAchievs', 'stmMapAchiev', 'stmOtherAchiev', function($scope, $stmAuth, $location, $stmEnv, $stmAchievs, stmMapAchiev, stmOtherAchiev){
+         controller: ['$scope', '$stmAuth', '$location', '$stmEnv', '$stmAchievs', 'stmMapAchiev', 'stmOtherAchiev', 'User', function($scope, $stmAuth, $location, $stmEnv, $stmAchievs, stmMapAchiev, stmOtherAchiev, User){
             $scope.logout = function(){
                 $stmAuth.logout();
             }
@@ -99,6 +100,8 @@ angular.module('stmCabinet').directive('stmCabinetScreen', function(){
             $scope.mapScore = 0;  
             $scope.achievTotal = $stmAchievs.total + stmMapAchiev.total + stmOtherAchiev.total;
             
+            $scope.edit = edit;
+            
             var bonus;
             for(var i=0;i<$scope.otherAchievs.length;i++){
                 bonus = achievsBonus['other.' + $scope.otherAchievs[i].type];
@@ -119,7 +122,73 @@ angular.module('stmCabinet').directive('stmCabinetScreen', function(){
                 if(!name) return '';
                 name = name.split(" ");
                 return name[0] + " " + name[1][0] + ".";
+            } 
+            
+            var model = $stmAuth.data;
+            $scope.model = model;
+            var form = $scope.formCfg = {
+                model: model,
+                fields: [
+                    {
+                        type: 'text',
+                        label: 'Фамилия, Имя и Отчество',
+                        placeholder: 'Ф.И.О.',
+                        name: 'name',
+                        required: true,
+                        pattern: /^[a-яa-z]{2,}\s+[a-яa-z]+/i
+                    },
+                    {
+                        type: 'email',
+                        label: 'Электронная почта',
+                        name: 'email',
+                        required: true
+                    },
+                    {
+                        type: 'phone',
+                        label: 'Номер телефона',
+                        name: 'phone'
+                    },
+                    [
+                        {
+                            type: 'date',
+                            label: 'Дата рождения',
+                            name: 'dob',
+                            size: '3-8'
+                        },
+                        {
+                            type: 'switch',
+                            label: 'Пол',
+                            name: 'gender',
+                            required: true,
+                            values: [['Мужской', 'male'], ['Женский', 'female']],
+                            size: '5-8'
+                        }                        
+                    ]
+                ]
             }            
+            $scope.isShowEdit = false;
+            $scope.closeEdit = function(){
+                $scope.isShowEdit = false;
+            }            
+            $scope.submitEdit = function(){
+                if(form.validate() && !$scope.isSendEdit) {
+                    $scope.isSendEdit = true;
+                    var res = User.save(model, function(){
+                        if(!res.success) {
+                            return;
+                        }
+                        $scope.$broadcast('closePopup-editprofile');                
+                    });
+                    res.$promise.finally(function(){
+                        $scope.isSendEdit = false;
+                    });
+                }
+            }            
+            function edit(){
+                $scope.isShowEdit = true;
+            }
+            
+                       
          }]
      };
  });

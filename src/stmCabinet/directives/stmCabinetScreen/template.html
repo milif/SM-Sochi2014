@@ -11,6 +11,7 @@
                 <div class="b-cabinet-userpic-cont">
                     <span class="b-cabinet-userpic-name">{{getName(authData.name)}}</span>
                     <a href="" ng-click="logout()" class="b-cabinet-userpic-link">Выйти</a>
+                    <a href="" ng-click="edit()" class="b-cabinet-userpic-link">Изменить профиль</a>
                 </div>
             </div>
 
@@ -193,3 +194,15 @@
     </div>
 </div>
 <div stm-index-toolbar position="top"></div>
+<div ng-if="isShowEdit" stm-index-popup="editprofile" mask="true" fixed="true" closable="closeEdit" footer="false">
+    <div class='b-popup-title'>
+        Персональные данные
+    </div>
+    <div stm-index-form="formCfg" model="form"></div>
+    <div class="b-popup-button">
+                    <div ng-class="isSendEdit ? 'state_loading' : ''" class="b-button button_size_big b-button_scheme_yellow mod_style">
+                        <div class="b-button__text">Coхранить</div>
+                        <span class="b-button__link" ng-click="submitEdit()" ></span>
+                    </div>
+    </div>     
+</div> 

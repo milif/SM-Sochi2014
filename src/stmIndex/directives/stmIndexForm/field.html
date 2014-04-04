@@ -7,7 +7,7 @@
                             <input type="email" ng-model="model[field.name]" ng-required="field.required" name="field" id="field{{$id}}" class="b-form-input-text" placeholder="E-mail">
                         </div>
                         <div ng-if="field.type == 'phone'" class="g-clearfix">
-                            <div ng-init="field.country=countries[0]; model[field.name+'_country'] = countries[0].prefix;" class="b-column-form b-column-form_size_3-8">
+                            <div class="b-column-form b-column-form_size_3-8">
                                     <label for="field{{$id}}" class="b-form-label">{{field.label}} <span class="__country"><span ng-repeat="country in countries" ng-click="field.country = country; field.mask = country.mask; $parent.model[field.name] = ''; model[field.name+'_country'] = country.prefix;" ng-class="country.code == field.country.code ? 'state_active' :'' " class="a-pseudo __country_item">{{country.name}}</span></span></label>
                                     <input ng-blur = "onBlurMask($event)" ui-mask="{{field.country.mask}}" type="text" ng-required="field.required" name="field" ng-model="model[field.name]" id="field{{$id}}" class="b-form-input-text" >
                             </div>

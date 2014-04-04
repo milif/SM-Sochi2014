@@ -104,20 +104,57 @@ angular.module('stmIndex').directive('stmIndexForm', function(){
         controller: ['$scope', '$attrs', function($scope, $attrs){
             var formCfg;
             var form;
+            var fields = [];
+            var model;
             $scope.countries = COUNTRIES;
             $scope.isArray = angular.isArray; 
+            
             $attrs.$observe('stmIndexForm', function(cfg){
                 formCfg = $$.extend($scope.$eval(cfg), {
                     validate: validate
                 });
                 formCfg[$attrs.model] = form = $scope.form;
                 $scope.fields = formCfg.fields;
-                $scope.model = formCfg.model;
+                model = $scope.model = formCfg.model;
+                
+                addFields($scope.fields);
+                
+                var field;
+                for(var i=0;i<fields.length;i++){
+                    field = fields[i];
+                    if(field.type == 'phone') {
+                        setCountry(field);
+                    }
+                }
             });
             
             function validate(){
                 $scope.isValidate = true;
                 return form.$valid;
+            }
+            function setCountry(field){
+                if(field.country) return;
+                var phone = model[field.name] || "";
+                var country;
+                for(var i=0;i<COUNTRIES.length;i++){
+                    if(phone.indexOf(COUNTRIES[i].prefix) === 0) {
+                        phone = phone.replace(COUNTRIES[i].prefix, '');
+                        country = COUNTRIES[i];
+                        break;
+                    }
+                }
+                field.country = country = country || COUNTRIES[0];
+                model[field.name] = phone;
+                model[field.name+'_country'] = country.prefix;
+            }
+            function addFields(flds){
+                for(var i=0;i<flds.length;i++){
+                    if($$.isObject(flds[i])) {
+                        fields.push(flds[i]);
+                    } else if($$.isArray(flds[i])){
+                        addFields(flds[i]);
+                    }
+                }            
             }
         }]
     }
