@@ -780,9 +780,10 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                     function _update() {
 
                         if(!ACHIVE_RESISTANCE.active && scope.score >= 300) { 
-                            ACHIVE_RESISTANCE.active = true;
                             Achiev.save({
                                 'key': 'climber.' + ACHIVE_RESISTANCE.type
+                            }, function(){
+                                ACHIVE_RESISTANCE.active = true;
                             });
                         }
 
@@ -796,9 +797,10 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                             ovisesPassedCounts++;
                         }
                         if(!ACHIVE_AMATEURFAUNA.active && ovisesPassedCounts === 5) {
-                            ACHIVE_AMATEURFAUNA.active = true;
                             Achiev.save({
                                 'key': 'climber.' + ACHIVE_AMATEURFAUNA.type
+                            }, function(){
+                                ACHIVE_AMATEURFAUNA.active = true;
                             });
                         }
 
@@ -842,10 +844,10 @@ angular.module('stmGameClimber').directive('stmGameClimberScreen',['$timeout', '
                         
                         if(position >= (endPosition - topPipeMargin)) {
                             gamePassed = true;
-                                                        
-                            ACHIVE_PIONEER.active = true;
                             Achiev.save({
                                 'key': 'climber.' + ACHIVE_PIONEER.type
+                            }, function(){
+                                ACHIVE_PIONEER.active = true;
                             });
                             
                             moveBird();

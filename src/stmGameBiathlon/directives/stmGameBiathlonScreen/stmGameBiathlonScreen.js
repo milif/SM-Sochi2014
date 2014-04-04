@@ -683,10 +683,11 @@ angular.module('stmGameBiathlon').directive('stmGameBiathlonScreen', ['$compile'
             
             }
             function saveAchiev(achiev){
-                achiev.active = true;
                 Achiev.save({
                     'key': 'biathlon.' + achiev.type
-                });            
+                }, function(){
+                    achiev.active = true;
+                });
             }
             function showBonusPopup(popup){
                 bonusPopups.push(popup);

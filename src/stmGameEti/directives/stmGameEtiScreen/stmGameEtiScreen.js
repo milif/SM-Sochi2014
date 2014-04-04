@@ -422,9 +422,10 @@ angular.module('stmGameEti').directive('stmGameEtiScreen', ['$compile', '$rootSc
                 }, 600);
             }
             function saveAchiev(achiev){
-                achiev.active = true;
                 Achiev.save({
                     'key': 'yeti.' + achiev.type
+                }, function(){
+                    achiev.active = true;
                 });            
             }
             function showMessage(msg, e){
