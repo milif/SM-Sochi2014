@@ -8,7 +8,6 @@
         </div>
         
         <ul class="sochiprice-menu">
-            <li ng-if="!isAuth" class="__auth" ><span ng-click="auth()" class="a-pseudo">Войдите, чтобы получить доступ к Сочным Ценам</span></li>
             <li ng-repeat="item in menu" class="sochiprice-menu__item" ng-class="item == category ? 'state_active' : ''"><a ng-href="{{baseUrl + (item.isRoot ? '' : '?c=' + item.type)}}" class="sochiprice-menu__item-link">{{item.title}}</a></li>
         </ul>
 
@@ -16,12 +15,12 @@
     <!-- End header -->
 
     <!-- sochi content -->
-    <div ng-if="!hasPermission && isAuth" class="sochiprice-content">
+    <!--<div ng-if="!hasPermission && isAuth" class="sochiprice-content">
         <div class="sochiprice-container">
             <div class="sochiprice-info">Для доступа к распродаже вам не хватает <span ng-if="userData.score < 2500"><b>{{(2500 - userData.score) | stmNumber}} баллов</b></span><span> либо </span><span ng-if="userData.achievs < 6"><b>{{(6 - userData.achievs) | stmHowMany:' достижение':' достижения':' достижений'}}</b></span>. Следующая распродажа будет 30 апреля. Успейте набрать необходимое количество баллов для участия.
 </div>         
         </div>
-    </div>    
+    </div>-->   
     <div class="sochiprice-content">
         <div class="sochiprice-container">
             <div class="sochiprice-title">{{category.title}}</div>
