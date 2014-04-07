@@ -5,8 +5,8 @@ require_once __DIR__.'/../lib/Cache.class.php';
 
 DB::query('TRUNCATE TABLE `goods`;');
 
-//updateSotmarket();
-//updateQuelle();
+updateSotmarket();
+updateQuelle();
 updateProskater();
 
 Cache::clear();
