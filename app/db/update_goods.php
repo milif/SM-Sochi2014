@@ -5,8 +5,8 @@ require_once __DIR__.'/../lib/Cache.class.php';
 
 DB::query('TRUNCATE TABLE `goods`;');
 
-updateSotmarket();
-updateQuelle();
+//updateSotmarket();
+//updateQuelle();
 updateProskater();
 
 Cache::clear();
@@ -75,6 +75,7 @@ function updateProskater(){
         //$saled = $itemNode->attributes->getNamedItem('saled')->textContent == 'true';
         if(!$available) continue;
         $itemData = nodeToArray($itemNode);
+        if(!isset($itemData['oldprice'])) continue;
         $params = array(
             ':url' => $itemData['url']['value'],
             ':title' =>	$itemData['name']['value'],
