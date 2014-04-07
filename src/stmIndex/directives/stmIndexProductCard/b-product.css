@@ -120,12 +120,13 @@
 .sochiprice-product:hover .sochiprice-product-note {
     padding: 0 9px;
 }
-
-a.sochiprice-product-cat {
+.sochiprice-product-cat {
     display: inline-block;
     margin-top: 6px;
     font-size: 11px;
     color: #000;
+}    
+a.sochiprice-product-cat {
     position: relative;
     z-index: 20;
 }

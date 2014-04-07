@@ -11,7 +11,8 @@
                         </div>
 
                         <div class="sochiprice-product-note">
-                            <a ng-href="{{item.subUrl}}" target="_blank" class="sochiprice-product-cat">{{item.subName}}</a>
+                            <a ng-if="item.subUrl" ng-href="{{item.subUrl}}" target="_blank" class="sochiprice-product-cat">{{item.subName}}</a>
+                            <span ng-if="!item.subUrl" class="sochiprice-product-cat">{{item.subName}}</span>
                             <div class="sochiprice-product-note-h">
                                 <a data-url ng-href="{{item.url}}" target="_blank" class="sochiprice-product-title">
                                     {{item.title}}

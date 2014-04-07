@@ -45,8 +45,8 @@ angular.module('stmIndex').directive('stmIndexSochiPrice', ['stmGoods', function
             isRoot: true
         },
         {
-            type: 'soft',
-            title: 'Софт'
+            type: 'sport',
+            title: ' Спортивные товары'
         },
         {
             type: 'clothing',
