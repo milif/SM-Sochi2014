@@ -69,9 +69,9 @@
 
             <ul ng-if="lastPage > 0" class="sochiprice-paginator">
                 <li ng-if="page == 0" class="sochiprice-paginator__item state_disabled">← Назад</li>
-                <li ng-if="page > 0" class="sochiprice-paginator__item"><a ng-href="{{getUrl({p: page-1})}}" class="sochiprice-paginator__item-link">← Назад</a></li>
+                <li ng-if="page > 0" class="sochiprice-paginator__item">← <a ng-href="{{getUrl({p: page-1})}}" class="sochiprice-paginator__item-link">Назад</a></li>
                 <li ng-repeat="n in [] | range:(pageRange[1] - pageRange[0] + 1)" ng-class="n + pageRange[0] == page ? 'state_active' : ''" class="sochiprice-paginator__item"><a ng-href="{{getUrl({p: pageRange[0] + n})}}" class="sochiprice-paginator__item-link">{{(pageRange[0] + n + 1)}}</a></li>
-                <li ng-if="page < lastPage" class="sochiprice-paginator__item"><a href="{{getUrl({p: page + 1})}}" class="sochiprice-paginator__item-link">Вперед →</a></li>
+                <li ng-if="page < lastPage" class="sochiprice-paginator__item"><a href="{{getUrl({p: page + 1})}}" class="sochiprice-paginator__item-link">Вперед</a> →</li>
                 <li ng-if="page == lastPage" class="sochiprice-paginator__item state_disabled">Вперед →</li>
             </ul>
         </div>
