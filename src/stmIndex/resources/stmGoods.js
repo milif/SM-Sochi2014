@@ -18,7 +18,12 @@
        */         
     angular.module('stmIndex').factory('stmGoods', ['$resource', function($resource){
     
-        var stmGoods = $resource('api/goods.php');
+        var stmGoods = $resource('api/goods.php', null, {
+            get: {
+                method: 'GET',
+                cache: false
+            }
+        });
         
         stmGoods.getItems = getItems;
         
