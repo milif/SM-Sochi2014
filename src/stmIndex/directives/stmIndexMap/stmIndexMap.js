@@ -50,7 +50,6 @@ angular.module('stmIndex').directive('stmIndexMap', ['$stmEnv', '$window', funct
         transclude: true,
         templateUrl: 'partials/stmIndex.directive:stmIndexMap:template.html',
         controller: ['$scope', '$element', '$attrs', '$timeout', 'stmMapAchiev', '$interval', '$document', '$rootScope', '$stmCheck18', function($scope, $element, $attrs, $timeout, stmMapAchiev, $interval, $document, $rootScope, $stmCheck18){
-            
             $rootScope.$on('auth', function(){
                 window.location.reload();
             });

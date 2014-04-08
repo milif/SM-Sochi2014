@@ -31,7 +31,7 @@
        *
        * @returns {Boolean} Авторизарован ли пользователь
        */         
-    angular.module('stmIndex').factory('$stmAuth', ['$stmEnv', '$location', '$http', '$rootScope', function($stmEnv, $location, $http, $rootScope){
+    angular.module('stmIndex').factory('$stmAuth', ['$stmEnv', '$location', '$http', '$rootScope', '$timeout', function($stmEnv, $location, $http, $rootScope, $timeout){
         
         var $$ = angular;
         var $ = angular.element;
@@ -52,6 +52,8 @@
     
         var authData = $stmEnv.auth;
     
+        var currentUrl;
+    
         var $stmAuth = {
             data: authData || {},
             isAuth: !!authData,
@@ -62,6 +64,7 @@
         return $stmAuth;
         
         function auth(clbFn){
+            currentUrl = $location.url();
             if(!window.LOGINZA){
                 $.getScript('http://loginza.ru/js/widget.js', function(){
                     $('<style>#loginza_auth_form{z-index: 999999!important;} #loginza_auth_form > *:first-child{display:none!important;}</style>').appendTo('head');
@@ -100,7 +103,8 @@
                 $stmAuth.isAuth = true;
                 $$.extend($stmAuth.data, window['_' + token]);             
                 LOGINZA.close();
-                if(clbFn) clbFn();
+                $location.url(currentUrl);
+                if(clbFn) $timeout(clbFn, 0);;
             });    
         }
     }]);
