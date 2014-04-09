@@ -5,7 +5,7 @@
         'quiz' => Quiz::getAll(),
         'achievs' => User::getMapAchives()
     );
-    $SHARE_URI = '/sale/';
+    //$SHARE_URI = '/sale/';
     require __DIR__.'/../../lib/init.php'; ?><!doctype html>
 <html ng-app="stmIndex" lang="ru">
 <head>
