@@ -55,8 +55,13 @@ function updateSotmarket(){
     }
 }
 function updateProskater(){
-    $STMXML = 'http://www.proskater.ru/market-sotmarket-games.yml';
-
+    $XML = array(
+        'http://www.proskater.ru/proskater_sochi_open.yml'    
+    );
+    
+    foreach($XML as $_xml) _updateProskater($_xml);
+}
+function _updateProskater($STMXML){
     $categories = array();
 
     $doc = new DOMDocument();
@@ -94,6 +99,7 @@ function updateProskater(){
         );
         DB::update('INSERT INTO `goods` (url, title, img, sub_name, sub_url, price, oldprice, category, discount, ratio, saled) VALUES (:url, :title, :img, :subName, :subUrl, :price, :oldprice, :category, :discount, :ratio, :saled)', $params);
     }
+
 }
 function updateQuelle(){
     $XML = array(
