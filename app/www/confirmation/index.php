@@ -12,6 +12,7 @@
             'actionpay' => in_array($partner[0], array('49417','55885','57103', '57209', '57213')) ? $partner[1] : null,
             'am15' => in_array($partner[0], array('57211','54479')) ? true : null,
             'cityadspix' => in_array($partner[0], array('49377', '57107', '57109', '57121', '57207')) ? $beforepoint : null,
+            'ad1' => in_array($partner[0], array('49503')) ? true : null,            
             'userKey' => $_GET['i']
         ));
     }

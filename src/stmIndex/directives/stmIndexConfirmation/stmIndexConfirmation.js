@@ -43,6 +43,9 @@ angular.module('stmIndex').directive('stmIndexConfirmation', function(){
             if($stmEnv.am15) {
                 $http.jsonp('//am15.net/pixel.php?f=js&rid=47701');
             }
+            if($stmEnv.ad1) {
+                $http.jsonp('//t.zm-trk.com/track.js?p=1452&order_id=' + $stmEnv.userKey);
+            }
             if($stmEnv.cityadspix) {
                 $http.jsonp('https://cityadspix.com/track/'+$stmEnv.userKey+'/ct/q3/c/383?click_id='+$stmEnv.cityadspix+'&md=2');
             }
