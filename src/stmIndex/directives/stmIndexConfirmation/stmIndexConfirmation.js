@@ -39,7 +39,7 @@ angular.module('stmIndex').directive('stmIndexConfirmation', function(){
             $scope.actionpay = $stmEnv.actionpay;
             $scope.cityadspix = $stmEnv.cityadspix;
             $scope.userKey = $stmEnv.userKey;
-            $scope.msg = $stmEnv.confirmMsg == 1 ? "Вы перешли по устаревшей ссылке, либо ссылка неверна. Если вы считаете, что на странице произошла техническая ошибка, напишите нам, и мы вам поможем." : $stmEnv.confirmMsg;
+            $scope.msg = $stmEnv.confirmMsg == 1 ? "Вы перешли по устаревшей ссылке, либо ссылка неверная. Если вы считаете, что на странице произошла техническая ошибка, напишите нам, и мы вам поможем." : $stmEnv.confirmMsg;
             $scope.showConfirm = function(){
                 if($stmAuth.isAuth) {
                     $scope.$emit('showConfirmPopup', 'send');
