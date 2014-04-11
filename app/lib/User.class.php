@@ -3,9 +3,10 @@
 require_once __DIR__.'/DB.class.php';
 require_once __DIR__.'/Auth.class.php';
 require_once __DIR__.'/Cache.class.php';
+require_once __DIR__.'/Log.class.php';
 
 class User {
-    const CONFIRM_ERROR = 'Ошибка при подтверждении адреса электронной почты.';
+    const CONFIRM_ERROR = 1;
     const CONFIRM_ERROR_HAS = 'Данный аккаунт уже зарегистрирован.';
     const UNSUBSCRIBE_ERROR = 'Ошибка при отписке.';
     const UNSUBSCRIBE_ERROR_HAS = 'Адрес <b>%s</b> уже отписан от всех рассылок.';
@@ -96,9 +97,24 @@ class User {
     }      
     static public function confirmEmail($refKey, $checkHash){
         $rs = DB::query("SELECT id, email, is_confirmed FROM `user` WHERE `ref_key` = :refKey", array(':refKey' => $refKey));
-        if(!count($rs) || md5($rs[0]['id'].$rs[0]['email']) != $checkHash) return self::CONFIRM_ERROR;
-        if($rs[0]['is_confirmed'] > 0) return self::CONFIRM_ERROR_HAS;
+        if(!count($rs) || md5($rs[0]['id'].$rs[0]['email']) != $checkHash) {
+            Log::add('confirm_email_error', array(
+                'user' => count($rs) ? $rs[0] : false,
+                'checkHash' => md5($rs[0]['id'].$rs[0]['email']) == $checkHash
+            ));
+            return self::CONFIRM_ERROR;
+        }
+        if($rs[0]['is_confirmed'] > 0) {
+            Log::add('confirm_email_error', array(
+                'user' => count($rs) ? $rs[0] : false,
+                'isConfirmed' => true
+            ));        
+            return self::CONFIRM_ERROR_HAS;
+        }
         DB::query("UPDATE `user` SET `is_confirmed` = 1 WHERE `id` = ".$rs[0]['id']);
+        Log::add('confirm_email', array(
+            'user' => $rs[0]
+        ));        
         Cache::remove('isconfrm.'.$rs[0]['id']);
         return true;
     }

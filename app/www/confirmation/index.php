@@ -2,6 +2,7 @@
     require __DIR__.'/../../lib/User.class.php';
     $confirm = User::confirmEmail($_GET['i'], $_GET['h']);
     $ENV = array(
+        'isConfirm' => $confirm === true,
         'confirmMsg' => $confirm === true ? 'Адрес электронной почты подтвержден.' : $confirm
     );
     $partner = User::getPartnerByKey($_GET['i']);

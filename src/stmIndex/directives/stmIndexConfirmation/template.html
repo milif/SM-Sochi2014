@@ -6,7 +6,9 @@
             <div class="b-confirmation">
                 <div class="b-confirmation-title">Подтверждение адреса</div>
                 <div class="b-confirmation-note"><p ng-bind-html="msg"></p></div>
-                <div class="b-confirmation-hint">вы автоматически перейдете на <a href="./">главную страницу</a> через {{time}} секунд</div>
+                <div ng-if="!isConfirm"><span ng-click="showConfirm()" class="a-pseudo">Попробовать подтвердить снова</span><br><br><a href="./">Вернуться на главную</a></div>
+                <div ng-if="isConfirm" class="b-confirmation-hint">вы автоматически перейдете на <a href="./">главную страницу</a> через {{time}} секунд</div>
+                
             </div>
         </div>
     </div>

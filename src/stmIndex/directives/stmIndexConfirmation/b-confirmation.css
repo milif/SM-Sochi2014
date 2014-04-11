@@ -54,6 +54,7 @@
     font-size: 11px;
     color: #a38d1f;
 }
-.b-confirmation-hint a {
+.b-confirmation .a-pseudo,
+.b-confirmation a {
     color: #000;
 }

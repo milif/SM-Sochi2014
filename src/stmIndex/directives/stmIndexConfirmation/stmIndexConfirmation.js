@@ -31,15 +31,27 @@
 
 
 angular.module('stmIndex').directive('stmIndexConfirmation', function(){
+
     return {
         templateUrl: 'partials/stmIndex.directive:stmIndexConfirmation:template.html',
-        controller: ['$stmEnv', '$scope', '$interval', '$location', '$http', function($stmEnv, $scope, $interval, $location, $http){
+        controller: ['$stmEnv', '$scope', '$interval', '$location', '$http', '$stmAuth', function($stmEnv, $scope, $interval, $location, $http, $stmAuth){
             $scope.admitad = $stmEnv.admitad;
             $scope.actionpay = $stmEnv.actionpay;
             $scope.cityadspix = $stmEnv.cityadspix;
             $scope.userKey = $stmEnv.userKey;
-            $scope.msg = $stmEnv.confirmMsg;
+            $scope.msg = $stmEnv.confirmMsg == 1 ? "Вы перешли по устаревшей ссылке, либо ссылка неверна. Если вы считаете, что на странице произошла техническая ошибка, напишите нам, и мы вам поможем." : $stmEnv.confirmMsg;
+            $scope.showConfirm = function(){
+                if($stmAuth.isAuth) {
+                    $scope.$emit('showConfirmPopup', 'send');
+                } else {
+                    $stmAuth.auth(function(){
+                        $scope.$emit('showConfirmPopup', 'send');
+                    });
+                }
+            }
+            
             $scope.time = 12;
+            var isConfirm = $scope.isConfirm = $stmEnv.isConfirm;
             if($stmEnv.am15) {
                 $http.jsonp('//am15.net/pixel.php?f=js&rid=47701');
             }
@@ -49,7 +61,7 @@ angular.module('stmIndex').directive('stmIndexConfirmation', function(){
             if($stmEnv.cityadspix) {
                 $http.jsonp('https://cityadspix.com/track/'+$stmEnv.userKey+'/ct/q3/c/383?click_id='+$stmEnv.cityadspix+'&md=2');
             }
-            if(/noredirect=1/.test($location.url())) return;
+            if(!isConfirm || /noredirect=1/.test($location.url())) return;
             var endTime = new Date().getTime() + 12000;
             var cancelTimer = $interval(function(){
                 var diffTime = endTime - new Date().getTime();

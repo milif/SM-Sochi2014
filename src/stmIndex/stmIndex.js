@@ -35,13 +35,15 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
         var isLoaded = false;
  
         $rootScope.$on('gameInit', auth);
-        $rootScope.$on('showConfirmPopup', showConfirmEmail);
+        $rootScope.$on('showConfirmPopup', function(e, action){
+            showConfirmEmail(action);
+        });
         $rootScope.$on('loaded', function(){
             isLoaded = true;
             if($stmAuth.isAuth && !$stmAuth.data.isReg) {
                 showRegForm();
             } 
-            if($stmAuth.isAuth && $stmEnv.requireConfirm) {
+            if($stmAuth.isAuth && $stmEnv.requireConfirm && !/confirmation/.test($location.url())) {
                 var time = parseInt(localStorage.getItem('_stmSochiConfirmTime') || 0);
                 var curTime = new Date().getTime();
                 if(time < curTime) {
@@ -67,7 +69,7 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
         }
         
         var apiConfirmEmail = 'api/confirmemail.php';
-        function showConfirmEmail(){
+        function showConfirmEmail(action){
 
             var $scope = $rootScope.$new();
             var model = $scope.model = {};
@@ -107,6 +109,10 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
             }            
             
             start();
+            
+            if(action == 'send') {
+                send();
+            }
             
             $http.get('partials/stmIndex:confirmemail.html', {cache: $templateCache}).success(function(template) {
                 $compile(template)($scope, function(el){
