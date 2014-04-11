@@ -56,7 +56,8 @@ function updateSotmarket(){
 }
 function updateProskater(){
     $XML = array(
-        'http://www.proskater.ru/proskater_sochi_open.yml'    
+        'http://www.proskater.ru/proskater_sochi_open.yml',
+        //'http://www.proskater.ru/proskater_sochi_close.yml'
     );
     
     foreach($XML as $_xml) _updateProskater($_xml);
@@ -103,8 +104,8 @@ function _updateProskater($STMXML){
 }
 function updateQuelle(){
     $XML = array(
-        'http://www.quelle.ru/nws_exports/sotmarket/productfeed_sotmarket_sale_quelle_ru_ru.xml',
-        'http://www.quelle.ru/nws_exports/sotmarket/productfeed_sotmarket_quelle_ru_ru.xml'        
+        'http://www.quelle.ru/nws_exports/sotmarket/quelle_sochi_open.xml',
+        //'http://www.quelle.ru/nws_exports/sotmarket/quelle_sochi_close.xml'        
     );
     
     foreach($XML as $_xml) _updateQuelle($_xml);
@@ -134,7 +135,7 @@ function _updateQuelle($STMXML){
         if(!isset($itemData['picture'])) continue;
         $params = array(
             ':url' => $itemData['url']['value'].(isset($itemData['promo']['value']) ? '?coupon='.$itemData['promo']['value'] : ''),
-            ':title' =>	preg_replace('/[\s\.]+/', '', $itemData['model']['value']),
+            ':title' =>	preg_replace('/[\s\.]+$/', '', $itemData['model']['value']),
             ':img' => preg_replace('/_w\d+_h\d+/', '_w197_h205', $itemData['picture']['value']),
             ':subName' => $categories[$itemData['categoryId']['value']]['title'],
             ':subUrl' => '',
