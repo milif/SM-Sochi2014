@@ -1,0 +1,174 @@
+/* ask-goods */
+/*==========================================================*/
+.ask-goods__note {
+    color: #777;
+    font-size: 16px;
+    margin-bottom: 26px;
+}
+.ask-goods-tabs__cont {
+    text-align: left;
+}
+.ask-goods-list {
+    padding-left: 0;
+    list-style-type: none;
+    font-size: 16px;
+    margin: 0 0 30px 0;
+}
+.ask-goods__item:hover .input-radio2__h {
+    border-color: #f66b0e;
+    color: #f66b0e;
+}
+.input-radio2 {
+    margin-top: 8px;
+    display: inline-block;
+    cursor: pointer;
+    padding-left: 30px;
+    position: relative;
+    line-height: 30px;
+}
+.input-radio2__h {
+    font-size: 16px;
+    border-bottom: 1px solid #cacaca;
+    margin-right: 6px;
+}
+.input-radio2:before {
+    top: 5px;
+    left: 0;
+    width: 19px;
+    height: 19px;
+    content: '';
+    display: block;
+    background-color: #fff;
+    position: absolute;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAQAAADYWf5HAAABC0lEQVQoz33SsUsCcRjG8Xeycncr7b88txqfGgz/Ex10EcE8IUFwEsQlyeNnEEbRVae/C74NJZ2kx2d8n+39GraligLdymkjp74CVf5u28mxavI9FsR8ERPRQ141nWRmKmncxZOyYU3Cmg0pni4aq/Q7U0F3IZ7PfzwhGqrwM6t1SPjYK6GDbjBTWT7m/aAYeZVNFz3iXD10aRrMeMs1QwOTc7zmcsiZkhUvuVZobXIRz7ki5Ez9CatcE9Q3BW2ecrVRYDpVsuDxoAglOjNMVw3cQU10vf3psEW0VwsNdZQppMGchx1zGtlCMExF1ZU2GTHlnikjmihVXcWdLDFM56oq1FJeS4WqZuv9BnZmSgUdrMeeAAAAAElFTkSuQmCC) 0 0 no-repeat;
+}
+
+.input-radio2-r {
+    display: none;
+}
+.input-radio2-r:checked + label:after {
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAQAAADYWf5HAAABaUlEQVQoz22SvU4CQRSFt0Klt1PwfbTQNzDBF9BC6bQ8WmDoVXgEKLAhJJA1kQSDDYmhkQiyBgQloq67mBzvDAPyly83O3vm5N6ZudeiNQJhRGGjCU+igCOE//dGlhXE4OfZYJ+/EnXmCV+05QkbVlHO0eeAHn/oSniy9pkj7rBqbAigaIv4PYdPm7hFYGg7z0qGr4W4zBIxsSGEQZ+fmjcmGOEO95jku9H66owhCyd5WSo63OfmmAP5H+pymWMLN1V+aC4mTIqE0auEbcFx2NPsztgiRm8Szxa8rpxDsTVj2zZ6h3AlW4NdzXy2oV7X2eyK+BWXM7ak0StEwUL0mm1Na+amLaNniEML63AbfNG0eTV+t1ejSUkXa6oLZ2m5jcKREj15gp6YmoYUcTps1hKKGZmNRUjBoumpnpD7FGt8mqKmMpXHE6KNQcQxSLPEBz5KlJhWvYwjODWW2rqhp9eRbUe+0cnp/QMEQiITA33JRwAAAABJRU5ErkJggg==) 0 0 no-repeat;
+    position: absolute;
+    width: 19px;
+    height: 19px;
+    left: 0;
+    content: '';
+    display: block;
+    top: 5px;
+}
+.ask-goods-product-labels {
+    font-size: 0;
+    white-space: nowrap;
+}
+
+/* ask-goods-tabs */
+.ask-goods-tabs {
+    white-space: nowrap;
+    text-align: left;
+    font-size: 0;
+    margin-bottom: 20px;
+}
+.ask-goods-tabs__item {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 13px;
+    color: #000;
+    cursor: pointer;
+    z-index: 10;
+    position: relative;
+    border-bottom: 1px dotted;
+    margin: 0 7px;
+}
+.ask-goods-tabs__item:hover,
+.ask-goods-tabs__item.state_active {
+    border-color: transparent;
+}
+.ask-goods-tabs__item.state_active:before {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    top: -4px;
+    bottom: -4px;
+    left: -7px;
+    right: -7px;
+    background-color: #fdd918;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    cursor: default;
+}
+
+/* ask-goods__buttons */
+/*==========================================================*/
+.ask-goods__buttons {
+    position: relative;
+    text-align: center;
+}
+
+.ask-goods__buttons {
+
+}
+.b-button.mod_next-step {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+/* ask-goods-result */
+/*==========================================================*/
+.ask-goods-result {
+    border: none;
+    width: 100%;
+    margin-bottom: 30px;
+}
+.ask-goods-result__td {
+    padding: 0 10px;
+}
+.ask-goods-result__td:first-child {
+    width: 100%;
+}
+.ask-goods-result__item {
+    position: relative;
+    padding: 8px 0;
+    margin-bottom: 1px;
+}
+.ask-goods-result__item-h {
+    position: relative;
+    z-index: 10;
+}
+.ask-goods-result__item-decor {
+    z-index: 4;
+    position: absolute;
+    left: -10px;
+    top: 0;
+    bottom: 0;
+    background-color: #fff7c9;
+}
+a.ask-goods-result__item__link {
+    color: #000;
+    text-decoration: none;
+    border-bottom: 1px solid #cacaca;
+}
+a.ask-goods-result__item__link:hover,
+a.ask-goods-result__item__link.state_active:hover {
+    border-color: #f89b70;
+    color: #f89b70;
+}
+a.ask-goods-result__item__link.state_active {
+    color: #8343a6;
+    border-color: #8343a6;
+}
+.ask-goods-result-num {
+    color: #777777;
+    white-space: nowrap;
+    font-size: 13px;
+}
+
+.ask-goods-result-user {
+    color: #777777;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+
+
