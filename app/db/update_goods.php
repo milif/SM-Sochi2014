@@ -116,6 +116,7 @@ function _updateQuelle($STMXML){
     $doc = new DOMDocument();
     $doc->load($STMXML);
     $items = $doc->getElementsByTagName ('category');
+    $groups = array();
     foreach($items as $itemNode){
         $attrsNodeL = $itemNode->attributes;
         $urlNode = $attrsNodeL->getNamedItem('url');
@@ -133,13 +134,29 @@ function _updateQuelle($STMXML){
         //if(!$available) continue;
         $itemData = nodeToArray($itemNode);
         if(!isset($itemData['picture'])) continue;
+        $attrGroup = $itemNode->attributes->getNamedItem('group_id');
+        $price = (int)$itemData['price']['value'];
+        $url = $itemData['url']['value'].(isset($itemData['promo']['value']) ? '?coupon='.$itemData['promo']['value'] : '');
+        if($attrGroup) {
+            $groupId = $attrGroup->textContent;
+            /*
+            if(isset($groups[$groupId]) && $groups[$groupId]['price'] <= $price) {
+                continue;
+            }            
+            if(isset($groups[$groupId])) DB::update("DELETE FROM `goods` WHERE url = :url", array(':url' => $groups[$groupId]['url']));
+            $groups[$groupId] = array(
+                'price' => $price,
+                'url' => $url
+            );
+            */
+        }
         $params = array(
-            ':url' => $itemData['url']['value'].(isset($itemData['promo']['value']) ? '?coupon='.$itemData['promo']['value'] : ''),
+            ':url' => $url,
             ':title' =>	preg_replace('/[\s\.]+$/', '', $itemData['model']['value']),
             ':img' => preg_replace('/_w\d+_h\d+/', '_w197_h205', $itemData['picture']['value']),
             ':subName' => $categories[$itemData['categoryId']['value']]['title'],
             ':subUrl' => '',
-            ':price' => (int)$itemData['price']['value'],
+            ':price' => $price,
             ':oldprice' => isset($itemData['oldprice']) ? (int)$itemData['oldprice']['value'] : NULL,
             ':category' => 'clothing',
             ':discount' => isset($itemData['oldprice']) ? (1 - (int)$itemData['price']['value'] / (int)$itemData['oldprice']['value']) * 100 : 0,
