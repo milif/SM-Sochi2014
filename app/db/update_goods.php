@@ -34,7 +34,7 @@ function updateSotmarket(){
         $saled = $itemNode->attributes->getNamedItem('saled')->textContent == 'true';
         if(!$available) continue;
         $itemData = nodeToArray($itemNode);
-        if(!isset($itemData['oldprice']) || $itemData['currencyId']['value'] != 'RUR' || !isset($itemData['promo']['value'])) {
+        if($itemData['currencyId']['value'] != 'RUR' || !isset($itemData['promo']['value'])) {
             var_dump('Error in '.$itemData['url']['value'], $itemData['oldprice'], $itemData['currencyId']['value'], $itemData['promo']['value']);
             continue;
         }
@@ -45,9 +45,9 @@ function updateSotmarket(){
             ':subName' => $categories[$itemData['categoryId']['value']]['title'],
             ':subUrl' => $categories[$itemData['categoryId']['value']]['url'],
             ':price' => (int)$itemData['price']['value'],
-            ':oldprice' => (int)$itemData['oldprice']['value'],
+            ':oldprice' => isset($itemData['oldprice']) ? (int)$itemData['oldprice']['value'] : null,
             ':category' => 'home',
-            ':discount' => (1 - (int)$itemData['price']['value'] / (int)$itemData['oldprice']['value']) * 100,
+            ':discount' => isset($itemData['oldprice']) ? (1 - (int)$itemData['price']['value'] / (int)$itemData['oldprice']['value']) * 100 : 0,
             ':ratio' =>	(int)$itemData['picture']['attrs']['width'] / (int)$itemData['picture']['attrs']['height'],
             ':saled' => $saled ? 1 : 0
         );

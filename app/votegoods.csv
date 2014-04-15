@@ -1,4 +1,51 @@
 Активен,Раздел,ID товара,Название,Старая цена,Цена,Начальное кол-во,Ссылка на товар
-1,Мобильные телефоны,06-391-954-532-075,Apple iPhone 5S 16GB Space Gray,20000,15000,3,http://www.sotmarket.ru/product/bosch-psr-14-4-li.html
-1,Планшеты,06-391-954-532-078,Apple iPhone 4S 16GB Space Gray,10000,7000,0,http://www.sotmarket.ru/product/bosch-psr-14-4-li.html
-0,Планшеты,06-391-954-532-079,Apple iPhone 3S 16GB Space Gray,8000,3000,4,http://www.sotmarket.ru/product/bosch-psr-14-4-li.html
+1,Мобильные телефоны,09-901-001-172-017,Apple iPhone 5S 32GB Space Gray,30990,15000,5,http://www.sotmarket.ru/product/apple-iphone-5s-32gb.html
+1,Мобильные телефоны,09-005-011-575-077 ,Apple iPhone 4 32GB,20840,11000,5,http://www.sotmarket.ru/product/apple_iphone_4_32gb.html
+1,Мобильные телефоны,09-900-051-870-097,Samsung Galaxy Note 3 N9000 32GB,26990,14000,5,http://www.sotmarket.ru/product/samsung-galaxy-note-3-n9000-32gb.html
+1,Мобильные телефоны,09-900-061-478-037 ,Sony Xperia Z1 C6903,24990,12000,5,http://www.sotmarket.ru/product/sony-xperia-z1.html
+1,Мобильные телефоны,09-605-011-979-017,HTC One 32GB,24990,12590,5,http://www.sotmarket.ru/product/htc-one-32gb.html
+1,Мобильные телефоны,09-906-021-976-057,Nokia Lumia 1520,24990,12000,5,http://www.sotmarket.ru/product/nokia-lumia-1520.html
+1,Мобильные телефоны,19-007-031-575-077 ,Sony Xperia Z1 Compact,21990,11000,5,http://www.sotmarket.ru/product/sony-xperia-z1-compact.html
+1,Мобильные телефоны,09-808-041-774-037,LG G2 D802 32GB,21990,11000,5,http://www.sotmarket.ru/product/lg-g2.html
+1,Мобильные телефоны,09-806-041-378-077,Lenovo IdeaPhone K900 16GB,15990,8590,7,http://www.sotmarket.ru/product/lenovo-ideaphone-k900.html
+1,Мобильные телефоны,09-805-011-371-057,Nokia Lumia 1020,19990,10590,6,http://www.sotmarket.ru/product/nokia-lumia-1020.html
+1,Мобильные телефоны,09-803-071-874-097,Sony Xperia Z Ultra C6833,21087,1290,5,http://www.sotmarket.ru/product/sony-xperia-z-ultra.html
+1,Ноутбуки,09-801-041-375-057,"Apple MacBook Air 13"" Mid 2013 MD760",43410,20190,2,http://www.sotmarket.ru/product/apple-macbook-air-13-mid-2013-md760.html
+1,Ноутбуки,19-001-081-471-057,Lenovo G505 59399691,12870,7000,6,http://www.sotmarket.ru/product/lenovo-g505-59399691.html
+1,Ноутбуки,09-907-031-671-037,Lenovo IdeaPad Z710 59393127,28051,15000,4,http://www.sotmarket.ru/product/lenovo-ideapad-z710-59393127.html
+1,Ноутбуки,09-701-041-077-017,Asus N76VB 90NB0131-M00060,34890,17990,3,http://www.sotmarket.ru/product/asus-n76vb-90nb0131-m00060.html
+1,Ноутбуки,09-902-071-176-057,Asus X200CA 90NB02X7-M02450,16300,8190,7,http://www.sotmarket.ru/product/asus-x200ca-90nb02x7-m02450.html
+1,Ноутбуки,09-908-081-671-057,"Apple MacBook Pro 15"" Retina ME293RU/A",74070,38000,1,http://www.sotmarket.ru/product/apple-macbook-pro-15-retina-me293rua.html
+1,Ноутбуки,09-903-001-072-097,Lenovo IdeaPad U430p 59391674,26260,14000,4,http://www.sotmarket.ru/product/lenovo-ideapad-u430p-59391674.html
+1,Ноутбуки,09-902-081-771-037,Asus X550LC 90NB02H2-M00220,19700,9990,5,http://www.sotmarket.ru/product/asus-x550lc-90nb02h2-m00220.html
+1,Ноутбуки,09-907-081-970-097,HP Pavilion 15-n010sr F2U85EA,23060,12990,4,http://www.sotmarket.ru/product/hp-pavilion-15-n010sr-f2u85ea.html
+1,Планшеты,09-905-091-376-037,Apple iPad Air Wi-Fi 64GB,28700,14590,7,http://www.sotmarket.ru/product/apple-ipad-air-64gb.html
+1,Планшеты,09-500-021-477-037,Apple iPad 4 Wi-Fi + 4G 64GB,27756,14000,8,http://www.sotmarket.ru/product/apple-ipad-4-4g-64gb.html
+1,Планшеты,09-500-021-270-077,Apple iPad mini Wi-Fi + 4G 16GB,16590,8990,8,http://www.sotmarket.ru/product/apple-ipad-mini-4g-16gb.html
+1,Планшеты,09-906-031-076-017,Nokia Lumia 2520,21080,11000,7,http://www.sotmarket.ru/product/nokia-lumia-2520.html
+1,Планшеты,09-806-081-775-097,Asus Nexus 7 2013 16GB,9300,4790,10,http://www.sotmarket.ru/product/asus-nexus-7-2-16gb.html
+1,Планшеты,09-605-091-675-097,Sony Xperia Tablet Z 32GB,21990,11190,8,http://www.sotmarket.ru/product/sony-xperia-tablet-z-32gb.html
+1,Планшеты,19-000-071-576-017,Lenovo Yoga Tablet 10 16GB,13990,12000,8,http://www.sotmarket.ru/product/lenovo-yoga-tablet-10-16gb.html
+1,Планшеты,09-402-031-173-077,Samsung N8000 Galaxy Note 10.1 16GB,20990,10590,8,http://www.sotmarket.ru/product/samsung-n8000-galaxy-note-10-1-16gb.html
+1,Планшеты,09-808-021-271-097,Samsung GALAXY Tab 3 7.0 SM-T210 8GB,6990,3590,12,http://www.sotmarket.ru/product/samsung-galaxy-tab-3-7-0-sm-t2100-8gb.html
+1,Планшеты,19-101-061-070-077,Asus VivoTab Note 8 32GB,14020,7690,9,http://www.sotmarket.ru/product/asus-vivotab-note-8-32gb.html
+1,MP3 плееры,09-406-061-772-037,Apple iPod touch 5G 32GB,10590,5990,9,http://www.sotmarket.ru/product/apple-ipod-touch-5g-32gb.html
+1,MP3 плееры,09-406-061-674-037,Apple iPod nano 7G 16GB,6210,3490,13,http://www.sotmarket.ru/product/apple-ipod-nano-16gb.html
+1,MP3 плееры,09-609-041-774-037,Sony NWZ-W273 4GB,3620,1790,17,http://www.sotmarket.ru/product/sony-nwz-w273-4gb.html
+1,MP3 плееры,09-102-081-079-087,Apple iPod shuffle 4G 2GB,2570,1190,20,http://www.sotmarket.ru/product/apple_ipod_shuffle_4_2gb.html
+1,MP3 плееры,09-506-091-072-017,iRiver Astell&Kern AK100,24800,13190,5,http://www.sotmarket.ru/product/iriver-astell-kern-32gb.html
+1,MP3 плееры,09-200-081-572-057,Cowon iAudio 10 32GB,6790,3890,12,http://www.sotmarket.ru/product/cowon_iaudio_10_32gb.html
+1,MP3 плееры,09-406-061-071-037,Qumo SportsWatch 4GB,1800,890,25,http://www.sotmarket.ru/product/qumo-sportswatch-4gb.html
+1,MP3 плееры,19-000-091-170-037,Sony NWZ-E584 8GB,4610,2490,15,http://www.sotmarket.ru/product/sony-nwz-e584-8gb.html
+1,MP3 плееры,09-804-061-679-097,TeXet T-2 4GB,890,490,30,http://www.sotmarket.ru/product/texet-t-2-4gb.html
+1,MP3 плееры,19-101-081-371-057,Sony NWZ-W274 8GB,4130,2190,15,http://www.sotmarket.ru/product/sony-nwz-w274-8gb.html
+1,Наручные часы,09-900-051-877-097,Samsung Galaxy Gear,10710,6390,6,http://www.sotmarket.ru/product/samsung-galaxy-gear.html
+1,Наручные часы,19-000-091-373-097,IconBIT Callisto 100 NT-1501T,6700,3590,9,http://www.sotmarket.ru/product/iconbit-callisto-100-nt-1501t.html
+1,Наручные часы,09-803-051-674-057,Sony SmartWatch 2 SW2,6790,3600,9,http://www.sotmarket.ru/product/sony-smartwatch-2-sw2.html
+1,Наручные часы,09-307-051-976-037,Sony SmartWatch MN2,3890,1990,10,http://www.sotmarket.ru/product/sony-smartwatch-mn2.html
+1,Наручные часы,09-702-081-276-097,Beurer PM 18,3830,1990,10,http://www.sotmarket.ru/product/beurer-pm-18.html
+1,Наручные часы,09-702-091-172-017,Beurer PM 80,7150,3590,9,http://www.sotmarket.ru/product/beurer-pm-80.html
+1,Наручные часы,09-503-091-078-077,FOSSIL FS4656,7680,3990,8,http://www.sotmarket.ru/product/fossil-fs4656.html
+1,Наручные часы,09-702-081-576-097,Beurer PM 45,4720,2490,10,http://www.sotmarket.ru/product/beurer-pm-45.html
+1,Наручные часы,09-702-091-172-037,Beurer PM 90,7890,3990,8,http://www.sotmarket.ru/product/beurer-pm-90.html
+1,Наручные часы,09-503-071-870-077,FOSSIL CE1010,12650,6990,5,http://www.sotmarket.ru/product/fossil-ce1010.html
