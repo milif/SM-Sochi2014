@@ -1352,3 +1352,43 @@ a.terms-action__link {
 .g-loadmask.ng-enter-active {
     opacity: 0.7;
 }
+/* Prices */
+/*==========================================================*/
+.sochiprice-product-old,
+.sochiprice-product-price {
+    color: #000;
+    position: relative;
+    display: inline-block;
+    padding: 0 8px;
+    font-size: 16px;
+    line-height: 29px;
+    height: 29px;
+    z-index: 10;
+    margin-right: 4px;
+}
+.sochiprice-product-old.mod_saled {
+    text-decoration: none;
+}
+.sochiprice-product-price:before,
+.sochiprice-product-old:before
+ {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    content: '';
+    background-color: #fdd918;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    z-index: -1;
+}
+.sochiprice-product-old:before {
+    background-color: #ececec;
+}
+.sochiprice-product-old {
+    color: #a1a1a1;
+    margin-left: 2px;
+    text-decoration: line-through;
+}

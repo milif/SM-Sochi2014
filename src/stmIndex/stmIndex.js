@@ -127,7 +127,7 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
                     return;
                 }
                 
-                $scope.bestVotes = Math.max(bestVotes, 1) * 1.1;
+                $scope.bestVotes = Math.max(bestVotes, 1);
                 
                 next();
                 
