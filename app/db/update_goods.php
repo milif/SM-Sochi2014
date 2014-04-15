@@ -39,7 +39,7 @@ function updateSotmarket(){
             continue;
         }
         $params = array(
-            ':url' => $itemData['url']['value'].(isset($itemData['promo']['value']) ? '?coupon='.$itemData['promo']['value'] : ''),
+            ':url' => $itemData['url']['value'].(isset($itemData['promo']['value']) && isset($itemData['oldprice']) ? '?coupon='.$itemData['promo']['value'] : ''),
             ':title' =>	$itemData['name']['value'],
             ':img' => $itemData['picture']['value'],
             ':subName' => $categories[$itemData['categoryId']['value']]['title'],
