@@ -128,7 +128,7 @@ function _updateQuelle($STMXML){
     $items = $doc->getElementsByTagName ('offer');
     $count = 0;
     foreach($items as $itemNode){
-        if($count++ == 500) break;
+        //if($count++ == 500) break;
         $available = $itemNode->attributes->getNamedItem('available')->textContent == 'true';
         //$saled = $itemNode->attributes->getNamedItem('saled')->textContent == 'true';
         //if(!$available) continue;
@@ -139,16 +139,15 @@ function _updateQuelle($STMXML){
         $url = $itemData['url']['value'].(isset($itemData['promo']['value']) ? '?coupon='.$itemData['promo']['value'] : '');
         if($attrGroup) {
             $groupId = $attrGroup->textContent;
-            /*
             if(isset($groups[$groupId]) && $groups[$groupId]['price'] <= $price) {
                 continue;
-            }            
+            }
             if(isset($groups[$groupId])) DB::update("DELETE FROM `goods` WHERE url = :url", array(':url' => $groups[$groupId]['url']));
             $groups[$groupId] = array(
                 'price' => $price,
                 'url' => $url
             );
-            */
+        
         }
         $params = array(
             ':url' => $url,
