@@ -1,0 +1,70 @@
+<!-- 
+    @name stmIndex:askgoods.html 
+    @requires stmIndex:askgoods.html:b-askgoods.css
+    @requires stm.filter:stmHowMany
+    @requires stmIndex.directive:stmIndexSocial
+-->
+<div stm-index-popup mask="true" fixed="true" closable="closeAskGoods" footer="false" class="g-font">
+    
+<!-- ask-goods -->
+    <div class="b-ask-goods">
+        <div ng-if="!isComplete" class="b-popup-title">Хотите больше сочных цен 30 апреля?</div>
+        <div ng-if="isComplete" class="b-popup-title">Спасибо за ваш выбор!</div> 
+        <div class="ask-goods g-font">
+            <div class="ask-goods__note">
+                Выберите по одному товару в каждой категории. Товары, набравшие<br>больше всего голосов, будут добавлены в распродажу с отличными скидками.
+            </div>
+
+            <div class="ask-goods-tabs">
+                <div ng-repeat="group in groups" ng-click="tab(group)" class="ask-goods-tabs__item" ng-class="group == currentGroup ? 'state_active' : 'a-pseudo'">{{group}}</div>
+            </div>
+
+            <div ng-if="!isVoted(currentGroup)" class="ask-goods-tabs__cont">
+                <ul class="ask-goods-list">
+                    <li ng-repeat="item in data.items | filter : {subName: currentGroup}" class="ask-goods__item">
+                        <input type="radio" ng-model="model.item" id="askgoods{{$index}}" value="{{item.id}}" class="input-radio2-r">
+                        <label for="askgoods{{$index}}" class="input-radio2">
+                            <a ng-href="{{item.url}}" target="_blank" class="input-radio2__h">{{item.title}}</a>
+                            <span class="ask-goods-product-labels">
+                                <span class="sochiprice-product-old">{{item.oldPrice | stmNumber}}<span class="g-ruble">p</span></span>
+                                <span class="sochiprice-product-price">{{item.price | stmNumber}}<span class="g-ruble">p</span></span>
+                            </span>
+                        </label>
+                    </li>
+                </ul>
+            </div>
+
+            <div ng-if="isVoted(currentGroup)" class="ask-goods-tabs__cont">
+                <table class="ask-goods-result">
+                    <tr ng-repeat="item in data.items | filter : {subName: currentGroup}">
+                        <td class="ask-goods-result__td">
+                            <div class="ask-goods-result__item">
+                                <div class="ask-goods-result__item-h">
+                                    <a ng-href="{{item.url}}" ng-class="item.selected ? 'state_active' : ''" target="_blank" class="ask-goods-result__item__link">{{item.title}}</a><span ng-if="item.selected" class="ask-goods-result-user"> &mdash; ваш выбор</span>
+                                </div>
+                                <div class="ask-goods-result__item-decor" ng-style="{width: (item.votes / bestVotes * 100)+'%'}"></div>
+                            </div>
+                        </td>
+                        <td class="ask-goods-result__td">
+                            <span class="ask-goods-result-num">{{item.quantity | stmHowMany:' штука':' штуки':' штук'}}</span>
+                        </td>
+                        <td class="ask-goods-result__td">
+                            <span class="ask-goods-result-num">{{item.votes | stmHowMany:' голос':' голоса':' голосов'}}</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="ask-goods__buttons">
+                <span ng-if="!isVoted(currentGroup) && model.item" class="b-button b-button_size_normal2  b-button_scheme_yellow "><span class="b-button__text">Выбрать этот!</span><span ng-click="select()" class="b-button__link"></span></span>
+                <span ng-if="!isComplete && (!isLast || isVoted(currentGroup))" class="b-button b-button_size_normal2  b-button_scheme_gray mod_border"><span class="b-button__text">Далее →</span><span ng-click="next()" class="b-button__link"></span></span>
+            </div>
+        
+            <div ng-if="isComplete" class="__complete-footer">
+                <div class="__complete-footer-note">Приглашай друзей поддержать тебя в Сочных ценах.<br>Больше игроков &mdash; больше товаров в распродаже!</div>
+                <div stm-index-social scheme="yellow" buttons-count="4"></div>
+            </div>
+        </div>
+    </div>
+<!-- End ask-goods -->
+</div>

@@ -10,6 +10,7 @@
  * @includes stmIndex:regform.html
  * @includes stmIndex:confirmemail.html
  * @includes stmIndex:code.html
+ * @includes stmIndex:askgoods.html
  * @includes stmIndex.directive:stmIndexPopup
  * @includes stmIndex.directive:stmIndexForm 
  *
@@ -27,12 +28,13 @@ if (!window.requestAnimationFrame) {
 angular.module('stmIndex', ['stm', 'ui.utils'])
     .config([function(){
     }])
-    .run(['$rootScope', '$stmAuth', '$http', '$md5', '$stmEnv', '$compile', '$timeout', 'User', '$templateCache', '$location', function($rootScope, $stmAuth, $http, $md5, $stmEnv, $compile, $timeout, User, $templateCache, $location){
+    .run(['$rootScope', '$stmAuth', '$http', '$md5', '$stmEnv', '$compile', '$timeout', 'User', '$templateCache', '$location', '$q', function($rootScope, $stmAuth, $http, $md5, $stmEnv, $compile, $timeout, User, $templateCache, $location, $q){
     
         var $$ = angular;
         var $ = angular.element;
     
         var isLoaded = false;
+        var isAskGoods = false;
  
         $rootScope.$on('gameInit', auth);
         $rootScope.$on('showConfirmPopup', function(e, action){
@@ -50,12 +52,23 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
                     showConfirmEmail();
                     localStorage.setItem('_stmSochiConfirmTime', curTime + 86400000);
                 }
-            }            
+            }
+            if(true) {
+                var time = parseInt(localStorage.getItem('_stmSochiAskGoodsTime') || 0);
+                var curTime = new Date().getTime();
+                if(time < curTime) {
+                    showAskGoods();
+                    localStorage.setItem('_stmSochiAskGoodsTime', curTime + 86400000);
+                }
+            }         
         });
         
         $rootScope.$on('$locationChangeSuccess', function(){
             if($stmAuth.isAuth && $location.hash() == 'code' && /(\/map\/|\/account\/)/.test($location.url())){
                 showCodeForm();
+            }
+            if($location.hash() == 'sochivote' && /(\/map\/|\/sale\/|\/|\/price\/)/.test($location.url())){
+                showAskGoods(true);
             }
         });
         
@@ -67,7 +80,109 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
                 });
             }
         }
-        
+        var apiAskGoods = 'api/votegoods.php';
+        function showAskGoods(forceShow){
+            if(isAskGoods) return;
+            if(!isLoaded) {
+                $timeout(function(){
+                    showAskGoods(forceShow);
+                }, 500);
+                return;
+            }
+            isAskGoods = true;
+            var $scope = $rootScope.$new();
+            var data;
+            var groups;
+            var currentGroup;
+            var votedGroup;
+            var model;
+            
+            $q.all([
+                $http.get('partials/stmIndex:askgoods.html', {cache: $templateCache}),
+                $http.post(apiAskGoods, {action: 'get'})
+            ]).then(function(results){
+                data = $scope.data = results[1].data;
+                groups = $scope.groups = [];
+                var subName;
+                var item;
+                var bestVotes = 0;
+                votedGroup = [];
+                for(var i=0;i<data.items.length;i++){
+                    item = data.items[i];
+                    data['item'+item.id] = item;
+                    subName = item.subName;
+                    if(groups.indexOf(subName) < 0) groups.push(subName);
+                    if(data.voted.indexOf(item.id) >= 0) {
+                        item.votes--;
+                        addVoted(item);
+                    }
+                    bestVotes = Math.max(bestVotes, item.votes);
+                }
+
+                $scope.isLast = groups.length - votedGroup.length == 1;
+                $scope.isComplete = votedGroup.length == groups.length;
+
+                if(!forceShow && $scope.isComplete){
+                    $scope.$destroy();
+                    return;
+                }
+                
+                $scope.bestVotes = Math.max(bestVotes, 1) * 1.1;
+                
+                next();
+                
+                var template = results[0].data;
+                $compile(template)($scope, function(el){
+                    $('body').append(el);
+                });
+            });
+
+            $scope.closeAskGoods = function(){
+                if($location.hash() == 'sochivote') $location.hash('.');
+                $scope.$destroy();
+                isAskGoods = false;
+            };
+            $scope.tab = tab;
+            $scope.next = function(){
+                $timeout(next, 0);
+            }
+            $scope.select = function(){
+                $timeout(select, 0);
+            }
+            $scope.isVoted = isVoted;
+            
+            function select(){
+                if(!model.item) return;
+                addVoted(data['item' + model.item]);
+                $http.post(apiAskGoods, {action: 'vote', id: model.item});
+            }
+            function isVoted(group){
+                return votedGroup.indexOf(group) >= 0;
+            }
+            function addVoted(item){
+                var group = item.subName;
+                if(votedGroup.indexOf(group) >= 0) return;
+                votedGroup.push(group);
+                item.votes += 1;
+                item.selected = true;
+                $scope.isLast = groups.length - votedGroup.length == 1;
+                $scope.isComplete = votedGroup.length == groups.length;
+            }
+            function tab(group){
+                $scope.currentGroup = currentGroup = group;
+            }
+            function next(){
+                model = $scope.model = {};
+                var currentInd = groups.indexOf(currentGroup);
+                while(true){
+                    currentInd = (currentInd + 1) % groups.length;
+                    if(votedGroup.indexOf(groups[currentInd]) < 0 || $scope.isComplete){
+                        $scope.currentGroup = currentGroup = groups[currentInd];
+                        break;
+                    }
+                }
+            }
+        } 
         var apiConfirmEmail = 'api/confirmemail.php';
         function showConfirmEmail(action){
 
