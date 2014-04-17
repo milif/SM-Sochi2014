@@ -80,7 +80,7 @@ class Product {
         $filters = $params['filters'];
         $key = "goods.total.$category";
         foreach(self::$FILTERS as $filterName => $filter){
-            $key .= ".".(isset($filters[$filterName]) ? $filters[$filterName] : null);
+            $key .= ".".(isset($filters[$filterName]) ? $filterName.$filters[$filterName] : null);
         }        
         $total = Cache::get($key);
         if($total !== false){
@@ -133,9 +133,9 @@ class Product {
         $limit = $params['limit'];     
         $offset = $params['offset']; 
         
-        $key = "goods.$category.$order.$limit.$offset";
+        $key = "goods.$category.'.o'.$order.'.l'.$limit.'.ofs'.$offset";
         foreach(self::$FILTERS as $filterName => $filter){
-            $key .= ".".(isset($filters[$filterName]) ? $filters[$filterName] : null);
+            $key .= ".".(isset($filters[$filterName]) ? $filterName.$filters[$filterName] : null);
         }
         $rs = Cache::get($key);
         if($rs !== false){
