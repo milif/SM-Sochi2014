@@ -35,7 +35,7 @@
                                    </div>
                                    <div class="sochiprice-select-dropdown">
                                        <ul>
-                                           <li ng-repeat="item in filters['f.discount']" ng-class=" item == filters['f.discount'].selected ? 'sochiprice-selected' : ''" ng-click="doFilter('f.discount', item)"><span ng-bind-html="item.text"></span><i>{{item.total}}</i></li>
+                                           <li ng-repeat="item in filters['f.discount'] | filter:selectFilter" ng-class=" item == filters['f.discount'].selected ? 'sochiprice-selected' : ''" ng-click="doFilter('f.discount', item)"><span ng-bind-html="item.text"></span><i>{{item.total}}</i></li>
                                        </ul>
                                    </div>
                                </div>
@@ -50,7 +50,7 @@
                                    </div>
                                    <div class="sochiprice-select-dropdown">
                                        <ul>
-                                           <li ng-repeat="item in filters['f.price']" ng-class=" item == filters['f.price'].selected ? 'sochiprice-selected' : ''" ng-click="doFilter('f.price', item)"><span ng-bind-html="item.text"></span><i>{{item.total}}</i></li>
+                                           <li ng-repeat="item in filters['f.price'] | filter:selectFilter" ng-class=" item == filters['f.price'].selected ? 'sochiprice-selected' : ''" ng-click="doFilter('f.price', item)"><span ng-bind-html="item.text"></span><i>{{item.total}}</i></li>
                                        </ul>
                                    </div>
                                </div>

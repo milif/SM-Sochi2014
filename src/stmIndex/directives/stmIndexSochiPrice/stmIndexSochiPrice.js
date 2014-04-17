@@ -90,6 +90,10 @@ angular.module('stmIndex').directive('stmIndexSochiPrice', ['stmGoods', function
                 filterValues['f.discount'] = params.f_discount || null;
             });
             
+            $scope.selectFilter = function(item){
+                return item.total > 0;
+            }
+            
             $scope.doFilter = function(type, item){
                 setSelected(type, item);
                 var params = {p: 0};
