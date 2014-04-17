@@ -27,7 +27,9 @@ angular.module('stm',['ngAnimate','ngResource'])
             $rootScope.$on('$locationChangeStart', function(e, newUrl){  
                 if(newUrl != baseUrl && newUrl.replace(/[#\?].*?$/,'').indexOf(baseUrl.replace(/[#\?].*?$/,'')) < 0) {
                     e.preventDefault();
-                    window.location.href = newUrl;
+                    setTimeout(function(){
+                        window.location.href = newUrl;
+                    }, 0);
                 }
             });
             $rootScope.$on('loaded', function(e){
