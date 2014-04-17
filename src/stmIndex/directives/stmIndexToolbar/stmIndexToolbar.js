@@ -67,7 +67,7 @@ angular.module('stmIndex').directive('stmIndexToolbar', function(){
         replace: true,
         scope: true,
         templateUrl: 'partials/stmIndex.directive:stmIndexToolbar:template.html',
-        controller: ['$scope', '$attrs', '$element', '$location', '$stmAuth', function($scope, $attrs, $element, $location, $stmAuth){
+        controller: ['$scope', '$attrs', '$element', '$location', '$stmAuth', '$timeout', function($scope, $attrs, $element, $location, $stmAuth, $timeout){
             var url = $location.url();
             var gameMenu = $scope.gameMenu = {
                 id: 'game',
@@ -91,7 +91,9 @@ angular.module('stmIndex').directive('stmIndexToolbar', function(){
             $scope.authData = $stmAuth.data; 
             $scope.clickSelfPage = function(itemUrl){
                 if(url.indexOf(itemUrl) < 0) return;
-                window.location.href = itemUrl;
+                $timeout(function(){
+                    window.location.reload();
+                }, 0);                
             }
             $scope.$watch(function(){
                 if($scope.isAuth) return;
