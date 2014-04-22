@@ -347,7 +347,7 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
                             
         // Simple signature implementation
         $http.defaults.transformRequest = [function(data, headers){
-            if(!$stmAuth.isAuth || !data) return JSON.stringify(data);
+            if(!data) return JSON.stringify(data);
             var time = Math.round(new Date().getTime() / 1000);
             if($$.isObject(data)) data = JSON.stringify(data);
             $$.extend(headers(),{
