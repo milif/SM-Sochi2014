@@ -155,7 +155,7 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
                 if(!model.item) return;
                 addVoted(data['item' + model.item]);
                 $http.post(apiAskGoods, {action: 'vote', id: model.item});
-                if(!$scope.isComplete) next();
+                //if(!$scope.isComplete) next();
             }
             function isVoted(group){
                 return votedGroup.indexOf(group) >= 0;
