@@ -21,9 +21,9 @@
  * Модуль главной страницы
  */
 if (!window.requestAnimationFrame) {
-        window.requestAnimationFrame = function(callback) {
-            setTimeout(callback, 10);
-        };
+    window.requestAnimationFrame = function(callback) {
+        setTimeout(callback, 10);
+    };
 }
 angular.module('stmIndex', ['stm', 'ui.utils'])
     .config([function(){
@@ -53,7 +53,7 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
                     localStorage.setItem('_stmSochiConfirmTime', curTime + 86400000);
                 }
             }
-            if(true) {
+            if($stmAuth.isAuth) {
                 var time = parseInt(localStorage.getItem('_stmSochiAskGoodsTime') || 0);
                 var curTime = new Date().getTime();
                 if(time < curTime) {
@@ -120,7 +120,7 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
                 }
 
                 $scope.isLast = groups.length - votedGroup.length == 1;
-                $scope.isComplete = votedGroup.length == groups.length;
+                $scope.isSelected = $scope.isComplete = votedGroup.length == groups.length;
 
                 if(!forceShow && $scope.isComplete){
                     $scope.$destroy();
@@ -155,6 +155,7 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
                 if(!model.item) return;
                 addVoted(data['item' + model.item]);
                 $http.post(apiAskGoods, {action: 'vote', id: model.item});
+                if(!$scope.isComplete) next();
             }
             function isVoted(group){
                 return votedGroup.indexOf(group) >= 0;
@@ -167,6 +168,7 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
                 item.selected = true;
                 $scope.isLast = groups.length - votedGroup.length == 1;
                 $scope.isComplete = votedGroup.length == groups.length;
+                $scope.isSelected = true;
             }
             function tab(group){
                 $scope.currentGroup = currentGroup = group;

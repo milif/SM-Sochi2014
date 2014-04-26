@@ -51,7 +51,7 @@ class VoteGoods {
             ':userId' => $userId,
             ':uid' => $uid
         ));
-        if(count($rs[0])) return;
+        if($rs[0]['cc'] > 0) return;
         DB::update("INSERT INTO `votegoods` (user_id, uid) VALUES (:userId, :uid);", array(
             ':userId' => $userId,
             ':uid' => $uid

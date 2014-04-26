@@ -98,10 +98,10 @@
 .ask-goods__buttons {
     position: relative;
     text-align: center;
+    margin-bottom: 30px;
 }
-
-.ask-goods__buttons {
-
+.ask-goods__buttons:last-child {
+    margin-bottom: 0;
 }
 .b-button.mod_next-step {
     position: absolute;
@@ -135,8 +135,12 @@
     z-index: 4;
     position: absolute;
     left: -10px;
+    right: -10px;
     top: 0;
     bottom: 0;
+}
+.ask-goods-result__item-decor-h {
+    height: 100%;
     background-color: #fff7c9;
 }
 a.ask-goods-result__item__link {

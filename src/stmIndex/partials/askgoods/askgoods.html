@@ -8,8 +8,8 @@
     
 <!-- ask-goods -->
     <div class="b-ask-goods">
-        <div ng-if="!isComplete" class="b-popup-title">Хотите больше сочных цен 30 апреля?</div>
-        <div ng-if="isComplete" class="b-popup-title">Спасибо за ваш выбор!</div> 
+        <div ng-if="!isSelected" class="b-popup-title">Хотите больше сочных цен 30 апреля?</div>
+        <div ng-if="isSelected" class="b-popup-title">Спасибо за ваш выбор!</div> 
         <div class="ask-goods g-font">
             <div class="ask-goods__note">
                 Выберите по одному товару в каждой категории. Товары, набравшие<br>больше всего голосов, будут добавлены в распродажу с отличными скидками.
@@ -42,7 +42,7 @@
                                 <div class="ask-goods-result__item-h">
                                     <a ng-href="{{item.url}}" ng-class="item.selected ? 'state_active' : ''" target="_blank" class="ask-goods-result__item__link">{{item.title}}</a><span ng-if="item.selected" class="ask-goods-result-user"> &mdash; ваш выбор</span>
                                 </div>
-                                <div class="ask-goods-result__item-decor" ng-style="{width: (item.votes / bestVotes * 100)+'%'}"></div>
+                                <div class="ask-goods-result__item-decor"><div class="ask-goods-result__item-decor-h" ng-style="{width: (item.votes / bestVotes * 100)+'%'}"></div></div>
                             </div>
                         </td>
                         <td class="ask-goods-result__td">
@@ -60,7 +60,7 @@
                 <span ng-if="!isComplete && (!isLast || isVoted(currentGroup))" class="b-button b-button_size_normal2  b-button_scheme_gray mod_border"><span class="b-button__text">Далее →</span><span ng-click="next()" class="b-button__link"></span></span>
             </div>
         
-            <div ng-if="isComplete" class="__complete-footer">
+            <div ng-if="isSelected" class="__complete-footer">
                 <div class="__complete-footer-note">Приглашай друзей поддержать тебя в Сочных ценах.<br>Больше игроков &mdash; больше товаров в распродаже!</div>
                 <div stm-index-social scheme="yellow" buttons-count="4"></div>
             </div>
