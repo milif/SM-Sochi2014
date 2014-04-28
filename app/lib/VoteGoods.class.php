@@ -28,8 +28,8 @@ class VoteGoods {
         fclose($handle);
         $rs = DB::query("SELECT `uid`, COUNT(`uid`) cc FROM votegoods WHERE `uid` IN ('".implode("','", array_keys($items))."') GROUP BY `uid`;");
         foreach($rs as $row){
-            $items[$row['uid']]['quantity'] += floor($row['cc'] / 100);
-            $items[$row['uid']]['votes'] = $row['cc'];
+            $items[$row['uid']]['quantity'] += floor((int)$row['cc'] / 100);
+            $items[$row['uid']]['votes'] = (int)$row['cc'];
         }
         foreach($items as $item){
             $result[] = $item;
