@@ -18,7 +18,7 @@
     
     $hasPermission = User::hasPermissionPrice();
     
-    if(!$hasPermission && CLIENT_ID > 0) {
+    if((time() > strtotime("2014-04-30 00:00:00 Europe/Moscow") || $_GET['disablechecktime']) && !$hasPermission && CLIENT_ID > 0) {
         
         $gameData = Game::getUserData();
         $achievsBonus = Achiev::getAchievsBonus();
