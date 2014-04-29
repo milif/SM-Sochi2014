@@ -48,7 +48,7 @@ class Product {
         $limit = 24;
         $page = isset($data['p']) ? $data['p'] : 0;
         $offset = $page * $limit;
-        $order = isset($data['s']) ? $data['s'] : 'id';
+        $order = 'saled, ' . (isset($data['s']) ? $data['s'] : 'id');
         $filterValues = array(
             'f.price' => isset($data['f_price']) ? $data['f_price'] : null,
             'f.discount' => isset($data['f_discount']) ? $data['f_discount'] : null,
@@ -142,10 +142,9 @@ class Product {
             return $isPromo ? $rs : self::_removePromo($rs);
         }
         $filtersForQ = self::applyFiltersForQ($filters);
-        $q = "SELECT title, url, img, sub_name subName, sub_url subUrl, price, oldprice oldPrice, category, ratio, saled, `closed` FROM goods WHERE `category` = :category {$filtersForQ[0]} ORDER BY :order LIMIT ".((int)$limit)." OFFSET ".((int)$offset).";";
+        $q = "SELECT title, url, img, sub_name subName, sub_url subUrl, price, oldprice oldPrice, category, ratio, saled, `closed` FROM goods WHERE `category` = :category {$filtersForQ[0]} ORDER BY ".$order." LIMIT ".((int)$limit)." OFFSET ".((int)$offset).";";
         $rs = DB::query($q, array_merge(array(
-            ':category' => $category,
-            ':order' => $order
+            ':category' => $category
         ), $filtersForQ[1]));
         $data = array();
         foreach($rs as $item){
