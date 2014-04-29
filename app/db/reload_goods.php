@@ -22,8 +22,8 @@ function updateSotmarket(){
 function _updateSotmarket($STMXML){
     $isClosed = false;
     if(is_array($STMXML)) {
-        $STMXML = $STMXML[0];
         $isClosed = $STMXML[1];
+        $STMXML = $STMXML[0];
     }
 
     $categories = array();
@@ -78,8 +78,8 @@ function updateProskater(){
 function _updateProskater($STMXML){
     $isClosed = false;
     if(is_array($STMXML)) {
-        $STMXML = $STMXML[0];
         $isClosed = $STMXML[1];
+        $STMXML = $STMXML[0];
     }
     $categories = array();
 

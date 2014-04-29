@@ -17,7 +17,7 @@
     <!-- sochi content -->
     <div ng-if="!hasPermission && isAuth" class="sochiprice-content">
         <div class="sochiprice-container">
-            <div class="sochiprice-info">Для доступа к распродаже вам не хватает <span ng-if="userData.score < 5000"><b>{{(5000 - userData.score) | stmNumber}} баллов</b></span><span> либо </span><span ng-if="userData.achievs < 9"><b>{{(9 - userData.achievs) | stmHowMany:' достижение':' достижения':' достижений'}}</b></span>.
+            <div class="sochiprice-info">Для доступа к закрытой распродаже и специальным скидкам вам не хватает <span ng-if="userData.score < 5000"><b>{{(5000 - userData.score) | stmNumber}} баллов</b></span><span> либо </span><span ng-if="userData.achievs < 9"><b>{{(9 - userData.achievs) | stmHowMany:' достижение':' достижения':' достижений'}}</b></span>.
 </div>         
         </div>
     </div>   
