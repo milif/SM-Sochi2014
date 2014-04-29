@@ -163,7 +163,7 @@ class Product {
                 'saled' => (int)$item['saled'] > 0
             );
         }
-        Cache::set($key, $data, 600);
+        Cache::set($key, $data, 300);
         return $isPromo ? $data : self::_removePromo($data);
     }
     static private function _removePromo(&$data){
