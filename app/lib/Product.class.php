@@ -169,7 +169,7 @@ class Product {
     static private function _removePromo(&$data){
         foreach($data as $k=>$item){
             if(preg_match('/coupon=sale/', $item['url'])) continue;
-            $data[$k]['url'] = preg_replace('/.coupon=[\w\d]+/', '', $item['url']);
+            $data[$k]['url'] = preg_replace('/(.coupon=[\w\d]+)|(%26coupon_action_add%3Dsotmarket-sochi)/', '', $item['url']);
         }
         return $data;
     }

@@ -71,7 +71,9 @@ angular.module('stmIndex').directive('stmIndexSochiPrice', ['stmGoods', function
             var filterValues = goodsParams.filters;
             
             var filters;  
-            var goods;          
+            var goods;    
+            
+            var isShowedAuthPopup = false;      
             
             $scope.menu = MENU;
             $scope.userData = $stmEnv.userData;
@@ -168,7 +170,18 @@ angular.module('stmIndex').directive('stmIndexSochiPrice', ['stmGoods', function
                 var pageLeft = Math.max(0, Math.min($scope.lastPage, $scope.page + (range - 1) / 2) - range + 1);
                 var pageRight = Math.min($scope.lastPage, pageLeft + range - 1);
                 $scope.pageRange = [pageLeft, pageRight];
-                      
+                
+                var hasClosed = false;
+                for(var i=0;i<goods.items.data.length;i++){
+                    if(goods.items.data[i].closed){
+                        hasClosed = true;
+                        break;
+                    }
+                }
+                if(hasClosed && !$stmAuth.isAuth && !isShowedAuthPopup){
+                    $scope.showAuthPopup = true;
+                    isShowedAuthPopup = true;
+                }
             }
             function getUrl(params){
                 

@@ -12,7 +12,19 @@ updateProskater();
 Cache::clear();
 
 function updateSotmarket(){
-    $STMXML = 'http://xml.sotmarket.ru/xml/hidden2/g_sochi.xml';
+    $XML = array(
+        array('http://xml.sotmarket.ru/xml/hidden2/g_sochi_closed.xml', true),
+        'http://xml.sotmarket.ru/xml/hidden2/g_sochi.xml'        
+    );
+    
+    foreach($XML as $_xml) _updateSotmarket($_xml);
+}
+function _updateSotmarket($STMXML){
+    $isClosed = false;
+    if(is_array($STMXML)) {
+        $STMXML = $STMXML[0];
+        $isClosed = $STMXML[1];
+    }
 
     $categories = array();
 
@@ -49,15 +61,16 @@ function updateSotmarket(){
             ':category' => 'home',
             ':discount' => isset($itemData['oldprice']) ? (1 - (int)$itemData['price']['value'] / (int)$itemData['oldprice']['value']) * 100 : 0,
             ':ratio' =>	(int)$itemData['picture']['attrs']['width'] / (int)$itemData['picture']['attrs']['height'],
-            ':saled' => $saled ? 1 : 0
+            ':saled' => $saled ? 1 : 0,
+            ':closed' => $isClosed ? 1 : 0
         );
-        DB::update('INSERT INTO `goods` (url, title, img, sub_name, sub_url, price, oldprice, category, discount, ratio, saled) VALUES (:url, :title, :img, :subName, :subUrl, :price, :oldprice, :category, :discount, :ratio, :saled)', $params);
+        DB::update('INSERT INTO `goods` (url, title, img, sub_name, sub_url, price, oldprice, category, discount, ratio, saled, `closed`) VALUES (:url, :title, :img, :subName, :subUrl, :price, :oldprice, :category, :discount, :ratio, :saled, :closed)', $params);
     }
 }
 function updateProskater(){
     $XML = array(
-        //array('http://cdn.admitad.com/sochi/proskater_sochi_close.xml', true),
-        'http://www.proskater.ru/proskater_sochi_open.yml'        
+        array('http://cdn.admitad.com/sochi/proskater_sochi_close.xml', true),
+        'http://cdn.admitad.com/sochi/proskater_sochi_open.xml'        
     );
     
     foreach($XML as $_xml) _updateProskater($_xml);

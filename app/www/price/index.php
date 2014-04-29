@@ -19,7 +19,7 @@
     $hasPermission = User::hasPermissionPrice();
     
     if(!$hasPermission && CLIENT_ID > 0) {
-        /*
+        
         $gameData = Game::getUserData();
         $achievsBonus = Achiev::getAchievsBonus();
         $achievs = array_merge(User::getMapAchives(), User::getOtherAchives());
@@ -33,10 +33,9 @@
         foreach($achievs as $achiev){
             if(isset($achievsBonus[$achiev])) $score += $achievsBonus[$achiev];
         }
+        
+        $hasPermission = ($score >= 5000 || $countAchievs >= 9);
 
-        $hasPermission = ($score >= 2500 || $countAchievs >= 6 || $isSber);
-        */
-        $hasPermission = true;
         if($hasPermission) {
             DB::update("UPDATE `user` SET price_access = 1 WHERE id = ".CLIENT_ID." AND price_access = 0;");
         }        
