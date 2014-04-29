@@ -62,6 +62,11 @@ angular.module('stmIndex').directive('stmIndexSochiPrice', ['stmGoods', function
         
             $element.css('backgroundColor', '#fff');
         
+            $scope.showAuthPopup = false;
+            $scope.closeAuthPopup = function(){
+                $scope.showAuthPopup = false;
+            }       
+        
             var goodsParams = $scope.goodsParams = $stmEnv.goods.params;
             var filterValues = goodsParams.filters;
             
@@ -146,7 +151,7 @@ angular.module('stmIndex').directive('stmIndexSochiPrice', ['stmGoods', function
                     }                
                 }           
             }, true);
-
+            
             function onUpdateGoods(){
                 
                 $scope.filters = filters = goods.filters;                          
@@ -162,7 +167,8 @@ angular.module('stmIndex').directive('stmIndexSochiPrice', ['stmGoods', function
                       
                 var pageLeft = Math.max(0, Math.min($scope.lastPage, $scope.page + (range - 1) / 2) - range + 1);
                 var pageRight = Math.min($scope.lastPage, pageLeft + range - 1);
-                $scope.pageRange = [pageLeft, pageRight];         
+                $scope.pageRange = [pageLeft, pageRight];
+                      
             }
             function getUrl(params){
                 

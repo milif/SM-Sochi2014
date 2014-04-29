@@ -97,6 +97,8 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
             var votedGroup;
             var model;
             
+            $scope.bestVotes = 1;
+            
             $q.all([
                 $http.get('partials/stmIndex:askgoods.html', {cache: $templateCache}),
                 $http.post(apiAskGoods, {action: 'get'})
@@ -105,7 +107,6 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
                 groups = $scope.groups = [];
                 var subName;
                 var item;
-                var bestVotes = 0;
                 votedGroup = [];
                 for(var i=0;i<data.items.length;i++){
                     item = data.items[i];
@@ -116,7 +117,7 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
                         item.votes--;
                         addVoted(item);
                     }
-                    bestVotes = Math.max(bestVotes, item.votes);
+                    $scope.bestVotes = Math.max($scope.bestVotes, item.votes);
                 }
 
                 $scope.isLast = groups.length - votedGroup.length == 1;
@@ -127,8 +128,6 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
                     return;
                 }
                 
-                $scope.bestVotes = Math.max(bestVotes, 1);
-                
                 next();
                 
                 var template = results[0].data;
@@ -136,7 +135,7 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
                     $('body').append(el);
                 });
             });
-
+            
             $scope.closeAskGoods = function(){
                 if($location.hash() == 'sochivote') $location.hash('.');
                 $scope.$destroy();
@@ -169,9 +168,11 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
                 $scope.isLast = groups.length - votedGroup.length == 1;
                 $scope.isComplete = votedGroup.length == groups.length;
                 $scope.isSelected = true;
+                $scope.bestVotes = Math.max($scope.bestVotes, item.votes);
             }
             function tab(group){
                 $scope.currentGroup = currentGroup = group;
+                
             }
             function next(){
                 model = $scope.model = {};
@@ -179,7 +180,7 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
                 while(true){
                     currentInd = (currentInd + 1) % groups.length;
                     if(votedGroup.indexOf(groups[currentInd]) < 0 || $scope.isComplete){
-                        $scope.currentGroup = currentGroup = groups[currentInd];
+                        tab(groups[currentInd]);
                         break;
                     }
                 }

@@ -80,3 +80,14 @@
 </div>
 <div stm-index-toolbar position="top"></div>
 <!-- End Sochi price -->
+<div ng-if="showAuthPopup" stm-index-popup="priceauth" footer="false" fixed="true" closable="closeAuthPopup">
+    <div class="b-popup-note">Авторизуйтесь, чтобы получить доступ к специальным ценам<br>закрытой распродажи "Сочные Цены"</div>
+    <span class="b-button b-button_size_normal2  b-button_scheme_yellow">
+        <span class="b-button__text">Авторизоваться</span>
+        <span ng-click="auth();close()" class="b-button__link"></span>
+    </span>
+    <span class="b-button b-button_size_normal2  b-button_scheme_gray">
+        <span class="b-button__text">Отмена</span>
+        <span ng-click="close()" class="b-button__link"></span>
+    </span>
+</div>

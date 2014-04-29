@@ -142,7 +142,7 @@ class Product {
             return $isPromo ? $rs : self::_removePromo($rs);
         }
         $filtersForQ = self::applyFiltersForQ($filters);
-        $q = "SELECT title, url, img, sub_name subName, sub_url subUrl, price, oldprice oldPrice, category, ratio, saled FROM goods WHERE `category` = :category {$filtersForQ[0]} ORDER BY :order LIMIT ".((int)$limit)." OFFSET ".((int)$offset).";";
+        $q = "SELECT title, url, img, sub_name subName, sub_url subUrl, price, oldprice oldPrice, category, ratio, saled, `closed` FROM goods WHERE `category` = :category {$filtersForQ[0]} ORDER BY :order LIMIT ".((int)$limit)." OFFSET ".((int)$offset).";";
         $rs = DB::query($q, array_merge(array(
             ':category' => $category,
             ':order' => $order
@@ -159,6 +159,7 @@ class Product {
                 'oldPrice' => $item['oldPrice'],
                 'category' => $item['category'],
                 'ratio' => (float)$item['ratio'],
+                'closed' => (int)$item['closed'] > 0,
                 'saled' => (int)$item['saled'] > 0
             );
         }
