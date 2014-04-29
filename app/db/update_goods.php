@@ -21,7 +21,7 @@ function _updateSotmarket($STMXML){
     foreach($items as $itemNode){
         $saled = $itemNode->attributes->getNamedItem('saled')->textContent == 'true';
         $itemData = nodeToArray($itemNode);
-        if(!$saled) {
+        if($saled) {
             
             DB::update('UPDATE goods SET `saled` = 1 WHERE url = :url', array(
                 ':url' => $itemData['url']['value'].(isset($itemData['promo']['value']) && isset($itemData['oldprice']) ? '?coupon='.$itemData['promo']['value'] : '')
