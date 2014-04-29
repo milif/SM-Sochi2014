@@ -39,7 +39,13 @@ angular.module('stmIndex').directive('stmIndexProductCard', [function(){
             var item = $scope.item = $scope.$eval($attrs.stmIndexProductCard);
             if(!item.saled) {
                 var promo = /coupon=([\w\d]+)/.exec(item.url);
-                if(promo) item.promo = promo[1];            
+                if(promo) { 
+                    item.promo = promo[1]; 
+                }
+                if(!item.promo) {
+                    promo = /%26coupon_action_add%3D([\w-\d]+)/.exec(item.url);
+                    if(promo) item.promo = promo[1]; 
+                }           
             } else {
                 item.url = item.url.replace(/.coupon=[\w\d]+/, '');
             }
