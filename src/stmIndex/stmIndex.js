@@ -53,6 +53,7 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
                     localStorage.setItem('_stmSochiConfirmTime', curTime + 86400000);
                 }
             }
+            /*
             if($stmAuth.isAuth) {
                 var time = parseInt(localStorage.getItem('_stmSochiAskGoodsTime') || 0);
                 var curTime = new Date().getTime();
@@ -60,7 +61,8 @@ angular.module('stmIndex', ['stm', 'ui.utils'])
                     showAskGoods();
                     localStorage.setItem('_stmSochiAskGoodsTime', curTime + 86400000);
                 }
-            }         
+            } 
+            */        
         });
         
         $rootScope.$on('$locationChangeSuccess', function(){
