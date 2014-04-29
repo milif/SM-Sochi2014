@@ -16,6 +16,7 @@
     min-height: 150px;
 }
 .sochiprice-product {
+    text-align: left;
     position: relative;
     display: inline-block;
     vertical-align: top;
