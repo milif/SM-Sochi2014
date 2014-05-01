@@ -1,4 +1,7 @@
 <?php 
+    require_once __DIR__.'/../../config.php';
+    header("Location: ".APP_ROOT_URL."/sale/"); exit;
+
     require_once __DIR__.'/../../lib/DB.class.php';
     require_once __DIR__.'/../../lib/Product.class.php';
     require_once __DIR__.'/../../lib/Auth.class.php';

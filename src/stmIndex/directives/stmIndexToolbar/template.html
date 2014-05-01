@@ -3,8 +3,8 @@
         <!-- toolbar-left -->
         <div class="l-b-toolbar-left">
             <div ng-class="gameMenu.active ? 'b-toolbar-button_state_active' : ''" class="b-toolbar-button" ng-mousedown="clickMenu($event, gameMenu)" >Выбрать игру</div>
-            <div ng-class="isPrice ? 'b-toolbar-button_state_active' : ''" class="b-toolbar-button">Сочные Цены<a class="b-button__link"  href="price/"></a></div>
-            <!--<div class="b-toolbar-link"><span ng-mousedown="clickBetaInfo($event)" class="__a-pseudo">Сочные Цены</span><sup>скоро</sup></div>-->
+            <!--<div ng-class="isPrice ? 'b-toolbar-button_state_active' : ''" class="b-toolbar-button">Сочные Цены<a class="b-button__link"  href="price/"></a></div>-->
+            <div class="b-toolbar-link mod_disabled"><span ng-mousedown="clickBetaInfo($event)" class="__a-pseudo">Сочные Цены</span></div>
             <!--<div class="b-toolbar-button b-toolbar-button_state_active">
                 События
                 <div class="b-toolbar-event-count">98</div>
@@ -36,7 +36,7 @@
     </div>
 <div stm-index-popover="beta" popover-type="{{position == 'bottom' ? 'top' : 'bottom' }}" hide-event-timeout="0" hide-on-clickout="true" show="{{!!betaInfo.active}}" position="{{betaInfo.position}}">
     <div stm-index-tooltip position="{{position == 'top' ? 'top' : 'bottom' }}_left" class="mod_beta">
-                <p>31 марта среди участников пройдет грандиозная распродажа со скидками на самые ожидаемые гаджеты 2014.</p>
+                <p>Распродажа окончена. <a href="sale/">Оставьте</a> свой эл. адрес и мы сообщим вам о новых акциях и скидках.</p>
     </div>
 </div>    
 <div ng-repeat="menu in menus" stm-index-popover="menu.id" popover-type="{{position == 'bottom' ? 'top' : 'bottom' }}" hide-event-timeout="0" hide-on-clickout="true" show="{{!!menu.active}}" position="{{menu.position}}">
