@@ -120,7 +120,7 @@
 
 .b-toolbar-link .__a-pseudo:hover {
     color: #f66b0e!important;
-    border-bottom-color: #f66b0e;
+    border-bottom-color: #f66b0e!important;
 }
 
 .b-toolbar-link .__a-pseudo, .b-toolbar-link sup,
@@ -131,6 +131,7 @@
 .b-toolbar-link.mod_disabled .__a-pseudo,
 .b-toolbar-link.mod_disabled .__a-pseudo:hover {
     color: gray;
+    border-bottom-color: gray;
 }
 
 .b-toolbar-link sup {
