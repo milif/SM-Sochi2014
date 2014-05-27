@@ -16,11 +16,17 @@
  */
 
 angular.module('stmSochiClose', ['stm'])
-        .controller('closePage', ['$scope', '$http', function($scope, $http){
+        .controller('closePage', ['$scope', '$http', '$timeout', function($scope, $http, $timeout){
             var $ = angular.element;
+            var errors = {
+                13: "Не верно указан адрес",
+                14: "Адрес уже подписан на рассылку новостей"
+            }
+            var flashErrorTimeout;
             var model = $scope.model = {};
             $scope.isSend = false;
             $scope.state = 'send';
+            $scope.error = null;
             $scope.submit = function(){
                 var form = model.form;
                 if(!$scope.isSend && form.$valid) {
@@ -38,12 +44,22 @@ angular.module('stmSochiClose', ['stm'])
                             $scope.state = 'sended';
                         } else {
                             form.email.$setValidity('required', false);
+                            flashError(data.errcode);
                         }
                     });
                     res.finally(function(){
                         $scope.isSend = false;
                     });
                 }
-            }  
+            } 
+            function flashError(error){
+                if(error in errors) {
+                    $scope.error = errors[error];
+                    $timeout.cancel(flashErrorTimeout);
+                    flashErrorTimeout = $timeout(function(){
+                        $scope.error = null;
+                    }, 2000);
+                }
+            } 
         }]);
 

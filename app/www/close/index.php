@@ -36,6 +36,7 @@
                                 <div class="splash__envelop-form-bl">
                                     <input name="email" placeholder="Электронная почта" ng-model="model.email" required type="email" class="splash__envelop-form-input">
                                     <button ng-class="isSend ? 'state_loading' : ''" type="submit" class="splash__envelop-form-button">подписаться</button>
+                                    <span ng-if="error" class="form-error">{{error}}</span>
                                 </div>
                             </div>
                         </form>
