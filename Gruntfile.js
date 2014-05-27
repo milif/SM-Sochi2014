@@ -24,6 +24,19 @@ module.exports = function(grunt) {
     buildapp: {
         modules: [
             {  
+                name: 'stmSochiClose', 
+                include: [        // Include module components:
+                    'stm.directive:stmPreload'                                        
+                ],
+                disable: [
+                    'stm:bootstrap.css'
+                ],
+                includeAsset: true,
+                includeTemplates: [
+                    '*'
+                ]   
+            }/*,
+            {  
                 name: 'stmIndexPage', // Module and package name 
                 include: [        // Include module components:
                     'directive:stmIndexPageScreen',
@@ -156,7 +169,7 @@ module.exports = function(grunt) {
                     '*'
                 ]   
             }
-            
+            */
         ],
         lib: ['src/**/*.+(js|html)'],
         components: ['build/components'],

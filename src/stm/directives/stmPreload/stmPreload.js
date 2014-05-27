@@ -75,8 +75,10 @@ angular.module('stm').directive('stmPreload', ['$compile', function($compile){
                     $element
                         .data('_overflow', $element.css('overflow'))
                         .data('_overflowY', $element.css('overflow-y'))
-                        .css('overflow','hidden')
-                        .scrollTop(0);                
+                        .css('overflow','hidden'); 
+                    setTimeout(function(){
+                        $element.scrollTop(0);
+                    }, 50);            
                     preload();
                 });
             });            
