@@ -35,7 +35,7 @@ module.exports = function(grunt) {
                 includeTemplates: [
                     '*'
                 ]   
-            }/*,
+            },
             {  
                 name: 'stmIndexPage', // Module and package name 
                 include: [        // Include module components:
@@ -168,7 +168,7 @@ module.exports = function(grunt) {
                 includeTemplates: [
                     '*'
                 ]   
-            }*/
+            }
         ],
         lib: ['src/**/*.+(js|html)'],
         components: ['build/components'],
