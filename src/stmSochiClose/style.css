@@ -47,6 +47,7 @@
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
+    margin-top: 20px;
     padding: 8px; }
   .splash__envelop-h {
     height: 295px;
@@ -81,7 +82,8 @@
 
 .splash__envelop-title {
   font-size: 30px;
-  margin-bottom: 40px; }
+  margin-top: 10px;
+  margin-bottom: 30px; }
 
 .splash__envelop-subscribe {
   display: inline-block;
