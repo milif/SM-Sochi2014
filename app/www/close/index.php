@@ -1,4 +1,5 @@
 <?php 
+    define('NO_DB', true);
     require __DIR__.'/../../lib/init.php'; ?><!doctype html>
 <html ng-app="stmSochiClose" lang="ru">
 <head>
