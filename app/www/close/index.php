@@ -12,9 +12,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE">
 </head>
-<body ng-controller="closePage" stm-preload class="l-body">
+<body stm-preload class="l-body">
 <!-- l-page -->
-<div class="l-page-splash">
+<div ng-controller="closePage" class="l-page-splash">
     <div class="l-page-splash__h">
         <div class="splash">
             <a class="splash__sotmarket" href="/">Sotmarket.ru</a>
